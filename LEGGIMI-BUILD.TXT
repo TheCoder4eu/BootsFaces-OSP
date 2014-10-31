@@ -8,7 +8,7 @@ Preparativi per la Build.
   
 3) Scaricare Bootstrap da http://getbootstrap.com/getting-started/#download la versione "Source code"
    e scompattare in Bootstrap (dovrebbe creare una sottodirectory con il nome della versione)
-   (link diretto: https://github.com/twbs/bootstrap/archive/v3.2.0.zip )
+   (link diretto: https://github.com/twbs/bootstrap/archive/v3.3.0.zip )
    Aggiornare la versione nella property bootstrap.version nel file build.properties, se necessario.
    
 4) seguire le istruzioni del file LEGGIMI nella dicrectory lib;

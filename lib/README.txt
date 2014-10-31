@@ -9,7 +9,7 @@ The build needs the following Libraries to be downloaded in this directory (/lib
 2) Download the library javax.el from https://maven.java.net/content/repositories/releases/org/glassfish/javax.el/ ;
    (last version is la 3.0.0, download javax.el-3.0.0.jar)
    (the library compiles with versions of javax.el starting from 2.2 )
-3) Download the library javax.servlet-api da http://central.maven.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+3) Download the library javax.servlet-api from http://central.maven.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
 
 4) Download the YUIcompressor from https://github.com/yui/yuicompressor/releases ;
    last version is  2.4.8, download yuicompressor-2.4.8.jar .
