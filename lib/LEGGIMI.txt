@@ -1,0 +1,18 @@
+LIBRERIE RICHIESTE
+------------------
+
+La build richiede di scaricare le Librerie seguenti in questa directory (/lib):
+
+1) Scaricare la libreria javax.faces da https://javaserverfaces.java.net/nonav/2.2/download.html e metterla nella directory lib;
+   scegliere il primo link "Implementation jars" e scaricare l'ultima versione che al momento e' javax.faces-2.2.8-02.jar .
+   (la libreria si compila con versioni di javax.faces dalla 2.1 in poi)
+2) Scaricare la libreria javax.el da https://maven.java.net/content/repositories/releases/org/glassfish/javax.el/ e metterla nella directory lib;
+   (l'ultima versione e' la 3.0.0, scaricare javax.el-3.0.0.jar)
+   (la libreria si compila con versioni di javax.el dalla 2.2 in poi)
+3) Scaricare la libreria javax.servlet-api da http://central.maven.org/maven2/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar
+
+4) Scaricare lo YUIcompressor da https://github.com/yui/yuicompressor/releases e metterlo nella directory lib;
+   l'ultima release e' la 2.4.8, scaricare yuicompressor-2.4.8.jar .
+5) Scaricare xmltask.jar da http://sourceforge.net/projects/xmltask/ e metterlo nella directory lib;
+   (last version is 1.16.1)
+

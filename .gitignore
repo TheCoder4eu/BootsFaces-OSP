@@ -1,0 +1,8 @@
+/build
+/dist
+/optimized
+/nbproject/
+/nbproject/private/
+/.settings
+.classpath
+.project

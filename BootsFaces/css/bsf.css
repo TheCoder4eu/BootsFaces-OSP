@@ -1,0 +1,75 @@
+/*!
+ * Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ * BootsFaces Framework CSS
+ */
+
+/* Navbar */
+.navbar-static-bottom {
+    margin-top: 10px;
+    margin-bottom: 1px;
+}
+.navbar-fixed-top .navbar-inner, .navbar-static-bottom .navbar-inner {
+    border-width: 1px 0 0;
+}
+
+/* inputText */
+.row .form-group {
+    margin-bottom: 0;
+}
+
+/* Datepicker */
+.ui-datepicker-header {
+        font-weight: bold;
+        min-height: auto;
+}
+.ui-widget {
+    font-size: 0.85em;
+}
+.ui-datepicker-trigger {
+	display:none;
+}
+
+.ui-datepicker-calendar tbody > tr > td {
+    border: 0 none;
+    padding: 1px;
+}
+
+.ui-datepicker-calendar > thead > tr > th {
+    border: 0 none;
+    padding: 0.7em 0.3em;
+}
+/* Slider */
+.row .slider { margin-left: 0px; }
+.slider input { width: auto; }
+.slider .badge { min-width: 30px; }
+.slider .ui-widget { margin-top: 7px; }
+.slider-vertical input { margin: 5px auto; width: auto; padding: 5px; }
+.slider-vertical .badge { margin: 10px auto; display: block; width: 66%; max-width: 50px; padding-left:0px; padding-right:0px;}
+.row .slider-vertical { padding-bottom: 5px; margin-left: 0px;}
+.slider-vertical p { font-weight: bold; margin: 0px; text-align: center;}
+.slider-vertical .ui-widget { margin: 0 auto; }
+
+.ui-slider .ui-slider-handle-round { border-radius: 10px; }
+.ui-slider .ui-slider-handle-md { height: 20px; margin: -2px 0 0 -2px; width: 20px; }
+.ui-slider .ui-slider-handle-lg { height: 24px; margin: -4px 0 0 -4px; width: 24px; }
+.ui-slider.ui-slider-vertical .ui-slider-handle-md { height: 20px; margin: -2px 0 -8px -2px; width: 20px; }
+.ui-slider.ui-slider-vertical .ui-slider-handle-lg { height: 24px; margin: -4px 0 -8px -4px; width: 24px; }
+.ui-slider .ui-slider-handle-lg.ui-slider-handle-round { border-radius: 15px; }
+
+@media (min-width: 992px) { .slider .col-md-1 { width: 6%; } }
+@media (min-width: 1200px) { .slider .col-lg-1 { width: 5%; } }
+@media (max-width: 768px) { .slider .col-xs-1 { width: 10%; } }
+@media (max-width: 640px) { .slider .col-xs-1 { width: 12.5%; } }
+@media (max-width: 480px) { .slider .col-xs-1 { width: 15%; } }
+@media (max-width: 320px) { .slider .col-xs-1 { width: 20%; } }
+.input-group .input-group-btn .btn-group { margin-left: -2px; margin-right: -2px; }
+/* Temporary fix for modal by @fat until Bootstrap 3.1.0 */
+.scrollbar-measure {
+  width: 1px;
+  height: 1px;
+  overflow: scroll;
+  position: absolute;
+  top: -9999px;
+}
+
+

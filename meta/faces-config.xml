@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== Faces configuration FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    
+    <name>bootsfaces</name>
+    
+    <managed-bean>
+        <description>
+            <![CDATA[
+            This makes an instance of <code>java.util.Date</code> as current datetime available by
+            <code>#{now}</code>.
+            ]]>
+        </description>
+        <managed-bean-name>now</managed-bean-name>
+        <managed-bean-class>java.util.Date</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <render-kit>
+
+        <renderer>
+            <component-family>javax.faces.Output</component-family>
+            <renderer-type>javax.faces.Head</renderer-type>
+            <renderer-class>net.bootsfaces.render.HeadRenderer</renderer-class>
+        </renderer>
+        
+        <renderer>
+            <component-family>javax.faces.Command</component-family>
+            <renderer-type>net.bootsfaces.component.Paginator</renderer-type>
+            <renderer-class>net.bootsfaces.render.PaginatorR</renderer-class>
+        </renderer>
+        
+    </render-kit>
+</faces-config>
