@@ -35,11 +35,10 @@
 		
 		<!-- set variables for compilation options -->
 		<!-- CSS -->
-		<property name="minifycssfiles" value="off"/>
+		<property name="minifycssfiles" value="on"/>
 		<condition property="minifycss"><equals arg1="${minifycssfiles}" arg2="on"/></condition>
 		<condition property="min.css.suffix" value="-min"><equals arg1="${minifycssfiles}" arg2="on"/></condition>
 		<!-- JS -->
-		<property name="min.css.suffix" value=""/>
 		<property name="minifyjsfiles" value="on"/>
 		<condition property="minifyjs"><equals arg1="${minifyjsfiles}" arg2="on"/></condition>
 		<condition property="min.js.suffix" value="-min"><equals arg1="${minifyjsfiles}" arg2="on"/></condition>
@@ -235,12 +234,11 @@
 	
 	<target name="compile-lesscss-windows" if="os.windows">
 		<echo message="Compiling LessCSS to CSS (windows platform WITH NodeJS)..." />
-		<apply executable="C:\Users\SoyYo\AppData\Roaming\npm\lessc.cmd" dest="${less.dir}">
-			<srcfile/>
-			<targetfile/>
-		    <fileset dir="${less.dir}" includes="bs-*.less"/>
-			<mapper type="glob" from="bs-*.less" to="*.css"/>
-	    </apply>
+		<exec executable="cmd.exe" dir="${directory}">
+			<arg value="${env.USER_HOME_DIRECTORY}/AppData/Roaming/npm/lessc"/>
+			<arg value="${input}"/>
+			<arg value="../css/${output}"/>
+		</exec>
 	</target>
 	<target name="compile-lesscss-unix" if="os.unix">
 		<echo message="Compiling LessCSS to CSS (*nix platform)..." />

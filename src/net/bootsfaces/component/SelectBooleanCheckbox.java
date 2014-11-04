@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014 Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -21,7 +21,6 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
-
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -29,39 +28,39 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 
 /**
- *
- * @author thecoder4.eu
+ * This class represents and renders a checkbox.
+ * 
+ * @author 2014 Stephan Rauh (http://www.beyondjava.net).
  */
 
-@ResourceDependencies({
-    @ResourceDependency(library="bsf", name="css/core.css", target="head"),
-    @ResourceDependency(library="bsf", name="css/bsf.css", target="head")
-})
-@FacesComponent(C.INPUTTEXT_COMPONENT_TYPE)
-public class InputText extends HtmlInputText {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.INPUTTEXT_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    
-    public static final String ADDON="input-group-addon";
-    
-    public InputText() {
-        setRendererType(null); // this component renders itself
-    }
-    
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
+@FacesComponent(C.SELECT_BOOLEAN_CHECKBOX_COMPONENT_TYPE)
+public class SelectBooleanCheckbox extends HtmlInputText {
+
+	/** Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in front of or behind the input field). */
+	public static final String ADDON = "input-group-addon";
+
+	/**
+	 * The component family for this component.
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	/**
+	 * The standard component type for this component.
+	 */
+	public static final String COMPONENT_TYPE = C.SELECT_BOOLEAN_CHECKBOX_COMPONENT_TYPE;
+
+	public SelectBooleanCheckbox() {
+		setRendererType(null); // this component renders itself
+	}
+
 	/** Receives the value from the client and sends it to the JSF bean. */
 	@Override
 	public void decode(FacesContext context) {
@@ -96,7 +95,7 @@ public class InputText extends HtmlInputText {
 			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
 		}
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null), (appendingAddOnFacet != null));
-		
+
 		int span = startColSpanDiv(attrs, rw);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null));
@@ -108,15 +107,15 @@ public class InputText extends HtmlInputText {
 		closeColSpanDiv(rw, span);
 	}
 
-	
 	/**
-     * Renders components added seamlessly behind the input field.
-     * @param context
-     * @param rw
-     * @param prependingAddOnFacet
-     * @param hasPrependingAddOn
-     * @throws IOException
-     */
+	 * Renders components added seamlessly behind the input field.
+	 * 
+	 * @param context
+	 * @param rw
+	 * @param prependingAddOnFacet
+	 * @param hasPrependingAddOn
+	 * @throws IOException
+	 */
 	protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent appendingAddOnFacet,
 			boolean hasAppendingAddOn) throws IOException {
 		if (hasAppendingAddOn) {
@@ -134,7 +133,8 @@ public class InputText extends HtmlInputText {
 	}
 
 	/**
-	 * Renders the optional label.  This method is protected in order to allow third-party frameworks to derive from it.
+	 * Renders the optional label. This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param attrs
 	 * @param rw
 	 * @param clientId
@@ -151,13 +151,14 @@ public class InputText extends HtmlInputText {
 	}
 
 	/**
-     * Renders components added seamlessly in front of the input field.
-     * @param context
-     * @param rw
-     * @param prependingAddOnFacet
-     * @param hasPrependingAddOn
-     * @throws IOException
-     */
+	 * Renders components added seamlessly in front of the input field.
+	 * 
+	 * @param context
+	 * @param rw
+	 * @param prependingAddOnFacet
+	 * @param hasPrependingAddOn
+	 * @throws IOException
+	 */
 	protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent prependingAddOnFacet,
 			boolean hasPrependingAddOn) throws IOException {
 		if (hasPrependingAddOn) {
@@ -175,19 +176,22 @@ public class InputText extends HtmlInputText {
 	}
 
 	/**
-	 * Terminate the column span div (if there's one).  This method is protected in order to allow third-party frameworks to derive from it.
+	 * Terminate the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param rw
 	 * @param span
 	 * @throws IOException
 	 */
 	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
 		if (span > 0) {
-			rw.endElement(H.DIV); // span
+			rw.endElement(H.DIV);
 		}
 	}
 
 	/**
-	 * Terminates the input field group (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
+	 * Terminates the input field group (if there's one). This method is protected in order to allow third-party frameworks to derive from
+	 * it.
+	 * 
 	 * @param rw
 	 * @param hasAddon
 	 * @throws IOException
@@ -195,16 +199,15 @@ public class InputText extends HtmlInputText {
 	protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
 		if (hasAddon) {
 			rw.endElement(H.DIV);
-		} // input-group
+		}
 	}
 
-
-    @Override
+	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
-    /** Renders the input tag. */
+	/** Renders the input tag. */
 	protected void renderInputTag(FacesContext context, Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
 		renderInputTag(rw);
 		renderInputTagAttributes(attrs, rw, clientId);
@@ -214,15 +217,19 @@ public class InputText extends HtmlInputText {
 
 	/**
 	 * Renders the start of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param rw
 	 * @throws IOException
 	 */
 	protected void renderInputTag(ResponseWriter rw) throws IOException {
+		rw.startElement(H.DIV, this);
+		rw.writeAttribute("class", "checkbox", "class");
 		rw.startElement(H.INPUT, this);
 	}
 
 	/**
 	 * Renders the attributes of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param attrs
 	 * @param rw
 	 * @param clientId
@@ -231,7 +238,7 @@ public class InputText extends HtmlInputText {
 	protected void renderInputTagAttributes(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
 		rw.writeAttribute(H.ID, clientId, null);
 		rw.writeAttribute(H.NAME, clientId, null);
-		rw.writeAttribute(H.TYPE, H.TEXT, null);
+		rw.writeAttribute(H.TYPE, "checkbox", null);
 
 		StringBuilder sb;
 		String s;
@@ -272,17 +279,23 @@ public class InputText extends HtmlInputText {
 		}
 	}
 
-	/** 
-	 * Closes the input tag. This method is protected in order to allow third-party frameworks to derive from it. 
+	/**
+	 * Closes the input tag. This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param rw
 	 * @throws IOException
 	 */
 	protected void renderInputTagEnd(ResponseWriter rw) throws IOException {
 		rw.endElement(H.INPUT);
+		String caption = A.asString("caption");
+		if (null != caption)
+			rw.append(caption);
+		rw.endElement("div");
 	}
 
 	/**
 	 * Renders the value of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param context
 	 * @param rw
 	 * @throws IOException
@@ -293,7 +306,8 @@ public class InputText extends HtmlInputText {
 	}
 
 	/**
-	 * Start the column span div (if there's one).  This method is protected in order to allow third-party frameworks to derive from it.
+	 * Start the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param rw
 	 * @param span
 	 * @throws IOException
@@ -308,7 +322,9 @@ public class InputText extends HtmlInputText {
 	}
 
 	/**
-	 * Starts the input field group (if needed to display a component seamlessly in front of or behind the input field). This method is protected in order to allow third-party frameworks to derive from it.
+	 * Starts the input field group (if needed to display a component seamlessly in front of or behind the input field). This method is
+	 * protected in order to allow third-party frameworks to derive from it.
+	 * 
 	 * @param rw
 	 * @param hasPrependingAddOn
 	 * @param hasAppendingAddOn

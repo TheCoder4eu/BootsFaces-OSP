@@ -51,6 +51,7 @@ public final class C {
     public static final String DROPBUTTON_COMPONENT_TYPE=BSFCOMPONENT+".DropButton";
     public static final String DROPMENU_COMPONENT_TYPE=BSFCOMPONENT+".DropMenu";
     public static final String INPUTTEXT_COMPONENT_TYPE=BSFCOMPONENT+".InputText";
+    public static final String SELECT_BOOLEAN_CHECKBOX_COMPONENT_TYPE=BSFCOMPONENT+".SelectBooleanCheckbox";
     public static final String LABEL_COMPONENT_TYPE=BSFCOMPONENT+".Label";
     public static final String LISTLINKS_COMPONENT_TYPE=BSFCOMPONENT+".ListLinks";
     public static final String MODAL_COMPONENT_TYPE=BSFCOMPONENT+".Modal";
