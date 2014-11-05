@@ -112,6 +112,18 @@ public final class H {
 		"tabindex",
 		TITLE
     };
+    
+    public static final String[] CHECKBOX = {
+		"accesskey",
+		"alt",
+                //DISABLED,
+		"lang",
+                STYLE,
+		"tabindex",
+		TITLE
+    };
+
+    
     // NOTE: disabled, styleClass are handled by component
     public static final String[] ALLBUTTON = {
 		"accesskey",

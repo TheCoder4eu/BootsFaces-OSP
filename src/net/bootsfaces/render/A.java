@@ -191,6 +191,7 @@ public final class A {
     }
     
     public static final String[] INPUT_TEXT_ATTRS = A.concatAll( H.INPUT_TEXT, E.CLICK, E.FOCUS, E.MOUSE);
+    public static final String[] CHECKBOX_ATTRS = A.concatAll( H.CHECKBOX, E.CLICK, E.FOCUS, E.MOUSE);
     public static final String[] ALLBUTTON_ATTRS = A.concatAll( H.ALLBUTTON, E.DBLCLICK, E.FOCUS, E.MOUSE);
    
     /*

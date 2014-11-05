@@ -79,8 +79,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = getClientId(context);
 
-		rw.startElement(H.DIV, this);
-		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
+		// rw.startElement(H.DIV, this);
+		// rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 		addLabel(attrs, rw, clientId);
 
 		// "Prepend" facet
@@ -103,7 +103,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null));
 
 		closeInputGroupForAddOn(rw, hasAddon);
-		rw.endElement(H.DIV); // form-group
+		// rw.endElement(H.DIV); // form-group
 		closeColSpanDiv(rw, span);
 	}
 
@@ -212,7 +212,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		renderInputTag(rw);
 		renderInputTagAttributes(attrs, rw, clientId);
 		renderInputTagValue(context, rw);
-		renderInputTagEnd(rw);
+		renderInputTagEnd(attrs, rw);
 	}
 
 	/**
@@ -224,6 +224,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	protected void renderInputTag(ResponseWriter rw) throws IOException {
 		rw.startElement(H.DIV, this);
 		rw.writeAttribute("class", "checkbox", "class");
+		// rw.writeAttribute("style", "margin-left:20px", "style");
 		rw.startElement(H.INPUT, this);
 	}
 
@@ -243,7 +244,6 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		StringBuilder sb;
 		String s;
 		sb = new StringBuilder(20); // optimize int
-		sb.append("form-control");
 		String fsize = A.asString(attrs.get(A.FIELDSIZE));
 
 		if (fsize != null) {
@@ -259,11 +259,6 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 			rw.writeAttribute(H.CLASS, s, H.CLASS);
 		}
 
-		String ph = A.asString(attrs.get(A.PHOLDER));
-		if (ph != null) {
-			rw.writeAttribute(H.PHOLDER, ph, null);
-		}
-
 		if (A.toBool(attrs.get(A.DISABLED))) {
 			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
 		}
@@ -272,11 +267,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, attrs, A.INPUT_TEXT_ATTRS);
-
-		if ((A.asString(attrs.get("autocomplete")) != null) && (A.asString(attrs.get("autocomplete")).equals("off"))) {
-			rw.writeAttribute("autocomplete", "off", null);
-		}
+		R.encodeHTML4DHTMLAttrs(rw, attrs, A.CHECKBOX_ATTRS);
 	}
 
 	/**
@@ -285,9 +276,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * @param rw
 	 * @throws IOException
 	 */
-	protected void renderInputTagEnd(ResponseWriter rw) throws IOException {
+	protected void renderInputTagEnd(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
 		rw.endElement(H.INPUT);
-		String caption = A.asString("caption");
+		String caption = A.asString(attrs.get("caption"));
 		if (null != caption)
 			rw.append(caption);
 		rw.endElement("div");
@@ -302,7 +293,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 */
 	protected void renderInputTagValue(FacesContext context, ResponseWriter rw) throws IOException {
 		String v = R.getValue2Render(context, this);
-		rw.writeAttribute(H.VALUE, v, null);
+		if (v != null && "true".equals(v))
+			rw.writeAttribute("checked", v, null);
 	}
 
 	/**
