@@ -66,10 +66,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	public void decode(FacesContext context) {
 		String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
 
-		if (subVal != null) {
-			this.setSubmittedValue(subVal);
+			this.setSubmittedValue("on".equals(subVal));
 			this.setValid(true);
-		}
 	}
 
 	/** Generates the HTML code for this component. */
