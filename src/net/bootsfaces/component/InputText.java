@@ -94,6 +94,10 @@ public class InputText extends HtmlInputText {
         
         
         String l = A.asString(attrs.get(A.LABEL));
+        // Define TYPE ( if null set default = text )
+        String t = A.asString(attrs.get(A.TYPE));
+        if (t == null)
+        	t = H.TEXT;
         
         rw.startElement(H.DIV, this);
         rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
@@ -125,7 +129,7 @@ public class InputText extends HtmlInputText {
         rw.startElement(H.INPUT, this);
         rw.writeAttribute(H.ID, clientId, null);
         rw.writeAttribute(H.NAME, clientId, null);
-        rw.writeAttribute(H.TYPE, H.TEXT, null);
+        rw.writeAttribute(H.TYPE, t, null);
         
         StringBuilder sb; String s;
         sb = new StringBuilder(20); //optimize int
