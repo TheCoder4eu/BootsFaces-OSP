@@ -1443,12 +1443,6 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Maximum number of characters that may be entered in this field.]]></description>
-      <name>maxlength</name>
-      <required>false</required>
-      <type>int</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
       <name>readonly</name>
       <required>false</required>
