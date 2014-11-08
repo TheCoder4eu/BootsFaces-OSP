@@ -1598,12 +1598,6 @@
       <type>java.lang.Boolean</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Type of the input. The default is text.]]></description>
-      <name>type</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
       <name>span</name>
       <required>false</required>
@@ -1616,25 +1610,13 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The maximum length of the input.]]></description>
-      <name>maxlength</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The Label of the field .]]></description>
+      <description><![CDATA[The label above of the field .]]></description>
       <name>label</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
-      <name>placeholder</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Value.]]></description>
+      <description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
       <name>value</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -1659,30 +1641,6 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
-      <name>validator</name>
-      <required>false</required>
-      <type>javax.faces.validator.Validator</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Message to display when validation fails.]]></description>
-      <name>validatorMessage</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
-      <name>required</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
-      <name>requiredMessage</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[Flag indicating that, if this component is activated by the user,
                                               notifications should be delivered to interested listeners and actions
                                               immediately (that is, during Apply Request Values phase) rather than
@@ -1690,12 +1648,6 @@
       <name>immediate</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Controls browser autocomplete behavior.]]></description>
-      <name>autocomplete</name>
-      <required>false</required>
-      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[Access key to transfer focus to the input element.]]></description>
@@ -1728,22 +1680,10 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Maximum number of characters that may be entered in this field.]]></description>
-      <name>maxlength</name>
-      <required>false</required>
-      <type>int</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
       <name>readonly</name>
       <required>false</required>
       <type>boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
-      <name>size</name>
-      <required>false</required>
-      <type>int</type>
     </attribute>
     <attribute>
       <description><![CDATA[Inline style of the input element.]]></description>

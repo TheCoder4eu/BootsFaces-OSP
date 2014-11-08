@@ -222,7 +222,6 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	protected void renderInputTag(ResponseWriter rw) throws IOException {
 		rw.startElement(H.DIV, this);
 		rw.writeAttribute("class", "checkbox", "class");
-		// rw.writeAttribute("style", "margin-left:20px", "style");
 		rw.startElement(H.LABEL, this);
 
 		rw.startElement(H.INPUT, this);
