@@ -223,6 +223,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		rw.startElement(H.DIV, this);
 		rw.writeAttribute("class", "checkbox", "class");
 		// rw.writeAttribute("style", "margin-left:20px", "style");
+		rw.startElement(H.LABEL, this);
+
 		rw.startElement(H.INPUT, this);
 	}
 
@@ -279,7 +281,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		String caption = A.asString(attrs.get("caption"));
 		if (null != caption)
 			rw.append(caption);
-		rw.endElement("div");
+		rw.endElement(H.LABEL);
+		rw.endElement(H.DIV);
 	}
 
 	/**
