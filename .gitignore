@@ -7,3 +7,8 @@
 .classpath
 .project
 /bin/
+/target/
+/BootsFaces/css
+/BootsFaces/fonts
+/BootsFaces/js
+/BootsFaces/less

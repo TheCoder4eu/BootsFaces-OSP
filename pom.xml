@@ -1,0 +1,153 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.bootsfaces</groupId>
+	<artifactId>BootsFaces-OSP</artifactId>
+	<version>0.51-SNAPSHOT</version>
+	<name>BootsFaces</name>
+	<description>TheCoder4EU</description>
+	<url>http://www.beyondjava.net</url>
+	<licenses>
+		<license>
+			<name>GNU General Public License (GPL) version 3.0</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>BootsFaces Team</name>
+			<email>bootsfaces@thecoder4.eu</email>
+			<organization>TheCoder4EU</organization>
+			<organizationUrl>http://www.thecoder4.eu/</organizationUrl>
+		</developer>
+
+		<developer>
+			<name>Stephan Rauh</name>
+			<email>webmaster1@beyondjava.de</email>
+			<organization>BeyondJava.net</organization>
+			<organizationUrl>http://www.beyondjava.net</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</connection>
+		<developerConnection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
+		<url>git@github.com:TheCoder4eu/BootsFaces-OSP.git</url>
+	</scm>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.6</maven.compiler.source>
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.testSource>1.6</maven.compiler.testSource>
+		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+	</dependencies>
+	<profiles>
+		<profile>
+			<id>Mojarra 2.2.8-02</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.sun.faces</groupId>
+					<artifactId>jsf-api</artifactId>
+					<version>2.2.8-02</version>
+					<scope>provided</scope>
+				</dependency>
+				<dependency>
+					<groupId>com.sun.faces</groupId>
+					<artifactId>jsf-impl</artifactId>
+					<version>2.2.8-02</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>MyFaces 2.2.4</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>org.apache.myfaces.core</groupId>
+					<artifactId>myfaces-api</artifactId>
+					<version>2.2.4</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>BootsFaces/css</directory>
+				<targetPath>META-INF/resources/bsf/css</targetPath>
+			</resource>
+			<resource>
+				<directory>BootsFaces/js</directory>
+				<targetPath>META-INF/resources/bsf/js</targetPath>
+			</resource>
+			<resource>
+				<directory>BootsFaces/jq</directory>
+				<targetPath>META-INF/resources/bsf/jq</targetPath>
+			</resource>
+			<resource>
+				<directory>BootsFaces/fonts</directory>
+				<targetPath>META-INF/resources/fonts</targetPath>
+			</resource>
+			<resource>
+				<directory>meta</directory>
+				<targetPath>META-INF</targetPath>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source />
+					<target />
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-compile</id>
+						<configuration>
+							<showDeprecation>true</showDeprecation>
+							<showWarnings>true</showWarnings>
+							<compilerArguments>
+								<source>${maven.compiler.target}</source>
+								<target>${maven.compiler.source}</target>
+							</compilerArguments>
+						</configuration>
+					</execution>
+					<execution>
+						<id>default-testCompile</id>
+						<configuration>
+							<showDeprecation>true</showDeprecation>
+							<showWarnings>true</showWarnings>
+							<compilerArguments>
+								<source>${maven.compiler.testTarget}</source>
+								<target>${maven.compiler.testSource}</target>
+							</compilerArguments>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+	</build>
+</project>
