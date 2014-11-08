@@ -66,8 +66,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	public void decode(FacesContext context) {
 		String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
 
-			this.setSubmittedValue("on".equals(subVal));
-			this.setValid(true);
+		this.setSubmittedValue("on".equals(subVal));
+		this.setValid(true);
 	}
 
 	/** Generates the HTML code for this component. */
@@ -77,8 +77,6 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = getClientId(context);
 
-		// rw.startElement(H.DIV, this);
-		// rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 		addLabel(attrs, rw, clientId);
 
 		// "Prepend" facet
@@ -101,7 +99,6 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null));
 
 		closeInputGroupForAddOn(rw, hasAddon);
-		// rw.endElement(H.DIV); // form-group
 		closeColSpanDiv(rw, span);
 	}
 
@@ -109,10 +106,15 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders components added seamlessly behind the input field.
 	 * 
 	 * @param context
+	 *            the FacesContext
 	 * @param rw
+	 *            the response writer
 	 * @param prependingAddOnFacet
+	 *            optional facet behind the field. Can be null.
 	 * @param hasPrependingAddOn
+	 *            optional facet in front of the field. Can be null.
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent appendingAddOnFacet,
 			boolean hasAppendingAddOn) throws IOException {
@@ -134,9 +136,13 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders the optional label. This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param attrs
+	 *            the input field's attribute list
 	 * @param rw
+	 *            the response writer
 	 * @param clientId
+	 *            the id used by the label to refernce the input field
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void addLabel(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
 		String l = A.asString(attrs.get(A.LABEL));
@@ -152,10 +158,13 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders components added seamlessly in front of the input field.
 	 * 
 	 * @param context
+	 *            the FacesContext
 	 * @param rw
+	 *            the response writer
 	 * @param prependingAddOnFacet
 	 * @param hasPrependingAddOn
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent prependingAddOnFacet,
 			boolean hasPrependingAddOn) throws IOException {
@@ -177,8 +186,11 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Terminate the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @param span
+	 *            the width of the components (in BS columns).
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
 		if (span > 0) {
@@ -191,8 +203,11 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @param hasAddon
+	 *            true if there is an add-on in front of or behind the input field
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
 		if (hasAddon) {
@@ -217,7 +232,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders the start of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTag(ResponseWriter rw) throws IOException {
 		rw.startElement(H.DIV, this);
@@ -231,9 +248,13 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders the attributes of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param attrs
+	 *            the component's attribute list
 	 * @param rw
+	 *            the response writer
 	 * @param clientId
+	 *            the client id (used both as id and name)
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTagAttributes(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
 		rw.writeAttribute(H.ID, clientId, null);
@@ -248,10 +269,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 		if (fsize != null) {
 			sb.append(" input-").append(fsize);
 		}
-		// styleClass and class support
-		String sclass = A.asString(attrs.get(H.STYLECLASS));
-		if (sclass != null) {
-			sb.append(" ").append(sclass);
+		String cssClass = A.asString(attrs.get(H.STYLECLASS));
+		if (cssClass != null) {
+			sb.append(" ").append(cssClass);
 		}
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
@@ -273,7 +293,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Closes the input tag. This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTagEnd(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
 		rw.endElement(H.INPUT);
@@ -288,8 +310,11 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Renders the value of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param context
+	 *            the FacesContext
 	 * @param rw
+	 *            the response writer
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTagValue(FacesContext context, ResponseWriter rw) throws IOException {
 		String v = R.getValue2Render(context, this);
@@ -301,8 +326,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * Start the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @param span
-	 * @throws IOException
+	 *            the width (counted in BS columns) * @throws IOException may be thrown by the response writer
 	 */
 	protected int startColSpanDiv(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
 		int span = A.toInt(attrs.get(A.SPAN));
@@ -318,10 +344,12 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * protected in order to allow third-party frameworks to derive from it.
 	 * 
 	 * @param rw
+	 *            the response writer
 	 * @param hasPrependingAddOn
 	 * @param hasAppendingAddOn
-	 * @return
+	 * @return true if there is an add-on in front of or behind the input field
 	 * @throws IOException
+	 *             may be thrown by the response writer
 	 */
 	protected boolean startInputGroupForAddOn(ResponseWriter rw, boolean hasPrependingAddOn, boolean hasAppendingAddOn) throws IOException {
 		final boolean hasAddon = hasAppendingAddOn || hasPrependingAddOn;
