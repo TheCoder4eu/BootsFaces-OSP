@@ -21,7 +21,6 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
-
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -29,7 +28,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -62,265 +60,125 @@ public class InputText extends HtmlInputText {
         setRendererType(null); // this component renders itself
     }
     
-	/** Receives the value from the client and sends it to the JSF bean. */
-	@Override
-	public void decode(FacesContext context) {
-		String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
+    @Override
+    public void decode(FacesContext context) {
+        String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
 
-		if (subVal != null) {
-			this.setSubmittedValue(subVal);
-			this.setValid(true);
-		}
-	}
-
-	/** Generates the HTML code for this component. */
-	@Override
-	public void encodeBegin(FacesContext context) throws IOException {
-		Map<String, Object> attrs = getAttributes();
-		ResponseWriter rw = context.getResponseWriter();
-		String clientId = getClientId(context);
-
-		rw.startElement(H.DIV, this);
-		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
-		addLabel(attrs, rw, clientId);
-
-		// "Prepend" facet
-		UIComponent prependingAddOnFacet = getFacet(C.PREPEND);
-		if ((prependingAddOnFacet != null)) {
-			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
-		}
-
-		// "Append" facet
-		UIComponent appendingAddOnFacet = getFacet(C.APPEND);
-		if ((appendingAddOnFacet != null)) {
-			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
-		}
-		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null), (appendingAddOnFacet != null));
-		
-		int span = startColSpanDiv(attrs, rw);
-
-		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null));
-		renderInputTag(context, attrs, rw, clientId);
-		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null));
-
-		closeInputGroupForAddOn(rw, hasAddon);
-		rw.endElement(H.DIV); // form-group
-		closeColSpanDiv(rw, span);
-	}
-
-	
-	/**
-     * Renders components added seamlessly behind the input field.
-     * @param context
-     * @param rw
-     * @param prependingAddOnFacet
-     * @param hasPrependingAddOn
-     * @throws IOException
-     */
-	protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent appendingAddOnFacet,
-			boolean hasAppendingAddOn) throws IOException {
-		if (hasAppendingAddOn) {
-			if (appendingAddOnFacet.getClass().getName().endsWith("Button")
-					|| (appendingAddOnFacet.getChildCount() > 0 && appendingAddOnFacet.getChildren().get(0).getClass().getName()
-							.endsWith("Button"))) {
-				rw.startElement(H.DIV, this);
-				rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
-				appendingAddOnFacet.encodeAll(context);
-				rw.endElement(H.DIV);
-			} else {
-				appendingAddOnFacet.encodeAll(context);
-			}
-		}
-	}
-
-	/**
-	 * Renders the optional label.  This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param attrs
-	 * @param rw
-	 * @param clientId
-	 * @throws IOException
-	 */
-	protected void addLabel(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		String l = A.asString(attrs.get(A.LABEL));
-		if (l != null) {
-			rw.startElement(H.LABEL, this);
-			rw.writeAttribute(A.FOR, clientId, A.FOR);
-			rw.writeText(l, null);
-			rw.endElement(H.LABEL);
-		}
-	}
-
-	/**
-     * Renders components added seamlessly in front of the input field.
-     * @param context
-     * @param rw
-     * @param prependingAddOnFacet
-     * @param hasPrependingAddOn
-     * @throws IOException
-     */
-	protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw, UIComponent prependingAddOnFacet,
-			boolean hasPrependingAddOn) throws IOException {
-		if (hasPrependingAddOn) {
-			if (prependingAddOnFacet.getClass().getName().endsWith("Button")
-					|| (prependingAddOnFacet.getChildCount() > 0 && prependingAddOnFacet.getChildren().get(0).getClass().getName()
-							.endsWith("Button"))) {
-				rw.startElement(H.DIV, this);
-				rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
-				prependingAddOnFacet.encodeAll(context);
-				rw.endElement(H.DIV);
-			} else {
-				prependingAddOnFacet.encodeAll(context);
-			}
-		}
-	}
-
-	/**
-	 * Terminate the column span div (if there's one).  This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param rw
-	 * @param span
-	 * @throws IOException
-	 */
-	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
-		if (span > 0) {
-			rw.endElement(H.DIV); // span
-		}
-	}
-
-	/**
-	 * Terminates the input field group (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param rw
-	 * @param hasAddon
-	 * @throws IOException
-	 */
-	protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
-		if (hasAddon) {
-			rw.endElement(H.DIV);
-		} // input-group
-	}
-
+        if(subVal != null) {
+            this.setSubmittedValue(subVal);this.setValid(true);
+        }
+    }
 
     @Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+    public void encodeBegin(FacesContext context) throws IOException {
+        /*
+         * 
+         */
+        
+        Map<String, Object> attrs = getAttributes();
+        ResponseWriter rw = context.getResponseWriter();
+        String clientId = getClientId(context);
+        
+        //Map<String, Object> attrs = getAttributes();
+        
+        //"Prepend" facet
+        UIComponent prep = getFacet(C.PREPEND);
+        //"Append" facet
+        UIComponent app = getFacet(C.APPEND);
+        boolean prepend = (prep!=null);
+        boolean append = (app!=null);
+        
+        // If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
+        if(prepend) { R.addClass2FacetComponent(prep, "OutputText", ADDON); }//(prep.getChildren(), "OutputText", S.ADDON); }
+        if(append) { R.addClass2FacetComponent(app, "OutputText", ADDON); }
+        
+        
+        String l = A.asString(attrs.get(A.LABEL));
+        // Define TYPE ( if null set default = text )
+        String t = A.asString(attrs.get(A.TYPE));
+        if (t == null)
+        	t = H.TEXT;
+        
+        rw.startElement(H.DIV, this);
+        rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
+        if(l!=null) {
+        rw.startElement(H.LABEL, this);
+        rw.writeAttribute(A.FOR, clientId, A.FOR);
+        rw.writeText(l, null);
+        rw.endElement(H.LABEL);
+        }
+        if(append||prepend) {
+        rw.startElement(H.DIV, this);
+        rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
+        }
+        int span = A.toInt(attrs.get(A.SPAN));
+        if(span>0) {
+            rw.startElement(H.DIV, this);
+            rw.writeAttribute(H.CLASS, "col-md-"+span, H.CLASS);
+        }
+        
+        if(prepend) {
+            if(prep.getClass().getName().endsWith("Button")||(prep.getChildCount()>0 && prep.getChildren().get(0).getClass().getName().endsWith("Button")) ){
+                rw.startElement(H.DIV, this);
+                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+                prep.encodeAll(context);
+                rw.endElement(H.DIV);
+            } else { prep.encodeAll(context); }
+        }
+        //Input
+        rw.startElement(H.INPUT, this);
+        rw.writeAttribute(H.ID, clientId, null);
+        rw.writeAttribute(H.NAME, clientId, null);
+        rw.writeAttribute(H.TYPE, t, null);
+        
+        StringBuilder sb; String s;
+        sb = new StringBuilder(20); //optimize int
+        sb.append("form-control");
+        String fsize=A.asString(attrs.get(A.FIELDSIZE));
+        
+        if(fsize!=null) {sb.append(" input-").append(fsize); }
+        //styleClass and class support
+        String sclass=A.asString(attrs.get(H.STYLECLASS));
+        if(sclass!=null) {sb.append(" ").append(sclass); }
+        s=sb.toString().trim();
+        if(s!=null && s.length()>0) { rw.writeAttribute(H.CLASS, s, H.CLASS); }
+        
+        String ph=A.asString(attrs.get(A.PHOLDER));
+        if(ph!=null) { rw.writeAttribute(H.PHOLDER, ph, null); }
+        
+        if(A.toBool(attrs.get(A.DISABLED))) { rw.writeAttribute(A.DISABLED, A.DISABLED, null); }
+        if(A.toBool(attrs.get(A.READONLY))) { rw.writeAttribute(A.READONLY, A.READONLY, null); }
+        
+        //Encode attributes (HTML 4 pass-through + DHTML)
+        R.encodeHTML4DHTMLAttrs(rw, attrs, A.INPUT_TEXT_ATTRS);
+        
+        if( (A.asString(attrs.get("autocomplete"))!=null) && (A.asString(attrs.get("autocomplete")).equals("off")) )
+           { rw.writeAttribute("autocomplete", "off", null); }
+        //Render Value
+        String v=R.getValue2Render(context, this);
+        rw.writeAttribute(H.VALUE, v, null);
+        rw.endElement(H.INPUT);
+        if(append) {
+            if(app.getClass().getName().endsWith("Button")||(app.getChildCount()>0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))){
+                rw.startElement(H.DIV, this);
+                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+                app.encodeAll(context);
+                rw.endElement(H.DIV);
+            } else { app.encodeAll(context); }
+        }
+        
+        if(append||prepend) {rw.endElement(H.DIV);} //input-group
+        rw.endElement(H.DIV); //form-group
+        if(span>0) {
+            rw.endElement(H.DIV); //span
+            //rw.endElement(H.DIV); //row NO
+        }
+    }
 
-    /** Renders the input tag. */
-	protected void renderInputTag(FacesContext context, Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		renderInputTag(rw);
-		renderInputTagAttributes(attrs, rw, clientId);
-		renderInputTagValue(context, rw);
-		renderInputTagEnd(rw);
-	}
+    @Override
+    public String getFamily() {
+        return COMPONENT_FAMILY;
+    }
 
-	/**
-	 * Renders the start of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param rw
-	 * @throws IOException
-	 */
-	protected void renderInputTag(ResponseWriter rw) throws IOException {
-		rw.startElement(H.INPUT, this);
-	}
 
-	/**
-	 * Renders the attributes of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param attrs
-	 * @param rw
-	 * @param clientId
-	 * @throws IOException
-	 */
-	protected void renderInputTagAttributes(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		rw.writeAttribute(H.ID, clientId, null);
-		rw.writeAttribute(H.NAME, clientId, null);
-		rw.writeAttribute(H.TYPE, H.TEXT, null);
-
-		StringBuilder sb;
-		String s;
-		sb = new StringBuilder(20); // optimize int
-		sb.append("form-control");
-		String fsize = A.asString(attrs.get(A.FIELDSIZE));
-
-		if (fsize != null) {
-			sb.append(" input-").append(fsize);
-		}
-		// styleClass and class support
-		String sclass = A.asString(attrs.get(H.STYLECLASS));
-		if (sclass != null) {
-			sb.append(" ").append(sclass);
-		}
-		s = sb.toString().trim();
-		if (s != null && s.length() > 0) {
-			rw.writeAttribute(H.CLASS, s, H.CLASS);
-		}
-
-		String ph = A.asString(attrs.get(A.PHOLDER));
-		if (ph != null) {
-			rw.writeAttribute(H.PHOLDER, ph, null);
-		}
-
-		if (A.toBool(attrs.get(A.DISABLED))) {
-			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
-		}
-		if (A.toBool(attrs.get(A.READONLY))) {
-			rw.writeAttribute(A.READONLY, A.READONLY, null);
-		}
-
-		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, attrs, A.INPUT_TEXT_ATTRS);
-
-		if ((A.asString(attrs.get("autocomplete")) != null) && (A.asString(attrs.get("autocomplete")).equals("off"))) {
-			rw.writeAttribute("autocomplete", "off", null);
-		}
-	}
-
-	/** 
-	 * Closes the input tag. This method is protected in order to allow third-party frameworks to derive from it. 
-	 * @param rw
-	 * @throws IOException
-	 */
-	protected void renderInputTagEnd(ResponseWriter rw) throws IOException {
-		rw.endElement(H.INPUT);
-	}
-
-	/**
-	 * Renders the value of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param context
-	 * @param rw
-	 * @throws IOException
-	 */
-	protected void renderInputTagValue(FacesContext context, ResponseWriter rw) throws IOException {
-		String v = R.getValue2Render(context, this);
-		rw.writeAttribute(H.VALUE, v, null);
-	}
-
-	/**
-	 * Start the column span div (if there's one).  This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param rw
-	 * @param span
-	 * @throws IOException
-	 */
-	protected int startColSpanDiv(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
-		int span = A.toInt(attrs.get(A.SPAN));
-		if (span > 0) {
-			rw.startElement(H.DIV, this);
-			rw.writeAttribute(H.CLASS, "col-md-" + span, H.CLASS);
-		}
-		return span;
-	}
-
-	/**
-	 * Starts the input field group (if needed to display a component seamlessly in front of or behind the input field). This method is protected in order to allow third-party frameworks to derive from it.
-	 * @param rw
-	 * @param hasPrependingAddOn
-	 * @param hasAppendingAddOn
-	 * @return
-	 * @throws IOException
-	 */
-	protected boolean startInputGroupForAddOn(ResponseWriter rw, boolean hasPrependingAddOn, boolean hasAppendingAddOn) throws IOException {
-		final boolean hasAddon = hasAppendingAddOn || hasPrependingAddOn;
-		if (hasAddon) {
-			rw.startElement(H.DIV, this);
-			rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
-		}
-		return hasAddon;
-	}
 }

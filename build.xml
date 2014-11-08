@@ -232,8 +232,8 @@
 		<antcall target="compile-lesscss-windows" />
 		<antcall target="compile-lesscss-unix" />
 	</target>
-	
 	<target name="compile-lesscss-windows" if="os.windows">
+<!--
 		<echo message="Compiling LessCSS to CSS (windows platform WITH NodeJS)..." />
 		<apply executable="C:\Users\SoyYo\AppData\Roaming\npm\lessc.cmd" dest="${less.dir}">
 			<srcfile/>
@@ -242,6 +242,15 @@
 			<mapper type="glob" from="bs-*.less" to="*.css"/>
 	    </apply>
 	</target>
+-->
+            <echo message="Compiling LessCSS to CSS (windows platform WITH NodeJS)..." />
+            <apply executable="%appdata%\Roaming\npm\lessc.cmd" dest="${less.dir}">
+                <srcfile/>
+                <targetfile/>
+                <fileset dir="${less.dir}" includes="bs-*.less"/>
+                <mapper type="glob" from="bs-*.less" to="*.css"/>
+            </apply>
+        </target>
 	<target name="compile-lesscss-unix" if="os.unix">
 		<echo message="Compiling LessCSS to CSS (*nix platform)..." />
 		<exec executable="which" resolveexecutable="true" outputproperty="lessc.cmd">
