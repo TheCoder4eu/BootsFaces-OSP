@@ -20,16 +20,23 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.ClientBehavior;
+import javax.faces.component.behavior.ClientBehaviorContext;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import net.bootsfaces.render.A;
+
 import net.bootsfaces.C;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 
@@ -62,13 +69,25 @@ public class InputText extends HtmlInputText {
     
     @Override
     public void decode(FacesContext context) {
-        String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
+		InputText inputText = (InputText) this;
 
-        if(subVal != null) {
-            this.setSubmittedValue(subVal);this.setValid(true);
+        if(inputText.isDisabled() || inputText.isReadonly()) {
+            return;
+        }
+
+        decodeBehaviors(context, inputText);
+
+		String clientId = inputText.getClientId(context);
+		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+
+        if(submittedValue != null) {
+            inputText.setSubmittedValue(submittedValue);
+            //this.setValid(true);
         }
     }
+    
 
+    
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
         /*
@@ -80,7 +99,6 @@ public class InputText extends HtmlInputText {
         String clientId = getClientId(context);
         
         //Map<String, Object> attrs = getAttributes();
-        
         //"Prepend" facet
         UIComponent prep = getFacet(C.PREPEND);
         //"Append" facet
@@ -131,6 +149,7 @@ public class InputText extends HtmlInputText {
         rw.writeAttribute(H.NAME, clientId, null);
         rw.writeAttribute(H.TYPE, t, null);
         
+        
         StringBuilder sb; String s;
         sb = new StringBuilder(20); //optimize int
         sb.append("form-control");
@@ -157,6 +176,19 @@ public class InputText extends HtmlInputText {
         //Render Value
         String v=R.getValue2Render(context, this);
         rw.writeAttribute(H.VALUE, v, null);
+        
+        // Render Ajax Capabilities
+        Map<String,List<ClientBehavior>> clientBehaviors = this.getClientBehaviors();
+        Set<String> keysClientBehavior = clientBehaviors.keySet();
+        for (String keyClientBehavior : keysClientBehavior){
+        	List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
+        	for (ClientBehavior cb : behaviors){
+            	ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context,this,keyClientBehavior, null, null);
+        		rw.writeAttribute("on" + keyClientBehavior, cb.getScript(behaviorContext), null);        		
+        	}
+    		
+        }
+        
         rw.endElement(H.INPUT);
         if(append) {
             if(app.getClass().getName().endsWith("Button")||(app.getChildCount()>0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))){
@@ -180,5 +212,33 @@ public class InputText extends HtmlInputText {
         return COMPONENT_FAMILY;
     }
 
+    protected void decodeBehaviors(FacesContext context, UIComponent component)  {
+        if(!(component instanceof ClientBehaviorHolder)) {
+            return;
+        }
+
+        Map<String, List<ClientBehavior>> behaviors = ((ClientBehaviorHolder) component).getClientBehaviors();
+        if(behaviors.isEmpty()) {
+            return;
+        }
+
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String behaviorEvent = params.get("javax.faces.behavior.event");
+
+        if(null != behaviorEvent) {
+            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
+
+            if(behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
+               String behaviorSource = params.get("javax.faces.source");
+               String clientId = component.getClientId();
+
+               if(behaviorSource != null && clientId.equals(behaviorSource)) {
+                   for(ClientBehavior behavior: behaviorsForEvent) {
+                       behavior.decode(context, component);
+                   }
+               }
+            }
+        }
+    }
 
 }

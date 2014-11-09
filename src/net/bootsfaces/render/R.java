@@ -310,10 +310,11 @@ public final class R {
         //Encode attributes (HTML 4 + DHTML)
         
         for (String a : alist) {
-            //if (attrs.containsKey(a)) {
-            if (attrs.get(a)!=null) {
-                String val = A.asString(attrs.get(a));
-                if(val!=null && val.length()>0) { rw.writeAttribute(a, val, a); }
+            if (attrs.containsKey(a)) {
+	            if (attrs.get(a)!=null) {
+	                String val = A.asString(attrs.get(a));
+	                if(val!=null && val.length()>0) { rw.writeAttribute(a, val, a); }
+	            }
             }
         }
     }
