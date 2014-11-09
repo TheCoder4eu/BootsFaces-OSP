@@ -270,10 +270,10 @@ public final class R {
     }
     
     /**
-     * Adds a class to a Facet Component
-     * @param f
-     * @param cname
-     * @param aclass 
+     * Adds a CSS class to a component within a facet.
+     * @param f the facet
+     * @param cname the class name of the component to be manipulated.
+     * @param aclass the CSS class to be added 
      */
     public static void addClass2FacetComponent(UIComponent f, String cname, String aclass) {
         // If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
@@ -289,9 +289,9 @@ public final class R {
     }
     
     /**
-     * Adds a class to a Component
-     * @param c
-     * @param aclass 
+     * Adds a CSS class to a component
+     * @param c the component
+     * @param aclass the CSS class to be added
      */
     protected static void addClass2Component(UIComponent c, String aclass) {
         Map<String, Object> a = c.getAttributes();
