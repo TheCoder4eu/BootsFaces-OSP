@@ -51,52 +51,7 @@ public class UnmappedResourceHandler extends ResourceHandlerWrapper {
             return null;
         }
         return new BsfResWrapper(resource);
-        /*
-
-        return new ResourceWrapper() {
-
-            @Override
-            public String getRequestPath() {
-                ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-                String mapping = externalContext.getRequestServletPath();
-
-                if (externalContext.getRequestPathInfo() == null) {
-                    mapping = mapping.substring(mapping.lastIndexOf('.'));
-                }
-
-                String path = super.getRequestPath();
-
-                if (mapping.charAt(0) == '/') {
-                    return path.replaceFirst(mapping, "");
-                }
-                else if (path.contains("?")) {
-                    return path.replace(mapping + "?", "?");
-                }
-                else {
-                    return path.substring(0, path.length() - mapping.length());
-                }
-            }
-
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getResourceName() {
-                return resource.getResourceName();
-            }
-
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getLibraryName() {
-                return resource.getLibraryName();
-            }
-
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getContentType() {
-                return resource.getContentType();
-            }
-
-            @Override
-            public Resource getWrapped() {
-                return resource;
-            }
-        }; */
+        
     }
 
     @Override

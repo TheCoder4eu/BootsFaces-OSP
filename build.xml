@@ -521,6 +521,7 @@
                     parameters="" />
         </keepclassmembers>
         
+        <keep class="net.bootsfaces.render.UnmappedResourceHandler" />
         <!-- Your application may contain more items that need to be preserved;
              typically classes that are dynamically created using Class.forName -->
 

@@ -119,13 +119,13 @@ public final class R {
             int span, int cxs, int csm, int clg, int offset, int oxs, int osm, int olg, String sclass) throws IOException {
         rw.startElement(H.DIV, c);
         if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
-        String s;//=C.EMPTY;
+        
         StringBuilder sb= new StringBuilder();
         if(span>0 || offset>0) {
             if(span>0) { sb.append(COLMD).append(span); }
             if(offset>0) {
                 if(span>0) { sb.append(C.SP); }
-                StringBuilder append = sb.append(OFFSET+offset);
+                sb.append(OFFSET+offset);
             }
             
         }
