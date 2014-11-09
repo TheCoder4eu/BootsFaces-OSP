@@ -190,17 +190,22 @@ public final class A {
         return asString(attrs.get(o.toString()));
     }
     
-    public static final String[] INPUT_TEXT_ATTRS = A.concatAll( H.INPUT_TEXT, E.CLICK, E.FOCUS, E.MOUSE);
-    public static final String[] CHECKBOX_ATTRS = A.concatAll( H.CHECKBOX, E.CLICK, E.FOCUS, E.MOUSE);
     public static final String[] ALLBUTTON_ATTRS = A.concatAll( H.ALLBUTTON, E.DBLCLICK, E.FOCUS, E.MOUSE);
+    public static final String[] TAB_ATTRS = A.concatAll( H.TAB, E.CLICK, E.FOCUS, E.MOUSE);
+    public static final String[] TAB_VIEW_ATTRS = A.concatAll( H.TAB_VIEW, E.CLICK, E.FOCUS, E.MOUSE);
+    public static final String[] CHECKBOX_ATTRS = A.concatAll( H.CHECKBOX, E.CLICK, E.FOCUS, E.MOUSE);
+    public static final String[] INPUT_TEXT_ATTRS = A.concatAll( H.INPUT_TEXT, E.CLICK, E.FOCUS, E.MOUSE);
    
-    /*
-     * This versions require Java 6, as they use Arrays.copyOf()
+    /**
+     * Joins two arrays efficiently.
+     * @param first must not be null
+     * @param second must not be null
+     * @return An array containing the elements of both array. Never null.
+     * 
+     * This version requires Java 6, as they use Arrays.copyOf()
      * Both versions avoid creating any intermediary List objects and use System.arraycopy()
      * to ensure that copying large arrays is as fast as possible.
      */
-    
-    //For two arrays
     public static <T> T[] concat(T[] first, T[] second) {
         T[] result = Arrays.copyOf(first, first.length + second.length);
         System.arraycopy(second, 0, result, first.length, second.length);
@@ -209,6 +214,16 @@ public final class A {
 
     //For an arbitrary number of arrays (>= 1)
 
+    /**
+     * Joins an arbitrary number of arrays efficiently.
+     * @param first must not be null
+     * @param second must not be null
+     * @return An array containing the elements of both array. Never null.
+     * 
+     * This version requires Java 6, as they use Arrays.copyOf()
+     * Both versions avoid creating any intermediary List objects and use System.arraycopy()
+     * to ensure that copying large arrays is as fast as possible.
+     */
     public static <T> T[] concatAll(T[] first, T[]... rest) {
       int totalLength = first.length;
       for (T[] array : rest) {
@@ -224,7 +239,10 @@ public final class A {
     }
 
     
-    // Suppress default constructor for noninstantiability
+    /**
+     * This is a utility class which is not intended to be instantiated.
+     * Suppress default constructor for noninstantiability.
+     */
     private A() {
         throw new AssertionError();
     }

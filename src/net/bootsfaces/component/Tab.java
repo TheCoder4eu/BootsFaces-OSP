@@ -28,6 +28,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -38,13 +39,14 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 
 /**
- * This class represents and renders a checkbox.
+ * This class represents tab within a tab strip. This particular class doesn't contain any code, because it is managed and rendered by its
+ * parent class (TabView).
  * 
  * @author 2014 Stephan Rauh (http://www.beyondjava.net).
  */
 
 @FacesComponent(C.TAB_COMPONENT_TYPE)
-public class Tab extends HtmlInputText {
+public class Tab extends UIOutput {
 
 	/**
 	 * The component family for this component.
@@ -65,15 +67,17 @@ public class Tab extends HtmlInputText {
 	public void decode(FacesContext context) {
 		// nothing to do - this component is decoded by its parent!
 	}
-	
+
 	@Override
 	public void encodeAll(FacesContext context) throws IOException {
 		// nothing to do - this component is rendered by its parent!
 	}
+
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
 		// nothing to do - this component is rendered by its parent!
 	}
+
 	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
 		// nothing to do - this component is rendered by its parent!

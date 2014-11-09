@@ -40,22 +40,22 @@ public final class E {
 		"onclick",
 		"ondblclick"
         };
-        public static String[] DBLCLICK = {
+	
+    public static String[] DBLCLICK = {
 		ONDBLCLICK
         };
-        public static String[] KEY = {
+    public static String[] KEY = {
 		"onkeydown",
 		"onkeypress",
 		"onkeyup"
         };
-        public static String[] MOUSE = {
+    public static String[] MOUSE = {
 		"onmousedown",
 		"onmousemove",
 		"onmouseout",
 		"onmouseover",
 		"onmouseup"
 	};
-    //public static final String ="";
     
     // Suppress default constructor for noninstantiability
     private E() {

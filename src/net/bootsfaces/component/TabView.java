@@ -19,6 +19,21 @@
 
 package net.bootsfaces.component;
 
+import static net.bootsfaces.C.BSFCOMPONENT;
+import static net.bootsfaces.C.TAB_VIEW_COMPONENT_TYPE;
+import static net.bootsfaces.render.A.ACTIVE;
+import static net.bootsfaces.render.A.TAB_ATTRS;
+import static net.bootsfaces.render.A.TAB_VIEW_ATTRS;
+import static net.bootsfaces.render.H.A;
+import static net.bootsfaces.render.H.CLASS;
+import static net.bootsfaces.render.H.DIV;
+import static net.bootsfaces.render.H.ID;
+import static net.bootsfaces.render.H.LI;
+import static net.bootsfaces.render.H.HREF;
+import static net.bootsfaces.render.H.ROLE;
+import static net.bootsfaces.render.H.STYLECLASS;
+import static net.bootsfaces.render.H.UL;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -28,17 +43,14 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
-import javax.faces.component.html.HtmlInputText;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import net.bootsfaces.render.A;
-import net.bootsfaces.C;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 
 /**
- * This class represents and renders a checkbox.
+ * This class represents and renders a tab strip.
  * 
  * @author 2014 Stephan Rauh (http://www.beyondjava.net).
  */
@@ -46,24 +58,29 @@ import net.bootsfaces.render.R;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head") })
-@FacesComponent(C.TAB_VIEW_COMPONENT_TYPE)
-public class TabView extends HtmlInputText {
+@FacesComponent(TAB_VIEW_COMPONENT_TYPE)
+public class TabView extends UIOutput {
 
 	/**
 	 * The component family for this component.
 	 */
-	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	public static final String COMPONENT_FAMILY = BSFCOMPONENT;
 
 	/**
 	 * The standard component type for this component.
 	 */
-	public static final String COMPONENT_TYPE = C.TAB_VIEW_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = TAB_VIEW_COMPONENT_TYPE;
 
 	public TabView() {
 		setRendererType(null); // this component renders itself
 	}
 
-	/** Decode be be used to implement an AJAX version of TabView. */
+	/**
+	 * Decode be be used to implement an AJAX version of TabView.
+	 * 
+	 * @param context
+	 *            the current FacesContext
+	 */
 	@Override
 	public void decode(FacesContext context) {
 		super.decode(context);
@@ -75,7 +92,7 @@ public class TabView extends HtmlInputText {
 	/**
 	 * Generates the HTML code for the entire TabStrip.
 	 * 
-	 * @param content
+	 * @param context
 	 *            the current FacesContext
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
@@ -86,36 +103,31 @@ public class TabView extends HtmlInputText {
 		String clientId = getClientId(context);
 		Map<String, Object> attributes = getAttributes();
 
-		// writer.startElement("div", this);
-		// writer.writeAttribute("class", "row", "class");
-		// writer.startElement("div", this);
-		// writer.writeAttribute("class", "col", "col-md-12");
-		writer.startElement("ul", this);
-		writer.writeAttribute("id", clientId, "id");
+		writer.startElement(UL, this);
+		writer.writeAttribute(ID, clientId, ID);
 		String classes = "nav nav-tabs";
-		if (attributes.containsKey("styleClass")) {
+		if (attributes.containsKey(STYLECLASS)) {
 			classes += " ";
-			classes += attributes.get("styleClass");
+			classes += attributes.get(STYLECLASS);
 		}
-		writer.writeAttribute("class", classes, "class");
+		writer.writeAttribute(CLASS, classes, CLASS);
 		String role = "tablist";
-		if (attributes.containsKey("role")) {
-			role = (String) attributes.get("role");
+		R.encodeHTML4DHTMLAttrs(writer, attributes, TAB_VIEW_ATTRS);
+		if (attributes.containsKey(ROLE)) {
+			role = (String) attributes.get(ROLE);
 		}
 
-		writer.writeAttribute("role", role, "role");
+		writer.writeAttribute(ROLE, role, ROLE);
 
 		encodeTabs(context, writer, getChildren(), attributes);
 		writer.endElement("ul");
-		// writer.endElement("div");
-		// writer.endElement("div");
 		encodeTabContentPanes(context, writer, this, attributes);
 	}
 
 	/**
 	 * Generates the HTML of the tab panes.
 	 * 
-	 * @param content
+	 * @param context
 	 *            the current FacesContext
 	 * @param writer
 	 *            the response writer
@@ -126,18 +138,18 @@ public class TabView extends HtmlInputText {
 	 */
 	private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView, Map<String, Object> attributes)
 			throws IOException {
-		writer.startElement("div", tabView);
+		writer.startElement(DIV, tabView);
 		String classes = "tab-content";
 		if (attributes.containsKey("contentClass")) {
 			classes += " ";
 			classes += attributes.get("contentClass");
 		}
-		writer.writeAttribute("class", classes, "class");
+		writer.writeAttribute(CLASS, classes, CLASS);
 		String role = "tablist";
-		if (attributes.containsKey("role")) {
-			role = (String) attributes.get("role");
+		if (attributes.containsKey(ROLE)) {
+			role = (String) attributes.get(ROLE);
 		}
-		writer.writeAttribute("role", role, "role");
+		writer.writeAttribute(ROLE, role, ROLE);
 		int activeIndex = determineActiveIndex(attributes);
 
 		List<UIComponent> children = tabView.getChildren();
@@ -146,9 +158,16 @@ public class TabView extends HtmlInputText {
 				encodeTabPane(context, writer, children.get(index), index == activeIndex);
 			}
 		}
-		writer.endElement("div");
+		writer.endElement(DIV);
 	}
 
+	/**
+	 * Which tab is active?
+	 * 
+	 * @param attributes
+	 *            the attribute map of the component to be rendered.
+	 * @return the index of the active tab. Default is 0.
+	 */
 	private static int determineActiveIndex(Map<String, Object> attributes) {
 		int activeIndex = 0;
 		if (attributes.containsKey("activeIndex")) {
@@ -166,37 +185,39 @@ public class TabView extends HtmlInputText {
 	 * Generate an individual tab pane. Basically, that's &lt;div role="tabpanel" class="tab-pane active" id="home"&lt; {{childContent}}
 	 * &gt;/div&gt;
 	 *
-	 * @param content
+	 * @param context
 	 *            the current FacesContext
 	 * @param writer
 	 *            the response writer
 	 * @param tab
 	 *            the tab to be rendered.
+	 * @param isActive
+	 *            is the current tab active?
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
 
 	private static void encodeTabPane(FacesContext context, ResponseWriter writer, UIComponent tab, boolean isActive) throws IOException {
-		writer.startElement("div", tab);
-		writer.writeAttribute("id", tab.getClientId().replace(":", "_"), "id");
+		writer.startElement(DIV, tab);
+		writer.writeAttribute(ID, tab.getClientId().replace(":", "_"), ID);
 		String classes = "tab-pane";
 		if (isActive) {
 			classes += " active";
 		}
 		Map<String, Object> tabAttributes = tab.getAttributes();
-		if (tabAttributes.containsKey("styleClass")) {
+		if (tabAttributes.containsKey(STYLECLASS)) {
 			classes += " ";
-			classes += tabAttributes.get("styleClass");
+			classes += tabAttributes.get(STYLECLASS);
 		}
-		writer.writeAttribute("class", classes, "class");
+		writer.writeAttribute(CLASS, classes, CLASS);
 		tab.encodeChildren(context);
-		writer.endElement("div");
+		writer.endElement(DIV);
 	}
 
 	/**
 	 * Generates the HTML of the tabs.
 	 * 
-	 * @param content
+	 * @param context
 	 *            the current FacesContext
 	 * @param writer
 	 *            the response writer
@@ -219,32 +240,50 @@ public class TabView extends HtmlInputText {
 	 * Generate an individual tab. Basically, that's &lt;li role="presentation" class="active"&gt&lt;a href="#{clientID}" role="tab"
 	 * data-toggle="tab"&lt; {{title}} &gt;/a&gt;
 	 *
-	 * @param content
+	 * @param context
 	 *            the current FacesContext
 	 * @param writer
 	 *            the response writer
 	 * @param tab
 	 *            the tab to be rendered.
+	 * @param isActive
+	 *            is the current tab active?
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-
 	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent tab, boolean isActive) throws IOException {
-		writer.startElement("li", tab);
-		writer.writeAttribute("role", "presentation", "role");
+		writer.startElement(LI, tab);
+		writer.writeAttribute(ROLE, "presentation", ROLE);
 		Map<String, Object> tabAttributes = tab.getAttributes();
-		String classes = isActive ? "active" : "";
-		if (tabAttributes.containsKey("styleClass")) {
+		String classes = isActive ? ACTIVE : "";
+		if (tabAttributes.containsKey(STYLECLASS)) {
 			classes += " ";
-			classes += tabAttributes.get("styleClass");
+			classes += tabAttributes.get(STYLECLASS);
 		}
-		writer.writeAttribute("class", classes, "class");
-		writer.startElement("a", tab);
-		writer.writeAttribute("role", "tab", "role");
+		writer.writeAttribute(CLASS, classes, CLASS);
+		encodeTabAnchorTag(writer, tab, tabAttributes);
+		writer.endElement(LI);
+	}
+
+	/**
+	 * Generate the clickable entity of the tab.
+	 *
+	 * @param writer
+	 *            the response writer
+	 * @param tab
+	 *            the tab to be rendered.
+	 * @param tabAttributes
+	 *            the attribute list of the tab.
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
+	private static void encodeTabAnchorTag(ResponseWriter writer, UIComponent tab, Map<String, Object> tabAttributes) throws IOException {
+		writer.startElement(A, tab);
+		writer.writeAttribute(ROLE, "tab", ROLE);
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
-		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
+		writer.writeAttribute(HREF, "#" + tab.getClientId().replace(":", "_"), HREF);
+		R.encodeHTML4DHTMLAttrs(writer, tabAttributes, TAB_ATTRS);
 		writer.writeText(tabAttributes.get("title"), null);
-		writer.endElement("a");
-		writer.endElement("li");
+		writer.endElement(A);
 	}
 }

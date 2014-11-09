@@ -123,6 +123,14 @@ public final class H {
 		TITLE
     };
 
+    public static final String[] TAB_VIEW = {
+        STYLE
+    };
+    public static final String[] TAB = {
+        STYLE,
+		"tabindex"
+    };
+
     
     // NOTE: disabled, styleClass are handled by component
     public static final String[] ALLBUTTON = {
