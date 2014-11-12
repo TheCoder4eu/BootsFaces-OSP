@@ -19,26 +19,12 @@
 
 package net.bootsfaces.component;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.ClientBehavior;
-import javax.faces.component.behavior.ClientBehaviorContext;
-import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
-import net.bootsfaces.render.R;
 
 /**
  *
@@ -63,182 +49,52 @@ public class InputText extends HtmlInputText {
     
     public static final String ADDON="input-group-addon";
     
+    protected enum PropertyKeys {
+
+		placeholder
+		,fieldSize
+		,type;
+
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+    
     public InputText() {
-        setRendererType(null); // this component renders itself
+        setRendererType("net.bootsfaces.component.InputTextRenderer"); 
     }
     
-    @Override
-    public void decode(FacesContext context) {
-		InputText inputText = (InputText) this;
-
-        if(inputText.isDisabled() || inputText.isReadonly()) {
-            return;
-        }
-
-        decodeBehaviors(context, inputText);
-
-		String clientId = inputText.getClientId(context);
-		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-
-        if(submittedValue != null) {
-            inputText.setSubmittedValue(submittedValue);
-            //this.setValid(true);
-        }
-    }
-    
-
-    
-    @Override
-    public void encodeBegin(FacesContext context) throws IOException {
-        /*
-         * 
-         */
-        
-        Map<String, Object> attrs = getAttributes();
-        ResponseWriter rw = context.getResponseWriter();
-        String clientId = getClientId(context);
-        
-        //Map<String, Object> attrs = getAttributes();
-        //"Prepend" facet
-        UIComponent prep = getFacet(C.PREPEND);
-        //"Append" facet
-        UIComponent app = getFacet(C.APPEND);
-        boolean prepend = (prep!=null);
-        boolean append = (app!=null);
-        
-        // If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
-        if(prepend) { R.addClass2FacetComponent(prep, "OutputText", ADDON); }//(prep.getChildren(), "OutputText", S.ADDON); }
-        if(append) { R.addClass2FacetComponent(app, "OutputText", ADDON); }
-        
-        
-        String l = A.asString(attrs.get(A.LABEL));
-        // Define TYPE ( if null set default = text )
-        String t = A.asString(attrs.get(A.TYPE));
-        if (t == null)
-        	t = H.TEXT;
-        
-        rw.startElement(H.DIV, this);
-        rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
-        if(l!=null) {
-        rw.startElement(H.LABEL, this);
-        rw.writeAttribute(A.FOR, clientId, A.FOR);
-        rw.writeText(l, null);
-        rw.endElement(H.LABEL);
-        }
-        if(append||prepend) {
-        rw.startElement(H.DIV, this);
-        rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
-        }
-        int span = A.toInt(attrs.get(A.SPAN));
-        if(span>0) {
-            rw.startElement(H.DIV, this);
-            rw.writeAttribute(H.CLASS, "col-md-"+span, H.CLASS);
-        }
-        
-        if(prepend) {
-            if(prep.getClass().getName().endsWith("Button")||(prep.getChildCount()>0 && prep.getChildren().get(0).getClass().getName().endsWith("Button")) ){
-                rw.startElement(H.DIV, this);
-                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
-                prep.encodeAll(context);
-                rw.endElement(H.DIV);
-            } else { prep.encodeAll(context); }
-        }
-        //Input
-        rw.startElement(H.INPUT, this);
-        rw.writeAttribute(H.ID, clientId, null);
-        rw.writeAttribute(H.NAME, clientId, null);
-        rw.writeAttribute(H.TYPE, t, null);
-        
-        
-        StringBuilder sb; String s;
-        sb = new StringBuilder(20); //optimize int
-        sb.append("form-control");
-        String fsize=A.asString(attrs.get(A.FIELDSIZE));
-        
-        if(fsize!=null) {sb.append(" input-").append(fsize); }
-        //styleClass and class support
-        String sclass=A.asString(attrs.get(H.STYLECLASS));
-        if(sclass!=null) {sb.append(" ").append(sclass); }
-        s=sb.toString().trim();
-        if(s!=null && s.length()>0) { rw.writeAttribute(H.CLASS, s, H.CLASS); }
-        
-        String ph=A.asString(attrs.get(A.PHOLDER));
-        if(ph!=null) { rw.writeAttribute(H.PHOLDER, ph, null); }
-        
-        if(A.toBool(attrs.get(A.DISABLED))) { rw.writeAttribute(A.DISABLED, A.DISABLED, null); }
-        if(A.toBool(attrs.get(A.READONLY))) { rw.writeAttribute(A.READONLY, A.READONLY, null); }
-        
-        //Encode attributes (HTML 4 pass-through + DHTML)
-        R.encodeHTML4DHTMLAttrs(rw, attrs, A.INPUT_TEXT_ATTRS);
-        
-        if( (A.asString(attrs.get("autocomplete"))!=null) && (A.asString(attrs.get("autocomplete")).equals("off")) )
-           { rw.writeAttribute("autocomplete", "off", null); }
-        //Render Value
-        String v=R.getValue2Render(context, this);
-        rw.writeAttribute(H.VALUE, v, null);
-        
-        // Render Ajax Capabilities
-        Map<String,List<ClientBehavior>> clientBehaviors = this.getClientBehaviors();
-        Set<String> keysClientBehavior = clientBehaviors.keySet();
-        for (String keyClientBehavior : keysClientBehavior){
-        	List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
-        	for (ClientBehavior cb : behaviors){
-            	ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context,this,keyClientBehavior, null, null);
-        		rw.writeAttribute("on" + keyClientBehavior, cb.getScript(behaviorContext), null);        		
-        	}
-    		
-        }
-        
-        rw.endElement(H.INPUT);
-        if(append) {
-            if(app.getClass().getName().endsWith("Button")||(app.getChildCount()>0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))){
-                rw.startElement(H.DIV, this);
-                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
-                app.encodeAll(context);
-                rw.endElement(H.DIV);
-            } else { app.encodeAll(context); }
-        }
-        
-        if(append||prepend) {rw.endElement(H.DIV);} //input-group
-        rw.endElement(H.DIV); //form-group
-        if(span>0) {
-            rw.endElement(H.DIV); //span
-            //rw.endElement(H.DIV); //row NO
-        }
-    }
-
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-
-    protected void decodeBehaviors(FacesContext context, UIComponent component)  {
-        if(!(component instanceof ClientBehaviorHolder)) {
-            return;
-        }
-
-        Map<String, List<ClientBehavior>> behaviors = ((ClientBehaviorHolder) component).getClientBehaviors();
-        if(behaviors.isEmpty()) {
-            return;
-        }
-
-        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-        String behaviorEvent = params.get("javax.faces.behavior.event");
-
-        if(null != behaviorEvent) {
-            List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
-
-            if(behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
-               String behaviorSource = params.get("javax.faces.source");
-               String clientId = component.getClientId();
-
-               if(behaviorSource != null && clientId.equals(behaviorSource)) {
-                   for(ClientBehavior behavior: behaviorsForEvent) {
-                       behavior.decode(context, component);
-                   }
-               }
-            }
-        }
-    }
+    
+	public java.lang.String getPlaceholder() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.placeholder, null);
+	}
+	public void setPlaceholder(java.lang.String _placeholder) {
+		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+	public java.lang.String getFieldSize() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.fieldSize, null);
+	}
+	public void setFieldSize(java.lang.String _fieldSize) {
+		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
+	}
+	public java.lang.String getType() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.type, "text");
+	}
+	public void setType(java.lang.String _type) {
+		getStateHelper().put(PropertyKeys.type, _type);
+	}
+    
 
 }
