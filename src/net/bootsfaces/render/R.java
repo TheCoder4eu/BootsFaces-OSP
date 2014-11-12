@@ -344,7 +344,7 @@ public final class R {
      * - Finally the value of the component is retrieved from backing bean and if there's a converter, converted value is returned
      *
      * @param fc			FacesContext instance
-     * @param component			UIComponent instance whose value will be returned
+     * @param c 			UIComponent instance whose value will be returned
      * @return					End text
      */
     public static String getValue2Render(FacesContext fc, UIComponent c) {

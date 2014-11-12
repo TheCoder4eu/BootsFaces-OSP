@@ -109,9 +109,9 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 *            the FacesContext
 	 * @param rw
 	 *            the response writer
-	 * @param prependingAddOnFacet
+	 * @param appendingAddOnFacet
 	 *            optional facet behind the field. Can be null.
-	 * @param hasPrependingAddOn
+	 * @param hasAppendingAddOn
 	 *            optional facet in front of the field. Can be null.
 	 * @throws IOException
 	 *             may be thrown by the response writer
@@ -325,10 +325,11 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	/**
 	 * Start the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
 	 * 
+	 * @param attrs
+	 *            the current attribute list 
 	 * @param rw
 	 *            the response writer
-	 * @param span
-	 *            the width (counted in BS columns) * @throws IOException may be thrown by the response writer
+     * @throws IOException may be thrown by the response writer
 	 */
 	protected int startColSpanDiv(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
 		int span = A.toInt(attrs.get(A.SPAN));

@@ -32,7 +32,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @see http://stackoverflow.com/questions/14963756/prevent-suffix-from-being-added-to-resources-when-page-loads
+ * Also see the discussion at http://stackoverflow.com/questions/14963756/prevent-suffix-from-being-added-to-resources-when-page-loads.
  * @since 0.3.8
  */
 public class UnmappedResourceHandler extends ResourceHandlerWrapper {

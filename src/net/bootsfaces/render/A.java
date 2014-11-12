@@ -127,9 +127,9 @@ public final class A {
     
     
     /** Converts the parameter to an integer value, if possible.
+     * Throws an IllegalArgumentException if the parameter cannot be converted to an integer.
      * 
      * @param val the parameter to be converted. May be a String, a number or null. Everything else causes an {@link IllegalArgumentException} to be thrown.
-     * @throws an IllegalArgumentException if the parameter cannot be converted to an integer.
      * @return the integer value. 0 if the parameter is null.
      */
     public static int toInt(Object val) {
@@ -145,10 +145,10 @@ public final class A {
     }
     
     /** Converts the parameter to an integer value, if possible.
+     * Throws an IllegalArgumentException if the parameter cannot be converted to an integer.
      * 
      * @param val the parameter to be converted. May be a String, a number or null. Everything else causes an {@link IllegalArgumentException} to be thrown.
      * @param d default value (returned if val is null).
-     * @throws an IllegalArgumentException if the parameter cannot be converted to an integer.
      * @return the integer value.
      */
     public static int toInt(Object val, int d) { //if null returns suppled default value
@@ -217,7 +217,7 @@ public final class A {
     /**
      * Joins an arbitrary number of arrays efficiently.
      * @param first must not be null
-     * @param second must not be null
+     * @param rest optional, arbitrary-length list of arrays
      * @return An array containing the elements of both array. Never null.
      * 
      * This version requires Java 6, as they use Arrays.copyOf()
