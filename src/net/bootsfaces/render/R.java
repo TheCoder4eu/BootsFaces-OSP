@@ -301,6 +301,7 @@ public final class R {
     
     /**
      * Encodes component attributes (HTML 4 + DHTML)
+     * TODO: replace this method with CoreRenderer.renderPassThruAttributes()
      * @param rw ResponseWriter instance
      * @param attrs
      * @param alist

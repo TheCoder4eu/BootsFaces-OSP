@@ -19,6 +19,26 @@
 
 package net.bootsfaces.component;
 
+import static net.bootsfaces.C.BSFCOMPONENT;
+import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
+import static net.bootsfaces.C.H;
+import static net.bootsfaces.C.SP;
+import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
+import static net.bootsfaces.render.A.ALLBUTTON_ATTRS;
+import static net.bootsfaces.render.A.CLICK;
+import static net.bootsfaces.render.A.DATA_DISMISS;
+import static net.bootsfaces.render.A.DISMISS;
+import static net.bootsfaces.render.A.DISABLED;
+import static net.bootsfaces.render.A.FRAGMENT;
+import static net.bootsfaces.render.A.ICON;
+import static net.bootsfaces.render.A.ICON_ALIGN;
+import static net.bootsfaces.render.A.LOOK;
+import static net.bootsfaces.render.A.RIGHT;
+import static net.bootsfaces.render.A.SIZE;
+import static net.bootsfaces.render.A.VALUE;
+import static net.bootsfaces.render.A.asString;
+import static net.bootsfaces.render.A.toBool;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -38,10 +58,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
-import net.bootsfaces.render.A;
-import net.bootsfaces.C;
-import net.bootsfaces.render.H;
+import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
+import static net.bootsfaces.render.H.*;
 
 /**
  * This components represents and renders a button without AJAX functionality.
@@ -50,7 +69,7 @@ import net.bootsfaces.render.R;
  */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "jq/jquery.js", target = "head") })
-@FacesComponent(C.BUTTON_COMPONENT_TYPE)
+@FacesComponent(BUTTON_COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
 
 	/**
@@ -58,13 +77,13 @@ public class Button extends HtmlOutcomeTargetButton {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BUTTON_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = BUTTON_COMPONENT_TYPE;
 	/**
 	 * <p>
 	 * The component family for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	public static final String COMPONENT_FAMILY = BSFCOMPONENT;
 
 	public Button() {
 		setRendererType(null); // this component renders itself
@@ -93,44 +112,47 @@ public class Button extends HtmlOutcomeTargetButton {
 	public void encodeHTML(FacesContext context, Map<String, Object> attrs) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		Object value = attrs.get(A.VALUE);
+		Object value = attrs.get(VALUE);
 
-		rw.startElement(H.BUTTON, this);
-		rw.writeAttribute(H.ID, getClientId(context), H.ID);
-		rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
-		rw.writeAttribute(H.TYPE, H.BUTTON, null);
-		rw.writeAttribute(H.CLASS, getStyleClasses(attrs), H.CLASS);
-
-		rw.writeAttribute(A.CLICK, encodeClick(context, attrs), null);
-		String d = A.asString(attrs.get(A.DISMISS));
-		if (d != null) {
-			rw.writeAttribute(A.DATA_DISMISS, d, null);
+		rw.startElement(BUTTON, this);
+		rw.writeAttribute(ID, getClientId(context), ID);
+		rw.writeAttribute(NAME, getClientId(context), NAME);
+		rw.writeAttribute(TYPE, BUTTON, null);
+		rw.writeAttribute(CLASS, getStyleClasses(attrs), CLASS);
+		
+		final String clickHandler = encodeClick(context, attrs);
+		if (null != clickHandler && clickHandler.length()>0) {
+			rw.writeAttribute(CLICK, clickHandler, null);
 		}
-		boolean disabled = (A.toBool(attrs.get(A.DISABLED)));
+		String d = asString(attrs.get(DISMISS));
+		if (d != null) {
+			rw.writeAttribute(DATA_DISMISS, d, null);
+		}
+		boolean disabled = (toBool(attrs.get(DISABLED)));
 		if (disabled) {
-			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
+			rw.writeAttribute(DISABLED, DISABLED, null);
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, attrs, A.ALLBUTTON_ATTRS);
+		renderPassThruAttributes(context, this, ALLBUTTON_ATTRS);
 
-		String icon = A.asString(attrs.get(A.ICON));
+		String icon = asString(attrs.get(ICON));
 		if (icon != null) {
-			Object ialign = attrs.get(A.ICON_ALIGN); // Default Left
-			boolean white=null!=attrs.get(A.LOOK);
-			if (ialign != null && ialign.equals(A.RIGHT)) {
-				rw.writeText(value + C.SP, null);
+			Object ialign = attrs.get(ICON_ALIGN); // Default Left
+			boolean white=null!=attrs.get(LOOK);
+			if (ialign != null && ialign.equals(RIGHT)) {
+				rw.writeText(value + SP, null);
 				R.encodeIcon(rw, this, icon, white);
 			} else {
 				R.encodeIcon(rw, this, icon, white);
-				rw.writeText(C.SP + value, null);
+				rw.writeText(SP + value, null);
 			}
 
 		} else {
 			rw.writeText(value, null);
 		}
 
-		rw.endElement(H.BUTTON);
+		rw.endElement(BUTTON);
 	}
 
 	/**
@@ -145,13 +167,57 @@ public class Button extends HtmlOutcomeTargetButton {
 		String userClick = getOnclick();
 		if (userClick != null) {
 			js = userClick;
-		} // +C.COLON; }
+		} // +COLON; }
 		else {
 			js = "";
 		}
+		
+		String fragment = asString(attrs.get(FRAGMENT));
 		String outcome = getOutcome();
-		outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
+		
+		if (canOutcomeBeRendered(attrs, fragment, outcome)) {
+			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
+			
+			String url = determineTargetURL(context, outcome);
+	
+			if (url != null) {
+				if (fragment != null) {
+					url += "#" + fragment;
+				}
+				js += "window.location.href='" + url + "';";
+			}
+		}
 
+		return js;
+	}
+
+	/**
+	 * Do we have to suppress the target URL? 
+	 * @param attrs the component's attribute list
+	 * @param fragment the fragment of the URL behind the hash (outcome#fragment)
+	 * @param outcome the value of the outcome attribute
+	 * @return true if the outcome can be rendered.
+	 */
+	private boolean canOutcomeBeRendered(Map<String, Object> attrs, String fragment, String outcome) {
+		boolean renderOutcome=true;
+		if (null==outcome && attrs.containsKey("ng-click")) {
+			String ngClick=asString(attrs.get("ng-click"));
+			if (null!=ngClick && (ngClick.length()>0)) {
+				if (fragment==null) {
+					renderOutcome=false;
+				}
+			}
+		}
+		return renderOutcome;
+	}
+
+	/**
+	 * Translate the outcome attribute value to the target URL. 
+	 * @param context the current FacesContext
+	 * @param outcome the value of the outcome attribute
+	 * @return the target URL of the navigation rule (or the outcome if there's not navigation rule)
+	 */
+	private String determineTargetURL(FacesContext context, String outcome) {
 		ConfigurableNavigationHandler cnh = (ConfigurableNavigationHandler) context.getApplication().getNavigationHandler();
 		NavigationCase navCase = cnh.getNavigationCase(context, null, outcome);
 		/*
@@ -162,7 +228,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		 */
 		if (navCase == null) {
 			if (FacesContext.getCurrentInstance().getApplication().getProjectStage().equals(ProjectStage.Development)) {
-				return "alert('WARNING! " + C.W_NONAVCASE_BUTTON + "');";
+				return "alert('WARNING! " + W_NONAVCASE_BUTTON + "');";
 			} else {
 				return "";
 			}
@@ -173,17 +239,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		String url;
 		url = context.getApplication().getViewHandler()
 				.getBookmarkableURL(context, vId, params, isIncludeViewParams() || navCase.isIncludeViewParams());
-
-		if (url != null) {
-			// fragment
-			String frag = A.asString(attrs.get(A.FRAGMENT));
-			if (frag != null) {
-				url += "#" + frag;
-			}
-			js += "window.location.href='" + url + "';";
-		}
-
-		return js;
+		return url;
 	}
 
 	/**
@@ -234,23 +290,23 @@ public class Button extends HtmlOutcomeTargetButton {
 		StringBuilder sb;
 		sb = new StringBuilder(40); // optimize int
 		sb.append("btn");
-		String size = A.asString(attrs.get(A.SIZE));
+		String size = asString(attrs.get(SIZE));
 		if (size != null) {
 			sb.append(" btn-").append(size);
 		}
 
-		String look = A.asString(attrs.get(A.LOOK));
+		String look = asString(attrs.get(LOOK));
 		if (look != null) {
 			sb.append(" btn-").append(look);
 		} else {
 			sb.append(" btn-default");
 		}
 
-		if (A.toBool(attrs.get(A.DISABLED))) {
-			sb.append(C.SP + A.DISABLED);
+		if (toBool(attrs.get(DISABLED))) {
+			sb.append(SP + DISABLED);
 		}
 		// TODO add styleClass and class support
-		String sclass = A.asString(attrs.get(H.STYLECLASS));
+		String sclass = asString(attrs.get(STYLECLASS));
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
@@ -268,5 +324,61 @@ public class Button extends HtmlOutcomeTargetButton {
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+
+	/**
+	 * Method temporarily copied from CoreRenderer. Should be replaced by a call of CoreRenderer in the long run.
+	 * @param context the current FacesContext
+	 * @param component the current component
+	 * @param attrs the component's attribute list
+	 * @throws IOException thrown if something's wrong with the response writer.
+	 */
+	
+    protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs) throws IOException {
+        ResponseWriter writer = context.getResponseWriter();
+
+        //pre-defined attributes
+        if(attrs != null && attrs.length > 0) {
+            for(String attribute : attrs) {
+                Object value = component.getAttributes().get(attribute);
+
+                if(shouldRenderAttribute(value))
+                    writer.writeAttribute(attribute, value.toString(), attribute);
+            }
+        }
+    }
+
+    /**
+     * Detects whether an attribute is a default value or not.
+     * Method temporarily copied from CoreRenderer. Should be replaced by a call of CoreRenderer in the long run.
+	 * 
+     * @param value the value to be checked
+     * @return true if the value is not the default value
+     */
+    protected boolean shouldRenderAttribute(Object value) {
+        if(value == null)
+            return false;
+
+        if(value instanceof Boolean) {
+            return ((Boolean) value).booleanValue();
+        }
+        else if(value instanceof Number) {
+            Number number = (Number) value;
+
+            if (value instanceof Integer)
+                return number.intValue() != Integer.MIN_VALUE;
+            else if (value instanceof Double)
+                return number.doubleValue() != Double.MIN_VALUE;
+            else if (value instanceof Long)
+                return number.longValue() != Long.MIN_VALUE;
+            else if (value instanceof Byte)
+                return number.byteValue() != Byte.MIN_VALUE;
+            else if (value instanceof Float)
+                return number.floatValue() != Float.MIN_VALUE;
+            else if (value instanceof Short)
+                return number.shortValue() != Short.MIN_VALUE;
+        }
+
+        return true;
+    }
 
 }
