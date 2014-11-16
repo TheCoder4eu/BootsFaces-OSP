@@ -41,7 +41,8 @@ public enum RPanel {
     title,
     heading,
     body,
-    footer;
+    footer,
+    titleClass;
     
     private static final String PP=panel+" "+panel+"-"; //"panel panel-"
     private static final String PPD=PP+"default"; //"panel panel-default"
@@ -71,8 +72,10 @@ public enum RPanel {
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
 
-        String Look = A.asString(attrs,look);// attrs.get(A.LOOK).toString();
+        String Look = A.asString(attrs,look);
         String Title = A.asString(attrs,title);
+        String TitleClass = A.asString(attrs,titleClass);
+        
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
 
@@ -88,6 +91,11 @@ public enum RPanel {
             rw.writeAttribute(H.CLASS, PH, H.CLASS); //"panel-heading"
             if (Title != null) {
                 rw.startElement(H.H4, c);
+                if (TitleClass != null){
+                	rw.writeAttribute(H.CLASS, TitleClass, H.CLASS);
+                } else {
+                	rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
+                }
                 rw.writeText(Title, null);
                 rw.endElement(H.H4);
             } else {
