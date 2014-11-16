@@ -1302,6 +1302,8 @@
 		<tag-name>inputText</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InputText</component-type>
+			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>		
+			<component-type>net.bootsfaces.component.InputText</component-type>
 		</component>
 		<attribute>
 			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
