@@ -1079,6 +1079,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[TitleClass is optional: if specified, Title will be displayed with this specific class]]></description>
+			<name>titleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>		
 	</tag>
 	<tag>
 		<tag-name>jumbotron</tag-name>
@@ -1295,8 +1301,8 @@
 	<tag>
 		<tag-name>inputText</tag-name>
 		<component>
-		   <component-type>net.bootsfaces.component.InputText</component-type>
-		   <renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>
+			<component-type>net.bootsfaces.component.InputText</component-type>
+			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>		
 		</component>
 		<attribute>
 			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
