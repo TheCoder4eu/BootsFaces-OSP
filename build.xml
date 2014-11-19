@@ -156,6 +156,8 @@
 		               nowarn="on"
 		        	   source="${source-compliance}"
 		        	   target="${class-compliance}"
+		        	   includeantruntime="true"
+		        	   encoding="UTF-8"
 					   >
 		            <classpath>
 		            	<pathelement location="lib/javax.faces-2.2.8-02.jar"/>
