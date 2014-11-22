@@ -57,6 +57,7 @@ public final class C {
     public static final String NAVBAR_COMPONENT_TYPE=BSFCOMPONENT+".NavBar";
     public static final String NAVBARLINKS_COMPONENT_TYPE=BSFCOMPONENT+".NavBarLinks";
     public static final String NAVLINK_COMPONENT_TYPE=BSFCOMPONENT+".NavLink";
+    public static final String PANELGRID_COMPONENT_TYPE=BSFCOMPONENT+".PanelGrid";
     public static final String SELECT_BOOLEAN_CHECKBOX_COMPONENT_TYPE=BSFCOMPONENT+".SelectBooleanCheckbox";
     public static final String TAB_COMPONENT_TYPE=BSFCOMPONENT+".Tab";
     public static final String TAB_VIEW_COMPONENT_TYPE=BSFCOMPONENT+".TabView";
