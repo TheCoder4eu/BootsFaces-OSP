@@ -1881,7 +1881,6 @@
 		<tag-name>panelGrid</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.PanelGrid</component-type>
-			<handler-class />
 		</component>
 		<attribute>
 			<description>Unique identifier of the component in a namingContainer.</description>
