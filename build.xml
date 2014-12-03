@@ -523,7 +523,7 @@
                     parameters="" />
         </keepclassmembers>
         
-        <keep class="net.bootsfaces.render.UnmappedResourceHandler">
+        <keep name="net.bootsfaces.render.UnmappedResourceHandler">
             <constructor/>
           <method name="get*"/>
           <method name="set*"/>
