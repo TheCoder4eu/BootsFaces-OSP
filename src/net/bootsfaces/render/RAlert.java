@@ -27,6 +27,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 
+/**
+ * This class renders an &lt;alert&gt;.
+ * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
+ *
+ */
 
 public enum RAlert {
     alert,

@@ -37,7 +37,8 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.RAlert;
 
 /**
- *
+ * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
+ * 
  * @author thecoder4eu
  */
 

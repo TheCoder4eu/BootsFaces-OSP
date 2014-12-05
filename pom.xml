@@ -67,7 +67,7 @@
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
 					<version>2.2.8-02</version>
-					<scope>compile</scope>
+					<scope>provided</scope>
 				</dependency>
 				<dependency>
 					<groupId>com.sun.faces</groupId>
@@ -87,7 +87,7 @@
 					<groupId>org.apache.myfaces.core</groupId>
 					<artifactId>myfaces-api</artifactId>
 					<version>2.2.4</version>
-					<scope>compile</scope>
+					<scope>provided</scope>
 				</dependency>
 			</dependencies>
 		</profile>
