@@ -84,6 +84,9 @@ public final class H {
     public static final String TITLE="title";
     public static final String MAXLEN="maxlength";
     
+    /** Types */
+	public static final String PASSWORD = "password"; // used by inputSecret
+
     /* WAI-ARIA Attribute Values */
     
     /* HTML5 custom DATA attributes */
