@@ -36,6 +36,7 @@ public final class H {
     
     /* TAGS */
     public static final String A ="a";
+    public static final String ALT ="alt";
     public static final String B ="b";
     public static final String BR ="br";
     /*HTML tag button */
