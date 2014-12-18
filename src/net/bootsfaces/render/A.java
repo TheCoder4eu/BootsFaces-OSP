@@ -36,8 +36,10 @@ public final class A {
     
     /* Attributes */
     public static final String ACTIVE="active";
+    public static final String ALT="alt";
     public static final String BRAND="brand";
     public static final String BRAND_ALIGN=BRAND+"Align";
+    public static final String BRAND_IMG=BRAND+"Img";
     public static final String CLOSABLE="closable";
     public static final String FIXED="fixed";
     public static final String STATIC="static";
