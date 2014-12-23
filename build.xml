@@ -334,7 +334,13 @@
 		<copy file="${less.dir}/panels${min.css.suffix}.css" tofile="${css.dir}/panels.css">
 			<filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
 		</copy>
-	</target> 
+	</target>
+        <target name="tab" if="bsf.tab">
+		<echo message="Adding Bootstrap tab"/>
+                <copy file="${js.orig.dir}/tab.js" todir="${js.dir}">
+		 <filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
+		</copy>
+	</target>
 	<target name="well" if="bsf.well">
 		<echo message="Adding Bootstrap well"/>
 		<copy file="${less.dir}/wells${min.css.suffix}.css" tofile="${css.dir}/wells.css">
@@ -362,7 +368,7 @@
 	<target name="components-bootstrap-js" depends="alert,dropbutton,modal,navbar">
 		<echo message="Adding Bootstrap components."/>
 	</target>
-	<target name="components-bootsfaces" depends="badge,jumbotron,label,panel,thumbnail,well"><!-- ,tooltip,popover,carousel,tab,collapse" -->
+	<target name="components-bootsfaces" depends="badge,jumbotron,label,panel,tab,thumbnail,well"><!-- ,tooltip,popover,carousel,collapse" -->
 			<echo message="Adding Bootstrap components."/>
 		</target>
 	<target name="components-jquery" depends="datepicker,slider">

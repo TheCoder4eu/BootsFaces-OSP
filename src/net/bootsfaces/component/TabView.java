@@ -55,9 +55,12 @@ import net.bootsfaces.render.R;
  * @author 2014 Stephan Rauh (http://www.beyondjava.net).
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head") })
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+    @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+    @ResourceDependency(library="bsf", name="jq/jquery.js", target="body"),
+    @ResourceDependency(library = "bsf", name = "js/tab.js", target = "body")
+})
 @FacesComponent(TAB_VIEW_COMPONENT_TYPE)
 public class TabView extends UIOutput {
 
