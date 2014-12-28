@@ -51,12 +51,12 @@ public enum RWell {
          */
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
-        String sz = A.asString(attrs,size);
+        String sz = A.asString(attrs, size);
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
         
-        if(size!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz,H.CLASS); }
+        if(sz!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz,H.CLASS); }
         else           { rw.writeAttribute(H.CLASS, well, H.CLASS); }
     }
     

@@ -82,7 +82,7 @@ public class PanelGrid extends UIOutput {
 
 	protected enum PropertyKeys {
 
-		id, styleClass, style, colSpans, columnClasses, rowClasses;
+		id, styleClass, style, colSpans, columnClasses, rowClasses, size;
 
 		String toString;
 
@@ -113,6 +113,14 @@ public class PanelGrid extends UIOutput {
 
 	public void setId(java.lang.String _id) {
 		getStateHelper().put(PropertyKeys.id, _id);
+	}
+
+	public java.lang.String getSize() {
+		return (java.lang.String) getStateHelper().eval(PropertyKeys.size, null);
+	}
+
+	public void setSize(java.lang.String _size) {
+		getStateHelper().put(PropertyKeys.size, _size);
 	}
 
 	public java.lang.String getStyleClass() {
@@ -262,16 +270,21 @@ public class PanelGrid extends UIOutput {
 			}
 		}
 
+		String size = getSize();
+		if (null == size || size.equals(""))
+			size = "lg";
+
 		String[] result = new String[colSpans.length];
+
 		for (int i = 0; i < colSpans.length; i++) {
 			if (columnClasses == null) {
-				result[i] = "col-lg-" + colSpans[i];
+				result[i] = "col-" + size + "-" + colSpans[i];
 			} else {
 				String current = columnClasses[i % columnClasses.length];
 				if (current.contains("col-")) {
 					result[i] = current;
 				} else {
-					result[i] = "col-lg-" + colSpans[i] + " " + current;
+					result[i] = "col-" + size + "-" + colSpans[i] + " " + current;
 				}
 
 			}
