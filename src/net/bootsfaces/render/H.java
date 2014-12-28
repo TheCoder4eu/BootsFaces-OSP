@@ -53,6 +53,7 @@ public final class H {
     
     public static final String LI="li";
     public static final String INPUT=C.INPUT;
+    public static final String SELECT="select";
     
     public static final String P ="p";
     public static final String SPAN ="span";
@@ -120,12 +121,21 @@ public final class H {
     public static final String[] CHECKBOX = {
 		"accesskey",
 		"alt",
-                //DISABLED,
 		"lang",
-                STYLE,
+        STYLE,
 		"tabindex",
 		TITLE
     };
+    
+    public static final String[] SELECT_ONE_MENU = {
+		"accesskey",
+		"alt",
+		"lang",
+        STYLE,
+		"tabindex",
+		TITLE
+    };
+
 
     public static final String[] TAB_VIEW = {
         STYLE
