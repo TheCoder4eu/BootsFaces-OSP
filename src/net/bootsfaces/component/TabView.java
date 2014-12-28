@@ -263,7 +263,8 @@ public class TabView extends UIOutput {
 			classes += " ";
 			classes += tabAttributes.get(STYLECLASS);
 		}
-		writer.writeAttribute(CLASS, classes, CLASS);
+		if (classes.length()>0)
+		  writer.writeAttribute(CLASS, classes, CLASS);
 		encodeTabAnchorTag(writer, tab, tabAttributes);
 		writer.endElement(LI);
 	}
