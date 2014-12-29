@@ -232,7 +232,14 @@ public class PanelGrid extends UIOutput {
 	protected int[] getColSpanArray() {
 		String columnsCSV = getColSpans();
 		if (null == columnsCSV)
-			throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
+		{
+			columnsCSV = (String) getAttributes().get("colSpans");
+			if (null!=columnsCSV) {
+				System.out.println("Partial State helper is not reliable!");
+			}
+			else
+			    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
+		}
 		String[] columnList = columnsCSV.split(",");
 		int[] columns = new int[columnList.length];
 		int sum = 0;
@@ -241,7 +248,7 @@ public class PanelGrid extends UIOutput {
 				columns[i] = (int) Integer.valueOf(columnList[i]);
 				sum += columns[i];
 			} catch (NumberFormatException error) {
-				throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
+				throw new FacesException("PanelGrid.colSpans attribute: the list has to consists of integer values");
 			}
 		}
 		if (sum != 12) {

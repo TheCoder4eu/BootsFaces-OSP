@@ -27,9 +27,9 @@ import static net.bootsfaces.render.A.TAB_VIEW_ATTRS;
 import static net.bootsfaces.render.H.A;
 import static net.bootsfaces.render.H.CLASS;
 import static net.bootsfaces.render.H.DIV;
+import static net.bootsfaces.render.H.HREF;
 import static net.bootsfaces.render.H.ID;
 import static net.bootsfaces.render.H.LI;
-import static net.bootsfaces.render.H.HREF;
 import static net.bootsfaces.render.H.ROLE;
 import static net.bootsfaces.render.H.STYLECLASS;
 import static net.bootsfaces.render.H.UL;
@@ -73,6 +73,8 @@ public class TabView extends UIOutput {
 	 * The standard component type for this component.
 	 */
 	public static final String COMPONENT_TYPE = TAB_VIEW_COMPONENT_TYPE;
+	
+	private int currentlyActiveIndex=-1;
 
 	public TabView() {
 		setRendererType(null); // this component renders itself
@@ -87,6 +89,20 @@ public class TabView extends UIOutput {
 	@Override
 	public void decode(FacesContext context) {
 		super.decode(context);
+		
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String activeIndexValue = params.get(getClientId(context) + "_activeIndex");
+        
+        if (null != activeIndexValue && activeIndexValue.length()>0) {
+        	try {
+    		currentlyActiveIndex=Integer.valueOf(activeIndexValue);
+        	} catch (NumberFormatException e) {
+        		
+        	}
+        	
+        }
+
+
 		// String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
 		// this.setSubmittedValue("on".equals(subVal));
 		// this.setValid(true);
@@ -103,8 +119,15 @@ public class TabView extends UIOutput {
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
-		String clientId = getClientId(context);
+		
 		Map<String, Object> attributes = getAttributes();
+		String clientId = getClientId(context);
+		writer.startElement("input", this);
+		writer.writeAttribute("type", "hidden", null);
+		writer.writeAttribute("name", clientId + "_activeIndex", "name");
+		writer.writeAttribute("value", determineActiveIndex(attributes, currentlyActiveIndex), "value");
+		writer.endElement("input");
+		
 
 		writer.startElement(UL, this);
 		writer.writeAttribute(ID, clientId, ID);
@@ -122,9 +145,9 @@ public class TabView extends UIOutput {
 
 		writer.writeAttribute(ROLE, role, ROLE);
 
-		encodeTabs(context, writer, getChildren(), attributes);
+		encodeTabs(context, writer, getChildren(), attributes, currentlyActiveIndex);
 		writer.endElement("ul");
-		encodeTabContentPanes(context, writer, this, attributes);
+		encodeTabContentPanes(context, writer, this, attributes, currentlyActiveIndex);
 	}
 
 	/**
@@ -139,7 +162,7 @@ public class TabView extends UIOutput {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView, Map<String, Object> attributes)
+	private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView, Map<String, Object> attributes, int currentlyActiveIndex)
 			throws IOException {
 		writer.startElement(DIV, tabView);
 		String classes = "tab-content";
@@ -153,7 +176,7 @@ public class TabView extends UIOutput {
 			role = (String) attributes.get(ROLE);
 		}
 		writer.writeAttribute(ROLE, role, ROLE);
-		int activeIndex = determineActiveIndex(attributes);
+		int activeIndex = determineActiveIndex(attributes, currentlyActiveIndex);
 
 		List<UIComponent> children = tabView.getChildren();
 		if (null != children) {
@@ -171,9 +194,12 @@ public class TabView extends UIOutput {
 	 *            the attribute map of the component to be rendered.
 	 * @return the index of the active tab. Default is 0.
 	 */
-	private static int determineActiveIndex(Map<String, Object> attributes) {
+	private static int determineActiveIndex(Map<String, Object> attributes, int currentlyActiveIndex) {
 		int activeIndex = 0;
-		if (attributes.containsKey("activeIndex")) {
+		if (currentlyActiveIndex>=0) {
+			activeIndex=currentlyActiveIndex;
+		}
+		else if (attributes.containsKey("activeIndex")) {
 			String ai = (String) attributes.get("activeIndex");
 			try {
 				activeIndex = Integer.valueOf(ai);
@@ -229,10 +255,10 @@ public class TabView extends UIOutput {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children, Map<String, Object> attributes)
+	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children, Map<String, Object> attributes, int currentlyActiveIndex)
 			throws IOException {
 		if (null != children) {
-			int activeIndex = determineActiveIndex(attributes);
+			int activeIndex = determineActiveIndex(attributes,currentlyActiveIndex);
 			for (int index = 0; index < children.size(); index++) {
 				encodeTab(context, writer, children.get(index), index == activeIndex);
 			}
