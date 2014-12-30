@@ -32,6 +32,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.render.A;
 
 /**
  * This component puts child components in a grid, very much like &lt;h:panelGrid&gt;.
@@ -80,24 +81,6 @@ public class PanelGrid extends UIOutput {
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	protected enum PropertyKeys {
-
-		id, styleClass, style, colSpans, columnClasses, rowClasses, size;
-
-		String toString;
-
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
-
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
-
 	public PanelGrid() {
 		setRendererType(null); // no renderer needed
 	}
@@ -105,62 +88,6 @@ public class PanelGrid extends UIOutput {
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}
-
-	public java.lang.String getId() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.id, null);
-	}
-
-	public void setId(java.lang.String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
-	}
-
-	public java.lang.String getSize() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.size, null);
-	}
-
-	public void setSize(java.lang.String _size) {
-		getStateHelper().put(PropertyKeys.size, _size);
-	}
-
-	public java.lang.String getStyleClass() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.styleClass, null);
-	}
-
-	public void setStyleClass(java.lang.String _styleClass) {
-		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
-	public java.lang.String getStyle() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.style, null);
-	}
-
-	public void setStyle(java.lang.String _style) {
-		getStateHelper().put(PropertyKeys.style, _style);
-	}
-
-	public java.lang.String getColSpans() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.colSpans, null);
-	}
-
-	public void setColSpans(java.lang.String _columns) {
-		getStateHelper().put(PropertyKeys.colSpans, _columns);
-	}
-
-	public java.lang.String getColumnClasses() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.columnClasses, null);
-	}
-
-	public void setColumnClasses(java.lang.String _columnClasses) {
-		getStateHelper().put(PropertyKeys.columnClasses, _columnClasses);
-	}
-
-	public java.lang.String getRowClasses() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.rowClasses, null);
-	}
-
-	public void setRowClasses(java.lang.String _rowClasses) {
-		getStateHelper().put(PropertyKeys.rowClasses, _rowClasses);
 	}
 
 	@Override
@@ -215,8 +142,8 @@ public class PanelGrid extends UIOutput {
 	 * @return null or a String array.
 	 */
 	protected String[] getRowClasses(PanelGrid grid) {
-		String rowClasses = grid.getRowClasses();
-		if (null == rowClasses)
+		String rowClasses = A.asString(grid.getAttributes().get("rowClasses"));
+		if (null == rowClasses || rowClasses.trim().length()==0)
 			return null;
 		String[] rows = rowClasses.split(",");
 		return rows;
@@ -230,15 +157,10 @@ public class PanelGrid extends UIOutput {
 	 *             if the attribute is missing or invalid.
 	 */
 	protected int[] getColSpanArray() {
-		String columnsCSV = getColSpans();
-		if (null == columnsCSV)
+		String columnsCSV = A.asString(getAttributes().get("colSpans"));
+		if (null == columnsCSV || columnsCSV.trim().length()==0)
 		{
-			columnsCSV = (String) getAttributes().get("colSpans");
-			if (null!=columnsCSV) {
-				System.out.println("Partial State helper is not reliable!");
-			}
-			else
-			    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
+		    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
 		}
 		String[] columnList = columnsCSV.split(",");
 		int[] columns = new int[columnList.length];
@@ -265,10 +187,10 @@ public class PanelGrid extends UIOutput {
 	 * @return null or an array of String consisting of the CSS classes.
 	 */
 	protected String[] getColumnClasses(int[] colSpans) {
-		String columnsCSV = getColumnClasses();
+		String columnsCSV = A.asString(getAttributes().get("columnClasses"));
 		String[] columnClasses;
 
-		if (null == columnsCSV)
+		if (null == columnsCSV || columnsCSV.trim().length()==0)
 			columnClasses = null;
 		else {
 			columnClasses = columnsCSV.split(",");
@@ -277,8 +199,8 @@ public class PanelGrid extends UIOutput {
 			}
 		}
 
-		String size = getSize();
-		if (null == size || size.equals(""))
+		String size = A.asString(getAttributes().get("size"));
+		if (null == size || size.trim().equals(""))
 			size = "lg";
 
 		String[] result = new String[colSpans.length];
@@ -395,14 +317,14 @@ public class PanelGrid extends UIOutput {
 			writer.writeAttribute("id", clientId, "id");
 		}
 
-		String styleclass = this.getStyleClass();
-		if (null != styleclass)
+		String styleclass = A.asString(this.getAttributes().get("styleClass"));
+		if (null != styleclass&& styleclass.trim().length()>0)
 			writer.writeAttribute("class", "container " + styleclass, "class");
 		else
 			writer.writeAttribute("class", "container", "class");
 
-		String style = this.getStyle();
-		if (null != style)
+		String style = A.asString(this.getAttributes().get("style"));
+		if (null != style && style.trim().length()>0)
 			writer.writeAttribute("style", style, "style");
 	}
 }
