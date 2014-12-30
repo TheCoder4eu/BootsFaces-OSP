@@ -47,6 +47,7 @@ import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.R;
 
 /**
@@ -124,7 +125,9 @@ public class TabView extends UIOutput {
 		String clientId = getClientId(context);
 		writer.startElement("input", this);
 		writer.writeAttribute("type", "hidden", null);
-		writer.writeAttribute("name", clientId + "_activeIndex", "name");
+		final String hiddenInputFieldID = clientId + "_activeIndex";
+		writer.writeAttribute("name", hiddenInputFieldID, "name");
+		writer.writeAttribute("id", hiddenInputFieldID, "id");
 		writer.writeAttribute("value", determineActiveIndex(attributes, currentlyActiveIndex), "value");
 		writer.endElement("input");
 		
@@ -145,7 +148,7 @@ public class TabView extends UIOutput {
 
 		writer.writeAttribute(ROLE, role, ROLE);
 
-		encodeTabs(context, writer, getChildren(), attributes, currentlyActiveIndex);
+		encodeTabs(context, writer, getChildren(), attributes, currentlyActiveIndex, hiddenInputFieldID);
 		writer.endElement("ul");
 		encodeTabContentPanes(context, writer, this, attributes, currentlyActiveIndex);
 	}
@@ -255,12 +258,12 @@ public class TabView extends UIOutput {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children, Map<String, Object> attributes, int currentlyActiveIndex)
+	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children, Map<String, Object> attributes, int currentlyActiveIndex, String hiddenInputFieldID)
 			throws IOException {
 		if (null != children) {
 			int activeIndex = determineActiveIndex(attributes,currentlyActiveIndex);
 			for (int index = 0; index < children.size(); index++) {
-				encodeTab(context, writer, children.get(index), index == activeIndex);
+				encodeTab(context, writer, children.get(index), index == activeIndex, hiddenInputFieldID, index);
 			}
 		}
 	}
@@ -280,7 +283,7 @@ public class TabView extends UIOutput {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent tab, boolean isActive) throws IOException {
+	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent tab, boolean isActive, String hiddenInputFieldID, int tabIndex) throws IOException {
 		writer.startElement(LI, tab);
 		writer.writeAttribute(ROLE, "presentation", ROLE);
 		Map<String, Object> tabAttributes = tab.getAttributes();
@@ -291,7 +294,7 @@ public class TabView extends UIOutput {
 		}
 		if (classes.length()>0)
 		  writer.writeAttribute(CLASS, classes, CLASS);
-		encodeTabAnchorTag(writer, tab, tabAttributes);
+		encodeTabAnchorTag(writer, tab, tabAttributes, hiddenInputFieldID, tabIndex);
 		writer.endElement(LI);
 	}
 
@@ -307,11 +310,17 @@ public class TabView extends UIOutput {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabAnchorTag(ResponseWriter writer, UIComponent tab, Map<String, Object> tabAttributes) throws IOException {
+	private static void encodeTabAnchorTag(ResponseWriter writer, UIComponent tab, Map<String, Object> tabAttributes, String hiddenInputFieldID, int tabindex) throws IOException {
 		writer.startElement(A, tab);
 		writer.writeAttribute(ROLE, "tab", ROLE);
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
 		writer.writeAttribute(HREF, "#" + tab.getClientId().replace(":", "_"), HREF);
+		String onclick="document.getElementById('"+hiddenInputFieldID+"').value='"+String.valueOf(tabindex)+"';";
+		String userClick=(String)tabAttributes.get("onclick");
+		if (null != userClick && userClick.trim().length()>0) {
+			onclick+=userClick;
+		}
+		writer.writeAttribute("onclick", onclick, "onclick");
 		R.encodeHTML4DHTMLAttrs(writer, tabAttributes, TAB_ATTRS);
 		writer.writeText(tabAttributes.get("title"), null);
 		writer.endElement(A);
