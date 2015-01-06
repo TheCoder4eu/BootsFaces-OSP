@@ -3,14 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.bootsfaces</groupId>
 	<artifactId>BootsFaces-OSP</artifactId>
-	<version>0.51-SNAPSHOT</version>
+	<version>0.6.5-SNAPSHOT</version>
 	<name>BootsFaces</name>
 	<description>TheCoder4EU</description>
-	<url>http://www.beyondjava.net</url>
+	<url>http://www.bootsfaces.net</url>
 	<licenses>
 		<license>
 			<name>GNU General Public License (GPL) version 3.0</name>
 			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+		</license>
+		<license>
+			<name>GNU Lesser General Public License (LGPL) version 3.0</name>
+			<url>http://www.gnu.org/licenses/lgpl.txt</url>
 		</license>
 	</licenses>
 	<developers>
