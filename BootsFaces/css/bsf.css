@@ -18,6 +18,9 @@
 }
 
 /* Datepicker */
+.ui-datepicker.ui-widget.ui-widget-content {
+    z-index: 5 !important;
+}
 .ui-datepicker-header {
         font-weight: bold;
         min-height: auto;
