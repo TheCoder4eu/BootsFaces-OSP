@@ -445,12 +445,10 @@ public class DatePicker extends HtmlInputText {
 	 * </p>
 	 * Simplified and streamlined version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
 	 *
-	 * @param locale
-	 *            - the target <code>Locale</code>
 	 * @param messageId
 	 *            - the key of the message in the resource bundle
 	 * @param params
-	 *            - substittion parameters
+	 *            - substitution parameters
 	 *
 	 * @return a localized <code>FacesMessage</code> with the severity of FacesMessage.SEVERITY_ERROR
 	 */
@@ -509,7 +507,6 @@ public class DatePicker extends HtmlInputText {
      * Simplified and adapted version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
      *
      * @param context   - the <code>FacesContext</code> for the current request
-     * @param component - the component of interest
      *
      * @return the label, if any, of the component
      */

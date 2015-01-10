@@ -41,8 +41,8 @@ import net.bootsfaces.render.A;
  * Usage:
  * </p>
  * <p>
- * &lt;b:panelGrid id="grid-three-nine" colSpans="3,9" columnClasses="red,green" styleClass="gridStyle" rowClasses="light,dark"&gt;<br />
- * &nbsp;&nbsp;&nbsp;(child components)<br />
+ * &lt;b:panelGrid id="grid-three-nine" colSpans="3,9" columnClasses="red,green" styleClass="gridStyle" rowClasses="light,dark"&gt;<br>
+ * &nbsp;&nbsp;&nbsp;(child components)<br>
  * &lt;/b:panelGrid&gt;
  * </p>
  * <ul>
@@ -61,7 +61,6 @@ import net.bootsfaces.render.A;
  * rowClasses: An optional attribute that allows to assign CSS classes to each Bootstrap row. If there are more rows than row classes, the
  * row classes are repeated cyclically.</li>
  * </ul>
- * </p>
  * 
  * @author Stephan Rauh, http://www.beyondjava.net
  * @since 22.11.2014

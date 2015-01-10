@@ -92,7 +92,7 @@ public class Button extends HtmlOutcomeTargetButton {
 	/** 
 	 * Renders the button. <br>
 	 * General layout of the generated HTML code:<br>
-	 * &lt;button class="btn btn-large" href="#">&lt;i class="icon-star">&lt;/i> Star&lt;/button>
+	 * &lt;button class="btn btn-large" href="#"%gt;&lt;i class="icon-star"&gt;&lt;/i&gt; Star&lt;/button&gt;
 	 * 
 	 * @param context the current FacesContext
 	 * @throws IOException thrown if something's wrong with the ResponseWriter
