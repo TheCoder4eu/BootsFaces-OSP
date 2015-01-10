@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.bootsfaces</groupId>
-	<artifactId>BootsFaces-OSP</artifactId>
-	<version>0.6.5-SNAPSHOT</version>
+	<artifactId>bootsfaces</artifactId>
+	<version>0.6.0</version>
 	<name>BootsFaces</name>
 	<description>TheCoder4EU</description>
 	<url>http://www.bootsfaces.net</url>
@@ -96,7 +96,7 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>Maven Central</id>
+			<id>MavenCentral</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
@@ -145,6 +145,31 @@
 							</execution>
 						</executions>
 					</plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.3</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -218,7 +243,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 	<distributionManagement>
