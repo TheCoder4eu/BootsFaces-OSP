@@ -1359,6 +1359,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<name>renderLabel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 			<name>placeholder</name>
 			<required>false</required>
@@ -1638,6 +1644,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<name>renderLabel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 			<name>placeholder</name>
 			<required>false</required>
@@ -1912,6 +1924,12 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<name>renderLabel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
 			<name>value</name>
 			<required>false</required>
@@ -2123,6 +2141,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Inline CSS style of the div surrounding the panes.]]></description>
+			<name>contentStyle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 
 	<!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on 
@@ -2232,6 +2256,12 @@
 		<attribute>
 			<description><![CDATA[The Label of the field .]]></description>
 			<name>label</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<name>renderLabel</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>

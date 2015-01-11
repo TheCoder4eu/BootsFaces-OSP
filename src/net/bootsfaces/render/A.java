@@ -75,6 +75,7 @@ public final class A {
     public static final String OFFSET="offset";
     public static final String READONLY=C.READONLY;
     public static final String PHOLDER=H.PHOLDER;
+    public static final String RENDERLABEL="renderLabel"; // suppresses rendering labels
     public static final String SEVERITY="severity";
     public static final String SIZE="size";
     public static final String MAXLEN="maxlength";

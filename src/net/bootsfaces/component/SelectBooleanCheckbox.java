@@ -21,6 +21,7 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -28,6 +29,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -145,11 +147,19 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 *             may be thrown by the response writer
 	 */
 	protected void addLabel(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		String l = A.asString(attrs.get(A.LABEL));
-		if (l != null) {
+		String label = A.asString(attrs.get(A.LABEL));
+		{
+			Object rl = attrs.get(A.RENDERLABEL);
+			if (null != rl) {
+				if (!A.toBool(attrs.get(A.RENDERLABEL))) {
+					label=null;
+				}
+			}
+		}
+		if (label != null) {
 			rw.startElement(H.LABEL, this);
 			rw.writeAttribute(A.FOR, clientId, A.FOR);
-			rw.writeText(l, null);
+			rw.writeText(label, null);
 			rw.endElement(H.LABEL);
 		}
 	}

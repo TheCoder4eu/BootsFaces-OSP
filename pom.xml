@@ -194,6 +194,18 @@
 				<targetPath>META-INF/resources/fonts</targetPath>
 			</resource>
 			<resource>
+				<directory>BootsFaces/generated/css</directory>
+				<targetPath>META-INF/resources/bsf/css</targetPath>
+			</resource>
+			<resource>
+				<directory>BootsFaces/generated/js</directory>
+				<targetPath>META-INF/resources/bsf/js</targetPath>
+			</resource>
+			<resource>
+				<directory>BootsFaces/generated/fonts</directory>
+				<targetPath>META-INF/resources/fonts</targetPath>
+			</resource>
+			<resource>
 				<directory>meta</directory>
 				<targetPath>META-INF</targetPath>
 			</resource>

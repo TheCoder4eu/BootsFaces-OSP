@@ -171,9 +171,15 @@ public class TabView extends UIOutput {
 		String classes = "tab-content";
 		if (attributes.containsKey("contentClass")) {
 			classes += " ";
-			classes += attributes.get("contentClass");
+			classes += net.bootsfaces.render.A.asString(attributes.get("contentClass"));
 		}
 		writer.writeAttribute(CLASS, classes, CLASS);
+
+		if (attributes.containsKey("contentStyle")) {
+			String inlineCSS=  net.bootsfaces.render.A.asString(attributes.get("contentStyle"));
+			writer.writeAttribute("style", inlineCSS, "style");
+		}
+
 		String role = "tablist";
 		if (attributes.containsKey(ROLE)) {
 			role = (String) attributes.get(ROLE);

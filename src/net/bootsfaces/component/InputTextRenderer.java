@@ -65,7 +65,15 @@ public class InputTextRenderer extends CoreRenderer {
 			R.addClass2FacetComponent(app, "OutputText", inputText.ADDON);
 		}
 
-		String l = A.asString(attrs.get(A.LABEL));
+		String label = A.asString(attrs.get(A.LABEL));
+		{
+			Object rl = attrs.get(A.RENDERLABEL);
+			if (null != rl) {
+				if (!A.toBool(attrs.get(A.RENDERLABEL))) {
+					label = null;
+				}
+			}
+		}
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -78,12 +86,12 @@ public class InputTextRenderer extends CoreRenderer {
 				t = H.TEXT;
 		}
 
-		rw.startElement(H.DIV, component);
-		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
-		if (l != null) {
+		if (label != null) {
+			rw.startElement(H.DIV, component);
+			rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 			rw.startElement(H.LABEL, component);
 			rw.writeAttribute(A.FOR, clientId, A.FOR);
-			rw.writeText(l, null);
+			rw.writeText(label, null);
 			rw.endElement(H.LABEL);
 		}
 		if (append || prepend) {
@@ -184,7 +192,9 @@ public class InputTextRenderer extends CoreRenderer {
 		if (append || prepend) {
 			rw.endElement(H.DIV);
 		} // input-group
-		rw.endElement(H.DIV); // form-group
+		if (label != null) {
+			rw.endElement(H.DIV); // form-group
+		}
 		if (span > 0) {
 			rw.endElement(H.DIV); // span
 			// rw.endElement(H.DIV); //row NO

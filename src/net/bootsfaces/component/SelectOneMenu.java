@@ -152,11 +152,19 @@ public class SelectOneMenu extends HtmlInputText {
 	 *             may be thrown by the response writer
 	 */
 	protected void addLabel(Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		String l = A.asString(attrs.get(A.LABEL));
-		if (l != null) {
+		String label = A.asString(attrs.get(A.LABEL));
+		{
+			Object rl = attrs.get(A.RENDERLABEL);
+			if (null != rl) {
+				if (!A.toBool(attrs.get(A.RENDERLABEL))) {
+					label=null;
+				}
+			}
+		}
+		if (label != null) {
 			rw.startElement(H.LABEL, this);
 			rw.writeAttribute(A.FOR, clientId, A.FOR);
-			rw.writeText(l, null);
+			rw.writeText(label, null);
 			rw.endElement(H.LABEL);
 		}
 	}
