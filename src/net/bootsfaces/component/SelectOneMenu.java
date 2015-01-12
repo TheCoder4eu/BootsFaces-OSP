@@ -83,6 +83,8 @@ public class SelectOneMenu extends HtmlInputText {
 		Map<String, Object> attrs = getAttributes();
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = getClientId(context);
+		rw.startElement(H.DIV, this);
+		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 
 		addLabel(attrs, rw, clientId);
 
@@ -107,6 +109,7 @@ public class SelectOneMenu extends HtmlInputText {
 
 		closeInputGroupForAddOn(rw, hasAddon);
 		closeColSpanDiv(rw, span);
+		rw.endElement("div"); // form-group
 	}
 
 	/**

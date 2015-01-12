@@ -86,9 +86,9 @@ public class InputTextRenderer extends CoreRenderer {
 				t = H.TEXT;
 		}
 
+		rw.startElement(H.DIV, component);
+		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 		if (label != null) {
-			rw.startElement(H.DIV, component);
-			rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 			rw.startElement(H.LABEL, component);
 			rw.writeAttribute(A.FOR, clientId, A.FOR);
 			rw.writeText(label, null);
@@ -192,9 +192,7 @@ public class InputTextRenderer extends CoreRenderer {
 		if (append || prepend) {
 			rw.endElement(H.DIV);
 		} // input-group
-		if (label != null) {
-			rw.endElement(H.DIV); // form-group
-		}
+		rw.endElement(H.DIV); // form-group
 		if (span > 0) {
 			rw.endElement(H.DIV); // span
 			// rw.endElement(H.DIV); //row NO

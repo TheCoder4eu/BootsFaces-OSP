@@ -204,7 +204,7 @@
 		<apply executable="java" parallel="false">
 		    <fileset dir="${js.dir}" includes="*.js" />
 		    <arg line="-jar" />
-		    <arg path="lib/yuicompressor-2.4.8.jar" />
+		    <arg path="lib/yuicompressor-2.4.7.jar" />
 		    <srcfile />
 		    <arg line="-o" />
 		    <mapper type="glob" from="*.js" to="${js.dir}/*-min.js" />
@@ -221,7 +221,7 @@
 		<apply executable="java" parallel="false">
 		    <fileset dir="${less.dir}" includes="*.css" />
 		    <arg line="-jar" />
-		    <arg path="lib/yuicompressor-2.4.8.jar" />
+		    <arg path="lib/yuicompressor-2.4.7.jar" />
 		    <srcfile />
 		    <arg line="-o" />
 		    <mapper type="glob" from="*.css" to="${less.dir}/*-min.css" />
@@ -235,7 +235,7 @@
 	</target>
 	<target name="compile-lesscss-windows" if="os.windows">
             <echo message="Compiling LessCSS to CSS (windows platform WITH NodeJS)..." />
-            <apply executable="%appdata%\Roaming\npm\lessc.cmd" dest="${less.dir}">
+            <apply executable="C:\Users\SoyYo\AppData\Roaming\npm\lessc.cmd" dest="${less.dir}">
                 <srcfile/>
                 <targetfile/>
                 <fileset dir="${less.dir}" includes="bs-*.less"/>
