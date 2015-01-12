@@ -13,9 +13,9 @@
 }
 
 /* inputText */
-/*.row .form-group {
-    margin-bottom: 0;
-}*/
+.row .form-group {
+    margin-bottom: 10px;
+}
 
 /* Datepicker */
 .ui-datepicker.ui-widget.ui-widget-content {
