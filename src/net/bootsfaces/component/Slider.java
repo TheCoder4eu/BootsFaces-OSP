@@ -74,6 +74,11 @@ public class Slider extends HtmlInputText {
         setRendererType(null); // this component renders itself
     }
     
+    public String getType() {
+        String mode=A.asString(getAttributes().get(A.MODE),"badge");
+        return mode.equals("edit") ? H.TEXT : H.HIDDEN;
+    }
+    
     @Override
     public void decode(FacesContext context) {
         String subVal = context.getExternalContext().getRequestParameterMap().get(getClientId(context));
