@@ -97,6 +97,16 @@ public final class R {
         } else {
             sb.append(GLYPHICON+icon);
         }
+        if(size!=null) { sb.append(" fa-"+size); }
+        if(rotate!=null) {
+            if(rotate.equalsIgnoreCase("R")) { sb.append(" fa-rotate-90"); }
+            if(rotate.equalsIgnoreCase("L")) { sb.append(" fa-rotate-left"); }
+        }
+        if(flip!=null) {
+            if(flip.equalsIgnoreCase("H")) { sb.append(" fa-flip-horizontal"); }
+            if(flip.equalsIgnoreCase("V")) { sb.append(" fa-flip-vertical"); }
+        }
+        if(spin) { sb.append(" fa-spin"); }
         rw.writeAttribute(H.CLASS, sb.toString(), H.CLASS);
         //!//rw.writeAttribute(H.CLASS, GLYPHICON+icon, H.CLASS);
         rw.endElement(H.I);
