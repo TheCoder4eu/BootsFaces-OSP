@@ -49,8 +49,13 @@ public final class R {
     public static final String ADDON="input-group-addon";
     public static final String CARET="caret";
     public static final String DROPDOWN="dropdown";
-    public static final String ICON="icon";
-    public static final String ICONWH=ICON.concat(C.HYP).concat(WHITE);
+    // Removing unneded icon-white used in Bootstrap 2
+    // TBS3 uses font color of parent element
+    //!//public static final String ICON="icon";
+    //!//public static final String ICONWH=ICON.concat(C.HYP).concat(WHITE);
+    //Glyph icons / Font Awesome icons
+    public static final String GLYPHICON="glyphicon glyphicon-";
+    public static final String FAICON="fa fa-";
     
     public static final String ROW="row";
     // span => col-md-* as of TBS3
@@ -59,30 +64,72 @@ public final class R {
     public static final String OFFSET="col-md-offset-"; //Default as of TBS3
     //public static final String ="";
     
+
     /**
      * Renders an Icon
-     * Markup:
-     * <i class="icon-search"></i>
-     * <i class="icon-search icon-white"></i>
+     * @param rw ResponseWriter
+     * @param c  UIComponent
+     * @param icon Icon Name
+     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @param size Icon Size lg, 2x, 3x, 4x, 5x
+     * @param rotate Can be L,R
+     * @param flip Can be H,V
+     * @param spin true or false
+     * @param addon If true it is an addon for inputs.
+     * @throws IOException 
      */
-    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean white) throws IOException {
+    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, String set, String size, String rotate, String flip, boolean spin, boolean addon) throws IOException {
+        /*
+        Markup:
+        <span><i class="icon-search"></i></span>
+        */
+        rw.startElement(H.SPAN, c);
+        if(addon) {
+            rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ADDON, null);
+            rw.writeAttribute(H.CLASS, ADDON, H.CLASS);
+        }
+        rw.startElement(H.I, c);
+        rw.writeAttribute(H.ID, c.getClientId()+"_icon", null);
+        rw.writeAttribute(H.CLASS, GLYPHICON+icon, H.CLASS);
+        rw.endElement(H.I);
+        
+        rw.endElement(H.SPAN);
+    }
+    /*public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean white) throws IOException {
         rw.startElement(H.I, c);
         rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ICON, null);
-        rw.writeAttribute(H.CLASS, "glyphicon glyph"+ICON+C.HYP+icon+(white ? C.SP+ICONWH : C.EMPTY), H.CLASS);
+        rw.writeAttribute(H.CLASS, GLYPHICON+icon+(white ? C.SP+ICONWH : C.EMPTY), H.CLASS);
         rw.endElement(H.I);
-    }
+    }*/
     
+    /**
+     * Renders an Icon - simple version without options
+     * @param rw ResponseWriter
+     * @param c  UIComponent
+     * @param icon Icon Name
+     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @throws IOException 
+     */
+    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, String set) throws IOException {
+        encodeIcon(rw, c, icon, set, null, null, null, false, false);
+    }
     /**
      * Renders an addon Icon
      * Markup:
      * <span class="add-on"><i class="icon-envelope"></i></span>
+     * 
+     * @param rw ResponseWriter
+     * @param c  UIComponent
+     * @param icon Icon Name
+     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @throws java.io.IOException
      */
-    public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, boolean white) throws IOException {
-        rw.startElement(H.SPAN, c);
-        rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ADDON, null);
-        rw.writeAttribute(H.CLASS, ADDON, H.CLASS);
-        encodeIcon(rw, c, icon, white);
-        rw.endElement(H.SPAN);
+    public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, String set) throws IOException {
+        //rw.startElement(H.SPAN, c);
+        //rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ADDON, null);
+        //rw.writeAttribute(H.CLASS, ADDON, H.CLASS);
+        encodeIcon(rw, c, icon, set, null, null, null, false, true);
+        //rw.endElement(H.SPAN);
     }
     
     /**

@@ -139,12 +139,14 @@ public class Button extends HtmlOutcomeTargetButton {
 		String icon = asString(attrs.get(ICON));
 		if (icon != null) {
 			Object ialign = attrs.get(ICON_ALIGN); // Default Left
-			boolean white=null!=attrs.get(LOOK);
+			//!//boolean white=null!=attrs.get(LOOK);
 			if (ialign != null && ialign.equals(RIGHT)) {
 				rw.writeText(value + SP, null);
 				R.encodeIcon(rw, this, icon, white);
+                                //!//R.encodeIcon(rw, this, icon, white);
 			} else {
 				R.encodeIcon(rw, this, icon, white);
+                                //!//R.encodeIcon(rw, this, icon, white);
 				rw.writeText(SP + value, null);
 			}
 

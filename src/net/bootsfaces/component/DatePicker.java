@@ -203,7 +203,7 @@ public class DatePicker extends HtmlInputText {
 				rw.startElement(H.DIV, this);
 				rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
 				if (mode.equals(A.ICONPOP) || mode.equals(A.ICONTOGGLE)) {
-					R.addonIcon(rw, this, CALENDAR, false);
+					R.addonIcon(rw, this, CALENDAR, null);
 				}
 			}
 		}
@@ -233,7 +233,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeJS(fc, rw, clientId, dpId);
 		if (mode.equals(A.POPICON) || mode.equals(A.TOGGLEICON)) {
-			R.addonIcon(rw, this, CALENDAR, false);
+			R.addonIcon(rw, this, CALENDAR, null);
 		}
 
 		if (!inline && !mode.equals(A.POPUP)) {

@@ -63,7 +63,7 @@ public class CommandButton extends HtmlCommandButton {
     }
     
     Map<String, Object> attrs;
-    boolean white=false;
+    //!//boolean white=false;
     
     @Override
     public void decode(FacesContext context) {
@@ -148,9 +148,11 @@ public class CommandButton extends HtmlCommandButton {
             Object ialign = attrs.get(A.ICON_ALIGN); //Default Left
             if(ialign!=null && ialign.equals(A.RIGHT)) {
                 rw.writeText(value+C.SP, null);
-                R.encodeIcon(rw, this, icon, white);
+                R.encodeIcon(rw, this, icon, null);
+                //!//R.encodeIcon(rw, this, icon, white);
             } else {
-                R.encodeIcon(rw, this, icon, white);
+                R.encodeIcon(rw, this, icon, null);
+                //!//R.encodeIcon(rw, this, icon, white);
                 rw.writeText(C.SP+value, null);
             }
             
@@ -178,7 +180,7 @@ public class CommandButton extends HtmlCommandButton {
         if(size!=null) { sb.append(" btn-").append(size); }
         //TBS3 Si usa look, non severity
         String look = A.asString(attrs.get(A.LOOK));
-        if(look!=null) { white=true; sb.append(" btn-").append(look); }
+        if(look!=null) { sb.append(" btn-").append(look); }
         else { sb.append(" btn-default"); }
         
         if(A.toBool(attrs.get(A.DISABLED))) { sb.append(C.SP+A.DISABLED); }

@@ -73,7 +73,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
     }
     
     Map<String, Object> attrs;
-    boolean white=false;
+    //!//boolean white=false;
 
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
@@ -169,11 +169,11 @@ public class NavLink extends HtmlOutcomeTargetLink {
             Object ialign = attrs.get(A.ICON_ALIGN); //Default Left
             if (ialign != null && ialign.equals(A.RIGHT)) {
                 rw.writeText(value + C.SP, null);
-                R.encodeIcon(rw, this, icon, white);
-                //encodeIcon(rw, icon);
+                R.encodeIcon(rw, this, icon, null);
+                //!//R.encodeIcon(rw, this, icon, white);
             } else {
-                R.encodeIcon(rw, this, icon, white);
-                //encodeIcon(rw, icon);
+                R.encodeIcon(rw, this, icon, null);
+                //!//R.encodeIcon(rw, this, icon, white);
                 rw.writeText(C.SP + value, null);
             }
 
