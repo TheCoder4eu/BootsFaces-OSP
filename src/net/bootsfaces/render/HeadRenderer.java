@@ -99,6 +99,18 @@ public class HeadRenderer extends Renderer {
                 rw.endElement("link"); 
             }
         }
+        //Font Awesome
+        //If the BootsFaces_USETHEME parameter is true, render Theme CSS link
+        String usefa = null;
+        usefa = fc.getExternalContext().getInitParameter(C.P_USEFONTAWESOME);
+        if (usefa!=null && usefa.equals(C.TRUE)) {
+            String fa_url = fc.getExternalContext().getInitParameter(C.FONTAWESOME_CDN_URL);
+            rw.startElement("link", null);
+            rw.writeAttribute("type", "text/css", null);
+            rw.writeAttribute("rel", "stylesheet", null);
+            rw.writeAttribute("href", fa_url, null);
+            rw.endElement("link"); 
+        }
         
         //Styles
         for(UIComponent style : styles) {
