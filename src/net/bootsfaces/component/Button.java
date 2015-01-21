@@ -142,10 +142,10 @@ public class Button extends HtmlOutcomeTargetButton {
 			//!//boolean white=null!=attrs.get(LOOK);
 			if (ialign != null && ialign.equals(RIGHT)) {
 				rw.writeText(value + SP, null);
-				R.encodeIcon(rw, this, icon, white);
+				R.encodeIcon(rw, this, icon, null);
                                 //!//R.encodeIcon(rw, this, icon, white);
 			} else {
-				R.encodeIcon(rw, this, icon, white);
+				R.encodeIcon(rw, this, icon, null);
                                 //!//R.encodeIcon(rw, this, icon, white);
 				rw.writeText(SP + value, null);
 			}

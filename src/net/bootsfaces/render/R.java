@@ -90,7 +90,15 @@ public final class R {
         }
         rw.startElement(H.I, c);
         rw.writeAttribute(H.ID, c.getClientId()+"_icon", null);
-        rw.writeAttribute(H.CLASS, GLYPHICON+icon, H.CLASS);
+        
+        StringBuilder sb = new StringBuilder(100); //optimize int
+        if(set!=null && set.equalsIgnoreCase("fa")) {
+            sb.append(FAICON+icon);
+        } else {
+            sb.append(GLYPHICON+icon);
+        }
+        rw.writeAttribute(H.CLASS, sb.toString(), H.CLASS);
+        //!//rw.writeAttribute(H.CLASS, GLYPHICON+icon, H.CLASS);
         rw.endElement(H.I);
         
         rw.endElement(H.SPAN);
