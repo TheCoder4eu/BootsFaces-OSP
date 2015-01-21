@@ -50,6 +50,7 @@ public final class C {
     public static final String COMMANDBUTTON_COMPONENT_TYPE=BSFCOMPONENT+".CommandButton";
     public static final String DROPBUTTON_COMPONENT_TYPE=BSFCOMPONENT+".DropButton";
     public static final String DROPMENU_COMPONENT_TYPE=BSFCOMPONENT+".DropMenu";
+    public static final String ICON_COMPONENT_TYPE=BSFCOMPONENT+".Icon";
     public static final String INPUTSECRET_COMPONENT_TYPE=BSFCOMPONENT+".InputSecret";
     public static final String INPUTTEXT_COMPONENT_TYPE=BSFCOMPONENT+".InputText";
     public static final String LABEL_COMPONENT_TYPE=BSFCOMPONENT+".Label";

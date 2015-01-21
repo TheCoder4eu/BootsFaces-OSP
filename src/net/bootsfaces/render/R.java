@@ -70,7 +70,7 @@ public final class R {
      * @param rw ResponseWriter
      * @param c  UIComponent
      * @param icon Icon Name
-     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "FA" for Font Awesome
      * @param size Icon Size lg, 2x, 3x, 4x, 5x
      * @param rotate Can be L,R
      * @param flip Can be H,V
@@ -92,7 +92,7 @@ public final class R {
         rw.writeAttribute(H.ID, c.getClientId()+"_icon", null);
         
         StringBuilder sb = new StringBuilder(100); //optimize int
-        if(set!=null && set.equalsIgnoreCase("fa")) {
+        if(set!=null && set.equalsIgnoreCase("FA")) {
             sb.append(FAICON+icon);
         } else {
             sb.append(GLYPHICON+icon);
