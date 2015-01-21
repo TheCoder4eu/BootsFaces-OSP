@@ -74,9 +74,17 @@ public class Slider extends HtmlInputText {
         setRendererType(null); // this component renders itself
     }
     
+    /** Method added to prevent AngularFaces from setting the type */
     public String getType() {
         String mode=A.asString(getAttributes().get(A.MODE),"badge");
         return mode.equals("edit") ? H.TEXT : H.HIDDEN;
+    }
+    
+    /** Method added to prevent AngularFaces from setting the type 
+     * @param type this parameter is ignored
+     */
+    public void setType(String type) {
+    	// ignore the type - it's defined by the mode attribute
     }
     
     @Override
