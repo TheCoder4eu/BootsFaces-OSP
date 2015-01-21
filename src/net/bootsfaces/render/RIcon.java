@@ -45,8 +45,8 @@ public enum RIcon {
         String size = A.asString(attrs.get("size"));
         String rotate = A.asString(attrs.get("rotate"));
         String flip = A.asString(attrs.get("flip"));
-        String spin = A.asString(attrs.get("spin"));
-        String addon = A.asString(attrs.get("addon"));
+        boolean spin = A.toBool(attrs.get("spin"));
+        boolean addon = A.toBool(attrs.get("addon"));
         R.encodeIcon(fc.getResponseWriter(), c, icon, set, size, rotate, flip, spin, addon);
     }
     
