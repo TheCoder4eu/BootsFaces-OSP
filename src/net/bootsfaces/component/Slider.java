@@ -205,7 +205,12 @@ public class Slider extends HtmlInputText {
         if(!mode.equals("basic")) {
         /* int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg */
         R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null);
-        if(mode.equals("badge")) { R.encodeBadge(context, this, "_badge", Integer.toString(val) ); }
+        if(mode.equals("badge")) { 
+        	R.encodeBadge(context, this, "_badge", Integer.toString(val) ); }
+        }
+        // remove wrong type information that may have been added by AngularFaces
+        if (getPassThroughAttributes().containsKey("type")) {
+        	getPassThroughAttributes().remove("type");
         }
         //Input
         rw.startElement(H.INPUT, this);
@@ -221,11 +226,7 @@ public class Slider extends HtmlInputText {
         
         //if (rdonly) { rw.writeAttribute(H.READONLY, H.READONLY, null); }
         rw.endElement(H.INPUT);
-        rw.append("\r\n<!-- This slider has");
-        rw.append(" type = " + getType());
-        rw.append(" pt type = " + getPassThroughAttributes().get("type"));
-        rw.append(" -->");
-        
+         
         if(!mode.equals("basic")) { rw.endElement(H.DIV); }//Column
     }
 
