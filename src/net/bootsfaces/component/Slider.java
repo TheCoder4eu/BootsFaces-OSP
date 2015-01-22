@@ -221,6 +221,10 @@ public class Slider extends HtmlInputText {
         
         //if (rdonly) { rw.writeAttribute(H.READONLY, H.READONLY, null); }
         rw.endElement(H.INPUT);
+        rw.append("\r\n<!-- This slider has");
+        rw.append(" type = " + getType());
+        rw.append(" pt type = " + getPassThroughAttributes().get("type"));
+        rw.append(" -->");
         
         if(!mode.equals("basic")) { rw.endElement(H.DIV); }//Column
     }
@@ -265,6 +269,14 @@ public class Slider extends HtmlInputText {
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
+    }
+    
+    @Override
+    public void encodeEnd(FacesContext context) throws IOException {
+    }
+    
+    @Override
+    public void encodeChildren(FacesContext context) throws IOException {
     }
     
 }
