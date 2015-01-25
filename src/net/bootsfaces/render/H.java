@@ -84,6 +84,8 @@ public final class H {
     public static final String SIZE="size";
     public static final String STYLE="style";
     public static final String TITLE="title";
+    public static final String MAX="max";
+    public static final String MIN="min";
     public static final String MAXLEN="maxlength";
     
     /** Types */

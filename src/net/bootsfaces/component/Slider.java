@@ -21,12 +21,14 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -145,7 +147,7 @@ public class Slider extends HtmlInputText {
                 rw.endElement(H.DIV);/* Row */
                 R.encodeRow(rw, null, null);
             }
-            encodeInput(rw, mode, context, val, clientId, vo);
+            encodeInput(rw, mode, context, val, clientId, vo, min, max);
             if (!bottom) {
                 rw.endElement(H.DIV); /* Row */
                 
@@ -177,7 +179,7 @@ public class Slider extends HtmlInputText {
             }
             R.encodeRow(rw, null, null); 
             
-            encodeInput(rw, mode, context, val, clientId, vo);
+            encodeInput(rw, mode, context, val, clientId, vo, min, max);
             
             encodeSliderDiv(rw, vo, clientId); 
             rw.endElement(H.DIV);/* Row */
@@ -200,7 +202,7 @@ public class Slider extends HtmlInputText {
         rw.endElement(H.DIV); //Column
     }
 
-    private void encodeInput(ResponseWriter rw, String mode, FacesContext context, int val, String clientId, boolean vo) throws IOException {
+    private void encodeInput(ResponseWriter rw, String mode, FacesContext context, int val, String clientId, boolean vo, int min, int max) throws IOException {
         int cols=( vo ? 12 : 1);
         if(!mode.equals("basic")) {
         /* int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg */
@@ -218,6 +220,8 @@ public class Slider extends HtmlInputText {
         rw.writeAttribute(H.NAME, clientId, null);
         rw.writeAttribute(H.TYPE, (mode.equals("edit") ? H.TEXT : H.HIDDEN), null);
         rw.writeAttribute(H.SIZE, String.valueOf(max).length()-1, null);
+        rw.writeAttribute(H.MIN, min, null);
+        rw.writeAttribute(H.MAX, max, null);
         rw.writeAttribute(H.MAXLEN, String.valueOf(max).length(), null);
         
         rw.writeAttribute(H.CLASS, "form-control input-sm"+( vo ? " text-center" : C.EMPTY),H.CLASS);
