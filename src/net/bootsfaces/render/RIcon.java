@@ -40,7 +40,7 @@ public enum RIcon {
          */
         
         Map<String, Object> attrs = c.getAttributes();
-        String icon = A.asString(attrs.get("icon"));
+        String icon = A.asString(attrs.get("name"));
         String set = A.asString(attrs.get("icon-set"));
         String size = A.asString(attrs.get("size"));
         String rotate = A.asString(attrs.get("rotate"));

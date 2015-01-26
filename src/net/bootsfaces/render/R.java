@@ -100,7 +100,7 @@ public final class R {
         if(size!=null) { sb.append(" fa-"+size); }
         if(rotate!=null) {
             if(rotate.equalsIgnoreCase("R")) { sb.append(" fa-rotate-90"); }
-            if(rotate.equalsIgnoreCase("L")) { sb.append(" fa-rotate-left"); }
+            if(rotate.equalsIgnoreCase("L")) { sb.append(" fa-rotate-270"); }
         }
         if(flip!=null) {
             if(flip.equalsIgnoreCase("H")) { sb.append(" fa-flip-horizontal"); }
