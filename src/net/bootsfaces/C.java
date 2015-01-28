@@ -39,7 +39,7 @@ public final class C {
     public static final String BSF_CSS_TBSTHEME="css/theme.css";
     
     //Font Awesome
-    public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
+    //public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
     public static final String FA_VERSION="4.3.0";
     public static final String FONTAWESOME_CDN_URL="//maxcdn.bootstrapcdn.com/font-awesome/"+FA_VERSION+"/css/font-awesome.min.css";
     

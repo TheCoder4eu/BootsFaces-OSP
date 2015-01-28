@@ -35,19 +35,16 @@ public enum RIconAwesome {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
-        /*
-         * <span class="badge badge-important">6</span>
-         */
-        
+                
         Map<String, Object> attrs = c.getAttributes();
         String icon = A.asString(attrs.get("name"));
-        String set="FA";//= A.asString(attrs.get("icon-set"));
+        //String set="FA";//= A.asString(attrs.get("icon-set"));
         String size = A.asString(attrs.get("size"));
         String rotate = A.asString(attrs.get("rotate"));
         String flip = A.asString(attrs.get("flip"));
         boolean spin = A.toBool(attrs.get("spin"));
         boolean addon = A.toBool(attrs.get("addon"));
-        R.encodeIcon(fc.getResponseWriter(), c, icon, set, size, rotate, flip, spin, addon);
+        R.encodeIcon(fc.getResponseWriter(), c, icon, "FA", size, rotate, flip, spin, addon);
     }
     
     /**
