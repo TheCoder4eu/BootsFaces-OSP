@@ -41,13 +41,13 @@ public enum RIcon {
         
         Map<String, Object> attrs = c.getAttributes();
         String icon = A.asString(attrs.get("name"));
-        String set = A.asString(attrs.get("icon-set"));
+        //!//String set = A.asString(attrs.get("icon-set"));
         String size = A.asString(attrs.get("size"));
         String rotate = A.asString(attrs.get("rotate"));
         String flip = A.asString(attrs.get("flip"));
         boolean spin = A.toBool(attrs.get("spin"));
         boolean addon = A.toBool(attrs.get("addon"));
-        R.encodeIcon(fc.getResponseWriter(), c, icon, set, size, rotate, flip, spin, addon);
+        R.encodeIcon(fc.getResponseWriter(), c, icon, false, size, rotate, flip, spin, addon);
     }
     
     /**

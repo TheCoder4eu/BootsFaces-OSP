@@ -70,7 +70,7 @@ public final class R {
      * @param rw ResponseWriter
      * @param c  UIComponent
      * @param icon Icon Name
-     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "FA" for Font Awesome
+     * @param fa Icon set: false for Bootstrap Glyphicons, true for Font Awesome
      * @param size Icon Size lg, 2x, 3x, 4x, 5x
      * @param rotate Can be L,R
      * @param flip Can be H,V
@@ -78,7 +78,7 @@ public final class R {
      * @param addon If true it is an addon for inputs.
      * @throws IOException 
      */
-    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, String set, String size, String rotate, String flip, boolean spin, boolean addon) throws IOException {
+    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa, String size, String rotate, String flip, boolean spin, boolean addon) throws IOException {
         /*
         Markup:
         <span><i class="icon-search"></i></span>
@@ -92,7 +92,8 @@ public final class R {
         rw.writeAttribute(H.ID, c.getClientId()+"_icon", null);
         
         StringBuilder sb = new StringBuilder(100); //optimize int
-        if(set!=null && set.equalsIgnoreCase("FA")) {
+        //if(set!=null && set.equalsIgnoreCase("FA")) {
+        if(fa) {
             sb.append(FAICON+icon);
         } else {
             sb.append(GLYPHICON+icon);
@@ -125,11 +126,11 @@ public final class R {
      * @param rw ResponseWriter
      * @param c  UIComponent
      * @param icon Icon Name
-     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @param fa Icon set: false for Bootstrap Glyphicons, true for Font Awesome
      * @throws IOException 
      */
-    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, String set) throws IOException {
-        encodeIcon(rw, c, icon, set, null, null, null, false, false);
+    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa) throws IOException {
+        encodeIcon(rw, c, icon, fa, null, null, null, false, false);
     }
     /**
      * Renders an addon Icon
@@ -139,14 +140,14 @@ public final class R {
      * @param rw ResponseWriter
      * @param c  UIComponent
      * @param icon Icon Name
-     * @param set  Icon set name: null or "default" for Bootstrap Glyphicons, "fa" for Font Awesome
+     * @param fa Icon set: false for Bootstrap Glyphicons, true for Font Awesome
      * @throws java.io.IOException
      */
-    public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, String set) throws IOException {
+    public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa) throws IOException {
         //rw.startElement(H.SPAN, c);
         //rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ADDON, null);
         //rw.writeAttribute(H.CLASS, ADDON, H.CLASS);
-        encodeIcon(rw, c, icon, set, null, null, null, false, true);
+        encodeIcon(rw, c, icon, fa, null, null, null, false, true);
         //rw.endElement(H.SPAN);
     }
     

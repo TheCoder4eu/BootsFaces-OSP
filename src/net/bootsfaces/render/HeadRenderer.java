@@ -100,21 +100,18 @@ public class HeadRenderer extends Renderer {
                 rw.endElement("link"); 
             }
         }
+        
+        //Styles
+        for(UIComponent style : styles) {
+            style.encodeAll(fc);
+        }
         //Font Awesome
-        //!//If the BootsFaces_USETHEME parameter is true, render Theme CSS link
-        //!//String usefa = null;
-        //!//usefa = fc.getExternalContext().getInitParameter(C.P_USEFONTAWESOME);
         if (usefa) { //!=null && usefa.equals(C.TRUE)) {
             rw.startElement("link", null);
             rw.writeAttribute("type", "text/css", null);
             rw.writeAttribute("rel", "stylesheet", null);
             rw.writeAttribute("href", C.FONTAWESOME_CDN_URL, null);
             rw.endElement("link"); 
-        }
-        
-        //Styles
-        for(UIComponent style : styles) {
-            style.encodeAll(fc);
         }
         
         //Scripts
