@@ -47,7 +47,7 @@ public class IconAwesome extends UIComponentBase {
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     
-    public Icon() {
+    public IconAwesome() {
         setRendererType(null); // this component renders itself
     }
 
