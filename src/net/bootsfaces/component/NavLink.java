@@ -165,14 +165,17 @@ public class NavLink extends HtmlOutcomeTargetLink {
         rw.writeAttribute("tabindex", "-1", null);
 
         String icon = A.asString(attrs.get(A.ICON));
-        if (icon != null) {
+        String faicon = A.asString(attrs.get(A.ICONAWESOME));
+        boolean fa=false; //flag to indicate wether the selected icon set is Font Awesome or not.
+        if(faicon != null) { icon=faicon; fa=true; }
+        if(icon != null) {
             Object ialign = attrs.get(A.ICON_ALIGN); //Default Left
             if (ialign != null && ialign.equals(A.RIGHT)) {
                 rw.writeText(value + C.SP, null);
-                R.encodeIcon(rw, this, icon, false);
+                R.encodeIcon(rw, this, icon, fa);
                 //!//R.encodeIcon(rw, this, icon, white);
             } else {
-                R.encodeIcon(rw, this, icon, false);
+                R.encodeIcon(rw, this, icon, fa);
                 //!//R.encodeIcon(rw, this, icon, white);
                 rw.writeText(C.SP + value, null);
             }

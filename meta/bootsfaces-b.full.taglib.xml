@@ -912,8 +912,14 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Navigation Link Icon, can be one of the Bootstrap icon names. Alignment can be specified with iconAlign attribute.]]></description>
+			<description><![CDATA[Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute.]]></description>
 			<name>icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+                <attribute>
+			<description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+			<name>iconAwesome</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>

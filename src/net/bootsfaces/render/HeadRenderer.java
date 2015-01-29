@@ -71,15 +71,16 @@ public class HeadRenderer extends Renderer {
         ListIterator<UIComponent> iter = (viewRoot.getComponentResources(fc, "head")).listIterator();
         List<UIComponent> styles = new ArrayList<UIComponent>();
         List<UIComponent> scripts = new ArrayList<UIComponent>();
-        boolean usefa = false;
+        boolean usefa = true;
+        if(component.getFacet("no-fa")!=null) { usefa=false; }
         
         while(iter.hasNext()) {
             UIComponent resource = (UIComponent) iter.next();
             String name = (String) resource.getAttributes().get("name");
             //rw.write("\n<!-- res: '"+name+"' -->" );
             if(name != null) {
-                if(name.endsWith("font-awesome.css")) { usefa = true; }
-                else if(name.endsWith(".css")) { styles.add(resource); }
+                //if(name.endsWith("font-awesome.css")) { usefa = true; } else 
+                if(name.endsWith(".css")) { styles.add(resource); }
                 else if(name.endsWith(".js"));
                     scripts.add(resource);
             }

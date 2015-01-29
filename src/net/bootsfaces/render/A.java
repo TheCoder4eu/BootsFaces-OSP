@@ -56,6 +56,7 @@ public final class A {
     public static final String HREF="href";
     public static final String BRAND_HREF=BRAND+"Href";
     public static final String ICON="icon";
+    public static final String ICONAWESOME="iconAwesome";
     public static final String ICON_ALIGN=ICON+"Align";
     public static final String ICON_POS=ICON+"Pos";
     public static final String INVERSE="inverse";
