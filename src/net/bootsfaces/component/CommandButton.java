@@ -144,14 +144,17 @@ public class CommandButton extends HtmlCommandButton {
         R.encodeHTML4DHTMLAttrs(rw, attrs, A.ALLBUTTON_ATTRS);
         
         String icon = A.asString(attrs.get(A.ICON));
+        String faicon = A.asString(attrs.get(A.ICONAWESOME));
+        boolean fa=false; //flag to indicate wether the selected icon set is Font Awesome or not.
+        if(faicon != null) { icon=faicon; fa=true; }
         if(icon!=null) {
             Object ialign = attrs.get(A.ICON_ALIGN); //Default Left
             if(ialign!=null && ialign.equals(A.RIGHT)) {
                 rw.writeText(value+C.SP, null);
-                R.encodeIcon(rw, this, icon, false);
+                R.encodeIcon(rw, this, icon, fa);
                 //!//R.encodeIcon(rw, this, icon, white);
             } else {
-                R.encodeIcon(rw, this, icon, false);
+                R.encodeIcon(rw, this, icon, fa);
                 //!//R.encodeIcon(rw, this, icon, white);
                 rw.writeText(C.SP+value, null);
             }

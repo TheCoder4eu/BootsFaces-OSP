@@ -311,6 +311,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+                <attribute>
+			<description><![CDATA[Font Awesome Icon to show in this Button, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+			<name>iconAwesome</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Alignment can right or left.]]></description>
 			<name>iconAlign</name>
@@ -515,6 +521,12 @@
 		<attribute>
 			<description><![CDATA[Button Icon, can be one of the Bootstrap icon names. Alignment can be specified with iconAlign attribute.]]></description>
 			<name>icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+                <attribute>
+			<description><![CDATA[Font Awesome Icon to show in this CommandButton, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+			<name>iconAwesome</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
