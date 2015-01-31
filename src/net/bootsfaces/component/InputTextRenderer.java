@@ -65,8 +65,8 @@ public class InputTextRenderer extends CoreRenderer {
 		}// (prep.getChildren(), "OutputText", S.ADDON); }
 		if (append) {
 			R.addClass2FacetComponent(app, "OutputText", inputText.ADDON);
-                        R.addClass2FacetComponent(prep, "Icon", inputText.ADDON);
-                        R.addClass2FacetComponent(prep, "IconAwesome", inputText.ADDON);
+                        R.addClass2FacetComponent(app, "Icon", inputText.ADDON);
+                        R.addClass2FacetComponent(app, "IconAwesome", inputText.ADDON);
 		}
 
 		String label = A.asString(attrs.get(A.LABEL));
