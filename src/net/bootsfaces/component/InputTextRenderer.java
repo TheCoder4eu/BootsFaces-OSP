@@ -60,9 +60,13 @@ public class InputTextRenderer extends CoreRenderer {
 		// If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
 		if (prepend) {
 			R.addClass2FacetComponent(prep, "OutputText", inputText.ADDON);
+                        R.addClass2FacetComponent(prep, "Icon", inputText.ADDON);
+                        R.addClass2FacetComponent(prep, "IconAwesome", inputText.ADDON);
 		}// (prep.getChildren(), "OutputText", S.ADDON); }
 		if (append) {
 			R.addClass2FacetComponent(app, "OutputText", inputText.ADDON);
+                        R.addClass2FacetComponent(prep, "Icon", inputText.ADDON);
+                        R.addClass2FacetComponent(prep, "IconAwesome", inputText.ADDON);
 		}
 
 		String label = A.asString(attrs.get(A.LABEL));
