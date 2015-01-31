@@ -138,7 +138,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		renderPassThruAttributes(context, this, ALLBUTTON_ATTRS);
 
 		String icon = asString(attrs.get(ICON));
-                String faicon = A.asString(attrs.get(ICONAWESOME));
+                String faicon = asString(attrs.get(ICONAWESOME));
                 boolean fa=false; //flag to indicate wether the selected icon set is Font Awesome or not.
                 if(faicon != null) { icon=faicon; fa=true; }
 		if (icon != null) {
