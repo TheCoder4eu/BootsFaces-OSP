@@ -32,6 +32,7 @@ import static net.bootsfaces.render.A.DISABLED;
 import static net.bootsfaces.render.A.FRAGMENT;
 import static net.bootsfaces.render.A.ICON;
 import static net.bootsfaces.render.A.ICON_ALIGN;
+import static net.bootsfaces.render.A.ICONAWESOME;
 import static net.bootsfaces.render.A.LOOK;
 import static net.bootsfaces.render.A.RIGHT;
 import static net.bootsfaces.render.A.SIZE;
@@ -137,7 +138,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		renderPassThruAttributes(context, this, ALLBUTTON_ATTRS);
 
 		String icon = asString(attrs.get(ICON));
-                String faicon = A.asString(attrs.get(A.ICONAWESOME));
+                String faicon = A.asString(attrs.get(ICONAWESOME));
                 boolean fa=false; //flag to indicate wether the selected icon set is Font Awesome or not.
                 if(faicon != null) { icon=faicon; fa=true; }
 		if (icon != null) {
