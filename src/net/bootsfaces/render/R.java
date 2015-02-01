@@ -306,7 +306,7 @@ public final class R {
     }
     
     /**
-     * 
+     * Renders the Drop element.
      * @param c
      * @param rw
      * @param cid
@@ -322,7 +322,7 @@ public final class R {
     }
     
     /**
-     * 
+     * Renders the Drop Menu.
      * @param c
      * @param rw
      * @param l
@@ -355,7 +355,8 @@ public final class R {
     }
     
     /**
-     * Adds a CSS class to a component
+     * Adds a CSS class to a component in the view tree.
+     * The class is appended to the styleClass value.
      * @param c the component
      * @param aclass the CSS class to be added
      */
@@ -364,7 +365,34 @@ public final class R {
         if(a.containsKey(H.STYLECLASS)) {a.put(H.STYLECLASS, a.get(H.STYLECLASS)+C.SP+aclass); }
         else                            {a.put(H.STYLECLASS, aclass); }
     }
-    
+    /**
+     * Sets an attribute value to a component within a facet.
+     * @param f the facet
+     * @param cname the class name of the component to be manipulated.
+     * @param attr
+     * @param v 
+     */
+    public static void setFacetComponentAttribute(UIComponent f, String cname, String attr, String v) {
+        // If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
+        if (f.getClass().getName().endsWith(cname)) {
+            setComponentAttribute(f, attr, v);
+        } else {
+            if (f.getChildCount() > 0) {
+                for (UIComponent c : f.getChildren()) {
+                    if (c.getClass().getName().endsWith(cname)) { setComponentAttribute(f, attr, v); }
+                }
+            }
+        }
+    }
+    /**
+     * Sets a component attribute value.
+     * @param c the component
+     * @param attr the attribute name
+     * @param v the value to set
+     */
+    protected static void setComponentAttribute(UIComponent c, String attr, String v) {
+        if(attr!=null) { c.getAttributes().put(attr, v); }
+    }
     /**
      * Encodes component attributes (HTML 4 + DHTML)
      * TODO: replace this method with CoreRenderer.renderPassThruAttributes()
