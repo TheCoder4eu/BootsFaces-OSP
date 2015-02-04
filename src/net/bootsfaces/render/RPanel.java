@@ -27,6 +27,7 @@ package net.bootsfaces.render;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -42,7 +43,8 @@ public enum RPanel {
     heading,
     body,
     footer,
-    titleClass;
+    titleClass,
+    styleClass;
     
     private static final String PP=panel+" "+panel+"-"; //"panel panel-"
     private static final String PPD=PP+"default"; //"panel panel-default"
@@ -72,31 +74,38 @@ public enum RPanel {
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
 
-        String Look = A.asString(attrs,look);
-        String Title = A.asString(attrs,title);
-        String TitleClass = A.asString(attrs,titleClass);
+        String _look = A.asString(attrs,look);
+        String _title = A.asString(attrs,title);
+        String _titleClass = A.asString(attrs,titleClass);
+        String _styleClass = A.asString(attrs, styleClass);
+        if (null == _styleClass) {
+        	_styleClass="";
+        } else {
+        	_styleClass+=" ";
+        }
+
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
 
-        if (Look != null) {
-            rw.writeAttribute(H.CLASS, PP + Look, H.CLASS); //"panel panel-" + Look
+        if (_look != null) {
+            rw.writeAttribute(H.CLASS, _styleClass + PP + _look, H.CLASS); //"panel panel-" + Look
         } else {
-            rw.writeAttribute(H.CLASS, PPD, H.CLASS); //"panel panel-default"
+            rw.writeAttribute(H.CLASS, _styleClass + PPD, H.CLASS); //"panel panel-default"
         }
         
         UIComponent head = c.getFacet(heading.name());
-        if (head != null || Title != null) {
+        if (head != null || _title != null) {
             rw.startElement(H.DIV, c);
             rw.writeAttribute(H.CLASS, PH, H.CLASS); //"panel-heading"
-            if (Title != null) {
+            if (_title != null) {
                 rw.startElement(H.H4, c);
-                if (TitleClass != null){
-                	rw.writeAttribute(H.CLASS, TitleClass, H.CLASS);
+                if (_titleClass != null){
+                	rw.writeAttribute(H.CLASS, _titleClass, H.CLASS);
                 } else {
                 	rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
                 }
-                rw.writeText(Title, null);
+                rw.writeText(_title, null);
                 rw.endElement(H.H4);
             } else {
                 head.encodeAll(fc);
