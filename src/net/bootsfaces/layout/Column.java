@@ -54,36 +54,39 @@ public class Column extends UIComponentBase {
          * ...
          * </div>
          */
-        
-        ResponseWriter rw = fc.getResponseWriter();
-        
-        Map<String, Object> attrs = getAttributes();
-        
-        int colxs = A.toInt(attrs.get("col-xs"));
-        int colsm = A.toInt(attrs.get("col-sm"));
-        int collg = A.toInt(attrs.get("col-lg"));
-        
-        int span = A.toInt(attrs.get(A.SPAN));
-        
-        int colmd = (span > 0) ? span : A.toInt(attrs.get("col-md"));
-        if((colxs>0)||(colsm>0)||(collg>0)) {
-            colmd = (colmd > 0) ? colmd : 0;
-        } else {
-            colmd = (colmd > 0) ? colmd : 12;
+    	
+        if (isRendered())
+        {
+            ResponseWriter rw = fc.getResponseWriter();
+            
+            Map<String, Object> attrs = getAttributes();
+            
+            int colxs = A.toInt(attrs.get("col-xs"));
+            int colsm = A.toInt(attrs.get("col-sm"));
+            int collg = A.toInt(attrs.get("col-lg"));
+            
+            int span = A.toInt(attrs.get(A.SPAN));
+            
+            int colmd = (span > 0) ? span : A.toInt(attrs.get("col-md"));
+            if((colxs>0)||(colsm>0)||(collg>0)) {
+                colmd = (colmd > 0) ? colmd : 0;
+            } else {
+                colmd = (colmd > 0) ? colmd : 12;
+            }
+            
+            int offs = A.toInt(attrs.get(A.OFFSET));
+            int offsmd = (offs > 0) ? offs : A.toInt(attrs.get("offset-md"));
+            
+            R.encodeColumn(rw, this, colmd,
+                                     colxs,
+                                     colsm,
+                                     collg,
+                                     offsmd,
+                                     A.toInt(attrs.get("offset-xs")),
+                                     A.toInt(attrs.get("offset-sm")),
+                                     A.toInt(attrs.get("offset-lg")),
+                                     A.asString(attrs.get(H.STYLECLASS)));
         }
-        
-        int offs = A.toInt(attrs.get(A.OFFSET));
-        int offsmd = (offs > 0) ? offs : A.toInt(attrs.get("offset-md"));
-        
-        R.encodeColumn(rw, this, colmd,
-                                 colxs,
-                                 colsm,
-                                 collg,
-                                 offsmd,
-                                 A.toInt(attrs.get("offset-xs")),
-                                 A.toInt(attrs.get("offset-sm")),
-                                 A.toInt(attrs.get("offset-lg")),
-                                 A.asString(attrs.get(H.STYLECLASS)));
         
     }
     
