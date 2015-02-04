@@ -43,7 +43,7 @@ import net.bootsfaces.render.R;
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="javax.faces", name="jsf.js", target="body"),
         @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
-        @ResourceDependency(library="bsf", name="js/bsf.js", target="body")
+        @ResourceDependency(library="bsf", name="js/bsf.js", target="head")
 })
 @FacesComponent(C.COMMANDBUTTON_COMPONENT_TYPE)
 public class CommandButton extends HtmlCommandButton {
