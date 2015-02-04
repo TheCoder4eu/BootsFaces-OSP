@@ -20,6 +20,9 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -28,9 +31,11 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
+import javax.faces.component.UISelectItems;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.model.SelectItem;
 
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
@@ -160,7 +165,7 @@ public class SelectOneMenu extends HtmlInputText {
 			Object rl = attrs.get(A.RENDERLABEL);
 			if (null != rl) {
 				if (!A.toBool(attrs.get(A.RENDERLABEL))) {
-					label=null;
+					label = null;
 				}
 			}
 		}
@@ -243,26 +248,173 @@ public class SelectOneMenu extends HtmlInputText {
 		renderSelectTag(rw);
 		renderSelectTagAttributes(attrs, rw, clientId);
 		String selectedOption = R.getValue2Render(context, this);
-		renderOptions(rw, selectedOption);
+		renderOptions(context, rw, selectedOption);
 
 		renderInputTagEnd(attrs, rw);
 	}
 
-	protected void renderOptions(ResponseWriter rw, String selectedOption) throws IOException {
+	/**
+	 * Copied from the InputRenderer class of PrimeFaces 5.1.
+	 * 
+	 * @param context
+	 * @param uiSelectItems
+	 * @param value
+	 * @param label
+	 * @return
+	 */
+	protected SelectItem createSelectItem(FacesContext context, UISelectItems uiSelectItems, Object value, Object label) {
+		String var = (String) uiSelectItems.getAttributes().get("var");
+		Map<String, Object> attrs = uiSelectItems.getAttributes();
+		Map<String, Object> requestMap = context.getExternalContext().getRequestMap();
+
+		if (var != null) {
+			requestMap.put(var, value);
+		}
+
+		Object itemLabelValue = attrs.get("itemLabel");
+		Object itemValue = attrs.get("itemValue");
+		String description = (String) attrs.get("itemDescription");
+		Object itemDisabled = attrs.get("itemDisabled");
+		Object itemEscaped = attrs.get("itemLabelEscaped");
+		Object noSelection = attrs.get("noSelectionOption");
+
+		if (itemValue == null) {
+			itemValue = value;
+		}
+
+		if (itemLabelValue == null) {
+			itemLabelValue = label;
+		}
+
+		String itemLabel = itemLabelValue == null ? String.valueOf(value) : String.valueOf(itemLabelValue);
+		boolean disabled = itemDisabled == null ? false : Boolean.valueOf(itemDisabled.toString());
+		boolean escaped = itemEscaped == null ? false : Boolean.valueOf(itemEscaped.toString());
+		boolean noSelectionOption = noSelection == null ? false : Boolean.valueOf(noSelection.toString());
+
+		if (var != null) {
+			requestMap.remove(var);
+		}
+
+		return new SelectItem(itemValue, itemLabel, description, disabled, escaped, noSelectionOption);
+	}
+
+	/**
+	 * Parts of this class are an adapted version of InputRenderer#getSelectItems() of PrimeFaces 5.1.
+	 * 
+	 * @param rw
+	 * @param selectedOption
+	 * @throws IOException
+	 */
+	protected void renderOptions(FacesContext context, ResponseWriter rw, String selectedOption) throws IOException {
 		List<UIComponent> selectItems = getChildren();
 		for (UIComponent kid : selectItems) {
-			UISelectItem option = (UISelectItem) kid;
-			renderOption(rw, option, selectedOption);
-			// SelectItem selectItem = (SelectItem)kid;
-			//
-			// renderOption(rw, selectItem);
+			if (kid instanceof UISelectItem) {
+				UISelectItem option = (UISelectItem) kid;
+				renderOption(rw, option, selectedOption);
+			} else if (kid instanceof UISelectItems) {
+
+				UISelectItems uiSelectItems = ((UISelectItems) kid);
+				Object value = uiSelectItems.getValue();
+
+				if (value != null) {
+					if (value instanceof SelectItem) {
+						renderOption(rw, (SelectItem) value, selectedOption);
+					} else {
+						if (value.getClass().isArray()) {
+							for (int i = 0; i < Array.getLength(value); i++) {
+								Object item = Array.get(value, i);
+
+								if (item instanceof SelectItem)
+									renderOption(rw, (SelectItem) item, selectedOption);
+								else
+									renderOption(rw, createSelectItem(context, uiSelectItems, item, null), selectedOption);
+							}
+						} else if (value instanceof Map) {
+							Map map = (Map) value;
+
+							for (Iterator it = map.keySet().iterator(); it.hasNext();) {
+								Object key = it.next();
+
+								renderOption(rw, createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key)),
+										selectedOption);
+							}
+						} else if (value instanceof Collection) {
+							Collection collection = (Collection) value;
+
+							for (Iterator it = collection.iterator(); it.hasNext();) {
+								Object item = it.next();
+								if (item instanceof SelectItem)
+									renderOption(rw, (SelectItem) item, selectedOption);
+								else
+									renderOption(rw, createSelectItem(context, uiSelectItems, item, null), selectedOption);
+							}
+						}
+					}
+				}
+
+			}
 		}
 	}
 
+	/**
+	 * Renders a single &lt;option&gt; tag. For some reason, <code>SelectItem</code> and <code>UISelectItem</code> don't share a common
+	 * interface, so this method is repeated twice.
+	 * 
+	 * @param rw
+	 *            The response writer
+	 * @param selectItem
+	 *            The current SelectItem
+	 * @param selectedOption
+	 *            the currently selected option
+	 * @throws IOException
+	 *             thrown if something's wrong with the response writer
+	 */
+	protected void renderOption(ResponseWriter rw, SelectItem selectItem, String selectedOption) throws IOException {
+
+		String itemLabel = selectItem.getLabel();
+		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
+		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
+
+		rw.startElement("option", null);
+		rw.writeAttribute("data-label", itemLabel, null);
+		if (selectItem.getDescription() != null) {
+			rw.writeAttribute("title", selectItem.getDescription(), null);
+		}
+		if (selectItem.getValue() != null) {
+			String value = (String) selectItem.getValue();
+			rw.writeAttribute("value", value, "value");
+			if (value.equals(selectedOption)) {
+				rw.writeAttribute("selected", "true", "selected");
+			}
+		} else if (itemLabel.equals(selectedOption)) {
+			rw.writeAttribute("selected", "true", "selected");
+		}
+
+		if (itemLabel.equals("&nbsp;"))
+			rw.write(itemLabel);
+		else {
+			rw.write(itemLabel);
+		}
+
+		rw.endElement("option");
+	}
+
+	/**
+	 * Renders a single &lt;option&gt; tag. For some reason, <code>SelectItem</code> and <code>UISelectItem</code> don't share a common
+	 * interface, so this method is repeated twice.
+	 * 
+	 * @param rw
+	 *            The response writer
+	 * @param selectItem
+	 *            The current SelectItem
+	 * @param selectedOption
+	 *            the currently selected option
+	 * @throws IOException
+	 *             thrown if something's wrong with the response writer
+	 */
 	protected void renderOption(ResponseWriter rw, UISelectItem selectItem, String selectedOption) throws IOException {
 
 		String itemLabel = selectItem.getItemLabel();
-		selectItem.getItemValue();
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
 		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
@@ -271,14 +423,13 @@ public class SelectOneMenu extends HtmlInputText {
 		if (selectItem.getItemDescription() != null) {
 			rw.writeAttribute("title", selectItem.getItemDescription(), null);
 		}
-		if (selectItem.getItemValue()!=null) {
-			String value=(String) selectItem.getItemValue();
+		if (selectItem.getItemValue() != null) {
+			String value = (String) selectItem.getItemValue();
 			rw.writeAttribute("value", value, "value");
 			if (value.equals(selectedOption)) {
 				rw.writeAttribute("selected", "true", "selected");
 			}
-		}
-		else if (itemLabel.equals(selectedOption)) {
+		} else if (itemLabel.equals(selectedOption)) {
 			rw.writeAttribute("selected", "true", "selected");
 		}
 
