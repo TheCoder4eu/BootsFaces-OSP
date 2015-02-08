@@ -4,13 +4,17 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import javax.el.ValueExpression;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.ValueHolder;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
@@ -40,6 +44,37 @@ public class InputTextRenderer extends CoreRenderer {
 
 		}
 	}
+        
+        @Override
+	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
+            Converter cnv = resolveConverter(fc, c);
+
+            if (cnv != null) {
+                return cnv.getAsObject(fc, c, (String) sval);
+            } else {
+                return sval;
+            }
+        }
+        
+    
+        protected Converter resolveConverter(FacesContext context, UIComponent c) {
+            if(!(c instanceof ValueHolder)) { return null; }
+
+            Converter cnv = ((ValueHolder) c).getConverter();
+
+            if(cnv != null) { return cnv; } 
+            else {
+                ValueExpression ve = c.getValueExpression("value");
+
+                if(ve != null) {
+                    Class<?> valType = ve.getType(context.getELContext());
+
+                    if(valType != null) { return context.getApplication().createConverter(valType); }
+                }
+
+                return null;
+            }
+        }
 
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
