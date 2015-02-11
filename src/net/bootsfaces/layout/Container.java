@@ -28,6 +28,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 
 /**
