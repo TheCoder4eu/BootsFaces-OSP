@@ -1085,6 +1085,12 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+                <attribute>
+			<description><![CDATA[Boolean value default is false when set to true component the container will be "fluid": a full width container, spanning the entire width of the viewport.]]></description>
+			<name>fluid</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>row</tag-name>

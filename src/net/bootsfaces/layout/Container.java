@@ -58,18 +58,21 @@ public class Container extends UIComponentBase {
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
         /*
-         * Only Fluid: as of BS3
+         * OLD Only Fluid: as of BS3
+         * Now BS3 has again container-fluid
          * <div class="container">...</div>
-         * 
+         * or
+         * <div class="container-fluid">...</div>
          */
         
         ResponseWriter rw = fc.getResponseWriter();
         
         Map<String, Object> attrs = getAttributes();
+        boolean fluid=A.toBool(attrs.get("fluid"), false);
         
         rw.startElement(H.DIV, this);
         rw.writeAttribute(H.ID,getClientId(fc),H.ID);
-        rw.writeAttribute(H.CLASS, "container",H.CLASS);
+        rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
     }
     
     @Override
