@@ -2599,4 +2599,16 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
+    <tag>
+		<tag-name>internalFALink</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.InternalFALink</component-type>
+		</component>
+	</tag>
+    <tag>
+		<tag-name>internalIE8CompatibilityLink</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.InternalIE8CompatibilityLink</component-type>
+		</component>
+	</tag>
 </facelet-taglib>

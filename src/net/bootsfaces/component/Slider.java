@@ -29,6 +29,7 @@ import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -47,7 +48,6 @@ import net.bootsfaces.render.R;
         @ResourceDependency(library="bsf", name="css/jq.ui.theme.css", target="head"),
         @ResourceDependency(library="bsf", name="css/jq.ui.slider.css", target="head"),
         @ResourceDependency(library="bsf", name="css/bsf.css", target="head"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
         @ResourceDependency(library="bsf", name="jq/ui/core.js", target="body"),
         @ResourceDependency(library="bsf", name="jq/ui/widget.js", target="body"),
         @ResourceDependency(library="bsf", name="jq/ui/mouse.js", target="body"),
@@ -74,6 +74,7 @@ public class Slider extends HtmlInputText {
 
     public Slider() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
     }
     
     /** Method added to prevent AngularFaces from setting the type */
@@ -87,6 +88,7 @@ public class Slider extends HtmlInputText {
      */
     public void setType(String type) {
     	// ignore the type - it's defined by the mode attribute
+    	
     }
     
     @Override

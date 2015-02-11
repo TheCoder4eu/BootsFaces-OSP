@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.NavigationCase;
 import javax.faces.application.ProjectStage;
@@ -37,6 +38,8 @@ import javax.faces.component.UIParameter;
 import javax.faces.component.html.HtmlOutcomeTargetLink;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -48,8 +51,8 @@ import net.bootsfaces.render.R;
  */
 
 @ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head")
+	@ResourceDependency(library="bsf", name="css/core.css", target="head")
+  
 })
 @FacesComponent(C.NAVLINK_COMPONENT_TYPE)
 public class NavLink extends HtmlOutcomeTargetLink {
@@ -70,6 +73,8 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
     public NavLink() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
     }
     
     Map<String, Object> attrs;

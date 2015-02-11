@@ -47,6 +47,8 @@ import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.R;
 
@@ -59,7 +61,6 @@ import net.bootsfaces.render.R;
 @ResourceDependencies({ 
     @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
     @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-    @ResourceDependency(library="bsf", name="jq/jquery.js", target="body"),
     @ResourceDependency(library = "bsf", name = "js/tab.js", target = "body")
 })
 @FacesComponent(TAB_VIEW_COMPONENT_TYPE)
@@ -79,6 +80,8 @@ public class TabView extends UIOutput {
 
 	public TabView() {
 		setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
 	}
 
 	/**

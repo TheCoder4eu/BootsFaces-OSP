@@ -59,6 +59,8 @@ public final class C {
     public static final String ICON_AWESOME_COMPONENT_TYPE=BSFCOMPONENT+".IconAwesome";
     public static final String INPUTSECRET_COMPONENT_TYPE=BSFCOMPONENT+".InputSecret";
     public static final String INPUTTEXT_COMPONENT_TYPE=BSFCOMPONENT+".InputText";
+    public static final String INTERNAL_FA_LINK=BSFCOMPONENT+".InternalFALink";
+    public static final String INTERNAL_IE8_COMPATIBILITY_LINK=BSFCOMPONENT+".InternalIE8CompatibilityLink";
     public static final String LABEL_COMPONENT_TYPE=BSFCOMPONENT+".Label";
     public static final String LISTLINKS_COMPONENT_TYPE=BSFCOMPONENT+".ListLinks";
     public static final String MODAL_COMPONENT_TYPE=BSFCOMPONENT+".Modal";

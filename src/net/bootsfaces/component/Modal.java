@@ -20,18 +20,20 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.RModal;
 
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="bsf", name="css/modals.css", target="head"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
         @ResourceDependency(library="bsf", name="js/modal.js", target="body")
 })
 @FacesComponent(C.MODAL_COMPONENT_TYPE)
@@ -53,6 +55,8 @@ public class Modal extends UIComponentBase {
     
     public Modal() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
     }
 
     @Override

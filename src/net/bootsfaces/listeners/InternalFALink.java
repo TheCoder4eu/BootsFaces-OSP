@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2015 Stephan Rauh, http://www.beyondjava.net
  *  
  *  This file is part of BootsFaces.
  *  
@@ -16,8 +16,7 @@
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
-
-package net.bootsfaces.component;
+package net.bootsfaces.listeners;
 
 import java.io.IOException;
 
@@ -26,55 +25,40 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.RnavBar;
+import net.bootsfaces.render.RIcon;
 
 /**
  *
- * @author thecoder4.eu
+ * @author Stephan Rauh, http://www.beyondjava.net
  */
-
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/navbar.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/collapse.js", target="body")
-})
-@FacesComponent(C.NAVBAR_COMPONENT_TYPE)
-public class NavBar extends UIComponentBase {
+@FacesComponent(C.INTERNAL_FA_LINK)
+public class InternalFALink extends UIComponentBase {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.NAVBAR_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE =C.ICON_COMPONENT_TYPE;
     /**
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     
-    
-
-    public NavBar() {
+    public InternalFALink() {
         setRendererType(null); // this component renders itself
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
     }
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
-        RnavBar.encBegin(this, fc);
+    	ResponseWriter responseWriter = fc.getResponseWriter();
         
-    }
-    
-    @Override
-    public void encodeEnd(FacesContext fc) throws IOException {
-        RnavBar.encEnd(this, fc);
+        responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css\" />");
     }
 
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-    
 }

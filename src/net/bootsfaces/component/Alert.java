@@ -27,12 +27,15 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.RAlert;
 
@@ -45,7 +48,6 @@ import net.bootsfaces.render.RAlert;
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
         @ResourceDependency(library="bsf", name="js/alert.js", target="body")
 })
 @FacesComponent(C.ALERT_COMPONENT_TYPE)
@@ -62,6 +64,7 @@ public class Alert extends UIComponentBase {
 
     public Alert() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
     }
 
     @Override

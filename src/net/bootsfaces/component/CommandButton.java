@@ -21,6 +21,7 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.FacesException;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -29,6 +30,8 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
+
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -42,7 +45,6 @@ import net.bootsfaces.render.R;
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="javax.faces", name="jsf.js", target="body"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
         @ResourceDependency(library="bsf", name="js/bsf.js", target="head")
 })
 @FacesComponent(C.COMMANDBUTTON_COMPONENT_TYPE)
@@ -60,6 +62,8 @@ public class CommandButton extends HtmlCommandButton {
 
     public CommandButton() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
     }
     
     Map<String, Object> attrs;

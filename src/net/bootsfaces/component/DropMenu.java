@@ -22,12 +22,15 @@ package net.bootsfaces.component;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
@@ -42,7 +45,6 @@ import net.bootsfaces.render.RdropMenu;
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="bsf", name="css/dropdowns.css", target="head"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js", target="head"),
         @ResourceDependency(library="bsf", name="js/dropdown.js", target="body")
 })
 @FacesComponent(C.DROPMENU_COMPONENT_TYPE)
@@ -63,6 +65,7 @@ public class DropMenu extends UIComponentBase {
 
     public DropMenu() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
     }
 
     @Override

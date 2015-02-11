@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2015 Stephan Rauh, http://www.beyondjava.net
  *  
  *  This file is part of BootsFaces.
  *  
@@ -17,64 +17,60 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component;
+package net.bootsfaces.listeners;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
+import javax.faces.application.Application;
+import javax.faces.application.Resource;
+import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.RnavBar;
 
 /**
  *
- * @author thecoder4.eu
+ * @author Stephan Rauh, http://www.beyondjava.net
  */
-
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/navbar.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/collapse.js", target="body")
-})
-@FacesComponent(C.NAVBAR_COMPONENT_TYPE)
-public class NavBar extends UIComponentBase {
+@FacesComponent(C.INTERNAL_IE8_COMPATIBILITY_LINK)
+public class InternalIE8CompatiblityLinks extends UIComponentBase {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.NAVBAR_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE =C.ICON_COMPONENT_TYPE;
     /**
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     
-    
-
-    public NavBar() {
+    public InternalIE8CompatiblityLinks() {
         setRendererType(null); // this component renders itself
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
     }
 
     @Override
-    public void encodeBegin(FacesContext fc) throws IOException {
-        RnavBar.encBegin(this, fc);
-        
-    }
-    
-    @Override
-    public void encodeEnd(FacesContext fc) throws IOException {
-        RnavBar.encEnd(this, fc);
+    public void encodeBegin(FacesContext context) throws IOException {
+        Application app = context.getApplication();
+        ResourceHandler rh = app.getResourceHandler();
+    	ResponseWriter responseWriter = context.getResponseWriter();
+		Resource h5s = rh.createResource("js/html5shiv.js", C.BSF_LIBRARY);
+		Resource rjs = rh.createResource("js/respond.js", C.BSF_LIBRARY);
+
+		responseWriter.write("<!--[if lt IE 9]>");
+		responseWriter.startElement("script", null);
+		responseWriter.writeAttribute("src", h5s.getRequestPath(), null);
+		responseWriter.endElement("script");
+		responseWriter.startElement("script", null);
+		responseWriter.writeAttribute("src", rjs.getRequestPath(), null);
+		responseWriter.endElement("script");
+		responseWriter.write("<![endif]-->");
     }
 
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-    
 }

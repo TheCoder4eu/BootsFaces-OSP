@@ -24,6 +24,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
@@ -32,10 +33,13 @@ import java.util.ResourceBundle;
 import javax.el.ValueExpression;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
+import javax.faces.application.Resource;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
+import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -43,6 +47,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
@@ -58,8 +63,7 @@ import net.bootsfaces.render.R;
 		@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/jq.ui.datepicker.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "jq/jquery.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "jq/ui/datepicker.js", target = "head"),
+		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/datepicker.js", target = "head") */
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body")
 
@@ -96,7 +100,25 @@ public class DatePicker extends HtmlInputText {
 
 	public DatePicker() {
 		setRendererType(null); // this component renders itself
+
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
+		FacesContext context = FacesContext.getCurrentInstance();
+		Application app = context.getApplication();
+		ResourceHandler rh = app.getResourceHandler();
+		Resource rdp;
+		Iterator<Locale> i = app.getSupportedLocales();
+		while (i.hasNext()) {
+			final String jsl = "jq/ui/i18n/datepicker-" + i.next().getLanguage() + ".js";
+			rdp = rh.createResource(jsl, C.BSF_LIBRARY);
+			if (rdp != null) { //rdp is null if the language .js is not present in jar
+				AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, jsl);
+			}
+
+		}
 	}
+
+	
 
 	@Override
 	public void decode(FacesContext fc) {
@@ -157,7 +179,23 @@ public class DatePicker extends HtmlInputText {
 		 */
 
 		encodeHTML(fc);
+		encodeDefaultLanguageJS(fc);
 
+	}
+
+	/**
+	 * Generates the default language for the date picker. Originally implemented in the HeadRenderer, this code has been moved here to
+	 * provide better compatibility to PrimeFaces. If multiple date pickers are on the page, the script is generated redundantly, but this
+	 * shouldn't do no harm.
+	 * 
+	 * @param fc The current FacesContext
+	 * @throws IOException
+	 */
+	private void encodeDefaultLanguageJS(FacesContext fc) throws IOException {
+		ResponseWriter rw = fc.getResponseWriter();
+		rw.startElement("script", null);
+		rw.write("$.datepicker.setDefaults($.datepicker.regional['" + fc.getViewRoot().getLocale().getLanguage() + "']);");
+		rw.endElement("script");
 	}
 
 	/**
@@ -241,7 +279,6 @@ public class DatePicker extends HtmlInputText {
 			JQ.datePickerToggler(rw, clientId, clientId + C.USCORE + ADDON);
 
 		} // Closes the popup prepend/append style div
-
 	}
 
 	private void encodeJS(FacesContext fc, ResponseWriter rw, String cId, String dpId) throws IOException {
@@ -491,7 +528,7 @@ public class DatePicker extends HtmlInputText {
 		}
 
 		for (int i = 0; i < params.length; i++) {
-			summary = summary.replace("{" + i + "}",  params[i]);
+			summary = summary.replace("{" + i + "}", params[i]);
 			detail = detail.replace("{" + i + "}", params[i]);
 		}
 
@@ -500,23 +537,26 @@ public class DatePicker extends HtmlInputText {
 		ret.setSeverity(FacesMessage.SEVERITY_ERROR);
 		return ret;
 	}
-	
-    /**
-     * <p>Returns the <code>label</code> property from the specified
-     * component.</p>
-     * Simplified and adapted version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
-     *
-     * @param context   - the <code>FacesContext</code> for the current request
-     *
-     * @return the label, if any, of the component
-     */
-    public String getLabel(FacesContext context) {
-        Object o = getAttributes().get("label");
-        if (o == null || (o instanceof String && ((String) o).length() == 0)) {
-            ValueExpression vex = getValueExpression("label");
-            if (null != vex) return (String)vex.getValue(context.getELContext());
-        }
-        // Use the "clientId" if there was no label specified.
-        return (String) getClientId(context);
-    }
+
+	/**
+	 * <p>
+	 * Returns the <code>label</code> property from the specified component.
+	 * </p>
+	 * Simplified and adapted version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
+	 *
+	 * @param context
+	 *            - the <code>FacesContext</code> for the current request
+	 *
+	 * @return the label, if any, of the component
+	 */
+	public String getLabel(FacesContext context) {
+		Object o = getAttributes().get("label");
+		if (o == null || (o instanceof String && ((String) o).length() == 0)) {
+			ValueExpression vex = getValueExpression("label");
+			if (null != vex)
+				return (String) vex.getValue(context.getELContext());
+		}
+		// Use the "clientId" if there was no label specified.
+		return (String) getClientId(context);
+	}
 }

@@ -59,6 +59,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
+import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
 import static net.bootsfaces.render.H.*;
@@ -68,8 +70,8 @@ import static net.bootsfaces.render.H.*;
  * 
  * @author thecoder4.eu
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "jq/jquery.js", target = "head") })
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head")
+		 })
 @FacesComponent(BUTTON_COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
 
@@ -88,6 +90,8 @@ public class Button extends HtmlOutcomeTargetButton {
 
 	public Button() {
 		setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
 	}
 
 	/** 

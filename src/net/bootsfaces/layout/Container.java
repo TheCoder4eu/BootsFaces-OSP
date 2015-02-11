@@ -21,13 +21,16 @@ package net.bootsfaces.layout;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 
@@ -36,8 +39,7 @@ import net.bootsfaces.render.H;
  * @author thecoder4.eu
  */
 @ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css"),
-        @ResourceDependency(library="bsf", name="jq/jquery.js")
+	@ResourceDependency(library="bsf", name="css/core.css")
 })
 @FacesComponent(C.CONTAINER_COMPONENT_TYPE)
 public class Container extends UIComponentBase {
@@ -54,6 +56,8 @@ public class Container extends UIComponentBase {
 
     public Container() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+
     }
 
     @Override

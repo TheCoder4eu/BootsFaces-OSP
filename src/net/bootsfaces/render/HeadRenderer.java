@@ -68,14 +68,14 @@ public class HeadRenderer extends Renderer {
 
         //Registered Resources
         UIViewRoot viewRoot = fc.getViewRoot();
-        ListIterator<UIComponent> iter = (viewRoot.getComponentResources(fc, "head")).listIterator();
+        ListIterator<UIComponent> resourceIterator = (viewRoot.getComponentResources(fc, "head")).listIterator();
         List<UIComponent> styles = new ArrayList<UIComponent>();
         List<UIComponent> scripts = new ArrayList<UIComponent>();
         boolean usefa = true;
         if(component.getFacet("no-fa")!=null) { usefa=false; }
         
-        while(iter.hasNext()) {
-            UIComponent resource = (UIComponent) iter.next();
+        while(resourceIterator.hasNext()) {
+            UIComponent resource = (UIComponent) resourceIterator.next();
             String name = (String) resource.getAttributes().get("name");
             //rw.write("\n<!-- res: '"+name+"' -->" );
             if(name != null) {
