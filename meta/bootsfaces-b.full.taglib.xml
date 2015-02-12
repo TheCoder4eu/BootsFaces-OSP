@@ -2606,7 +2606,7 @@
 		</component>
 	</tag>
     <tag>
-		<tag-name>internalIE8CompatibilityLink</tag-name>
+	<tag-name>internalIE8CompatibilityLink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InternalIE8CompatibilityLink</component-type>
 		</component>

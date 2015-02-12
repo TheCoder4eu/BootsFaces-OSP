@@ -54,7 +54,7 @@ public class InternalFALink extends UIComponentBase {
     public void encodeBegin(FacesContext fc) throws IOException {
     	ResponseWriter responseWriter = fc.getResponseWriter();
         
-        responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"http://yui.yahooapis.com/3.3.0/build/cssgrids/grids-min.css\" />");
+        responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + C.FONTAWESOME_CDN_URL + "\" />");
     }
 
     @Override
