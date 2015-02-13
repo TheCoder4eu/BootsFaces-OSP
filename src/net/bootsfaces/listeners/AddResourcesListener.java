@@ -19,9 +19,7 @@
 package net.bootsfaces.listeners;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
@@ -42,16 +40,24 @@ import javax.faces.event.SystemEventListener;
 
 import net.bootsfaces.C;
 
+/** 
+ * This class adds the resource needed by BootsFaces and ensures that they are loaded in the correct order. It replaces the former HeadListener.
+ * @author Stephan Rauh
+ */
 public class AddResourcesListener implements SystemEventListener {
 	
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.listeners.AddResourcesListener");
 
+	/** Components can request resources by registering them in the ViewMap, using the RESOURCE_KEY. */
 	private static final String RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ResourceFiles";
 
 	static {
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
 	}
 
+	/**
+	 * Trigger adding the resources if and only if the event has been fired by UIViewRoot.
+	 */
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
 		Object source = event.getSource();
 		if (source instanceof UIViewRoot) {
@@ -62,6 +68,12 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 	}
 
+	/** 
+	 * Add the required Javascript files and the FontAwesome CDN link. 
+	 * @param root The UIViewRoot of the JSF tree.
+	 * @param context The current FacesContext
+	 * @param isProduction This flag can be used to deliver different version of the JS library, optimized for debugging or production.
+	 */
 	private void addJavascript(UIViewRoot root, FacesContext context, boolean isProduction) {
         Application app = context.getApplication();
         ResourceHandler rh = app.getResourceHandler();
@@ -98,40 +110,40 @@ public class AddResourcesListener implements SystemEventListener {
         
 
 		boolean loadJQuery = true;
-		boolean loadJQueryUI = true;
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
 			String name = (String) ava.getAttributes().get("name");
 //			System.out.println(name);
 			if (null != name)
 				if (name.toLowerCase().contains("jquery-ui") && name.toLowerCase().endsWith(".js")) {
-					loadJQueryUI = false;
+				  // do nothing - the if is needed to avoid confusion between jQuery and jQueryUI
 				} else if (name.toLowerCase().contains("jquery") && name.toLowerCase().endsWith(".js")) {
 					loadJQuery = false;
 				}
 		}
 
 		Map<String, Object> viewMap=root.getViewMap();
-		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
-		
-		if (loadJQuery) {
-			boolean needsJQuery=false;
-			for (Entry<String, String> entry: resourceMap.entrySet()) {
-				String file = entry.getValue();
-				if ("jq/jquery.js".equals(file)) {
-					needsJQuery=true;
-				}
-			}
-			if (needsJQuery) {
-    			UIOutput output = new UIOutput();
-    			output.setRendererType("javax.faces.resource.Script");
-    			output.getAttributes().put("name", "jq/jquery.js");
-    			output.getAttributes().put("library", C.BSF_LIBRARY);
-    			root.addComponentResource(context, output, "head");
-			}
-		}
+		@SuppressWarnings("unchecked")
+        Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
 		
 		if (null != resourceMap) {
+    		if (loadJQuery) {
+    			boolean needsJQuery=false;
+    			for (Entry<String, String> entry: resourceMap.entrySet()) {
+    				String file = entry.getValue();
+    				if ("jq/jquery.js".equals(file)) {
+    					needsJQuery=true;
+    				}
+    			}
+    			if (needsJQuery) {
+        			UIOutput output = new UIOutput();
+        			output.setRendererType("javax.faces.resource.Script");
+        			output.getAttributes().put("name", "jq/jquery.js");
+        			output.getAttributes().put("library", C.BSF_LIBRARY);
+        			root.addComponentResource(context, output, "head");
+    			}
+    		}
+		
 			for (Entry<String, String> entry: resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length()-file.length()-1);
@@ -148,21 +160,17 @@ public class AddResourcesListener implements SystemEventListener {
 
 
 		{
-//			System.out.println("ToDo: add the IE8 compatibility code");
 			InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
 			root.addComponentResource(context, output, "head");
-
-            //        Resource h5s = rh.createResource("js/html5shiv.js", C.BSF_LIBRARY);
-            //        Resource rjs = rh.createResource("js/respond.js", C.BSF_LIBRARY);
-            //        
-            //        rw.write("<!--[if lt IE 9]>");
-            //        rw.startElement("script", null); rw.writeAttribute("src", h5s.getRequestPath(), null); rw.endElement("script");
-            //        rw.startElement("script", null); rw.writeAttribute("src", rjs.getRequestPath(), null); rw.endElement("script");
-            //        rw.write("<![endif]-->");
 		}
 
 	}
 
+	/**
+	 * Looks for the header in the JSF tree.
+	 * @param root The root of the JSF tree.
+	 * @return null, if the head couldn't be found.
+	 */
 	private UIComponent findHeader(UIViewRoot root) {
 		for (UIComponent c:root.getChildren()) {
 			if (c instanceof HtmlHead) 
@@ -171,6 +179,9 @@ public class AddResourcesListener implements SystemEventListener {
 		return null;
 	}
 
+	/**
+	 * Which JSF elements do we listen to?
+	 */
 	@Override
 	public boolean isListenerForSource(Object source) {
 		if (source instanceof UIComponent) {
@@ -199,6 +210,4 @@ public class AddResourcesListener implements SystemEventListener {
 			resourceMap.put(key, resource);
 		}
 	}
-
-
 }
