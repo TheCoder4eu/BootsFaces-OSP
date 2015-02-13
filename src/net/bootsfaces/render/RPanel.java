@@ -44,7 +44,9 @@ public enum RPanel {
     body,
     footer,
     titleClass,
-    styleClass;
+    styleClass,
+    style,
+    contentStyle;
     
     private static final String PP=panel+" "+panel+"-"; //"panel panel-"
     private static final String PPD=PP+"default"; //"panel panel-default"
@@ -87,6 +89,10 @@ public enum RPanel {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
+        String _style = A.asString(attrs,style);
+        if (null != _style && _style.length()>0) {
+          rw.writeAttribute("style", _style, "style");
+        }
 
         if (_look != null) {
             rw.writeAttribute(H.CLASS, _styleClass + PP + _look, H.CLASS); //"panel panel-" + Look
@@ -115,6 +121,11 @@ public enum RPanel {
 
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.CLASS, PB, H.CLASS); //"panel-body"
+        String _contentStyle = A.asString(attrs,contentStyle);
+        if (null != _contentStyle && _contentStyle.length()>0) {
+          rw.writeAttribute("style", _contentStyle, "style");
+        }
+
     }
     
     /**

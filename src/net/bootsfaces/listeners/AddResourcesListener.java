@@ -90,7 +90,8 @@ public class AddResourcesListener implements SystemEventListener {
     			UIOutput output = new UIOutput();
     			output.setRendererType("javax.faces.resource.Stylesheet");
   				output.getAttributes().put("name", C.BSF_CSS_TBSTHEME);
-    			output.getAttributes().put("library", C.BSF_LIBRARY);
+                output.getAttributes().put("library", C.BSF_LIBRARY);
+                output.getAttributes().put("target", "head");
     			root.addComponentResource(context, output, "head");
             }
         }
@@ -140,6 +141,7 @@ public class AddResourcesListener implements SystemEventListener {
         			output.setRendererType("javax.faces.resource.Script");
         			output.getAttributes().put("name", "jq/jquery.js");
         			output.getAttributes().put("library", C.BSF_LIBRARY);
+                    output.getAttributes().put("target", "head");
         			root.addComponentResource(context, output, "head");
     			}
     		}
@@ -152,6 +154,7 @@ public class AddResourcesListener implements SystemEventListener {
     				output.setRendererType("javax.faces.resource.Script");
     				output.getAttributes().put("name", file);
     				output.getAttributes().put("library", library);
+                    output.getAttributes().put("target", "head");
     				root.addComponentResource(context, output, "head");
 				}
 				
