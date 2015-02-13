@@ -45,7 +45,9 @@ public enum RPanel {
     footer,
     titleClass,
     styleClass,
+    contentClass,
     style,
+    titleStyle,
     contentStyle;
     
     private static final String PP=panel+" "+panel+"-"; //"panel panel-"
@@ -104,6 +106,10 @@ public enum RPanel {
         if (head != null || _title != null) {
             rw.startElement(H.DIV, c);
             rw.writeAttribute(H.CLASS, PH, H.CLASS); //"panel-heading"
+            String _titleStyle = A.asString(attrs,titleStyle);
+            if (null != _titleStyle) {
+            	rw.writeAttribute("style", _titleStyle, "style");
+            }
             if (_title != null) {
                 rw.startElement(H.H4, c);
                 if (_titleClass != null){
@@ -120,7 +126,11 @@ public enum RPanel {
         }
 
         rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.CLASS, PB, H.CLASS); //"panel-body"
+        String _contentClass = A.asString(attrs,contentClass);
+        if (null != _contentClass)
+            rw.writeAttribute(H.CLASS, PB + " " + _contentClass, H.CLASS); //"panel-body"
+        else
+        	rw.writeAttribute(H.CLASS, PB, H.CLASS); //"panel-body"
         String _contentStyle = A.asString(attrs,contentStyle);
         if (null != _contentStyle && _contentStyle.length()>0) {
           rw.writeAttribute("style", _contentStyle, "style");

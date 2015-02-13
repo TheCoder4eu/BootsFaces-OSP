@@ -1236,6 +1236,12 @@
             <type>java.lang.String</type>
         </attribute>
         <attribute>
+            <description><![CDATA[Inline style of the title area.]]></description>
+            <name>titleStyle</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
             <description><![CDATA[Inline style of the content area.]]></description>
             <name>contentStyle</name>
             <required>false</required>
@@ -1248,11 +1254,17 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[TitleClass is optional: if specified, Title will be displayed with this specific class]]></description>
+			<description><![CDATA[TitleClass is optional: if specified, the title will be displayed with this specific class]]></description>
 			<name>titleClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
-		</attribute>		
+		</attribute>	
+		<attribute>
+			<description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
+			<name>titleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>	
 	</tag>
 	<tag>
 		<tag-name>jumbotron</tag-name>
