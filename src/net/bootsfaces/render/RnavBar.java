@@ -33,14 +33,14 @@ public enum RnavBar {
     navbar;
     
     public static final String NAVBAR="navbar";
-    public static final String NAVBARDEFAULT=" navbar-default";
+    public static final String NAVBARDEFAULT=NAVBAR+" navbar-default";
     public static final String NAVBARHEAD=NAVBAR+"-header";
     public static final String NAVBARBRAND=NAVBAR+"-brand";
     public static final String NAVBARINNER=NAVBAR+"-inner";
     public static final String NAVBARINVERSE=NAVBAR+" navbar-inverse";
-    public static final String NAVBARFIXBOTTOM=" navbar-fixed-bottom";
-    public static final String NAVBARFIXTOP=" navbar-fixed-top";
-    public static final String NAVBARSTATICTOP=" navbar-static-top";
+    public static final String NAVBARFIXBOTTOM=NAVBAR+" navbar-fixed-bottom";
+    public static final String NAVBARFIXTOP=NAVBAR+" navbar-fixed-top";
+    public static final String NAVBARSTATICTOP=NAVBAR+" navbar-static-top";
     
     /**
      * Begin Encoding
@@ -85,14 +85,14 @@ public enum RnavBar {
         String fixed = A.asString(attrs.get(A.FIXED));
         boolean sttc = A.toBool(attrs.get(A.STATIC), false);//A.asString(attrs.get(A.STATIC));
         boolean inverse = A.toBool(attrs.get(A.INVERSE));
-        String ns=NAVBAR;
+        String ns=null;
         
-        if (inverse) { ns += NAVBARINVERSE; } else { ns+=NAVBARDEFAULT; }
+        if (inverse) { ns = NAVBARINVERSE; } else { ns = NAVBARDEFAULT; }
         if (fixed != null) {
-            if (fixed.equals(A.TOP)) { ns += NAVBARFIXTOP; }
-            if (fixed.equals(A.BOTTOM)) { ns += NAVBARFIXBOTTOM; }
+            if (fixed.equals(A.TOP)) { ns = NAVBARFIXTOP; }
+            if (fixed.equals(A.BOTTOM)) { ns = NAVBARFIXBOTTOM; }
         }
-        if (sttc) { ns += NAVBARSTATICTOP; }
+        if (sttc) { ns = NAVBARSTATICTOP; }
 
         /* 
          * The <nav> tag defines a set of navigation links. The <nav> element is intended only for major block of navigation links.
