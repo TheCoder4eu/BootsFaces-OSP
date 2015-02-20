@@ -18,6 +18,7 @@
  */
 package net.bootsfaces.listeners;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -118,7 +119,6 @@ public class AddResourcesListener implements SystemEventListener {
         List<UIComponent> availableResources = root.getComponentResources(context, "head");
         for (UIComponent ava : availableResources) {
             String name = (String) ava.getAttributes().get("name");
-            // System.out.println(name);
             if (null != name)
                 if (name.toLowerCase().contains("jquery-ui") && name.toLowerCase().endsWith(".js")) {
                     // do nothing - the if is needed to avoid confusion between jQuery and jQueryUI
@@ -148,6 +148,7 @@ public class AddResourcesListener implements SystemEventListener {
                     output.getAttributes().put("target", "head");
                     root.addComponentResource(context, output, "head");
                 }
+
             }
 
             for (Entry<String, String> entry : resourceMap.entrySet()) {
@@ -165,11 +166,52 @@ public class AddResourcesListener implements SystemEventListener {
             }
         }
 
+        enforceCorrectLoadOrder(root, context);
+
         {
             InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
             root.addComponentResource(context, output, "head");
         }
 
+    }
+
+    /**
+     * Make sure jQuery is loaded before jQueryUI, and that every other Javascript is loaded later.
+     * @param root The current UIViewRoot
+     * @param context The current FacesContext
+     */
+    private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
+        List<UIComponent> resources = new ArrayList<UIComponent>(root.getComponentResources(context, "head"));
+        for (UIComponent c : resources) {
+            root.removeComponentResource(context, c);
+        }
+        for (UIComponent c : resources) {
+            String name = (String) c.getAttributes().get("name");
+            if (name != null) {
+                name = name.toLowerCase();
+                if (name.contains("jquery") && name.endsWith(".js") && (!name.contains("jquery-ui"))) {
+                    root.addComponentResource(context, c, "head");
+                }
+            }
+        }
+        for (UIComponent c : resources) {
+            String name = (String) c.getAttributes().get("name");
+            if (name != null) {
+                name = name.toLowerCase();
+                if (name.contains("jquery-ui") && name.endsWith(".js")) {
+                    root.addComponentResource(context, c, "head");
+                }
+            }
+        }
+        for (UIComponent c : resources) {
+            String name = (String) c.getAttributes().get("name");
+            if (name != null) {
+                name = name.toLowerCase();
+                if (!(name.contains("jquery") && name.endsWith(".js"))) {
+                    root.addComponentResource(context, c, "head");
+                }
+            }
+        }
     }
 
     /**
