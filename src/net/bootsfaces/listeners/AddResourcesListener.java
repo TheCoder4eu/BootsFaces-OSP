@@ -211,6 +211,8 @@ public class AddResourcesListener implements SystemEventListener {
                     root.addComponentResource(context, c, "head");
                 }
             }
+            else // add resources loaded from a CDN
+                root.addComponentResource(context, c, "head");
         }
     }
 
