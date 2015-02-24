@@ -19,8 +19,11 @@
 
 package net.bootsfaces.render;
 
+import static net.bootsfaces.render.H.STYLECLASS;
+
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -73,7 +76,12 @@ public enum RModal {
         boolean closable= A.toBool(attrs.get(A.CLOSABLE));
         rw.startElement(H.DIV, c); //modal
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
-        rw.writeAttribute(H.CLASS, MODAL+" fade",H.CLASS);
+        
+        String styleClasses = MODAL+" fade";
+        if (attrs.containsKey(STYLECLASS)) {
+            styleClasses = attrs.get(STYLECLASS) + " " + styleClasses;
+        }
+        rw.writeAttribute(H.CLASS, styleClasses,H.CLASS);
         rw.writeAttribute(H.ROLE, "dialog",null);
         rw.writeAttribute("tabindex", "-1",null);
         rw.writeAttribute(H.ARIALBLBY, c.getClientId(fc)+"_Label",null);
