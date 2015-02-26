@@ -85,6 +85,7 @@ public enum RnavBar {
         String fixed = A.asString(attrs.get(A.FIXED));
         boolean sttc = A.toBool(attrs.get(A.STATIC), false);//A.asString(attrs.get(A.STATIC));
         boolean inverse = A.toBool(attrs.get(A.INVERSE));
+        boolean fluid = A.toBool(attrs.get("fluid"),false);
         String ns=null;
         
         if (inverse) { ns = NAVBARINVERSE; } else { ns = NAVBARDEFAULT; }
@@ -106,7 +107,7 @@ public enum RnavBar {
         rw.writeAttribute(H.ROLE, "navigation", null);
         
         rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.CLASS, "container",H.CLASS); //x Layout Centrato. TODO : layout full width
+        rw.writeAttribute(H.CLASS, fluid ? "container-fluid" : "container",H.CLASS); //x Layout Centrato. TODO : layout full width
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.CLASS, NAVBARHEAD,H.CLASS); //navbar-header
