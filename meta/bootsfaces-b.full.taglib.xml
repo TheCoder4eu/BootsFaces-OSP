@@ -2389,10 +2389,16 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+        <attribute>
+            <description>Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size.</description>
+            <name>size</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
 		<attribute>
 			<description>Comma-separated list of the column spans</description>
 			<name>colSpans</name>
-			<required>false</required>
+			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
