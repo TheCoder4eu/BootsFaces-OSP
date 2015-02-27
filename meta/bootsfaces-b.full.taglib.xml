@@ -833,6 +833,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+                <attribute>
+			<description><![CDATA[Brand image.]]></description>
+			<name>brandImg</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Brand alignment, can be right or left.]]></description>
 			<name>brandAlign</name>
