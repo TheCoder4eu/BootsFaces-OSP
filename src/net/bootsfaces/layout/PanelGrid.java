@@ -318,9 +318,9 @@ public class PanelGrid extends UIOutput {
 
 		String styleclass = A.asString(this.getAttributes().get("styleClass"));
 		if (null != styleclass&& styleclass.trim().length()>0)
-			writer.writeAttribute("class", "container " + styleclass, "class");
-		else
-			writer.writeAttribute("class", "container", "class");
+			writer.writeAttribute("class", styleclass, "class");
+//		else
+//			writer.writeAttribute("class", "container", "class");
 
 		String style = A.asString(this.getAttributes().get("style"));
 		if (null != style && style.trim().length()>0)
