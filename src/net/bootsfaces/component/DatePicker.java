@@ -64,7 +64,7 @@ import net.bootsfaces.render.R;
 		@ResourceDependency(library = "bsf", name = "css/jq.ui.datepicker.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/datepicker.js", target = "head") */
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+		/* moved to constructor @ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"), */
 		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body")
 
 })
@@ -101,7 +101,8 @@ public class DatePicker extends HtmlInputText {
 	public DatePicker() {
 		setRendererType(null); // this component renders itself
 
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
