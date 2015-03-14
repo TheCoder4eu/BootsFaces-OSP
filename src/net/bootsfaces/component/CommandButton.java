@@ -107,10 +107,15 @@ public class CommandButton extends HtmlCommandButton {
         
         rw.startElement(H.BUTTON, this);
         rw.writeAttribute(H.TYPE, type, null);
-	rw.writeAttribute(H.ID, CID, H.ID);
-	rw.writeAttribute(H.NAME, CID, H.NAME);
+    	rw.writeAttribute(H.ID, CID, H.ID);
+    	rw.writeAttribute(H.NAME, CID, H.NAME);
         //TODO rw.writeAttribute(H.TYPE, H.BUTTON, null);
-	rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
+	    rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
+	
+	    String title= A.asString(attrs.get(A.TITLE), null );
+	    if (title!=null && title.length()>0) {
+	        rw.writeAttribute(H.TITLE,title, H.TITLE);
+	    }
         
         
         
