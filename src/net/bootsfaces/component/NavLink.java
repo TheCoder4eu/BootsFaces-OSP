@@ -82,6 +82,9 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <li><a href="#"><i class="icon-star"></i> Star</a></li>
          * type=divider => <li class="divider-vertical"></li>

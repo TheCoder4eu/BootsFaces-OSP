@@ -122,6 +122,9 @@ public class TabView extends UIOutput {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
 		ResponseWriter writer = context.getResponseWriter();
 		
 		Map<String, Object> attributes = getAttributes();
@@ -193,7 +196,9 @@ public class TabView extends UIOutput {
 		List<UIComponent> children = tabView.getChildren();
 		if (null != children) {
 			for (int index = 0; index < children.size(); index++) {
-				encodeTabPane(context, writer, children.get(index), index == activeIndex);
+			    if (children.get(index).isRendered()) {
+			        encodeTabPane(context, writer, children.get(index), index == activeIndex);
+			    }
 			}
 		}
 		writer.endElement(DIV);
@@ -293,6 +298,7 @@ public class TabView extends UIOutput {
 	 *             only thrown if something's wrong with the response writer
 	 */
 	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent tab, boolean isActive, String hiddenInputFieldID, int tabIndex) throws IOException {
+	    if (!tab.isRendered()) return;
 		writer.startElement(LI, tab);
 		writer.writeAttribute(ROLE, "presentation", ROLE);
 		Map<String, Object> tabAttributes = tab.getAttributes();

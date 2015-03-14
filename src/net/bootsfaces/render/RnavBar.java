@@ -49,6 +49,9 @@ public enum RnavBar {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         /*
          * Fixed:
            <div class="navbar">
@@ -162,6 +165,9 @@ public enum RnavBar {
     * @throws IOException
     */
     public static final void encEnd(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         ResponseWriter rw = fc.getResponseWriter();
         rw.endElement(H.DIV); //collapse
         rw.endElement(H.DIV); //container

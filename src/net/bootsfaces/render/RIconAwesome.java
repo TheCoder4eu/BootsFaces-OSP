@@ -35,7 +35,10 @@ public enum RIconAwesome {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
-                
+               
+        if (!c.isRendered()) {
+            return;
+        }
         Map<String, Object> attrs = c.getAttributes();
         String icon = A.asString(attrs.get("name"));
         //String set="FA";//= A.asString(attrs.get("icon-set"));

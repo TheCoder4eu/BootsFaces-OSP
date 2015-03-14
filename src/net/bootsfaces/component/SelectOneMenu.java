@@ -85,6 +85,9 @@ public class SelectOneMenu extends HtmlInputText {
 	/** Generates the HTML code for this component. */
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
 		Map<String, Object> attrs = getAttributes();
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = getClientId(context);

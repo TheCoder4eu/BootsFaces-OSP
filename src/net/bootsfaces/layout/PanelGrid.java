@@ -105,6 +105,9 @@ public class PanelGrid extends UIOutput {
 	/** Renders the grid component and its children. */
 	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
 		ResponseWriter writer = context.getResponseWriter();
 
 		generateContainerStart(writer);

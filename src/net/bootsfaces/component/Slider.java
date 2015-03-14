@@ -102,6 +102,9 @@ public class Slider extends HtmlInputText {
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <div id="slider"></div>
          */

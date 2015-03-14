@@ -35,6 +35,9 @@ public enum RBadge {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         /*
          * <span class="badge badge-important">6</span>
          */

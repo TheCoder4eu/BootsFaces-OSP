@@ -48,6 +48,9 @@ public class GenContainerDiv extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
         * <div class="?">
         * ...
@@ -69,6 +72,9 @@ public class GenContainerDiv extends UIComponentBase {
     
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         context.getResponseWriter()
                .endElement(H.DIV);
     }

@@ -104,6 +104,10 @@ public class Button extends HtmlOutcomeTargetButton {
 	 */
 	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
+
 		encodeHTML(context, getAttributes());
 	}
 

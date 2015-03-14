@@ -83,6 +83,9 @@ public class CommandButton extends HtmlCommandButton {
 
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <button class="btn btn-large" href="#"><i class="icon-star"></i> Star</button>
          */

@@ -46,6 +46,9 @@ public enum RThumbnail {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         
         
         //Map<String, Object> attrs = getAttributes();
@@ -72,6 +75,9 @@ public enum RThumbnail {
      * @throws IOException
      */
     public static final void encEnd(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         
         
         //Map<String, Object> attrs = getAttributes();

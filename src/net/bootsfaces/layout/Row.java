@@ -54,6 +54,9 @@ public class Row extends UIComponentBase {
     
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <div class="row">  || <div class="row-fluid">
          * ...
@@ -64,13 +67,15 @@ public class Row extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         
         Map<String, Object> attrs = getAttributes();
-        if (isRendered())
-        	R.encodeRow(rw, this, A.asString(attrs.get(H.STYLECLASS)));
+       	R.encodeRow(rw, this, A.asString(attrs.get(H.STYLECLASS)));
         
     }
     
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         fc.getResponseWriter().endElement(H.DIV);
     }
 

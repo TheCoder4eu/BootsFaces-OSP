@@ -50,6 +50,9 @@ public class LinksContainer extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <ul class="?">
          * ...

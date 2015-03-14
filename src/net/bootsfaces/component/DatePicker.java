@@ -172,6 +172,9 @@ public class DatePicker extends HtmlInputText {
 
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
 		/*
 		 * Popup <input id="form:popCal" name="form:popCal" type="text" /> <script id="form:popCal_js" type="text/javascript"> $(function(){
 		 * $('form:popCal').datepicker({id:'form:popupCal',popup:true,locale:'en_US',dateFormat:'m/d/y'}); }); </script>

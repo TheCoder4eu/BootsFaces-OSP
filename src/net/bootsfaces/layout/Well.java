@@ -51,6 +51,9 @@ public class Well extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <div class="well"> || <div class="well well-large">
          * ...
@@ -75,6 +78,9 @@ public class Well extends UIComponentBase {
     
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         context.getResponseWriter().endElement(H.DIV);
     }
 

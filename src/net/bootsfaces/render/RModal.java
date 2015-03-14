@@ -47,6 +47,9 @@ public enum RModal {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         /*
          * <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
          *   <div class="modal-dialog">
@@ -123,6 +126,9 @@ public enum RModal {
     * @throws IOException
     */
     public static final void encEnd(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
         

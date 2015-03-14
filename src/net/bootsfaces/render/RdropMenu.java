@@ -44,6 +44,9 @@ public enum RdropMenu {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         /*<li class="dropdown">
             <a id="dLabel" class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
             Dropdown

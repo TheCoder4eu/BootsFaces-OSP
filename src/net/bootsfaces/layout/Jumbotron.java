@@ -53,6 +53,9 @@ public class Jumbotron extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * <div class="jumbotron">
          * ...
@@ -64,6 +67,9 @@ public class Jumbotron extends UIComponentBase {
     
     @Override
     public void encodeEnd(FacesContext context) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         context.getResponseWriter().endElement(H.DIV);
     }
 

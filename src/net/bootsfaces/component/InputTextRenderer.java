@@ -78,6 +78,9 @@ public class InputTextRenderer extends CoreRenderer {
 
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        if (!component.isRendered()) {
+            return;
+        }
 		InputText inputText = (InputText) component;
 		Map<String, Object> attrs = inputText.getAttributes();
 

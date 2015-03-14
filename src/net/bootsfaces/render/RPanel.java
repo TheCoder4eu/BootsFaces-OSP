@@ -63,6 +63,9 @@ public enum RPanel {
      * @throws IOException
      */
     public static final void encBegin(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         
         /*
          * <div class="panel panel-default">
@@ -145,6 +148,9 @@ public enum RPanel {
      * @throws IOException
      */
     public static final void encEnd(UIComponent c, FacesContext fc) throws IOException {
+        if (!c.isRendered()) {
+            return;
+        }
         ResponseWriter rw = fc.getResponseWriter();
         rw.endElement(H.DIV); //panel-body
         UIComponent foot = c.getFacet(footer.name());

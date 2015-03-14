@@ -62,6 +62,9 @@ public class Container extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         /*
          * OLD Only Fluid: as of BS3
          * Now BS3 has again container-fluid
@@ -82,6 +85,9 @@ public class Container extends UIComponentBase {
     
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
+        if (!isRendered()) {
+            return;
+        }
         fc.getResponseWriter().endElement(H.DIV);
     }
 
