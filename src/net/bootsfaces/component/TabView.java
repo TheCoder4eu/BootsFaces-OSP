@@ -255,6 +255,10 @@ public class TabView extends UIOutput {
 			classes += " ";
 			classes += tabAttributes.get(STYLECLASS);
 		}
+		if (tabAttributes.get("contentStyle")!=null) {
+            writer.writeAttribute("style", tabAttributes.get("contentStyle"), "style");
+        }
+
 		writer.writeAttribute(CLASS, classes, CLASS);
 		tab.encodeChildren(context);
 		writer.endElement(DIV);
@@ -303,12 +307,16 @@ public class TabView extends UIOutput {
 		writer.writeAttribute(ROLE, "presentation", ROLE);
 		Map<String, Object> tabAttributes = tab.getAttributes();
 		String classes = isActive ? ACTIVE : "";
-		if (tabAttributes.containsKey(STYLECLASS)) {
+		if (tabAttributes.get(STYLECLASS)!=null) {
 			classes += " ";
 			classes += tabAttributes.get(STYLECLASS);
 		}
 		if (classes.length()>0)
 		  writer.writeAttribute(CLASS, classes, CLASS);
+		if (tabAttributes.get("style")!=null) {
+		    writer.writeAttribute("style", tabAttributes.get("style"), "style");
+		}
+		
 		encodeTabAnchorTag(writer, tab, tabAttributes, hiddenInputFieldID, tabIndex);
 		writer.endElement(LI);
 	}
