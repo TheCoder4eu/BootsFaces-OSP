@@ -107,26 +107,39 @@ public class AddResourcesListener implements SystemEventListener {
 
         // deactive FontAwesome support if the no-fa facet is found in the h:head tag
         UIComponent header = findHeader(root);
-        boolean usefa = (null == header) || (null == header.getFacet("no-fa"));
+        boolean useCDNImportForFontAwesome = (null == header) || (null == header.getFacet("no-fa"));
+        if (useCDNImportForFontAwesome) {
+            String useCDN = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("net.bootsfaces.get_fontawesome_from_cdn");
+            if (null != useCDN)
+                if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
+                        useCDNImportForFontAwesome=false;
+        }
+
+        // Do we have to add font-awesome and jQuery, or are the resources already there?
+        boolean loadJQuery = true;
+        List<UIComponent> availableResources = root.getComponentResources(context, "head");
+        for (UIComponent ava : availableResources) {
+            String name = (String) ava.getAttributes().get("name");
+            if (null != name) {
+                name = name.toLowerCase();
+                if ((name.contains("font-awesome") || name.contains("fontawesome")) && name.endsWith("css"))
+                    useCDNImportForFontAwesome=false;
+                if (name.contains("jquery-ui") && name.endsWith(".js")) {
+                    // do nothing - the if is needed to avoid confusion between jQuery and jQueryUI
+                } else if (name.contains("jquery") && name.endsWith(".js")) {
+                    loadJQuery = false;
+                }
+            }
+        }
+
         // Font Awesome
-        if (usefa) { // !=null && usefa.equals(C.TRUE)) {
+        if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
             InternalFALink output = new InternalFALink();
             output.getAttributes().put("src", C.FONTAWESOME_CDN_URL);
             root.addComponentResource(context, output, "head");
         }
 
-        boolean loadJQuery = true;
-        List<UIComponent> availableResources = root.getComponentResources(context, "head");
-        for (UIComponent ava : availableResources) {
-            String name = (String) ava.getAttributes().get("name");
-            if (null != name)
-                if (name.toLowerCase().contains("jquery-ui") && name.toLowerCase().endsWith(".js")) {
-                    // do nothing - the if is needed to avoid confusion between jQuery and jQueryUI
-                } else if (name.toLowerCase().contains("jquery") && name.toLowerCase().endsWith(".js")) {
-                    loadJQuery = false;
-                }
-        }
-
+        
         Map<String, Object> viewMap = root.getViewMap();
         @SuppressWarnings("unchecked")
         Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
