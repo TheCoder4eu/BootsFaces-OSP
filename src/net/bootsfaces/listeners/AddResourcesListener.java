@@ -34,6 +34,7 @@ import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.UIViewRoot;
+import javax.faces.component.html.HtmlBody;
 import javax.faces.component.html.HtmlHead;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
@@ -268,6 +269,13 @@ public class AddResourcesListener implements SystemEventListener {
         for (UIComponent c : root.getChildren()) {
             if (c instanceof HtmlHead)
                 return c;
+        }
+        for (UIComponent c : root.getChildren()) {
+            if (c instanceof HtmlBody)
+                return null;
+            if (c instanceof UIOutput) 
+                if (c.getFacets()!=null)
+                    return c;
         }
         return null;
     }
