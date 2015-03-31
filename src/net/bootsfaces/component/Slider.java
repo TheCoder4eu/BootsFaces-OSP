@@ -137,31 +137,31 @@ public class Slider extends HtmlInputText {
         
         rw.startElement(H.DIV, null);//form-group
         rw.writeAttribute(H.CLASS, "form-group",H.CLASS);
-        R.encodeRow(rw, null, (vo ? SLIDERV : SLIDER)); //rw.write("<-- Slider START -->\n");//Slider Widget Row
+        R.encodeRow(rw, null, null,(vo ? SLIDERV : SLIDER)); //rw.write("<-- Slider START -->\n");//Slider Widget Row
         //-------------------------------------------------------------->
         //<<-- Vertical -->>
         if (vo) {
             if (label != null && !bottom) {
-                R.encodeRow(rw, null, null);
+                R.encodeRow(rw, null, null, null);
                 encodeVLabel(rw, label);
                 rw.endElement(H.DIV);/* Row */
             }
-            R.encodeRow(rw, null, null); 
+            R.encodeRow(rw, null, null, null); 
             if (bottom) {
                 encodeSliderDiv(rw, vo, clientId);
                 rw.endElement(H.DIV);/* Row */
-                R.encodeRow(rw, null, null);
+                R.encodeRow(rw, null, null, null);
             }
             encodeInput(rw, mode, context, val, clientId, vo, min, max);
             if (!bottom) {
                 rw.endElement(H.DIV); /* Row */
                 
-                R.encodeRow(rw, null, null);
+                R.encodeRow(rw, null, null, null);
                 encodeSliderDiv(rw, vo, clientId);
             }
             rw.endElement(H.DIV); /* Row */
             if (label != null && bottom) {
-                R.encodeRow(rw, null, null);
+                R.encodeRow(rw, null, null, null);
                 encodeVLabel(rw, label);
                 rw.endElement(H.DIV); /* Row */
             }
@@ -170,9 +170,9 @@ public class Slider extends HtmlInputText {
         //<<-- Horizontal -->>
         
             if (label != null) {
-                R.encodeRow(rw, null, null);
+                R.encodeRow(rw, null, null, null);
                 
-                R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null);
+                R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
                 rw.startElement(H.LABEL, this);
                 rw.writeAttribute(A.FOR, clientId, null);
                 rw.write(label);
@@ -182,7 +182,7 @@ public class Slider extends HtmlInputText {
                 
                 rw.endElement(H.DIV);/* Row */
             }
-            R.encodeRow(rw, null, null); 
+            R.encodeRow(rw, null, null, null); 
             
             encodeInput(rw, mode, context, val, clientId, vo, min, max);
             
