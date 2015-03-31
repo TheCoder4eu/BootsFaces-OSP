@@ -129,7 +129,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		rw.writeAttribute(ID, getClientId(context), ID);
 		rw.writeAttribute(NAME, getClientId(context), NAME);
 		rw.writeAttribute(TYPE, BUTTON, null);
-                if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
+                if(style!=null) { rw.writeAttribute(STYLE,style,STYLE); }
 		rw.writeAttribute(CLASS, getStyleClasses(attrs), CLASS);
 		
 		final String clickHandler = encodeClick(context, attrs);
