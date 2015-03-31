@@ -200,7 +200,7 @@ public class Slider extends HtmlInputText {
     }
 
     private void encodeVLabel(ResponseWriter rw, String label) throws IOException {
-        R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null);
+        R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null, null);
         rw.startElement(H.P, this);
         rw.write(label);
         rw.endElement(H.P); //Label
@@ -211,7 +211,7 @@ public class Slider extends HtmlInputText {
         int cols=( vo ? 12 : 1);
         if(!mode.equals("basic")) {
         /* int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg */
-        R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null);
+        R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null);
         if(mode.equals("badge")) { 
         	R.encodeBadge(context, this, "_badge", Integer.toString(val) ); }
         }
@@ -241,7 +241,7 @@ public class Slider extends HtmlInputText {
 
     private void encodeSliderDiv(ResponseWriter rw, boolean vo, String clientId) throws IOException {
         /* int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg */
-        R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null);
+        R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
         //Slider <div>
         rw.startElement(H.DIV, null);
         rw.writeAttribute(H.ID, clientId+C.USCORE+JQ.SLIDER, null);//concat controproducente
