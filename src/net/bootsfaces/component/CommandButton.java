@@ -111,12 +111,14 @@ public class CommandButton extends HtmlCommandButton {
     	rw.writeAttribute(H.ID, CID, H.ID);
     	rw.writeAttribute(H.NAME, CID, H.NAME);
         //TODO rw.writeAttribute(H.TYPE, H.BUTTON, null);
-	    rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
-	
-	    String title= A.asString(attrs.get(A.TITLE), null );
-	    if (title!=null && title.length()>0) {
-	        rw.writeAttribute(H.TITLE,title, H.TITLE);
-	    }
+        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
+        
+        rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
+
+        String title= A.asString(attrs.get(A.TITLE), null );
+        if (title!=null && title.length()>0) {
+            rw.writeAttribute(H.TITLE,title, H.TITLE);
+        }
         
         
         
@@ -173,8 +175,6 @@ public class CommandButton extends HtmlCommandButton {
             }
             
         } else { rw.writeText(value, null); }
-        
-        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         
         rw.endElement(H.BUTTON);
     }
