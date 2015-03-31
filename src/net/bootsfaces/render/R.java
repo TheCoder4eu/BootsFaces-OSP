@@ -155,14 +155,16 @@ public final class R {
      * Encodes a Row
      * @param rw
      * @param c
-     * @param addclass
+     * @param style
+     * @param sclass
      * @throws IOException 
      */
-    public static final void encodeRow(ResponseWriter rw, UIComponent c, String addclass) throws IOException {
+    public static final void encodeRow(ResponseWriter rw, UIComponent c, String style, String sclass) throws IOException {
         rw.startElement(H.DIV, c);
         String s = ROW;
-        if(addclass!=null) { s+=C.SP+addclass; }        
+        if(sclass!=null) { s+=C.SP+sclass; }        
         if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
+        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
         rw.writeAttribute(H.CLASS, s, H.CLASS);
     }
     
@@ -178,11 +180,12 @@ public final class R {
      * @param oxs
      * @param osm
      * @param olg
+     * @param style
      * @param sclass
      * @throws IOException 
      */
     public static final void encodeColumn(ResponseWriter rw, UIComponent c,
-            int span, int cxs, int csm, int clg, int offset, int oxs, int osm, int olg, String sclass) throws IOException {
+            int span, int cxs, int csm, int clg, int offset, int oxs, int osm, int olg, String style, String sclass) throws IOException {
         rw.startElement(H.DIV, c);
         if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
         
@@ -201,6 +204,7 @@ public final class R {
         if(oxs>0) {sb.append(" col-xs-offset-").append(oxs);}
         if(osm>0) {sb.append(" col-sm-offset-").append(osm);}
         if(olg>0) {sb.append(" col-lg-offset-").append(olg);}
+        if(style!=null) {sb.append(C.SP).append(style); }
         if(sclass!=null) {sb.append(C.SP).append(sclass); }
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
     }

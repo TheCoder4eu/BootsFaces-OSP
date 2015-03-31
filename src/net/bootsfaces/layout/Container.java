@@ -77,10 +77,17 @@ public class Container extends UIComponentBase {
         
         Map<String, Object> attrs = getAttributes();
         boolean fluid=A.toBool(attrs.get("fluid"), false);
+        String style=A.asString(attrs.get(H.STYLE)); 
+        String sc=A.asString(attrs.get(H.STYLECLASS));
+        
+        String c=(fluid ? "container-fluid" : "container");
+        if(sc!=null) { c+=" "+sc; }
         
         rw.startElement(H.DIV, this);
         rw.writeAttribute(H.ID,getClientId(fc),H.ID);
-        rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
+        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
+        rw.writeAttribute(H.CLASS, c, H.CLASS);
+        //rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
     }
     
     @Override

@@ -104,6 +104,7 @@ public class CommandButton extends HtmlCommandButton {
         String type = A.asString(attrs.get(A.TYPE), A.SUBMIT );
         //3) is it Ajax? (default= false)
         boolean ajax=A.toBool(attrs.get(A.AJAX), false);
+        String style=A.asString(attrs.get(H.STYLE));
         
         rw.startElement(H.BUTTON, this);
         rw.writeAttribute(H.TYPE, type, null);
@@ -172,6 +173,8 @@ public class CommandButton extends HtmlCommandButton {
             }
             
         } else { rw.writeText(value, null); }
+        
+        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
         
         rw.endElement(H.BUTTON);
     }

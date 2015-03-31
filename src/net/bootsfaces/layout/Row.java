@@ -67,7 +67,7 @@ public class Row extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         
         Map<String, Object> attrs = getAttributes();
-       	R.encodeRow(rw, this, A.asString(attrs.get(H.STYLECLASS)));
+       	R.encodeRow(rw, this, A.asString(attrs.get(H.STYLE)), A.asString(attrs.get(H.STYLECLASS)));
         
     }
     

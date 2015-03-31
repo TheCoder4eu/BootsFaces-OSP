@@ -85,6 +85,7 @@ public class Column extends UIComponentBase {
                                      A.toInt(attrs.get("offset-xs")),
                                      A.toInt(attrs.get("offset-sm")),
                                      A.toInt(attrs.get("offset-lg")),
+                                     A.asString(attrs.get(H.STYLE)),
                                      A.asString(attrs.get(H.STYLECLASS)));
         }
         
