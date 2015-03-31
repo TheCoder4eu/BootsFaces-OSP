@@ -204,9 +204,9 @@ public final class R {
         if(oxs>0) {sb.append(" col-xs-offset-").append(oxs);}
         if(osm>0) {sb.append(" col-sm-offset-").append(osm);}
         if(olg>0) {sb.append(" col-lg-offset-").append(olg);}
-        if(style!=null) {sb.append(C.SP).append(style); }
         if(sclass!=null) {sb.append(C.SP).append(sclass); }
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
+        if(style!=null) { rw.writeAttribute(H.STYLE, style, H.STYLE); }
     }
     
     /**
