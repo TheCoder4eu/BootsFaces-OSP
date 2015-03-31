@@ -174,7 +174,7 @@ public class CommandButton extends HtmlCommandButton {
             
         } else { rw.writeText(value, null); }
         
-        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
+        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         
         rw.endElement(H.BUTTON);
     }

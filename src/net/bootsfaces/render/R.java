@@ -164,7 +164,7 @@ public final class R {
         String s = ROW;
         if(sclass!=null) { s+=C.SP+sclass; }        
         if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
-        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
+        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         rw.writeAttribute(H.CLASS, s, H.CLASS);
     }
     

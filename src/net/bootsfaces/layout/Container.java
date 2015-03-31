@@ -85,7 +85,7 @@ public class Container extends UIComponentBase {
         
         rw.startElement(H.DIV, this);
         rw.writeAttribute(H.ID,getClientId(fc),H.ID);
-        if(style!=null) { rw.writeAttribute(H.STYLE,c.getClientId(),H.STYLE); }
+        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         rw.writeAttribute(H.CLASS, c, H.CLASS);
         //rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
     }
