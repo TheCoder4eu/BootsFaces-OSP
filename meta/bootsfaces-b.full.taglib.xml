@@ -578,6 +578,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+                <attribute>
+			<description><![CDATA[Style class of this element.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Flag indicating that, if this component is activated by the user,
                                               notifications should be delivered to interested listeners and actions
@@ -1109,6 +1115,18 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+                <attribute>
+			<description><![CDATA[Inline style of the input element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+                <attribute>
+			<description><![CDATA[Style class of this element.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	<tag>
 		<tag-name>row</tag-name>
@@ -1126,6 +1144,12 @@
 			<name>rendered</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
+		</attribute>
+                <attribute>
+			<description><![CDATA[Inline style of the input element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Style class of this element.]]></description>
@@ -1204,6 +1228,12 @@
 			<name>offset-lg</name>
 			<required>false</required>
 			<type>java.lang.Integer</type>
+		</attribute>
+                <attribute>
+			<description><![CDATA[Inline style of the input element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Style class of this element.]]></description>
