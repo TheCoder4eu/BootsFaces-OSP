@@ -59,6 +59,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
+import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.CoreRenderer;
@@ -122,11 +123,13 @@ public class Button extends HtmlOutcomeTargetButton {
 		ResponseWriter rw = context.getResponseWriter();
 
 		Object value = attrs.get(VALUE);
-
+                String style=A.asString(attrs.get(H.STYLE));
+                
 		rw.startElement(BUTTON, this);
 		rw.writeAttribute(ID, getClientId(context), ID);
 		rw.writeAttribute(NAME, getClientId(context), NAME);
 		rw.writeAttribute(TYPE, BUTTON, null);
+                if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
 		rw.writeAttribute(CLASS, getStyleClasses(attrs), CLASS);
 		
 		final String clickHandler = encodeClick(context, attrs);
