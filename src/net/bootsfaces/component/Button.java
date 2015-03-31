@@ -123,7 +123,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		ResponseWriter rw = context.getResponseWriter();
 
 		Object value = attrs.get(VALUE);
-                String style=A.asString(attrs.get(H.STYLE));
+                String style=A.asString(attrs.get(STYLE));
                 
 		rw.startElement(BUTTON, this);
 		rw.writeAttribute(ID, getClientId(context), ID);
