@@ -211,7 +211,7 @@ public class AddResourcesListener implements SystemEventListener {
 		    String library = (String)c.getAttributes().get("library");
         	String name = (String) c.getAttributes().get("name");
         	if (library!=null && library.equals(output.getAttributes().get("library"))) {
-        		if (name!=null && library.equals(output.getAttributes().get("name"))) {
+        		if (name!=null && name.equals(output.getAttributes().get("name"))) {
         			return;
         		}
         	}
