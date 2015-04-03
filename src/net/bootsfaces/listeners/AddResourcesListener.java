@@ -227,9 +227,6 @@ public class AddResourcesListener implements SystemEventListener {
      * @param context The current FacesContext
      */
     private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
-    	try {
-    	ResponseWriter rw = context.getResponseWriter();
-    	rw.write("\n<!-- reordering -->" );
         List<UIComponent> resources = new ArrayList<UIComponent>(root.getComponentResources(context, "head"));
         for (UIComponent c : resources) {
             root.removeComponentResource(context, c);
@@ -239,7 +236,6 @@ public class AddResourcesListener implements SystemEventListener {
             if (name != null) {
                 name = name.toLowerCase();
                 if (name.contains("jquery") && name.endsWith(".js") && (!name.contains("jquery-ui"))) {
-                	rw.write("\n<!-- res: '"+name+"' -->" );
                     root.addComponentResource(context, c, "head");
                 }
             }
@@ -249,7 +245,6 @@ public class AddResourcesListener implements SystemEventListener {
             if (name != null) {
                 name = name.toLowerCase();
                 if (name.contains("jquery-ui") && name.endsWith(".js")) {
-                	rw.write("\n<!-- res: '"+name+"' -->" );
                     root.addComponentResource(context, c, "head");
                 }
             }
@@ -258,7 +253,6 @@ public class AddResourcesListener implements SystemEventListener {
         	String library = (String) c.getAttributes().get("library");
         	if (library != null) {
         		if (library.equals("bsf"))
-        	    	rw.write("\n<!-- res: '"+c.getAttributes().get("name")+"' -->" );
         			root.addComponentResource(context, c, "head");
         	}
         }
@@ -271,7 +265,6 @@ public class AddResourcesListener implements SystemEventListener {
                 	continue;
             }
             if (name != null) {
-    	    	rw.write("\n<!-- res: '"+name+"' -->" );
                 name = name.toLowerCase();
                 if (!(name.contains("jquery") && name.endsWith(".js"))) {
                     root.addComponentResource(context, c, "head");
@@ -280,10 +273,6 @@ public class AddResourcesListener implements SystemEventListener {
             else // add resources loaded from a CDN
                 root.addComponentResource(context, c, "head");
         }
-    	}
-    	catch (IOException e) {
-    		
-    	}
     }
 
     /**
