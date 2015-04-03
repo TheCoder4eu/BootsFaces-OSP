@@ -102,7 +102,7 @@ public class AddResourcesListener implements SystemEventListener {
                 output.getAttributes().put("name", C.BSF_CSS_TBSTHEME);
                 output.getAttributes().put("library", C.BSF_LIBRARY);
                 output.getAttributes().put("target", "head");
-                root.addComponentResource(context, output, "head");
+                addResourceIfNecessary(root, context, output);
             }
         }
 
@@ -137,7 +137,7 @@ public class AddResourcesListener implements SystemEventListener {
         if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
             InternalFALink output = new InternalFALink();
             output.getAttributes().put("src", C.FONTAWESOME_CDN_URL);
-            root.addComponentResource(context, output, "head");
+            addResourceIfNecessary(root, context, output);
         }
 
         
@@ -160,7 +160,7 @@ public class AddResourcesListener implements SystemEventListener {
                     output.getAttributes().put("name", "jq/jquery.js");
                     output.getAttributes().put("library", C.BSF_LIBRARY);
                     output.getAttributes().put("target", "head");
-                    root.addComponentResource(context, output, "head");
+                    addResourceIfNecessary(root, context, output);
                 }
 
             }
@@ -174,7 +174,7 @@ public class AddResourcesListener implements SystemEventListener {
                     output.getAttributes().put("name", file);
                     output.getAttributes().put("library", library);
                     output.getAttributes().put("target", "head");
-                    root.addComponentResource(context, output, "head");
+                    addResourceIfNecessary(root, context, output);
                 }
 
             }
@@ -184,13 +184,43 @@ public class AddResourcesListener implements SystemEventListener {
 
         {
             InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
-            root.addComponentResource(context, output, "head");
+            addResourceIfNecessary(root, context, output);
         }
 
     }
 
+	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalIE8CompatiblityLinks output) {
+        for (UIComponent c : root.getComponentResources(context, "head")) {
+            if (c instanceof InternalIE8CompatiblityLinks)
+            	return;
+        }
+        root.addComponentResource(context, output, "head");
+	}
+	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalFALink output) {
+        for (UIComponent c : root.getComponentResources(context, "head")) {
+            if (c instanceof InternalFALink)
+            	return;
+        }
+        root.addComponentResource(context, output, "head");
+	}
+
+	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, UIOutput output) {
+        for (UIComponent c : root.getComponentResources(context, "head")) {
+		    String library = (String)c.getAttributes().get("library");
+        	String name = (String) c.getAttributes().get("name");
+        	if (library!=null && library.equals(output.getAttributes().get("library"))) {
+        		if (name!=null && library.equals(output.getAttributes().get("name"))) {
+        			return;
+        		}
+        	}
+        }
+		root.addComponentResource(context, output, "head");
+	}
+
     /**
      * Make sure jQuery is loaded before jQueryUI, and that every other Javascript is loaded later.
+     * Also make sure that the BootsFaces resource files are loaded prior to other resource files,
+     * giving the developer the opportunity to overwrite a CSS or JS file.
      * @param root The current UIViewRoot
      * @param context The current FacesContext
      */
@@ -218,7 +248,20 @@ public class AddResourcesListener implements SystemEventListener {
             }
         }
         for (UIComponent c : resources) {
+        	String library = (String) c.getAttributes().get("library");
+        	if (library != null) {
+        		if (library.equals("bsf"))
+        			root.addComponentResource(context, c, "head");
+        	}
+        }
+        
+        for (UIComponent c : resources) {
             String name = (String) c.getAttributes().get("name");
+            String library = (String) c.getAttributes().get("library");
+            if (library != null) {
+                if (library.equals("bsf"))
+                	continue;
+            }
             if (name != null) {
                 name = name.toLowerCase();
                 if (!(name.contains("jquery") && name.endsWith(".js"))) {
