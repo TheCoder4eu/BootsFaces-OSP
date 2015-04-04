@@ -284,10 +284,8 @@ public class SelectOneMenu extends HtmlInputText {
      * validation errors terminates jsf lifecycle - Finally the value of the component is retrieved from backing bean and if there's a
      * converter, converted value is returned
      *
-     * @param fc
+     * @param context
      *            FacesContext instance
-     * @param c
-     *            UIComponent instance whose value will be returned
      * @return End text
      */
     public Object getValue2Render(FacesContext context) {
