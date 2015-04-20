@@ -126,28 +126,28 @@ public enum RnavBar {
         rw.startElement(H.SPAN, c);rw.writeAttribute(H.CLASS, "icon-bar",H.CLASS);rw.endElement(H.SPAN);
         rw.endElement(H.BUTTON);
         String brand = A.asString(attrs.get(A.BRAND));
-	String brandImg = A.asString(attrs.get(A.BRAND_IMG));
+        String brandImg = A.asString(attrs.get(A.BRAND_IMG));
         //<a class="navbar-brand" href="#">Brand</a>
         if(brand!=null || brandImg!=null) {
-            rw.startElement(H.A, c);
-            rw.writeAttribute(H.CLASS, NAVBARBRAND,H.CLASS); //navbar-brand
-            String href = A.asString(attrs.get(A.BRAND_HREF));
-            if(href==null) { rw.writeAttribute(H.HREF, H.HASH,H.HREF); }
-            else           { rw.writeAttribute(H.HREF, href,H.HREF); }
-	    if(brandImg!=null) {
-		String altText = A.asString(attrs.get(A.ALT));
-		if(altText==null) altText = "Brand"; // default
-                rw.startElement(H.IMG , c);
-		rw.writeAttribute(H.ALT, altText, H.ALT);
-		rw.writeAttribute(H.SRC, brandImg, H.SRC);
-		rw.endElement(H.IMG);
-            }
-            if(brand!=null) rw.writeText(brand, null);
-            rw.endElement(H.A);
+        	rw.startElement(H.A, c);
+        	rw.writeAttribute(H.CLASS, NAVBARBRAND,H.CLASS); //navbar-brand
+        	String href = A.asString(attrs.get(A.BRAND_HREF));
+        	if(href==null) { rw.writeAttribute(H.HREF, H.HASH,H.HREF); }
+        	else           { rw.writeAttribute(H.HREF, href,H.HREF); }
+        	if(brandImg!=null) {
+        		String altText = A.asString(attrs.get(A.ALT));
+        		if(altText==null) altText = "Brand"; // default
+        		rw.startElement(H.IMG , c);
+        		rw.writeAttribute(H.ALT, altText, H.ALT);
+        		rw.writeAttribute(H.SRC, brandImg, H.SRC);
+        		rw.endElement(H.IMG);
+        	}
+        	if(brand!=null) rw.writeText(brand, null);
+        	rw.endElement(H.A);
         }
         rw.endElement(H.DIV); //navbar-header
-        
-        
+
+
         /*
          * <!-- Collect the nav links, forms, and other content for toggling -->
          * <div class="collapse navbar-collapse navbar-ex1-collapse">
