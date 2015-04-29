@@ -21,24 +21,30 @@ package net.bootsfaces.component;
 
 import static net.bootsfaces.C.BSFCOMPONENT;
 import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
-import static net.bootsfaces.C.H;
 import static net.bootsfaces.C.SP;
 import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
 import static net.bootsfaces.render.A.ALLBUTTON_ATTRS;
 import static net.bootsfaces.render.A.CLICK;
 import static net.bootsfaces.render.A.DATA_DISMISS;
-import static net.bootsfaces.render.A.DISMISS;
 import static net.bootsfaces.render.A.DISABLED;
+import static net.bootsfaces.render.A.DISMISS;
 import static net.bootsfaces.render.A.FRAGMENT;
 import static net.bootsfaces.render.A.ICON;
-import static net.bootsfaces.render.A.ICON_ALIGN;
 import static net.bootsfaces.render.A.ICONAWESOME;
+import static net.bootsfaces.render.A.ICON_ALIGN;
 import static net.bootsfaces.render.A.LOOK;
 import static net.bootsfaces.render.A.RIGHT;
 import static net.bootsfaces.render.A.SIZE;
 import static net.bootsfaces.render.A.VALUE;
 import static net.bootsfaces.render.A.asString;
 import static net.bootsfaces.render.A.toBool;
+import static net.bootsfaces.render.H.BUTTON;
+import static net.bootsfaces.render.H.CLASS;
+import static net.bootsfaces.render.H.ID;
+import static net.bootsfaces.render.H.NAME;
+import static net.bootsfaces.render.H.STYLE;
+import static net.bootsfaces.render.H.STYLECLASS;
+import static net.bootsfaces.render.H.TYPE;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,19 +65,18 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
-import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
-import static net.bootsfaces.render.H.*;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * This components represents and renders a button without AJAX functionality.
  * 
  * @author thecoder4.eu
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head")
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 		 })
 @FacesComponent(BUTTON_COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
@@ -92,6 +97,7 @@ public class Button extends HtmlOutcomeTargetButton {
 	public Button() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		Tooltip.addResourceFile();
 
 	}
 
@@ -110,6 +116,7 @@ public class Button extends HtmlOutcomeTargetButton {
         }
 
 		encodeHTML(context, getAttributes());
+		Tooltip.activateTooltips(context, getAttributes());
 	}
 
 	/** 
@@ -131,6 +138,9 @@ public class Button extends HtmlOutcomeTargetButton {
 		rw.writeAttribute(TYPE, BUTTON, null);
                 if(style!=null) { rw.writeAttribute(STYLE,style,STYLE); }
 		rw.writeAttribute(CLASS, getStyleClasses(attrs), CLASS);
+		
+		Tooltip.generateTooltip(context, attrs, rw);
+
 		
 		final String clickHandler = encodeClick(context, attrs);
 		if (null != clickHandler && clickHandler.length()>0) {
@@ -171,6 +181,7 @@ public class Button extends HtmlOutcomeTargetButton {
 
 		rw.endElement(BUTTON);
 	}
+
 
 	/**
 	 * Renders the Javascript code dealing with the click event.
