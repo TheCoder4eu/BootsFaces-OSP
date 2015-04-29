@@ -347,6 +347,15 @@
 			<filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
 		</copy>
 	</target>
+	<target name="tooltip">
+		<echo message="Adding Bootstrap tooltips"/>
+		<copy file="${less.dir}/tooltip${min.css.suffix}.css" tofile="${css.dir}/tooltip.css">
+			<filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
+		</copy>
+        <copy file="${js.orig.dir}/tooltip.js" todir="${js.dir}">
+ 			<filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
+		</copy>
+	</target>
 	<!-- BootsFaces jQuery components -->
 	<target name="datepicker" if="bsf.datepicker" depends="copy-jqueryui-core">
 	<echo message="Adding Bootstrap datepicker"/>
@@ -368,7 +377,7 @@
 	<target name="components-bootstrap-js" depends="alert,dropbutton,modal,navbar">
 		<echo message="Adding Bootstrap components."/>
 	</target>
-	<target name="components-bootsfaces" depends="badge,jumbotron,label,panel,tab,thumbnail,well"><!-- ,tooltip,popover,carousel,collapse" -->
+	<target name="components-bootsfaces" depends="badge,jumbotron,label,panel,tab,thumbnail,well,tooltip"><!-- ,tooltip,popover,carousel,collapse" -->
 			<echo message="Adding Bootstrap components."/>
 		</target>
 	<target name="components-jquery" depends="datepicker,slider">
