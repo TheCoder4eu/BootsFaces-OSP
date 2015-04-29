@@ -18,7 +18,6 @@
  */
 package net.bootsfaces.listeners;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,7 +37,6 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlBody;
 import javax.faces.component.html.HtmlHead;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
@@ -59,7 +57,7 @@ public class AddResourcesListener implements SystemEventListener {
     private static final String RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ResourceFiles";
 
     static {
-        LOGGER.info("Running on BootsFaces 0.7.0-SNAPSHOT.");
+        LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
     }
 
     /**
@@ -211,7 +209,7 @@ public class AddResourcesListener implements SystemEventListener {
 		    String library = (String)c.getAttributes().get("library");
         	String name = (String) c.getAttributes().get("name");
         	if (library!=null && library.equals(output.getAttributes().get("library"))) {
-        		if (name!=null && name.equals(output.getAttributes().get("name"))) {
+        		if (name!=null && library.equals(output.getAttributes().get("name"))) {
         			return;
         		}
         	}
@@ -252,16 +250,8 @@ public class AddResourcesListener implements SystemEventListener {
         for (UIComponent c : resources) {
         	String library = (String) c.getAttributes().get("library");
         	if (library != null) {
-        		if (library.equals("bsf")) {
-        			String name = (String) c.getAttributes().get("name");
-                    if (name != null) {
-                        name = name.toLowerCase();
-                        if ((name.contains("jquery") && name.endsWith(".js"))) {
-                        	continue;
-                        }
-                    }
-                    root.addComponentResource(context, c, "head");
-        		}
+        		if (library.equals("bsf"))
+        			root.addComponentResource(context, c, "head");
         	}
         }
         
