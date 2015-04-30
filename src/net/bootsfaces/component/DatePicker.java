@@ -108,12 +108,13 @@ public class DatePicker extends HtmlInputText {
 		Application app = context.getApplication();
 		ResourceHandler rh = app.getResourceHandler();
 		Resource rdp;
-		Iterator<Locale> i = app.getSupportedLocales();
-		while (i.hasNext()) {
-			final String jsl = "jq/ui/i18n/datepicker-" + i.next().getLanguage() + ".js";
+		Iterator<Locale> preferredLanguages = context.getExternalContext().getRequestLocales();
+		while (preferredLanguages.hasNext()) {
+			final String jsl = "jq/ui/i18n/datepicker-" + preferredLanguages.next().getLanguage() + ".js";
 			rdp = rh.createResource(jsl, C.BSF_LIBRARY);
 			if (rdp != null) { //rdp is null if the language .js is not present in jar
 				AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, jsl);
+				break;
 			}
 
 		}
