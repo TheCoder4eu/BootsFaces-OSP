@@ -67,7 +67,8 @@ public enum RdropButton {
         String s="btn-group";
         if(drop.equals(C.UP)) { s+=" drop"+drop; }
         R.encodeDropElementStart(c, rw, c.getClientId(fc), H.DIV, s);
-        
+		Tooltip.generateTooltip(fc, attrs, rw);
+
         String ts="btn btn-";
         String look = A.asString(attrs.get(A.LOOK));
         if(look!=null) { ts+=look+C.SP; } else { ts+="default "; }
@@ -91,5 +92,6 @@ public enum RdropButton {
         
         rw.endElement(H.DIV); //btn-group
         rw.writeText("\n", null);
+		Tooltip.activateTooltips(fc, c.getAttributes());
     }
 }

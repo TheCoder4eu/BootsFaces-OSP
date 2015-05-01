@@ -38,6 +38,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.RAlert;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
@@ -65,6 +66,7 @@ public class Alert extends UIComponentBase {
     public Alert() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		Tooltip.addResourceFile();
     }
 
     @Override
@@ -88,6 +90,7 @@ public class Alert extends UIComponentBase {
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
         fc.getResponseWriter().endElement(H.DIV);
+		Tooltip.activateTooltips(fc, getAttributes());
     }
 
     @Override

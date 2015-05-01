@@ -25,6 +25,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -70,6 +71,7 @@ public class InputText extends HtmlInputText {
     
     public InputText() {
         setRendererType("net.bootsfaces.component.InputTextRenderer"); 
+		Tooltip.addResourceFile();
     }
     
     @Override

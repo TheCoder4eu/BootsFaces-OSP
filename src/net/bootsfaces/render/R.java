@@ -90,6 +90,8 @@ public final class R {
         }
         rw.startElement(H.I, c);
         rw.writeAttribute(H.ID, c.getClientId()+"_icon", null);
+		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+
         
         StringBuilder sb = new StringBuilder(100); //optimize int
         //if(set!=null && set.equalsIgnoreCase("FA")) {
@@ -230,6 +232,7 @@ public final class R {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+		Tooltip.generateTooltip(fc, attrs, rw);
         if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
             rw.writeAttribute(H.CLASS, c.getContainerStyles().concat(C.SP).concat(A.PULL).concat(C.HYP).concat(pull),H.CLASS);
         } else {
@@ -272,9 +275,11 @@ public final class R {
         String cid = c.getClientId(fc);
         if(suffix!=null) { cid=cid.concat(suffix); }
         rw.writeAttribute(H.ID, cid,H.ID);
+		Tooltip.generateTooltip(fc, c.getAttributes(), rw);
         rw.writeAttribute(H.CLASS, BADGE,H.CLASS);
         rw.writeText(val, null);
         rw.endElement(H.SPAN);
+		Tooltip.activateTooltips(fc, c.getAttributes());
     }
     
     /**

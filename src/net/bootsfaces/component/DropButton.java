@@ -35,6 +35,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.RdropButton;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -63,7 +64,7 @@ public class DropButton extends UIComponentBase {
     public DropButton() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+		Tooltip.addResourceFile();
     }
 
     @Override

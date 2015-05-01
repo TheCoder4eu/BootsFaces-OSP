@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -77,6 +78,8 @@ public class GenContainerDiv extends UIComponentBase {
         }
         context.getResponseWriter()
                .endElement(H.DIV);
+		Tooltip.activateTooltips(context, getAttributes());
+
     }
 
     @Override

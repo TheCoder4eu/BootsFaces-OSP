@@ -68,6 +68,7 @@ public enum RdropMenu {
         if(!drop.equals(C.UP)) { s+=C.SP+DROP+drop; }
         
         R.encodeDropElementStart(c, rw, c.getClientId(fc), H.LI, s);
+		Tooltip.generateTooltip(fc, attrs, rw);
         rw.startElement(H.LI, c);
 	rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
 	rw.writeAttribute(H.NAME, c.getClientId(fc), H.NAME);

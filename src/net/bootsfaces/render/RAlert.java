@@ -74,6 +74,8 @@ public enum RAlert {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+		Tooltip.generateTooltip(fc, attrs, rw);
+
         
         if(sev!=null) { rw.writeAttribute(H.CLASS,alert+C.SP+alert+C.HYP+sev+C.SP+fadein,H.CLASS); }
         else               { rw.writeAttribute(H.CLASS, alert+C.SP+fadein,H.CLASS); }
