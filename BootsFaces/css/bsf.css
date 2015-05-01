@@ -19,7 +19,7 @@
 
 /* Datepicker */
 .ui-datepicker.ui-widget.ui-widget-content {
-    z-index: 5 !important;
+    z-index: 2000 !important;
 }
 .ui-datepicker-header {
         font-weight: bold;
