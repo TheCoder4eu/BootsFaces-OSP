@@ -33,6 +33,7 @@ import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * This component puts child components in a grid, very much like &lt;h:panelGrid&gt;.
@@ -82,6 +83,7 @@ public class PanelGrid extends UIOutput {
 
 	public PanelGrid() {
 		setRendererType(null); // no renderer needed
+        Tooltip.addResourceFile();
 	}
 
 	@Override
@@ -135,7 +137,7 @@ public class PanelGrid extends UIOutput {
 		}
 
 		generateContainerEnd(writer);
-
+        Tooltip.activateTooltips(context, getAttributes());
 	}
 
 	/**
@@ -318,6 +320,8 @@ public class PanelGrid extends UIOutput {
 			String clientId = this.getClientId();
 			writer.writeAttribute("id", clientId, "id");
 		}
+        Tooltip.generateTooltip(FacesContext.getCurrentInstance(), getAttributes(), writer);
+
 
 		String styleclass = A.asString(this.getAttributes().get("styleClass"));
 		if (null != styleclass&& styleclass.trim().length()>0)

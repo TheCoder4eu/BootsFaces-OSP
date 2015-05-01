@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.RIcon;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -49,6 +50,7 @@ public class Icon extends UIComponentBase {
     
     public Icon() {
         setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
     }
 
     @Override

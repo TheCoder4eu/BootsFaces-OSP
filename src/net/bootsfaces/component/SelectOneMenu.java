@@ -45,6 +45,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * This class represents and renders a combobox (a drop-down menu).
@@ -72,6 +73,7 @@ public class SelectOneMenu extends HtmlInputText {
 
     public SelectOneMenu() {
         setRendererType(null); // this component renders itself
+        Tooltip.addResourceFile();
     }
 
     /** Receives the value from the client and sends it to the JSF bean. */
@@ -124,6 +126,7 @@ public class SelectOneMenu extends HtmlInputText {
         ResponseWriter rw = context.getResponseWriter();
         String clientId = getClientId(context);
         rw.startElement(H.DIV, this);
+        Tooltip.generateTooltip(context, attrs, rw);
         rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 
         addLabel(attrs, rw, clientId);
@@ -151,6 +154,7 @@ public class SelectOneMenu extends HtmlInputText {
         closeInputGroupForAddOn(rw, hasAddon);
         closeColSpanDiv(rw, span);
         rw.endElement("div"); // form-group
+        Tooltip.activateTooltips(context, attrs);
     }
 
     /**

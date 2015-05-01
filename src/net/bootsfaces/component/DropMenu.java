@@ -36,6 +36,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.RdropMenu;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -66,6 +67,7 @@ public class DropMenu extends UIComponentBase {
     public DropMenu() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		Tooltip.addResourceFile();
     }
 
     @Override
@@ -110,6 +112,8 @@ public class DropMenu extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         rw.endElement(H.UL);
         rw.endElement(H.LI);
+		Tooltip.activateTooltips(fc, getAttributes());
+
     }
 
     @Override

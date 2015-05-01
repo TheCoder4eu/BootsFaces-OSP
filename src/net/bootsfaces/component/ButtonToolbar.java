@@ -22,6 +22,7 @@ package net.bootsfaces.component;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import net.bootsfaces.C;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -45,6 +46,7 @@ public class ButtonToolbar extends GenContainerDiv {
     
     public ButtonToolbar() {
         setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
     }
     
     /*

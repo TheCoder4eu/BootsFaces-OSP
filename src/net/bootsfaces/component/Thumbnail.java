@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.RThumbnail;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -50,6 +51,7 @@ public class Thumbnail extends UIComponentBase {
     
     public Thumbnail() {
         setRendererType(null); // this component renders itself
+        Tooltip.addResourceFile();
     }
 
     @Override

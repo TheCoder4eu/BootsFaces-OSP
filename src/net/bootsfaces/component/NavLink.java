@@ -44,6 +44,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -74,7 +75,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
     public NavLink() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+		Tooltip.addResourceFile();
     }
     
     Map<String, Object> attrs;
@@ -106,7 +107,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
                 encodeHTML(context);
             }
         } //if header
-        
+        Tooltip.activateTooltips(context, attrs);
     }
     
     public void encodeHeader(FacesContext context, String h) throws IOException {
@@ -126,6 +127,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
     public void encodeDivider(FacesContext context) throws IOException {
         ResponseWriter rw = context.getResponseWriter();
         rw.startElement(H.LI, this);
+        Tooltip.generateTooltip(context, attrs, rw);
         //rw.writeAttribute("data-class", this.getParent().getClass().getSimpleName()+"-"+this.getParent().getClass().getName(), null);
         if(this.getParent().getClass().getName().equals(NavBarLinks.COMPONENT_TYPE)) {
             rw.writeAttribute(H.CLASS, DIVIDERV, H.CLASS);
@@ -146,6 +148,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
         rw.startElement(H.LI, this);
         rw.writeAttribute(H.ID, getClientId(context), H.ID);
+        Tooltip.generateTooltip(context, attrs, rw);
         rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
         //rw.writeAttribute(H.TYPE, H.BUTTON, null);
         rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);

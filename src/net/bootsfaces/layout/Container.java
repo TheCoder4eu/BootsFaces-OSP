@@ -33,6 +33,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -57,7 +58,7 @@ public class Container extends UIComponentBase {
     public Container() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+        Tooltip.addResourceFile();
     }
 
     @Override
@@ -85,6 +86,7 @@ public class Container extends UIComponentBase {
         
         rw.startElement(H.DIV, this);
         rw.writeAttribute(H.ID,getClientId(fc),H.ID);
+        Tooltip.generateTooltip(fc, attrs, rw);
         if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         rw.writeAttribute(H.CLASS, c, H.CLASS);
         //rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
@@ -96,6 +98,7 @@ public class Container extends UIComponentBase {
             return;
         }
         fc.getResponseWriter().endElement(H.DIV);
+        Tooltip.activateTooltips(fc, getAttributes());
     }
 
     @Override

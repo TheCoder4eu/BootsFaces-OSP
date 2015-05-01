@@ -27,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -46,6 +47,7 @@ public class LinksContainer extends UIComponentBase {
     
     public LinksContainer() {
         setRendererType(null); // this component renders itself
+        Tooltip.addResourceFile();
     }
 
     @Override
@@ -67,6 +69,7 @@ public class LinksContainer extends UIComponentBase {
         
         rw.startElement(H.UL, this);
         rw.writeAttribute(H.ID,getClientId(fc),H.ID);
+        Tooltip.generateTooltip(fc, attrs, rw);
         if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
             rw.writeAttribute(H.CLASS, getContainerStyles().concat(C.SP).concat(A.PULL).concat(C.HYP).concat(pull),H.CLASS);
         } else {
@@ -89,6 +92,7 @@ public class LinksContainer extends UIComponentBase {
     public void encodeEnd(FacesContext fc) throws IOException {
         fc.getResponseWriter()
                .endElement(H.UL);
+        Tooltip.activateTooltips(fc, getAttributes());
     }
 
     @Override

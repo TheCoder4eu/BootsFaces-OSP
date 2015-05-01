@@ -55,6 +55,7 @@ public enum RWell {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        Tooltip.generateTooltip(fc, attrs, rw);
         
         if(sz!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz,H.CLASS); }
         else           { rw.writeAttribute(H.CLASS, well, H.CLASS); }

@@ -34,6 +34,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * This class represents and renders a checkbox.
@@ -61,6 +62,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 
 	public SelectBooleanCheckbox() {
 		setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
 	}
 
 	/** Receives the value from the client and sends it to the JSF bean. */
@@ -105,6 +107,8 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 
 		closeInputGroupForAddOn(rw, hasAddon);
 		closeColSpanDiv(rw, span);
+        Tooltip.activateTooltips(context, attrs);
+
 	}
 
 	/**
@@ -235,7 +239,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 
 	/** Renders the input tag. */
 	protected void renderInputTag(FacesContext context, Map<String, Object> attrs, ResponseWriter rw, String clientId) throws IOException {
-		renderInputTag(rw);
+		renderInputTag(rw, context, attrs);
 		renderInputTagAttributes(attrs, rw, clientId);
 		renderInputTagValue(context, rw);
 		renderInputTagEnd(attrs, rw);
@@ -249,8 +253,10 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void renderInputTag(ResponseWriter rw) throws IOException {
+	protected void renderInputTag(ResponseWriter rw, FacesContext context, Map<String, Object> attrs) throws IOException {
 		rw.startElement(H.DIV, this);
+        Tooltip.generateTooltip(context, attrs, rw);
+
 		rw.writeAttribute("class", "checkbox", "class");
 		rw.startElement(H.LABEL, this);
 

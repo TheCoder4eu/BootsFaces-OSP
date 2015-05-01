@@ -51,6 +51,7 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  * This class represents and renders a tab strip.
@@ -79,7 +80,7 @@ public class TabView extends UIOutput {
     public TabView() {
         setRendererType(null); // this component renders itself
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+        Tooltip.addResourceFile();
     }
 
     /**
@@ -136,6 +137,7 @@ public class TabView extends UIOutput {
 
         writer.startElement(UL, this);
         writer.writeAttribute(ID, clientId, ID);
+        Tooltip.generateTooltip(context, attributes, writer);
         String classes = "nav nav-tabs";
         if (attributes.containsKey(STYLECLASS)) {
             classes += " ";
@@ -154,6 +156,7 @@ public class TabView extends UIOutput {
         encodeTabs(context, writer, tabs, attributes, currentlyActiveIndex, hiddenInputFieldID);
         writer.endElement("ul");
         encodeTabContentPanes(context, writer, this, attributes, currentlyActiveIndex, tabs);
+        Tooltip.activateTooltips(context, attributes);
     }
 
     /**
@@ -324,6 +327,8 @@ public class TabView extends UIOutput {
         writer.startElement(LI, tab);
         writer.writeAttribute(ROLE, "presentation", ROLE);
         Map<String, Object> tabAttributes = tab.getAttributes();
+        Tooltip.generateTooltip(context, tabAttributes, writer);
+
         String classes = isActive ? ACTIVE : "";
         if (tabAttributes.get(STYLECLASS) != null) {
             classes += " ";

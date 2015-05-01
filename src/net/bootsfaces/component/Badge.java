@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.RBadge;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -50,6 +51,7 @@ public class Badge extends UIComponentBase {
     
     public Badge() {
         setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
     }
 
     @Override

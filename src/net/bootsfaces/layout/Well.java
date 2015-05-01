@@ -28,6 +28,7 @@ import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.RWell;
+import net.bootsfaces.render.Tooltip;
 
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css"),
@@ -47,6 +48,7 @@ public class Well extends UIComponentBase {
 
     public Well() {
         setRendererType(null); // this component renders itself
+        Tooltip.addResourceFile();
     }
 
     @Override
@@ -82,6 +84,7 @@ public class Well extends UIComponentBase {
             return;
         }
         context.getResponseWriter().endElement(H.DIV);
+        Tooltip.activateTooltips(context, getAttributes());
     }
 
     @Override

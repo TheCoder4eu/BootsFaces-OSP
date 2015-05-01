@@ -35,6 +35,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -75,6 +76,7 @@ public class Slider extends HtmlInputText {
     public Slider() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		Tooltip.addResourceFile();
     }
     
     /** Method added to prevent AngularFaces from setting the type */
@@ -136,6 +138,7 @@ public class Slider extends HtmlInputText {
         boolean vo=o.startsWith(C.V); boolean bottom=o.endsWith(C.BOTTOM);
         
         rw.startElement(H.DIV, null);//form-group
+        Tooltip.generateTooltip(context, attrs, rw);
         rw.writeAttribute(H.CLASS, "form-group",H.CLASS);
         R.encodeRow(rw, null, null,(vo ? SLIDERV : SLIDER)); //rw.write("<-- Slider START -->\n");//Slider Widget Row
         //-------------------------------------------------------------->
@@ -197,6 +200,7 @@ public class Slider extends HtmlInputText {
         rw.endElement(H.DIV); //rw.write("<!-- form-group -->\n");//form-group
         
         encodeJS(rw, clientId);
+        Tooltip.activateTooltips(context, attrs);
     }
 
     private void encodeVLabel(ResponseWriter rw, String label) throws IOException {

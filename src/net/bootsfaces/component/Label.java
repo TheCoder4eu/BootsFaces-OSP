@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.RLabel;
+import net.bootsfaces.render.Tooltip;
 
 
 @ResourceDependencies({
@@ -47,6 +48,7 @@ public class Label extends UIComponentBase {
 
     public Label() {
         setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
     }
 
     @Override

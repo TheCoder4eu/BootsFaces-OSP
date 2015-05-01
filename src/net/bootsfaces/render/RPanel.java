@@ -94,6 +94,7 @@ public enum RPanel {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
+        Tooltip.generateTooltip(fc, attrs, rw);
         String _style = A.asString(attrs,style);
         if (null != _style && _style.length()>0) {
           rw.writeAttribute("style", _style, "style");
@@ -163,5 +164,7 @@ public enum RPanel {
         }
         
         rw.endElement(H.DIV);
+        Tooltip.activateTooltips(fc, c.getAttributes());
+
     }
 }

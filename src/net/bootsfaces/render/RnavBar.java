@@ -106,6 +106,7 @@ public enum RnavBar {
          * When IE8 will be dropped there will be HTML5 <nav> tag instead of <div> */
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        Tooltip.generateTooltip(fc, attrs, rw);
         rw.writeAttribute(H.CLASS, ns,H.CLASS);
         rw.writeAttribute(H.ROLE, "navigation", null);
         
@@ -172,5 +173,6 @@ public enum RnavBar {
         rw.endElement(H.DIV); //collapse
         rw.endElement(H.DIV); //container
         rw.endElement(H.DIV); //navbar
+        Tooltip.activateTooltips(fc, c.getAttributes());
     }
 }

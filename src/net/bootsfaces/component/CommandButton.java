@@ -36,6 +36,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -63,7 +64,7 @@ public class CommandButton extends HtmlCommandButton {
     public CommandButton() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+		Tooltip.addResourceFile();
     }
     
     Map<String, Object> attrs;
@@ -91,7 +92,7 @@ public class CommandButton extends HtmlCommandButton {
          */
         attrs = getAttributes();
         encodeHTML(context);
-        
+		Tooltip.activateTooltips(context, getAttributes());
     }
     
     public void encodeHTML(FacesContext context) throws IOException {
@@ -110,6 +111,7 @@ public class CommandButton extends HtmlCommandButton {
         rw.writeAttribute(H.TYPE, type, null);
     	rw.writeAttribute(H.ID, CID, H.ID);
     	rw.writeAttribute(H.NAME, CID, H.NAME);
+		Tooltip.generateTooltip(context, attrs, rw);
         //TODO rw.writeAttribute(H.TYPE, H.BUTTON, null);
         if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         

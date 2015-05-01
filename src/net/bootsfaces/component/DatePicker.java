@@ -52,6 +52,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -118,6 +119,7 @@ public class DatePicker extends HtmlInputText {
 			}
 
 		}
+		Tooltip.addResourceFile();
 	}
 
 	
@@ -185,7 +187,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeHTML(fc);
 		encodeDefaultLanguageJS(fc);
-
+		Tooltip.activateTooltips(fc, getAttributes());
 	}
 
 	/**
@@ -255,6 +257,7 @@ public class DatePicker extends HtmlInputText {
 		rw.startElement(H.INPUT, null);
 		rw.writeAttribute(H.ID, clientId, null);
 		rw.writeAttribute(H.NAME, clientId, null);
+		Tooltip.generateTooltip(fc, attrs, rw);
 		rw.writeAttribute(H.TYPE, type, null);
 		rw.writeAttribute(H.CLASS, "form-control", H.CLASS);
 		if (v != null) {

@@ -22,6 +22,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextRenderer")
 public class InputTextRenderer extends CoreRenderer {
@@ -129,6 +130,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		rw.startElement(H.DIV, component);
+		Tooltip.generateTooltip(context, attrs, rw);
 		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
 		if (label != null) {
 			rw.startElement(H.LABEL, component);
@@ -239,5 +241,6 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement(H.DIV); // span
 			// rw.endElement(H.DIV); //row NO
 		}
+		Tooltip.activateTooltips(context, attrs);
 	}
 }

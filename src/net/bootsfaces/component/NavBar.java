@@ -30,6 +30,7 @@ import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.RnavBar;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -58,7 +59,7 @@ public class NavBar extends UIComponentBase {
     public NavBar() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-
+		Tooltip.addResourceFile();
     }
 
     @Override

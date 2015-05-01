@@ -27,6 +27,7 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.render.RIconAwesome;
+import net.bootsfaces.render.Tooltip;
 
 /**
  *
@@ -49,6 +50,7 @@ public class IconAwesome extends UIComponentBase {
     
     public IconAwesome() {
         setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
     }
 
     @Override
