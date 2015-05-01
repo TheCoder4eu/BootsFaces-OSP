@@ -62,7 +62,21 @@
 	</dependencies>
 	<profiles>
 		<profile>
-			<id>Mojarra 2.2.8-02</id>
+			<id>Mojarra 2.0</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>javax.faces</groupId>
+					<artifactId>jsf-api</artifactId>
+					<version>2.0</version>
+					<scope>provided</scope>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>Mojarra 2.2.10</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
@@ -71,26 +85,6 @@
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
 					<version>2.2.10</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.faces</groupId>
-					<artifactId>jsf-impl</artifactId>
-					<version>2.2.10</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>MyFaces 2.2.7</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>org.apache.myfaces.core</groupId>
-					<artifactId>myfaces-api</artifactId>
-					<version>2.2.7</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
@@ -104,12 +98,6 @@
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
-					<version>2.2.10</version>
-					<scope>provided</scope>
-				</dependency>
-				<dependency>
-					<groupId>com.sun.faces</groupId>
-					<artifactId>jsf-impl</artifactId>
 					<version>2.2.10</version>
 					<scope>provided</scope>
 				</dependency>
