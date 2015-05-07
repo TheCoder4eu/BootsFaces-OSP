@@ -1,0 +1,102 @@
+/*
+ * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ * 
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+ant.importBuild 'build.xml'
+apply plugin: 'java'
+
+//Configurations
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+libsDirName =buildDir
+archivesBaseName = 'BootsFaces-OSP-'+ant.properties.VERSION
+ant.properties.'proguard.jar.path'='lib/proguard-anttask-5.1.jar'
+ant.properties.'bsf.jar'='build/BootsFaces-OSP-'+ant.properties.VERSION+'.jar'
+
+repositories {
+mavenCentral()
+}
+
+dependencies {
+compile 'javax.enterprise:cdi-api:1.2'
+compile 'javax.servlet:servlet-api:3.+'
+compile 'com.sun.faces:jsf-api:2.2.+'
+compile 'com.sun.faces:jsf-impl:2.2.+'
+compile 'org.glassfish.web:el-impl:2.2'
+compile 'javax.validation:validation-api:1.0.0.GA'
+runtime 'com.yahoo.platform.yui:yuicompressor:2.4.8'
+runtime 'net.sf.proguard:proguard-anttask:5.1'
+}
+
+//Tasks and task dependencies
+task getDeps(type: Copy) {
+  from sourceSets.main.runtimeClasspath
+  into 'lib/'
+}
+
+task buildLib(dependsOn: ['jar', 'buildResources'])
+
+init.dependsOn getDeps
+
+cleanup.dependsOn init
+buildResources.dependsOn cleanup
+buildResources.mustRunAfter jar
+
+jar.doLast {
+copy {
+       from buildDir
+       into 'jartemp'
+       include '*.jar'
+     }
+}
+task combinedJar(type: Jar) {
+   from zipTree('jartemp/BootsFaces-OSP-'+ant.properties.VERSION+'.jar')
+   from ('./build/META-INF') {
+     include '**'
+     into 'META-INF'
+   }
+   manifest {
+      attributes(
+                 "Built-By": "BootsFaces OSP Gradle builder.",
+                 "Gradle-Version": project.gradle.gradleVersion,
+                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
+                 "Bundle-Name": "BootsFaces",
+                 "Bundle-Version": ant.properties.VERSION,
+                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
+                 "Implementation-Title": "BootsFaces",
+                 "Implementation-Version": ant.properties.VERSION,
+                 "Implementation-Vendor": "TheCoder4.eu",
+                 "Implementation-Vendor-Id": "eu.thecoder4",
+                 "Implementation-URL":"http://www.bootsfaces.net"
+                )
+   }
+}
+task deleteJarTemp(type: Delete) {
+    delete "jartemp"
+}
+buildResources.doLast {
+combinedJar.execute()
+deleteJarTemp.execute()
+}
+
+//Java Plugin config
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+}
+
