@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="BootsFaces-OSP" default="library-jar" basedir=".">
 	<!--
-	 * Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+	 * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
 	 *
 	 * This file is part of BootsFaces.
 	 * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
@@ -397,7 +397,7 @@
 		<antcall target="components-jquery"/>
 	</target>
 	
-	<target name="build-resources">
+	<target name="buildResources">
 		<echo message="Adding necessary resources in META-INF..."/>
 		<antcall target="copy-core"/>
 		
@@ -413,12 +413,12 @@
 	<target name="library-jar" depends="init">
 		<echo message="Library jar building started..."/>
 		<!-- Clean up -->
-		<antcall target="clean"/>
-		<antcall target="build-resources"/>
+		<antcall target="cleanup"/>
+		<antcall target="buildResources"/>
 		<antcall target="createjar"/>
 	</target>
 	
-	<target name="clean" description="Clean up">
+	<target name="cleanup" description="Clean up">
 		<echo>Cleaning up...</echo>
 		<delete dir="${build.dir}" />
 		<delete file="${bsf.jar}"/>
