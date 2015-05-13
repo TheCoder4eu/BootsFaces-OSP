@@ -92,11 +92,11 @@ deleteJarTemp.execute()
 }
 
 //Java Plugin config
-sourceSets {
-    main {
-        java {
-            srcDir 'src'
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        java {
+//            srcDir 'src'
+//        }
+//    }
+//}
 
