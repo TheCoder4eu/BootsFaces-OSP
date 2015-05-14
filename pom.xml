@@ -163,7 +163,7 @@
 		</profile>
 	</profiles>
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/main/java</sourceDirectory>
 		<resources>
 			<resource>
 				<directory>BootsFaces/css</directory>
