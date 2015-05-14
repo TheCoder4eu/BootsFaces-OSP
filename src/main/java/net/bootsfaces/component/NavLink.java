@@ -43,6 +43,7 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.JSEventHandlerRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -174,6 +175,8 @@ public class NavLink extends HtmlOutcomeTargetLink {
         rw.writeAttribute(H.HREF, url, null);
         rw.writeAttribute(H.ROLE, "menuitem", null);
         rw.writeAttribute("tabindex", "-1", null);
+        
+        JSEventHandlerRenderer.generateJSEventHandlers(rw, this);
 
         String icon = A.asString(attrs.get(A.ICON));
         String faicon = A.asString(attrs.get(A.ICONAWESOME));
@@ -197,7 +200,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
         rw.endElement(H.A);
         rw.endElement(H.LI);
     }
-    
+
     private String getStyleClasses() {
         String c = "";
         boolean active = A.toBool(attrs.get(A.ACTIVE));
