@@ -135,6 +135,7 @@ public enum RnavBar {
         	String href = A.asString(attrs.get(A.BRAND_HREF));
         	if(href==null) { rw.writeAttribute(H.HREF, H.HASH,H.HREF); }
         	else           { rw.writeAttribute(H.HREF, href,H.HREF); }
+                rw.startElement(H.SPAN, c);
         	if(brandImg!=null) {
         		String altText = A.asString(attrs.get(A.ALT));
         		if(altText==null) altText = "Brand"; // default
@@ -144,6 +145,7 @@ public enum RnavBar {
         		rw.endElement(H.IMG);
         	}
         	if(brand!=null) rw.writeText(brand, null);
+                rw.endElement(H.SPAN);
         	rw.endElement(H.A);
         }
         rw.endElement(H.DIV); //navbar-header
