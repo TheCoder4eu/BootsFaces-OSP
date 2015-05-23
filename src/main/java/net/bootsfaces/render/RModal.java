@@ -91,7 +91,12 @@ public enum RModal {
         rw.writeAttribute("aria-hidden", "true",null);
         
         rw.startElement(H.DIV, c); //modal-dialog
-        rw.writeAttribute(H.CLASS, MODAL+"-dialog",H.CLASS);
+        String modalStyleClass = MODAL + "-dialog";
+        if (attrs.containsKey(A.SIZE)) {
+            modalStyleClass = modalStyleClass + " " + attrs.get(A.SIZE);
+        }
+        rw.writeAttribute(H.CLASS, modalStyleClass,H.CLASS);
+        
         rw.startElement(H.DIV, c); //modal-content
         rw.writeAttribute(H.CLASS, MODAL+"-content",H.CLASS);
         
