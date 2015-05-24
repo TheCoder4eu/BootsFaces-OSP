@@ -2719,4 +2719,58 @@
 			<component-type>net.bootsfaces.component.InternalIE8CompatibilityLink</component-type>
 		</component>
 	</tag>
+		<tag>
+		<tag-name>poll</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.Poll</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000.]]></description>
+			<name>interval</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[If true, the poll is called only once. Default value: false.]]></description>
+			<name>once</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
+			<name>update</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Which input fields are to be sent? Default value: @none]]></description>
+			<name>execute</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
+			<name>actionListener</name>
+			<required>false</required>
+			<type>javax.faces.event.ActionListener</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
+			<name>action</name>
+			<required>false</required>
+			<type>javax.el.MethodExpression</type>
+		</attribute>
+	</tag>
 </facelet-taglib>
