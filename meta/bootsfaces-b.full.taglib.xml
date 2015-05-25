@@ -53,7 +53,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 		<attribute>
 			<description><![CDATA[If true close button will be displayed.]]></description>
 			<name>closable</name>
@@ -132,7 +132,7 @@
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -145,9 +145,9 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
-        <tag>
+	<tag>
 		<tag-name>icon</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Icon</component-type>
@@ -170,25 +170,25 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Icon name, mandatory.]]></description>
 			<name>name</name>
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
 			<name>size</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
 			<name>rotate</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 			<name>flip</name>
 			<required>false</required>
@@ -213,15 +213,15 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
-                <attribute>
+
+		<attribute>
 			<description><![CDATA[Boolean value: if true the element is used as Addon.]]></description>
 			<name>addon</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-    <tag>
+	<tag>
 		<tag-name>iconAwesome</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.IconAwesome</component-type>
@@ -244,25 +244,25 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Icon name, mandatory.]]></description>
 			<name>name</name>
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
 			<name>size</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
 			<name>rotate</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
+		<attribute>
 			<description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 			<name>flip</name>
 			<required>false</required>
@@ -287,8 +287,8 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
-        <attribute>
+
+		<attribute>
 			<description><![CDATA[Boolean value: if true the element is used as Addon.]]></description>
 			<name>addon</name>
 			<required>false</required>
@@ -312,12 +312,12 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
-                    <description><![CDATA[Style class of this element.]]></description>
-                    <name>styleClass</name>
-                    <required>false</required>
-                    <type>java.lang.String</type>
-                </attribute>
+		<attribute>
+			<description><![CDATA[Style class of this element.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
 			<name>binding</name>
@@ -380,7 +380,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Font Awesome Icon to show in this Button, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
 			<name>iconAwesome</name>
 			<required>false</required>
@@ -422,7 +422,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Style class of this element.]]></description>
 			<name>styleClass</name>
 			<required>false</required>
@@ -479,7 +479,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -492,7 +492,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 		<attribute>
 			<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 			<name>ondblclick</name>
@@ -613,7 +613,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Font Awesome Icon to show in this CommandButton, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
 			<name>iconAwesome</name>
 			<required>false</required>
@@ -661,7 +661,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Style class of this element.]]></description>
 			<name>styleClass</name>
 			<required>false</required>
@@ -680,7 +680,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 		<attribute>
 			<description><![CDATA[Flag indicating that, if this component is activated by the user,
                                               notifications should be delivered to interested listeners and actions
@@ -852,7 +852,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -865,7 +865,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>buttonToolbar</tag-name>
@@ -903,7 +903,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>navBar</tag-name>
@@ -953,14 +953,14 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 		<attribute>
 			<description><![CDATA[Boolean value to specify if Navbar should use inverse color scheme.]]></description>
 			<name>inverse</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport.]]></description>
 			<name>fluid</name>
 			<required>false</required>
@@ -978,7 +978,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
+		<attribute>
 			<description><![CDATA[Brand image.]]></description>
 			<name>brandImg</name>
 			<required>false</required>
@@ -1033,7 +1033,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>listLinks</tag-name>
@@ -1058,7 +1058,7 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1071,7 +1071,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>navLink</tag-name>
@@ -1138,7 +1138,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
 			<name>iconAwesome</name>
 			<required>false</required>
@@ -1162,13 +1162,13 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
+		<attribute>
 			<description><![CDATA[Adds the active state to the link.]]></description>
 			<name>active</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1181,7 +1181,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>dropButton</tag-name>
@@ -1230,7 +1230,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1243,7 +1243,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>dropMenu</tag-name>
@@ -1280,7 +1280,7 @@
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1293,7 +1293,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>thumbnail</tag-name>
@@ -1318,7 +1318,7 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1331,7 +1331,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>container</tag-name>
@@ -1350,19 +1350,19 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Boolean value default is false; when set to true, the container will be "fluid": a full width container, spanning the entire width of the viewport.]]></description>
 			<name>fluid</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
 			<name>style</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Style class of this element.]]></description>
 			<name>styleClass</name>
 			<required>false</required>
@@ -1381,7 +1381,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>row</tag-name>
@@ -1400,7 +1400,7 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
 			<name>style</name>
 			<required>false</required>
@@ -1425,7 +1425,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>column</tag-name>
@@ -1498,7 +1498,7 @@
 			<required>false</required>
 			<type>java.lang.Integer</type>
 		</attribute>
-                <attribute>
+		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
 			<name>style</name>
 			<required>false</required>
@@ -1523,7 +1523,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>panel</tag-name>
@@ -1554,30 +1554,30 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
+		<attribute>
 			<description><![CDATA[Style class of the input element.]]></description>
 			<name>styleClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
-            <description><![CDATA[Inline style of the entire panel area.]]></description>
-            <name>style</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <description><![CDATA[Inline style of the title area.]]></description>
-            <name>titleStyle</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <description><![CDATA[Inline style of the content area.]]></description>
-            <name>contentStyle</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
+		<attribute>
+			<description><![CDATA[Inline style of the entire panel area.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline style of the title area.]]></description>
+			<name>titleStyle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline style of the content area.]]></description>
+			<name>contentStyle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
 			<name>title</name>
@@ -1589,14 +1589,14 @@
 			<name>titleClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
-		</attribute>	
+		</attribute>
 		<attribute>
 			<description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
 			<name>titleClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-				<attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -1609,7 +1609,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-			
+
 	</tag>
 	<tag>
 		<tag-name>jumbotron</tag-name>
@@ -1641,7 +1641,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>well</tag-name>
@@ -1679,7 +1679,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
 	<tag>
 		<tag-name>datepicker</tag-name>
@@ -1881,7 +1881,7 @@
 		<tag-name>inputText</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InputText</component-type>
-			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>		
+			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -2172,14 +2172,15 @@
 		</attribute>
 	</tag>
 
-	<!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 5, 2014. -->
+	<!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 
+		5, 2014. -->
 	<!-- inputSecret is mostly a copy of inputText. -->
 
 	<tag>
 		<tag-name>inputSecret</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InputSecret</component-type>
-			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>		
+			<renderer-type>net.bootsfaces.component.InputTextRenderer</renderer-type>
 		</component>
 		<attribute>
 			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -2813,11 +2814,11 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-		
+
 	</tag>
-	
- <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on 
-	Nov 15, 2014. -->
+
+	<!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
+		15, 2014. -->
 	<tag>
 		<tag-name>panelGrid</tag-name>
 		<component>
@@ -2841,12 +2842,12 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-        <attribute>
-            <description>Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size.</description>
-            <name>size</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
+		<attribute>
+			<description>Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size.</description>
+			<name>size</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description>Comma-separated list of the column spans</description>
 			<name>colSpans</name>
@@ -2873,8 +2874,9 @@
 		</attribute>
 		<!-- put more tooltip attributes here -->
 	</tag>
-	
-	<!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh on Dec 28, 2014. --> 
+
+	<!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh 
+		on Dec 28, 2014. -->
 	<tag>
 		<tag-name>selectOneMenu</tag-name>
 		<component>
@@ -3119,19 +3121,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-    <tag>
+	<tag>
 		<tag-name>internalFALink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InternalFALink</component-type>
 		</component>
 	</tag>
-    <tag>
-	<tag-name>internalIE8CompatibilityLink</tag-name>
+	<tag>
+		<tag-name>internalIE8CompatibilityLink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InternalIE8CompatibilityLink</component-type>
 		</component>
 	</tag>
-		<tag>
+	<tag>
 		<tag-name>poll</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Poll</component-type>
