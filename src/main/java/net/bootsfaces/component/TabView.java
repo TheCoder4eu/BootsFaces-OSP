@@ -370,7 +370,16 @@ public class TabView extends UIOutput {
         }
         writer.writeAttribute("onclick", onclick, "onclick");
         R.encodeHTML4DHTMLAttrs(writer, tabAttributes, TAB_ATTRS);
-        writer.writeText(tabAttributes.get("title"), null);
+        
+        UIComponent iconFacet = tab.getFacet("anchor");
+        if (null != iconFacet) {
+            iconFacet.encodeAll(FacesContext.getCurrentInstance());
+            if (null != tabAttributes.get(net.bootsfaces.render.A.TITLE)) {
+                writer.writeText(C.SP + tabAttributes.get(net.bootsfaces.render.A.TITLE), null);
+            }
+        } else {
+            writer.writeText(tabAttributes.get(net.bootsfaces.render.A.TITLE), null);
+        }
         writer.endElement(A);
     }
 }
