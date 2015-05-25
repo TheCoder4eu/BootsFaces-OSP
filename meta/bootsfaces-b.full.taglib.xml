@@ -52,6 +52,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 		<attribute>
@@ -144,6 +162,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -209,6 +245,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -283,6 +337,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -491,6 +563,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 		<attribute>
@@ -679,6 +769,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 		<attribute>
@@ -864,6 +972,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -899,6 +1025,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -949,6 +1093,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1032,6 +1194,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1067,6 +1247,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1180,6 +1378,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1242,6 +1458,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1292,6 +1526,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1327,6 +1579,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1380,6 +1650,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1421,6 +1709,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1522,6 +1828,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1608,6 +1932,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 
 	</tag>
@@ -1637,6 +1979,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1675,6 +2035,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -1778,6 +2156,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 	</tag>
 	<tag>
@@ -1857,6 +2253,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 		<attribute>
 			<description><![CDATA[The default handle is squared. Specifing the "round" value for this attribute will turn the handle shape to a circle. ]]></description>
@@ -1910,6 +2324,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -2209,6 +2641,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -2541,6 +2991,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 		<attribute>
 			<description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
@@ -2772,6 +3240,24 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<!-- put more tooltip attributes here -->
 	</tag>
 
@@ -2810,6 +3296,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -2869,6 +3373,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -3032,6 +3554,24 @@
 		<attribute>
 			<description><![CDATA[The text of the tooltip.]]></description>
 			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
