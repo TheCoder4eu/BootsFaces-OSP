@@ -164,7 +164,7 @@ public enum RPanel {
         }
         
         rw.endElement(H.DIV);
-        Tooltip.activateTooltips(fc, c.getAttributes());
+        Tooltip.activateTooltips(fc, c.getAttributes(), c);
 
     }
 }

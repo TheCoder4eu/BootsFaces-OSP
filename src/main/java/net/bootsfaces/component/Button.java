@@ -116,7 +116,7 @@ public class Button extends HtmlOutcomeTargetButton {
         }
 
 		encodeHTML(context, getAttributes());
-		Tooltip.activateTooltips(context, getAttributes());
+		Tooltip.activateTooltips(context, getAttributes(), this);
 	}
 
 	/** 

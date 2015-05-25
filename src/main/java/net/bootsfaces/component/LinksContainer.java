@@ -92,7 +92,7 @@ public class LinksContainer extends UIComponentBase {
     public void encodeEnd(FacesContext fc) throws IOException {
         fc.getResponseWriter()
                .endElement(H.UL);
-        Tooltip.activateTooltips(fc, getAttributes());
+        Tooltip.activateTooltips(fc, getAttributes(), this);
     }
 
     @Override

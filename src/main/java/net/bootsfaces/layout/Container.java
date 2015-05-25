@@ -98,7 +98,7 @@ public class Container extends UIComponentBase {
             return;
         }
         fc.getResponseWriter().endElement(H.DIV);
-        Tooltip.activateTooltips(fc, getAttributes());
+        Tooltip.activateTooltips(fc, getAttributes(), this);
     }
 
     @Override

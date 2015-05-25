@@ -172,7 +172,7 @@ public final class R {
         if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         rw.writeAttribute(H.CLASS, s, H.CLASS);
         if (null != c) {
-        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes());
+        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
         }
     }
     
@@ -219,7 +219,7 @@ public final class R {
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
         if(style!=null) { rw.writeAttribute(H.STYLE, style, H.STYLE); }
         if (null != c) {
-        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes());
+        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
         }
     }
     
@@ -271,7 +271,7 @@ public final class R {
         rw.writeAttribute(H.CLASS, sclass,H.CLASS);
         rw.writeText(text, null);
         rw.endElement(H.SPAN);
-        Tooltip.activateTooltips(fc, c.getAttributes());
+        Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
     
     /**
@@ -293,7 +293,7 @@ public final class R {
         rw.writeAttribute(H.CLASS, BADGE,H.CLASS);
         rw.writeText(val, null);
         rw.endElement(H.SPAN);
-		Tooltip.activateTooltips(fc, c.getAttributes());
+		Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
     
     /**

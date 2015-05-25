@@ -92,7 +92,7 @@ public class CommandButton extends HtmlCommandButton {
          */
         attrs = getAttributes();
         encodeHTML(context);
-		Tooltip.activateTooltips(context, getAttributes());
+		Tooltip.activateTooltips(context, getAttributes(), this);
     }
     
     public void encodeHTML(FacesContext context) throws IOException {

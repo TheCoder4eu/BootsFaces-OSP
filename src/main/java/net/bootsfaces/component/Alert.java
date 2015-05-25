@@ -90,7 +90,7 @@ public class Alert extends UIComponentBase {
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
         fc.getResponseWriter().endElement(H.DIV);
-		Tooltip.activateTooltips(fc, getAttributes());
+		Tooltip.activateTooltips(fc, getAttributes(), this);
     }
 
     @Override

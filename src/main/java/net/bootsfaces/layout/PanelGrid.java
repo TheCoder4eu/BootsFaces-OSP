@@ -137,7 +137,7 @@ public class PanelGrid extends UIOutput {
 		}
 
 		generateContainerEnd(writer);
-        Tooltip.activateTooltips(context, getAttributes());
+        Tooltip.activateTooltips(context, getAttributes(), this);
 	}
 
 	/**

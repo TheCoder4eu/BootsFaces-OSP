@@ -175,6 +175,6 @@ public enum RnavBar {
         rw.endElement(H.DIV); //collapse
         rw.endElement(H.DIV); //container
         rw.endElement(H.DIV); //navbar
-        Tooltip.activateTooltips(fc, c.getAttributes());
+        Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
 }

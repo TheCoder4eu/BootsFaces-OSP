@@ -73,7 +73,7 @@ public class Jumbotron extends UIComponentBase {
             return;
         }
         context.getResponseWriter().endElement(H.DIV);
-        Tooltip.activateTooltips(context, getAttributes());
+        Tooltip.activateTooltips(context, getAttributes(), this);
     }
 
     @Override

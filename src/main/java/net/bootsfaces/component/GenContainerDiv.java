@@ -78,7 +78,7 @@ public class GenContainerDiv extends UIComponentBase {
         }
         context.getResponseWriter()
                .endElement(H.DIV);
-		Tooltip.activateTooltips(context, getAttributes());
+		Tooltip.activateTooltips(context, getAttributes(), this);
 
     }
 

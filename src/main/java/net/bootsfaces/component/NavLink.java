@@ -108,7 +108,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
                 encodeHTML(context);
             }
         } //if header
-        Tooltip.activateTooltips(context, attrs);
+        Tooltip.activateTooltips(context, attrs, this);
     }
     
     public void encodeHeader(FacesContext context, String h) throws IOException {

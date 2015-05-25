@@ -112,7 +112,7 @@ public class DropMenu extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         rw.endElement(H.UL);
         rw.endElement(H.LI);
-		Tooltip.activateTooltips(fc, getAttributes());
+		Tooltip.activateTooltips(fc, getAttributes(), this);
 
     }
 

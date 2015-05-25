@@ -241,6 +241,6 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement(H.DIV); // span
 			// rw.endElement(H.DIV); //row NO
 		}
-		Tooltip.activateTooltips(context, attrs);
+		Tooltip.activateTooltips(context, attrs, inputText);
 	}
 }

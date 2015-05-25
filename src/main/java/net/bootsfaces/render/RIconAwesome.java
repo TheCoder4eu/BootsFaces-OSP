@@ -48,7 +48,7 @@ public enum RIconAwesome {
         boolean spin = A.toBool(attrs.get("spin"));
         boolean addon = A.toBool(attrs.get("addon"));
         R.encodeIcon(fc.getResponseWriter(), c, icon, true, size, rotate, flip, spin, addon);
-		Tooltip.activateTooltips(fc, attrs);
+		Tooltip.activateTooltips(fc, attrs, c);
 
     }
     

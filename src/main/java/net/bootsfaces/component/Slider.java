@@ -227,7 +227,7 @@ public class Slider extends HtmlInputText {
 		rw.endElement(H.DIV); // rw.write("<!-- form-group -->\n");//form-group
 
 		encodeJS(rw, clientId);
-		Tooltip.activateTooltips(context, attrs);
+		Tooltip.activateTooltips(context, attrs, this);
 	}
 
 	private void encodeVLabel(ResponseWriter rw, String label) throws IOException {

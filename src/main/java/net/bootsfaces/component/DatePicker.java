@@ -187,7 +187,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeHTML(fc);
 		encodeDefaultLanguageJS(fc);
-		Tooltip.activateTooltips(fc, getAttributes());
+		Tooltip.activateTooltips(fc, getAttributes(), this);
 	}
 
 	/**

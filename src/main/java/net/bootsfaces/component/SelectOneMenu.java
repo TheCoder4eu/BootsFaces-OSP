@@ -154,7 +154,7 @@ public class SelectOneMenu extends HtmlInputText {
         closeInputGroupForAddOn(rw, hasAddon);
         closeColSpanDiv(rw, span);
         rw.endElement("div"); // form-group
-        Tooltip.activateTooltips(context, attrs);
+        Tooltip.activateTooltips(context, attrs, this);
     }
 
     /**

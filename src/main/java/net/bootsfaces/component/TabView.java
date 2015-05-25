@@ -156,7 +156,7 @@ public class TabView extends UIOutput {
         encodeTabs(context, writer, tabs, attributes, currentlyActiveIndex, hiddenInputFieldID);
         writer.endElement("ul");
         encodeTabContentPanes(context, writer, this, attributes, currentlyActiveIndex, tabs);
-        Tooltip.activateTooltips(context, attributes);
+        Tooltip.activateTooltips(context, attributes, this);
     }
 
     /**

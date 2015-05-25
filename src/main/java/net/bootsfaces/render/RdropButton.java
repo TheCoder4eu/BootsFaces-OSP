@@ -92,6 +92,6 @@ public enum RdropButton {
         
         rw.endElement(H.DIV); //btn-group
         rw.writeText("\n", null);
-		Tooltip.activateTooltips(fc, c.getAttributes());
+		Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
 }

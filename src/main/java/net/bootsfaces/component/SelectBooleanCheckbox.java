@@ -107,7 +107,7 @@ public class SelectBooleanCheckbox extends HtmlInputText {
 
 		closeInputGroupForAddOn(rw, hasAddon);
 		closeColSpanDiv(rw, span);
-        Tooltip.activateTooltips(context, attrs);
+        Tooltip.activateTooltips(context, attrs, this);
 
 	}
 

@@ -3,7 +3,9 @@ package net.bootsfaces.render;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -41,16 +43,55 @@ public class Tooltip {
 		}
 	}
 
+	private static String generateDelayAttributes(Map<String, Object> attrs) throws IOException {
+		String json="";
+		String delayShow = getAndCheckDelayAttribute("tooltip-delay-show",attrs, "show");
+		if (null == delayShow) { delayShow = getAndCheckDelayAttribute("tooltip-delay",attrs, "show"); }
+		if (null != delayShow) json += delayShow + ",";
+
+		String delayHide = getAndCheckDelayAttribute("tooltip-delay-hide",attrs, "hide");
+		if (null == delayHide) { delayHide=getAndCheckDelayAttribute("tooltip-delay",attrs, "hide"); }
+		if (null != delayHide) json += delayHide + ",";
+		if (json.length()>0) {
+			return "{" + json.substring(0,   json.length()-1) + "}";
+		}
+		return null;
+	}
+	
+	private static String getAndCheckDelayAttribute(String attributeName, Map<String, Object> attrs, String htmlAttributeName) throws FacesException {
+		String value = (String) attrs.get(attributeName);
+		if (null != value && value.length()>0) {
+			try {
+				Integer.parseInt(value);
+				return htmlAttributeName + ":" + value;
+			}
+			catch (NumberFormatException ex) {
+				throw new FacesException("The attribute " + attributeName + "has to be either numeric. The value '" + value + "' is invalid.");
+			}
+		}
+		return null;
+
+	}
+
 	public static void addResourceFile() {
 //		if (null != getAttributes().get("tooltip")) {
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/tooltip.js");
 //		}
 	}
 
-	public static void activateTooltips(FacesContext context, Map<String, Object> attributes) throws IOException {
+	public static void activateTooltips(FacesContext context, Map<String, Object> attributes, UIComponent component) throws IOException {
 		if (attributes.get("tooltip") != null) {
+			String id = component.getClientId();
+			id = id.replace(":", "\\\\:"); // we need to escape the id for jQuery
+			String delayOptions = generateDelayAttributes(attributes);
+			String options="";
+			if (null != delayOptions)
+				options = "'delay':" + delayOptions + ",";
+			if (options.length()>0)
+				options = "{" + options.substring(0,  options.length()-1) + "}";
+			
 			String js = "$(function () {\n" + 
-				  "$('[data-toggle=\"tooltip\"]').tooltip()\n" + 
+				  "$('#" + id + "').tooltip(" + options + ")\n" + 
 			"});\n";
 			context.getResponseWriter().write("<script type='text/javascript'>" + js + "</script>");
 		}
