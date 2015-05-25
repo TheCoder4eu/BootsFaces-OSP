@@ -39,6 +39,21 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 		<attribute>
 			<description><![CDATA[If true close button will be displayed.]]></description>
 			<name>closable</name>
@@ -117,6 +132,20 @@
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
         <tag>
 		<tag-name>icon</tag-name>
@@ -171,6 +200,20 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
                 <attribute>
 			<description><![CDATA[Boolean value: if true the element is used as Addon.]]></description>
 			<name>addon</name>
@@ -178,7 +221,7 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-        <tag>
+    <tag>
 		<tag-name>iconAwesome</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.IconAwesome</component-type>
@@ -219,7 +262,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+        <attribute>
 			<description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 			<name>flip</name>
 			<required>false</required>
@@ -231,7 +274,21 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-                <attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
+        <attribute>
 			<description><![CDATA[Boolean value: if true the element is used as Addon.]]></description>
 			<name>addon</name>
 			<required>false</required>
@@ -422,6 +479,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 		<attribute>
 			<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 			<name>ondblclick</name>
@@ -597,6 +668,20 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
+		<attribute>
 			<description><![CDATA[Flag indicating that, if this component is activated by the user,
                                               notifications should be delivered to interested listeners and actions
                                               immediately (that is, during Apply Request Values phase) rather than
@@ -767,6 +852,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>buttonToolbar</tag-name>
@@ -791,6 +890,20 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>navBar</tag-name>
@@ -828,6 +941,20 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
+		<attribute>
 			<description><![CDATA[Boolean value to specify if Navbar should use inverse color scheme.]]></description>
 			<name>inverse</name>
 			<required>false</required>
@@ -851,7 +978,7 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+        <attribute>
 			<description><![CDATA[Brand image.]]></description>
 			<name>brandImg</name>
 			<required>false</required>
@@ -893,6 +1020,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>listLinks</tag-name>
@@ -917,6 +1058,20 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>navLink</tag-name>
@@ -1007,12 +1162,26 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
-                <attribute>
+        <attribute>
 			<description><![CDATA[Adds the active state to the link.]]></description>
 			<name>active</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>dropButton</tag-name>
@@ -1061,6 +1230,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>dropMenu</tag-name>
@@ -1097,6 +1280,20 @@
 			<required>true</required>
 			<type>java.lang.String</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>thumbnail</tag-name>
@@ -1121,6 +1318,20 @@
 			<required>false</required>
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>container</tag-name>
@@ -1157,6 +1368,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>row</tag-name>
@@ -1187,6 +1412,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>column</tag-name>
@@ -1271,6 +1510,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>panel</tag-name>
@@ -1342,7 +1595,21 @@
 			<name>titleClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
-		</attribute>	
+		</attribute>
+				<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+			
 	</tag>
 	<tag>
 		<tag-name>jumbotron</tag-name>
@@ -1361,6 +1628,20 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>well</tag-name>
@@ -1385,6 +1666,20 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		
 	</tag>
 	<tag>
 		<tag-name>datepicker</tag-name>
@@ -1471,6 +1766,19 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 	</tag>
 	<tag>
 		<tag-name>slider</tag-name>
@@ -1538,6 +1846,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		<attribute>
 			<description><![CDATA[The default handle is squared. Specifing the "round" value for this attribute will turn the handle shape to a circle. ]]></description>
 			<name>handle-shape</name>
 			<required>false</required>
@@ -1580,6 +1901,19 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 		<attribute>
 			<description><![CDATA[Type of the input. The default is text.]]></description>
 			<name>type</name>
@@ -1865,6 +2199,19 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 		<attribute>
 			<description><![CDATA[Type of the input. The default is text.]]></description>
 			<name>type</name>
@@ -2182,6 +2529,19 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		<attribute>
 			<description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
 			<name>value</name>
 			<required>false</required>
@@ -2399,6 +2759,19 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 	</tag>
 
 	<!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on 
@@ -2427,6 +2800,19 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 		
 	</tag>
 	
@@ -2473,6 +2859,19 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 	</tag>
 	
 	<!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh on Dec 28, 2014. --> 
@@ -2622,6 +3021,19 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
 		<attribute>
 			<description><![CDATA[OnClick DHTML event .]]></description>
 			<name>onclick</name>
