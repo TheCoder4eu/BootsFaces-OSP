@@ -553,7 +553,6 @@ public class SelectOneMenu extends HtmlInputText {
             throws IOException {
         rw.writeAttribute(H.ID, clientId, null);
         rw.writeAttribute(H.NAME, clientId, null);
-        rw.writeAttribute(H.TYPE, "checkbox", null);
 
         StringBuilder sb;
         String s;
@@ -568,6 +567,11 @@ public class SelectOneMenu extends HtmlInputText {
         if (cssClass != null) {
             sb.append(" ").append(cssClass);
         }
+		String isRequired = A.asString(attrs.get("required"));
+		if ("true".equalsIgnoreCase(isRequired)) {
+			sb.append(" ").append("bf-required");
+		}
+
         s = sb.toString().trim();
         if (s != null && s.length() > 0) {
             rw.writeAttribute(H.CLASS, s, H.CLASS);

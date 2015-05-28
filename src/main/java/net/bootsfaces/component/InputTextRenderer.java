@@ -179,6 +179,9 @@ public class InputTextRenderer extends CoreRenderer {
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
+		if (inputText.isRequired()) {
+			sb.append(" ").append("bf-required");
+		}
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
 			rw.writeAttribute(H.CLASS, s, H.STYLECLASS);
