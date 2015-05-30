@@ -209,12 +209,20 @@ public final class R {
             }
             
         }
+        
         if(cxs>0) {sb.append(" col-xs-").append(cxs);}
+        if(cxs==0) {sb.append(" hidden-xs");}
+        
         if(csm>0) {sb.append(" col-sm-").append(csm);}
+        if(csm==0) {sb.append(" hidden-sm");}
+        
         if(clg>0) {sb.append(" col-lg-").append(clg);}
+        if(clg==0) {sb.append(" hidden-lg");}
+        
         if(oxs>0) {sb.append(" col-xs-offset-").append(oxs);}
         if(osm>0) {sb.append(" col-sm-offset-").append(osm);}
         if(olg>0) {sb.append(" col-lg-offset-").append(olg);}
+        
         if(sclass!=null) {sb.append(C.SP).append(sclass); }
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
         if(style!=null) { rw.writeAttribute(H.STYLE, style, H.STYLE); }
