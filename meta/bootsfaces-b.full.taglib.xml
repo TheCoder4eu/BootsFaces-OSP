@@ -3727,4 +3727,151 @@
 			<type>javax.el.MethodExpression</type>
 		</attribute>
 	</tag>
+	   <tag>
+      <description><![CDATA[Renders all or some FacesMessages depending on the "for" and
+"globalOnly" attributes.
+
+<ul>
+<li>If globalOnly = true, only global messages, that have no
+associated clientId, will be displayed.</li>
+<li>else if there is a "for" attribute, only messages that are
+assigned to the component referenced by the "for" attribute
+are displayed.</li>
+<li>else all messages are displayed.</li>
+</ul>]]></description>
+      <tag-name>messages</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.Messages</component-type>
+			<renderer-type>net.bootsfaces.component.MessagesRenderer</renderer-type>
+		</component>
+      
+      <attribute>
+         <description><![CDATA[HTML: CSS styling instructions.]]></description>
+         <name>style</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+         <name>styleClass</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+         <name>errorClass</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+         <name>errorStyle</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+         <name>fatalClass</name>
+         <type>java.lang.String</type>
+         </attribute>
+      <attribute>
+         <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+         <name>fatalStyle</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+         <name>infoClass</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+         <name>infoStyle</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[If true, the message summary will be rendered as a tooltip (i.e. HTML title attribute).]]></description>
+         <name>tooltip</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+         <name>warnClass</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+         <name>warnStyle</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
+         <name>dir</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a
+specific component should be displayed, ie whether messages should be ignored
+if they are attached to a particular component. Defaults to false.]]></description>
+         <name>globalOnly</name>
+         <type>java.lang.Boolean</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[Specifies whether the detailed information from the message should be shown. 
+Default to false.]]></description>
+         <name>showDetail</name>
+         <type>java.lang.Boolean</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[Specifies whether the summary information from the message should be shown.
+Defaults to true.]]></description>
+         <name>showSummary</name>
+      </attribute>
+      <attribute>
+         <description><![CDATA[The ID of the component whose attached FacesMessage object (if present) 
+should be diplayed by this component. It takes precedence over globalOnly.]]></description>
+         <name>for</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer
+component. The id is not necessarily unique across all components in the current view.]]></description>
+         <name>id</name>
+         <type>java.lang.String</type>
+      </attribute>
+      <attribute>
+         <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+         <name>rendered</name>
+         <type>java.lang.Boolean</type>
+      </attribute>
+      		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+      
+ </tag>
+	
 </facelet-taglib>
