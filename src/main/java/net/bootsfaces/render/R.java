@@ -21,6 +21,7 @@ package net.bootsfaces.render;
 
 import net.bootsfaces.C;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.el.ValueExpression;
@@ -194,11 +195,16 @@ public final class R {
      */
     public static final void encodeColumn(ResponseWriter rw, UIComponent c,
             int span, int cxs, int csm, int clg, int offset, int oxs, int osm, int olg, String style, String sclass) throws IOException {
+        
         rw.startElement(H.DIV, c);
-        if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
-        if (null != c) {
-        	Tooltip.generateTooltip(FacesContext.getCurrentInstance(),c.getAttributes(), rw);
+        Map<String, Object> componentAttrs = new HashMap<String, Object>();
+        
+        if(c != null) { 
+            rw.writeAttribute(H.ID,c.getClientId(),H.ID); 
+            Tooltip.generateTooltip(FacesContext.getCurrentInstance(),c.getAttributes(), rw);
+            componentAttrs = c.getAttributes();
         }
+        
         
         StringBuilder sb= new StringBuilder();
         if(span>0 || offset>0) {
@@ -207,17 +213,23 @@ public final class R {
                 if(span>0) { sb.append(C.SP); }
                 sb.append(OFFSET+offset);
             }
-            
         }
         
         if(cxs>0) {sb.append(" col-xs-").append(cxs);}
-        if(cxs==0) {sb.append(" hidden-xs");}
+        if ( componentAttrs.get("col-xs") != null && cxs==0){
+            sb.append(" hidden-xs");
+        }
         
         if(csm>0) {sb.append(" col-sm-").append(csm);}
-        if(csm==0) {sb.append(" hidden-sm");}
+        if ( componentAttrs.get("col-sm") != null && csm==0){
+            sb.append(" hidden-sm");
+        }
+        
         
         if(clg>0) {sb.append(" col-lg-").append(clg);}
-        if(clg==0) {sb.append(" hidden-lg");}
+        if ( componentAttrs.get("col-lg") != null && clg==0){
+            sb.append(" hidden-lg");
+        }
         
         if(oxs>0) {sb.append(" col-xs-offset-").append(oxs);}
         if(osm>0) {sb.append(" col-sm-offset-").append(osm);}
@@ -226,6 +238,7 @@ public final class R {
         if(sclass!=null) {sb.append(C.SP).append(sclass); }
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
         if(style!=null) { rw.writeAttribute(H.STYLE, style, H.STYLE); }
+        
         if (null != c) {
         	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes());
         }

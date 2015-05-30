@@ -52,11 +52,7 @@ public class Column extends UIComponentBase {
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {
-        /*
-         * ...
-         * </div>
-         */
-    	
+            	
         if (isRendered())
         {
             ResponseWriter rw = fc.getResponseWriter();
