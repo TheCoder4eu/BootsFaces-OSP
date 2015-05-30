@@ -1,138 +1,256 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.bootsfaces</groupId>
-	<artifactId>bootsfaces</artifactId>
-	<version>0.6.7-SNAPSHOT</version>
-	<name>BootsFaces</name>
-	<description>TheCoder4EU</description>
-	<url>http://www.bootsfaces.net</url>
-	<licenses>
-		<license>
-			<name>GNU General Public License (GPL) version 3.0</name>
-			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
-		</license>
-		<license>
-			<name>GNU Lesser General Public License (LGPL) version 3.0</name>
-			<url>http://www.gnu.org/licenses/lgpl.txt</url>
-		</license>
-	</licenses>
-	<developers>
-		<developer>
-			<name>BootsFaces Team</name>
-			<email>bootsfaces@thecoder4.eu</email>
-			<organization>TheCoder4EU</organization>
-			<organizationUrl>http://www.thecoder4.eu/</organizationUrl>
-		</developer>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.bootsfaces</groupId>
+    <artifactId>bootsfaces</artifactId>
+    <version>0.6.7-SNAPSHOT</version>
+    <name>BootsFaces</name>
+    <description>TheCoder4EU</description>
+    <url>http://www.bootsfaces.net</url>
+    <licenses>
+        <license>
+            <name>GNU General Public License (GPL) version 3.0</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+        <license>
+            <name>GNU Lesser General Public License (LGPL) version 3.0</name>
+            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>BootsFaces Team</name>
+            <email>bootsfaces@thecoder4.eu</email>
+            <organization>TheCoder4EU</organization>
+            <organizationUrl>http://www.thecoder4.eu/</organizationUrl>
+        </developer>
 
-		<developer>
-			<name>Stephan Rauh</name>
-			<email>webmaster1@beyondjava.de</email>
-			<organization>BeyondJava.net</organization>
-			<organizationUrl>http://www.beyondjava.net</organizationUrl>
-		</developer>
-	</developers>
-	<scm>
-		<connection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</connection>
-		<developerConnection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
-		<url>git@github.com:TheCoder4eu/BootsFaces-OSP.git</url>
-	</scm>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.6</maven.compiler.source>
-		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.testSource>1.6</maven.compiler.testSource>
-		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
-	</properties>
+        <developer>
+            <name>Stephan Rauh</name>
+            <email>webmaster1@beyondjava.de</email>
+            <organization>BeyondJava.net</organization>
+            <organizationUrl>http://www.beyondjava.net</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</connection>
+        <developerConnection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
+        <url>git@github.com:TheCoder4eu/BootsFaces-OSP.git</url>
+    </scm>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+        <maven.compiler.testSource>1.6</maven.compiler.testSource>
+        <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
+    </properties>
 
 
-	<dependencies>
-		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
-			<version>3.0.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-	</dependencies>
-	<profiles>
-		<profile>
-			<id>Mojarra 2.0</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>javax.faces</groupId>
-					<artifactId>jsf-api</artifactId>
-					<version>2.0</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>Mojarra 2.2.11</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>com.sun.faces</groupId>
-					<artifactId>jsf-api</artifactId>
-					<version>2.2.11</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-		</profile>
-		<profile>
-			<id>MavenCentral</id>
-			<activation>
-				<activeByDefault>false</activeByDefault>
-			</activation>
-			<dependencies>
-				<dependency>
-					<groupId>com.sun.faces</groupId>
-					<artifactId>jsf-api</artifactId>
-					<version>2.2.11</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-source-plugin</artifactId>
-						<version>2.2.1</version>
-						<executions>
-							<execution>
-								<id>attach-sources</id>
-								<goals>
-									<goal>jar-no-fork</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-javadoc-plugin</artifactId>
-						<configuration>
-							<failOnError>false</failOnError>
-						</configuration>
-						<version>2.9.1</version>
-						<executions>
-							<execution>
-								<id>attach-javadocs</id>
-								<goals>
-									<goal>jar</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
+    <!-- DEPENDENCY MANAGEMENT SECTION -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.shrinkwrap.resolver</groupId>
+                <artifactId>shrinkwrap-resolver-bom</artifactId>
+                <version>2.1.1</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+                   
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.1.8.Final</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+            
+        </dependencies>
+    </dependencyManagement>
+    
+    
+    <dependencies>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        
+        
+        <!-- Test dependencies -->
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        
+       
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.arquillian.protocol</groupId>
+            <artifactId>arquillian-protocol-servlet</artifactId>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <scope>test</scope>
+            <type>jar</type>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    
+    <!-- BUILD SECTION -->
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <excludes>
+                        <exclude>rebel.xml</exclude>
+                        <exclude>.gitignore</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+        
+        <!-- resources -->
+        <resources>
+            <resource>
+                <directory>BootsFaces/css</directory>
+                <targetPath>META-INF/resources/bsf/css</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/js</directory>
+                <targetPath>META-INF/resources/bsf/js</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/jq</directory>
+                <targetPath>META-INF/resources/bsf/jq</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/fonts</directory>
+                <targetPath>META-INF/resources/fonts</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/generated/css</directory>
+                <targetPath>META-INF/resources/bsf/css</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/generated/js</directory>
+                <targetPath>META-INF/resources/bsf/js</targetPath>
+            </resource>
+            <resource>
+                <directory>BootsFaces/generated/fonts</directory>
+                <targetPath>META-INF/resources/fonts</targetPath>
+            </resource>
+            <resource>
+                <directory>meta</directory>
+                <targetPath>META-INF</targetPath>
+            </resource>
+        </resources>
+    </build>
+    
+    
+    
+    <!-- PROFILES SECTION -->
+    <profiles>
+        <profile>
+            <id>Mojarra 2.0</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>2.0</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>Mojarra 2.2.11</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>2.2.11</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>MavenCentral</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sun.faces</groupId>
+                    <artifactId>jsf-api</artifactId>
+                    <version>2.2.11</version>
+                    <scope>provided</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <configuration>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                        <version>2.9.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -158,101 +276,23 @@
                             <autoReleaseAfterClose>false</autoReleaseAfterClose>
                         </configuration>
                     </plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
-		<resources>
-			<resource>
-				<directory>BootsFaces/css</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/js</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/jq</directory>
-				<targetPath>META-INF/resources/bsf/jq</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/fonts</directory>
-				<targetPath>META-INF/resources/fonts</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/generated/css</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/generated/js</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/generated/fonts</directory>
-				<targetPath>META-INF/resources/fonts</targetPath>
-			</resource>
-			<resource>
-				<directory>meta</directory>
-				<targetPath>META-INF</targetPath>
-			</resource>
-		</resources>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source />
-					<target />
-				</configuration>
-				<executions>
-					<execution>
-						<id>default-compile</id>
-						<configuration>
-							<showDeprecation>true</showDeprecation>
-							<showWarnings>true</showWarnings>
-							<compilerArguments>
-								<source>${maven.compiler.target}</source>
-								<target>${maven.compiler.source}</target>
-							</compilerArguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<configuration>
-							<showDeprecation>true</showDeprecation>
-							<showWarnings>true</showWarnings>
-							<compilerArguments>
-								<source>${maven.compiler.testTarget}</source>
-								<target>${maven.compiler.testSource}</target>
-							</compilerArguments>
-						</configuration>
-					</execution>
-				</executions>
-
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.5</version>
-				<configuration>
-					<excludes>
-						<exclude>rebel.xml</exclude>
-						<exclude>.gitignore</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+    
+    
+    
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>
