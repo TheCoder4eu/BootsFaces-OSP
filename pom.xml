@@ -182,56 +182,11 @@
 				<targetPath>META-INF/resources/fonts</targetPath>
 			</resource>
 			<resource>
-				<directory>BootsFaces/generated/css</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/generated/js</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/generated/fonts</directory>
-				<targetPath>META-INF/resources/fonts</targetPath>
-			</resource>
-			<resource>
 				<directory>meta</directory>
 				<targetPath>META-INF</targetPath>
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source />
-					<target />
-				</configuration>
-				<executions>
-					<execution>
-						<id>default-compile</id>
-						<configuration>
-							<showDeprecation>true</showDeprecation>
-							<showWarnings>true</showWarnings>
-							<compilerArguments>
-								<source>${maven.compiler.target}</source>
-								<target>${maven.compiler.source}</target>
-							</compilerArguments>
-						</configuration>
-					</execution>
-					<execution>
-						<id>default-testCompile</id>
-						<configuration>
-							<showDeprecation>true</showDeprecation>
-							<showWarnings>true</showWarnings>
-							<compilerArguments>
-								<source>${maven.compiler.testTarget}</source>
-								<target>${maven.compiler.testSource}</target>
-							</compilerArguments>
-						</configuration>
-					</execution>
-				</executions>
-
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
