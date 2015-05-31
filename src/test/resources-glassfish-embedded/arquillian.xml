@@ -9,14 +9,31 @@
         <property name="deploymentExportPath">target/deployment</property>
     </engine>
 
+
     <container qualifier="arquillian-glassfish-embedded" default="true">
         <configuration>
             
         </configuration>
     </container>
     
+    <!--
+    Available configurations for  <extension qualifier="webdriver">. https://docs.jboss.org/author/display/ARQ/Drone
+    
+browser 	Determines which browser instance is created for WebDriver testing. Following values are valid:
+iePort 	  	Default port where to connect for Internet Explorer driver
+remoteAddress 	Default address for remote driver to connect
+remoteReusable 	The flag which indicates that remote session should be reused between subsequent executions - gives opportunity to reuse browser window for debugging and/or test execution speed-up.
+reuseCookies 	If you are using remote reusable browser, you can force it to reuse cookies
+chromeDriverBinary 	  	Path to chromedriver binary
+ieDriverBinary 	  	        Path to Internet Explorer driver binary
+firefoxExtensions 	  	Path or multiple paths to xpi files that will be installed into Firefox instance as extensions. Separate paths using space, use quotes in case that path contains spaces
+firefox_profile 	  	Path to Firefox Profile to be used instead of default one delivered with FirefoxDriver
+firefoxUserPreferences 	  	Path to Firefox user preferences. This file will be parsed and values will be applied to freshly created Firefox profile.
+dimensions 	  	Dimensions of browser window in widthxheight format. This will resize the window if supported by underlying browser. Useful for phantomjs, which by default defines a very small viewport 
+
+-->
      <extension qualifier="webdriver">
-        <property name="browser">firefox</property>
+        <property name="browser">${project.integration.tests.browser}</property>
     </extension>
 
 </arquillian>
