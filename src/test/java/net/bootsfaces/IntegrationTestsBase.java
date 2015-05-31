@@ -1,8 +1,11 @@
 package net.bootsfaces;
 
+import java.io.File;
 import java.net.URL;
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.test.api.ArquillianResource;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.rules.TestRule;
@@ -10,18 +13,16 @@ import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author Yeray Santana Borges
+ * This is a base class for Arquillian integration tests.
+ * It creates the base deployment include the boostFaces compiled library. 
+ * 
+ * @author yersan
  */
 public class IntegrationTestsBase {
-     @ArquillianResource
+    
+    @ArquillianResource
     protected URL context;
 
     protected final static String WEBAPP_SRC = "target/test-classes/webapp/";
@@ -29,6 +30,11 @@ public class IntegrationTestsBase {
     @Drone
     protected WebDriver browser;
     
+    public static WebArchive createBaseDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "test.war")
+                .addAsLibraries(new File("target/bootsfaces-test.jar"));
+
+    }
     
     @Rule
     public TestRule watcher = new TestWatcher() {
