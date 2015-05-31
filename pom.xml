@@ -324,7 +324,7 @@
                     phantomjs
                     safari 
                 -->
-                <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
+                <project.integration.tests.browser>phantomjs</project.integration.tests.browser>
             </properties>
             
             <dependencies>
@@ -342,11 +342,18 @@
                     <version>1.0.0.CR4</version>
                     <scope>test</scope>
                 </dependency>
+                
+                <!-- required library to in using phantomjs -->
+                <dependency>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                    <version>18.0</version>
+                </dependency>
              
                 <dependency>
                     <groupId>javax</groupId>
                     <artifactId>javaee-api</artifactId>
-                    <version>7.0</version>
+                    <version>6.0</version>
                     <scope>provided</scope>
                 </dependency>
               
