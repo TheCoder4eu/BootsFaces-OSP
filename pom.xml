@@ -7,6 +7,7 @@
     <name>BootsFaces</name>
     <description>TheCoder4EU</description>
     <url>http://www.bootsfaces.net</url>
+    
     <licenses>
         <license>
             <name>GNU General Public License (GPL) version 3.0</name>
@@ -17,6 +18,7 @@
             <url>http://www.gnu.org/licenses/lgpl.txt</url>
         </license>
     </licenses>
+    
     <developers>
         <developer>
             <name>BootsFaces Team</name>
@@ -32,23 +34,29 @@
             <organizationUrl>http://www.beyondjava.net</organizationUrl>
         </developer>
     </developers>
+    
     <scm>
         <connection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</connection>
         <developerConnection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
         <url>git@github.com:TheCoder4eu/BootsFaces-OSP.git</url>
     </scm>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.testSource>1.6</maven.compiler.testSource>
         <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
+        
+        <maven.test.skip>false</maven.test.skip>
     </properties>
 
 
     <!-- DEPENDENCY MANAGEMENT SECTION -->
     <dependencyManagement>
         <dependencies>
+            
             <dependency>
                 <groupId>org.jboss.shrinkwrap.resolver</groupId>
                 <artifactId>shrinkwrap-resolver-bom</artifactId>
@@ -56,13 +64,22 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            
                    
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
-                <version>1.1.8.Final</version>
+                <version>1.1.7.Final</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-bom</artifactId>
+                <version>2.0.0.Alpha4</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
             
         </dependencies>
@@ -76,6 +93,7 @@
             <version>3.0.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -85,14 +103,12 @@
         
         
         <!-- Test dependencies -->
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-        
        
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
@@ -118,6 +134,22 @@
             <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
             <scope>test</scope>
         </dependency>
+        
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-drone-webdriver-depchain</artifactId>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+        
+        <!-- <dependency>
+            <groupId>org.jboss.arquillian.graphene</groupId>
+            <artifactId>graphene-webdriver</artifactId>
+            <version>2.0.3.Final</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>-->
+        
     </dependencies>
     
     
@@ -140,6 +172,7 @@
         
         <!-- resources -->
         <resources>
+            
             <resource>
                 <directory>BootsFaces/css</directory>
                 <targetPath>META-INF/resources/bsf/css</targetPath>
@@ -172,6 +205,7 @@
                 <directory>meta</directory>
                 <targetPath>META-INF</targetPath>
             </resource>
+            
         </resources>
     </build>
     
@@ -279,10 +313,93 @@
                 </plugins>
             </build>
         </profile>
+        
+        <profile>
+            <id>glassfish-embedded</id>
+            <dependencies>
+                
+                <dependency>
+                    <groupId>org.glassfish.main.extras</groupId>
+                    <artifactId>glassfish-embedded-all</artifactId>
+                    <version>3.1.2.2</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                
+                <dependency>
+                    <groupId>org.glassfish</groupId>
+                    <artifactId>javax.json</artifactId>
+                    <version>1.0.4</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-client</artifactId>
+                    <version>1.3</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.glassfish.tyrus</groupId>
+                    <artifactId>tyrus-container-grizzly-client</artifactId>
+                    <version>1.3</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.glassfish.jersey.core</groupId>
+                    <artifactId>jersey-client</artifactId>
+                    <version>2.4</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+                    <version>1.0.0.CR4</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                    <version>2.2.4</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                
+            </dependencies>
+            
+            <build>
+                
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.18.1</version>
+                    </plugin>
+                </plugins>
+           
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources-glassfish-embedded</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
+            </build>
+            
+        </profile>
     </profiles>
-    
-    
-    
     
     
     <distributionManagement>
@@ -295,4 +412,5 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
+    
 </project>
