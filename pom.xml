@@ -48,7 +48,8 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.testSource>1.6</maven.compiler.testSource>
         <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
-        
+        <maven.compiler.debug>true</maven.compiler.debug>
+        <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
         <maven.test.skip>false</maven.test.skip>
     </properties>
 
