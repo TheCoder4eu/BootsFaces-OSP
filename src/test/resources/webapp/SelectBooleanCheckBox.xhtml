@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>Column IT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="mainForm" prependId="false">
+            
+            <b:selectBooleanCheckbox id="chk_1" value="#{sessionBean.boolValue1}" 
+                                     onchange="alert('onchange')" 
+                                     onselect="alert('onselect')"
+                                     valueChangeListener="#{sessionBean.valueChangeMethod}">
+            </b:selectBooleanCheckbox>
+            
+            
+            <b:selectBooleanCheckbox id="chk_2" value="#{sessionBean.boolValue2}">
+                <f:validator validatorId="net.bootsfaces.requiredCheckBoxValidator" />
+            </b:selectBooleanCheckbox>
+            
+            <b:selectBooleanCheckbox id="chk_3" binding="#{sessionBean.booleanCheckbox}" /> 
+            
+            <h:commandButton id="cmd" value="Toogle" >
+                <f:ajax execute="@Form" render="@Form" listener="#{sessionBean.ajaxAction}" />
+            </h:commandButton>
+            
+            <h:messages id="msg" showSummary="true" showDetail="true"/>
+        </h:form>
+    </h:body>
+</html>

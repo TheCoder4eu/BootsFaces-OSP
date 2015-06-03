@@ -1,0 +1,72 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package net.boostfaces.component;
+
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ValueChangeEvent;
+import javax.inject.Named;
+import net.bootsfaces.component.SelectBooleanCheckbox;
+
+/**
+ *
+ * @author yersan
+ */
+@Named
+@SessionScoped
+public class SessionBean implements Serializable {
+
+    private boolean boolValue1;
+    private boolean boolValue2 = true;
+    private int valueChangeCount;
+    private SelectBooleanCheckbox booleanCheckbox;
+
+    
+    public void ajaxAction(){
+        boolValue1 = !boolValue1;
+    }
+
+    public void valueChangeMethod(ValueChangeEvent e){
+       valueChangeCount++;
+    }
+
+    public boolean isBoolValue1() {
+        return boolValue1;
+    }
+
+    public void setBoolValue1(boolean boolValue1) {
+        this.boolValue1 = boolValue1;
+    }
+
+    public boolean isBoolValue2() {
+        return boolValue2;
+    }
+
+    public void setBoolValue2(boolean boolValue2) {
+        this.boolValue2 = boolValue2;
+    }
+
+    public int getValueChangeCount() {
+        return valueChangeCount;
+    }
+
+    public void setValueChangeCount(int valueChangeCount) {
+        this.valueChangeCount = valueChangeCount;
+    }
+    
+
+    public SelectBooleanCheckbox getBooleanCheckbox() {
+        if ( booleanCheckbox == null ) {
+            booleanCheckbox = new SelectBooleanCheckbox();
+            booleanCheckbox.setValue(Boolean.TRUE);
+        }
+        return booleanCheckbox;
+    }
+
+    public void setBooleanCheckbox(SelectBooleanCheckbox booleanCheckbox) {
+        this.booleanCheckbox = booleanCheckbox;
+    }
+}
