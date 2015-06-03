@@ -42,7 +42,7 @@ public final class A {
     public static final String BRAND_ALIGN=BRAND+"Align";
     public static final String BRAND_IMG=BRAND+"Img";
     public static final String CLOSABLE="closable";
-    public static final String CLOSE_ON_ESC="closeonescape";
+    public static final String CLOSE_ON_ESC="close-on-escape";
     public static final String FIXED="fixed";
     public static final String STATIC="static";
     public static final String FRAGMENT="fragment";
