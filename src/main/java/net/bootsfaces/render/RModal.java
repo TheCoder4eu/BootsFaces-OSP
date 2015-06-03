@@ -83,6 +83,18 @@ public enum RModal {
         if (attrs.containsKey(STYLECLASS)) {
             styleClasses = attrs.get(STYLECLASS) + " " + styleClasses;
         }
+        Object backdropAsString = attrs.get(A.BACKDROP);
+		boolean backdrop= (backdropAsString==null) || (A.toBool(backdropAsString));
+        if (!backdrop) {
+        	rw.writeAttribute("data-backdrop", "static", null);
+        }
+
+        Object closeOnEscAsString = attrs.get(A.CLOSE_ON_ESC);
+		boolean closeOnEsc= (closeOnEscAsString==null) || (A.toBool(closeOnEscAsString));
+        if (!closeOnEsc) {
+        	rw.writeAttribute("data-keyboard", "false", null);
+        }
+
         rw.writeAttribute(H.CLASS, styleClasses,H.CLASS);
         rw.writeAttribute(H.ROLE, "dialog",null);
         rw.writeAttribute("tabindex", "-1",null);
