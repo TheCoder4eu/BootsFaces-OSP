@@ -76,7 +76,6 @@ public enum RModal {
         Map<String, Object> attrs = c.getAttributes();
         
         String title = attrs.get(A.TITLE).toString();
-        boolean closable= A.toBool(attrs.get(A.CLOSABLE));
         rw.startElement(H.DIV, c); //modal
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
         
@@ -103,12 +102,16 @@ public enum RModal {
         rw.startElement(H.DIV, c); //modal-header
         rw.writeAttribute(H.CLASS, MODALHEAD,H.CLASS);
         
-        rw.startElement(H.BUTTON, c);
-        rw.writeAttribute(H.TYPE, H.BUTTON,H.TYPE);
-        rw.writeAttribute(H.CLASS, "close",H.CLASS);
-        rw.writeAttribute(H.DISMISS, MODAL,H.DISMISS);
-        rw.write("&".concat("times").concat(";"));
-        rw.endElement(H.BUTTON);
+        Object closableAsString = attrs.get(A.CLOSABLE);
+		boolean closable= (closableAsString==null) || (A.toBool(closableAsString));
+        if (closable) {
+	        rw.startElement(H.BUTTON, c);
+	        rw.writeAttribute(H.TYPE, H.BUTTON,H.TYPE);
+	        rw.writeAttribute(H.CLASS, "close",H.CLASS);
+	        rw.writeAttribute(H.DISMISS, MODAL,H.DISMISS);
+	        rw.write("&".concat("times").concat(";"));
+	        rw.endElement(H.BUTTON);
+        }
         
         if(title!=null) {
             rw.startElement(H.H4, c);

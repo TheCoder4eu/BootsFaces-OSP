@@ -391,13 +391,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-			<name>binding</name>
-			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Bold Title displayed in Modal's header.]]></description>
+			<description><![CDATA[Bold title displayed in Modal's header.]]></description>
 			<name>title</name>
 			<required>false</required>
 			<type>java.lang.String</type>
