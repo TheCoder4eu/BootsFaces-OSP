@@ -704,7 +704,7 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-		
+
 		<attribute>
 			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
 			<name>binding</name>
@@ -1297,6 +1297,10 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
+	
+	
+	
+	
 	<tag>
 		<tag-name>navLink</tag-name>
 		<component>
@@ -1425,6 +1429,151 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
+	
+	
+		<tag>
+		<tag-name>navCommandLink</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.NavCommandLink</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
+			<name>action</name>
+			<required>false</required>
+			<type>javax.el.MethodExpression</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
+			<name>actionListener</name>
+			<required>false</required>
+			<type>javax.faces.event.ActionListener</type>
+		</attribute>
+
+		<attribute>
+			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[JavaScript function which is called when the widget is clicked.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[JavaScript function which is called when the widget looses the focus.]]></description>
+			<name>onblur</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[JavaScript function which is called when the mouse hovers over the widget.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Navigation Link text.]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored.]]></description>
+			<name>header</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[URL to link directly to implement anchor behavior.]]></description>
+			<name>href</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+			<name>icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+			<name>iconAwesome</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Alignment can right or left.]]></description>
+			<name>iconAlign</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The outcome to navigate to.]]></description>
+			<name>outcome</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
+			<name>fragment</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Adds the active state to the link.]]></description>
+			<name>active</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+
+	</tag>
+	
+	
 	<tag>
 		<tag-name>dropButton</tag-name>
 		<component>
@@ -1898,7 +2047,7 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
-		
+
 		<attribute>
 			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
 			<name>binding</name>
@@ -3760,8 +3909,8 @@
 			<type>javax.el.MethodExpression</type>
 		</attribute>
 	</tag>
-	   <tag>
-      <description><![CDATA[Renders all or some FacesMessages depending on the "for" and
+	<tag>
+		<description><![CDATA[Renders all or some FacesMessages depending on the "for" and
 "globalOnly" attributes.
 
 <ul>
@@ -3772,108 +3921,108 @@ assigned to the component referenced by the "for" attribute
 are displayed.</li>
 <li>else all messages are displayed.</li>
 </ul>]]></description>
-      <tag-name>messages</tag-name>
+		<tag-name>messages</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Messages</component-type>
 			<renderer-type>net.bootsfaces.component.MessagesRenderer</renderer-type>
 		</component>
-      
-      <attribute>
-         <description><![CDATA[HTML: CSS styling instructions.]]></description>
-         <name>style</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
-         <name>styleClass</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
-         <name>errorClass</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
-         <name>errorStyle</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
-         <name>fatalClass</name>
-         <type>java.lang.String</type>
-         </attribute>
-      <attribute>
-         <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
-         <name>fatalStyle</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
-         <name>infoClass</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
-         <name>infoStyle</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[If true, the message summary will be rendered as a tooltip (i.e. HTML title attribute).]]></description>
-         <name>tooltip</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
-         <name>warnClass</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
-         <name>warnStyle</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
-         <name>dir</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a
+
+		<attribute>
+			<description><![CDATA[HTML: CSS styling instructions.]]></description>
+			<name>style</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+			<name>styleClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+			<name>errorClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+			<name>errorStyle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+			<name>fatalClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+			<name>fatalStyle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+			<name>infoClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+			<name>infoStyle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[If true, the message summary will be rendered as a tooltip (i.e. HTML title attribute).]]></description>
+			<name>tooltip</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+			<name>warnClass</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+			<name>warnStyle</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
+			<name>dir</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a
 specific component should be displayed, ie whether messages should be ignored
 if they are attached to a particular component. Defaults to false.]]></description>
-         <name>globalOnly</name>
-         <type>java.lang.Boolean</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[Specifies whether the detailed information from the message should be shown. 
+			<name>globalOnly</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the detailed information from the message should be shown. 
 Default to false.]]></description>
-         <name>showDetail</name>
-         <type>java.lang.Boolean</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[Specifies whether the summary information from the message should be shown.
+			<name>showDetail</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the summary information from the message should be shown.
 Defaults to true.]]></description>
-         <name>showSummary</name>
-      </attribute>
-      <attribute>
-         <description><![CDATA[The ID of the component whose attached FacesMessage object (if present) 
+			<name>showSummary</name>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The ID of the component whose attached FacesMessage object (if present) 
 should be diplayed by this component. It takes precedence over globalOnly.]]></description>
-         <name>for</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer
+			<name>for</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer
 component. The id is not necessarily unique across all components in the current view.]]></description>
-         <name>id</name>
-         <type>java.lang.String</type>
-      </attribute>
-      <attribute>
-         <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
-         <name>rendered</name>
-         <type>java.lang.Boolean</type>
-      </attribute>
-      		<attribute>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+			<name>rendered</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>
@@ -3904,7 +4053,7 @@ component. The id is not necessarily unique across all components in the current
 			<type>java.lang.String</type>
 		</attribute>
 		<!-- put more tooltip attributes here -->
-      
- </tag>
-	
+
+	</tag>
+
 </facelet-taglib>

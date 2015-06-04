@@ -68,6 +68,7 @@ public final class C {
     public static final String NAVBAR_COMPONENT_TYPE=BSFCOMPONENT+".NavBar";
     public static final String NAVBARLINKS_COMPONENT_TYPE=BSFCOMPONENT+".NavBarLinks";
     public static final String NAVLINK_COMPONENT_TYPE=BSFCOMPONENT+".NavLink";
+    public static final String NAVCOMMANDLINK_COMPONENT_TYPE=BSFCOMPONENT+".NavCommandLink";
     public static final String PANELGRID_COMPONENT_TYPE=BSFCOMPONENT+".PanelGrid";
     public static final String POLL_COMPONENT_TYPE=BSFCOMPONENT+".Poll";
     public static final String REMOTE_COMMAND_COMPONENT_TYPE=BSFCOMPONENT+".RemoteCommand";
