@@ -1886,6 +1886,13 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature.]]></description>
+			<name>collapsible</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		
+		<attribute>
 			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
 			<name>binding</name>
 			<required>false</required>

@@ -80,6 +80,13 @@ public enum RPanel {
          */
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
+        
+        boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
+        
+        if (isCollapsible) {
+	        rw.startElement(H.DIV, c);
+	        rw.writeAttribute(H.CLASS, "panel-group", null);
+        }
 
         String _look = A.asString(attrs,look);
         String _title = A.asString(attrs,title);
@@ -93,7 +100,8 @@ public enum RPanel {
 
         
         rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
+        String clientId = c.getClientId(fc);
+		rw.writeAttribute(H.ID, clientId, H.ID);
         Tooltip.generateTooltip(fc, attrs, rw);
         String _style = A.asString(attrs,style);
         if (null != _style && _style.length()>0) {
@@ -121,20 +129,38 @@ public enum RPanel {
                 } else {
                 	rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
                 }
+                if (isCollapsible) {
+	                rw.startElement(H.A, c);
+	                rw.writeAttribute("data-toggle", "collapse", "null");
+	                rw.writeAttribute("data-target", "#"+ clientId+"content", "null");
+                }
+
                 rw.writeText(_title, null);
+                rw.endElement(H.A);
                 rw.endElement(H.H4);
             } else {
+                if (isCollapsible) {
+	                rw.startElement(H.A, c);
+	                rw.writeAttribute("data-toggle", "collapse", "null");
+	                rw.writeAttribute("data-target", "#"+ clientId+"content", "null");
+                }
                 head.encodeAll(fc);
+                rw.endElement(H.A);
             }
             rw.endElement(H.DIV);
         }
 
         rw.startElement(H.DIV, c);
+        rw.writeAttribute("id", clientId+"content", null);
         String _contentClass = A.asString(attrs,contentClass);
-        if (null != _contentClass)
-            rw.writeAttribute(H.CLASS, PB + " " + _contentClass, H.CLASS); //"panel-body"
-        else
-        	rw.writeAttribute(H.CLASS, PB, H.CLASS); //"panel-body"
+        if (null == _contentClass) _contentClass="";
+        if (isCollapsible) {
+        	_contentClass += " panel-collapse collapse in"; // in
+        }
+        _contentClass = PB + " " + _contentClass;
+        _contentClass=_contentClass.trim();
+        if (_contentClass.length()>0)
+            rw.writeAttribute(H.CLASS, _contentClass, H.CLASS); //"panel-body"
         String _contentStyle = A.asString(attrs,contentStyle);
         if (null != _contentStyle && _contentStyle.length()>0) {
           rw.writeAttribute("style", _contentStyle, "style");
@@ -164,6 +190,12 @@ public enum RPanel {
         }
         
         rw.endElement(H.DIV);
+        Map<String, Object> attrs = c.getAttributes();
+        boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
+        if (isCollapsible) {
+        	rw.endElement(H.DIV);
+        }
+        
         Tooltip.activateTooltips(fc, c.getAttributes(), c);
 
     }
