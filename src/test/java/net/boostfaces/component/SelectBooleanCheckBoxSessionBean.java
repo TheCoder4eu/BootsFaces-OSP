@@ -7,6 +7,7 @@ package net.boostfaces.component;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import net.bootsfaces.component.SelectBooleanCheckbox;
@@ -17,7 +18,7 @@ import net.bootsfaces.component.SelectBooleanCheckbox;
  */
 @Named
 @SessionScoped
-public class SessionBean implements Serializable {
+public class SelectBooleanCheckBoxSessionBean implements Serializable {
 
     private boolean boolValue1;
     private boolean boolValue2 = true;

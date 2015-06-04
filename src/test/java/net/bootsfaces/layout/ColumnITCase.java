@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
@@ -33,13 +32,10 @@ public class ColumnITCase extends IntegrationTestsBase {
 
     @Deployment(testable = false)
     public static WebArchive createDeployment() {
-        WebArchive deployment = createBaseDeployment();
-
-        deployment.merge(ShrinkWrap.create(GenericArchive.class)
-                .as(ExplodedImporter.class)
-                .importDirectory(WEBAPP_SRC)
-                .as(GenericArchive.class), "/", Filters.includeAll());
-
+        WebArchive deployment = createBaseDeployment()
+                .addAsWebResource("columnIT.xhtml");
+        
+        
         System.out.println(deployment.toString(true));
 
         return deployment;

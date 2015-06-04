@@ -6,27 +6,27 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     
     <h:head>
-        <title>Column IT</title>
+        <title>SelectBooleanCheckBox IT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
     <h:body>
         <h:form id="mainForm" prependId="false">
             
-            <b:selectBooleanCheckbox id="chk_1" value="#{sessionBean.boolValue1}" 
+            <b:selectBooleanCheckbox id="chk_1" value="#{selectBooleanCheckBoxSessionBean.boolValue1}" 
                                      onchange="alert('onchange')" 
                                      onselect="alert('onselect')"
-                                     valueChangeListener="#{sessionBean.valueChangeMethod}">
+                                     valueChangeListener="#{selectBooleanCheckBoxSessionBean.valueChangeMethod}">
             </b:selectBooleanCheckbox>
             
             
-            <b:selectBooleanCheckbox id="chk_2" value="#{sessionBean.boolValue2}">
+            <b:selectBooleanCheckbox id="chk_2" value="#{selectBooleanCheckBoxSessionBean.boolValue2}">
                 <f:validator validatorId="net.bootsfaces.requiredCheckBoxValidator" />
             </b:selectBooleanCheckbox>
             
-            <b:selectBooleanCheckbox id="chk_3" binding="#{sessionBean.booleanCheckbox}" /> 
+            <b:selectBooleanCheckbox id="chk_3" binding="#{selectBooleanCheckBoxSessionBean.booleanCheckbox}" /> 
             
             <h:commandButton id="cmd" value="Toogle" >
-                <f:ajax execute="@Form" render="@Form" listener="#{sessionBean.ajaxAction}" />
+                <f:ajax execute="@Form" render="@Form" listener="#{selectBooleanCheckBoxSessionBean.ajaxAction()}" />
             </h:commandButton>
             
             <h:messages id="msg" showSummary="true" showDetail="true"/>
