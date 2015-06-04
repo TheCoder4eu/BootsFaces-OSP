@@ -1935,7 +1935,7 @@
 		</attribute>
 		<attribute>
 			<description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
-			<name>titleClass</name>
+			<name>contentClass</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
