@@ -49,6 +49,7 @@ public final class C {
     //Components
     public static final String ALERT_COMPONENT_TYPE=BSFCOMPONENT+".Alert";
     public static final String BADGE_COMPONENT_TYPE=BSFCOMPONENT+".Badge";
+    public static final String FETCH_BEAN_INFOS_COMPONENT_TYPE=BSFCOMPONENT+".FetchBeanInfos";
     public static final String BUTTON_COMPONENT_TYPE=BSFCOMPONENT+".Button";
     public static final String BUTTONGROUP_COMPONENT_TYPE=BSFCOMPONENT+".ButtonGroup";
     public static final String BUTTONTOOLBAR_COMPONENT_TYPE=BSFCOMPONENT+".ButtonToolbar";

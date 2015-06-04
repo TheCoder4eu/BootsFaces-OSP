@@ -116,6 +116,13 @@
 		</attribute>
 	</tag>
 	<tag>
+		<tag-name>fetchBeanInfos</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.FetchBeanInfos</component-type>
+		</component>
+	</tag>
+
+	<tag>
 		<tag-name>label</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Label</component-type>
