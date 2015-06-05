@@ -201,7 +201,7 @@ public enum RPanel {
         	String jQueryClientID = c.getClientId().replace(":", "_");
         	rw.endElement(H.DIV);
             rw.startElement("input", c);
-            rw.writeAttribute("type", "text", null);
+            rw.writeAttribute("type", "hidden", null);
 			String hiddenInputFieldID = jQueryClientID + "_collapsed";
             rw.writeAttribute("name", hiddenInputFieldID, "name");
             rw.writeAttribute("id", hiddenInputFieldID, "id");
