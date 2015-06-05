@@ -196,7 +196,6 @@ public enum RPanel {
         
         rw.endElement(H.DIV);
         Map<String, Object> attrs = c.getAttributes();
-        System.out.println(attrs.get("collapsed"));
         boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
         if (isCollapsible) {
         	String jQueryClientID = c.getClientId().replace(":", "_");
