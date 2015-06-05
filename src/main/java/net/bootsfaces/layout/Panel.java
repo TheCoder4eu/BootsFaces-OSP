@@ -24,6 +24,8 @@
 package net.bootsfaces.layout;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -55,11 +57,38 @@ public class Panel extends UIComponentBase {
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+    
+    private boolean isCollapsed = false;
+
 
     public Panel() {
         setRendererType(null); // this component renders itself
         Tooltip.addResourceFile();
     }
+    
+    /**
+     * This method stores the collapse/expand state during a server request.
+     * 
+     * @param context
+     *            the current FacesContext
+     */
+    @Override
+    public void decode(FacesContext context) {
+        super.decode(context);
+
+        Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+        String collapseState = params.get(getClientId(context).replace(":", "_") + "_collapsed");
+
+        if (null != collapseState && collapseState.length() > 0) {
+            try {
+            	isCollapsed = Boolean.valueOf(collapseState);
+            } catch (NumberFormatException e) {
+
+            }
+
+        }
+    }
+
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {
@@ -134,5 +163,13 @@ public class Panel extends UIComponentBase {
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
+
+	public boolean isCollapsed() {
+		return isCollapsed;
+	}
+
+	public void setCollapsed(boolean isCollapsed) {
+		this.isCollapsed = isCollapsed;
+	}
     
 }
