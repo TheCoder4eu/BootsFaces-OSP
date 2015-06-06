@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.boostfaces.component;
+package net.bootsfaces.component;
 
+import net.bootsfaces.component.validators.RequiredCheckBoxValidator;
 import java.io.IOException;
-import javax.inject.Inject;
-import javax.persistence.SequenceGenerator;
 import net.bootsfaces.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
@@ -37,8 +36,8 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
     public static WebArchive createDeployment() {
         WebArchive deployment = createBaseDeployment()
                 .addClass(SelectBooleanCheckBoxSessionBean.class)
-                .addClass(RequiredCheckboxValidator.class)
-                .addAsWebResource("SelectBooleanCheckBox.xhtml");
+                .addClass(RequiredCheckBoxValidator.class)
+                .addAsWebResource("selectBooleanCheckBox.xhtml");
 
         
         System.out.println(deployment.toString(true));
@@ -48,9 +47,10 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
 
     @Before
     public void setup() throws IOException {
-        browser.get(context + "/faces/SelectBooleanCheckBox.xhtml");
+        browser.get(context + "/faces/selectBooleanCheckBox.xhtml");
     }
 
+    
     @FindBy(id = "chk_1")
     private GrapheneElement chk_1;
 
@@ -101,7 +101,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
         guardAjax(cmd).click();
         
         //assert that there is no message
-        assertTrue(facesMessage.getText().contains("chk_2 CheckBox value required"));
+        assertTrue(facesMessage.getText().contains(RequiredCheckBoxValidator.VALUE_REQUIRED_MSG));
         
     }
     

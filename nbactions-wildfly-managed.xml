@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-Failsafe test File</actionName>
+            <displayName>Failsafe test File</displayName>
+            <goals>
+                <goal>compiler:testCompile</goal>
+                <goal>verify</goal>
+            </goals>
+            <properties>
+                <it.test>${packageClassName}</it.test>
+                
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>wildfly-managed</activatedProfile>
+                
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-Failsafe Debug test File</actionName>
+            <displayName>Failsafe Debug test File</displayName>
+            <goals>
+                <goal>test-compile</goal>
+                <goal>verify</goal>
+            </goals>
+            <properties>
+                 <it.test>${packageClassName}</it.test>
+                <forkMode>once</forkMode>
+                <maven.failsafe.debug>-Xdebug -Xrunjdwp:transport=dt_socket,server=n,address=${jpda.address}</maven.failsafe.debug>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+            <activatedProfiles>
+                <activatedProfile>wildfly-managed</activatedProfile>
+            </activatedProfiles>
+        </action>
+    </actions>

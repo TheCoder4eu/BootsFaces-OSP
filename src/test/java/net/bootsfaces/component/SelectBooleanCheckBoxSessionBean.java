@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.boostfaces.component;
+package net.bootsfaces.component;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
@@ -21,7 +21,7 @@ public class SelectBooleanCheckBoxSessionBean implements Serializable {
 
     private boolean boolValue1;
     private boolean boolValue2 = true;
-    private int valueChangeCount;
+    private int valueChangeCount = 0;
     private SelectBooleanCheckbox booleanCheckbox;
 
   

@@ -21,12 +21,12 @@
 
 
                 <b:selectBooleanCheckbox id="chk_2" value="#{selectBooleanCheckBoxSessionBean.boolValue2}">
-                    <f:validator validatorId="net.bootsfaces.requiredCheckBoxValidator" />
+                    <f:validator validatorId="net.bootsfaces.validators.requiredCheckBoxValidator" />
                 </b:selectBooleanCheckbox>
 
                 <b:selectBooleanCheckbox id="chk_3" binding="#{selectBooleanCheckBoxSessionBean.booleanCheckbox}" /> 
 
-                <h:commandButton id="cmd" value="Toogle" >
+                <h:commandButton id="cmd" value="Submit" >
                     <f:ajax execute="@form" render="@form" listener="#{selectBooleanCheckBoxSessionBean.ajaxAction()}" />
                 </h:commandButton>
 

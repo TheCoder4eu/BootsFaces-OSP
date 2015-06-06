@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.boostfaces.component;
+package net.bootsfaces.component.validators;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -16,14 +16,15 @@ import javax.faces.validator.ValidatorException;
  *
  * @author ysantana
  */
-@FacesValidator("net.bootsfaces.requiredCheckBoxValidator")
-public class RequiredCheckboxValidator implements Validator{
+@FacesValidator("net.bootsfaces.validators.requiredCheckBoxValidator")
+public class RequiredCheckBoxValidator implements Validator {
+    public final static String VALUE_REQUIRED_MSG = "CheckBox value required";
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if (value.equals(Boolean.FALSE)) {
             throw new ValidatorException(
-                new FacesMessage(FacesMessage.SEVERITY_ERROR, component.getClientId(), "CheckBox value required"));
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, component.getClientId(), VALUE_REQUIRED_MSG));
         }
     }
 }

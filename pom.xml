@@ -50,7 +50,6 @@
         <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
         <maven.compiler.debug>true</maven.compiler.debug>
         <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
-        <maven.test.skip>true</maven.test.skip>
     </properties>
 
 
@@ -330,7 +329,6 @@
                     safari 
                 -->
                 <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
-                <maven.test.skip>false</maven.test.skip>
                 <bootsfaces.arquillian.jboss.version>8.2.0.Final</bootsfaces.arquillian.jboss.version>
               
             </properties>
@@ -422,7 +420,8 @@
                         </executions>
                         <configuration>
                             <!-- Fork every test because it will launch a separate AS instance -->
-                            <forkMode>always</forkMode>
+                            <reuseForks>false</reuseForks>
+                            <forkCount>1</forkCount>
                             <systemPropertyVariables>
                                 <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                                 <!-- the maven dependency plugin will have already downloaded the server on /target -->
