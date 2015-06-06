@@ -84,7 +84,7 @@ public class TabView extends UIOutput {
     }
 
     /**
-     * Decode be be used to implement an AJAX version of TabView.
+     * Decode to be used to implement an AJAX version of TabView.
      * 
      * @param context
      *            the current FacesContext
@@ -104,10 +104,6 @@ public class TabView extends UIOutput {
             }
 
         }
-
-        // String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
-        // this.setSubmittedValue("on".equals(subVal));
-        // this.setValid(true);
     }
 
     /**

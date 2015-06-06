@@ -49,6 +49,7 @@ public final class C {
     //Components
     public static final String ALERT_COMPONENT_TYPE=BSFCOMPONENT+".Alert";
     public static final String BADGE_COMPONENT_TYPE=BSFCOMPONENT+".Badge";
+    public static final String FETCH_BEAN_INFOS_COMPONENT_TYPE=BSFCOMPONENT+".FetchBeanInfos";
     public static final String BUTTON_COMPONENT_TYPE=BSFCOMPONENT+".Button";
     public static final String BUTTONGROUP_COMPONENT_TYPE=BSFCOMPONENT+".ButtonGroup";
     public static final String BUTTONTOOLBAR_COMPONENT_TYPE=BSFCOMPONENT+".ButtonToolbar";
@@ -67,6 +68,7 @@ public final class C {
     public static final String NAVBAR_COMPONENT_TYPE=BSFCOMPONENT+".NavBar";
     public static final String NAVBARLINKS_COMPONENT_TYPE=BSFCOMPONENT+".NavBarLinks";
     public static final String NAVLINK_COMPONENT_TYPE=BSFCOMPONENT+".NavLink";
+    public static final String NAVCOMMANDLINK_COMPONENT_TYPE=BSFCOMPONENT+".NavCommandLink";
     public static final String PANELGRID_COMPONENT_TYPE=BSFCOMPONENT+".PanelGrid";
     public static final String POLL_COMPONENT_TYPE=BSFCOMPONENT+".Poll";
     public static final String REMOTE_COMMAND_COMPONENT_TYPE=BSFCOMPONENT+".RemoteCommand";

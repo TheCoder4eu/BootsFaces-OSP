@@ -32,6 +32,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.layout.Panel;
+
 /**
  *
  * @author droidcoder
@@ -80,6 +82,16 @@ public enum RPanel {
          */
         ResponseWriter rw = fc.getResponseWriter();
         Map<String, Object> attrs = c.getAttributes();
+        
+        String clientId = c.getClientId(fc);
+        String jQueryClientID = c.getClientId().replace(":", "_");
+
+        boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
+        
+        if (isCollapsible) {
+	        rw.startElement(H.DIV, c);
+	        rw.writeAttribute(H.CLASS, "panel-group", null);
+        }
 
         String _look = A.asString(attrs,look);
         String _title = A.asString(attrs,title);
@@ -93,7 +105,7 @@ public enum RPanel {
 
         
         rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
+		rw.writeAttribute(H.ID, clientId, H.ID);
         Tooltip.generateTooltip(fc, attrs, rw);
         String _style = A.asString(attrs,style);
         if (null != _style && _style.length()>0) {
@@ -121,20 +133,39 @@ public enum RPanel {
                 } else {
                 	rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
                 }
+                if (isCollapsible) {
+	                rw.startElement(H.A, c);
+	                rw.writeAttribute("data-toggle", "collapse", "null");
+	                rw.writeAttribute("data-target", "#"+ jQueryClientID+"content", "null");
+                }
+
                 rw.writeText(_title, null);
+                rw.endElement(H.A);
                 rw.endElement(H.H4);
             } else {
+                if (isCollapsible) {
+	                rw.startElement(H.A, c);
+	                rw.writeAttribute("data-toggle", "collapse", "null");
+	                rw.writeAttribute("data-target", "#"+ jQueryClientID+"content", "null");
+                }
                 head.encodeAll(fc);
+                rw.endElement(H.A);
             }
             rw.endElement(H.DIV);
         }
 
         rw.startElement(H.DIV, c);
+        rw.writeAttribute("id", jQueryClientID+"content", null);
         String _contentClass = A.asString(attrs,contentClass);
-        if (null != _contentClass)
-            rw.writeAttribute(H.CLASS, PB + " " + _contentClass, H.CLASS); //"panel-body"
-        else
-        	rw.writeAttribute(H.CLASS, PB, H.CLASS); //"panel-body"
+        if (null == _contentClass) _contentClass="";
+        if (isCollapsible) {
+        	_contentClass += " panel-collapse collapse"; // in
+        	if (!((Panel)c).isCollapsed()) _contentClass += " in";
+        }
+        _contentClass = PB + " " + _contentClass;
+        _contentClass=_contentClass.trim();
+        if (_contentClass.length()>0)
+            rw.writeAttribute(H.CLASS, _contentClass, H.CLASS); //"panel-body"
         String _contentStyle = A.asString(attrs,contentStyle);
         if (null != _contentStyle && _contentStyle.length()>0) {
           rw.writeAttribute("style", _contentStyle, "style");
@@ -164,7 +195,29 @@ public enum RPanel {
         }
         
         rw.endElement(H.DIV);
+        Map<String, Object> attrs = c.getAttributes();
+        boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
+        if (isCollapsible) {
+        	String jQueryClientID = c.getClientId().replace(":", "_");
+        	rw.endElement(H.DIV);
+            rw.startElement("input", c);
+            rw.writeAttribute("type", "hidden", null);
+			String hiddenInputFieldID = jQueryClientID + "_collapsed";
+            rw.writeAttribute("name", hiddenInputFieldID, "name");
+            rw.writeAttribute("id", hiddenInputFieldID, "id");
+            rw.writeAttribute("value", String.valueOf(((Panel)c).isCollapsed()), "value");
+            rw.endElement("input");
+        	rw.startElement("script", c);
+        	rw.writeText("\r\n", null);
+        	rw.writeText(" $('"+ "#"+ jQueryClientID+"content" + "').on('show.bs.collapse', function(){ document.getElementById('" + hiddenInputFieldID + "').value='false'; });", null);
+        	rw.writeText("\r\n", null);
+        	rw.writeText(" $('"+ "#"+ jQueryClientID+"content" + "').on('hide.bs.collapse', function(){ document.getElementById('" + hiddenInputFieldID + "').value='true'; });", null);
+        	rw.writeText("\r\n", null);
+        	rw.endElement("script");
+        }
+        
         Tooltip.activateTooltips(fc, c.getAttributes(), c);
+        
 
     }
 }
