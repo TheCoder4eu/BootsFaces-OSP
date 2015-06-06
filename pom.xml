@@ -316,7 +316,7 @@
         </profile>
         
         <profile>
-            <id>glassfish-embedded</id>
+            <id>glassfish-managed</id>
             <properties>
                 <!--
                 Determines which browser instance is created for WebDriver testing. Following values are valid:
@@ -334,17 +334,110 @@
             <dependencies>
                 
                 <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>3.1.2.2</version>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-glassfish-managed-3.1</artifactId>
+                    <version>1.0.0.CR4</version>
                     <scope>test</scope>
                 </dependency>
                 
                 <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>6.0</version>
+                    <scope>provided</scope>
+                </dependency>
+               
+                
+                <!-- required library to in using phantomjs -->
+                <dependency>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                    <version>18.0</version>
                     <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                    <version>4.4.1</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <!-- use last version of htmlunit browser -->
+                <dependency>
+                    <groupId>net.sourceforge.htmlunit</groupId>
+                    <artifactId>htmlunit</artifactId>
+                    <version>2.16</version>
+                    <scope>test</scope>
+                </dependency>
+                
+            </dependencies>
+            
+            <build>
+                <finalName>bootsfaces-test</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>2.18.1</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+           
+                <testResources>
+                    <testResource>
+                        <directory>src/test/resources/webapp</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
+                    </testResource>
+                    <testResource>
+                        <directory>src/test/resources-arquillian</directory>
+                        <filtering>true</filtering>
+                    </testResource>
+                </testResources>
+            </build>
+            
+        </profile>
+        
+        
+        <profile>
+            <id>wildfly-managed</id>
+            <properties>
+                <!--
+                Determines which browser instance is created for WebDriver testing. Following values are valid:
+                    chrome
+                    firefox
+                    htmlUnit
+                    internetExplorer
+                    opera
+                    phantomjs
+                    safari 
+                -->
+                <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
+            </properties>
+            
+            <dependencies>
+                
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>8.2.0.Final</version>
+                      <scope>test</scope>
+                </dependency>
+                
+                 <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>6.0</version>
+                    <scope>provided</scope>
                 </dependency>
                 
                 <!-- required library to in using phantomjs -->
@@ -370,13 +463,6 @@
                     <scope>test</scope>
                 </dependency>
                 
-                <dependency>
-                    <groupId>javax</groupId>
-                    <artifactId>javaee-api</artifactId>
-                    <version>6.0</version>
-                    <scope>provided</scope>
-                </dependency>
-             
             </dependencies>
             
             <build>
@@ -394,6 +480,19 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                             
+                            <!-- Fork every test because it will launch a separate AS instance -->
+                            <forkMode>always</forkMode>
+                            <systemPropertyVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <!-- the maven dependency plugin will have already downloaded the server on /target -->
+                                <jboss.home>/Users/ysantana/DEVELOPMENT/SERVERS/wildfly-8.2.0.Final</jboss.home>
+                                <module.path>/Users/ysantana/DEVELOPMENT/SERVERS/wildfly-8.2.0.Final/modules</module.path>
+                            </systemPropertyVariables>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                       
                     </plugin>
                 </plugins>
            
