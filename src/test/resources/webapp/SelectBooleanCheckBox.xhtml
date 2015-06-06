@@ -12,24 +12,25 @@
     <h:body>
         <h:form id="mainForm" prependId="false">
             <b:container>
-            <b:selectBooleanCheckbox id="chk_1" value="#{selectBooleanCheckBoxSessionBean.boolValue1}" 
-                                     onchange="alert('onchange')" 
-                                     onselect="alert('onselect')"
-                                     valueChangeListener="#{selectBooleanCheckBoxSessionBean.valueChangeMethod}">
-            </b:selectBooleanCheckbox>
-            
-            
-            <b:selectBooleanCheckbox id="chk_2" value="#{selectBooleanCheckBoxSessionBean.boolValue2}">
-                <f:validator validatorId="net.bootsfaces.requiredCheckBoxValidator" />
-            </b:selectBooleanCheckbox>
-            
-            <b:selectBooleanCheckbox id="chk_3" binding="#{selectBooleanCheckBoxSessionBean.booleanCheckbox}" /> 
-            
-            <h:commandButton id="cmd" value="Toogle" >
-                <f:ajax execute="@form" render="@form" listener="#{selectBooleanCheckBoxSessionBean.ajaxAction()}" />
-            </h:commandButton>
-            
-            <h:messages id="msg" showSummary="true" showDetail="true"/>
+                <h:outputLabel id="chk_1_label" value="#{selectBooleanCheckBoxSessionBean.valueChangeCount}" />
+                <b:selectBooleanCheckbox id="chk_1" value="#{selectBooleanCheckBoxSessionBean.boolValue1}" 
+                                         onchange="var dummy=0;" 
+                                         onselect="var dummy=0;"
+                                         valueChangeListener="#{selectBooleanCheckBoxSessionBean.valueChangeMethod}">
+                </b:selectBooleanCheckbox>
+
+
+                <b:selectBooleanCheckbox id="chk_2" value="#{selectBooleanCheckBoxSessionBean.boolValue2}">
+                    <f:validator validatorId="net.bootsfaces.requiredCheckBoxValidator" />
+                </b:selectBooleanCheckbox>
+
+                <b:selectBooleanCheckbox id="chk_3" binding="#{selectBooleanCheckBoxSessionBean.booleanCheckbox}" /> 
+
+                <h:commandButton id="cmd" value="Toogle" >
+                    <f:ajax execute="@form" render="@form" listener="#{selectBooleanCheckBoxSessionBean.ajaxAction()}" />
+                </h:commandButton>
+
+                <h:messages id="msg" showSummary="true" showDetail="true"/>
             </b:container>
         </h:form>
     </h:body>

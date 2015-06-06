@@ -41,7 +41,7 @@ public class IntegrationTestsBase {
         BeansDescriptor beans = Descriptors.importAs(BeansDescriptor.class)
                 .fromFile(WEBAPP_SRC+"/WEB-INF/beans.xml");
         
-         WebAppDescriptor webDescriptor = Descriptors.importAs(WebAppDescriptor.class)
+        WebAppDescriptor webDescriptor = Descriptors.importAs(WebAppDescriptor.class)
                 .fromFile(WEBAPP_SRC+"/WEB-INF/web.xml");
         
 

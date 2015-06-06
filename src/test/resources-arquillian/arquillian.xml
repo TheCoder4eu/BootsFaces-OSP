@@ -10,11 +10,9 @@
     </engine>
 
 
-    <container qualifier="arquillian-glassfish-managed" default="true">
+    <container qualifier="wildfly-managed" default="true">
         <configuration>
-            <property name="glassFishHome">/Users/ysantana/DEVELOPMENT/SERVERS/glassfish4</property>
-            <property name="adminHost">localhost</property>
-            <property name="adminPort">4848</property>
+          
         </configuration>
     </container>
     

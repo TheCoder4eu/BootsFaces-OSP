@@ -7,7 +7,6 @@ package net.boostfaces.component;
 
 import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 import net.bootsfaces.component.SelectBooleanCheckbox;
@@ -25,9 +24,8 @@ public class SelectBooleanCheckBoxSessionBean implements Serializable {
     private int valueChangeCount;
     private SelectBooleanCheckbox booleanCheckbox;
 
-    
+  
     public void ajaxAction(){
-        boolValue1 = !boolValue1;
     }
 
     public void valueChangeMethod(ValueChangeEvent e){
