@@ -33,10 +33,12 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:panel /&gt;. */
-//@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
-//		@ResourceDependency(library = "bsf", name = "css/panels.css"),
-//		@ResourceDependency(library = "bsf", name = "css/bsf.css"),
-//		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body") })
+// @ResourceDependencies({ @ResourceDependency(library = "bsf", name =
+// "css/core.css"),
+// @ResourceDependency(library = "bsf", name = "css/panels.css"),
+// @ResourceDependency(library = "bsf", name = "css/bsf.css"),
+// @ResourceDependency(library = "bsf", name = "js/collapse.js", target =
+// "body") })
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.panel.Panel")
 public class PanelRenderer extends CoreRenderer {
 	/**
@@ -63,7 +65,8 @@ public class PanelRenderer extends CoreRenderer {
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(collapseStateId);
 
 		if (submittedValue != null) {
-			panel.setCollapsed(Boolean.valueOf(submittedValue));
+			if (Boolean.valueOf(submittedValue) != panel.isCollapsed())
+				panel.setCollapsed(Boolean.valueOf(submittedValue));
 		}
 	}
 
