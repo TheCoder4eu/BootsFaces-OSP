@@ -63,7 +63,6 @@ public class PanelRenderer extends CoreRenderer {
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(collapseStateId);
 
 		if (submittedValue != null) {
-			// panel.setSubmittedValue(submittedValue);
 			panel.setCollapsed(Boolean.valueOf(submittedValue));
 		}
 	}
@@ -227,7 +226,7 @@ public class PanelRenderer extends CoreRenderer {
 			String hiddenInputFieldID = jQueryClientID + "_collapsed";
 			rw.writeAttribute("name", hiddenInputFieldID, "name");
 			rw.writeAttribute("id", hiddenInputFieldID, "id");
-			rw.writeAttribute("value", panel.isCollapsed(), "value");
+			rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
 			rw.endElement("input");
 			rw.startElement("script", panel);
 			rw.writeText("\r\n", null);

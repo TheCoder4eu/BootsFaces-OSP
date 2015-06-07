@@ -33,7 +33,7 @@ import net.bootsfaces.render.Tooltip;
         @ResourceDependency(library="bsf", name="js/collapse.js", target="body")
 })
 @FacesComponent("net.bootsfaces.component.panel.Panel")
-public class Panel extends UIInput  implements net.bootsfaces.render.IHasTooltip  {
+public class Panel extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
 	
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.panel.Panel";
 	
