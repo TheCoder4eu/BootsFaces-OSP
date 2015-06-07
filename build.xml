@@ -540,10 +540,15 @@
         
         <keep name="net.bootsfaces.render.UnmappedResourceHandler">
             <constructor/>
-          <method name="get*"/>
-          <method name="set*"/>
+            <method name="get*"/>
+            <method name="set*"/>
         </keep>
-        <!-- Your application may contain more items that need to be preserved;
+        <keep name="net.bootsfaces.component.panel.Panel">
+              <constructor/>
+              <method name="get*"/>
+              <method name="set*"/>
+        </keep>
+            <!-- Your application may contain more items that need to be preserved;
              typically classes that are dynamically created using Class.forName -->
 
     </proguard>
