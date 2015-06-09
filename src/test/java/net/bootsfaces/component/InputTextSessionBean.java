@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bootsfaces.component;
 
 import java.io.Serializable;
@@ -11,7 +6,8 @@ import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 
 /**
- *
+ * Backed bean for InputTextITCase.
+ * 
  * @author yersan
  */
 @Named

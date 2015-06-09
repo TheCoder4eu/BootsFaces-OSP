@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bootsfaces.component;
 
 import java.io.IOException;
@@ -22,8 +17,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Simple test which validates the rendered information for b:selectbooleancheckbox tag. 
- * It opens the SelectBooleanCheckBox.xhtml file and assert that the rendered information is
+ * Simple test which validates the rendered information for b:inputText tag. 
+ * It opens the inputTextIT.xhtml file and assert that the rendered information is
  * correct.
  *
  * @author yersan
@@ -100,7 +95,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         //submit
         guardAjax(cmd).click();
         
-        //assert that there is no message
+        //assert that there is message
         assertTrue(facesMessage.getText().contains(RequiredInputTextValidator.VALUE_REQUIRED_MSG));
         
         
@@ -130,8 +125,7 @@ public class InputTextITCase extends IntegrationTestsBase {
          //submit
         guardAjax(cmd).click();
         
-        //binding value was set in backed bean, must be checked
-       //change listener count is 0 ?
+       //change listener count is 1 ?
         assertTrue(txt_1_label.getText().contains("1"));
     }
     

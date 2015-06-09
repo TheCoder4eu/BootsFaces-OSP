@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bootsfaces.component;
 
 import net.bootsfaces.component.validators.RequiredCheckBoxValidator;
@@ -100,7 +95,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
         //submit
         guardAjax(cmd).click();
         
-        //assert that there is no message
+        //assert that there is message
         assertTrue(facesMessage.getText().contains(RequiredCheckBoxValidator.VALUE_REQUIRED_MSG));
         
     }
@@ -125,8 +120,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
          //submit
         guardAjax(cmd).click();
         
-        //binding value was set in backed bean, must be checked
-       //change listener count is 0 ?
+       //change listener count is 1 ?
         assertTrue(chk_1_label.getText().contains("1"));
     }
     

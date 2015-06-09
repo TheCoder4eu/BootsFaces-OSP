@@ -16,9 +16,10 @@ import javax.faces.validator.ValidatorException;
  *
  * @author ysantana
  */
-@FacesValidator("net.bootsfaces.validators.requiredCheckBoxValidator")
+@FacesValidator(RequiredCheckBoxValidator.VALIDATOR)
 public class RequiredCheckBoxValidator implements Validator {
     public final static String VALUE_REQUIRED_MSG = "CheckBox value required";
+    public final static String VALIDATOR = "net.bootsfaces.validators.requiredCheckBoxValidator";
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {

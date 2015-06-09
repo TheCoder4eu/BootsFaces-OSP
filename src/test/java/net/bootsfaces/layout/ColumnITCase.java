@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.bootsfaces.layout;
 
 import java.io.IOException;
@@ -10,10 +5,6 @@ import net.bootsfaces.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.Filters;
-import org.jboss.shrinkwrap.api.GenericArchive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.importer.ExplodedImporter;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -22,7 +13,8 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.support.FindBy;
 
 /**
- * Simple test which validates the rendered information for b:column tag. It opens the columnIT.xhtml file and assert that the rendered information is
+ * Simple test which validates the rendered information for b:column tag. 
+ * It opens the columnIT.xhtml file and assert that the rendered information is
  * correct.
  *
  * @author yersan

@@ -9,10 +9,10 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
-import net.bootsfaces.component.SelectBooleanCheckbox;
 
 /**
- *
+ * Backed bean for SelectBooleanCheckBoxITCase.
+ * 
  * @author yersan
  */
 @Named
