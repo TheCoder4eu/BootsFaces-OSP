@@ -17,6 +17,14 @@ import net.bootsfaces.listeners.AddResourcesListener;
  * @author Stephan Rauh
  */
 public class Tooltip {
+	
+	public static void generateTooltip(FacesContext context, IHasTooltip component, ResponseWriter rw)
+			throws IOException {
+		/** TODO  quick and dirty solution - needs to be reworked to support EL expressions */
+		generateTooltip(context, ((UIComponent) component).getAttributes(), rw);
+	}
+
+	
 	public static void generateTooltip(FacesContext context, Map<String, Object> attrs, ResponseWriter rw)
 			throws IOException {
 		String tooltip = (String)attrs.get("tooltip");

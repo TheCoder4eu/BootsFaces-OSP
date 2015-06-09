@@ -2024,6 +2024,124 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
+	
+		<tag>
+		<tag-name>xpanel</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.panel.Panel</component-type>
+		</component>
+		
+	  <attribute>
+	  	<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+	  	<name>binding</name>
+	  	<required>false</required>
+	  	<type>javax.faces.component.UIComponent</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Is the panel collapsed?]]></description>
+	  	<name>collapsed</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature.]]></description>
+	  	<name>collapsible</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
+	  	<name>contentClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the content area.]]></description>
+	  	<name>contentStyle</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Look of the Panel, can be primary, success, info, warning, danger. Default is warning.]]></description>
+	  	<name>look</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	  	<name>rendered</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the entire panel area.]]></description>
+	  	<name>style</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the input element.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
+	  	<name>title</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[TitleClass is optional: if specified, the title will be displayed with this specific class]]></description>
+	  	<name>titleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the title area.]]></description>
+	  	<name>titleStyle</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	</tag>
+	
+	
 	<tag>
 		<tag-name>panel</tag-name>
 		<component>
@@ -2663,7 +2781,7 @@
 			<description><![CDATA[Disables the input element, default is false.]]></description>
 			<name>disabled</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A localized user presentable name.]]></description>
@@ -2675,13 +2793,13 @@
 			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
 			<name>readonly</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
 			<name>size</name>
 			<required>false</required>
-			<type>int</type>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
@@ -2980,7 +3098,7 @@
 			<description><![CDATA[Disables the input element, default is false.]]></description>
 			<name>disabled</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A localized user presentable name.]]></description>
@@ -2992,13 +3110,13 @@
 			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
 			<name>readonly</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
 			<name>size</name>
 			<required>false</required>
-			<type>int</type>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
@@ -3255,7 +3373,7 @@
 			<description><![CDATA[Disables the input element, default is false.]]></description>
 			<name>disabled</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A localized user presentable name.]]></description>
@@ -3267,7 +3385,7 @@
 			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
 			<name>readonly</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
@@ -3690,7 +3808,7 @@
 			<description><![CDATA[Disables the input element, default is false.]]></description>
 			<name>disabled</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[A localized user presentable name.]]></description>
@@ -3702,13 +3820,13 @@
 			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
 			<name>readonly</name>
 			<required>false</required>
-			<type>boolean</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
 			<name>size</name>
 			<required>false</required>
-			<type>int</type>
+			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
