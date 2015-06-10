@@ -16,6 +16,7 @@ public class InputTextSessionBean implements Serializable {
 
     private String txtValue1 = "";
     private String txtValue2 = "DUMMY";
+    private String txtValue3 = "IMNEDIATE";
     private int valueChangeCount = 0;
     private InputText inputText;
 
@@ -49,6 +50,14 @@ public class InputTextSessionBean implements Serializable {
 
     public void setValueChangeCount(int valueChangeCount) {
         this.valueChangeCount = valueChangeCount;
+    }
+
+    public String getTxtValue3() {
+        return txtValue3;
+    }
+
+    public void setTxtValue3(String txtValue3) {
+        this.txtValue3 = txtValue3;
     }
 
     public InputText getInputText() {

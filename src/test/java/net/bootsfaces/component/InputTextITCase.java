@@ -54,6 +54,12 @@ public class InputTextITCase extends IntegrationTestsBase {
 
     @FindBy(id = "txt_3")
     private GrapheneElement txt_3;
+    
+    @FindBy(id = "txt_4")
+    private GrapheneElement txt_4;
+     
+    @FindBy(id = "txt_4_label")
+    private GrapheneElement txt_4_label;
 
     @FindBy(id = "cmd")
     private GrapheneElement cmd;
@@ -127,6 +133,24 @@ public class InputTextITCase extends IntegrationTestsBase {
         
        //change listener count is 1 ?
         assertTrue(txt_1_label.getText().contains("1"));
+    }
+    
+    
+    @Test
+    @InSequence(40)
+    public void testImmediate() {
+        String txt4Label = txt_4_label.getText();
+        String txt4 = txt_4.getAttribute("value");
+        
+        //values must be the same
+        assertTrue(txt4.equals(txt4Label));
+        txt_4.sendKeys(txt4Label + " changed");
+        
+         //submit
+        guardAjax(cmd).click();
+        
+        //after submit form, text label must be the same
+        assertTrue("inmediate attribute failed.", txt_4.getAttribute("value").equals(txt4Label));
     }
     
        
