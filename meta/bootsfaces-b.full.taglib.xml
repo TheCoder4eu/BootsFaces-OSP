@@ -2026,7 +2026,7 @@
 	</tag>
 	
 		<tag>
-		<tag-name>xpanel</tag-name>
+		<tag-name>panel</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.panel.Panel</component-type>
 		</component>
@@ -2141,125 +2141,6 @@
 	  </attribute>
 	</tag>
 	
-	
-	<tag>
-		<tag-name>panel</tag-name>
-		<component>
-			<component-type>net.bootsfaces.layout.Panel</component-type>
-		</component>
-		<attribute>
-			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-			<name>id</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-			<name>rendered</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature.]]></description>
-			<name>collapsible</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Is the panel collapsed?]]></description>
-			<name>collapsed</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-
-
-		<attribute>
-			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-			<name>binding</name>
-			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Look of the Panel, can be primary, success, info, warning, danger. Default is warning.]]></description>
-			<name>look</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Style class of the input element.]]></description>
-			<name>styleClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Inline style of the entire panel area.]]></description>
-			<name>style</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Inline style of the title area.]]></description>
-			<name>titleStyle</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Inline style of the content area.]]></description>
-			<name>contentStyle</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
-			<name>title</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[TitleClass is optional: if specified, the title will be displayed with this specific class]]></description>
-			<name>titleClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
-			<name>contentClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-			<name>tooltip-position</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The text of the tooltip.]]></description>
-			<name>tooltip</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-show</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-hide</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<!-- put more tooltip attributes here -->
-
-	</tag>
 	<tag>
 		<tag-name>jumbotron</tag-name>
 		<component>
@@ -2666,7 +2547,7 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+			<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 			<name>fieldSize</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -2678,13 +2559,13 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The Label of the field .]]></description>
+			<description><![CDATA[The label of the field.]]></description>
 			<name>label</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
 			<name>renderLabel</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -2983,7 +2864,7 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+			<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 			<name>fieldSize</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -2995,13 +2876,13 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The Label of the field .]]></description>
+			<description><![CDATA[The label of the field.]]></description>
 			<name>label</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
 			<name>renderLabel</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -3269,7 +3150,7 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+			<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 			<name>fieldSize</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -3281,7 +3162,7 @@
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
 			<name>renderLabel</name>
 			<required>false</required>
 			<type>java.lang.String</type>
@@ -3502,70 +3383,75 @@
 	<tag>
 		<tag-name>tabView</tag-name>
 		<component>
-			<component-type>net.bootsfaces.component.TabView</component-type>
+			<component-type>net.bootsfaces.component.tabView.TabView</component-type>
 		</component>
-
-		<attribute>
-			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-			<name>id</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Optional attribute to define which tab is active initially.]]></description>
-			<name>activeIndex</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Style class of the div surrounding this element.]]></description>
-			<name>styleClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Style class of the div surrounding the panes.]]></description>
-			<name>contentClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Inline CSS style of the div surrounding the panes.]]></description>
-			<name>contentStyle</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-			<name>tooltip-position</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The text of the tooltip.]]></description>
-			<name>tooltip</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-show</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-hide</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<!-- put more tooltip attributes here -->
+		
+	  <attribute>
+	  	<description><![CDATA[Optional attribute to define which tab is active initially.]]></description>
+	  	<name>activeIndex</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the div surrounding the panes.]]></description>
+	  	<name>contentClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline CSS style of the div surrounding the panes.]]></description>
+	  	<name>contentStyle</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The role can be used to provide information to screenreaders.]]></description>
+	  	<name>role</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the div surrounding this element.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
 	</tag>
 
 	<!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on 
@@ -3573,59 +3459,75 @@
 	<tag>
 		<tag-name>tab</tag-name>
 		<component>
-			<component-type>net.bootsfaces.component.Tab</component-type>
+			<component-type>net.bootsfaces.component.tab.Tab</component-type>
 		</component>
-
-		<attribute>
-			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-			<name>id</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
-			<name>styleClass</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Caption of the tab.]]></description>
-			<name>title</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-			<name>tooltip-position</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The text of the tooltip.]]></description>
-			<name>tooltip</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-show</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-hide</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<!-- put more tooltip attributes here -->
-
+		
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline CSS of the div surrounding the tab pane.]]></description>
+	  	<name>contentStyle</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline CSS of the tab.]]></description>
+	  	<name>style</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Optional Javascript function that's called when the tab is clicked.]]></description>
+	  	<name>onclick</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Caption of the tab.]]></description>
+	  	<name>title</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
 	</tag>
 
 	<!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
@@ -3704,6 +3606,270 @@
 		<!-- put more tooltip attributes here -->
 	</tag>
 
+	<!-- SelectMultiMenu added by Stephan Rauh 
+		on June 12, 2015. -->
+	<tag>
+		<tag-name>selectMultiMenu</tag-name>
+		<component>
+			<description>Similar to a traditional combobox, but with the option to select multiple values.</description>
+			<component-type>net.bootsfaces.component.selectMultiMenu.SelectMultiMenu</component-type>
+		</component>
+		
+	  <attribute>
+	  	<description><![CDATA[Access key to transfer focus to the input element.]]></description>
+	  	<name>accesskey</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Alternate textual description of the input element.]]></description>
+	  	<name>alt</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+	  	<name>binding</name>
+	  	<required>false</required>
+	  	<type>javax.faces.component.UIComponent</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+	  	<name>dir</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Disables the input element, default is false.]]></description>
+	  	<name>disabled</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+	  	<name>fieldSize</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+	  	<name>immediate</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The Label of the field .]]></description>
+	  	<name>label</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[A localized user presentable name.]]></description>
+	  	<name>lang</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
+	  	<name>onblur</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+	  	<name>onchange</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[OnClick DHTML event .]]></description>
+	  	<name>onclick</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+	  	<name>ondblclick</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
+	  	<name>onfocus</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
+	  	<name>onkeydown</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
+	  	<name>onkeypress</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
+	  	<name>onkeyup</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+	  	<name>onmousedown</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+	  	<name>onmousemove</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+	  	<name>onmouseout</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+	  	<name>onmouseover</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+	  	<name>onmouseup</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
+	  	<name>onselect</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
+	  	<name>placeholder</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+	  	<name>readonly</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+	  	<name>renderLabel</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	  	<name>rendered</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
+	  	<name>required</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+	  	<name>requiredMessage</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
+	  	<name>size</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+	  	<name>span</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the input element.]]></description>
+	  	<name>style</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the input element.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Advisory tooltip information.]]></description>
+	  	<name>tabindex</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Advisory tooltip information.]]></description>
+	  	<name>title</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Value.]]></description>
+	  	<name>value</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	</tag>
+	
+
 	<!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh 
 		on Dec 28, 2014. -->
 	<tag>
@@ -3736,19 +3902,19 @@
 			<type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+			<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 			<name>fieldSize</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The Label of the field .]]></description>
+			<description><![CDATA[The label of the field.]]></description>
 			<name>label</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[Allows you to suprress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
 			<name>renderLabel</name>
 			<required>false</required>
 			<type>java.lang.String</type>
