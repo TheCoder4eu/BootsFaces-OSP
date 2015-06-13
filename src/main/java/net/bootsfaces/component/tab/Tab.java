@@ -17,28 +17,26 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.panel;
+package net.bootsfaces.component.tab;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
+import java.io.IOException;
+
 import javax.faces.component.*;
+import javax.faces.context.FacesContext;
+
 import net.bootsfaces.render.Tooltip;
 
-/** This class holds the attributes of &lt;b:panel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
-		@ResourceDependency(library = "bsf", name = "css/panels.css"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css"),
-		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body") })
-@FacesComponent("net.bootsfaces.component.panel.Panel")
-public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
+/** This class holds the attributes of &lt;b:tab /&gt;. */
+@FacesComponent("net.bootsfaces.component.tab.Tab")
+public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.panel.Panel";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tab.Tab";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panel.Panel";
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tab.Tab";
 
-	public Panel() {
+	public Tab() {
 
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
@@ -49,7 +47,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	protected enum PropertyKeys {
-		binding, collapsed, collapsible, contentClass, contentStyle, id, look, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		id, contentStyle, style, onclick, styleClass, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
 		String toString;
 
@@ -63,108 +61,6 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
-	}
-
-	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
-	}
-
-	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
-		getStateHelper().put(PropertyKeys.binding, _binding);
-	}
-
-	/**
-	 * Is the panel collapsed? <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public boolean isCollapsed() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.collapsed, false);
-		return (boolean) value;
-	}
-
-	/**
-	 * Is the panel collapsed? <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCollapsed(boolean _collapsed) {
-		getStateHelper().put(PropertyKeys.collapsed, _collapsed);
-	}
-
-	/**
-	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public boolean isCollapsible() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.collapsible, true);
-		return (boolean) value;
-	}
-
-	/**
-	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCollapsible(boolean _collapsible) {
-		getStateHelper().put(PropertyKeys.collapsible, _collapsible);
-	}
-
-	/**
-	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getContentClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
-		return value;
-	}
-
-	/**
-	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setContentClass(String _contentClass) {
-		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
-	}
-
-	/**
-	 * Inline style of the content area. <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getContentStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
-		return value;
-	}
-
-	/**
-	 * Inline style of the content area. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setContentStyle(String _contentStyle) {
-		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
 	}
 
 	/**
@@ -187,28 +83,26 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. <br />
+	 * Inline CSS of the div surrounding the tab pane. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public String getLook() {
-		String value = (String) getStateHelper().eval(PropertyKeys.look);
+	public String getContentStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
 		return value;
 	}
 
 	/**
-	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. <br />
+	 * Inline CSS of the div surrounding the tab pane. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setLook(String _look) {
-		getStateHelper().put(PropertyKeys.look, _look);
+	public void setContentStyle(String _contentStyle) {
+		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
 	}
 
 	/**
-	 * Inline style of the entire panel area. <br />
+	 * Inline CSS of the tab. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -219,7 +113,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the entire panel area. <br />
+	 * Inline CSS of the tab. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -227,7 +121,28 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. <br />
+	 * Optional Javascript function that's called when the tab is clicked.
+	 * <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnclick() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
+		return value;
+	}
+
+	/**
+	 * Optional Javascript function that's called when the tab is clicked.
+	 * <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * Style class of the div surrounding the tab pane. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -238,7 +153,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. <br />
+	 * Style class of the div surrounding the tab pane. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -246,8 +161,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. <br />
+	 * Caption of the tab. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -258,52 +172,11 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. <br />
+	 * Caption of the tab. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
 		getStateHelper().put(PropertyKeys.title, _title);
-	}
-
-	/**
-	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getTitleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.titleClass);
-		return value;
-	}
-
-	/**
-	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTitleClass(String _titleClass) {
-		getStateHelper().put(PropertyKeys.titleClass, _titleClass);
-	}
-
-	/**
-	 * Inline style of the title area. <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getTitleStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.titleStyle);
-		return value;
-	}
-
-	/**
-	 * Inline style of the title area. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTitleStyle(String _titleStyle) {
-		getStateHelper().put(PropertyKeys.titleStyle, _titleStyle);
 	}
 
 	/**
@@ -409,6 +282,11 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+	
+	@Override
+	public void encodeAll(FacesContext context) throws IOException {
+		// This component doesn't render itself. It's rendered by b:tabView.
 	}
 
 }
