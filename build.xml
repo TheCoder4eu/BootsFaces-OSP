@@ -543,7 +543,7 @@
             <method name="get*"/>
             <method name="set*"/>
         </keep>
-        <keep name="net.bootsfaces.component.panel.Panel">
+        <keep name="net.bootsfaces.component.**">
               <constructor/>
               <method name="get*"/>
               <method name="set*"/>
