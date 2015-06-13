@@ -102,7 +102,10 @@ public class TabViewRenderer extends CoreRenderer {
         writer.writeAttribute("id", hiddenInputFieldID, "id");
         writer.writeAttribute("value", tabView.getActiveIndex(), "value");
         writer.endElement("input");
-
+        
+        writer.startElement("div", tabView);
+        writer.writeAttribute("class", "tab-panel", "class");
+        writer.writeAttribute("role", "tabpanel", "class");
         writer.startElement("ul", tabView);
         writer.writeAttribute("id", clientId, "id");
         Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
@@ -126,6 +129,7 @@ public class TabViewRenderer extends CoreRenderer {
         final List<UIComponent> tabs = getTabs(tabView);
         encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
         writer.endElement("ul");
+        writer.endElement("div");
         encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
         Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
     }
