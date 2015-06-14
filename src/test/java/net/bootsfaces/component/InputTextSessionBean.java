@@ -5,6 +5,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Named;
 
+import net.bootsfaces.component.inputText.InputText;
+
 /**
  * Backed bean for InputTextITCase.
  * 

@@ -339,10 +339,10 @@ widget inputSecret
     converterMessage                                                       "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality."
     disabled            Boolean                                            "Disables the input element, default is false."
-    fieldSize                                                              "The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                                                                     "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    label                                                                  "The Label of the field ."
+    label                                                                  "The label of the field."
     lang                                                                   "A localized user presentable name."
     maxlength           Integer                                            "The maximum length of the input."
     onblur                                                                 "Client side callback to execute when input element loses focus."
@@ -361,7 +361,7 @@ widget inputSecret
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -399,10 +399,10 @@ widget inputText
     converterMessage                                                       "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality."
     disabled            Boolean                                            "Disables the input element, default is false."
-    fieldSize                                                              "The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                                                                     "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    label                                                                  "The Label of the field ."
+    label                                                                  "The label of the field."
     lang                                                                   "A localized user presentable name."
     maxlength           Integer                                            "The maximum length of the input."
     onblur                                                                 "Client side callback to execute when input element loses focus."
@@ -421,7 +421,7 @@ widget inputText
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -653,7 +653,7 @@ widget navbarLinks
 
 
 widget panel
-       implemented_by net.bootsfaces.layout.Panel
+       implemented_by net.bootsfaces.component.panel.Panel
        processes_input
        has_children
        has_tooltip
@@ -744,7 +744,7 @@ widget selectBooleanCheckbox
     converterMessage                                                       "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality."
     disabled            Boolean                                            "Disables the input element, default is false."
-    fieldSize                                                              "The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                                                                     "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     label                                                                  "The label above of the field ."
@@ -764,7 +764,7 @@ widget selectBooleanCheckbox
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
@@ -781,10 +781,9 @@ widget selectBooleanCheckbox
 }
 
 
-widget selectOneMenu
-       implemented_by net.bootsfaces.component.SelectOneMenu
-       extends HtmlInputText
+widget selectMultiMenu
        has_tooltip
+       description "Similar to a traditional combobox, but with the option to select multiple values."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
@@ -812,7 +811,57 @@ widget selectOneMenu
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
+    size                Integer                                            "Number of characters used to determine the width of the input element."
+    span                Integer                                            "The size of the input specified as number of grid columns."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of the input element."
+    tabindex                                                               "Advisory tooltip information."
+    title                                                                  "Advisory tooltip information."
+    tooltip                                                                "The text of the tooltip."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    value               inherited                                          "Value."
+}
+
+
+widget selectOneMenu
+       extends HtmlInputText
+       has_tooltip
+       description "This component is also known as combobox or drop-down-menu."
+ {
+    accesskey                                                              "Access key to transfer focus to the input element."
+    alt                                                                    "Alternate textual description of the input element."
+    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    dir                                                                    "Direction indication for text that does not inherit directionality."
+    disabled            Boolean                                            "Disables the input element, default is false."
+    fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    id                                                                     "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    label                                                                  "The label of the field."
+    lang                                                                   "A localized user presentable name."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "OnClick DHTML event ."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
+    readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
+    renderLabel         Boolean  default "true"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -858,15 +907,14 @@ widget slider
 
 
 widget tab
-       implemented_by net.bootsfaces.component.Tab
        processes_input
        extends UIOutput
        has_tooltip
  {
-    id                                                                     "Unique identifier of the component in a namingContainer."
     contentStyle                                                           "Inline CSS of the div surrounding the tab pane."
-    style                                                                  "Inline CSS of the tab."
+    id                                                                     "Unique identifier of the component in a namingContainer."
     onclick                                                                "Optional Javascript function that's called when the tab is clicked."
+    style                                                                  "Inline CSS of the tab."
     styleClass                                                             "Style class of the div surrounding the tab pane."
     title                                                                  "Caption of the tab."
     tooltip                                                                "The text of the tooltip."
@@ -878,12 +926,11 @@ widget tab
 
 
 widget tabView
-       implemented_by net.bootsfaces.component.TabView
        processes_input
        extends UIOutput
        has_tooltip
  {
-    activeIndex        Integer                                             "Optional attribute to define which tab is active initially."
+    activeIndex         Integer                                            "Optional attribute to define which tab is active initially."
     contentClass                                                           "Style class of the div surrounding the panes."
     contentStyle                                                           "Inline CSS style of the div surrounding the panes."
     id                                                                     "Unique identifier of the component in a namingContainer."

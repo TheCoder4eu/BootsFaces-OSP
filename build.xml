@@ -106,6 +106,9 @@
 		<copy file="${bsf.js.orig.dir}/bsf.js" todir="${js.dir}"/>
 		<copy file="${bsf.js.orig.dir}/html5shiv.js" todir="${js.dir}"/>
 		<copy file="${bsf.js.orig.dir}/respond.js" todir="${js.dir}"/>
+        <copy file="${bsf.css.orig.dir}/bootstrap-multiselect.css" todir="${css.dir}" />
+        <copy file="${bsf.js.orig.dir}/bootstrap-multiselect-collapsible-groups.js" todir="${js.dir}" />
+        <copy file="${bsf.js.orig.dir}/bootstrap-multiselect.js" todir="${js.dir}" />
 		<echo message="Copying Fonts"/>
 		<copy todir="${fonts.dir}">
 		  <fileset dir="${fonts.orig.dir}" includes="*"/>
@@ -136,6 +139,9 @@
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'navbarLinks']" unless="bsf.navbar"/>
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'dropMenu']" unless="bsf.navbar"/>
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'panel']" unless="bsf.panel"/>
+			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'selectMultiMenu']" unless="bsf.selectMultiMenu"/>
+			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'tab']" unless="bsf.tab"/>
+			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'tabView']" unless="bsf.tab"/>
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'thumbnail']" unless="bsf.thumbnail"/>
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'well']" unless="bsf.well"/>
 			<remove path="/:facelet-taglib/:tag[:tag-name/text() = 'datepicker']" unless="bsf.datepicker"/>
@@ -335,10 +341,20 @@
 			<filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
 		</copy>
 	</target>
-        <target name="tab" if="bsf.tab">
+    <target name="selectMultiMenu" if="bsf.selectMultiMenu">
+		<echo message="Adding Bootstrap selectMultiMenu"/>
+        <copy file="${css.orig.dir}/bootstrap-multiselect.js" todir="${css.dir}">
+        </copy>
+        <copy file="${js.orig.dir}/bootstrap-multiselect-collapsible-groups.js" todir="${js.dir}">
+		</copy>
+        <copy file="${js.orig.dir}/bootstrap-multiselect.js" todir="${js.dir}">
+		      <filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
+		</copy>
+	</target>
+    <target name="tab" if="bsf.tab">
 		<echo message="Adding Bootstrap tab"/>
-                <copy file="${js.orig.dir}/tab.js" todir="${js.dir}">
-		 <filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
+        <copy file="${js.orig.dir}/tab.js" todir="${js.dir}">
+		      <filterchain><concatfilter prepend="${bootstrap.dir}/Bootstrap-license-${bootstrap.version}.txt"/></filterchain>
 		</copy>
 	</target>
 	<target name="well" if="bsf.well">

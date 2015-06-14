@@ -11,7 +11,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public License along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
-package net.bootsfaces.component;
+package net.bootsfaces.component.inputText;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;

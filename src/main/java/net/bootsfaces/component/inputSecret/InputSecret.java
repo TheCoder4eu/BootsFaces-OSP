@@ -17,7 +17,7 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component;
+package net.bootsfaces.component.inputSecret;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -25,6 +25,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.inputText.InputText;
 
 /**
  *
