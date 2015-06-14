@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
@@ -60,37 +61,55 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (menu.isDisabled() || menu.isReadonly()) {
 			return;
 		}
+		List<String> submittedValues = new ArrayList<String>();
 		String clientId = menu.getClientId();
-		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-
+		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
+		for (String key : map.keySet()) {
+			if (key.startsWith(clientId + ":")) {
+				submittedValues.add(map.get(key));
+			}
+		}
 		List<Object> items = collectOptions(context, menu);
 
-		if (null != submittedOptionValue) {
-			for (int index = 0; index < items.size(); index++) {
-				Object currentOption = items.get(index);
-				String currentOptionValueAsString;
-				Object currentOptionValue;
-				if (currentOption instanceof SelectItem) {
-					currentOptionValue = ((SelectItem) currentOption).getValue();
-				} else {
-					currentOptionValue = ((UISelectItem) currentOption).getItemValue();
+		if (!submittedValues.isEmpty()) {
+			// check for manipulated input
+			String result = null;
+			for (String submittedOptionValue : submittedValues) {
+				boolean found = false;
+				for (int index = 0; index < items.size(); index++) {
+					Object currentOption = items.get(index);
+					String currentOptionValueAsString;
+					Object currentOptionValue;
+					if (currentOption instanceof SelectItem) {
+						currentOptionValue = ((SelectItem) currentOption).getValue();
+					} else {
+						currentOptionValue = ((UISelectItem) currentOption).getItemValue();
+					}
+					if (currentOptionValue instanceof String) {
+						currentOptionValueAsString = (String) currentOptionValue;
+					} else
+						currentOptionValueAsString = String.valueOf(index);
+					if (submittedOptionValue.equals(currentOptionValueAsString)) {
+						if (null == result)
+							result = currentOptionValueAsString;
+						else
+							result += "," + currentOptionValue;
+						found = true;
+						break;
+					}
 				}
-				if (currentOptionValue instanceof String) {
-					currentOptionValueAsString = (String) currentOptionValue;
-				} else
-					currentOptionValueAsString = String.valueOf(index);
-				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(currentOptionValue);
-					menu.setValid(true);
+				if (!found) {
+					menu.setSubmittedValue(result);
+					menu.setValid(false);
 					return;
 				}
 			}
-			menu.setSubmittedValue(null);
-			menu.setValid(false);
+			menu.setSubmittedValue(result);
+			menu.setValid(true);
 			return;
 		}
 
-		menu.setSubmittedValue(submittedOptionValue);
+		menu.setSubmittedValue(null);
 		menu.setValid(true);
 	}
 
@@ -134,6 +153,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		closeColSpanDiv(rw, span);
 		rw.endElement("div"); // form-group
 		Tooltip.activateTooltips(context, menu);
+
+		String js = "$(document).ready(function() {$('.select-multi-menu').multiselect();});\n";
+		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
+
 	}
 
 	/**
@@ -294,7 +317,15 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		renderSelectTag(rw, menu);
 		renderSelectTagAttributes(rw, clientId, menu);
 		Object selectedOption = getValue2Render(context, menu);
-		renderOptions(context, rw, selectedOption, menu);
+		String[] optionList;
+		if (selectedOption == null) {
+			optionList = new String[0];
+		} else if (!(selectedOption instanceof String)) {
+			throw new FacesException("SelectMultiMenu only works with Strings!");
+		} else {
+			optionList = ((String) selectedOption).split(",");
+		}
+		renderOptions(context, rw, optionList, menu);
 
 		renderInputTagEnd(rw);
 	}
@@ -353,7 +384,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @param selectedOption
 	 * @throws IOException
 	 */
-	protected void renderOptions(FacesContext context, ResponseWriter rw, Object selectedOption, SelectMultiMenu menu)
+	protected void renderOptions(FacesContext context, ResponseWriter rw, String[] selectedOption, SelectMultiMenu menu)
 			throws IOException {
 		List<Object> items = collectOptions(context, menu);
 
@@ -435,7 +466,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             thrown if something's wrong with the response writer
 	 */
-	protected void renderOption(ResponseWriter rw, SelectItem selectItem, Object selectedOption, int index)
+	protected void renderOption(ResponseWriter rw, SelectItem selectItem, String[] selectedOption, int index)
 			throws IOException {
 
 		String itemLabel = selectItem.getLabel();
@@ -459,7 +490,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             thrown if something's wrong with the response writer
 	 */
-	protected void renderOption(ResponseWriter rw, UISelectItem selectItem, Object selectedOption, int index)
+	protected void renderOption(ResponseWriter rw, UISelectItem selectItem, String[] selectedOption, int index)
 			throws IOException {
 
 		String itemLabel = selectItem.getItemLabel();
@@ -472,7 +503,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue);
 	}
 
-	private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
+	private void renderOption(ResponseWriter rw, String[] selectedOption, int index, String itemLabel,
 			final String description, final Object itemValue) throws IOException {
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
 		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
@@ -489,10 +520,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			} else
 				value = String.valueOf(index);
 			rw.writeAttribute("value", value, "value");
-			if (itemValue.equals(selectedOption)) {
+			if (isInList(value, selectedOption)) {
 				rw.writeAttribute("selected", "true", "selected");
 			}
-		} else if (itemLabel.equals(selectedOption)) {
+		} else if (isInList(itemLabel, selectedOption)) {
 			rw.writeAttribute("selected", "true", "selected");
 		}
 
@@ -503,6 +534,19 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 
 		rw.endElement("option");
+	}
+
+	private boolean isInList(String value, String[] options) {
+		if (null == options)
+			return false;
+		for (String s : options) {
+			if (s == null) {
+				if (value == null)
+					return true;
+			} else if (s.equals(value))
+				return true;
+		}
+		return false;
 	}
 
 	/**
@@ -516,6 +560,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 */
 	protected void renderSelectTag(ResponseWriter rw, SelectMultiMenu menu) throws IOException {
 		rw.startElement("select", menu);
+
 	}
 
 	/**
@@ -540,6 +585,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		String s;
 		sb = new StringBuilder(20); // optimize int
 		sb.append("form-control");
+		sb.append(" select-multi-menu");
 		String fsize = menu.getFieldSize();
 
 		if (fsize != null) {
@@ -565,6 +611,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (menu.isReadonly()) {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
+
+		rw.writeAttribute("multiple", "multiple", null);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);

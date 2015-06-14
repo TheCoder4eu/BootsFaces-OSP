@@ -445,7 +445,7 @@
                         this.createDivider();
                     }
                     else {
-                        this.createOptionValue(element);
+                        this.createOptionValue(element, index);
                     }
 
                 }
@@ -667,7 +667,7 @@
          *
          * @param {jQuery} element
          */
-        createOptionValue: function(element) {
+        createOptionValue: function(element, index) {
             var $element = $(element);
             if ($element.is(':selected')) {
                 $element.prop('selected', true);
@@ -691,9 +691,12 @@
         
             var $checkbox = $('<input/>').attr('type', inputType);
 
+//            debugger;
             if (this.options.checkboxName) {
-                $checkbox.attr('name', this.options.checkboxName);
+                $checkbox.attr('name', this.$select.attr('name')); //this.options.checkboxName);
             }
+            $checkbox.attr('name', this.$select.attr('name')+":"+index);
+            
             $label.prepend($checkbox);
 
             var selected = $element.prop('selected') || false;
