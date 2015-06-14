@@ -1,4 +1,4 @@
-package net.bootsfaces.component;
+package net.bootsfaces.render;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Set;
 import javax.el.ValueExpression;
 
-import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.ValueHolder;
 import javax.faces.component.behavior.ClientBehavior;
@@ -18,11 +17,8 @@ import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
-import net.bootsfaces.render.A;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
-import net.bootsfaces.render.R;
-import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.component.InputSecret;
+import net.bootsfaces.component.InputText;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextRenderer")
 public class InputTextRenderer extends CoreRenderer {

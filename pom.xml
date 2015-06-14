@@ -48,8 +48,8 @@
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.testSource>1.6</maven.compiler.testSource>
         <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
-        
-        <maven.test.skip>false</maven.test.skip>
+        <maven.compiler.debug>true</maven.compiler.debug>
+        <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
     </properties>
 
 
@@ -86,6 +86,7 @@
     
     
     <dependencies>
+        
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
@@ -99,6 +100,8 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
+        
+        
         
         <!-- Test dependencies -->
         <dependency>
@@ -132,12 +135,24 @@
             <artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
             <scope>test</scope>
         </dependency>
+           
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
+            <scope>test</scope>
+        </dependency>
         
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
             <artifactId>arquillian-drone-webdriver-depchain</artifactId>
             <type>pom</type>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         
         <dependency>
@@ -186,11 +201,11 @@
                 <directory>BootsFaces/fonts</directory>
                 <targetPath>META-INF/resources/fonts</targetPath>
             </resource>
-           <resource>
+            <resource>
                 <directory>meta</directory>
                 <targetPath>META-INF</targetPath>
             </resource>
-            
+           
         </resources>
     </build>
     
@@ -299,8 +314,9 @@
             </build>
         </profile>
         
+        
         <profile>
-            <id>glassfish-embedded</id>
+            <id>wildfly-managed</id>
             <properties>
                 <!--
                 Determines which browser instance is created for WebDriver testing. Following values are valid:
@@ -312,23 +328,25 @@
                     phantomjs
                     safari 
                 -->
-                <project.integration.tests.browser>phantomjs</project.integration.tests.browser>
+                <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
+                <bootsfaces.arquillian.jboss.version>8.2.0.Final</bootsfaces.arquillian.jboss.version>
+              
             </properties>
             
             <dependencies>
                 
                 <dependency>
-                    <groupId>org.glassfish.main.extras</groupId>
-                    <artifactId>glassfish-embedded-all</artifactId>
-                    <version>3.1.2.2</version>
-                    <scope>test</scope>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <version>8.2.0.Final</version>
+                      <scope>test</scope>
                 </dependency>
                 
-                <dependency>
-                    <groupId>org.jboss.arquillian.container</groupId>
-                    <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-                    <version>1.0.0.CR4</version>
-                    <scope>test</scope>
+                 <dependency>
+                    <groupId>javax</groupId>
+                    <artifactId>javaee-api</artifactId>
+                    <version>7.0</version>
+                    <scope>provided</scope>
                 </dependency>
                 
                 <!-- required library to in using phantomjs -->
@@ -336,21 +354,58 @@
                     <groupId>com.google.guava</groupId>
                     <artifactId>guava</artifactId>
                     <version>18.0</version>
+                    <scope>test</scope>
                 </dependency>
-             
+                
                 <dependency>
-                    <groupId>javax</groupId>
-                    <artifactId>javaee-api</artifactId>
-                    <version>6.0</version>
-                    <scope>provided</scope>
+                    <groupId>org.apache.httpcomponents</groupId>
+                    <artifactId>httpcore</artifactId>
+                    <version>4.4.1</version>
+                    <scope>test</scope>
                 </dependency>
-              
+                
+                <!-- use last version of htmlunit browser -->
+                <dependency>
+                    <groupId>net.sourceforge.htmlunit</groupId>
+                    <artifactId>htmlunit</artifactId>
+                    <version>2.16</version>
+                    <scope>test</scope>
+                </dependency>
                 
             </dependencies>
+            
             
             <build>
                 <finalName>bootsfaces-test</finalName>
                 <plugins>
+                    <!-- You need the maven dependency plugin to download locally a zip with the server, unless you provide your own, it will download under the /target directory -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.8</version>
+                        <executions>
+                            <execution>
+                                <id>unpack</id>
+                                <phase>process-test-classes</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.wildfly</groupId>
+                                            <artifactId>wildfly-dist</artifactId>
+                                            <version>${bootsfaces.arquillian.jboss.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>false</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
@@ -363,16 +418,32 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <!-- Fork every test because it will launch a separate AS instance -->
+                            <reuseForks>false</reuseForks>
+                            <forkCount>1</forkCount>
+                            <systemPropertyVariables>
+                                <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                                <!-- the maven dependency plugin will have already downloaded the server on /target -->
+                                <jboss.home>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}</jboss.home>
+                                <module.path>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}/modules</module.path>
+                            </systemPropertyVariables>
+                            <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                        </configuration>
+                       
                     </plugin>
                 </plugins>
            
+           
                 <testResources>
                     <testResource>
-                        <directory>src/test/resources</directory>
-                        <filtering>true</filtering>
+                        <directory>src/test/resources/webapp</directory>
+                        <includes>
+                            <include>**/*</include>
+                        </includes>
                     </testResource>
                     <testResource>
-                        <directory>src/test/resources-glassfish-embedded</directory>
+                        <directory>src/test/resources-arquillian</directory>
                         <filtering>true</filtering>
                     </testResource>
                 </testResources>
@@ -380,6 +451,7 @@
             
         </profile>
     </profiles>
+    
     
     
     <distributionManagement>
