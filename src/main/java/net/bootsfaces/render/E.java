@@ -31,10 +31,10 @@ public final class E {
 		"onfocus"
 	};
 	
-//	public static String[] CHANGE_SELECT = {
-//		"onchange",
-//		"onselect"
-//	};
+	public static String[] CHANGE_SELECT = {
+		"onchange",
+		"onselect"
+	};
 	
 	public static String[] CLICK = {
 		"onclick",

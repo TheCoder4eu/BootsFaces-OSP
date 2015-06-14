@@ -10,9 +10,9 @@
     </engine>
 
 
-    <container qualifier="arquillian-glassfish-embedded" default="true">
+    <container qualifier="wildfly-managed" default="true">
         <configuration>
-            
+          
         </configuration>
     </container>
     

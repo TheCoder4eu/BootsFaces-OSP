@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <h:head>
+        <title>SelectBooleanCheckBox IT</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <h:form id="mainForm" prependId="false">
+            <b:container>
+                <h:outputLabel id="chk_1_label" value="#{selectBooleanCheckBoxSessionBean.valueChangeCount}" />
+                <b:selectBooleanCheckbox id="chk_1" value="#{selectBooleanCheckBoxSessionBean.boolValue1}" 
+                                         onchange="var dummy=0;" 
+                                         onselect="var dummy=0;"
+                                         valueChangeListener="#{selectBooleanCheckBoxSessionBean.valueChangeMethod}">
+                </b:selectBooleanCheckbox>
+
+
+                <b:selectBooleanCheckbox id="chk_2" value="#{selectBooleanCheckBoxSessionBean.boolValue2}">
+                    <f:validator validatorId="net.bootsfaces.validators.requiredCheckBoxValidator" />
+                </b:selectBooleanCheckbox>
+
+                <b:selectBooleanCheckbox id="chk_3" binding="#{selectBooleanCheckBoxSessionBean.booleanCheckbox}" /> 
+
+                <h:commandButton id="cmd" value="Submit" >
+                    <f:ajax execute="@form" render="@form" listener="#{selectBooleanCheckBoxSessionBean.ajaxAction()}" />
+                </h:commandButton>
+
+                <h:messages id="msg" showSummary="true" showDetail="true"/>
+            </b:container>
+        </h:form>
+    </h:body>
+</html>
