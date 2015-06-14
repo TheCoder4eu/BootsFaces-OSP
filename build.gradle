@@ -30,12 +30,9 @@ mavenCentral()
 }
 
 dependencies {
-compile 'javax.enterprise:cdi-api:1.2'
 compile 'javax.servlet:servlet-api:3.+'
 compile 'com.sun.faces:jsf-api:2.2.+'
-compile 'com.sun.faces:jsf-impl:2.2.+'
-compile 'org.glassfish.web:el-impl:2.2'
-compile 'javax.validation:validation-api:1.0.0.GA'
+compile 'javax.el:javax.el-api:3.0.0'
 runtime 'com.yahoo.platform.yui:yuicompressor:2.4.8'
 runtime 'net.sf.proguard:proguard-anttask:5.1'
 }
