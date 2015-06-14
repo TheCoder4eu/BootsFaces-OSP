@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <h:head>
         <title>InputText IT</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -12,27 +12,44 @@
     <h:body>
         <h:form id="mainForm" prependId="false">
             <b:container>
-                <h:outputLabel id="txt_1_label" value="#{inputTextSessionBean.valueChangeCount}" />
-                <b:inputText id="txt_1" value="#{inputTextSessionBean.txtValue1}" 
-                                         onchange="var dummy=0;" 
-                                         onselect="var dummy=0;"
-                                         valueChangeListener="#{inputTextSessionBean.valueChangeMethod}">
-                </b:inputText>
+
+                <h:panelGroup id="panelGroup_1">
+                    
+                    <h:outputLabel id="txt_1_label" value="#{inputTextSessionBean.valueChangeCount}" />
+                    <b:inputText id="txt_1" value="#{inputTextSessionBean.txtValue1}" 
+                                 onchange="var dummy = 0;" 
+                                 onselect="var dummy = 0;"
+                                 valueChangeListener="#{inputTextSessionBean.valueChangeMethod}">
+                    </b:inputText>
 
 
-                <b:inputText id="txt_2" value="#{inputTextSessionBean.txtValue2}">
-                    <f:validator validatorId="net.bootsfaces.validators.requiredInputTextValidator" />
-                </b:inputText>
+                    <b:inputText id="txt_2" value="#{inputTextSessionBean.txtValue2}">
+                        <f:validator validatorId="net.bootsfaces.validators.requiredInputTextValidator" />
+                    </b:inputText>
 
-                <b:inputText id="txt_3" binding="#{inputTextSessionBean.inputText}" /> 
+                    <b:inputText id="txt_3" binding="#{inputTextSessionBean.inputText}" /> 
+
+
+                    <h:commandButton id="cmd" value="Submit" >
+                        <f:ajax execute="panelGroup_1" render="panelGroup_1 msg" listener="#{inputTextSessionBean.ajaxAction()}" />
+                    </h:commandButton>
+                    
+                </h:panelGroup>
                 
-                <b:inputText id="txt_4" immediate="true" value="#{inputTextSessionBean.txtValue3}" />
-                <h:outputLabel id="txt_4_label" value="#{inputTextSessionBean.txtValue3}" />
                 
-                <h:commandButton id="cmd" value="Submit" >
-                    <f:ajax execute="@form" render="@form" listener="#{inputTextSessionBean.ajaxAction()}" />
-                </h:commandButton>
 
+                <h:panelGroup id="panelGroup_2">
+                    
+                    <b:inputText id="txt_4" immediate="true" value="#{inputTextSessionBean.txtValue4}" required="true"/>
+                    <b:inputText id="txt_5" immediate="false" value="#{inputTextSessionBean.txtValue5}" required="true"/>
+                    
+                   <h:commandButton id="cmd2" value="Submit2" >
+                        <f:ajax execute="panelGroup_2" render="panelGroup_2 msg" listener="#{inputTextSessionBean.ajaxAction()}" />
+                    </h:commandButton>
+                    
+                </h:panelGroup>
+                
+                
                 <h:messages id="msg" showSummary="true" showDetail="true"/>
             </b:container>
         </h:form>
