@@ -39,13 +39,12 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
-@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.SelectOneMenu.SelectOneMenu")
+@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenuRenderer extends CoreRenderer {
     /** Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in front of or behind the input field). */
     public static final String ADDON = "input-group-addon";
@@ -107,9 +106,9 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         Map<String, Object> attrs = menu.getAttributes();
         ResponseWriter rw = context.getResponseWriter();
         String clientId = menu.getClientId(context);
-        rw.startElement(H.DIV, menu);
+        rw.startElement("div", menu);
         Tooltip.generateTooltip(context, attrs, rw);
-        rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
+        rw.writeAttribute("class", "form-group", "class");
 
         addLabel(attrs, rw, clientId, menu);
 
@@ -159,10 +158,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             if (appendingAddOnFacet.getClass().getName().endsWith("Button")
                     || (appendingAddOnFacet.getChildCount() > 0 && appendingAddOnFacet.getChildren().get(0).getClass()
                             .getName().endsWith("Button"))) {
-                rw.startElement(H.DIV, menu);
-                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+                rw.startElement("div", menu);
+                rw.writeAttribute("class", "input-group-btn", "class");
                 appendingAddOnFacet.encodeAll(context);
-                rw.endElement(H.DIV);
+                rw.endElement("div");
             } else {
                 appendingAddOnFacet.encodeAll(context);
             }
@@ -192,10 +191,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             }
         }
         if (label != null) {
-            rw.startElement(H.LABEL, menu);
-            rw.writeAttribute(A.FOR, clientId, A.FOR);
+            rw.startElement("label", menu);
+            rw.writeAttribute("for", clientId, "for");
             rw.writeText(label, null);
-            rw.endElement(H.LABEL);
+            rw.endElement("label");
         }
     }
 
@@ -217,10 +216,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             if (prependingAddOnFacet.getClass().getName().endsWith("Button")
                     || (prependingAddOnFacet.getChildCount() > 0 && prependingAddOnFacet.getChildren().get(0)
                             .getClass().getName().endsWith("Button"))) {
-                rw.startElement(H.DIV, menu);
-                rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+                rw.startElement("div", menu);
+                rw.writeAttribute("class", "input-group-btn", "class");
                 prependingAddOnFacet.encodeAll(context);
-                rw.endElement(H.DIV);
+                rw.endElement("div");
             } else {
                 prependingAddOnFacet.encodeAll(context);
             }
@@ -239,7 +238,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      */
     protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
         if (span > 0) {
-            rw.endElement(H.DIV);
+            rw.endElement("div");
         }
     }
 
@@ -256,7 +255,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      */
     protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
         if (hasAddon) {
-            rw.endElement(H.DIV);
+            rw.endElement("div");
         }
     }
 
@@ -511,7 +510,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      *             may be thrown by the response writer
      */
     protected void renderSelectTag(ResponseWriter rw, SelectOneMenu menu) throws IOException {
-        rw.startElement(H.SELECT, menu);
+        rw.startElement("select", menu);
     }
 
     /**
@@ -528,19 +527,19 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      */
     protected void renderSelectTagAttributes(Map<String, Object> attrs, ResponseWriter rw, String clientId)
             throws IOException {
-        rw.writeAttribute(H.ID, clientId, null);
-        rw.writeAttribute(H.NAME, clientId, null);
+        rw.writeAttribute("id", clientId, null);
+        rw.writeAttribute("name", clientId, null);
 
         StringBuilder sb;
         String s;
         sb = new StringBuilder(20); // optimize int
         sb.append("form-control");
-        String fsize = A.asString(attrs.get(A.FIELDSIZE));
+        String fsize = A.asString(attrs.get("fieldSize"));
 
         if (fsize != null) {
             sb.append(" input-").append(fsize);
         }
-        String cssClass = A.asString(attrs.get(H.STYLECLASS));
+        String cssClass = A.asString(attrs.get("styleClass"));
         if (cssClass != null) {
             sb.append(" ").append(cssClass);
         }
@@ -551,11 +550,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
         s = sb.toString().trim();
         if (s != null && s.length() > 0) {
-            rw.writeAttribute(H.CLASS, s, H.CLASS);
+            rw.writeAttribute("class", s, "class");
         }
 
-        if (A.toBool(attrs.get(A.DISABLED))) {
-            rw.writeAttribute(A.DISABLED, A.DISABLED, null);
+        if (A.toBool(attrs.get(C.DISABLED))) {
+            rw.writeAttribute(C.DISABLED, C.DISABLED, null);
         }
         if (A.toBool(attrs.get(A.READONLY))) {
             rw.writeAttribute(A.READONLY, A.READONLY, null);
@@ -574,7 +573,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      *             may be thrown by the response writer
      */
     protected void renderInputTagEnd(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
-        rw.endElement(H.SELECT);
+        rw.endElement("select");
     }
 
     /**
@@ -588,10 +587,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      *             may be thrown by the response writer
      */
     protected int startColSpanDiv(Map<String, Object> attrs, ResponseWriter rw, SelectOneMenu menu) throws IOException {
-        int span = A.toInt(attrs.get(A.SPAN));
+        int span = A.toInt(attrs.get("span"));
         if (span > 0) {
-            rw.startElement(H.DIV, menu);
-            rw.writeAttribute(H.CLASS, "col-md-" + span, H.CLASS);
+            rw.startElement("div", menu);
+            rw.writeAttribute("class", "col-md-" + span, "class");
         }
         return span;
     }
@@ -612,8 +611,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             throws IOException {
         final boolean hasAddon = hasAppendingAddOn || hasPrependingAddOn;
         if (hasAddon) {
-            rw.startElement(H.DIV, menu);
-            rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
+            rw.startElement("div", menu);
+            rw.writeAttribute("class", "input-group", "class");
         }
         return hasAddon;
     }

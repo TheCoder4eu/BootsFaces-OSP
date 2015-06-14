@@ -28,7 +28,7 @@ import net.bootsfaces.render.Tooltip;
 
 
 /** This class holds the attributes of &lt;b:selectMultiMenu /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.js", target = "head"),
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.css", target = "head")
 	})
 
