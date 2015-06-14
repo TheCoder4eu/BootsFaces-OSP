@@ -605,9 +605,9 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public String getRenderLabel() {
-		String value = (String) getStateHelper().eval(PropertyKeys.renderLabel);
-		return value;
+	public boolean isRenderLabel() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, true);
+		return (boolean) value;
 	}
 
 	/**
@@ -615,7 +615,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 * AngularFaces, too. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setRenderLabel(String _renderLabel) {
+	public void setRenderLabel(boolean _renderLabel) {
 		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
 	}
 
@@ -881,4 +881,5 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
+
 }

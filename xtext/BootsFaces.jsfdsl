@@ -361,7 +361,7 @@ widget inputSecret
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -421,7 +421,7 @@ widget inputText
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -764,7 +764,7 @@ widget selectBooleanCheckbox
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
@@ -783,6 +783,7 @@ widget selectBooleanCheckbox
 
 widget selectMultiMenu
        has_tooltip
+       description "Similar to a traditional combobox, but with the option to select multiple values."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
@@ -810,7 +811,7 @@ widget selectMultiMenu
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -832,6 +833,7 @@ widget selectMultiMenu
 widget selectOneMenu
        extends HtmlInputText
        has_tooltip
+       description "This component is also known as combobox or drop-down-menu."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
@@ -859,7 +861,7 @@ widget selectOneMenu
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel                                                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean  default "true"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
