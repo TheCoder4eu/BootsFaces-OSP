@@ -166,7 +166,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small),
+	 * The size of the input. Possible values are xs (extra small), sm (small),
 	 * md (medium) and lg (large) . <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -178,7 +178,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small),
+	 * The size of the input. Possible values are xs (extra small), sm (small),
 	 * md (medium) and lg (large) . <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -231,7 +231,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The Label of the field . <br />
+	 * The label of the field. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -242,7 +242,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The Label of the field . <br />
+	 * The label of the field. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLabel(String _label) {
@@ -797,6 +797,69 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelay() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelay(int _tooltipDelay) {
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelayHide() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayHide(int _tooltipDelayHide) {
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelayShow() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayShow(int _tooltipDelayShow) {
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
+
+	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom". <br />
@@ -818,68 +881,4 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
-
-	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
-	}
-
-	/**
-	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
-	}
-
-	/**
-	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
-	}
-
-	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelay(int _tooltipDelay) {
-		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-	}
-
-	/**
-	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelayHide(int _tooltipDelayHide) {
-		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-	}
-
-	/**
-	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelayShow(int _tooltipDelayShow) {
-		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-	}
-
 }

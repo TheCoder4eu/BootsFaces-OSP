@@ -42,581 +42,591 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
-
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenuRenderer extends CoreRenderer {
-    /** Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in front of or behind the input field). */
-    public static final String ADDON = "input-group-addon";
-	
-	
+	/**
+	 * Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in
+	 * front of or behind the input field).
+	 */
+	public static final String ADDON = "input-group-addon";
+
 	// http://davidstutz.github.io/bootstrap-multiselect/
-	
 
-    /** Receives the value from the client and sends it to the JSF bean. */
-    @Override
-    public void decode(FacesContext context, UIComponent component) {
-    	SelectOneMenu menu=(SelectOneMenu) component;
-        if (menu.isDisabled() || menu.isReadonly()) {
-            return;
-        }
-        String clientId = menu.getClientId();
-        String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap()
-                .get(clientId);
+	/** Receives the value from the client and sends it to the JSF bean. */
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		SelectOneMenu menu = (SelectOneMenu) component;
+		if (menu.isDisabled() || menu.isReadonly()) {
+			return;
+		}
+		String clientId = menu.getClientId();
+		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
-        List<Object> items = collectOptions(context, menu);
+		List<Object> items = collectOptions(context, menu);
 
-        if (null != submittedOptionValue) {
-            for (int index = 0; index < items.size(); index++) {
-                Object currentOption = items.get(index);
-                String currentOptionValueAsString;
-                Object currentOptionValue;
-                if (currentOption instanceof SelectItem) {
-                    currentOptionValue = ((SelectItem) currentOption).getValue();
-                } else {
-                    currentOptionValue = ((UISelectItem) currentOption).getItemValue();
-                }
-                if (currentOptionValue instanceof String) {
-                    currentOptionValueAsString = (String) currentOptionValue;
-                } else
-                    currentOptionValueAsString = String.valueOf(index);
-                if (submittedOptionValue.equals(currentOptionValueAsString)) {
-                    menu.setSubmittedValue(currentOptionValue);
-                    menu.setValid(true);
-                    return;
-                }
-            }
-            menu.setSubmittedValue(null);
-            menu.setValid(false);
-            return;
-        }
+		if (null != submittedOptionValue) {
+			for (int index = 0; index < items.size(); index++) {
+				Object currentOption = items.get(index);
+				String currentOptionValueAsString;
+				Object currentOptionValue;
+				if (currentOption instanceof SelectItem) {
+					currentOptionValue = ((SelectItem) currentOption).getValue();
+				} else {
+					currentOptionValue = ((UISelectItem) currentOption).getItemValue();
+				}
+				if (currentOptionValue instanceof String) {
+					currentOptionValueAsString = (String) currentOptionValue;
+				} else
+					currentOptionValueAsString = String.valueOf(index);
+				if (submittedOptionValue.equals(currentOptionValueAsString)) {
+					menu.setSubmittedValue(currentOptionValue);
+					menu.setValid(true);
+					return;
+				}
+			}
+			menu.setSubmittedValue(null);
+			menu.setValid(false);
+			return;
+		}
 
-        menu.setSubmittedValue(submittedOptionValue);
-        menu.setValid(true);
-    }
+		menu.setSubmittedValue(submittedOptionValue);
+		menu.setValid(true);
+	}
 
-    /** Generates the HTML code for this component. */
-    @Override
-    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-    	SelectOneMenu menu=(SelectOneMenu) component;
-    	
-        if (!menu.isRendered()) {
-            return;
-        }
-        Map<String, Object> attrs = menu.getAttributes();
-        ResponseWriter rw = context.getResponseWriter();
-        String clientId = menu.getClientId(context);
-        rw.startElement("div", menu);
-        Tooltip.generateTooltip(context, attrs, rw);
-        rw.writeAttribute("class", "form-group", "class");
+	/** Generates the HTML code for this component. */
+	@Override
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+		SelectOneMenu menu = (SelectOneMenu) component;
 
-        addLabel(attrs, rw, clientId, menu);
+		if (!menu.isRendered()) {
+			return;
+		}
+		ResponseWriter rw = context.getResponseWriter();
+		String clientId = menu.getClientId(context);
+		rw.startElement("div", menu);
+		Tooltip.generateTooltip(context, menu, rw);
+		rw.writeAttribute("class", "form-group", "class");
 
-        // "Prepend" facet
-        UIComponent prependingAddOnFacet = menu.getFacet(C.PREPEND);
-        if ((prependingAddOnFacet != null)) {
-            R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
-        }
+		addLabel(rw, clientId, menu);
 
-        // "Append" facet
-        UIComponent appendingAddOnFacet = menu.getFacet(C.APPEND);
-        if ((appendingAddOnFacet != null)) {
-            R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
-        }
-        final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
-                (appendingAddOnFacet != null), menu);
+		// "Prepend" facet
+		UIComponent prependingAddOnFacet = menu.getFacet(C.PREPEND);
+		if ((prependingAddOnFacet != null)) {
+			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
+		}
 
-        int span = startColSpanDiv(attrs, rw, menu);
+		// "Append" facet
+		UIComponent appendingAddOnFacet = menu.getFacet(C.APPEND);
+		if ((appendingAddOnFacet != null)) {
+			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
+		}
+		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
+				(appendingAddOnFacet != null), menu);
 
-        addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
-        renderSelectTag(context, attrs, rw, clientId, menu);
-        addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
+		int span = startColSpanDiv(rw, menu);
 
-        closeInputGroupForAddOn(rw, hasAddon);
-        closeColSpanDiv(rw, span);
-        rw.endElement("div"); // form-group
-        Tooltip.activateTooltips(context, attrs, menu);
-    }
+		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
+		renderSelectTag(context, rw, clientId, menu);
+		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
-    /**
-     * Renders components added seamlessly behind the input field.
-     * 
-     * @param context
-     *            the FacesContext
-     * @param rw
-     *            the response writer
-     * @param appendingAddOnFacet
-     *            optional facet behind the field. Can be null.
-     * @param hasAppendingAddOn
-     *            optional facet in front of the field. Can be null.
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
-            UIComponent appendingAddOnFacet, boolean hasAppendingAddOn, SelectOneMenu menu) throws IOException {
-        if (hasAppendingAddOn) {
-            if (appendingAddOnFacet.getClass().getName().endsWith("Button")
-                    || (appendingAddOnFacet.getChildCount() > 0 && appendingAddOnFacet.getChildren().get(0).getClass()
-                            .getName().endsWith("Button"))) {
-                rw.startElement("div", menu);
-                rw.writeAttribute("class", "input-group-btn", "class");
-                appendingAddOnFacet.encodeAll(context);
-                rw.endElement("div");
-            } else {
-                appendingAddOnFacet.encodeAll(context);
-            }
-        }
-    }
+		closeInputGroupForAddOn(rw, hasAddon);
+		closeColSpanDiv(rw, span);
+		rw.endElement("div"); // form-group
+		Tooltip.activateTooltips(context, menu);
+	}
 
-    /**
-     * Renders the optional label. This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param attrs
-     *            the input field's attribute list
-     * @param rw
-     *            the response writer
-     * @param clientId
-     *            the id used by the label to refernce the input field
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void addLabel(Map<String, Object> attrs, ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
-        String label = A.asString(attrs.get(A.LABEL));
-        {
-            Object rl = attrs.get(A.RENDERLABEL);
-            if (null != rl) {
-                if (!A.toBool(attrs.get(A.RENDERLABEL))) {
-                    label = null;
-                }
-            }
-        }
-        if (label != null) {
-            rw.startElement("label", menu);
-            rw.writeAttribute("for", clientId, "for");
-            rw.writeText(label, null);
-            rw.endElement("label");
-        }
-    }
+	/**
+	 * Renders components added seamlessly behind the input field.
+	 * 
+	 * @param context
+	 *            the FacesContext
+	 * @param rw
+	 *            the response writer
+	 * @param appendingAddOnFacet
+	 *            optional facet behind the field. Can be null.
+	 * @param hasAppendingAddOn
+	 *            optional facet in front of the field. Can be null.
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
+			UIComponent appendingAddOnFacet, boolean hasAppendingAddOn, SelectOneMenu menu) throws IOException {
+		if (hasAppendingAddOn) {
+			if (appendingAddOnFacet.getClass().getName().endsWith("Button") || (appendingAddOnFacet.getChildCount() > 0
+					&& appendingAddOnFacet.getChildren().get(0).getClass().getName().endsWith("Button"))) {
+				rw.startElement("div", menu);
+				rw.writeAttribute("class", "input-group-btn", "class");
+				appendingAddOnFacet.encodeAll(context);
+				rw.endElement("div");
+			} else {
+				appendingAddOnFacet.encodeAll(context);
+			}
+		}
+	}
 
-    /**
-     * Renders components added seamlessly in front of the input field.
-     * 
-     * @param context
-     *            the FacesContext
-     * @param rw
-     *            the response writer
-     * @param prependingAddOnFacet
-     * @param hasPrependingAddOn
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
-            UIComponent prependingAddOnFacet, boolean hasPrependingAddOn, SelectOneMenu menu) throws IOException {
-        if (hasPrependingAddOn) {
-            if (prependingAddOnFacet.getClass().getName().endsWith("Button")
-                    || (prependingAddOnFacet.getChildCount() > 0 && prependingAddOnFacet.getChildren().get(0)
-                            .getClass().getName().endsWith("Button"))) {
-                rw.startElement("div", menu);
-                rw.writeAttribute("class", "input-group-btn", "class");
-                prependingAddOnFacet.encodeAll(context);
-                rw.endElement("div");
-            } else {
-                prependingAddOnFacet.encodeAll(context);
-            }
-        }
-    }
+	/**
+	 * Renders the optional label. This method is protected in order to allow
+	 * third-party frameworks to derive from it.
+	 * 
+	 * @param attrs
+	 *            the input field's attribute list
+	 * @param rw
+	 *            the response writer
+	 * @param clientId
+	 *            the id used by the label to refernce the input field
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void addLabel(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
+		String label = menu.getLabel();
+		{
+			Object rl = menu.getRenderLabel();
+			if (null != rl) {
+				if (!A.toBool(menu.getRenderLabel())) {
+					label = null;
+				}
+			}
+		}
+		if (label != null) {
+			rw.startElement("label", menu);
+			rw.writeAttribute("for", clientId, "for");
+			rw.writeText(label, null);
+			rw.endElement("label");
+		}
+	}
 
-    /**
-     * Terminate the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param rw
-     *            the response writer
-     * @param span
-     *            the width of the components (in BS columns).
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
-        if (span > 0) {
-            rw.endElement("div");
-        }
-    }
+	/**
+	 * Renders components added seamlessly in front of the input field.
+	 * 
+	 * @param context
+	 *            the FacesContext
+	 * @param rw
+	 *            the response writer
+	 * @param prependingAddOnFacet
+	 * @param hasPrependingAddOn
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
+			UIComponent prependingAddOnFacet, boolean hasPrependingAddOn, SelectOneMenu menu) throws IOException {
+		if (hasPrependingAddOn) {
+			if (prependingAddOnFacet.getClass().getName().endsWith("Button")
+					|| (prependingAddOnFacet.getChildCount() > 0
+							&& prependingAddOnFacet.getChildren().get(0).getClass().getName().endsWith("Button"))) {
+				rw.startElement("div", menu);
+				rw.writeAttribute("class", "input-group-btn", "class");
+				prependingAddOnFacet.encodeAll(context);
+				rw.endElement("div");
+			} else {
+				prependingAddOnFacet.encodeAll(context);
+			}
+		}
+	}
 
-    /**
-     * Terminates the input field group (if there's one). This method is protected in order to allow third-party frameworks to derive from
-     * it.
-     * 
-     * @param rw
-     *            the response writer
-     * @param hasAddon
-     *            true if there is an add-on in front of or behind the input field
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
-        if (hasAddon) {
-            rw.endElement("div");
-        }
-    }
+	/**
+	 * Terminate the column span div (if there's one). This method is protected
+	 * in order to allow third-party frameworks to derive from it.
+	 * 
+	 * @param rw
+	 *            the response writer
+	 * @param span
+	 *            the width of the components (in BS columns).
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
+		if (span > 0) {
+			rw.endElement("div");
+		}
+	}
 
-    /**
-     * Algorithm works as follows; - If it's an input component, submitted value is checked first since it'd be the value to be used in case
-     * validation errors terminates jsf lifecycle - Finally the value of the component is retrieved from backing bean and if there's a
-     * converter, converted value is returned
-     *
-     * @param context
-     *            FacesContext instance
-     * @return End text
-     */
-    public Object getValue2Render(FacesContext context, SelectOneMenu menu) {
-        Object sv = menu.getSubmittedValue();
-        if (sv != null) {
-            return sv;
-        }
+	/**
+	 * Terminates the input field group (if there's one). This method is
+	 * protected in order to allow third-party frameworks to derive from it.
+	 * 
+	 * @param rw
+	 *            the response writer
+	 * @param hasAddon
+	 *            true if there is an add-on in front of or behind the input
+	 *            field
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void closeInputGroupForAddOn(ResponseWriter rw, final boolean hasAddon) throws IOException {
+		if (hasAddon) {
+			rw.endElement("div");
+		}
+	}
 
-        Object val = menu.getValue();
-        if (val != null) {
-            Converter converter = menu.getConverter();
+	/**
+	 * Algorithm works as follows; - If it's an input component, submitted value
+	 * is checked first since it'd be the value to be used in case validation
+	 * errors terminates jsf lifecycle - Finally the value of the component is
+	 * retrieved from backing bean and if there's a converter, converted value
+	 * is returned
+	 *
+	 * @param context
+	 *            FacesContext instance
+	 * @return End text
+	 */
+	public Object getValue2Render(FacesContext context, SelectOneMenu menu) {
+		Object sv = menu.getSubmittedValue();
+		if (sv != null) {
+			return sv;
+		}
 
-            if (converter != null)
-                return converter.getAsString(context, menu, val);
-            else
-                return val;
+		Object val = menu.getValue();
+		if (val != null) {
+			Converter converter = menu.getConverter();
 
-        } else {
-            // component is a value holder but has no value
-            return null;
-        }
-    }
+			if (converter != null)
+				return converter.getAsString(context, menu, val);
+			else
+				return val;
 
-    /** Renders the select tag. */
-    protected void renderSelectTag(FacesContext context, Map<String, Object> attrs, ResponseWriter rw, String clientId, SelectOneMenu menu)
-            throws IOException {
-        renderSelectTag(rw, menu);
-        renderSelectTagAttributes(attrs, rw, clientId);
-        Object selectedOption = getValue2Render(context, menu);
-        renderOptions(context, rw, selectedOption, menu);
+		} else {
+			// component is a value holder but has no value
+			return null;
+		}
+	}
 
-        renderInputTagEnd(attrs, rw);
-    }
+	/** Renders the select tag. */
+	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectOneMenu menu)
+			throws IOException {
+		renderSelectTag(rw, menu);
+		renderSelectTagAttributes(rw, clientId, menu);
+		Object selectedOption = getValue2Render(context, menu);
+		renderOptions(context, rw, selectedOption, menu);
 
-    /**
-     * Copied from the InputRenderer class of PrimeFaces 5.1.
-     * 
-     * @param context
-     * @param uiSelectItems
-     * @param value
-     * @param label
-     * @return
-     */
-    protected SelectItem createSelectItem(FacesContext context, UISelectItems uiSelectItems, Object value, Object label) {
-        String var = (String) uiSelectItems.getAttributes().get("var");
-        Map<String, Object> attrs = uiSelectItems.getAttributes();
-        Map<String, Object> requestMap = context.getExternalContext().getRequestMap();
+		renderInputTagEnd(rw);
+	}
 
-        if (var != null) {
-            requestMap.put(var, value);
-        }
+	/**
+	 * Copied from the InputRenderer class of PrimeFaces 5.1.
+	 * 
+	 * @param context
+	 * @param uiSelectItems
+	 * @param value
+	 * @param label
+	 * @return
+	 */
+	protected SelectItem createSelectItem(FacesContext context, UISelectItems uiSelectItems, Object value,
+			Object label) {
+		String var = (String) uiSelectItems.getAttributes().get("var");
+		Map<String, Object> attrs = uiSelectItems.getAttributes();
+		Map<String, Object> requestMap = context.getExternalContext().getRequestMap();
 
-        Object itemLabelValue = attrs.get("itemLabel");
-        Object itemValue = attrs.get("itemValue");
-        String description = (String) attrs.get("itemDescription");
-        Object itemDisabled = attrs.get("itemDisabled");
-        Object itemEscaped = attrs.get("itemLabelEscaped");
-        Object noSelection = attrs.get("noSelectionOption");
+		if (var != null) {
+			requestMap.put(var, value);
+		}
 
-        if (itemValue == null) {
-            itemValue = value;
-        }
+		Object itemLabelValue = attrs.get("itemLabel");
+		Object itemValue = attrs.get("itemValue");
+		String description = (String) attrs.get("itemDescription");
+		Object itemDisabled = attrs.get("itemDisabled");
+		Object itemEscaped = attrs.get("itemLabelEscaped");
+		Object noSelection = attrs.get("noSelectionOption");
 
-        if (itemLabelValue == null) {
-            itemLabelValue = label;
-        }
+		if (itemValue == null) {
+			itemValue = value;
+		}
 
-        String itemLabel = itemLabelValue == null ? String.valueOf(value) : String.valueOf(itemLabelValue);
-        boolean disabled = itemDisabled == null ? false : Boolean.valueOf(itemDisabled.toString());
-        boolean escaped = itemEscaped == null ? false : Boolean.valueOf(itemEscaped.toString());
-        boolean noSelectionOption = noSelection == null ? false : Boolean.valueOf(noSelection.toString());
+		if (itemLabelValue == null) {
+			itemLabelValue = label;
+		}
 
-        if (var != null) {
-            requestMap.remove(var);
-        }
+		String itemLabel = itemLabelValue == null ? String.valueOf(value) : String.valueOf(itemLabelValue);
+		boolean disabled = itemDisabled == null ? false : Boolean.valueOf(itemDisabled.toString());
+		boolean escaped = itemEscaped == null ? false : Boolean.valueOf(itemEscaped.toString());
+		boolean noSelectionOption = noSelection == null ? false : Boolean.valueOf(noSelection.toString());
 
-        return new SelectItem(itemValue, itemLabel, description, disabled, escaped, noSelectionOption);
-    }
+		if (var != null) {
+			requestMap.remove(var);
+		}
 
-    /**
-     * Parts of this class are an adapted version of InputRenderer#getSelectItems() of PrimeFaces 5.1.
-     * 
-     * @param rw
-     * @param selectedOption
-     * @throws IOException
-     */
-    protected void renderOptions(FacesContext context, ResponseWriter rw, Object selectedOption, SelectOneMenu menu) throws IOException {
-        List<Object> items = collectOptions(context, menu);
+		return new SelectItem(itemValue, itemLabel, description, disabled, escaped, noSelectionOption);
+	}
 
-        for (int index = 0; index < items.size(); index++) {
-            Object option = items.get(index);
-            if (option instanceof SelectItem) {
-                renderOption(rw, (SelectItem) option, selectedOption, index);
-            } else {
-                renderOption(rw, (UISelectItem) option, selectedOption, index);
-            }
-        }
-    }
+	/**
+	 * Parts of this class are an adapted version of
+	 * InputRenderer#getSelectItems() of PrimeFaces 5.1.
+	 * 
+	 * @param rw
+	 * @param selectedOption
+	 * @throws IOException
+	 */
+	protected void renderOptions(FacesContext context, ResponseWriter rw, Object selectedOption, SelectOneMenu menu)
+			throws IOException {
+		List<Object> items = collectOptions(context, menu);
 
-    private List<Object> collectOptions(FacesContext context, SelectOneMenu menu) {
-        List<Object> items = new ArrayList<Object>();
+		for (int index = 0; index < items.size(); index++) {
+			Object option = items.get(index);
+			if (option instanceof SelectItem) {
+				renderOption(rw, (SelectItem) option, selectedOption, index);
+			} else {
+				renderOption(rw, (UISelectItem) option, selectedOption, index);
+			}
+		}
+	}
 
-        List<UIComponent> selectItems = menu.getChildren();
-        for (UIComponent kid : selectItems) {
-            if (kid instanceof UISelectItem) {
-                UISelectItem option = (UISelectItem) kid;
-                items.add(option);
-            } else if (kid instanceof UISelectItems) {
+	private List<Object> collectOptions(FacesContext context, SelectOneMenu menu) {
+		List<Object> items = new ArrayList<Object>();
 
-                UISelectItems uiSelectItems = ((UISelectItems) kid);
-                Object value = uiSelectItems.getValue();
+		List<UIComponent> selectItems = menu.getChildren();
+		for (UIComponent kid : selectItems) {
+			if (kid instanceof UISelectItem) {
+				UISelectItem option = (UISelectItem) kid;
+				items.add(option);
+			} else if (kid instanceof UISelectItems) {
 
-                if (value != null) {
-                    if (value instanceof SelectItem) {
-                        items.add(value);
+				UISelectItems uiSelectItems = ((UISelectItems) kid);
+				Object value = uiSelectItems.getValue();
 
-                    } else {
-                        if (value.getClass().isArray()) {
-                            for (int i = 0; i < Array.getLength(value); i++) {
-                                Object item = Array.get(value, i);
+				if (value != null) {
+					if (value instanceof SelectItem) {
+						items.add(value);
 
-                                if (item instanceof SelectItem)
-                                    items.add(item);
-                                else
-                                    items.add(createSelectItem(context, uiSelectItems, item, null));
-                            }
-                        } else if (value instanceof Map) {
-                            Map map = (Map) value;
+					} else {
+						if (value.getClass().isArray()) {
+							for (int i = 0; i < Array.getLength(value); i++) {
+								Object item = Array.get(value, i);
 
-                            for (Iterator it = map.keySet().iterator(); it.hasNext();) {
-                                Object key = it.next();
+								if (item instanceof SelectItem)
+									items.add(item);
+								else
+									items.add(createSelectItem(context, uiSelectItems, item, null));
+							}
+						} else if (value instanceof Map) {
+							Map map = (Map) value;
 
-                                items.add(createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key)));
-                            }
-                        } else if (value instanceof Collection) {
-                            Collection collection = (Collection) value;
+							for (Iterator it = map.keySet().iterator(); it.hasNext();) {
+								Object key = it.next();
 
-                            for (Iterator it = collection.iterator(); it.hasNext();) {
-                                Object item = it.next();
-                                if (item instanceof SelectItem)
-                                    items.add(item);
-                                else
-                                    items.add(createSelectItem(context, uiSelectItems, item, null));
-                            }
-                        }
-                    }
-                }
+								items.add(createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key)));
+							}
+						} else if (value instanceof Collection) {
+							Collection collection = (Collection) value;
 
-            }
-        }
-        return items;
-    }
+							for (Iterator it = collection.iterator(); it.hasNext();) {
+								Object item = it.next();
+								if (item instanceof SelectItem)
+									items.add(item);
+								else
+									items.add(createSelectItem(context, uiSelectItems, item, null));
+							}
+						}
+					}
+				}
 
-    /**
-     * Renders a single &lt;option&gt; tag. For some reason, <code>SelectItem</code> and <code>UISelectItem</code> don't share a common
-     * interface, so this method is repeated twice.
-     * 
-     * @param rw
-     *            The response writer
-     * @param selectItem
-     *            The current SelectItem
-     * @param selectedOption
-     *            the currently selected option
-     * @throws IOException
-     *             thrown if something's wrong with the response writer
-     */
-    protected void renderOption(ResponseWriter rw, SelectItem selectItem, Object selectedOption, int index)
-            throws IOException {
+			}
+		}
+		return items;
+	}
 
-        String itemLabel = selectItem.getLabel();
-        final String description = selectItem.getDescription();
-        final Object itemValue = selectItem.getValue();
+	/**
+	 * Renders a single &lt;option&gt; tag. For some reason,
+	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
+	 * common interface, so this method is repeated twice.
+	 * 
+	 * @param rw
+	 *            The response writer
+	 * @param selectItem
+	 *            The current SelectItem
+	 * @param selectedOption
+	 *            the currently selected option
+	 * @throws IOException
+	 *             thrown if something's wrong with the response writer
+	 */
+	protected void renderOption(ResponseWriter rw, SelectItem selectItem, Object selectedOption, int index)
+			throws IOException {
 
-        renderOption(rw, selectedOption, index, itemLabel, description, itemValue);
-    }
+		String itemLabel = selectItem.getLabel();
+		final String description = selectItem.getDescription();
+		final Object itemValue = selectItem.getValue();
 
-    /**
-     * Renders a single &lt;option&gt; tag. For some reason, <code>SelectItem</code> and <code>UISelectItem</code> don't share a common
-     * interface, so this method is repeated twice.
-     * 
-     * @param rw
-     *            The response writer
-     * @param selectItem
-     *            The current SelectItem
-     * @param selectedOption
-     *            the currently selected option
-     * @throws IOException
-     *             thrown if something's wrong with the response writer
-     */
-    protected void renderOption(ResponseWriter rw, UISelectItem selectItem, Object selectedOption, int index)
-            throws IOException {
+		renderOption(rw, selectedOption, index, itemLabel, description, itemValue);
+	}
 
-        String itemLabel = selectItem.getItemLabel();
-        final String itemDescription = selectItem.getItemDescription();
-        final Object itemValue = selectItem.getItemValue();
+	/**
+	 * Renders a single &lt;option&gt; tag. For some reason,
+	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
+	 * common interface, so this method is repeated twice.
+	 * 
+	 * @param rw
+	 *            The response writer
+	 * @param selectItem
+	 *            The current SelectItem
+	 * @param selectedOption
+	 *            the currently selected option
+	 * @throws IOException
+	 *             thrown if something's wrong with the response writer
+	 */
+	protected void renderOption(ResponseWriter rw, UISelectItem selectItem, Object selectedOption, int index)
+			throws IOException {
 
-        boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
-        itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
+		String itemLabel = selectItem.getItemLabel();
+		final String itemDescription = selectItem.getItemDescription();
+		final Object itemValue = selectItem.getItemValue();
 
-        renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue);
-    }
+		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
+		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
-    private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
-            final String description, final Object itemValue) throws IOException {
-        boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
-        itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
+		renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue);
+	}
 
-        rw.startElement("option", null);
-        rw.writeAttribute("data-label", itemLabel, null);
-        if (description != null) {
-            rw.writeAttribute("title", description, null);
-        }
-        if (itemValue != null) {
-            String value;
-            if (itemValue instanceof String) {
-                value = (String) itemValue;
-            } else
-                value = String.valueOf(index);
-            rw.writeAttribute("value", value, "value");
-            if (itemValue.equals(selectedOption)) {
-                rw.writeAttribute("selected", "true", "selected");
-            }
-        } else if (itemLabel.equals(selectedOption)) {
-            rw.writeAttribute("selected", "true", "selected");
-        }
+	private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
+			final String description, final Object itemValue) throws IOException {
+		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
+		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
-        if (itemLabel.equals("&nbsp;"))
-            rw.write(itemLabel);
-        else {
-            rw.write(itemLabel);
-        }
+		rw.startElement("option", null);
+		rw.writeAttribute("data-label", itemLabel, null);
+		if (description != null) {
+			rw.writeAttribute("title", description, null);
+		}
+		if (itemValue != null) {
+			String value;
+			if (itemValue instanceof String) {
+				value = (String) itemValue;
+			} else
+				value = String.valueOf(index);
+			rw.writeAttribute("value", value, "value");
+			if (itemValue.equals(selectedOption)) {
+				rw.writeAttribute("selected", "true", "selected");
+			}
+		} else if (itemLabel.equals(selectedOption)) {
+			rw.writeAttribute("selected", "true", "selected");
+		}
 
-        rw.endElement("option");
-    }
+		if (itemLabel.equals("&nbsp;"))
+			rw.write(itemLabel);
+		else {
+			rw.write(itemLabel);
+		}
 
-    /**
-     * Renders the start of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param rw
-     *            the response writer
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void renderSelectTag(ResponseWriter rw, SelectOneMenu menu) throws IOException {
-        rw.startElement("select", menu);
-    }
+		rw.endElement("option");
+	}
 
-    /**
-     * Renders the attributes of the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param attrs
-     *            the component's attribute list
-     * @param rw
-     *            the response writer
-     * @param clientId
-     *            the client id (used both as id and name)
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void renderSelectTagAttributes(Map<String, Object> attrs, ResponseWriter rw, String clientId)
-            throws IOException {
-        rw.writeAttribute("id", clientId, null);
-        rw.writeAttribute("name", clientId, null);
+	/**
+	 * Renders the start of the input tag. This method is protected in order to
+	 * allow third-party frameworks to derive from it.
+	 * 
+	 * @param rw
+	 *            the response writer
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void renderSelectTag(ResponseWriter rw, SelectOneMenu menu) throws IOException {
+		rw.startElement("select", menu);
+	}
 
-        StringBuilder sb;
-        String s;
-        sb = new StringBuilder(20); // optimize int
-        sb.append("form-control");
-        String fsize = A.asString(attrs.get("fieldSize"));
+	/**
+	 * Renders the attributes of the input tag. This method is protected in
+	 * order to allow third-party frameworks to derive from it.
+	 * 
+	 * @param attrs
+	 *            the component's attribute list
+	 * @param rw
+	 *            the response writer
+	 * @param clientId
+	 *            the client id (used both as id and name)
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectOneMenu menu)
+			throws IOException {
+		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("name", clientId, null);
 
-        if (fsize != null) {
-            sb.append(" input-").append(fsize);
-        }
-        String cssClass = A.asString(attrs.get("styleClass"));
-        if (cssClass != null) {
-            sb.append(" ").append(cssClass);
-        }
-		String isRequired = A.asString(attrs.get("required"));
-		if ("true".equalsIgnoreCase(isRequired)) {
+		StringBuilder sb;
+		String s;
+		sb = new StringBuilder(20); // optimize int
+		sb.append("form-control");
+		String fsize = menu.getFieldSize();
+
+		if (fsize != null) {
+			sb.append(" input-").append(fsize);
+		}
+		String cssClass = menu.getStyleClass();
+		if (cssClass != null) {
+			sb.append(" ").append(cssClass);
+		}
+		boolean isRequired = menu.isRequired();
+		if (isRequired) {
 			sb.append(" ").append("bf-required");
 		}
 
-        s = sb.toString().trim();
-        if (s != null && s.length() > 0) {
-            rw.writeAttribute("class", s, "class");
-        }
+		s = sb.toString().trim();
+		if (s != null && s.length() > 0) {
+			rw.writeAttribute("class", s, "class");
+		}
 
-        if (A.toBool(attrs.get(C.DISABLED))) {
-            rw.writeAttribute(C.DISABLED, C.DISABLED, null);
-        }
-        if (A.toBool(attrs.get(A.READONLY))) {
-            rw.writeAttribute(A.READONLY, A.READONLY, null);
-        }
+		if (menu.isDisabled()) {
+			rw.writeAttribute("disabled", "disabled", null);
+		}
+		if (menu.isReadonly()) {
+			rw.writeAttribute("readonly", "readonly", null);
+		}
 
-        // Encode attributes (HTML 4 pass-through + DHTML)
-        R.encodeHTML4DHTMLAttrs(rw, attrs, A.CHECKBOX_ATTRS);
-    }
+		// Encode attributes (HTML 4 pass-through + DHTML)
+		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);
+	}
 
-    /**
-     * Closes the input tag. This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param rw
-     *            the response writer
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected void renderInputTagEnd(Map<String, Object> attrs, ResponseWriter rw) throws IOException {
-        rw.endElement("select");
-    }
+	/**
+	 * Closes the input tag. This method is protected in order to allow
+	 * third-party frameworks to derive from it.
+	 * 
+	 * @param rw
+	 *            the response writer
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void renderInputTagEnd(ResponseWriter rw) throws IOException {
+		rw.endElement("select");
+	}
 
-    /**
-     * Start the column span div (if there's one). This method is protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param attrs
-     *            the current attribute list
-     * @param rw
-     *            the response writer
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected int startColSpanDiv(Map<String, Object> attrs, ResponseWriter rw, SelectOneMenu menu) throws IOException {
-        int span = A.toInt(attrs.get("span"));
-        if (span > 0) {
-            rw.startElement("div", menu);
-            rw.writeAttribute("class", "col-md-" + span, "class");
-        }
-        return span;
-    }
+	/**
+	 * Start the column span div (if there's one). This method is protected in
+	 * order to allow third-party frameworks to derive from it.
+	 * 
+	 * @param attrs
+	 *            the current attribute list
+	 * @param rw
+	 *            the response writer
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected int startColSpanDiv(ResponseWriter rw, SelectOneMenu menu) throws IOException {
+		int span = menu.getSpan();
+		if (span > 0) {
+			rw.startElement("div", menu);
+			rw.writeAttribute("class", "col-md-" + span, "class");
+		}
+		return span;
+	}
 
-    /**
-     * Starts the input field group (if needed to display a component seamlessly in front of or behind the input field). This method is
-     * protected in order to allow third-party frameworks to derive from it.
-     * 
-     * @param rw
-     *            the response writer
-     * @param hasPrependingAddOn
-     * @param hasAppendingAddOn
-     * @return true if there is an add-on in front of or behind the input field
-     * @throws IOException
-     *             may be thrown by the response writer
-     */
-    protected boolean startInputGroupForAddOn(ResponseWriter rw, boolean hasPrependingAddOn, boolean hasAppendingAddOn, SelectOneMenu menu)
-            throws IOException {
-        final boolean hasAddon = hasAppendingAddOn || hasPrependingAddOn;
-        if (hasAddon) {
-            rw.startElement("div", menu);
-            rw.writeAttribute("class", "input-group", "class");
-        }
-        return hasAddon;
-    }
+	/**
+	 * Starts the input field group (if needed to display a component seamlessly
+	 * in front of or behind the input field). This method is protected in order
+	 * to allow third-party frameworks to derive from it.
+	 * 
+	 * @param rw
+	 *            the response writer
+	 * @param hasPrependingAddOn
+	 * @param hasAppendingAddOn
+	 * @return true if there is an add-on in front of or behind the input field
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected boolean startInputGroupForAddOn(ResponseWriter rw, boolean hasPrependingAddOn, boolean hasAppendingAddOn,
+			SelectOneMenu menu) throws IOException {
+		final boolean hasAddon = hasAppendingAddOn || hasPrependingAddOn;
+		if (hasAddon) {
+			rw.startElement("div", menu);
+			rw.writeAttribute("class", "input-group", "class");
+		}
+		return hasAddon;
+	}
 
-	
-	
 }
