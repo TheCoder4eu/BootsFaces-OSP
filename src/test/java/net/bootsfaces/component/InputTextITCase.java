@@ -57,12 +57,16 @@ public class InputTextITCase extends IntegrationTestsBase {
     
     @FindBy(id = "txt_4")
     private GrapheneElement txt_4;
+    
+    @FindBy(id = "txt_5")
+    private GrapheneElement txt_5;
      
-    @FindBy(id = "txt_4_label")
-    private GrapheneElement txt_4_label;
 
     @FindBy(id = "cmd")
     private GrapheneElement cmd;
+    
+    @FindBy(id = "cmd2")
+    private GrapheneElement cmd2;
 
     @FindBy(id = "msg")
     private GrapheneElement msg;
@@ -84,8 +88,8 @@ public class InputTextITCase extends IntegrationTestsBase {
         //assert page title
         assertEquals("InputText IT", pageTitle);
        
-        assertTrue("txt_1 rendered failed", txt_1.getAttribute("onchange").equals("var dummy=0;"));
-        assertTrue("txt_1 rendered failed", txt_1.getAttribute("onselect").equals("var dummy=0;"));
+        assertTrue("txt_1 rendered failed. onchange does nt exist.", txt_1.getAttribute("onchange").equals("var dummy = 0;"));
+        assertTrue("txt_1 rendered failed. onselect does nt exist.", txt_1.getAttribute("onselect").equals("var dummy = 0;"));
     }
     
     @Test
@@ -139,18 +143,25 @@ public class InputTextITCase extends IntegrationTestsBase {
     @Test
     @InSequence(40)
     public void testImmediate() {
-        String txt4Label = txt_4_label.getText();
-        String txt4 = txt_4.getAttribute("value");
+       
+        txt_4.clear();
+        txt_5.clear();
         
-        //values must be the same
-        assertTrue(txt4.equals(txt4Label));
-        txt_4.sendKeys(txt4Label + " changed");
+        //submit
+        guardAjax(cmd2).click();
         
-         //submit
-        guardAjax(cmd).click();
+        //there is message input required text for txt 4
+        //there is no message input required text for txt 5
+        assertTrue(facesMessage.getText().contains(txt_4.getAttribute("id")) && !facesMessage.getText().contains(txt_5.getAttribute("id")));
         
-        //after submit form, text label must be the same
-        assertTrue("inmediate attribute failed.", txt_4.getAttribute("value").equals(txt4Label));
+        txt_4.sendKeys("avoid required for txt 4");
+        
+        //submit
+        guardAjax(cmd2).click();
+        
+        //there is no message input required text for txt 4
+        //there is is message input required text for txt 5
+         assertTrue(!facesMessage.getText().contains(txt_4.getAttribute("id")) && facesMessage.getText().contains(txt_5.getAttribute("id")));
     }
     
        
