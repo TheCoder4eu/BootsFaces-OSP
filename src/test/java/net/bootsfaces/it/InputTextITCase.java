@@ -1,8 +1,9 @@
-package net.bootsfaces.component;
+package net.bootsfaces.it;
 
 import java.io.IOException;
+import net.bootsfaces.component.InputTextSessionBean;
 import net.bootsfaces.component.validators.RequiredInputTextValidator;
-import net.bootsfaces.IntegrationTestsBase;
+import net.bootsfaces.it.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import org.jboss.arquillian.graphene.GrapheneElement;
@@ -163,9 +164,4 @@ public class InputTextITCase extends IntegrationTestsBase {
         //there is is message input required text for txt 5
          assertTrue(!facesMessage.getText().contains(txt_4.getAttribute("id")) && facesMessage.getText().contains(txt_5.getAttribute("id")));
     }
-    
-       
-    
-
-    
 }

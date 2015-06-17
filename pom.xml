@@ -44,13 +44,22 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+        
+        <!-- compiler plugin conffiruation -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.testSource>1.6</maven.compiler.testSource>
         <maven.compiler.testTarget>1.6</maven.compiler.testTarget>
         <maven.compiler.debug>true</maven.compiler.debug>
         <maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
+        
+        <!-- enable / disable Unit Tests -->
+        <ut.maven.test.skip>false</ut.maven.test.skip>
+        
+        <!-- enable / disable Integration Tests -->
+        <it.maven.test.skip>false</it.maven.test.skip>
     </properties>
+
 
 
     <!-- DEPENDENCY MANAGEMENT SECTION -->
@@ -85,6 +94,7 @@
     </dependencyManagement>
     
     
+    <!-- DEPENDENCIES -->
     <dependencies>
  
         <dependency>
@@ -99,8 +109,6 @@
             <version>3.1.0</version>
             <scope>provided</scope>
         </dependency>
-        
-        
         
         <!-- Test dependencies -->
         <dependency>
@@ -167,6 +175,37 @@
     <!-- BUILD SECTION -->
     <build>
         <finalName>${project.artifactId}</finalName>
+        
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.18.1</version>
+                    <configuration>
+                        <skip>${ut.maven.test.skip}</skip>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.18.1</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>integration-test</goal>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <skip>${it.maven.test.skip}</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    
+    
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -183,7 +222,6 @@
         
         <!-- resources -->
         <resources>
-            
             <resource>
                 <directory>BootsFaces/css</directory>
                 <targetPath>META-INF/resources/bsf/css</targetPath>
@@ -204,10 +242,8 @@
                 <directory>meta</directory>
                 <targetPath>META-INF</targetPath>
             </resource>
-           
         </resources>
     </build>
-    
     
     
     <!-- PROFILES SECTION -->
@@ -226,6 +262,7 @@
                 </dependency>
             </dependencies>
         </profile>
+        
         <profile>
             <id>Mojarra 2.2.11</id>
             <activation>
@@ -240,6 +277,7 @@
                 </dependency>
             </dependencies>
         </profile>
+        
         <profile>
             <id>MavenCentral</id>
             <activation>
@@ -329,7 +367,6 @@
                 -->
                 <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
                 <bootsfaces.arquillian.jboss.version>8.2.0.Final</bootsfaces.arquillian.jboss.version>
-              
             </properties>
             
             <dependencies>
@@ -338,10 +375,10 @@
                     <groupId>org.wildfly</groupId>
                     <artifactId>wildfly-arquillian-container-managed</artifactId>
                     <version>8.2.0.Final</version>
-                      <scope>test</scope>
+                    <scope>test</scope>
                 </dependency>
                 
-                 <dependency>
+                <dependency>
                     <groupId>javax</groupId>
                     <artifactId>javaee-api</artifactId>
                     <version>7.0</version>
@@ -408,15 +445,6 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>2.18.1</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                         <configuration>
                             <!-- Fork every test because it will launch a separate AS instance -->
                             <reuseForks>false</reuseForks>
