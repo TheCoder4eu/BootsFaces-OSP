@@ -52,10 +52,15 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 	
 	
     protected enum PropertyKeys {
-accesskey,
-alt,
-binding,
-dir,
+maxHeight,
+nonSelectedText,
+nSelectedText,
+allSelectedText,
+numberDisplayed,
+includeSelectAllOption,
+selectAllText,
+enableFiltering,
+filterPlaceholder,
 disabled,
 fieldSize,
 id,
@@ -76,12 +81,10 @@ onmouseout,
 onmouseover,
 onmouseup,
 onselect,
-placeholder,
 readonly,
 renderLabel,
 required,
 requiredMessage,
-size,
 span,
 style,
 styleClass,
@@ -109,74 +112,164 @@ tooltipPosition
 	
 
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Maximum height of the options panel. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getAccesskey() {
-		String value = (String)getStateHelper().eval(PropertyKeys.accesskey);
-		return  value;
+	public int getMaxHeight() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.maxHeight, 0);
+		return (int) value;
 	}
 	
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Maximum height of the options panel. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAccesskey(String _accesskey) {
-	    getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+	public void setMaxHeight(int _maxHeight) {
+	    getStateHelper().put(PropertyKeys.maxHeight, _maxHeight);
     }
 	
 
 	/**
-	 * Alternate textual description of the input element. <br />
+	 * Text which is displayed if no option has been selected. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getAlt() {
-		String value = (String)getStateHelper().eval(PropertyKeys.alt);
+	public String getNonSelectedText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.nonSelectedText);
 		return  value;
 	}
 	
 	/**
-	 * Alternate textual description of the input element. <br />
+	 * Text which is displayed if no option has been selected. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAlt(String _alt) {
-	    getStateHelper().put(PropertyKeys.alt, _alt);
+	public void setNonSelectedText(String _nonSelectedText) {
+	    getStateHelper().put(PropertyKeys.nonSelectedText, _nonSelectedText);
     }
 	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * Text which is displayed if more than numberDisplayed options have been selected. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
+	public String getNSelectedText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.nSelectedText);
 		return  value;
 	}
 	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * Text which is displayed if more than numberDisplayed options have been selected. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
-	    getStateHelper().put(PropertyKeys.binding, _binding);
+	public void setNSelectedText(String _nSelectedText) {
+	    getStateHelper().put(PropertyKeys.nSelectedText, _nSelectedText);
     }
 	
 
 	/**
-	 * Direction indication for text that does not inherit directionality. <br />
+	 * Text which is displayed if every option has been selected. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getDir() {
-		String value = (String)getStateHelper().eval(PropertyKeys.dir);
+	public String getAllSelectedText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.allSelectedText);
 		return  value;
 	}
 	
 	/**
-	 * Direction indication for text that does not inherit directionality. <br />
+	 * Text which is displayed if every option has been selected. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDir(String _dir) {
-	    getStateHelper().put(PropertyKeys.dir, _dir);
+	public void setAllSelectedText(String _allSelectedText) {
+	    getStateHelper().put(PropertyKeys.allSelectedText, _allSelectedText);
+    }
+	
+
+	/**
+	 * Maximum number of options displayed in the button. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getNumberDisplayed() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.numberDisplayed, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * Maximum number of options displayed in the button. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setNumberDisplayed(int _numberDisplayed) {
+	    getStateHelper().put(PropertyKeys.numberDisplayed, _numberDisplayed);
+    }
+	
+
+	/**
+	 * If true, you can select every option with a single click. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIncludeSelectAllOption() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.includeSelectAllOption, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * If true, you can select every option with a single click. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIncludeSelectAllOption(boolean _includeSelectAllOption) {
+	    getStateHelper().put(PropertyKeys.includeSelectAllOption, _includeSelectAllOption);
+    }
+	
+
+	/**
+	 * The text displayed for the select all option. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectAllText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.selectAllText);
+		return  value;
+	}
+	
+	/**
+	 * The text displayed for the select all option. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectAllText(String _selectAllText) {
+	    getStateHelper().put(PropertyKeys.selectAllText, _selectAllText);
+    }
+	
+
+	/**
+	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isEnableFiltering() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.enableFiltering, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setEnableFiltering(boolean _enableFiltering) {
+	    getStateHelper().put(PropertyKeys.enableFiltering, _enableFiltering);
+    }
+	
+
+	/**
+	 * The placeholder used for the filter input. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFilterPlaceholder() {
+		String value = (String)getStateHelper().eval(PropertyKeys.filterPlaceholder);
+		return  value;
+	}
+	
+	/**
+	 * The placeholder used for the filter input. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFilterPlaceholder(String _filterPlaceholder) {
+	    getStateHelper().put(PropertyKeys.filterPlaceholder, _filterPlaceholder);
     }
 	
 
@@ -541,24 +634,6 @@ tooltipPosition
 	
 
 	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getPlaceholder() {
-		String value = (String)getStateHelper().eval(PropertyKeys.placeholder);
-		return  value;
-	}
-	
-	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPlaceholder(String _placeholder) {
-	    getStateHelper().put(PropertyKeys.placeholder, _placeholder);
-    }
-	
-
-	/**
 	 * Flag indicating that this input element will prevent changes by the user. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -627,24 +702,6 @@ tooltipPosition
 	 */
 	public void setRequiredMessage(String _requiredMessage) {
 	    getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
-    }
-	
-
-	/**
-	 * Number of characters used to determine the width of the input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getSize() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.size, 0);
-		return (int) value;
-	}
-	
-	/**
-	 * Number of characters used to determine the width of the input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSize(int _size) {
-	    getStateHelper().put(PropertyKeys.size, _size);
     }
 	
 

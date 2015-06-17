@@ -62,7 +62,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			return;
 		}
 		List<String> submittedValues = new ArrayList<String>();
-		String clientId = menu.getClientId();
+		String clientId = menu.getClientId().replace(":", "-");
 		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
 		for (String key : map.keySet()) {
 			if (key.startsWith(clientId + ":")) {
@@ -122,7 +122,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			return;
 		}
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = menu.getClientId(context);
+		String clientId = menu.getClientId(context).replace(":", "-");
+		;
 		rw.startElement("div", menu);
 		Tooltip.generateTooltip(context, menu, rw);
 		rw.writeAttribute("class", "form-group", "class");
@@ -154,7 +155,51 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		rw.endElement("div"); // form-group
 		Tooltip.activateTooltips(context, menu);
 
-		String js = "$(document).ready(function() {$('.select-multi-menu').multiselect();});\n";
+		String options = "";
+		int maxHeight = menu.getMaxHeight();
+		if (maxHeight > 0) {
+			options += "," + "maxHeight:" + String.valueOf(maxHeight);
+		}
+		String nonSelectedText = menu.getNonSelectedText();
+		if (nonSelectedText != null) {
+			options += "," + "nonSelectedText:'" + nonSelectedText + "'";
+		}
+		String nSelectedText = menu.getNSelectedText();
+		if (nSelectedText != null) {
+			options += "," + "nSelectedText:'" + nSelectedText + "'";
+		}
+		String allSelectedText = menu.getAllSelectedText();
+		if (allSelectedText != null) {
+			options += "," + "allSelectedText:'" + allSelectedText + "'";
+		}
+		int numberDisplayed = menu.getNumberDisplayed();
+		if (numberDisplayed > 0) {
+			options += "," + "numberDisplayed:" + String.valueOf(numberDisplayed);
+		}
+
+		if (menu.isIncludeSelectAllOption()) {
+			options += "," + "includeSelectAllOption:" + "true";
+		}
+
+		String selectAllText = menu.getSelectAllText();
+		if (selectAllText != null) {
+			options += "," + "selectAllText:'" + selectAllText + "'";
+		}
+
+		if (menu.isEnableFiltering()) {
+			options += "," + "enableFiltering:true";
+		}
+
+		String filterPlaceholder = menu.getFilterPlaceholder();
+		if (filterPlaceholder != null) {
+			options += "," + "filterPlaceholder:'" + filterPlaceholder + "'";
+		}
+
+		if (options.length() > 0) {
+			options = "{" + options.substring(1, options.length()) + "}";
+		}
+
+		String js = "$(document).ready(function() {$('#" + clientId + "').multiselect(" + options + ");});\n";
 		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
 
 	}
