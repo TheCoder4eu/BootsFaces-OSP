@@ -37,8 +37,6 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
-import com.thoughtworks.selenium.webdriven.commands.GetAttribute;
-
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
