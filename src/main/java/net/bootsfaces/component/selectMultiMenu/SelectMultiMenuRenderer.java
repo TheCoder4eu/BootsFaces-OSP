@@ -234,8 +234,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 
 		String styleClass = menu.getStyleClass();
-		if (filterPlaceholder != null) {
-			options += "," + "styleClass:'" + styleClass + "'";
+		if (styleClass != null) {
+			options += "," + "buttonContainer:'<div class=\"" + styleClass + "\" />'";
 		}
 
 		int buttonWidth = menu.getButtonWidth();
