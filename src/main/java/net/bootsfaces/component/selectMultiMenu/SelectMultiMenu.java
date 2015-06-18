@@ -52,6 +52,16 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 	
 	
     protected enum PropertyKeys {
+accesskey,
+alt,
+binding,
+dir,
+disabled,
+fieldSize,
+id,
+immediate,
+label,
+lang,
 maxHeight,
 nonSelectedText,
 nSelectedText,
@@ -61,33 +71,24 @@ includeSelectAllOption,
 selectAllText,
 enableFiltering,
 filterPlaceholder,
-disabled,
-fieldSize,
-id,
-immediate,
-label,
-lang,
-onblur,
+radiobuttons,
+disableIfEmpty,
+dropRight,
 onchange,
-onclick,
-ondblclick,
-onfocus,
-onkeydown,
-onkeypress,
-onkeyup,
-onmousedown,
-onmousemove,
-onmouseout,
-onmouseover,
-onmouseup,
-onselect,
+ondropdownshow,
+ondropdownhide,
+buttonClass,
+styleClass,
+buttonWidth,
+enableCaseInsensitiveFiltering,
+placeholder,
 readonly,
 renderLabel,
 required,
 requiredMessage,
+size,
 span,
 style,
-styleClass,
 tabindex,
 title,
 tooltip,
@@ -108,6 +109,186 @@ tooltipPosition
         public String toString() {
             return ((this.toString != null) ? this.toString : super.toString());
         }
+    }
+	
+
+	/**
+	 * Access key to transfer focus to the input element. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAccesskey() {
+		String value = (String)getStateHelper().eval(PropertyKeys.accesskey);
+		return  value;
+	}
+	
+	/**
+	 * Access key to transfer focus to the input element. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAccesskey(String _accesskey) {
+	    getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+    }
+	
+
+	/**
+	 * Alternate textual description of the input element. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAlt() {
+		String value = (String)getStateHelper().eval(PropertyKeys.alt);
+		return  value;
+	}
+	
+	/**
+	 * Alternate textual description of the input element. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAlt(String _alt) {
+	    getStateHelper().put(PropertyKeys.alt, _alt);
+    }
+	
+
+	/**
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
+		return  value;
+	}
+	
+	/**
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+	    getStateHelper().put(PropertyKeys.binding, _binding);
+    }
+	
+
+	/**
+	 * Direction indication for text that does not inherit directionality. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String)getStateHelper().eval(PropertyKeys.dir);
+		return  value;
+	}
+	
+	/**
+	 * Direction indication for text that does not inherit directionality. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+	    getStateHelper().put(PropertyKeys.dir, _dir);
+    }
+	
+
+	/**
+	 * Disables the input element, default is false. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Disables the input element, default is false. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+	    getStateHelper().put(PropertyKeys.disabled, _disabled);
+    }
+	
+
+	/**
+	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFieldSize() {
+		String value = (String)getStateHelper().eval(PropertyKeys.fieldSize);
+		return  value;
+	}
+	
+	/**
+	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFieldSize(String _fieldSize) {
+	    getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
+    }
+	
+
+	/**
+	 * Unique identifier of the component in a namingContainer. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getId() {
+		String value = (String)getStateHelper().eval(PropertyKeys.id);
+		return  value;
+	}
+	
+	/**
+	 * Unique identifier of the component in a namingContainer. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setId(String _id) {
+	    getStateHelper().put(PropertyKeys.id, _id);
+    }
+	
+
+	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isImmediate() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setImmediate(boolean _immediate) {
+	    getStateHelper().put(PropertyKeys.immediate, _immediate);
+    }
+	
+
+	/**
+	 * The Label of the field . <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabel() {
+		String value = (String)getStateHelper().eval(PropertyKeys.label);
+		return  value;
+	}
+	
+	/**
+	 * The Label of the field . <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabel(String _label) {
+	    getStateHelper().put(PropertyKeys.label, _label);
+    }
+	
+
+	/**
+	 * A localized user presentable name. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLang() {
+		String value = (String)getStateHelper().eval(PropertyKeys.lang);
+		return  value;
+	}
+	
+	/**
+	 * A localized user presentable name. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLang(String _lang) {
+	    getStateHelper().put(PropertyKeys.lang, _lang);
     }
 	
 
@@ -274,128 +455,56 @@ tooltipPosition
 	
 
 	/**
-	 * Disables the input element, default is false. <br />
+	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isDisabled() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+	public boolean isRadiobuttons() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.radiobuttons, false);
 		return (boolean) value;
 	}
 	
 	/**
-	 * Disables the input element, default is false. <br />
+	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDisabled(boolean _disabled) {
-	    getStateHelper().put(PropertyKeys.disabled, _disabled);
+	public void setRadiobuttons(boolean _radiobuttons) {
+	    getStateHelper().put(PropertyKeys.radiobuttons, _radiobuttons);
     }
 	
 
 	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
+	 * If true, the button is disabled if no options are given. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getFieldSize() {
-		String value = (String)getStateHelper().eval(PropertyKeys.fieldSize);
-		return  value;
-	}
-	
-	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setFieldSize(String _fieldSize) {
-	    getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
-    }
-	
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String)getStateHelper().eval(PropertyKeys.id);
-		return  value;
-	}
-	
-	/**
-	 * Unique identifier of the component in a namingContainer. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-	    getStateHelper().put(PropertyKeys.id, _id);
-    }
-	
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isImmediate() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
+	public boolean isDisableIfEmpty() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disableIfEmpty, false);
 		return (boolean) value;
 	}
 	
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
+	 * If true, the button is disabled if no options are given. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setImmediate(boolean _immediate) {
-	    getStateHelper().put(PropertyKeys.immediate, _immediate);
+	public void setDisableIfEmpty(boolean _disableIfEmpty) {
+	    getStateHelper().put(PropertyKeys.disableIfEmpty, _disableIfEmpty);
     }
 	
 
 	/**
-	 * The Label of the field . <br />
+	 * Moves the drop-down-area from the left hand side to the right hand side. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getLabel() {
-		String value = (String)getStateHelper().eval(PropertyKeys.label);
-		return  value;
+	public boolean isDropRight() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.dropRight, false);
+		return (boolean) value;
 	}
 	
 	/**
-	 * The Label of the field . <br />
+	 * Moves the drop-down-area from the left hand side to the right hand side. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setLabel(String _label) {
-	    getStateHelper().put(PropertyKeys.label, _label);
-    }
-	
-
-	/**
-	 * A localized user presentable name. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLang() {
-		String value = (String)getStateHelper().eval(PropertyKeys.lang);
-		return  value;
-	}
-	
-	/**
-	 * A localized user presentable name. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLang(String _lang) {
-	    getStateHelper().put(PropertyKeys.lang, _lang);
-    }
-	
-
-	/**
-	 * Client side callback to execute when input element loses focus. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnblur() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onblur);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when input element loses focus. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnblur(String _onblur) {
-	    getStateHelper().put(PropertyKeys.onblur, _onblur);
+	public void setDropRight(boolean _dropRight) {
+	    getStateHelper().put(PropertyKeys.dropRight, _dropRight);
     }
 	
 
@@ -418,218 +527,128 @@ tooltipPosition
 	
 
 	/**
-	 * OnClick DHTML event . <br />
+	 * Client side callback called when the drop-down area is shown. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onclick);
+	public String getOndropdownshow() {
+		String value = (String)getStateHelper().eval(PropertyKeys.ondropdownshow);
 		return  value;
 	}
 	
 	/**
-	 * OnClick DHTML event . <br />
+	 * Client side callback called when the drop-down area is shown. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnclick(String _onclick) {
-	    getStateHelper().put(PropertyKeys.onclick, _onclick);
+	public void setOndropdownshow(String _ondropdownshow) {
+	    getStateHelper().put(PropertyKeys.ondropdownshow, _ondropdownshow);
     }
 	
 
 	/**
-	 * Client side callback to execute when input element is double clicked. <br />
+	 * Client side callback called when the drop-down area is hidden. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOndblclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.ondblclick);
+	public String getOndropdownhide() {
+		String value = (String)getStateHelper().eval(PropertyKeys.ondropdownhide);
 		return  value;
 	}
 	
 	/**
-	 * Client side callback to execute when input element is double clicked. <br />
+	 * Client side callback called when the drop-down area is hidden. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOndblclick(String _ondblclick) {
-	    getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	public void setOndropdownhide(String _ondropdownhide) {
+	    getStateHelper().put(PropertyKeys.ondropdownhide, _ondropdownhide);
     }
 	
 
 	/**
-	 * Client side callback to execute when input element receives focus. <br />
+	 * The CSS class of the button. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnfocus() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onfocus);
+	public String getButtonClass() {
+		String value = (String)getStateHelper().eval(PropertyKeys.buttonClass);
 		return  value;
 	}
 	
 	/**
-	 * Client side callback to execute when input element receives focus. <br />
+	 * The CSS class of the button. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnfocus(String _onfocus) {
-	    getStateHelper().put(PropertyKeys.onfocus, _onfocus);
+	public void setButtonClass(String _buttonClass) {
+	    getStateHelper().put(PropertyKeys.buttonClass, _buttonClass);
     }
 	
 
 	/**
-	 * Client side callback to execute when a key is pressed down over input element. <br />
+	 * Style class of the input element. Is translated to the buttonContainer attribute. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnkeydown() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onkeydown);
+	public String getStyleClass() {
+		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
 		return  value;
 	}
 	
 	/**
-	 * Client side callback to execute when a key is pressed down over input element. <br />
+	 * Style class of the input element. Is translated to the buttonContainer attribute. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnkeydown(String _onkeydown) {
-	    getStateHelper().put(PropertyKeys.onkeydown, _onkeydown);
+	public void setStyleClass(String _styleClass) {
+	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
     }
 	
 
 	/**
-	 * Client side callback to execute when a key is pressed and released over input element. <br />
+	 * The width of the multiselect button may be fixed using this option. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnkeypress() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onkeypress);
-		return  value;
+	public int getButtonWidth() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.buttonWidth, 0);
+		return (int) value;
 	}
 	
 	/**
-	 * Client side callback to execute when a key is pressed and released over input element. <br />
+	 * The width of the multiselect button may be fixed using this option. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnkeypress(String _onkeypress) {
-	    getStateHelper().put(PropertyKeys.onkeypress, _onkeypress);
+	public void setButtonWidth(int _buttonWidth) {
+	    getStateHelper().put(PropertyKeys.buttonWidth, _buttonWidth);
     }
 	
 
 	/**
-	 * Client side callback to execute when a key is released over input element. <br />
+	 * If set to true, the filter is case-insensitive. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnkeyup() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onkeyup);
-		return  value;
+	public boolean isEnableCaseInsensitiveFiltering() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.enableCaseInsensitiveFiltering, false);
+		return (boolean) value;
 	}
 	
 	/**
-	 * Client side callback to execute when a key is released over input element. <br />
+	 * If set to true, the filter is case-insensitive. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnkeyup(String _onkeyup) {
-	    getStateHelper().put(PropertyKeys.onkeyup, _onkeyup);
+	public void setEnableCaseInsensitiveFiltering(boolean _enableCaseInsensitiveFiltering) {
+	    getStateHelper().put(PropertyKeys.enableCaseInsensitiveFiltering, _enableCaseInsensitiveFiltering);
     }
 	
 
 	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <br />
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getOnmousedown() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmousedown);
+	public String getPlaceholder() {
+		String value = (String)getStateHelper().eval(PropertyKeys.placeholder);
 		return  value;
 	}
 	
 	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <br />
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnmousedown(String _onmousedown) {
-	    getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
-    }
-	
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmousemove() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmousemove);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmousemove(String _onmousemove) {
-	    getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
-    }
-	
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseout() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseout);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseout(String _onmouseout) {
-	    getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
-    }
-	
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseover() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseover);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseover(String _onmouseover) {
-	    getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
-    }
-	
-
-	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseup() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseup);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseup(String _onmouseup) {
-	    getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
-    }
-	
-
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnselect() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onselect);
-		return  value;
-	}
-	
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnselect(String _onselect) {
-	    getStateHelper().put(PropertyKeys.onselect, _onselect);
+	public void setPlaceholder(String _placeholder) {
+	    getStateHelper().put(PropertyKeys.placeholder, _placeholder);
     }
 	
 
@@ -706,6 +725,24 @@ tooltipPosition
 	
 
 	/**
+	 * Number of characters used to determine the width of the input element. <br />
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getSize() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.size, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * Number of characters used to determine the width of the input element. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSize(int _size) {
+	    getStateHelper().put(PropertyKeys.size, _size);
+    }
+	
+
+	/**
 	 * The size of the input specified as number of grid columns. <br />
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -738,24 +775,6 @@ tooltipPosition
 	 */
 	public void setStyle(String _style) {
 	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
-
-	/**
-	 * Style class of the input element. <br />
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getStyleClass() {
-		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
-		return  value;
-	}
-	
-	/**
-	 * Style class of the input element. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
     }
 	
 
@@ -883,5 +902,4 @@ tooltipPosition
 	public void setTooltipPosition(String _tooltipPosition) {
 	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
     }
-	
 }

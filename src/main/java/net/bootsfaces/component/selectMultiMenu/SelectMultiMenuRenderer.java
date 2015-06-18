@@ -37,6 +37,8 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
+import com.thoughtworks.selenium.webdriven.commands.GetAttribute;
+
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
@@ -165,6 +167,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options += "," + "nonSelectedText:'" + nonSelectedText + "'";
 		}
 		String nSelectedText = menu.getNSelectedText();
+		nSelectedText = (String) menu.getAttributes().get("nSelectedText"); // workaround - the regular getter always yields null
 		if (nSelectedText != null) {
 			options += "," + "nSelectedText:'" + nSelectedText + "'";
 		}
@@ -193,6 +196,51 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		String filterPlaceholder = menu.getFilterPlaceholder();
 		if (filterPlaceholder != null) {
 			options += "," + "filterPlaceholder:'" + filterPlaceholder + "'";
+		}
+		
+		boolean enableCaseInsensitiveFiltering = menu.isEnableCaseInsensitiveFiltering();
+		if (enableCaseInsensitiveFiltering) {
+			options += "," + "enableCaseInsensitiveFiltering:" + "true";
+		}
+
+		boolean disableIfEmpty = menu.isDisableIfEmpty();
+		if (disableIfEmpty) {
+			options += "," + "disableIfEmpty:" + "true";
+		}
+
+		boolean dropRight = menu.isDropRight();
+		if (dropRight) {
+			options += "," + "dropRight:" + "true";
+		}
+		
+		String onChange = menu.getOnchange();
+		if (onChange != null) {
+			options += "," + "onChange:" + onChange;
+		}
+
+		String onDropdownShow = menu.getOndropdownshow();
+		if (onDropdownShow != null) {
+			options += "," + "onDropdownShow:" + onDropdownShow;
+		}
+
+		String onDropdownHide = menu.getOndropdownhide();
+		if (onDropdownHide != null) {
+			options += "," + "onDropdownHide:" + onDropdownHide;
+		}
+
+		String buttonClass = menu.getButtonClass();
+		if (buttonClass != null) {
+			options += "," + "buttonClass:'" + buttonClass + "'";
+		}
+
+		String styleClass = menu.getStyleClass();
+		if (filterPlaceholder != null) {
+			options += "," + "styleClass:'" + styleClass + "'";
+		}
+
+		int buttonWidth = menu.getButtonWidth();
+		if (buttonWidth > 0) {
+			options += "," + "buttonWidth:'" + buttonWidth + "px'";
 		}
 
 		if (options.length() > 0) {
@@ -657,7 +705,9 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
 
-		rw.writeAttribute("multiple", "multiple", null);
+		if (!menu.isRadiobuttons()) {
+			rw.writeAttribute("multiple", "multiple", null);
+		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);
