@@ -113,7 +113,7 @@ tooltipPosition
 	
 
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Access key to transfer focus to the input element. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAccesskey() {
@@ -122,7 +122,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Access key to transfer focus to the input element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAccesskey(String _accesskey) {
@@ -131,7 +131,7 @@ tooltipPosition
 	
 
 	/**
-	 * Alternate textual description of the input element. <br />
+	 * Alternate textual description of the input element. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAlt() {
@@ -140,7 +140,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Alternate textual description of the input element. <br />
+	 * Alternate textual description of the input element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAlt(String _alt) {
@@ -149,7 +149,7 @@ tooltipPosition
 	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * An el expression referring to a server side UIComponent instance in a backing bean. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
@@ -158,7 +158,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * An el expression referring to a server side UIComponent instance in a backing bean. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -167,7 +167,7 @@ tooltipPosition
 	
 
 	/**
-	 * Direction indication for text that does not inherit directionality. <br />
+	 * Direction indication for text that does not inherit directionality. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDir() {
@@ -176,7 +176,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Direction indication for text that does not inherit directionality. <br />
+	 * Direction indication for text that does not inherit directionality. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
@@ -185,7 +185,7 @@ tooltipPosition
 	
 
 	/**
-	 * Disables the input element, default is false. <br />
+	 * Disables the input element, default is false. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
@@ -194,7 +194,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Disables the input element, default is false. <br />
+	 * Disables the input element, default is false. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
@@ -203,7 +203,7 @@ tooltipPosition
 	
 
 	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
+	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getFieldSize() {
@@ -212,7 +212,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <br />
+	 * The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) . 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFieldSize(String _fieldSize) {
@@ -221,7 +221,7 @@ tooltipPosition
 	
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getId() {
@@ -230,7 +230,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -239,7 +239,7 @@ tooltipPosition
 	
 
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isImmediate() {
@@ -248,7 +248,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br />
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImmediate(boolean _immediate) {
@@ -257,7 +257,7 @@ tooltipPosition
 	
 
 	/**
-	 * The Label of the field . <br />
+	 * The Label of the field . 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getLabel() {
@@ -266,7 +266,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The Label of the field . <br />
+	 * The Label of the field . 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLabel(String _label) {
@@ -275,7 +275,7 @@ tooltipPosition
 	
 
 	/**
-	 * A localized user presentable name. <br />
+	 * A localized user presentable name. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getLang() {
@@ -284,7 +284,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * A localized user presentable name. <br />
+	 * A localized user presentable name. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLang(String _lang) {
@@ -293,7 +293,7 @@ tooltipPosition
 	
 
 	/**
-	 * Maximum height of the options panel. <br />
+	 * Maximum height of the options panel. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getMaxHeight() {
@@ -302,7 +302,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Maximum height of the options panel. <br />
+	 * Maximum height of the options panel. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMaxHeight(int _maxHeight) {
@@ -311,7 +311,7 @@ tooltipPosition
 	
 
 	/**
-	 * Text which is displayed if no option has been selected. <br />
+	 * Text which is displayed if no option has been selected. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getNonSelectedText() {
@@ -320,7 +320,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Text which is displayed if no option has been selected. <br />
+	 * Text which is displayed if no option has been selected. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setNonSelectedText(String _nonSelectedText) {
@@ -329,7 +329,7 @@ tooltipPosition
 	
 
 	/**
-	 * Text which is displayed if more than numberDisplayed options have been selected. <br />
+	 * Text which is displayed if more than numberDisplayed options have been selected. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getNSelectedText() {
@@ -338,7 +338,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Text which is displayed if more than numberDisplayed options have been selected. <br />
+	 * Text which is displayed if more than numberDisplayed options have been selected. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setNSelectedText(String _nSelectedText) {
@@ -347,7 +347,7 @@ tooltipPosition
 	
 
 	/**
-	 * Text which is displayed if every option has been selected. <br />
+	 * Text which is displayed if every option has been selected. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAllSelectedText() {
@@ -356,7 +356,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Text which is displayed if every option has been selected. <br />
+	 * Text which is displayed if every option has been selected. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAllSelectedText(String _allSelectedText) {
@@ -365,7 +365,7 @@ tooltipPosition
 	
 
 	/**
-	 * Maximum number of options displayed in the button. <br />
+	 * Maximum number of options displayed in the button. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getNumberDisplayed() {
@@ -374,7 +374,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Maximum number of options displayed in the button. <br />
+	 * Maximum number of options displayed in the button. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setNumberDisplayed(int _numberDisplayed) {
@@ -383,7 +383,7 @@ tooltipPosition
 	
 
 	/**
-	 * If true, you can select every option with a single click. <br />
+	 * If true, you can select every option with a single click. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isIncludeSelectAllOption() {
@@ -392,7 +392,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * If true, you can select every option with a single click. <br />
+	 * If true, you can select every option with a single click. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIncludeSelectAllOption(boolean _includeSelectAllOption) {
@@ -401,7 +401,7 @@ tooltipPosition
 	
 
 	/**
-	 * The text displayed for the select all option. <br />
+	 * The text displayed for the select all option. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSelectAllText() {
@@ -410,7 +410,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The text displayed for the select all option. <br />
+	 * The text displayed for the select all option. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSelectAllText(String _selectAllText) {
@@ -419,7 +419,7 @@ tooltipPosition
 	
 
 	/**
-	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. <br />
+	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEnableFiltering() {
@@ -428,7 +428,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. <br />
+	 * Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEnableFiltering(boolean _enableFiltering) {
@@ -437,7 +437,7 @@ tooltipPosition
 	
 
 	/**
-	 * The placeholder used for the filter input. <br />
+	 * The placeholder used for the filter input. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getFilterPlaceholder() {
@@ -446,7 +446,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The placeholder used for the filter input. <br />
+	 * The placeholder used for the filter input. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFilterPlaceholder(String _filterPlaceholder) {
@@ -455,7 +455,7 @@ tooltipPosition
 	
 
 	/**
-	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. <br />
+	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRadiobuttons() {
@@ -464,7 +464,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. <br />
+	 * Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRadiobuttons(boolean _radiobuttons) {
@@ -473,7 +473,7 @@ tooltipPosition
 	
 
 	/**
-	 * If true, the button is disabled if no options are given. <br />
+	 * If true, the button is disabled if no options are given. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisableIfEmpty() {
@@ -482,7 +482,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * If true, the button is disabled if no options are given. <br />
+	 * If true, the button is disabled if no options are given. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisableIfEmpty(boolean _disableIfEmpty) {
@@ -491,7 +491,7 @@ tooltipPosition
 	
 
 	/**
-	 * Moves the drop-down-area from the left hand side to the right hand side. <br />
+	 * Moves the drop-down-area from the left hand side to the right hand side. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDropRight() {
@@ -500,7 +500,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Moves the drop-down-area from the left hand side to the right hand side. <br />
+	 * Moves the drop-down-area from the left hand side to the right hand side. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDropRight(boolean _dropRight) {
@@ -509,7 +509,7 @@ tooltipPosition
 	
 
 	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <br />
+	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnchange() {
@@ -518,7 +518,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <br />
+	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnchange(String _onchange) {
@@ -527,7 +527,7 @@ tooltipPosition
 	
 
 	/**
-	 * Client side callback called when the drop-down area is shown. <br />
+	 * Client side callback called when the drop-down area is shown. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOndropdownshow() {
@@ -536,7 +536,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Client side callback called when the drop-down area is shown. <br />
+	 * Client side callback called when the drop-down area is shown. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndropdownshow(String _ondropdownshow) {
@@ -545,7 +545,7 @@ tooltipPosition
 	
 
 	/**
-	 * Client side callback called when the drop-down area is hidden. <br />
+	 * Client side callback called when the drop-down area is hidden. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOndropdownhide() {
@@ -554,7 +554,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Client side callback called when the drop-down area is hidden. <br />
+	 * Client side callback called when the drop-down area is hidden. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndropdownhide(String _ondropdownhide) {
@@ -563,7 +563,7 @@ tooltipPosition
 	
 
 	/**
-	 * The CSS class of the button. <br />
+	 * The CSS class of the button. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getButtonClass() {
@@ -572,7 +572,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The CSS class of the button. <br />
+	 * The CSS class of the button. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setButtonClass(String _buttonClass) {
@@ -581,7 +581,7 @@ tooltipPosition
 	
 
 	/**
-	 * Style class of the input element. Is translated to the buttonContainer attribute. <br />
+	 * Style class of the input element. Is translated to the buttonContainer attribute. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -590,7 +590,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Style class of the input element. Is translated to the buttonContainer attribute. <br />
+	 * Style class of the input element. Is translated to the buttonContainer attribute. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -599,7 +599,7 @@ tooltipPosition
 	
 
 	/**
-	 * The width of the multiselect button may be fixed using this option. <br />
+	 * The width of the multiselect button may be fixed using this option. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getButtonWidth() {
@@ -608,7 +608,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The width of the multiselect button may be fixed using this option. <br />
+	 * The width of the multiselect button may be fixed using this option. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setButtonWidth(int _buttonWidth) {
@@ -617,7 +617,7 @@ tooltipPosition
 	
 
 	/**
-	 * If set to true, the filter is case-insensitive. <br />
+	 * If set to true, the filter is case-insensitive. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEnableCaseInsensitiveFiltering() {
@@ -626,7 +626,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * If set to true, the filter is case-insensitive. <br />
+	 * If set to true, the filter is case-insensitive. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEnableCaseInsensitiveFiltering(boolean _enableCaseInsensitiveFiltering) {
@@ -635,7 +635,7 @@ tooltipPosition
 	
 
 	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPlaceholder() {
@@ -644,7 +644,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <br />
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPlaceholder(String _placeholder) {
@@ -653,7 +653,7 @@ tooltipPosition
 	
 
 	/**
-	 * Flag indicating that this input element will prevent changes by the user. <br />
+	 * Flag indicating that this input element will prevent changes by the user. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isReadonly() {
@@ -662,7 +662,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Flag indicating that this input element will prevent changes by the user. <br />
+	 * Flag indicating that this input element will prevent changes by the user. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setReadonly(boolean _readonly) {
@@ -671,7 +671,7 @@ tooltipPosition
 	
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <br />
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
@@ -680,7 +680,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <br />
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRenderLabel(boolean _renderLabel) {
@@ -689,7 +689,7 @@ tooltipPosition
 	
 
 	/**
-	 * Boolean value Require input in the component when the form is submitted. <br />
+	 * Boolean value Require input in the component when the form is submitted. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRequired() {
@@ -698,7 +698,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Boolean value Require input in the component when the form is submitted. <br />
+	 * Boolean value Require input in the component when the form is submitted. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRequired(boolean _required) {
@@ -707,7 +707,7 @@ tooltipPosition
 	
 
 	/**
-	 * Message to show if the user did not specify a value and the attribute required is set to true. <br />
+	 * Message to show if the user did not specify a value and the attribute required is set to true. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getRequiredMessage() {
@@ -716,7 +716,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Message to show if the user did not specify a value and the attribute required is set to true. <br />
+	 * Message to show if the user did not specify a value and the attribute required is set to true. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRequiredMessage(String _requiredMessage) {
@@ -725,7 +725,7 @@ tooltipPosition
 	
 
 	/**
-	 * Number of characters used to determine the width of the input element. <br />
+	 * Number of characters used to determine the width of the input element. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getSize() {
@@ -734,7 +734,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Number of characters used to determine the width of the input element. <br />
+	 * Number of characters used to determine the width of the input element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(int _size) {
@@ -743,7 +743,7 @@ tooltipPosition
 	
 
 	/**
-	 * The size of the input specified as number of grid columns. <br />
+	 * The size of the input specified as number of grid columns. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getSpan() {
@@ -752,7 +752,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The size of the input specified as number of grid columns. <br />
+	 * The size of the input specified as number of grid columns. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSpan(int _span) {
@@ -761,7 +761,7 @@ tooltipPosition
 	
 
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -770,7 +770,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -779,7 +779,7 @@ tooltipPosition
 	
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTabindex() {
@@ -788,7 +788,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTabindex(String _tabindex) {
@@ -797,7 +797,7 @@ tooltipPosition
 	
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTitle() {
@@ -806,7 +806,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -815,7 +815,7 @@ tooltipPosition
 	
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
@@ -824,7 +824,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -833,7 +833,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
@@ -842,7 +842,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -851,7 +851,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
@@ -860,7 +860,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -869,7 +869,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
@@ -878,7 +878,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -887,7 +887,7 @@ tooltipPosition
 	
 
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <br />
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
@@ -896,7 +896,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <br />
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

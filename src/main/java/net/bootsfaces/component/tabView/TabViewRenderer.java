@@ -136,7 +136,7 @@ public class TabViewRenderer extends CoreRenderer {
 
     /**
      * Essentially, getTabs() does the same as getChildren(), but it filters everything that's not a tab. In particular, comments are
-     * ignored.<br />
+     * ignored.
      * See issue 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
      * 
      * @return
