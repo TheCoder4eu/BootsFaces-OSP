@@ -75,6 +75,10 @@ public class SelectBooleanCheckbox extends HtmlSelectBooleanCheckbox {
      */
     @Override
     public void decode(FacesContext context) {
+		if (isDisabled() || isReadonly()) {
+			return;
+		}
+
         String subVal = (String) context.getExternalContext().getRequestParameterMap().get(getClientId(context));
         
         this.setSubmittedValue("on".equals(subVal));
