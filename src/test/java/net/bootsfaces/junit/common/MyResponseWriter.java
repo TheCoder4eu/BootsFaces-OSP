@@ -1,4 +1,4 @@
-package net.bootsfaces.junit;
+package net.bootsfaces.junit.common;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -40,7 +40,6 @@ public class MyResponseWriter extends ResponseWriter{
 
 	@Override
 	public void startElement(String name, UIComponent component) throws IOException {
-		System.out.println("startElement");
 		response.append('<');
 		response.append(name);
 		response.append('>');
@@ -49,7 +48,6 @@ public class MyResponseWriter extends ResponseWriter{
 
 	@Override
 	public void endElement(String name) throws IOException {
-		System.out.println("endElement");
 		response.append("</");
 		response.append(name);
 		response.append('>');
@@ -58,7 +56,6 @@ public class MyResponseWriter extends ResponseWriter{
 
 	@Override
 	public void writeAttribute(String name, Object value, String property) throws IOException {
-		System.out.println("writeAttribute");
 		response.append(' ');
 		response.append(name);
 		response.append("=\"");
@@ -81,7 +78,6 @@ public class MyResponseWriter extends ResponseWriter{
 
 	@Override
 	public void writeText(Object text, String property) throws IOException {
-		System.out.println("writeText");
 		response.append(text);
 		
 	}
