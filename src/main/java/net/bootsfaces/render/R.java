@@ -318,68 +318,6 @@ public final class R {
     }
     
     /**
-     * Encodes the data toggler.
-     * @param c
-     * @param v
-     * @param el
-     * @param rw
-     * @param l
-     * @param ts
-     * @throws IOException 
-     */
-    public static void encodeDataToggler(UIComponent c, String v, String el, ResponseWriter rw, String l, String ts) throws IOException {
-        rw.startElement(el, c);
-        rw.writeAttribute(H.ID, l, H.ID);
-        rw.writeAttribute(H.CLASS,ts+"dropdown-toggle",H.CLASS);
-        if(el.equals(H.BUTTON)) {
-            rw.writeAttribute(H.TYPE, H.BUTTON,null);
-        } else {
-            rw.writeAttribute(H.HREF, H.HASH,null);
-        }
-        rw.writeAttribute(H.ROLE, H.BUTTON,null);
-        rw.writeAttribute(H.TOGGLE, DROPDOWN,null);
-        
-        //Encode value
-        rw.writeText(v, null);
-        //Encode Caret
-        rw.startElement(H.B, c);
-        rw.writeAttribute(H.CLASS, CARET,H.CLASS);
-        rw.endElement(H.B);
-        
-        rw.endElement(el);
-    }
-    
-    /**
-     * Renders the Drop element.
-     * @param c
-     * @param rw
-     * @param cid
-     * @param el
-     * @param s
-     * @throws IOException 
-     */
-    public static void encodeDropElementStart(UIComponent c, ResponseWriter rw, String cid, String el, String s) throws IOException {
-        rw.startElement(el, c);
-        rw.writeAttribute(H.ID, cid, H.ID);
-        rw.writeAttribute(H.NAME, cid, H.NAME);
-        rw.writeAttribute(H.CLASS, s,H.CLASS);
-    }
-    
-    /**
-     * Renders the Drop Menu.
-     * @param c
-     * @param rw
-     * @param l
-     * @throws IOException 
-     */
-    public static void encodeDropMenuStart(UIComponent c, ResponseWriter rw, String l) throws IOException {
-        rw.startElement(H.UL, c);
-        rw.writeAttribute(H.CLASS, "dropdown-menu",H.CLASS);
-        rw.writeAttribute(H.ROLE, H.MENU,null);
-        rw.writeAttribute(H.ARIALBLBY, l, null);
-    }
-    
-    /**
      * Adds a CSS class to a component within a facet.
      * @param f the facet
      * @param cname the class name of the component to be manipulated.
