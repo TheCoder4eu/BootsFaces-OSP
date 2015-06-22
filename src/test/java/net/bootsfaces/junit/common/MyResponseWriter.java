@@ -108,5 +108,9 @@ public class MyResponseWriter extends ResponseWriter{
 	public String getResponse() {
 		return response.toString();
 	}
+        
+        public void reset(){
+            this.response.delete(0, response.length());
+        }
 	
 }
