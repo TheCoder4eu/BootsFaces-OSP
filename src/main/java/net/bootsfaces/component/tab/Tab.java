@@ -64,7 +64,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -75,7 +75,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -83,7 +83,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Inline CSS of the div surrounding the tab pane. <br />
+	 * Inline CSS of the div surrounding the tab pane. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -94,7 +94,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Inline CSS of the div surrounding the tab pane. <br />
+	 * Inline CSS of the div surrounding the tab pane. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -102,7 +102,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Inline CSS of the tab. <br />
+	 * Inline CSS of the tab. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -113,7 +113,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Inline CSS of the tab. <br />
+	 * Inline CSS of the tab. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -122,7 +122,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * Optional Javascript function that's called when the tab is clicked.
-	 * <br />
+	 * 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -134,7 +134,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * Optional Javascript function that's called when the tab is clicked.
-	 * <br />
+	 * 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -142,7 +142,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <br />
+	 * Style class of the div surrounding the tab pane. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -153,7 +153,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <br />
+	 * Style class of the div surrounding the tab pane. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -161,7 +161,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Caption of the tab. <br />
+	 * Caption of the tab. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -172,7 +172,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Caption of the tab. <br />
+	 * Caption of the tab. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -180,7 +180,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -191,7 +191,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -200,7 +200,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -212,7 +212,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -221,7 +221,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -233,7 +233,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -242,7 +242,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -254,7 +254,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -264,7 +264,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -277,7 +277,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

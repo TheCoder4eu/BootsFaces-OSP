@@ -62,7 +62,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			return;
 		}
 		List<String> submittedValues = new ArrayList<String>();
-		String clientId = menu.getClientId();
+		String clientId = menu.getClientId().replace(":", "-");
 		Map<String, String> map = context.getExternalContext().getRequestParameterMap();
 		for (String key : map.keySet()) {
 			if (key.startsWith(clientId + ":")) {
@@ -122,7 +122,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			return;
 		}
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = menu.getClientId(context);
+		String clientId = menu.getClientId(context).replace(":", "-");
+		;
 		rw.startElement("div", menu);
 		Tooltip.generateTooltip(context, menu, rw);
 		rw.writeAttribute("class", "form-group", "class");
@@ -154,7 +155,97 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		rw.endElement("div"); // form-group
 		Tooltip.activateTooltips(context, menu);
 
-		String js = "$(document).ready(function() {$('.select-multi-menu').multiselect();});\n";
+		String options = "";
+		int maxHeight = menu.getMaxHeight();
+		if (maxHeight > 0) {
+			options += "," + "maxHeight:" + String.valueOf(maxHeight);
+		}
+		String nonSelectedText = menu.getNonSelectedText();
+		if (nonSelectedText != null) {
+			options += "," + "nonSelectedText:'" + nonSelectedText + "'";
+		}
+		String nSelectedText = menu.getNSelectedText();
+		nSelectedText = (String) menu.getAttributes().get("nSelectedText"); // workaround - the regular getter always yields null
+		if (nSelectedText != null) {
+			options += "," + "nSelectedText:'" + nSelectedText + "'";
+		}
+		String allSelectedText = menu.getAllSelectedText();
+		if (allSelectedText != null) {
+			options += "," + "allSelectedText:'" + allSelectedText + "'";
+		}
+		int numberDisplayed = menu.getNumberDisplayed();
+		if (numberDisplayed > 0) {
+			options += "," + "numberDisplayed:" + String.valueOf(numberDisplayed);
+		}
+
+		if (menu.isIncludeSelectAllOption()) {
+			options += "," + "includeSelectAllOption:" + "true";
+		}
+
+		String selectAllText = menu.getSelectAllText();
+		if (selectAllText != null) {
+			options += "," + "selectAllText:'" + selectAllText + "'";
+		}
+
+		if (menu.isEnableFiltering()) {
+			options += "," + "enableFiltering:true";
+		}
+
+		String filterPlaceholder = menu.getFilterPlaceholder();
+		if (filterPlaceholder != null) {
+			options += "," + "filterPlaceholder:'" + filterPlaceholder + "'";
+		}
+		
+		boolean enableCaseInsensitiveFiltering = menu.isEnableCaseInsensitiveFiltering();
+		if (enableCaseInsensitiveFiltering) {
+			options += "," + "enableCaseInsensitiveFiltering:" + "true";
+		}
+
+		boolean disableIfEmpty = menu.isDisableIfEmpty();
+		if (disableIfEmpty) {
+			options += "," + "disableIfEmpty:" + "true";
+		}
+
+		boolean dropRight = menu.isDropRight();
+		if (dropRight) {
+			options += "," + "dropRight:" + "true";
+		}
+		
+		String onChange = menu.getOnchange();
+		if (onChange != null) {
+			options += "," + "onChange:" + onChange;
+		}
+
+		String onDropdownShow = menu.getOndropdownshow();
+		if (onDropdownShow != null) {
+			options += "," + "onDropdownShow:" + onDropdownShow;
+		}
+
+		String onDropdownHide = menu.getOndropdownhide();
+		if (onDropdownHide != null) {
+			options += "," + "onDropdownHide:" + onDropdownHide;
+		}
+
+		String buttonClass = menu.getButtonClass();
+		if (buttonClass != null) {
+			options += "," + "buttonClass:'" + buttonClass + "'";
+		}
+
+		String styleClass = menu.getStyleClass();
+		if (styleClass != null) {
+			options += "," + "buttonContainer:'<div class=\"" + styleClass + "\" />'";
+		}
+
+		int buttonWidth = menu.getButtonWidth();
+		if (buttonWidth > 0) {
+			options += "," + "buttonWidth:'" + buttonWidth + "px'";
+		}
+
+		if (options.length() > 0) {
+			options = "{" + options.substring(1, options.length()) + "}";
+		}
+
+		String js = "$(document).ready(function() {$('#" + clientId + "').multiselect(" + options + ");});\n";
 		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
 
 	}
@@ -192,8 +283,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * Renders the optional label. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the input field's attribute list
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -567,8 +656,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * Renders the attributes of the input tag. This method is protected in
 	 * order to allow third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the component's attribute list
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -612,7 +699,9 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
 
-		rw.writeAttribute("multiple", "multiple", null);
+		if (!menu.isRadiobuttons()) {
+			rw.writeAttribute("multiple", "multiple", null);
+		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);
@@ -635,8 +724,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * Start the column span div (if there's one). This method is protected in
 	 * order to allow third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the current attribute list
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException

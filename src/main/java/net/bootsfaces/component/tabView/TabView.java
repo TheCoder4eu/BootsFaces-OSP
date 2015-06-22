@@ -73,7 +73,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Optional attribute to define which tab is active initially. <br />
+	 * Optional attribute to define which tab is active initially. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -84,7 +84,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Optional attribute to define which tab is active initially. <br />
+	 * Optional attribute to define which tab is active initially. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setActiveIndex(int _activeIndex) {
@@ -92,7 +92,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding the panes. <br />
+	 * Style class of the div surrounding the panes. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -103,7 +103,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding the panes. <br />
+	 * Style class of the div surrounding the panes. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -111,7 +111,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Inline CSS style of the div surrounding the panes. <br />
+	 * Inline CSS style of the div surrounding the panes. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -122,7 +122,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Inline CSS style of the div surrounding the panes. <br />
+	 * Inline CSS style of the div surrounding the panes. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -130,7 +130,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -141,7 +141,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -149,7 +149,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The role can be used to provide information to screenreaders. <br />
+	 * The role can be used to provide information to screenreaders. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -160,7 +160,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The role can be used to provide information to screenreaders. <br />
+	 * The role can be used to provide information to screenreaders. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRole(String _role) {
@@ -168,7 +168,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding this element. <br />
+	 * Style class of the div surrounding this element. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -179,7 +179,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding this element. <br />
+	 * Style class of the div surrounding this element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -187,7 +187,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -198,7 +198,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -207,7 +207,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -219,7 +219,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -228,7 +228,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -240,7 +240,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -249,7 +249,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -261,7 +261,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -271,7 +271,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -284,7 +284,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

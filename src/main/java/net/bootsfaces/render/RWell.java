@@ -55,10 +55,16 @@ public enum RWell {
         
         rw.startElement(H.DIV, c);
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        String style=(String) attrs.get("style");
+        if (null!=style) {
+        	rw.writeAttribute("style", style, null);
+        }
+        String styleClass=(String) attrs.get("styleClass");
+        if (null ==styleClass) styleClass=""; else styleClass=" "+styleClass;
         Tooltip.generateTooltip(fc, attrs, rw);
         
-        if(sz!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz,H.CLASS); }
-        else           { rw.writeAttribute(H.CLASS, well, H.CLASS); }
+        if(sz!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz+styleClass,H.CLASS); }
+        else           { rw.writeAttribute(H.CLASS, well+styleClass, H.CLASS); }
     }
     
     /**

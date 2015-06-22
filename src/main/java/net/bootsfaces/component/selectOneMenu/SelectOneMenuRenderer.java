@@ -169,8 +169,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Renders the optional label. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the input field's attribute list
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -522,8 +520,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Renders the attributes of the input tag. This method is protected in
 	 * order to allow third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the component's attribute list
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -587,8 +583,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Start the column span div (if there's one). This method is protected in
 	 * order to allow third-party frameworks to derive from it.
 	 * 
-	 * @param attrs
-	 *            the current attribute list
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException

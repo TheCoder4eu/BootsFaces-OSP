@@ -67,7 +67,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -80,7 +80,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -88,7 +88,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Is the panel collapsed? <br />
+	 * Is the panel collapsed? 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -99,7 +99,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Is the panel collapsed? <br />
+	 * Is the panel collapsed? 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapsed(boolean _collapsed) {
@@ -108,7 +108,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. <br />
+	 * collapsible to false will suppress the collapse/expand feature. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -120,7 +120,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. <br />
+	 * collapsible to false will suppress the collapse/expand feature. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapsible(boolean _collapsible) {
@@ -129,7 +129,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br />
+	 * with this specific class 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -141,7 +141,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br />
+	 * with this specific class 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -149,7 +149,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the content area. <br />
+	 * Inline style of the content area. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -160,7 +160,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the content area. <br />
+	 * Inline style of the content area. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -168,7 +168,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -179,7 +179,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -188,7 +188,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. <br />
+	 * Default is warning. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -200,7 +200,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. <br />
+	 * Default is warning. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLook(String _look) {
@@ -208,7 +208,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the entire panel area. <br />
+	 * Inline style of the entire panel area. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -219,7 +219,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the entire panel area. <br />
+	 * Inline style of the entire panel area. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -227,7 +227,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. <br />
+	 * Style class of the input element. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -238,7 +238,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. <br />
+	 * Style class of the input element. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -247,7 +247,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. <br />
+	 * and the panel will render with a heading with this Title. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -259,7 +259,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. <br />
+	 * and the panel will render with a heading with this Title. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -268,7 +268,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class <br />
+	 * this specific class 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -280,7 +280,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class <br />
+	 * this specific class 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitleClass(String _titleClass) {
@@ -288,7 +288,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the title area. <br />
+	 * Inline style of the title area. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -299,7 +299,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the title area. <br />
+	 * Inline style of the title area. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitleStyle(String _titleStyle) {
@@ -307,7 +307,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -318,7 +318,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -327,7 +327,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -339,7 +339,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -348,7 +348,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -360,7 +360,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -369,7 +369,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -381,7 +381,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -391,7 +391,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -404,7 +404,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". 
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
