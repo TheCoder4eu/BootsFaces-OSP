@@ -60,6 +60,7 @@ public class InputText extends HtmlInputText {
         PropertyKeys() {
         }
 
+        @Override
         public String toString() {
             return ((this.toString != null) ? this.toString : super.toString());
         }

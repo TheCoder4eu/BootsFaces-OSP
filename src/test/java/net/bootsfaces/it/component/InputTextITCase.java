@@ -1,8 +1,9 @@
-package net.bootsfaces.it;
+package net.bootsfaces.it.component;
 
 import java.io.IOException;
 import net.bootsfaces.component.InputTextSessionBean;
 import net.bootsfaces.component.validators.RequiredInputTextValidator;
+import net.bootsfaces.it.IntegrationTestsBase;
 import net.bootsfaces.it.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;

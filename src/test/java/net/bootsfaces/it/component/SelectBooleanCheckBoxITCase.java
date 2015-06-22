@@ -1,8 +1,9 @@
-package net.bootsfaces.it;
+package net.bootsfaces.it.component;
 
 import net.bootsfaces.component.validators.RequiredCheckBoxValidator;
 import java.io.IOException;
 import net.bootsfaces.component.SelectBooleanCheckBoxSessionBean;
+import net.bootsfaces.it.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
 import org.jboss.arquillian.graphene.GrapheneElement;

@@ -1,6 +1,7 @@
-package net.bootsfaces.it;
+package net.bootsfaces.it.layout;
 
 import java.io.IOException;
+import net.bootsfaces.it.IntegrationTestsBase;
 import net.bootsfaces.it.IntegrationTestsBase;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.graphene.GrapheneElement;
