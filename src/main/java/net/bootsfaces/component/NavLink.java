@@ -114,12 +114,9 @@ public class NavLink extends HtmlOutcomeTargetLink {
     public void encodeHeader(FacesContext context, String h) throws IOException {
         ResponseWriter rw = context.getResponseWriter();
         
-        String value = A.asString(attrs.get(A.VALUE));
-        
         rw.startElement(H.LI, this);
-	rw.writeAttribute(H.ID, getClientId(context), H.ID);
-	rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
-	rw.writeAttribute(H.CLASS, DROPDOWN+"-header", H.CLASS);
+		rw.writeAttribute(H.ID, getClientId(context), H.ID);
+		rw.writeAttribute(H.CLASS, DROPDOWN+"-header", H.CLASS);
         rw.writeAttribute(H.ROLE, "presentation", null);
         rw.writeText(h, null);
         rw.endElement(H.LI);
@@ -150,7 +147,6 @@ public class NavLink extends HtmlOutcomeTargetLink {
         rw.startElement(H.LI, this);
         rw.writeAttribute(H.ID, getClientId(context), H.ID);
         Tooltip.generateTooltip(context, attrs, rw);
-        rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
         //rw.writeAttribute(H.TYPE, H.BUTTON, null);
         rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
         rw.startElement(H.A, this);

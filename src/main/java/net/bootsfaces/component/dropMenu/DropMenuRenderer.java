@@ -64,7 +64,6 @@ public class DropMenuRenderer extends CoreRenderer {
 		{
 			rw.startElement("li", dropMenu);
 			rw.writeAttribute("id", clientId, "id");
-			rw.writeAttribute("name", clientId, "name");
 			rw.writeAttribute("class", getStyleClass(dropMenu), "class");
 			Tooltip.generateTooltip(context, dropMenu, rw);
 
@@ -150,7 +149,6 @@ public class DropMenuRenderer extends CoreRenderer {
 		rw.endElement("ul");
 		rw.endElement("li");
 
-		rw.endElement("dropMenu");
 		Tooltip.activateTooltips(context, dropMenu);
 	}
 
