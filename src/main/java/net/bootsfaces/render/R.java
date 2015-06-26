@@ -79,7 +79,7 @@ public final class R {
      * @param addon If true it is an addon for inputs.
      * @throws IOException 
      */
-    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa, String size, String rotate, String flip, boolean spin, boolean addon) throws IOException {
+    public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa, String size, String rotate, String flip, boolean spin, boolean addon, String styleClass) throws IOException {
         /*
         Markup:
         <span><i class="icon-search"></i></span>
@@ -95,6 +95,9 @@ public final class R {
 
         
         StringBuilder sb = new StringBuilder(100); //optimize int
+        if ( styleClass != null ){
+            sb.append(styleClass).append(" ");
+        }
         //if(set!=null && set.equalsIgnoreCase("FA")) {
         if(fa) {
             sb.append(FAICON+icon);
@@ -133,7 +136,7 @@ public final class R {
      * @throws IOException 
      */
     public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean fa) throws IOException {
-        encodeIcon(rw, c, icon, fa, null, null, null, false, false);
+        encodeIcon(rw, c, icon, fa, null, null, null, false, false, null);
     }
     /**
      * Renders an addon Icon
@@ -150,7 +153,7 @@ public final class R {
         //rw.startElement(H.SPAN, c);
         //rw.writeAttribute(H.ID, c.getClientId()+C.USCORE+ADDON, null);
         //rw.writeAttribute(H.CLASS, ADDON, H.CLASS);
-        encodeIcon(rw, c, icon, fa, null, null, null, false, true);
+        encodeIcon(rw, c, icon, fa, null, null, null, false, true, null);
         //rw.endElement(H.SPAN);
     }
     
