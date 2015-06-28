@@ -41,14 +41,15 @@ public enum RIconAwesome {
         }
         Map<String, Object> attrs = c.getAttributes();
         String icon = A.asString(attrs.get("name"));
+        String styleClass = A.asString(attrs.get("styleClass"));
         //String set="FA";//= A.asString(attrs.get("icon-set"));
         String size = A.asString(attrs.get("size"));
         String rotate = A.asString(attrs.get("rotate"));
         String flip = A.asString(attrs.get("flip"));
         boolean spin = A.toBool(attrs.get("spin"));
         boolean addon = A.toBool(attrs.get("addon"));
-        R.encodeIcon(fc.getResponseWriter(), c, icon, true, size, rotate, flip, spin, addon);
-		Tooltip.activateTooltips(fc, attrs, c);
+        R.encodeIcon(fc.getResponseWriter(), c, icon, true, size, rotate, flip, spin, addon, styleClass);
+	Tooltip.activateTooltips(fc, attrs, c);
 
     }
     

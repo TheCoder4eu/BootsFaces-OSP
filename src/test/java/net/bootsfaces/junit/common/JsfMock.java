@@ -129,5 +129,9 @@ public class JsfMock implements TestRule {
 			}
 		}
 	}
+        
+        public void resetResponseWriter(){
+            ((MyResponseWriter) mockResponseWriter).reset();
+        }
 
 }
