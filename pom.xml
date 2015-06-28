@@ -111,8 +111,6 @@
             <scope>provided</scope>
         </dependency>
         
-
-        
         <!-- Test dependencies -->
         <dependency>
             <groupId>junit</groupId>
@@ -125,6 +123,7 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
             <version>2.0.17-beta</version>
+	    <scope>test</scope>
         </dependency>
        
         <dependency>
@@ -379,6 +378,7 @@
                 -->
                 <project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
                 <bootsfaces.arquillian.jboss.version>8.2.0.Final</bootsfaces.arquillian.jboss.version>
+		<ut.maven.test.skip>true</ut.maven.test.skip>
             </properties>
             
             <dependencies>
@@ -468,8 +468,10 @@
                                 <module.path>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}/modules</module.path>
                             </systemPropertyVariables>
                             <redirectTestOutputToFile>false</redirectTestOutputToFile>
+			    <excludes>
+				 <exclude>net/bootsfaces/junit/**</exclude>
+			    </excludes>
                         </configuration>
-                       
                     </plugin>
                 </plugins>
            
