@@ -45,7 +45,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
         
-        <!-- compiler plugin conffiruation -->
+        <!-- compiler plugin configuation -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
         <maven.compiler.testSource>1.6</maven.compiler.testSource>
@@ -468,9 +468,6 @@
                                 <module.path>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}/modules</module.path>
                             </systemPropertyVariables>
                             <redirectTestOutputToFile>false</redirectTestOutputToFile>
-			    <excludes>
-				 <exclude>net/bootsfaces/junit/**</exclude>
-			    </excludes>
                         </configuration>
                     </plugin>
                 </plugins>
