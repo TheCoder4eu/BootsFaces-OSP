@@ -119,7 +119,7 @@ public class Poll extends HtmlCommandButton {
 			rw.append("    clearInterval(pollId);");
 			rw.append("\r\n");
 		}
-		rw.append("    jsf.ajax.request('" + id + "',null, {" + id + ":" + id + ", execute:'" + execute+"', render:'" + update + "', onerror:handleError	});");
+		rw.append("    jsf.ajax.request('" + id + "',null, {'" + id + "':'" + id + "', execute:'" + execute+"', render:'" + update + "', onerror:handleError	});");
 		rw.append("\r\n");
 		rw.append("  }, " + intervalInMillseconds + ");");
 		rw.append("\r\n");
