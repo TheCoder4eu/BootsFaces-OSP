@@ -103,4 +103,9 @@ public class CoreRenderer extends Renderer{
             }
         }
     }
+    
+    public boolean componentIsDisabledOrReadonly(UIComponent component) {
+        return Boolean.valueOf(String.valueOf(component.getAttributes().get("disabled"))) 
+		|| Boolean.valueOf(String.valueOf(component.getAttributes().get("readonly")));
+    }
 }
