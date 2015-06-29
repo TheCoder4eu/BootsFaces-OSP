@@ -1,4 +1,4 @@
-package net.bootsfaces;
+package net.bootsfaces.it;
 
 import java.io.File;
 import java.net.URL;
