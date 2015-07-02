@@ -141,7 +141,7 @@ widget column
 
 
 widget commandButton
-       implemented_by net.bootsfaces.component.CommandButton
+       implemented_by net.bootsfaces.component.commandButton.CommandButton
        processes_input
        extends HtmlCommandButton
        has_tooltip
