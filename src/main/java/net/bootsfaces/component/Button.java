@@ -203,6 +203,9 @@ public class Button extends HtmlOutcomeTargetButton {
 		String fragment = asString(attrs.get(FRAGMENT));
 		String outcome = getOutcome();
 		
+		if (outcome==null ||outcome.equals("")||outcome.equals("@none"))
+			return js;
+		
 		if (canOutcomeBeRendered(attrs, fragment, outcome)) {
 			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
 			
