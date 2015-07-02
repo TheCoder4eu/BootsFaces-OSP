@@ -51,29 +51,14 @@ public class CommandButtonRenderer extends CoreRenderer{
     
     @Override
     public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	super.encodeBegin(context, component); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	if (!component.isRendered()) {
 	    return;
 	}
 	Map<String, Object> attrs = component.getAttributes();
-	
-	encodeHTML(context, component);
-	
-	Tooltip.activateTooltips(context, attrs, component);
-    }
-    
-    public void encodeHTML(FacesContext context, UIComponent component) throws IOException {
 	ResponseWriter rw = context.getResponseWriter();
-	Map<String, Object> attrs = component.getAttributes();
 	
 	String CID = component.getClientId(context);
 	
-	// 1) get the value
-	Object value = attrs.get(A.VALUE);
 	// 2) get the type (submit, button, reset ; default submit)
 	String type = A.asString(attrs.get(A.TYPE), A.SUBMIT);
 	// 3) is it Ajax? (default= false)
@@ -83,8 +68,9 @@ public class CommandButtonRenderer extends CoreRenderer{
 	rw.writeAttribute(H.TYPE, type, null);
 	rw.writeAttribute(H.ID, CID, H.ID);
 	rw.writeAttribute(H.NAME, CID, H.NAME);
+	
 	Tooltip.generateTooltip(context, attrs, rw);
-	// TODO rw.writeAttribute(H.TYPE, H.BUTTON, null);
+
 	if (style != null) {
 	    rw.writeAttribute(H.STYLE, style, H.STYLE);
 	}
@@ -101,7 +87,23 @@ public class CommandButtonRenderer extends CoreRenderer{
 	// TODO : write DHTML attrs - onclick
 	// Encode attributes (HTML 4 pass-through + DHTML)
 	R.encodeHTML4DHTMLAttrs(rw, attrs, A.ALLBUTTON_ATTRS);
+    }
+
+    
+    @Override
+    public boolean getRendersChildren() {
+	return true;
+    }
+    
+    
+    
+    
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+	ResponseWriter rw = context.getResponseWriter();
+	Map<String, Object> attrs = component.getAttributes();
 	
+	Object value = attrs.get(A.VALUE);
 	String icon = A.asString(attrs.get(A.ICON));
 	String faicon = A.asString(attrs.get(A.ICONAWESOME));
 	boolean fa = false; // flag to indicate wether the selected icon set is
@@ -125,8 +127,9 @@ public class CommandButtonRenderer extends CoreRenderer{
 	} else {
 	    rw.writeText(value, null);
 	}
-	
 	rw.endElement(H.BUTTON);
+	
+	Tooltip.activateTooltips(context, attrs, component);
     }
     
     private void generateOnClickHandler(FacesContext context, UIComponent component, ResponseWriter rw, String CID, String type, boolean ajax)
