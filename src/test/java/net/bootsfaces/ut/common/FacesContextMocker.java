@@ -1,4 +1,4 @@
-package net.bootsfaces.junit.common;
+package net.bootsfaces.ut.common;
 import javax.faces.context.FacesContext;
 
 import org.mockito.Mockito;

@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.bootsfaces.junit.icon;
+package net.bootsfaces.ut.icon;
 
 import java.io.IOException;
 import net.bootsfaces.component.Icon;
-import net.bootsfaces.junit.common.JsfMock;
+import net.bootsfaces.ut.common.JsfMock;
 import org.junit.Rule;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package net.bootsfaces.junit.common;
+package net.bootsfaces.ut.common;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -26,7 +26,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 import org.mockito.Mockito;
 
-import net.bootsfaces.junit.common.FacesContextMocker;
+import net.bootsfaces.ut.common.FacesContextMocker;
 
 public class JsfMock implements TestRule {
 

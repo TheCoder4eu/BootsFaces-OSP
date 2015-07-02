@@ -1,4 +1,4 @@
-package net.bootsfaces.junit.common;
+package net.bootsfaces.ut.common;
 import java.io.IOException;
 import java.io.Writer;
 
