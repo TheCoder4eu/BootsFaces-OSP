@@ -107,6 +107,7 @@
 		<copy file="${bsf.js.orig.dir}/html5shiv.js" todir="${js.dir}"/>
 		<copy file="${bsf.js.orig.dir}/respond.js" todir="${js.dir}"/>
         <copy file="${bsf.css.orig.dir}/bootstrap-multiselect.css" todir="${css.dir}" />
+        <copy file="${bsf.css.orig.dir}/dropdown-submenu.css" todir="${css.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect-collapsible-groups.js" todir="${js.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect.js" todir="${js.dir}" />
 		<echo message="Copying Fonts"/>
