@@ -134,8 +134,15 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 
 		rw.startElement(H.LI, this);
 		rw.writeAttribute(H.ID, getClientId(context), H.ID);
-		rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
-		rw.writeAttribute(H.CLASS, DROPDOWN + "-header", H.CLASS);
+		String styleClass = A.asString(attrs.get("styleClass"));
+		if (null == styleClass)
+			rw.writeAttribute(H.CLASS, DROPDOWN + "-header", H.CLASS);
+		else
+			rw.writeAttribute(H.CLASS, DROPDOWN + "-header " + styleClass, H.CLASS);
+		String style = A.asString(attrs.get("style"));
+		if (null != style) {
+			rw.writeAttribute("style", style, "style");
+		}
 		rw.writeAttribute(H.ROLE, "presentation", null);
 		rw.writeText(h, null);
 		rw.endElement(H.LI);
@@ -148,10 +155,19 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		// rw.writeAttribute("data-class",
 		// this.getParent().getClass().getSimpleName()+"-"+this.getParent().getClass().getName(),
 		// null);
+		String styleClass = A.asString(attrs.get("styleClass"));
+		if (null == styleClass)
+			styleClass = "";
+		else
+			styleClass += " ";
 		if (this.getParent().getClass().getName().equals(NavBarLinks.COMPONENT_TYPE)) {
-			rw.writeAttribute(H.CLASS, DIVIDERV, H.CLASS);
+			rw.writeAttribute(H.CLASS, styleClass + DIVIDERV, H.CLASS);
 		} else {
-			rw.writeAttribute(H.CLASS, DIVIDERH, H.CLASS);
+			rw.writeAttribute(H.CLASS, styleClass + DIVIDERH, H.CLASS);
+		}
+		String style = A.asString(attrs.get("style"));
+		if (null != style) {
+			rw.writeAttribute("style", style, "style");
 		}
 		rw.writeAttribute(H.ROLE, "presentation", null);
 
@@ -171,7 +187,19 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		rw.writeAttribute(H.NAME, getClientId(context), H.NAME);
 		// rw.writeAttribute(H.TYPE, H.BUTTON, null);
 		rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
+		String style = A.asString(attrs.get("style"));
+		if (null != style) {
+			rw.writeAttribute("style", style, "style");
+		}
 		rw.startElement(H.A, this);
+		style = A.asString(attrs.get("contentStyle"));
+		if (null != style) {
+			rw.writeAttribute("style", style, "style");
+		}
+		String contentClass = A.asString(attrs.get("contentClass"));
+		if (null != style) {
+			rw.writeAttribute("class", contentClass, "class");
+		}
 		if (url == null) {
 			/*
 			 * Param Name: javax.faces.PROJECT_STAGE Default Value: The default
@@ -275,6 +303,10 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		if (active) {
 			c += "active";
 		}
+
+		String styleClass = A.asString(attrs.get("styleClass"));
+		if (null != styleClass)
+			c += " " + styleClass;
 
 		return c;
 	}

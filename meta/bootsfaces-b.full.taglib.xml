@@ -1485,6 +1485,18 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
+			<name>contentClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
+			<name>contentStyle</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 			<name>action</name>
 			<required>false</required>
@@ -1574,6 +1586,18 @@
 			<name>active</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline style]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[CSS style class]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
