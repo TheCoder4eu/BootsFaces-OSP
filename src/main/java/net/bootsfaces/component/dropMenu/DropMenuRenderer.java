@@ -74,6 +74,9 @@ public class DropMenuRenderer extends CoreRenderer {
 				rw.startElement("a", dropMenu);
 				rw.writeAttribute("id", "dtL" + clientId, "id");
 				rw.writeAttribute("class", "dropdown-toggle", "class");
+				if (dropMenu.getStyle() != null) {
+					rw.writeAttribute("style", dropMenu.getStyle(), "style");
+				}
 				if ("a".equals("button")) {
 					rw.writeAttribute("type", "button", null);
 				} else {
@@ -86,6 +89,7 @@ public class DropMenuRenderer extends CoreRenderer {
 				String value = (String) dropMenu.getAttributes().get("value");
 				rw.writeText(value, null);
 				// Encode Caret
+				if (!(dropMenu.getParent() instanceof DropMenu))
 				{
 					rw.startElement("b", dropMenu);
 					rw.writeAttribute("class", "caret", "class");
@@ -111,6 +115,9 @@ public class DropMenuRenderer extends CoreRenderer {
 		}
 		if (!direction.equals("up") && !direction.equals("down")) {
 			direction = "down";
+		}
+		if (dropMenu.getParent() instanceof DropMenu) {
+			userClass += "dropdown-submenu" + " ";
 		}
 		return userClass + "drop" + direction;
 	}

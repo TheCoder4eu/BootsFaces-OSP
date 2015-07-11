@@ -28,8 +28,10 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body") })
+	@ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/dropdown-submenu.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body")
+	 })
 @FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
 public class DropMenu extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
