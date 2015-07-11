@@ -27,8 +27,11 @@ import javax.faces.component.html.HtmlInputText;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:selectMultiMenu /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.css", target = "head") })
+@ResourceDependencies({ 
+	    @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
+	    @ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body")})
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
