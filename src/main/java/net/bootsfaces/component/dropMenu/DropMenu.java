@@ -28,8 +28,8 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body") })
+		@ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
 public class DropMenu extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
@@ -50,7 +50,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	protected enum PropertyKeys {
-		binding, drop, id, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		binding, contentClass, contentStyle, drop, id, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
 		String toString;
 
@@ -89,6 +89,46 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
+	 * contentClass is optional: if specified, the content will be displayed
+	 * with this specific class <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getContentClass() {
+		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
+		return value;
+	}
+
+	/**
+	 * contentClass is optional: if specified, the content will be displayed
+	 * with this specific class <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentClass(String _contentClass) {
+		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
+	}
+
+	/**
+	 * Inline style of the content area. <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getContentStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
+		return value;
+	}
+
+	/**
+	 * Inline style of the content area. <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentStyle(String _contentStyle) {
+		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
 	 * Use up For Dropup and down for Dropdown, default is down. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -124,6 +164,44 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	 */
 	public void setId(String _id) {
 		getStateHelper().put(PropertyKeys.id, _id);
+	}
+
+	/**
+	 * Inline style <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.style);
+		return value;
+	}
+
+	/**
+	 * Inline style <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * CSS style class <br />
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getStyleClass() {
+		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
+		return value;
+	}
+
+	/**
+	 * CSS style class <br />
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
 
 	/**

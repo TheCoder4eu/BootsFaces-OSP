@@ -65,6 +65,9 @@ public class DropMenuRenderer extends CoreRenderer {
 			rw.startElement("li", dropMenu);
 			rw.writeAttribute("id", clientId, "id");
 			rw.writeAttribute("class", getStyleClass(dropMenu), "class");
+			if (dropMenu.getStyle() != null) {
+				rw.writeAttribute("style", dropMenu.getStyle(), "style");
+			}
 			Tooltip.generateTooltip(context, dropMenu, rw);
 
 			{
@@ -80,7 +83,7 @@ public class DropMenuRenderer extends CoreRenderer {
 				rw.writeAttribute("data-toggle", "dropdown", null);
 
 				// Encode value
-				String value = (String)dropMenu.getAttributes().get("value");
+				String value = (String) dropMenu.getAttributes().get("value");
 				rw.writeText(value, null);
 				// Encode Caret
 				{
@@ -97,6 +100,11 @@ public class DropMenuRenderer extends CoreRenderer {
 	}
 
 	private String getStyleClass(DropMenu dropMenu) {
+		String userClass = dropMenu.getStyleClass();
+		if (null == userClass)
+			userClass = "";
+		else
+			userClass += " ";
 		String direction = dropMenu.getDrop();
 		if (direction == null) {
 			direction = "down";
@@ -104,7 +112,7 @@ public class DropMenuRenderer extends CoreRenderer {
 		if (!direction.equals("up") && !direction.equals("down")) {
 			direction = "down";
 		}
-		return "drop" + direction;
+		return userClass + "drop" + direction;
 	}
 
 	/**
@@ -115,9 +123,14 @@ public class DropMenuRenderer extends CoreRenderer {
 	 * @param l
 	 * @throws IOException
 	 */
-	public static void encodeDropMenuStart(UIComponent c, ResponseWriter rw, String l) throws IOException {
+	public static void encodeDropMenuStart(DropMenu c, ResponseWriter rw, String l) throws IOException {
 		rw.startElement("ul", c);
-		rw.writeAttribute("class", "dropdown-menu", "class");
+		if (c.getContentClass() != null)
+			rw.writeAttribute("class", "dropdown-menu " + c.getContentClass(), "class");
+		else
+			rw.writeAttribute("class", "dropdown-menu", "class");
+		if (null != c.getContentStyle())
+			rw.writeAttribute("style", c.getContentStyle(), "style");
 		rw.writeAttribute("role", "menu", null);
 		rw.writeAttribute("aria-labelledby", l, null);
 	}
