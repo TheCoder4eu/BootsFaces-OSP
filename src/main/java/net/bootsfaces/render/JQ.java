@@ -136,11 +136,6 @@ public final class JQ {
         endInlineF(rw);
     }
     
-    public static void initModal(ResponseWriter rw, String cId) throws IOException {
-        startInlineF(rw, cId);
-        rw.write(MODAL.replace(CID, cId));
-        endInlineF(rw);
-    }
     
     /*
      * jQuery Slider Supported Options/Attributes

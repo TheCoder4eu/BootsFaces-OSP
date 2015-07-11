@@ -546,11 +546,15 @@ widget modal
        has_children
  {
     backdrop            Boolean default "true"                             "By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop=\"false\" to disable this feature."
+    closable            Boolean default "true"                             "If true, the modal dialog can be closed by clicking the small cross in the upper right corner"
     closeOnEscape       Boolean default "true"                             "By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape=\"false\" to disable this feature."
+    contentClass                                                           "contentClass is optional: if specified, the content will be displayed with this specific class"
+    contentStyle                                                           "Inline style of the content area."
     id                                                                     "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     size                                                                   "Modal's size. Possible values modal-sm, modal-lg"
+    style                                                                  "Inline style"
     styleClass                                                             "Style class of this element."
     title                                                                  "Bold title displayed in Modal's header."
 }
