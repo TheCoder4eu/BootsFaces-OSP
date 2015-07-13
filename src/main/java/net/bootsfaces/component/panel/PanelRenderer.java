@@ -29,16 +29,9 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:panel /&gt;. */
-// @ResourceDependencies({ @ResourceDependency(library = "bsf", name =
-// "css/core.css"),
-// @ResourceDependency(library = "bsf", name = "css/panels.css"),
-// @ResourceDependency(library = "bsf", name = "css/bsf.css"),
-// @ResourceDependency(library = "bsf", name = "js/collapse.js", target =
-// "body") })
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.panel.Panel")
 public class PanelRenderer extends CoreRenderer {
 	/**
@@ -100,8 +93,8 @@ public class PanelRenderer extends CoreRenderer {
 		boolean isCollapsible = panel.isCollapsible();
 
 		if (isCollapsible) {
-			rw.startElement(H.DIV, panel);
-			rw.writeAttribute(H.CLASS, "panel-group", null);
+			rw.startElement("div", panel);
+			rw.writeAttribute("class", "panel-group", null);
 		}
 
 		String _look = panel.getLook();
@@ -114,8 +107,8 @@ public class PanelRenderer extends CoreRenderer {
 			_styleClass += " ";
 		}
 
-		rw.startElement(H.DIV, panel);
-		rw.writeAttribute(H.ID, clientId, H.ID);
+		rw.startElement("div", panel);
+		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, panel, rw);
 		String _style = panel.getStyle();
 		if (null != _style && _style.length() > 0) {
@@ -123,50 +116,50 @@ public class PanelRenderer extends CoreRenderer {
 		}
 
 		if (_look != null) {
-			rw.writeAttribute(H.CLASS, _styleClass + "panel panel-" + _look, H.CLASS);
+			rw.writeAttribute("class", _styleClass + "panel panel-" + _look, "class");
 		} else {
-			rw.writeAttribute(H.CLASS, _styleClass + "panel panel-default", H.CLASS);
+			rw.writeAttribute("class", _styleClass + "panel panel-default", "class");
 		}
 
 		UIComponent head = panel.getFacet("heading");
 		if (head != null || _title != null) {
-			rw.startElement(H.DIV, panel);
-			rw.writeAttribute(H.CLASS, "panel-heading", H.CLASS);
+			rw.startElement("div", panel);
+			rw.writeAttribute("class", "panel-heading", "class");
 			String _titleStyle = panel.getTitleStyle();
 			if (null != _titleStyle) {
 				rw.writeAttribute("style", _titleStyle, "style");
 			}
 			if (_title != null) {
-				rw.startElement(H.H4, panel);
+				rw.startElement("h4", panel);
 				if (_titleClass != null) {
-					rw.writeAttribute(H.CLASS, _titleClass, H.CLASS);
+					rw.writeAttribute("class", _titleClass, "class");
 				} else {
-					rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
+					rw.writeAttribute("class", "panel-title", "class");
 				}
 				if (isCollapsible) {
-					rw.startElement(H.A, panel);
+					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
 				}
 
 				rw.writeText(_title, null);
-				rw.endElement(H.A);
-				rw.endElement(H.H4);
+				rw.endElement("a");
+				rw.endElement("h4");
 			} else {
 				if (isCollapsible) {
-					rw.startElement(H.A, panel);
+					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
 				}
 				head.encodeAll(context);
 				if (isCollapsible) {
-					rw.endElement(H.A);
+					rw.endElement("a");
 				}
 			}
-			rw.endElement(H.DIV);
+			rw.endElement("div");
 		}
 
-		rw.startElement(H.DIV, panel);
+		rw.startElement("div", panel);
 		rw.writeAttribute("id", jQueryClientID + "content", null);
 		String _contentClass = panel.getContentClass();
 		if (null == _contentClass)
@@ -179,7 +172,7 @@ public class PanelRenderer extends CoreRenderer {
 		_contentClass = "panel-body" + " " + _contentClass;
 		_contentClass = _contentClass.trim();
 		if (_contentClass.length() > 0)
-			rw.writeAttribute(H.CLASS, _contentClass, H.CLASS);
+			rw.writeAttribute("class", _contentClass, "class");
 		String _contentStyle = panel.getContentStyle();
 		if (null != _contentStyle && _contentStyle.length() > 0) {
 			rw.writeAttribute("style", _contentStyle, "style");
@@ -211,21 +204,21 @@ public class PanelRenderer extends CoreRenderer {
 		Panel panel = (Panel) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = panel.getClientId();
-		rw.endElement(H.DIV); // panel-body
+		rw.endElement("div"); // panel-body
 		UIComponent foot = panel.getFacet("footer");
 		if (foot != null) {
-			rw.startElement(H.DIV, panel); // modal-footer
-			rw.writeAttribute(H.CLASS, "panel-footer", H.CLASS);
+			rw.startElement("div", panel); // modal-footer
+			rw.writeAttribute("class", "panel-footer", "class");
 			foot.encodeAll(context);
 
-			rw.endElement(H.DIV); // panel-footer
+			rw.endElement("div"); // panel-footer
 		}
 
-		rw.endElement(H.DIV);
+		rw.endElement("div");
 		boolean isCollapsible = panel.isCollapsible();
 		if (isCollapsible) {
 			String jQueryClientID = clientId.replace(":", "_");
-			rw.endElement(H.DIV);
+			rw.endElement("div");
 			rw.startElement("input", panel);
 			rw.writeAttribute("type", "hidden", null);
 			String hiddenInputFieldID = jQueryClientID + "_collapsed";
