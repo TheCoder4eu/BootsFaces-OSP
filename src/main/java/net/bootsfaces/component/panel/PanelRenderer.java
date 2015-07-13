@@ -159,7 +159,9 @@ public class PanelRenderer extends CoreRenderer {
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
 				}
 				head.encodeAll(context);
-				rw.endElement(H.A);
+				if (isCollapsible) {
+					rw.endElement(H.A);
+				}
 			}
 			rw.endElement(H.DIV);
 		}
