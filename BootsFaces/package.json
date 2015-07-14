@@ -1,0 +1,14 @@
+{
+  "name": "BootsFaces",
+  "version": "0.8.0-SNAPSHOT",
+  "devDependencies": {
+  	"grunt-maven": "~1.1.0",
+    "grunt": "~0.4.5",
+    "grunt-concat-css": "^0.3.1",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-cssmin": "^0.12.3",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0"
+  }
+}
