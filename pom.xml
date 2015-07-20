@@ -210,6 +210,39 @@
 						<skip>${it.maven.test.skip}</skip>
 					</configuration>
 				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>pl.allegro</groupId>
+										<artifactId>
+											grunt-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.5.0,)
+										</versionRange>
+										<goals>
+											<goal>grunt</goal>
+											<goal>
+												create-resources
+											</goal>
+											<goal>npm</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 
@@ -268,6 +301,7 @@
 
 		<!-- resources -->
 		<resources>
+		<!-- 
 			<resource>
 				<directory>BootsFaces/min/css</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
@@ -276,8 +310,9 @@
 				<directory>BootsFaces/min/js</directory>
 				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
+			 -->
 
-<!-- 
+
 			<resource>
 				<directory>BootsFaces/css</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
@@ -290,7 +325,6 @@
 				<directory>BootsFaces/jq</directory>
 				<targetPath>META-INF/resources/bsf/jq</targetPath>
 			</resource>
- -->
 
 			<resource>
 				<directory>BootsFaces/fonts</directory>

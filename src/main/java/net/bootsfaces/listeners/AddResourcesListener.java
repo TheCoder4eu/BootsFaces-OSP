@@ -188,8 +188,10 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 
 			}
+			viewMap.remove(RESOURCE_KEY);
 		}
 
+		removeDuplicateResources(root, context);
 		enforceCorrectLoadOrder(root, context);
 
 		{
@@ -216,18 +218,48 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, UIOutput output) {
+		Object libToAdd = output.getAttributes().get("library");
+		Object nameToAdd = output.getAttributes().get("name");
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			String library = (String) c.getAttributes().get("library");
 			String name = (String) c.getAttributes().get("name");
-			if (library != null && library.equals(output.getAttributes().get("library"))) {
-				if (name != null && library.equals(output.getAttributes().get("name"))) {
+			if (library != null && library.equals(libToAdd)) {
+				if (name != null && name.equals(nameToAdd)) {
 					return;
 				}
 			}
 		}
 		root.addComponentResource(context, output, "head");
 	}
-
+ 
+	/**
+	 * Remove duplicate resource files. For some reason, many resource files are added more than once,
+	 * especially when AJAX is used. The method removes the duplicate files.
+	 * 
+	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of the Mojarra library itself.
+	 * 
+	 * @param root
+	 *            The current UIViewRoot
+	 * @param context
+	 *            The current FacesContext
+	 */
+	private void removeDuplicateResources(UIViewRoot root, FacesContext context) {
+		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
+		Map<String, UIComponent> alreadyThere = new HashMap<String, UIComponent>(); 
+		for (UIComponent resource:root.getComponentResources(context, "head")) {
+			String name=(String) resource.getAttributes().get("name");
+			String library = (String)resource.getAttributes().get("library");
+			String key = library + "/" + name;
+			if (alreadyThere.containsKey(key)) {
+				resourcesToRemove.add(resource);
+				continue;
+			}
+			alreadyThere.put(key, resource);
+		}
+		for (UIComponent c : resourcesToRemove) {
+			root.removeComponentResource(context, c);
+		}
+	}
 	/**
 	 * Make sure jQuery is loaded before jQueryUI, and that every other
 	 * Javascript is loaded later. Also make sure that the BootsFaces resource
@@ -240,7 +272,12 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
-		List<UIComponent> resources = new ArrayList<UIComponent>(root.getComponentResources(context, "head"));
+		List<UIComponent> resources = new ArrayList<UIComponent>();
+		for (UIComponent resource:root.getComponentResources(context, "head")) {
+			String name=(String) resource.getAttributes().get("name");
+			if (name!=null && (name.endsWith(".js")))
+				resources.add(resource);
+		}
 		Collections.sort(resources, new Comparator<UIComponent>() {
 
 			@Override
@@ -281,20 +318,12 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		});
 
-//		System.out.println("-------------------------------- sorted");
 		for (UIComponent c : resources) {
-//			System.out.println((String) c.getAttributes().get("name"));
 			root.removeComponentResource(context, c);
 		}
 		for (UIComponent c : resources) {
 			root.addComponentResource(context, c, "head");
 		}
-//		System.out.println("--------------------------------after");
-//		resources = new ArrayList<UIComponent>(root.getComponentResources(context, "head"));
-//		for (UIComponent c : resources) {
-//			System.out.println((String) c.getAttributes().get("name"));
-//		}
-//		System.out.println("--------------------------------after");
 	}
 
 	/**
