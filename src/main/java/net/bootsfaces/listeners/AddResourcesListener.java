@@ -191,6 +191,7 @@ public class AddResourcesListener implements SystemEventListener {
 			viewMap.remove(RESOURCE_KEY);
 		}
 
+		replaceResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
 		enforceCorrectLoadOrder(root, context);
 
@@ -231,7 +232,54 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 		root.addComponentResource(context, output, "head");
 	}
- 
+
+	/**
+	 * Remove duplicate resource files. For some reason, many resource files are added more than once,
+	 * especially when AJAX is used. The method removes the duplicate files.
+	 * 
+	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of the Mojarra library itself.
+	 * 
+	 * @param root
+	 *            The current UIViewRoot
+	 * @param context
+	 *            The current FacesContext
+	 */
+	private void replaceResourcesByMinifiedResources(UIViewRoot root, FacesContext context) {
+		Application app = context.getApplication();
+		ResourceHandler rh = app.getResourceHandler();
+		Resource cssmin = rh.createResource("css/BootsFaces.min.css", C.BSF_LIBRARY);
+		Resource jsmin = rh.createResource("js/BootsFaces.min.js", C.BSF_LIBRARY);
+		
+		if (cssmin !=null && jsmin != null) {
+			List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
+			for (UIComponent resource:root.getComponentResources(context, "head")) {
+				String name=(String) resource.getAttributes().get("name");
+				String library = (String)resource.getAttributes().get("library");
+				if ((library != null) && library.equals("bsf"))
+					if ((name != null) && (!name.startsWith("jq/"))) {
+					resourcesToRemove.add(resource);
+				}
+			}
+			for (UIComponent c : resourcesToRemove) {
+				root.removeComponentResource(context, c);
+			}
+			UIOutput output = new UIOutput();
+			output.setRendererType("javax.faces.resource.Stylesheet");
+			output.getAttributes().put("name", "css/BootsFaces.min.css");
+			output.getAttributes().put("library", C.BSF_LIBRARY);
+			output.getAttributes().put("target", "head");
+			addResourceIfNecessary(root, context, output);
+			
+			output = new UIOutput();
+			output.setRendererType("javax.faces.resource.Script");
+			output.getAttributes().put("name", "js/BootsFaces.min.js");
+			output.getAttributes().put("library", C.BSF_LIBRARY);
+			output.getAttributes().put("target", "head");
+			addResourceIfNecessary(root, context, output);
+
+		}
+	}
+
 	/**
 	 * Remove duplicate resource files. For some reason, many resource files are added more than once,
 	 * especially when AJAX is used. The method removes the duplicate files.

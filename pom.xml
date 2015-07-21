@@ -275,6 +275,7 @@
 				</configuration>
 				<executions>
 					<execution>
+						<phase>generate-resources</phase>
 						<goals>
 							<goal>create-resources</goal>
 							<goal>npm</goal>
@@ -301,7 +302,6 @@
 
 		<!-- resources -->
 		<resources>
-		<!-- 
 			<resource>
 				<directory>BootsFaces/min/css</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
@@ -310,9 +310,10 @@
 				<directory>BootsFaces/min/js</directory>
 				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
+
+
+		<!-- 
 			 -->
-
-
 			<resource>
 				<directory>BootsFaces/css</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
@@ -322,8 +323,18 @@
 				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
 			<resource>
+				<directory>BootsFaces/themes</directory>
+				<targetPath>META-INF/resources/bsf/css</targetPath>
+			</resource>
+			 
+			<resource>
 				<directory>BootsFaces/jq</directory>
 				<targetPath>META-INF/resources/bsf/jq</targetPath>
+			</resource>
+
+			<resource>
+				<directory>BootsFaces/ie8support</directory>
+				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
 
 			<resource>
