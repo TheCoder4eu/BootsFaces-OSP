@@ -110,6 +110,11 @@
         <copy file="${bsf.css.orig.dir}/dropdown-submenu.css" todir="${css.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect-collapsible-groups.js" todir="${js.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect.js" todir="${js.dir}" />
+		
+		<copy file="${bsf.dir}/min/css/BootsFaces.min.css" todir="${css.dir}" />
+        <copy file="${bsf.dir}/min/js/BootsFaces.min.js" todir="${js.dir}" />
+		
+		
 		<echo message="Copying Fonts"/>
 		<copy todir="${fonts.dir}">
 		  <fileset dir="${fonts.orig.dir}" includes="*"/>
