@@ -17,7 +17,8 @@ module.exports = function(grunt) {
 		        'js/tab.js',
 		        'js/tooltip.js',
 		        'js/bsf.js'],
-		  dest: 'temp/allinone.js',
+		  // dest: 'temp/allinone.js',
+		  dest: '../BootsFaces/min/js/BootsFaces.js',
 		},
 	},
 	concat_css: {
@@ -27,12 +28,15 @@ module.exports = function(grunt) {
 		  dest: 'temp/BootsFaces.css',
 		},
 	},
+	
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+        compress: false,
+        mangle: false
       },
       build: {
-        src: 'temp/allinone.js',
+        src:  '../BootsFaces/min/js/BootsFaces.js',
         dest: '../BootsFaces/min/js/BootsFaces.min.js'
       }
     },
@@ -63,6 +67,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-maven');
   
   // Default task(s).
-  grunt.registerTask('default', ['mavenPrepare', 'concat','uglify', 'concat_css','cssmin']);
+  grunt.registerTask('default', ['mavenPrepare', 'concat', 'uglify', 'concat_css','cssmin']);
 
 };

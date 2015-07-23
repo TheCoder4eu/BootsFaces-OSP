@@ -191,7 +191,7 @@ public class AddResourcesListener implements SystemEventListener {
 			viewMap.remove(RESOURCE_KEY);
 		}
 
-		replaceResourcesByMinifiedResources(root, context);
+		replaceCSSResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
 		enforceCorrectLoadOrder(root, context);
 
@@ -234,31 +234,35 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Remove duplicate resource files. For some reason, many resource files are added more than once,
-	 * especially when AJAX is used. The method removes the duplicate files.
+	 * Remove duplicate resource files. For some reason, many resource files are
+	 * added more than once, especially when AJAX is used. The method removes
+	 * the duplicate files.
 	 * 
-	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of the Mojarra library itself.
+	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or
+	 * of the Mojarra library itself.
 	 * 
 	 * @param root
 	 *            The current UIViewRoot
 	 * @param context
 	 *            The current FacesContext
 	 */
-	private void replaceResourcesByMinifiedResources(UIViewRoot root, FacesContext context) {
+	private void replaceCSSResourcesByMinifiedResources(UIViewRoot root, FacesContext context) {
 		Application app = context.getApplication();
 		ResourceHandler rh = app.getResourceHandler();
 		Resource cssmin = rh.createResource("css/BootsFaces.min.css", C.BSF_LIBRARY);
-		Resource jsmin = rh.createResource("js/BootsFaces.min.js", C.BSF_LIBRARY);
-		
-		if (cssmin !=null && jsmin != null) {
+//		Resource jsmin = rh.createResource("js/BootsFaces.min.js", C.BSF_LIBRARY);
+
+		if (cssmin != null) {
 			List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
-			for (UIComponent resource:root.getComponentResources(context, "head")) {
-				String name=(String) resource.getAttributes().get("name");
-				String library = (String)resource.getAttributes().get("library");
+			for (UIComponent resource : root.getComponentResources(context, "head")) {
+				String name = (String) resource.getAttributes().get("name");
+				String library = (String) resource.getAttributes().get("library");
 				if ((library != null) && library.equals("bsf"))
 					if ((name != null) && (!name.startsWith("jq/"))) {
-					resourcesToRemove.add(resource);
-				}
+						if (name.endsWith(".css")) {
+							resourcesToRemove.add(resource);
+						}
+					}
 			}
 			for (UIComponent c : resourcesToRemove) {
 				root.removeComponentResource(context, c);
@@ -269,22 +273,24 @@ public class AddResourcesListener implements SystemEventListener {
 			output.getAttributes().put("library", C.BSF_LIBRARY);
 			output.getAttributes().put("target", "head");
 			addResourceIfNecessary(root, context, output);
-			
-			output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Script");
-			output.getAttributes().put("name", "js/BootsFaces.min.js");
-			output.getAttributes().put("library", C.BSF_LIBRARY);
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
+
+//			output = new UIOutput();
+//			output.setRendererType("javax.faces.resource.Script");
+//			output.getAttributes().put("name", "js/BootsFaces.min.js");
+//			output.getAttributes().put("library", C.BSF_LIBRARY);
+//			output.getAttributes().put("target", "head");
+//			addResourceIfNecessary(root, context, output);
 
 		}
 	}
 
 	/**
-	 * Remove duplicate resource files. For some reason, many resource files are added more than once,
-	 * especially when AJAX is used. The method removes the duplicate files.
+	 * Remove duplicate resource files. For some reason, many resource files are
+	 * added more than once, especially when AJAX is used. The method removes
+	 * the duplicate files.
 	 * 
-	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of the Mojarra library itself.
+	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or
+	 * of the Mojarra library itself.
 	 * 
 	 * @param root
 	 *            The current UIViewRoot
@@ -293,10 +299,10 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private void removeDuplicateResources(UIViewRoot root, FacesContext context) {
 		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
-		Map<String, UIComponent> alreadyThere = new HashMap<String, UIComponent>(); 
-		for (UIComponent resource:root.getComponentResources(context, "head")) {
-			String name=(String) resource.getAttributes().get("name");
-			String library = (String)resource.getAttributes().get("library");
+		Map<String, UIComponent> alreadyThere = new HashMap<String, UIComponent>();
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			String name = (String) resource.getAttributes().get("name");
+			String library = (String) resource.getAttributes().get("library");
 			String key = library + "/" + name;
 			if (alreadyThere.containsKey(key)) {
 				resourcesToRemove.add(resource);
@@ -308,6 +314,7 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 	}
+
 	/**
 	 * Make sure jQuery is loaded before jQueryUI, and that every other
 	 * Javascript is loaded later. Also make sure that the BootsFaces resource
@@ -321,9 +328,9 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
 		List<UIComponent> resources = new ArrayList<UIComponent>();
-		for (UIComponent resource:root.getComponentResources(context, "head")) {
-			String name=(String) resource.getAttributes().get("name");
-			if (name!=null && (name.endsWith(".js")))
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			String name = (String) resource.getAttributes().get("name");
+			if (name != null && (name.endsWith(".js")))
 				resources.add(resource);
 		}
 		Collections.sort(resources, new Comparator<UIComponent>() {
@@ -331,9 +338,9 @@ public class AddResourcesListener implements SystemEventListener {
 			@Override
 			public int compare(UIComponent o1, UIComponent o2) {
 				String name1 = (String) o1.getAttributes().get("name");
-//				String lib1 = (String) o1.getAttributes().get("name");
+				// String lib1 = (String) o1.getAttributes().get("name");
 				String name2 = (String) o2.getAttributes().get("name");
-//				String lib2 = (String) o2.getAttributes().get("name");
+				// String lib2 = (String) o2.getAttributes().get("name");
 				if (name1 == null)
 					return 1;
 				if (name2 == null)
@@ -349,7 +356,8 @@ public class AddResourcesListener implements SystemEventListener {
 						name1 = "1.js"; // make it the second JS file
 					else if (name1.contains("bsf.js"))
 						name1 = "zzz.js"; // make it the last JS file
-					else name1="keep.js"; // don't move it
+					else
+						name1 = "keep.js"; // don't move it
 				}
 				if (name2.endsWith(".js")) {
 					if (name2.contains("jquery-ui"))
@@ -358,7 +366,8 @@ public class AddResourcesListener implements SystemEventListener {
 						name2 = "1.js"; // make it the second JS file
 					else if (name2.contains("bsf.js"))
 						name2 = "zzz.js"; // make it the last JS file
-					else name2="keep.js"; // don't move it
+					else
+						name2 = "keep.js"; // don't move it
 				}
 				int result = name1.compareTo(name2);
 
