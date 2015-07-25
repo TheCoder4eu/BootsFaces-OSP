@@ -19,23 +19,13 @@
 
 package net.bootsfaces.component.commandButton;
 
-import java.io.IOException;
-import java.util.Map;
-
-import javax.faces.FacesException;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlCommandButton;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.ActionEvent;
 
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.A;
 import net.bootsfaces.C;
-import net.bootsfaces.render.H;
-import net.bootsfaces.render.R;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
 /**

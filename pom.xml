@@ -372,7 +372,7 @@
 		<profile>
 			<id>Mojarra 2.0</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<dependencies>
 				<dependency>
@@ -385,15 +385,15 @@
 		</profile>
 
 		<profile>
-			<id>Mojarra 2.2.11</id>
+			<id>Mojarra 2.2.12</id>
 			<activation>
-				<activeByDefault>false</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
-					<version>2.2.11</version>
+					<version>2.2.12</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>
@@ -408,7 +408,7 @@
 				<dependency>
 					<groupId>com.sun.faces</groupId>
 					<artifactId>jsf-api</artifactId>
-					<version>2.2.11</version>
+					<version>2.2.12</version>
 					<scope>provided</scope>
 				</dependency>
 			</dependencies>

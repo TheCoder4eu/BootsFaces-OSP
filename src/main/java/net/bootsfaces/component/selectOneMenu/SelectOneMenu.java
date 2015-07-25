@@ -23,6 +23,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.render.Tooltip;
 
@@ -881,5 +882,9 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
+	
+    public void validateValue(FacesContext context, Object newValue) {
+    	super.validateValue(context, newValue);
+    }
 
 }

@@ -82,16 +82,19 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
 					menu.setSubmittedValue(currentOptionValue);
 					menu.setValid(true);
+					menu.validateValue(context, submittedOptionValue);
 					return;
 				}
 			}
+			menu.validateValue(context, null);
 			menu.setSubmittedValue(null);
 			menu.setValid(false);
 			return;
 		}
 
-		menu.setSubmittedValue(submittedOptionValue);
 		menu.setValid(true);
+		menu.validateValue(context, submittedOptionValue);
+		menu.setSubmittedValue(submittedOptionValue);
 	}
 
 	/** Generates the HTML code for this component. */
@@ -601,11 +604,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Starts the input field group (if needed to display a component seamlessly
 	 * in front of or behind the input field). This method is protected in order
 	 * to allow third-party frameworks to derive from it.
+	 * @param hasAppendingAddOn
 	 * 
 	 * @param rw
 	 *            the response writer
 	 * @param hasPrependingAddOn
-	 * @param hasAppendingAddOn
 	 * @return true if there is an add-on in front of or behind the input field
 	 * @throws IOException
 	 *             may be thrown by the response writer
