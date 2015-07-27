@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014 Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -17,82 +17,27 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.layout;
+package net.bootsfaces.component.panelGrid;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.faces.FacesException;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
-import net.bootsfaces.render.A;
+import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
-/**
- * This component puts child components in a grid, very much like &lt;h:panelGrid&gt;.
- *
- * <p>
- * Usage:
- * </p>
- * <p>
- * &lt;b:panelGrid id="grid-three-nine" colSpans="3,9" columnClasses="red,green" styleClass="gridStyle" rowClasses="light,dark"&gt;<br>
- * &nbsp;&nbsp;&nbsp;(child components)<br>
- * &lt;/b:panelGrid&gt;
- * </p>
- * <ul>
- * <li>
- * id: the id of the component. It's added to the surrounding &lt;div class="container" &gt;.</li>
- * <li>
- * styleClass: The CSS class assigned to the surrounding &lt;div class="container" &gt;.</li>
- * <li>
- * colSpans: comma-separated list of the Bootstrap columns each components spans. The number are translated to col-lg-%colspan%. In the
- * example, the first component is assigned col-lg-3, the second col-lg-9. The next row start with col-lg-3 again. The column spans must sum
- * up to 12.</li>
- * <li>
- * columnClasses: An optional attribute that allows to assign different CSS classes to each Bootstrap column. If "colSpans" defines more
- * columns than "columnClasses", the columnClasses are repeated cyclically.</li>
- * <li>
- * rowClasses: An optional attribute that allows to assign CSS classes to each Bootstrap row. If there are more rows than row classes, the
- * row classes are repeated cyclically.</li>
- * </ul>
- * 
- * @author Stephan Rauh, http://www.beyondjava.net
- * @since 22.11.2014
- */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
-@FacesComponent(C.PANELGRID_COMPONENT_TYPE)
-public class PanelGrid extends UIOutput {
-
-	/**
-	 * The standard component type for this component.
-	 */
-	public static final String COMPONENT_TYPE = C.PANELGRID_COMPONENT_TYPE;
-
-	/**
-	 * The component family for this component.
-	 */
-	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-
-	public PanelGrid() {
-		setRendererType(null); // no renderer needed
-        Tooltip.addResourceFile();
-	}
-
+/** This class generates the HTML code of &lt;b:panelGrid /&gt;. */
+@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.panelGrid.PanelGrid")
+public class PanelGridRenderer extends CoreRenderer {
+	
 	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
-
-	@Override
-	public void encodeChildren(FacesContext context) throws IOException {
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// suppress generation of children
 	}
 
@@ -106,24 +51,25 @@ public class PanelGrid extends UIOutput {
 
 	/** Renders the grid component and its children. */
 	@Override
-	public void encodeEnd(FacesContext context) throws IOException {
-        if (!isRendered()) {
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        if (!component.isRendered()) {
             return;
         }
+        PanelGrid panelGrid = (PanelGrid) component;
 		ResponseWriter writer = context.getResponseWriter();
 
-		generateContainerStart(writer);
+		generateContainerStart(writer, panelGrid);
 
-		int[] columns = getColSpanArray();
-		String[] columnClasses = getColumnClasses(columns);
-		String[] rowClasses = getRowClasses(this);
+		int[] columns = getColSpanArray(panelGrid);
+		String[] columnClasses = getColumnClasses(panelGrid, columns);
+		String[] rowClasses = getRowClasses(panelGrid);
 
 		int row = 0;
 		int column = 0;
-		List<UIComponent> children = this.getChildren();
+		List<UIComponent> children = panelGrid.getChildren();
 		for (UIComponent child : children) {
 			if (0 == column) {
-				generateRowStart(writer, row, rowClasses);
+				generateRowStart(writer, row, rowClasses, panelGrid);
 			}
 			generateColumnStart(child, columnClasses[column], writer);
 			child.encodeAll(context);
@@ -137,7 +83,7 @@ public class PanelGrid extends UIOutput {
 		}
 
 		generateContainerEnd(writer);
-        Tooltip.activateTooltips(context, getAttributes(), this);
+        Tooltip.activateTooltips(context, panelGrid);
 	}
 
 	/**
@@ -146,7 +92,7 @@ public class PanelGrid extends UIOutput {
 	 * @return null or a String array.
 	 */
 	protected String[] getRowClasses(PanelGrid grid) {
-		String rowClasses = A.asString(grid.getAttributes().get("rowClasses"));
+		String rowClasses = grid.getRowClasses();
 		if (null == rowClasses || rowClasses.trim().length()==0)
 			return null;
 		String[] rows = rowClasses.split(",");
@@ -160,8 +106,8 @@ public class PanelGrid extends UIOutput {
 	 * @throws FacesException
 	 *             if the attribute is missing or invalid.
 	 */
-	protected int[] getColSpanArray() {
-		String columnsCSV = A.asString(getAttributes().get("colSpans"));
+	protected int[] getColSpanArray(PanelGrid panelGrid) {
+		String columnsCSV = panelGrid.getColSpans();
 		if (null == columnsCSV || columnsCSV.trim().length()==0)
 		{
 		    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
@@ -190,8 +136,8 @@ public class PanelGrid extends UIOutput {
 	 *            the integer array returned by getColSpans().
 	 * @return null or an array of String consisting of the CSS classes.
 	 */
-	protected String[] getColumnClasses(int[] colSpans) {
-		String columnsCSV = A.asString(getAttributes().get("columnClasses"));
+	protected String[] getColumnClasses(PanelGrid panelGrid, int[] colSpans) {
+		String columnsCSV = panelGrid.getColumnClasses();
 		String[] columnClasses;
 
 		if (null == columnsCSV || columnsCSV.trim().length()==0)
@@ -203,7 +149,7 @@ public class PanelGrid extends UIOutput {
 			}
 		}
 
-		String size = A.asString(getAttributes().get("size"));
+		String size = panelGrid.getSize();
 		if (null == size || size.trim().equals(""))
 			size = "lg";
 
@@ -296,8 +242,8 @@ public class PanelGrid extends UIOutput {
 	 * @throws IOException
 	 *             if something's wrong with the response writer.
 	 */
-	protected void generateRowStart(ResponseWriter writer, int row, String[] rowClasses) throws IOException {
-		writer.startElement("div", this);
+	protected void generateRowStart(ResponseWriter writer, int row, String[] rowClasses, PanelGrid panelGrid) throws IOException {
+		writer.startElement("div", panelGrid);
 		if (null == rowClasses)
 			writer.writeAttribute("class", "row", "class");
 		else
@@ -312,25 +258,25 @@ public class PanelGrid extends UIOutput {
 	 * @throws IOException
 	 *             if something's wrong with the response writer.
 	 */
-	protected void generateContainerStart(ResponseWriter writer) throws IOException {
-		writer.startElement("div", this);
+	protected void generateContainerStart(ResponseWriter writer, PanelGrid panelGrid) throws IOException {
+		writer.startElement("div", panelGrid);
 
-		String id = this.getId();
+		String id = panelGrid.getId();
 		if (null != id) {
-			String clientId = this.getClientId();
+			String clientId = panelGrid.getClientId();
 			writer.writeAttribute("id", clientId, "id");
 		}
-        Tooltip.generateTooltip(FacesContext.getCurrentInstance(), getAttributes(), writer);
+        Tooltip.generateTooltip(FacesContext.getCurrentInstance(), panelGrid, writer);
 
 
-		String styleclass = A.asString(this.getAttributes().get("styleClass"));
+		String styleclass = panelGrid.getStyleClass();
 		if (null != styleclass&& styleclass.trim().length()>0)
 			writer.writeAttribute("class", styleclass, "class");
 //		else
 //			writer.writeAttribute("class", "container", "class");
 
-		String style = A.asString(this.getAttributes().get("style"));
+		String style = panelGrid.getStyle();
 		if (null != style && style.trim().length()>0)
 			writer.writeAttribute("style", style, "style");
-	}
+	}	
 }

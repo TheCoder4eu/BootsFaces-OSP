@@ -700,8 +700,9 @@ widget panelGrid
        has_tooltip
  {
     colSpans            mandatory                                          "Comma-separated list of the column spans"
-    columnclasses                                                          "Comma-separated list of the CSS classes assigned to each colum."
+    columnClasses                                                          "Comma-separated list of the CSS classes assigned to each column."
     id                                                                     "Unique identifier of the component in a namingContainer."
+    rowClasses                                                             "Comma-separated list of the CSS classes assigned to each row."
     size                                                                   "Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size."
     style                                                                  "CSS inline style of the div surrounding the panel grid."
     styleClass                                                             "Style class of the div surrounding the panel grid."
