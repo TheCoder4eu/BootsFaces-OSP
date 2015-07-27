@@ -77,7 +77,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.startElement("div", component); // modal
 		rw.writeAttribute("id", component.getClientId(context), "id");
 
-		String styleClasses = "modal" + " fade";
+		String styleClasses = "modal";
 		if (modal.getStyleClass() != null) {
 			styleClasses = modal.getStyleClass() + " " + styleClasses;
 		}
