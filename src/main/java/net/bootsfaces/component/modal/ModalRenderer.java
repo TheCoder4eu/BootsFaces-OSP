@@ -184,7 +184,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.writeAttribute("id", cId.concat("_js"), null);
 		rw.writeAttribute("type", "text/javascript", null);
 		rw.write("$(function(){");
-		rw.write("$('#CID').modal({ show: false });".replace("CID", cId));
+		rw.write("$('#CID').modal({ show: false });".replace("CID", escapeClientId(cId)));
 		rw.write("});");
 		rw.endElement("script");
 	}

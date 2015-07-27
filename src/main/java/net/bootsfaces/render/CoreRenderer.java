@@ -18,21 +18,25 @@
  */
 package net.bootsfaces.render;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 
 
 
 public class CoreRenderer extends Renderer{
+
+    //characters to be escaped in clientId when used in jquery
+    private final Pattern charsToEscape = Pattern.compile("([:\\.])");
+
 
     protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
@@ -108,4 +112,13 @@ public class CoreRenderer extends Renderer{
         return Boolean.valueOf(String.valueOf(component.getAttributes().get("disabled"))) 
 		|| Boolean.valueOf(String.valueOf(component.getAttributes().get("readonly")));
     }
+
+    protected String escapeClientId(String clientId){
+        if (clientId == null){
+            return null;
+        }
+        //prefix all chars in group 1 with double backslash (doubled escaping necessary here)
+        return charsToEscape.matcher(clientId).replaceAll("\\\\\\\\$1");
+    }
+
 }
