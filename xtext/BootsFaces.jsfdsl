@@ -188,7 +188,7 @@ widget commandButton
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "The button type, can be submit, button, reset ; default submit."
     update                                                                 "Component(s) to be updated with ajax."
-    value               mandatory inherited                                "Button text."
+    value               mandatory                                          "Button text."
 }
 
 
