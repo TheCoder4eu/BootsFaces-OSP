@@ -143,13 +143,13 @@ widget column
 widget commandButton
        implemented_by net.bootsfaces.component.commandButton.CommandButton
        processes_input
-       extends HtmlCommandButton
+       extends UICommand
        has_tooltip
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    action              javax.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
-    actionListener      javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
-    ajax                Boolean                                            "Whether the Button submits the form with ajax."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -794,7 +794,57 @@ widget selectBooleanCheckbox
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
-    valueChangeListener javax.faces.event.ValueChangeListener              "A method binding expression referring to a method for handling a valuchangeevent."
+    valueChangeListener javax.faces.event.ValueChangeListener inherited    "A method binding expression referring to a method for handling a valuchangeevent."
+}
+
+widget switch
+       implemented_by net.bootsfaces.component.Switch
+       processes_input
+       extends net.bootsfaces.component.SelectBooleanCheckbox
+       has_tooltip
+ {
+    accesskey                                                        inherited      "Access key to transfer focus to the input element."
+    alt                                                              inherited      "Alternate textual description of the input element."
+    binding             javax.faces.component.UIComponent            inherited      "An el expression referring to a server side UIComponent instance in a backing bean."
+    caption                                                          inherited      "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
+    converter           java.faces.convert.Converter                 inherited      "An el expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
+    converterMessage                                                 inherited      "Message to display when conversion fails."
+    dir                                                              inherited      "Direction indication for text that does not inherit directionality."
+    disabled            Boolean                                      inherited      "Disables the input element, default is false."
+    fieldSize                                                        inherited      "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    id                                                               inherited      "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                      inherited      "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    label                                                            inherited      "The label above of the field ."
+    lang                                                             inherited      "A localized user presentable name."
+    onblur                                                           inherited      "Client side callback to execute when input element loses focus."
+    onchange                                                         inherited      "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                          inherited      "OnClick DHTML event ."
+    ondblclick                                                       inherited      "Client side callback to execute when input element is double clicked."
+    onfocus                                                          inherited      "Client side callback to execute when input element receives focus."
+    onkeydown                                                        inherited      "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                       inherited      "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                          inherited      "Client side callback to execute when a key is released over input element."
+    onmousedown                                                      inherited      "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                      inherited      "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                       inherited      "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                      inherited      "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                        inherited      "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                         inherited      "Client side callback to execute when text within input element is selected by user."
+    readonly            Boolean                                      inherited      "Flag indicating that this input element will prevent changes by the user."
+    renderLabel         Boolean default "true"                       inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    rendered            Boolean                                      inherited      "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    span                Integer                                      inherited      "The size of the input specified as number of grid columns."
+    style                                                            inherited      "Inline style of the input element."
+    styleClass                                                       inherited      "Style class of the input element."
+    tabindex                                                         inherited      "Advisory tooltip information."
+    title                                                            inherited      "Advisory tooltip information."
+    tooltip                                                          inherited     "The text of the tooltip."
+    tooltipDelay        Integer                                      inherited     "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                      inherited     "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                      inherited     "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                  inherited     "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    value                                                            inherited      "EL expression referring to the back-end bean attribute providing the value of the field."
+    valueChangeListener javax.faces.event.ValueChangeListener        inherited      "A method binding expression referring to a method for handling a valuchangeevent."
 }
 
 

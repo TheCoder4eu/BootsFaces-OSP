@@ -22,8 +22,10 @@ package net.bootsfaces.component.commandButton;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UICommand;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.el.MethodBinding;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -39,7 +41,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head") })
 @FacesComponent(CommandButton.COMPONENT_TYPE)
-public class CommandButton extends UIComponentBase implements ClientBehaviorHolder, IHasTooltip {
+public class CommandButton extends UICommand implements ClientBehaviorHolder, IHasTooltip {
 
 	/**
 	 * <p>
@@ -111,35 +113,10 @@ public class CommandButton extends UIComponentBase implements ClientBehaviorHold
 	/**
 	 * The button action, this can be method expression or a string outcome.
 	 * <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public javax.el.MethodExpression getAction() {
-		javax.el.MethodExpression value = (javax.el.MethodExpression) getStateHelper().eval(PropertyKeys.action);
-		return value;
-	}
-
-	/**
-	 * The button action, this can be method expression or a string outcome.
-	 * <br />
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAction(javax.el.MethodExpression _action) {
 		getStateHelper().put(PropertyKeys.action, _action);
-	}
-
-	/**
-	 * A method expression that refers to a method with this signature: void
-	 * methodName(Action-Event). <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public javax.faces.event.ActionListener getActionListener() {
-		javax.faces.event.ActionListener value = (javax.faces.event.ActionListener) getStateHelper()
-				.eval(PropertyKeys.actionListener);
-		return value;
 	}
 
 	/**

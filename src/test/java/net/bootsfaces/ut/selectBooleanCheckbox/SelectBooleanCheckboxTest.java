@@ -1,20 +1,13 @@
 package net.bootsfaces.ut.selectBooleanCheckbox;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
-import javax.faces.component.UIComponent;
-import javax.faces.render.Renderer;
-
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
-import net.bootsfaces.component.SelectBooleanCheckbox;
-import net.bootsfaces.component.inputText.InputTextRenderer;
+import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 import net.bootsfaces.ut.common.JsfMock;
-import net.bootsfaces.ut.common.MyResponseWriter;
 
 public class SelectBooleanCheckboxTest {
 
