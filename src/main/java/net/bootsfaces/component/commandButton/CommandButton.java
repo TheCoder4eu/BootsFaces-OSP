@@ -90,7 +90,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Access key to transfer focus to the input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -101,7 +101,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Access key to transfer focus to the input element. <br />
+	 * Access key to transfer focus to the input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAccesskey(String _accesskey) {
@@ -110,7 +110,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The button action, this can be method expression or a string outcome.
-	 * <br />
+	 * <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAction(javax.el.MethodExpression _action) {
@@ -119,7 +119,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * A method expression that refers to a method with this signature: void
-	 * methodName(Action-Event). <br />
+	 * methodName(Action-Event). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setActionListener(javax.faces.event.ActionListener _actionListener) {
@@ -127,7 +127,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Whether the Button submits the form with ajax. <br />
+	 * Whether the Button submits the form with ajax. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -138,7 +138,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Whether the Button submits the form with ajax. <br />
+	 * Whether the Button submits the form with ajax. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -147,7 +147,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -160,7 +160,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -169,7 +169,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Direction indication for text that does not inherit directionality.
-	 * <br />
+	 * <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -181,7 +181,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Direction indication for text that does not inherit directionality.
-	 * <br />
+	 * <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
@@ -189,7 +189,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <br />
+	 * Boolean value to specify if the button is disabled. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -200,7 +200,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <br />
+	 * Boolean value to specify if the button is disabled. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
@@ -209,7 +209,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Button Icon, can be one of the Bootstrap icon names. Alignment can be
-	 * specified with iconAlign attribute. <br />
+	 * specified with iconAlign attribute. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -221,7 +221,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Button Icon, can be one of the Bootstrap icon names. Alignment can be
-	 * specified with iconAlign attribute. <br />
+	 * specified with iconAlign attribute. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIcon(String _icon) {
@@ -229,7 +229,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Alignment can right or left. <br />
+	 * Alignment can right or left. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -240,7 +240,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Alignment can right or left. <br />
+	 * Alignment can right or left. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAlign(String _iconAlign) {
@@ -250,7 +250,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Font Awesome Icon to show in this CommandButton, can be one of the Font
 	 * Awesome icon names. Alignment can be specified with the iconAlign
-	 * attribute. <br />
+	 * attribute. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -263,7 +263,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Font Awesome Icon to show in this CommandButton, can be one of the Font
 	 * Awesome icon names. Alignment can be specified with the iconAlign
-	 * attribute. <br />
+	 * attribute. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
@@ -271,7 +271,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -282,7 +282,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -293,7 +293,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	 * Flag indicating that, if this component is activated by the user,
 	 * notifications should be delivered to interested listeners and actions
 	 * immediately (that is, during Apply Request Values phase) rather than
-	 * waiting until Invoke Application phase. Default is false. <br />
+	 * waiting until Invoke Application phase. Default is false. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -307,7 +307,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	 * Flag indicating that, if this component is activated by the user,
 	 * notifications should be delivered to interested listeners and actions
 	 * immediately (that is, during Apply Request Values phase) rather than
-	 * waiting until Invoke Application phase. Default is false. <br />
+	 * waiting until Invoke Application phase. Default is false. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImmediate(boolean _immediate) {
@@ -315,7 +315,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * A localized user presentable name. <br />
+	 * A localized user presentable name. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -326,7 +326,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * A localized user presentable name. <br />
+	 * A localized user presentable name. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLang(String _lang) {
@@ -336,7 +336,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Look of the Button, can be primary, block, info, success, warning,
 	 * important, danger. If not specified, Standard gray button with gradient
-	 * is rendered. <br />
+	 * is rendered. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -349,7 +349,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Look of the Button, can be primary, block, info, success, warning,
 	 * important, danger. If not specified, Standard gray button with gradient
-	 * is rendered. <br />
+	 * is rendered. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLook(String _look) {
@@ -357,7 +357,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus. <br />
+	 * Client side callback to execute when input element loses focus. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -368,7 +368,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus. <br />
+	 * Client side callback to execute when input element loses focus. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnblur(String _onblur) {
@@ -377,7 +377,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when input element loses focus and its
-	 * value has been modified since gaining focus. <br />
+	 * value has been modified since gaining focus. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -389,7 +389,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when input element loses focus and its
-	 * value has been modified since gaining focus. <br />
+	 * value has been modified since gaining focus. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnchange(String _onchange) {
@@ -397,7 +397,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The onclick attribute. <br />
+	 * The onclick attribute. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -408,7 +408,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The onclick attribute. <br />
+	 * The onclick attribute. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -416,7 +416,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success. <br />
+	 * Javascript to be executed when ajax completes with success. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -427,7 +427,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success. <br />
+	 * Javascript to be executed when ajax completes with success. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -436,7 +436,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when input element is double clicked.
-	 * <br />
+	 * <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -448,7 +448,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when input element is double clicked.
-	 * <br />
+	 * <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndblclick(String _ondblclick) {
@@ -456,7 +456,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Client side callback to execute when input element receives focus. <br />
+	 * Client side callback to execute when input element receives focus. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -467,7 +467,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Client side callback to execute when input element receives focus. <br />
+	 * Client side callback to execute when input element receives focus. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnfocus(String _onfocus) {
@@ -476,7 +476,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is pressed down over input
-	 * element. <br />
+	 * element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -488,7 +488,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is pressed down over input
-	 * element. <br />
+	 * element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeydown(String _onkeydown) {
@@ -497,7 +497,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is pressed and released over
-	 * input element. <br />
+	 * input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -509,7 +509,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is pressed and released over
-	 * input element. <br />
+	 * input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeypress(String _onkeypress) {
@@ -518,7 +518,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is released over input
-	 * element. <br />
+	 * element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -530,7 +530,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a key is released over input
-	 * element. <br />
+	 * element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeyup(String _onkeyup) {
@@ -539,7 +539,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is pressed
-	 * down over input element. <br />
+	 * down over input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -551,7 +551,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is pressed
-	 * down over input element. <br />
+	 * down over input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousedown(String _onmousedown) {
@@ -560,7 +560,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * within input element. <br />
+	 * within input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -572,7 +572,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * within input element. <br />
+	 * within input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousemove(String _onmousemove) {
@@ -581,7 +581,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * away from input element. <br />
+	 * away from input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -593,7 +593,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * away from input element. <br />
+	 * away from input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseout(String _onmouseout) {
@@ -602,7 +602,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * onto input element. <br />
+	 * onto input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -614,7 +614,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * onto input element. <br />
+	 * onto input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseover(String _onmouseover) {
@@ -623,7 +623,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is released
-	 * over input element. <br />
+	 * over input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -635,7 +635,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when a pointer input element is released
-	 * over input element. <br />
+	 * over input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseup(String _onmouseup) {
@@ -644,7 +644,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when text within input element is
-	 * selected by user. <br />
+	 * selected by user. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -656,7 +656,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Client side callback to execute when text within input element is
-	 * selected by user. <br />
+	 * selected by user. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnselect(String _onselect) {
@@ -665,7 +665,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Size of the Button, can be large, small, mini. If not specified, Standard
-	 * size button is rendered. <br />
+	 * size button is rendered. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -677,7 +677,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * Size of the Button, can be large, small, mini. If not specified, Standard
-	 * size button is rendered. <br />
+	 * size button is rendered. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
@@ -685,7 +685,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -696,7 +696,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -704,7 +704,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Style class of this element. <br />
+	 * Style class of this element. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -715,7 +715,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Style class of this element. <br />
+	 * Style class of this element. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -723,7 +723,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -734,7 +734,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTabindex(String _tabindex) {
@@ -742,7 +742,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -753,7 +753,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Advisory tooltip information. <br />
+	 * Advisory tooltip information. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -761,7 +761,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -772,7 +772,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -781,7 +781,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -793,7 +793,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -802,7 +802,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -814,7 +814,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -823,7 +823,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -835,7 +835,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -845,7 +845,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -858,7 +858,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
@@ -866,7 +866,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The button type, can be submit, button, reset ; default submit. <br />
+	 * The button type, can be submit, button, reset ; default submit. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -877,7 +877,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The button type, can be submit, button, reset ; default submit. <br />
+	 * The button type, can be submit, button, reset ; default submit. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setType(String _type) {
@@ -885,7 +885,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Component(s) to be updated with ajax. <br />
+	 * Component(s) to be updated with ajax. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -896,7 +896,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Component(s) to be updated with ajax. <br />
+	 * Component(s) to be updated with ajax. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUpdate(String _update) {
@@ -904,7 +904,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Button text. <br />
+	 * Button text. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -915,7 +915,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Button text. <br />
+	 * Button text. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setValue(String _value) {

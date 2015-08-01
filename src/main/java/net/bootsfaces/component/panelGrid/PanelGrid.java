@@ -97,7 +97,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the column spans <br />
+	 * Comma-separated list of the column spans <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -108,7 +108,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the column spans <br />
+	 * Comma-separated list of the column spans <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColSpans(String _colSpans) {
@@ -116,7 +116,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the CSS classes assigned to each column. <br />
+	 * Comma-separated list of the CSS classes assigned to each column. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -127,7 +127,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the CSS classes assigned to each column. <br />
+	 * Comma-separated list of the CSS classes assigned to each column. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColumnClasses(String _columnClasses) {
@@ -135,7 +135,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -146,7 +146,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -154,7 +154,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the CSS classes assigned to each row. <br />
+	 * Comma-separated list of the CSS classes assigned to each row. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -165,7 +165,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Comma-separated list of the CSS classes assigned to each row. <br />
+	 * Comma-separated list of the CSS classes assigned to each row. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRowClasses(String _rowClasses) {
@@ -174,7 +174,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences
-	 * the grid size. <br />
+	 * the grid size. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -186,7 +186,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences
-	 * the grid size. <br />
+	 * the grid size. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
@@ -194,7 +194,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * CSS inline style of the div surrounding the panel grid. <br />
+	 * CSS inline style of the div surrounding the panel grid. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -205,7 +205,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * CSS inline style of the div surrounding the panel grid. <br />
+	 * CSS inline style of the div surrounding the panel grid. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -213,7 +213,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Style class of the div surrounding the panel grid. <br />
+	 * Style class of the div surrounding the panel grid. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -224,7 +224,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Style class of the div surrounding the panel grid. <br />
+	 * Style class of the div surrounding the panel grid. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -232,7 +232,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -243,7 +243,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -252,7 +252,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -264,7 +264,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -273,7 +273,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -285,7 +285,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -294,7 +294,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -306,7 +306,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -316,7 +316,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -329,7 +329,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

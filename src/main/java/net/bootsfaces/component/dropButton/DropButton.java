@@ -64,7 +64,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -77,7 +77,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br />
+	 * backing bean. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -85,7 +85,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <br />
+	 * Use up For Dropup and down for Dropdown, default is down. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -96,7 +96,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <br />
+	 * Use up For Dropup and down for Dropdown, default is down. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDrop(String _drop) {
@@ -104,7 +104,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -115,7 +115,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
+	 * Unique identifier of the component in a namingContainer. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -124,7 +124,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * Look of the Button, can be primary, info, success, warning, danger. If
-	 * not specified, a standard gray button will be rendered. <br />
+	 * not specified, a standard gray button will be rendered. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -136,7 +136,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * Look of the Button, can be primary, info, success, warning, danger. If
-	 * not specified, a standard gray button will be rendered. <br />
+	 * not specified, a standard gray button will be rendered. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLook(String _look) {
@@ -145,7 +145,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The size of the Button.Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) . <br />
+	 * md (medium) and lg (large) . <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -157,7 +157,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The size of the Button.Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) . <br />
+	 * md (medium) and lg (large) . <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
@@ -165,7 +165,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -176,7 +176,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	}
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -185,7 +185,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -197,7 +197,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -206,7 +206,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -218,7 +218,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -227,7 +227,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -239,7 +239,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br />
+	 * milliseconds. Defaults to 0 (no delay). <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -249,7 +249,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -262,7 +262,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br />
+	 * "auto left". Default to "bottom". <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
