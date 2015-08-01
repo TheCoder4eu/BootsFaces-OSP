@@ -21,7 +21,8 @@ package net.bootsfaces.component.tab;
 
 import java.io.IOException;
 
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 
 import net.bootsfaces.render.Tooltip;

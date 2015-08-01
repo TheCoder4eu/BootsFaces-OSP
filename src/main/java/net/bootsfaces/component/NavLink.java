@@ -39,9 +39,9 @@ import javax.faces.component.html.HtmlOutcomeTargetLink;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.JSEventHandlerRenderer;
 import net.bootsfaces.render.R;

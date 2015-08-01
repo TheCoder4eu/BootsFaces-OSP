@@ -117,12 +117,12 @@ public class InputTextRenderer extends CoreRenderer {
 
 		// If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
 		if (prepend) {
-			R.addClass2FacetComponent(prep, "OutputText", inputText.ADDON);
+			R.addClass2FacetComponent(prep, "OutputText", InputText.ADDON);
                         R.setFacetComponentAttribute(prep, "Icon", "addon", "true");
                         R.setFacetComponentAttribute(prep, "IconAwesome", "addon", "true");
 		}
 		if (append) {
-			R.addClass2FacetComponent(app, "OutputText", inputText.ADDON);
+			R.addClass2FacetComponent(app, "OutputText", InputText.ADDON);
                         R.setFacetComponentAttribute(app, "Icon", "addon", "true");
                         R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
 		}

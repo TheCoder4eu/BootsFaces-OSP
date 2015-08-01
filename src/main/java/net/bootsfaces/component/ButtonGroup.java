@@ -21,6 +21,7 @@ package net.bootsfaces.component;
 
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;

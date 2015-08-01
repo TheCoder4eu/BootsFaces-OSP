@@ -1,17 +1,20 @@
 package net.bootsfaces.it.layout;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
-import net.bootsfaces.it.IntegrationTestsBase;
-import net.bootsfaces.it.IntegrationTestsBase;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.support.FindBy;
+
+import net.bootsfaces.it.IntegrationTestsBase;
 
 /**
  * Simple test which validates the rendered information for b:column tag. 

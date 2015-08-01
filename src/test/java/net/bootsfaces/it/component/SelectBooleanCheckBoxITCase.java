@@ -1,21 +1,26 @@
 package net.bootsfaces.it.component;
 
-import net.bootsfaces.component.validators.RequiredCheckBoxValidator;
-import java.io.IOException;
-import net.bootsfaces.component.SelectBooleanCheckBoxSessionBean;
-import net.bootsfaces.it.IntegrationTestsBase;
-import org.jboss.arquillian.container.test.api.Deployment;
 import static org.jboss.arquillian.graphene.Graphene.guardAjax;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.io.IOException;
+
+import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.graphene.GrapheneElement;
 import org.jboss.arquillian.graphene.findby.FindByJQuery;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.support.FindBy;
+
+import net.bootsfaces.component.SelectBooleanCheckBoxSessionBean;
+import net.bootsfaces.component.validators.RequiredCheckBoxValidator;
+import net.bootsfaces.it.IntegrationTestsBase;
 
 /**
  * Simple test which validates the rendered information for b:selectbooleancheckbox tag. 

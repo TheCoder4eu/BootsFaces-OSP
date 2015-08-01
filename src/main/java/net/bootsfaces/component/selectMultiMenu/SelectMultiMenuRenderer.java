@@ -487,6 +487,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private List<Object> collectOptions(FacesContext context, SelectMultiMenu menu) {
 		List<Object> items = new ArrayList<Object>();
 

@@ -21,6 +21,7 @@ package net.bootsfaces.component;
 
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.C;
 
 /**
@@ -44,8 +45,6 @@ public class ListLinks extends LinksContainer {
     
     private static final String STYLE="nav nav-list";//S.NAV+S.SP+S.NAVLIST;
     
-    private boolean fluid;
-
     public ListLinks() {
         setRendererType(null); // this component renders itself
     }

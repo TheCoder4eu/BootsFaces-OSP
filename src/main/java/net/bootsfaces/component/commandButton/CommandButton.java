@@ -23,9 +23,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
-import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.el.MethodBinding;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

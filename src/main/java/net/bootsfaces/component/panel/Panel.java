@@ -21,7 +21,9 @@ package net.bootsfaces.component.panel;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
+
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */

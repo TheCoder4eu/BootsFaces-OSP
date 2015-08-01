@@ -22,7 +22,8 @@ import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 @SessionScoped
 public class SelectBooleanCheckBoxSessionBean implements Serializable {
 
-    private boolean boolValue1;
+	private static final long serialVersionUID = 1L;
+	private boolean boolValue1;
     private boolean boolValue2 = true;
     private int valueChangeCount = 0;
     private SelectBooleanCheckbox booleanCheckbox;

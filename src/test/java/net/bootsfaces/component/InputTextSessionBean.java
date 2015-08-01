@@ -16,6 +16,8 @@ import net.bootsfaces.component.inputText.InputText;
 @SessionScoped
 public class InputTextSessionBean implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+
     private String txtValue1 = "";
     private String txtValue2 = "DUMMY";
     

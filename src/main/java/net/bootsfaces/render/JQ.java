@@ -19,9 +19,11 @@
 
 package net.bootsfaces.render;
 
-import net.bootsfaces.C;
 import java.io.IOException;
+
 import javax.faces.context.ResponseWriter;
+
+import net.bootsfaces.C;
 
 /**
  * Class with jQuery specific encoding functions

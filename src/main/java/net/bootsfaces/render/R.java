@@ -19,11 +19,11 @@
 
 package net.bootsfaces.render;
 
-import net.bootsfaces.C;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
 import javax.el.ValueExpression;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
@@ -32,6 +32,8 @@ import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
+
+import net.bootsfaces.C;
 import net.bootsfaces.component.GenContainerDiv;
 
 /**

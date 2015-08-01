@@ -30,9 +30,9 @@ import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
@@ -72,7 +72,6 @@ public class Slider extends HtmlInputText {
 	private int min;
 	private int max;
 
-	private static final String SHANDLE = "ui-slider-handle-";
 	public static final String SLIDER = "slider";
 	public static final String SLIDERV = SLIDER + C.HYP + C.V;
 
@@ -277,6 +276,7 @@ public class Slider extends HtmlInputText {
 	/**
 	 * remove wrong type information that may have been added by AngularFaces
 	 */
+	@SuppressWarnings("rawtypes")
 	private void removeMisleadingType() {
 		try {
 			Method method = getClass().getMethod("getPassThroughAttributes", (Class[])null);

@@ -20,8 +20,10 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+
 import net.bootsfaces.C;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;

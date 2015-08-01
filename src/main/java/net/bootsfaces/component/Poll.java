@@ -22,7 +22,6 @@ package net.bootsfaces.component;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.faces.FacesException;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -32,12 +31,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.PreRenderComponentEvent;
 
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.A;
 import net.bootsfaces.C;
-import net.bootsfaces.render.H;
-import net.bootsfaces.render.R;
-import net.bootsfaces.render.Tooltip;
 
 /**
  * The poll component refreshes a portion of the JSF view periodically via AJAX.

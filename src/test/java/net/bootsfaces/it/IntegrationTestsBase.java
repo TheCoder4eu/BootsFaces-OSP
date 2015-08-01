@@ -2,6 +2,7 @@ package net.bootsfaces.it;
 
 import java.io.File;
 import java.net.URL;
+
 import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

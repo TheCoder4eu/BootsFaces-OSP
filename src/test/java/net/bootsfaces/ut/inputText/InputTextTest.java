@@ -1,8 +1,6 @@
 package net.bootsfaces.ut.inputText;
 import java.io.IOException;
-import java.lang.reflect.Field;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -10,7 +8,6 @@ import org.junit.Test;
 import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.ut.common.JsfMock;
-import net.bootsfaces.ut.common.MyResponseWriter;
 
 public class InputTextTest {
  

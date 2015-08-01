@@ -20,6 +20,7 @@
 package net.bootsfaces.component;
 
 import javax.faces.application.ResourceDependency;
+
 import net.bootsfaces.C;
 
 /**
@@ -37,8 +38,6 @@ public class TabLinks extends LinksContainer {
     
     private static final String STYLE="nav nav-tabs";
     
-    private boolean fluid;
-
     public TabLinks() {
         setRendererType(null); // this component renders itself
     }

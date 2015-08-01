@@ -19,13 +19,15 @@
 
 package net.bootsfaces.render;
 
-import net.bootsfaces.C;
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
+
+import net.bootsfaces.C;
 import net.bootsfaces.component.PaginableData;
 
 /**

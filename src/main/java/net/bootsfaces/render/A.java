@@ -19,9 +19,10 @@
 
 package net.bootsfaces.render;
 
-import net.bootsfaces.C;
 import java.util.Arrays;
 import java.util.Map;
+
+import net.bootsfaces.C;
 
 /**
  * Attributes Constants

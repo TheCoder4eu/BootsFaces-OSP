@@ -21,15 +21,12 @@ package net.bootsfaces.component.dropMenu;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:dropMenu /&gt;. */

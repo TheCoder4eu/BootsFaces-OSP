@@ -21,7 +21,8 @@ package net.bootsfaces.component.tabView;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIOutput;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

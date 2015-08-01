@@ -25,6 +25,7 @@ package net.bootsfaces.component;
 
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.C;
 
 /**

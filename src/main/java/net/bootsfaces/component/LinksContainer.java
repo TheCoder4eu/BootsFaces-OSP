@@ -21,11 +21,13 @@ package net.bootsfaces.component;
 
 import java.io.IOException;
 import java.util.Map;
+
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import net.bootsfaces.render.A;
+
 import net.bootsfaces.C;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 

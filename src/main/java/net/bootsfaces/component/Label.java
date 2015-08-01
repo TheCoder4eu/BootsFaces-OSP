@@ -20,11 +20,13 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+
 import net.bootsfaces.C;
 import net.bootsfaces.render.RLabel;
 import net.bootsfaces.render.Tooltip;

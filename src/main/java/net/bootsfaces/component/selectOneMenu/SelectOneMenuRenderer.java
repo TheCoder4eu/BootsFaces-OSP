@@ -368,6 +368,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	private List<Object> collectOptions(FacesContext context, SelectOneMenu menu) {
 		List<Object> items = new ArrayList<Object>();
 

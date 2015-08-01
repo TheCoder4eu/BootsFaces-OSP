@@ -20,6 +20,7 @@
 package net.bootsfaces.component;
 
 import javax.faces.application.ResourceDependency;
+
 import net.bootsfaces.C;
 
 /**

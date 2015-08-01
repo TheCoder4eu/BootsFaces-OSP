@@ -20,18 +20,12 @@ package net.bootsfaces.component.fetchBeanInfos;
 
 import java.io.IOException;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.H;
-import net.bootsfaces.render.RAlert;
-import net.bootsfaces.render.Tooltip;
 
 /**
  * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
