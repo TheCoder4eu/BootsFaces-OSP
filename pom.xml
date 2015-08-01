@@ -252,7 +252,9 @@
 				<groupId>pl.allegro</groupId>
 				<artifactId>grunt-maven-plugin</artifactId>
 				<version>1.5.0</version>
+				
 				<configuration>
+					<disabled>true</disabled>
 				
 					<!-- relative to src/main/webapp/, default: static -->
 					<jsSourceDirectory>../../../BootsFaces</jsSourceDirectory>
