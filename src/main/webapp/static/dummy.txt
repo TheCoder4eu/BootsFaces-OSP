@@ -1,0 +1,1 @@
+This file is not really needed. It's only there because the Maven Grunt plugin uses the folder internally. 

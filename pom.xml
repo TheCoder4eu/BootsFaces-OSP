@@ -385,7 +385,7 @@
 		</profile>
 
 		<profile>
-			<id>Mojarra 2.2.12</id>
+			<id>Mojarra2.2.12</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>

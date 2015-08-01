@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 		},
 		dist: {
 		  src: ['js/alert.js',
+		        'js/bootstrap-switch.js',
 		        'js/bootstrap-multiselect.js',
 		        'js/bootstrap-multiselect-collapsible-groups.js',
 		        'js/collapse.js',
@@ -65,6 +66,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concat-css');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-maven');
+  // grunt.loadNpmTasks('grunt-contrib-less');
   
   // Default task(s).
   grunt.registerTask('default', ['mavenPrepare', 'concat', 'uglify', 'concat_css','cssmin']);
