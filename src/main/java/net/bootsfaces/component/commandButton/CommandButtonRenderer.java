@@ -72,16 +72,16 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		Tooltip.generateTooltip(context, commandButton, rw);
 
-		if (style != null) {
-			rw.writeAttribute(H.STYLE, style, H.STYLE);
-		}
+		writeAttribute(rw, H.STYLE, style, H.STYLE);
 
 		rw.writeAttribute(H.CLASS, getStyleClasses(commandButton), H.CLASS);
 
 		String title = commandButton.getTitle();
+
 		if (title != null && title.length() > 0) {
 			rw.writeAttribute(H.TITLE, title, H.TITLE);
 		}
+
 		if (commandButton.isDisabled()) {
 			rw.writeAttribute("disabled", "disabled", "disabled");
 		}
@@ -108,29 +108,42 @@ public class CommandButtonRenderer extends CoreRenderer {
 		Object value = commandButton.getValue();
 		String icon = commandButton.getIcon();
 		String faicon = commandButton.getIconAwesome();
+
 		boolean fa = false; // flag to indicate whether the selected icon set is
 		// Font Awesome or not.
 		if (faicon != null) {
 			icon = faicon;
 			fa = true;
 		}
+
 		if (icon != null) {
+
 			Object ialign = commandButton.getIconAlign(); // Default Left
-			if (ialign != null && ialign.equals(A.RIGHT)) {
-				rw.writeText(value + C.SP, null);
+
+            if (ialign != null && ialign.equals(A.RIGHT)) {
+                value = value != null ? value + C.SP : null;
+                writeText(rw, value, null);
 				R.encodeIcon(rw, component, icon, fa);
 			} else {
 				R.encodeIcon(rw, component, icon, fa);
-				rw.writeText(C.SP + value, null);
+                value = value != null ? C.SP + value : null;
+                writeText(rw, value, null);
 			}
 
 		} else {
-			rw.writeText(value, null);
+			if (component.getChildCount() > 0 ){
+                value = value != null ? C.SP + value : null;
+                writeText(rw, value, null);
+			}else{
+                writeText(rw, value, null);
+			}
 		}
+
 		rw.endElement(H.BUTTON);
 
 		Tooltip.activateTooltips(context, attrs, component);
 	}
+
 
 	private void generateOnClickHandler(FacesContext context, CommandButton component, ResponseWriter rw, String CID,
 			String type, boolean ajax) throws IOException {

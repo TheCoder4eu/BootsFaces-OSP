@@ -18,6 +18,8 @@
  */
 package net.bootsfaces.render;
 
+import com.sun.org.apache.regexp.internal.RESyntaxException;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +122,85 @@ public class CoreRenderer extends Renderer{
         }
         //prefix all chars in group 1 with double backslash (doubled escaping necessary here)
         return charsToEscape.matcher(clientId).replaceAll("\\\\\\\\$1");
+    }
+
+
+
+
+
+    /**
+     * @param rw       ResponseWriter to be used
+     * @param name     Attribute name to be added
+     * @param value    Attribute value to be added
+     * @param property Name of the property or attribute (if any) of the
+     *                 {@link UIComponent} associated with the containing element,
+     *                 to which this generated attribute corresponds
+     * @throws IllegalStateException if this method is called when there
+     *                               is no currently open element
+     * @throws IOException           if an input/output error occurs
+     * @throws NullPointerException  if <code>name</code> is
+     *                               <code>null</code>
+     */
+    protected void writeAttribute(ResponseWriter rw, String name, Object value, String property) throws IOException{
+        if ( value == null ) {
+            return;
+        }
+        rw.writeAttribute(name, value, property);
+    }
+
+    /**
+     * @param rw       ResponseWriter to be used
+     * @param text     Text to be written
+     * @param property Name of the property or attribute (if any) of the
+     *                 {@link UIComponent} associated with the containing element,
+     *                 to which this generated text corresponds
+     * @throws IOException          if an input/output error occurs
+     * @throws NullPointerException if <code>text</code>
+     *                              is <code>null</code>
+     */
+    public void writeText(ResponseWriter rw, Object text, String property) throws IOException {
+        if ( text == null || text.equals("")) {
+            return;
+        }
+        rw.writeText(text, property);
+    }
+
+    /**
+     * @param rw       ResponseWriter to be used
+     * @param text      Text to be written
+     * @param component The {@link UIComponent} (if any) to which
+     *                  this element corresponds
+     * @param property  Name of the property or attribute (if any) of the
+     *                  {@link UIComponent} associated with the containing element,
+     *                  to which this generated text corresponds
+     * @throws IOException          if an input/output error occurs
+     * @throws NullPointerException if <code>text</code>
+     *                              is <code>null</code>
+     */
+    public void writeText(ResponseWriter rw, Object text, UIComponent component, String property) throws IOException {
+        if ( text == null || text.equals("")) {
+            return;
+        }
+        rw.writeText(text, property);
+    }
+
+
+    /**
+     * @param rw       ResponseWriter to be used
+     * @param text Text to be written
+     * @param off  Starting offset (zero-relative)
+     * @param len  Number of characters to be written
+     * @throws IndexOutOfBoundsException if the calculated starting or
+     *                                   ending position is outside the bounds of the character array
+     * @throws IOException               if an input/output error occurs
+     * @throws NullPointerException      if <code>text</code>
+     *                                   is <code>null</code>
+     */
+    public void writeText(ResponseWriter rw, char text[], int off, int len) throws IOException{
+        if ( text == null || text.equals("")) {
+            return;
+        }
+        rw.writeText(text,off,len);
     }
 
 }
