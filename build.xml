@@ -107,9 +107,11 @@
 		<copy file="${bsf.js.ie8support.dir}/html5shiv.js" todir="${js.dir}"/>
 		<copy file="${bsf.js.ie8support.dir}/respond.js" todir="${js.dir}"/>
         <copy file="${bsf.css.orig.dir}/bootstrap-multiselect.css" todir="${css.dir}" />
+        <copy file="${bsf.css.orig.dir}/bootstrap-switch.css" todir="${css.dir}" />
         <copy file="${bsf.css.orig.dir}/dropdown-submenu.css" todir="${css.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect-collapsible-groups.js" todir="${js.dir}" />
         <copy file="${bsf.js.orig.dir}/bootstrap-multiselect.js" todir="${js.dir}" />
+        <copy file="${bsf.js.orig.dir}/bootstrap-switch.js" todir="${js.dir}" />
 		
 		<copy file="${bsf.dir}/min/css/BootsFaces.min.css" todir="${css.dir}" />
         <copy file="${bsf.dir}/min/js/BootsFaces.min.js" todir="${js.dir}" />
