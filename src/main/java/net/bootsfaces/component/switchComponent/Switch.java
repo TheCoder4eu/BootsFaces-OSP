@@ -19,11 +19,16 @@
 
 package net.bootsfaces.component.switchComponent;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.render.Tooltip; 
 
 /** This class holds the attributes of &lt;b:switch /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/bootstrap-switch.css"),
+	@ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head") })
 @FacesComponent("net.bootsfaces.component.switch.Switch")
 public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox
 		implements net.bootsfaces.render.IHasTooltip {

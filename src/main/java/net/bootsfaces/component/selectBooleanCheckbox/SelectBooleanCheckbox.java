@@ -21,6 +21,7 @@ package net.bootsfaces.component.selectBooleanCheckbox;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.render.Tooltip;
 

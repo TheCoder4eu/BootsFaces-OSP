@@ -32,7 +32,7 @@ import net.bootsfaces.render.Tooltip;
 
 
 /** This class generates the HTML code of &lt;b:switchWidget /&gt;. */
-@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.switchWidget.Switch")
+@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.switch.Switch")
 public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
 	/**
 	 * This methods receives and processes input made by the user. More specifically, it ckecks whether the
@@ -58,5 +58,17 @@ public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
 	    if (submittedValue != null) {
 	    	switchWidget.setSubmittedValue(submittedValue);
 	    }
+	}
+	
+	@Override
+	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+		// TODO Auto-generated method stub
+		super.encodeBegin(context, component);
+		ResponseWriter rw = context.getResponseWriter();
+		String clientId = component.getClientId();
+		clientId=clientId.replace(":","\\\\:");
+		rw.append("<script>");
+		rw.append("$('#" + clientId + "').bootstrapSwitch();");
+		rw.append("</script>");
 	}
 }
