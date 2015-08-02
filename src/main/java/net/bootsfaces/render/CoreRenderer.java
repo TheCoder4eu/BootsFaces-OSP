@@ -18,7 +18,6 @@
  */
 package net.bootsfaces.render;
 
-import com.sun.org.apache.regexp.internal.RESyntaxException;
 
 import java.io.IOException;
 import java.util.List;
