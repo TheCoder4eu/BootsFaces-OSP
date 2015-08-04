@@ -73,7 +73,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 
 	public static final String DIVIDER = "divider";
 	public static final String DIVIDERH = DIVIDER; // divider-horizontal
-	public static final String DIVIDERV = DIVIDER.concat(C.HYP).concat(C.V); // divider-vertical
+	public static final String DIVIDERV = DIVIDER.concat("-").concat(C.V); // divider-vertical
 	public static final String DROPDOWN = "dropdown";
 
 	public NavCommandLink() {
@@ -243,13 +243,13 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		if (icon != null) {
 			Object ialign = attrs.get(A.ICON_ALIGN); // Default Left
 			if (ialign != null && ialign.equals(A.RIGHT)) {
-				rw.writeText(value + C.SP, null);
+				rw.writeText(value + " ", null);
 				R.encodeIcon(rw, this, icon, fa);
 				// !//R.encodeIcon(rw, this, icon, white);
 			} else {
 				R.encodeIcon(rw, this, icon, fa);
 				// !//R.encodeIcon(rw, this, icon, white);
-				rw.writeText(C.SP + value, null);
+				rw.writeText(" " + value, null);
 			}
 
 		} else {

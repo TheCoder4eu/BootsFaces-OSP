@@ -26,8 +26,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
-import net.bootsfaces.C;
-
 /**
  *
  * @author droidcoder
@@ -65,7 +63,7 @@ public enum RWell {
         if (null ==styleClass) styleClass=""; else styleClass=" "+styleClass;
         Tooltip.generateTooltip(fc, attrs, rw);
         
-        if(sz!=null) { rw.writeAttribute(H.CLASS, well+C.SP+well+C.HYP+sz+styleClass,H.CLASS); }
+        if(sz!=null) { rw.writeAttribute(H.CLASS, well+" "+well+"-"+sz+styleClass,H.CLASS); }
         else           { rw.writeAttribute(H.CLASS, well+styleClass, H.CLASS); }
     }
     

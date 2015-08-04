@@ -121,18 +121,18 @@ public class CommandButtonRenderer extends CoreRenderer {
 			Object ialign = commandButton.getIconAlign(); // Default Left
 
             if (ialign != null && ialign.equals(A.RIGHT)) {
-                value = value != null ? value + C.SP : null;
+                value = value != null ? value + " " : null;
                 writeText(rw, value, null);
 				R.encodeIcon(rw, component, icon, fa);
 			} else {
 				R.encodeIcon(rw, component, icon, fa);
-                value = value != null ? C.SP + value : null;
+                value = value != null ? " " + value : null;
                 writeText(rw, value, null);
 			}
 
 		} else {
 			if (component.getChildCount() > 0 ){
-                value = value != null ? C.SP + value : null;
+                value = value != null ? " " + value : null;
                 writeText(rw, value, null);
 			}else{
                 writeText(rw, value, null);
@@ -202,11 +202,11 @@ public class CommandButtonRenderer extends CoreRenderer {
 		}
 
 		if (component.isDisabled()) {
-			sb.append(C.SP + A.DISABLED);
+			sb.append(" " + A.DISABLED);
 		}
 		String sclass = component.getStyleClass();
 		if (sclass != null) {
-			sb.append(C.SP).append(sclass);
+			sb.append(" ").append(sclass);
 		}
 
 		return sb.toString().trim();

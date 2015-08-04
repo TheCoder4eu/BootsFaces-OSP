@@ -21,7 +21,6 @@ package net.bootsfaces.component;
 
 import static net.bootsfaces.C.BSFCOMPONENT;
 import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
-import static net.bootsfaces.C.SP;
 import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
 import static net.bootsfaces.render.A.ALLBUTTON_ATTRS;
 import static net.bootsfaces.render.A.CLICK;
@@ -166,13 +165,13 @@ public class Button extends HtmlOutcomeTargetButton {
 			Object ialign = attrs.get(ICON_ALIGN); // Default Left
 			//!//boolean white=null!=attrs.get(LOOK);
 			if (ialign != null && ialign.equals(RIGHT)) {
-				rw.writeText(value + SP, null);
+				rw.writeText(value + " ", null);
 				R.encodeIcon(rw, this, icon, fa);
                                 //!//R.encodeIcon(rw, this, icon, white);
 			} else {
 				R.encodeIcon(rw, this, icon, fa);
                                 //!//R.encodeIcon(rw, this, icon, white);
-				rw.writeText(SP + value, null);
+				rw.writeText(" " + value, null);
 			}
 
 		} else {
@@ -334,7 +333,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		}
 
 		if (toBool(attrs.get(DISABLED))) {
-			sb.append(SP + DISABLED);
+			sb.append(" " + DISABLED);
 		}
 		// TODO add styleClass and class support
 		String sclass = asString(attrs.get(STYLECLASS));

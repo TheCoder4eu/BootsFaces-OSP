@@ -60,7 +60,7 @@ public class NavBarLinks extends LinksContainer {
      */
     @Override
     protected String getContainerStyles() {
-        return NAV+C.SP+NAVBAR+C.HYP+NAV;
+        return NAV+" "+NAVBAR+"-"+NAV;
     }
 
     

@@ -28,7 +28,7 @@ import net.bootsfaces.C;
 public final class H {
     public static final String HASH=C.HASH;
     //hyphen
-    public static final String HYP=C.HYP;
+    public static final String HYP="-";
     
     public static final String ARIA="aria";
     public static final String ARIALBLBY=ARIA+HYP+"labelledby";

@@ -30,7 +30,7 @@ import net.bootsfaces.C;
  */
 public final class A {
     //hyphen
-    public static final String HYP=C.HYP;
+    public static final String HYP="-";
     
     public static final String POPUP="popup";
     public static final String TOGGLE="toggle";

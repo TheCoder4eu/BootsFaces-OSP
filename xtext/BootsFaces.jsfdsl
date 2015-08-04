@@ -9,6 +9,8 @@ widget alert
     id                                                                     "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     severity                                                               "Severity of the Alert, can be success, info, warning, danger. Default is warning."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
     title                                                                  "Bold Title displayed before your message."
     tooltip                                                                "The text of the tooltip."
     tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
@@ -960,6 +962,7 @@ widget slider
        has_tooltip
  {
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    disabled	 		Boolean                                            "If true, you can't move the slider, nor can you edit the number."
     handleShape                                                            "The default handle is squared. Specifing the \"round\" value for this attribute will turn the handle shape to a circle."
     handleSize                                                             "In some situations (eg. mobile phones) the slider handle may be difficult to operate because of its size. Specifing the \"md\" or \"lg\" value for this attribute will change the handle size accordingly."
     id                                                                     "Unique identifier of the component in a namingContainer."
@@ -970,6 +973,8 @@ widget slider
     orientation                                                            "Determines whether the slider handles move horizontally (min on left, max on right) or vertically (min on bottom, max on top).<br> Possible values: \"horizontal\"(default), \"vertical\", \"vertical-bottom\".<br> If <b>vertical</b> is specified, the Label is rendered on top, then the value and the slider on the bottom.<br> If <b>vertical-bottom</b> is specified, the slider is rendered on top, then the value and the Label on the bottom."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     step                Integer                                            "The step of the slider."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of the input element."
     tooltip                                                                "The text of the tooltip."
     tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."

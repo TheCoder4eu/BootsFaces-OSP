@@ -7,78 +7,89 @@
 	<tag>
 		<tag-name>alert</tag-name>
 		<component>
-			<component-type>net.bootsfaces.component.Alert</component-type>
+			<component-type>net.bootsfaces.component.alert.Alert</component-type>
 		</component>
-		<attribute>
-			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-			<name>id</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-			<name>rendered</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-			<name>binding</name>
-			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Severity of the Alert, can be success, info, warning, danger. Default is warning.]]></description>
-			<name>severity</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Bold Title displayed before your message.]]></description>
-			<name>title</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-
-		<attribute>
-			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-			<name>tooltip-position</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The text of the tooltip.]]></description>
-			<name>tooltip</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-show</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-hide</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<!-- put more tooltip attributes here -->
-
-		<attribute>
-			<description><![CDATA[If true close button will be displayed.]]></description>
-			<name>closable</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
+		
+	  <attribute>
+	  	<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+	  	<name>binding</name>
+	  	<required>false</required>
+	  	<type>javax.faces.component.UIComponent</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[If true close button will be displayed.]]></description>
+	  	<name>closable</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	  	<name>rendered</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Severity of the Alert, can be success, info, warning, danger. Default is warning.]]></description>
+	  	<name>severity</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the input element.]]></description>
+	  	<name>style</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of this element.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Bold Title displayed before your message.]]></description>
+	  	<name>title</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
 	</tag>
+
 	<tag>
 		<tag-name>badge</tag-name>
 		<component>

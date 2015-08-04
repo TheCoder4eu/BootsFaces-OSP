@@ -93,12 +93,8 @@ public final class C {
     */
     //Hash
     public static final String HASH="#";
-    // Hyphen
-    public static final String HYP="-";
     // Empty
     public static final String EMPTY="";
-    // Space
-    public static final String SP=" ";
     // Dot
     public static final String DOT=".";
     // Colon

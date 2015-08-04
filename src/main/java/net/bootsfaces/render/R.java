@@ -173,7 +173,7 @@ public final class R {
         	Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
         }
         String s = ROW;
-        if(sclass!=null) { s+=C.SP+sclass; }        
+        if(sclass!=null) { s+=" "+sclass; }        
         if(c!=null) { rw.writeAttribute(H.ID,c.getClientId(),H.ID); }
         if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
         rw.writeAttribute(H.CLASS, s, H.CLASS);
@@ -215,7 +215,7 @@ public final class R {
         if(span>0 || offset>0) {
             if(span>0) { sb.append(COLMD).append(span); }
             if(offset>0) {
-                if(span>0) { sb.append(C.SP); }
+                if(span>0) { sb.append(" "); }
                 sb.append(OFFSET+offset);
             }
         }
@@ -240,7 +240,7 @@ public final class R {
         if(osm>0) {sb.append(" col-sm-offset-").append(osm);}
         if(olg>0) {sb.append(" col-lg-offset-").append(olg);}
         
-        if(sclass!=null) {sb.append(C.SP).append(sclass); }
+        if(sclass!=null) {sb.append(" ").append(sclass); }
         rw.writeAttribute(H.CLASS, sb.toString().trim(), H.CLASS);
         if(style!=null) { rw.writeAttribute(H.STYLE, style, H.STYLE); }
         
@@ -272,7 +272,7 @@ public final class R {
         rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
 		Tooltip.generateTooltip(fc, attrs, rw);
         if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
-            rw.writeAttribute(H.CLASS, c.getContainerStyles().concat(C.SP).concat(A.PULL).concat(C.HYP).concat(pull),H.CLASS);
+            rw.writeAttribute(H.CLASS, c.getContainerStyles().concat(" ").concat(A.PULL).concat("-").concat(pull),H.CLASS);
         } else {
             rw.writeAttribute(H.CLASS, c.getContainerStyles(),H.CLASS);
         }
@@ -292,8 +292,8 @@ public final class R {
         rw.startElement(H.SPAN, c);
         rw.writeAttribute(H.ID,c.getClientId(),H.ID);
         Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        String sclass=LABEL+C.SP+LABEL;
-        if(severity!=null) { sclass += C.HYP+severity; } else { sclass += DFLT; }
+        String sclass=LABEL+" "+LABEL;
+        if(severity!=null) { sclass += "-"+severity; } else { sclass += DFLT; }
         rw.writeAttribute(H.CLASS, sclass,H.CLASS);
         rw.writeText(text, null);
         rw.endElement(H.SPAN);
@@ -349,7 +349,7 @@ public final class R {
      */
     protected static void addClass2Component(UIComponent c, String aclass) {
         Map<String, Object> a = c.getAttributes();
-        if(a.containsKey(H.STYLECLASS)) {a.put(H.STYLECLASS, a.get(H.STYLECLASS)+C.SP+aclass); }
+        if(a.containsKey(H.STYLECLASS)) {a.put(H.STYLECLASS, a.get(H.STYLECLASS)+" "+aclass); }
         else                            {a.put(H.STYLECLASS, aclass); }
     }
     /**

@@ -73,7 +73,7 @@ public class Slider extends HtmlInputText {
 	private int max;
 
 	public static final String SLIDER = "slider";
-	public static final String SLIDERV = SLIDER + C.HYP + C.V;
+	public static final String SLIDERV = SLIDER + "-" + C.V;
 
 	public Slider() {
 		setRendererType(null); // this component renders itself
