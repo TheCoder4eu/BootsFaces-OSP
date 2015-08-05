@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<ui:fragment
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+		<b:panel look="info">
+			<f:facet name="heading">
+				<b>Attributes of &lt;b:slider &gt;</b>
+			</f:facet>
+			<table class="table table-striped table-hover"
+				style="background-color: #fff">
+				<thead>
+					<tr>
+						<th>Attribute</th>
+						<th>Default value</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+					    <td>binding</td>
+					    <td>(none)</td>
+					    <td>An el expression referring to a server side UIComponent instance in a backing bean.</td>
+					</tr>
+					<tr>
+					    <td>disabled</td>
+					    <td>false</td>
+					    <td>If true, you can't move the slider, nor can you edit the number.</td>
+					</tr>
+					<tr>
+					    <td>handleShape</td>
+					    <td>(none)</td>
+					    <td>The default handle is squared. Specifing the "round" value for this attribute will turn the handle shape to a circle.</td>
+					</tr>
+					<tr>
+					    <td>handleSize</td>
+					    <td>(none)</td>
+					    <td>In some situations (eg. mobile phones) the slider handle may be difficult to operate because of its size. Specifing the "md" or "lg" value for this attribute will change the handle size accordingly.</td>
+					</tr>
+					<tr>
+					    <td>id</td>
+					    <td>(none)</td>
+					    <td>Unique identifier of the component in a namingContainer.</td>
+					</tr>
+					<tr>
+					    <td>label</td>
+					    <td>(none)</td>
+					    <td>Label for the widget field.</td>
+					</tr>
+					<tr>
+					    <td>max</td>
+					    <td>0 </td>
+					    <td>The maximum value of the slider. (default 100)</td>
+					</tr>
+					<tr>
+					    <td>min</td>
+					    <td>0 </td>
+					    <td>The minimum value of the slider. (default 0)</td>
+					</tr>
+					<tr>
+					    <td>mode</td>
+					    <td>(none)</td>
+					    <td>Mode of the Slider Widget.<br>There are three modes available : badge, edit and basic.<br> In <b>basic mode</b>, only the slider and the label(if present) will be shown and the slider value will be hidden.<br> In <b>badge mode</b>, the default, the slider value will be shown in a badge.<br> In <b>edit mode</b>, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field.</td>
+					</tr>
+					<tr>
+					    <td>orientation</td>
+					    <td>(none)</td>
+					    <td>Determines whether the slider handles move horizontally (min on left, max on right) or vertically (min on bottom, max on top).<br> Possible values: "horizontal"(default), "vertical", "vertical-bottom".<br> If <b>vertical</b> is specified, the Label is rendered on top, then the value and the slider on the bottom.<br> If <b>vertical-bottom</b> is specified, the slider is rendered on top, then the value and the Label on the bottom.</td>
+					</tr>
+					<tr>
+					    <td>rendered</td>
+					    <td>false</td>
+					    <td>Boolean value to specify the rendering of the component, when set to false component will not be rendered.</td>
+					</tr>
+					<tr>
+					    <td>step</td>
+					    <td>0 </td>
+					    <td>The step of the slider.</td>
+					</tr>
+					<tr>
+					    <td>style</td>
+					    <td>(none)</td>
+					    <td>Inline style of the input element.</td>
+					</tr>
+					<tr>
+					    <td>styleClass</td>
+					    <td>(none)</td>
+					    <td>Style class of the input element.</td>
+					</tr>
+					<tr>
+					    <td>tooltip</td>
+					    <td>(none)</td>
+					    <td>The text of the tooltip.</td>
+					</tr>
+					<tr>
+					    <td>tooltipDelay</td>
+					    <td>0 </td>
+					    <td>The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).</td>
+					</tr>
+					<tr>
+					    <td>tooltipDelayHide</td>
+					    <td>0 </td>
+					    <td>The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).</td>
+					</tr>
+					<tr>
+					    <td>tooltipDelayShow</td>
+					    <td>0 </td>
+					    <td>The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).</td>
+					</tr>
+					<tr>
+					    <td>tooltipPosition</td>
+					    <td>(none)</td>
+					    <td>Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".</td>
+					</tr>
+					<tr>
+					    <td>value</td>
+					    <td>(none)</td>
+					    <td>Value.</td>
+					</tr>
+				</tbody>
+			</table>
+		</b:panel>
+</ui:fragment>
