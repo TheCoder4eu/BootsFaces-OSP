@@ -84,11 +84,11 @@ public class Container extends UIComponentBase {
         String c=(fluid ? "container-fluid" : "container");
         if(sc!=null) { c+=" "+sc; }
         
-        rw.startElement(H.DIV, this);
-        rw.writeAttribute(H.ID,getClientId(fc),H.ID);
+        rw.startElement("div", this);
+        rw.writeAttribute("id",getClientId(fc),"id");
         Tooltip.generateTooltip(fc, attrs, rw);
         if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
-        rw.writeAttribute(H.CLASS, c, H.CLASS);
+        rw.writeAttribute("class", c, "class");
         //rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
     }
     
@@ -97,7 +97,7 @@ public class Container extends UIComponentBase {
         if (!isRendered()) {
             return;
         }
-        fc.getResponseWriter().endElement(H.DIV);
+        fc.getResponseWriter().endElement("div");
         Tooltip.activateTooltips(fc, getAttributes(), this);
     }
 

@@ -56,10 +56,10 @@ public enum RThumbnail {
         
         //String val = A.asString(attrs.get(A.VALUE), getClientId(context));
         ResponseWriter rw = fc.getResponseWriter();
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID, c.getClientId(fc), H.ID);
+        rw.startElement("div", c);
+        rw.writeAttribute("id", c.getClientId(fc), "id");
         Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        rw.writeAttribute(H.CLASS, thumbnail, H.CLASS);
+        rw.writeAttribute("class", thumbnail, "class");
         /*UIComponent capt;
         capt = c.getFacet(caption.name());
         if (capt != null ) {
@@ -89,12 +89,12 @@ public enum RThumbnail {
         UIComponent capt;
         capt = c.getFacet(caption.name());
         if (capt != null ) {
-            rw.startElement(H.DIV, c);
-            rw.writeAttribute(H.CLASS, caption, H.CLASS);
+            rw.startElement("div", c);
+            rw.writeAttribute("class", caption, "class");
             capt.encodeAll(fc);
-            rw.endElement(H.DIV);
+            rw.endElement("div");
         }
-        rw.endElement(H.DIV);
+        rw.endElement("div");
         Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
 }

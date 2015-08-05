@@ -33,7 +33,6 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
@@ -72,9 +71,6 @@ public class Slider extends HtmlInputText {
 	private int min;
 	private int max;
 
-	public static final String SLIDER = "slider";
-	public static final String SLIDERV = SLIDER + "-" + C.V;
-
 	public Slider() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
@@ -83,8 +79,8 @@ public class Slider extends HtmlInputText {
 
 	/** Method added to prevent AngularFaces from setting the type */
 	public String getType() {
-		String mode = A.asString(getAttributes().get(A.MODE), "badge");
-		return mode.equals("edit") ? H.TEXT : H.HIDDEN;
+		String mode = A.asString(getAttributes().get("mode"), "badge");
+		return mode.equals("edit") ? "text" : "hidden";
 	}
 
 	/**
@@ -126,17 +122,17 @@ public class Slider extends HtmlInputText {
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(context);
 
-		String mode = A.asString(attrs.get(A.MODE), "badge");
-		String label = A.asString(attrs.get(A.LABEL));
+		String mode = A.asString(attrs.get("mode"), "badge");
+		String label = A.asString(attrs.get("label"));
 
-		min = A.toInt(attrs.get(JQ.MIN), 0);
-		max = A.toInt(attrs.get(JQ.MAX), 100);
+		min = A.toInt(attrs.get("min"), 0);
+		max = A.toInt(attrs.get("max"), 100);
 		Object v = getSubmittedValue();
 		if (v == null) {
 			v = this.getValue();
 		}
 		if (v == null) {
-			v = A.asString(attrs.get(A.VALUE));
+			v = A.asString(attrs.get("value"));
 			this.setValue(v);
 		}
 		if (v == null) {
@@ -151,47 +147,44 @@ public class Slider extends HtmlInputText {
 			val = min;
 		}
 		String o;
-		if (attrs.get(JQ.ORIENTATION) != null) {
-			o = A.asString(attrs.get(JQ.ORIENTATION));
+		if (attrs.get("orientation") != null) {
+			o = A.asString(attrs.get("orientation"));
 		} else {
 			o = C.H;
 		}
-		boolean vo = o.startsWith(C.V);
-		boolean bottom = o.endsWith(C.BOTTOM);
+		boolean vo = o.startsWith("vertical");
+		boolean bottom = o.endsWith("bottom");
 
-		rw.startElement(H.DIV, null);// form-group
+		rw.startElement("div", null);// form-group
 		Tooltip.generateTooltip(context, attrs, rw);
-		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
-		R.encodeRow(rw, null, null, (vo ? SLIDERV : SLIDER)); // rw.write("<--
-																// Slider START
-																// -->\n");//Slider
-																// Widget Row
+		rw.writeAttribute("class", "form-group", "class");
+		R.encodeRow(rw, null, null, (vo ? "slider-vertical" : "slider")); 
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
 		if (vo) {
 			if (label != null && !bottom) {
 				R.encodeRow(rw, null, null, null);
 				encodeVLabel(rw, label);
-				rw.endElement(H.DIV);/* Row */
+				rw.endElement("div");/* Row */
 			}
 			R.encodeRow(rw, null, null, null);
 			if (bottom) {
 				encodeSliderDiv(rw, vo, clientId);
-				rw.endElement(H.DIV);/* Row */
+				rw.endElement("div");/* Row */
 				R.encodeRow(rw, null, null, null);
 			}
 			encodeInput(rw, mode, context, val, clientId, vo, min, max);
 			if (!bottom) {
-				rw.endElement(H.DIV); /* Row */
+				rw.endElement("div"); /* Row */
 
 				R.encodeRow(rw, null, null, null);
 				encodeSliderDiv(rw, vo, clientId);
 			}
-			rw.endElement(H.DIV); /* Row */
+			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
 				R.encodeRow(rw, null, null, null);
 				encodeVLabel(rw, label);
-				rw.endElement(H.DIV); /* Row */
+				rw.endElement("div"); /* Row */
 			}
 
 		} else {
@@ -201,29 +194,29 @@ public class Slider extends HtmlInputText {
 				R.encodeRow(rw, null, null, null);
 
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
-				rw.startElement(H.LABEL, this);
-				rw.writeAttribute(A.FOR, clientId, null);
+				rw.startElement("label", this);
+				rw.writeAttribute("for", clientId, null);
 				rw.write(label);
-				rw.endElement(H.LABEL); // Label
+				rw.endElement("label"); // Label
 
-				rw.endElement(H.DIV);// Column
+				rw.endElement("div");// Column
 
-				rw.endElement(H.DIV);/* Row */
+				rw.endElement("div");/* Row */
 			}
 			R.encodeRow(rw, null, null, null);
 
 			encodeInput(rw, mode, context, val, clientId, vo, min, max);
 
 			encodeSliderDiv(rw, vo, clientId);
-			rw.endElement(H.DIV);/* Row */
+			rw.endElement("div");/* Row */
 
 		} // if vo
 
 		// <<---------------------------------------
-		rw.endElement(H.DIV); // rw.write("<!-- Slider Widget Row
+		rw.endElement("div"); // rw.write("<!-- Slider Widget Row
 								// -->\n");//Slider Widget Row
 
-		rw.endElement(H.DIV); // rw.write("<!-- form-group -->\n");//form-group
+		rw.endElement("div"); // rw.write("<!-- form-group -->\n");//form-group
 
 		encodeJS(rw, clientId);
 		Tooltip.activateTooltips(context, attrs, this);
@@ -231,10 +224,10 @@ public class Slider extends HtmlInputText {
 
 	private void encodeVLabel(ResponseWriter rw, String label) throws IOException {
 		R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null, null);
-		rw.startElement(H.P, this);
+		rw.startElement("p", this);
 		rw.write(label);
-		rw.endElement(H.P); // Label
-		rw.endElement(H.DIV); // Column
+		rw.endElement("p"); // Label
+		rw.endElement("div"); // Column
 	}
 
 	private void encodeInput(ResponseWriter rw, String mode, FacesContext context, int val, String clientId, boolean vo,
@@ -252,24 +245,24 @@ public class Slider extends HtmlInputText {
 		}
 		removeMisleadingType();
 		// Input
-		rw.startElement(H.INPUT, this);
-		rw.writeAttribute(H.ID, clientId, null);
-		rw.writeAttribute(H.NAME, clientId, null);
-		rw.writeAttribute(H.TYPE, (mode.equals("edit") ? H.TEXT : H.HIDDEN), null);
-		rw.writeAttribute(H.SIZE, String.valueOf(max).length() - 1, null);
-		rw.writeAttribute(H.MIN, min, null);
-		rw.writeAttribute(H.MAX, max, null);
-		rw.writeAttribute(H.MAXLEN, String.valueOf(max).length(), null);
+		rw.startElement("input", this);
+		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("type", (mode.equals("edit") ? "text" : "hidden"), null);
+		rw.writeAttribute("size", String.valueOf(max).length() - 1, null);
+		rw.writeAttribute("min", min, null);
+		rw.writeAttribute("max", max, null);
+		rw.writeAttribute("maxlength", String.valueOf(max).length(), null);
 
-		rw.writeAttribute(H.CLASS, "form-control input-sm" + (vo ? " text-center" : C.EMPTY), H.CLASS);
+		rw.writeAttribute("class", "form-control input-sm" + (vo ? " text-center" : ""), "class");
 
-		rw.writeAttribute(H.VALUE, val, null);
+		rw.writeAttribute("value", val, null);
 
 		// if (rdonly) { rw.writeAttribute(H.READONLY, H.READONLY, null); }
-		rw.endElement(H.INPUT);
+		rw.endElement("input");
 
 		if (!mode.equals("basic")) {
-			rw.endElement(H.DIV);
+			rw.endElement("div");
 		} // Column
 	}
 
@@ -301,40 +294,40 @@ public class Slider extends HtmlInputText {
 		 */
 		R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
-		rw.startElement(H.DIV, null);
-		rw.writeAttribute(H.ID, clientId + C.USCORE + JQ.SLIDER, null);// concat
+		rw.startElement("div", null);
+		rw.writeAttribute("id", clientId + "_slider", null);// concat
 																		// controproducente
-		rw.endElement(H.DIV);
-		rw.endElement(H.DIV); // Column
+		rw.endElement("div");
+		rw.endElement("div"); // Column
 	}
 
 	private void encodeJS(ResponseWriter rw, String cId) throws IOException {
 		Map<String, Object> attrs = getAttributes();
 		StringBuilder sb = new StringBuilder(100);
-		sb.append(A.VALUE).append(C.COLON).append(this.getValue()).append(C.COMMA);
-		if (attrs.get(JQ.MAX) != null) {
-			sb.append(JQ.MAX).append(C.COLON).append(A.toInt(attrs.get(JQ.MAX))).append(C.COMMA);
+		sb.append("value").append(":").append(this.getValue()).append(",");
+		if (attrs.get("max") != null) {
+			sb.append("max").append(":").append(A.toInt(attrs.get("max"))).append(",");
 		}
-		if (attrs.get(JQ.MIN) != null) {
-			sb.append(JQ.MIN).append(C.COLON).append(A.toInt(attrs.get(JQ.MIN))).append(C.COMMA);
+		if (attrs.get("min") != null) {
+			sb.append("min").append(":").append(A.toInt(attrs.get("min"))).append(",");
 		}
-		if (attrs.get(JQ.ORIENTATION) != null) {
-			String o = A.asString(attrs.get(JQ.ORIENTATION));
-			if (o.endsWith(C.BOTTOM)) {
-				o = C.V;
+		if (attrs.get("orientation") != null) {
+			String o = A.asString(attrs.get("orientation"));
+			if (o.endsWith("bottom")) {
+				o = "vertical";
 			}
-			sb.append(JQ.ORIENTATION).append(C.COLON).append(C.QUOTE.concat(o).concat(C.QUOTE)).append(C.COMMA);
+			sb.append("orientation").append(":").append("'".concat(o).concat("'")).append(",");
 		}
-		if (attrs.get(JQ.STEP) != null) {
-			sb.append(JQ.STEP).append(C.COLON).append(A.toInt(attrs.get(JQ.STEP))).append(C.COMMA);
+		if (attrs.get("step") != null) {
+			sb.append("step").append(":").append(A.toInt(attrs.get("step"))).append(",");
 		}
-		sb.append(JQ.RANGE).append(C.COLON).append("\"min\"").append(C.COMMA);
+		sb.append("range").append(":").append("\"min\"").append(",");
 
-		String hsize = A.asString(attrs.get(A.HANDLE_SIZE));
-		String hshape = A.asString(attrs.get(A.HANDLE_SHAPE));
+		String hsize = A.asString(attrs.get("handle-size"));
+		String hshape = A.asString(attrs.get("handle-shape"));
 		boolean hround = ((hshape != null) && (hshape.equals("round")));
 
-		JQ.simpleSlider(rw, cId, sb.toString(), A.asString(attrs.get(A.MODE), "badge").equals("badge"), hsize, hround);
+		JQ.simpleSlider(rw, cId, sb.toString(), A.asString(attrs.get("mode"), "badge").equals("badge"), hsize, hround);
 	}
 
 	@Override

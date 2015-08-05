@@ -26,7 +26,6 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.RWell;
 import net.bootsfaces.render.Tooltip;
 
@@ -83,7 +82,7 @@ public class Well extends UIComponentBase {
         if (!isRendered()) {
             return;
         }
-        context.getResponseWriter().endElement(H.DIV);
+        context.getResponseWriter().endElement("div");
         Tooltip.activateTooltips(context, getAttributes(), this);
     }
 

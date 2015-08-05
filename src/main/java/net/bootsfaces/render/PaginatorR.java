@@ -55,10 +55,10 @@ public class PaginatorR extends Renderer {
         String show = A.asString(attrs.get(A.SHOWON),A.BOTH);
 
         ResponseWriter rw = context.getResponseWriter();
-        rw.startElement(H.DIV, c); //External Div
+        rw.startElement("div", c); //External Div
 
-        rw.writeAttribute(H.ID, cid, null);
-        if(panel) { rw.writeAttribute(H.CLASS, "thumbnail", H.CLASS); }
+        rw.writeAttribute("id", cid, null);
+        if(panel) { rw.writeAttribute("class", "thumbnail", "class"); }
         
         if(show.equals(A.TOP)||show.equals(A.BOTH)) {
            encodePaginator(context, c, C.TOP);
@@ -72,41 +72,41 @@ public class PaginatorR extends Renderer {
             String cid = c.getClientId(context);
             ResponseWriter rw = context.getResponseWriter();
             
-            rw.startElement(H.DIV, null); //Navbar
-            rw.writeAttribute(H.CLASS, "navbar navbar-static-"+show, H.CLASS);
-            rw.startElement(H.DIV, null); //Navbar inner
-            rw.writeAttribute(H.CLASS, "navbar-inner", H.CLASS);
-            rw.startElement(H.DIV, null); //Left link
-            rw.writeAttribute(H.CLASS, "pull-left", H.CLASS);
+            rw.startElement("div", null); //Navbar
+            rw.writeAttribute("class", "navbar navbar-static-"+show, "class");
+            rw.startElement("div", null); //Navbar inner
+            rw.writeAttribute("class", "navbar-inner", "class");
+            rw.startElement("div", null); //Left link
+            rw.writeAttribute("class", "pull-left", "class");
             rw.writeAttribute(H.STYLE, "width:25%;", H.STYLE);
             rw.startElement(H.A, c);
             rw.writeAttribute(H.HREF, C.HASH, null);
-            rw.writeAttribute(H.CLASS, "btn btn-small", H.CLASS);
+            rw.writeAttribute("class", "btn btn-small", "class");
             rw.writeAttribute("onclick", "return BsF.ajax.paginate(this,null,'<','" + cid + "','" + cid + " " + data.getClientId() + "');", null);
             rw.writeText("<", null);
             rw.endElement(H.A);
-            rw.endElement(H.DIV); //Left link
+            rw.endElement("div"); //Left link
 
-            rw.startElement(H.DIV, null); //Pages
-            rw.writeAttribute(H.CLASS, "pull-left", H.CLASS);
+            rw.startElement("div", null); //Pages
+            rw.writeAttribute("class", "pull-left", "class");
             rw.writeAttribute(H.STYLE, "width:50%; text-align: center;", H.STYLE);
             rw.writeText("(" + data.getCurrentPage() + " of " + data.getPages() + ")", null);
-            rw.endElement(H.DIV); //Pages
+            rw.endElement("div"); //Pages
 
-            rw.startElement(H.DIV, null); //Right link
-            rw.writeAttribute(H.CLASS, "pull-left", H.CLASS);
+            rw.startElement("div", null); //Right link
+            rw.writeAttribute("class", "pull-left", "class");
             rw.writeAttribute(H.STYLE, "width:25%;", H.STYLE);
             rw.startElement(H.A, c);
             rw.writeAttribute(H.HREF, C.HASH, null);
-            rw.writeAttribute(H.CLASS, "btn btn-small pull-right", H.CLASS);
+            rw.writeAttribute("class", "btn btn-small pull-right", "class");
             rw.writeAttribute("onclick", "return BsF.ajax.paginate(this,null,'>','" + cid + "','" + cid + " " + data.getClientId() + "');", null);
             rw.writeText(">", null);
             rw.endElement(H.A);
-            rw.endElement(H.DIV); //Right link
+            rw.endElement("div"); //Right link
 
-            rw.endElement(H.DIV); //Navbar inner
+            rw.endElement("div"); //Navbar inner
 
-            rw.endElement(H.DIV); //Navbar
+            rw.endElement("div"); //Navbar
         }
         //encodeInputHidden(rw, c);
     }
@@ -125,9 +125,9 @@ public class PaginatorR extends Renderer {
         String show = A.asString(c.getAttributes().get(A.SHOWON),A.BOTH);
         ResponseWriter rw = context.getResponseWriter();
         if(show.equals(A.BOTTOM)||show.equals(A.BOTH)) {
-           encodePaginator(context, c, C.BOTTOM);
+           encodePaginator(context, c, "bottom");
         }
-        rw.endElement(H.DIV); //External Div
+        rw.endElement("div"); //External Div
     }
     /*private void writeLink(ResponseWriter rw, UIComponent c, String value, String formId) throws IOException {
       //rw.writeText(" ", null);

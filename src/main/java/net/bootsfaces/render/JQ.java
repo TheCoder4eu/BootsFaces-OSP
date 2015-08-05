@@ -74,12 +74,10 @@ public final class JQ {
     
     public static final String MODAL= "$('#CID').modal({ show: false });";
     
-    public static final String SLIDER="slider";
-    
     protected static final void startInlineF(ResponseWriter rw, String cId) throws IOException {
         rw.startElement(SCRIPT, null);
-        rw.writeAttribute(H.ID, cId.concat(JS_SUFFIX), null);
-        rw.writeAttribute(H.TYPE, TEXT_JS, null);
+        rw.writeAttribute("id", cId.concat(JS_SUFFIX), null);
+        rw.writeAttribute("type", TEXT_JS, null);
         rw.write(START_F);
     }
     protected static final void endInlineF(ResponseWriter rw) throws IOException {
@@ -139,17 +137,8 @@ public final class JQ {
     }
     
     
-    /*
-     * jQuery Slider Supported Options/Attributes
-     */
-    public static final String MAX= "max"; //Int
-    public static final String MIN= "min"; //Int
-    public static final String ORIENTATION= "orientation"; //Possible values: "horizontal" (default), "vertical"
-    public static final String RANGE= "range";
-    public static final String STEP= "step"; //Int
-    
     public static final String[] SLIDER_OPTS= {
-        MAX, MIN, ORIENTATION, RANGE, STEP
+        "max", "min", "orientation", "range", "step"
     };
     
     /*

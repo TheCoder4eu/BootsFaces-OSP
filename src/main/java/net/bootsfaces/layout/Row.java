@@ -78,7 +78,7 @@ public class Row extends UIComponentBase {
         if (!isRendered()) {
             return;
         }
-        fc.getResponseWriter().endElement(H.DIV);
+        fc.getResponseWriter().endElement("div");
     }
 
     @Override

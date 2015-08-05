@@ -32,8 +32,6 @@ public final class H {
     
     public static final String ARIA="aria";
     public static final String ARIALBLBY=ARIA+HYP+"labelledby";
-    public static final String LABEL="label";
-    
     /* TAGS */
     public static final String A ="a";
     public static final String ALT ="alt";
@@ -42,7 +40,6 @@ public final class H {
     /*HTML tag button */
     public static final String BUTTON ="button";
     
-    public static final String DIV ="div";
     public static final String I ="i";
     public static final String IMG="img";
     public static final String H1 ="h1";
@@ -52,10 +49,8 @@ public final class H {
     public static final String H5 ="h5";
     
     public static final String LI="li";
-    public static final String INPUT=C.INPUT;
     public static final String SELECT="select";
     
-    public static final String P ="p";
     public static final String SPAN ="span";
     public static final String STRONG="strong";
     
@@ -68,26 +63,13 @@ public final class H {
     public static final String ROLE="role";
     public static final String MENU="menu";
     
-    /* ATTRIBUTES */
-    public static final String CLASS ="class";
     public static final String STYLECLASS ="styleClass";
     public static final String DISABLED=C.DISABLED;
-    public static final String HIDDEN="hidden";
     public static final String HREF="href";
     public static final String SRC="src";
-    public static final String ID="id";
-    public static final String NAME="name";
     public static final String READONLY=C.READONLY;
-    public static final String TEXT="text";
-    public static final String TYPE="type";
-    public static final String VALUE=C.VALUE;
-    public static final String SIZE="size";
     public static final String STYLE="style";
     public static final String TITLE="title";
-    public static final String MAX="max";
-    public static final String MIN="min";
-    public static final String MAXLEN="maxlength";
-    
     /** Types */
 	public static final String PASSWORD = "password"; // used by inputSecret
 
@@ -112,9 +94,9 @@ public final class H {
 		"dir",
                 //DISABLED,
 		"lang",
-		MAXLEN,
+		"maxlength",
                 //READONLY,
-		SIZE,
+		"size",
                 STYLE,
 		"tabindex",
 		TITLE

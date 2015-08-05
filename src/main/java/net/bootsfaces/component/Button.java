@@ -34,16 +34,11 @@ import static net.bootsfaces.render.A.ICON_ALIGN;
 import static net.bootsfaces.render.A.LOOK;
 import static net.bootsfaces.render.A.RIGHT;
 import static net.bootsfaces.render.A.SIZE;
-import static net.bootsfaces.render.A.VALUE;
 import static net.bootsfaces.render.A.asString;
 import static net.bootsfaces.render.A.toBool;
 import static net.bootsfaces.render.H.BUTTON;
-import static net.bootsfaces.render.H.CLASS;
-import static net.bootsfaces.render.H.ID;
-import static net.bootsfaces.render.H.NAME;
 import static net.bootsfaces.render.H.STYLE;
 import static net.bootsfaces.render.H.STYLECLASS;
-import static net.bootsfaces.render.H.TYPE;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -128,15 +123,15 @@ public class Button extends HtmlOutcomeTargetButton {
 	public void encodeHTML(FacesContext context, Map<String, Object> attrs) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		Object value = attrs.get(VALUE);
+		Object value = attrs.get("value");
                 String style=asString(attrs.get(STYLE));
                 
 		rw.startElement(BUTTON, this);
-		rw.writeAttribute(ID, getClientId(context), ID);
-		rw.writeAttribute(NAME, getClientId(context), NAME);
-		rw.writeAttribute(TYPE, BUTTON, null);
+		rw.writeAttribute("id", getClientId(context), "id");
+		rw.writeAttribute("name", getClientId(context), "name");
+		rw.writeAttribute("type", BUTTON, null);
                 if(style!=null) { rw.writeAttribute(STYLE,style,STYLE); }
-		rw.writeAttribute(CLASS, getStyleClasses(attrs), CLASS);
+		rw.writeAttribute("class", getStyleClasses(attrs), "class");
 		
 		Tooltip.generateTooltip(context, attrs, rw);
 

@@ -93,36 +93,18 @@ public final class C {
     */
     //Hash
     public static final String HASH="#";
-    // Empty
-    public static final String EMPTY="";
     // Dot
     public static final String DOT=".";
-    // Colon
-    public static final String COLON=":";
     // SemiColon
     public static final String SCOLON=";";
-    // Comma
-    public static final String COMMA=",";
-    // Underline
-    public static final String USCORE="_";
-    // Quote
-    public static final String QUOTE="'";
-    
     public static final String DISABLED="disabled";
     public static final String READONLY="readonly";
-    public static final String INPUT="input";
-    public static final String VALUE="value";
-    
-    // Bottom, Left, Right, Top, Down, Up
-    public static final String BOTTOM="bottom";
     public static final String LEFT="left";
     public static final String RIGHT="right";
     public static final String TOP="top";
     public static final String DOWN="down";
     public static final String UP="up";
     public static final String H="horizontal";
-    public static final String V="vertical";
-    
     public static final String APPEND="append";
     public static final String PREPEND="prepend";
     

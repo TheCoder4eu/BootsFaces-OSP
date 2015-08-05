@@ -287,7 +287,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "checkbox", "class");
 		rw.startElement("label", selectBooleanCheckbox);
 
-		rw.startElement(C.INPUT, selectBooleanCheckbox);
+		rw.startElement("input", selectBooleanCheckbox);
 	}
 
 	/**

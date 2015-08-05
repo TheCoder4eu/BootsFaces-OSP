@@ -127,7 +127,7 @@ public class InputTextRenderer extends CoreRenderer {
                         R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
 		}
 
-		String label = A.asString(attrs.get(A.LABEL));
+		String label = A.asString(attrs.get("label"));
 		{
 			Object rl = attrs.get(A.RENDERLABEL);
 			if (null != rl) {
@@ -145,44 +145,44 @@ public class InputTextRenderer extends CoreRenderer {
 		} else { // ordinary input fields
 			t = A.asString(attrs.get(A.TYPE));
 			if (t == null)
-				t = H.TEXT;
+				t = "text";
 		}
 
-		rw.startElement(H.DIV, component);
+		rw.startElement("div", component);
 		Tooltip.generateTooltip(context, attrs, rw);
-		rw.writeAttribute(H.CLASS, "form-group", H.CLASS);
+		rw.writeAttribute("class", "form-group", "class");
 		if (label != null) {
-			rw.startElement(H.LABEL, component);
-			rw.writeAttribute(A.FOR, clientId, A.FOR);
+			rw.startElement("label", component);
+			rw.writeAttribute("for", clientId, "for");
 			rw.writeText(label, null);
-			rw.endElement(H.LABEL);
+			rw.endElement("label");
 		}
 		if (append || prepend) {
-			rw.startElement(H.DIV, component);
-			rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
+			rw.startElement("div", component);
+			rw.writeAttribute("class", "input-group", "class");
 		}
 		int span = A.toInt(attrs.get(A.SPAN));
 		if (span > 0) {
-			rw.startElement(H.DIV, component);
-			rw.writeAttribute(H.CLASS, "col-md-" + span, H.CLASS);
+			rw.startElement("div", component);
+			rw.writeAttribute("class", "col-md-" + span, "class");
 		}
 
 		if (prepend) {
 			if (prep.getClass().getName().endsWith("Button")
 					|| (prep.getChildCount() > 0 && prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement(H.DIV, inputText);
-				rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+				rw.startElement("div", inputText);
+				rw.writeAttribute("class", "input-group-btn", "class");
 				prep.encodeAll(context);
-				rw.endElement(H.DIV);
+				rw.endElement("div");
 			} else {
 				prep.encodeAll(context);
 			}
 		}
 		// Input
-		rw.startElement(H.INPUT, inputText);
-		rw.writeAttribute(H.ID, clientId, null);
-		rw.writeAttribute(H.NAME, clientId, null);
-		rw.writeAttribute(H.TYPE, t, null);
+		rw.startElement("input", inputText);
+		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("type", t, null);
 
 		StringBuilder sb;
 		String s;
@@ -203,7 +203,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
-			rw.writeAttribute(H.CLASS, s, H.STYLECLASS);
+			rw.writeAttribute("class", s, H.STYLECLASS);
 		}
 
 		String ph = A.asString(attrs.get(A.PHOLDER));
@@ -227,7 +227,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 		// Render Value
 		String v = R.getValue2Render(context, component);
-		rw.writeAttribute(H.VALUE, v, null);
+		rw.writeAttribute("value", v, null);
 
 		// Render Ajax Capabilities
 		Map<String, List<ClientBehavior>> clientBehaviors = inputText.getClientBehaviors();
@@ -242,25 +242,25 @@ public class InputTextRenderer extends CoreRenderer {
 
 		}
 
-		rw.endElement(H.INPUT);
+		rw.endElement("input");
 		if (append) {
 			if (app.getClass().getName().endsWith("Button")
 					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement(H.DIV, inputText);
-				rw.writeAttribute(H.CLASS, "input-group-btn", H.CLASS);
+				rw.startElement("div", inputText);
+				rw.writeAttribute("class", "input-group-btn", "class");
 				app.encodeAll(context);
-				rw.endElement(H.DIV);
+				rw.endElement("div");
 			} else {
 				app.encodeAll(context);
 			}
 		}
 
 		if (append || prepend) {
-			rw.endElement(H.DIV);
+			rw.endElement("div");
 		} // input-group
-		rw.endElement(H.DIV); // form-group
+		rw.endElement("div"); // form-group
 		if (span > 0) {
-			rw.endElement(H.DIV); // span
+			rw.endElement("div"); // span
 			// rw.endElement(H.DIV); //row NO
 		}
 		Tooltip.activateTooltips(context, attrs, inputText);

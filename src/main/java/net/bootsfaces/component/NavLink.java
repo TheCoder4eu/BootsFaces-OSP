@@ -73,7 +73,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
 	public static final String DIVIDER = "divider";
 	public static final String DIVIDERH = DIVIDER; // divider-horizontal
-	public static final String DIVIDERV = DIVIDER.concat("-").concat(C.V); // divider-vertical
+	public static final String DIVIDERV = DIVIDER.concat("-").concat("vertical"); // divider-vertical
 	public static final String DROPDOWN = "dropdown";
 
 	public NavLink() {
@@ -103,7 +103,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		} else {
 			// if there is no href, no outcome and no value attributes
 			// we render a divider
-			if (attrs.get(A.VALUE) == null && attrs.get(A.VALUE) == null && attrs.get(A.VALUE) == null) {
+			if (attrs.get("value") == null && attrs.get("value") == null && attrs.get("value") == null) {
 				encodeDivider(context);
 			} else {
 				encodeHTML(context);
@@ -116,12 +116,12 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		ResponseWriter rw = context.getResponseWriter();
 
 		rw.startElement(H.LI, this);
-		rw.writeAttribute(H.ID, getClientId(context), H.ID);
+		rw.writeAttribute("id", getClientId(context), "id");
 		String styleClass = A.asString(attrs.get("styleClass"));
 		if (null == styleClass)
-			rw.writeAttribute(H.CLASS, DROPDOWN + "-header", H.CLASS);
+			rw.writeAttribute("class", DROPDOWN + "-header", "class");
 		else
-			rw.writeAttribute(H.CLASS, DROPDOWN + "-header " + styleClass, H.CLASS);
+			rw.writeAttribute("class", DROPDOWN + "-header " + styleClass, "class");
 		String style = A.asString(attrs.get("style"));
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");
@@ -144,9 +144,9 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		else
 			styleClass += " ";
 		if (this.getParent().getClass().getName().equals(NavBarLinks.COMPONENT_TYPE)) {
-			rw.writeAttribute(H.CLASS, styleClass + DIVIDERV, H.CLASS);
+			rw.writeAttribute("class", styleClass + DIVIDERV, "class");
 		} else {
-			rw.writeAttribute(H.CLASS, styleClass + DIVIDERH, H.CLASS);
+			rw.writeAttribute("class", styleClass + DIVIDERH, "class");
 		}
 		String style = A.asString(attrs.get("style"));
 		if (null != style) {
@@ -160,15 +160,15 @@ public class NavLink extends HtmlOutcomeTargetLink {
 	public void encodeHTML(FacesContext context) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		String value = A.asString(attrs.get(A.VALUE));
+		String value = A.asString(attrs.get("value"));
 		String url = encodeHref(context);
 		// else {
 
 		rw.startElement(H.LI, this);
-		rw.writeAttribute(H.ID, getClientId(context), H.ID);
+		rw.writeAttribute("id", getClientId(context), "id");
 		Tooltip.generateTooltip(context, attrs, rw);
 		// rw.writeAttribute(H.TYPE, H.BUTTON, null);
-		rw.writeAttribute(H.CLASS, getStyleClasses(), H.CLASS);
+		rw.writeAttribute("class", getStyleClasses(), "class");
 		String style = A.asString(attrs.get("style"));
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");

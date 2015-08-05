@@ -63,11 +63,7 @@ public final class A {
     public static final String ICON_ALIGN=ICON+"Align";
     public static final String ICON_POS=ICON+"Pos";
     public static final String INVERSE="inverse";
-    public static final String LABEL="label";
-    public static final String FOR="for";
     public static final String LOOK="look";
-    public static final String MODE="mode";
-    
     public static final String LIBRARY="library";
     public static final String NAME="name";
     
@@ -90,12 +86,7 @@ public final class A {
     public static final String TEXT="text";
     public static final String PANEL="panel";
     public static final String SHOWON="showOn";
-    public static final String VALUE=C.VALUE;
-    
     public static final String CLICK="onclick";
-    
-    public static final String HANDLE_SHAPE="handle-shape"; //square, round
-    public static final String HANDLE_SIZE="handle-size"; //md, lg
     
     //jQuery DatePicker
     public static final String DTFORMAT = JQ.DTFORMAT;
@@ -112,7 +103,7 @@ public final class A {
     public static final String TOGGLEICON=TOGGLE+HYP+ICON;
     public static final String ICONTOGGLE=ICON+HYP+TOGGLE;
     
-    public static final String BOTTOM=C.BOTTOM;
+    public static final String BOTTOM="bottom";
     public static final String LEFT=C.LEFT;
     public static final String RIGHT=C.RIGHT;
     public static final String TOP=C.TOP;

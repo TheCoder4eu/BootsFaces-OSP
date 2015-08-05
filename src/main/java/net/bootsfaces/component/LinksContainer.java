@@ -70,12 +70,12 @@ public class LinksContainer extends UIComponentBase {
         String pull = A.asString(attrs.get(A.PULL));
         
         rw.startElement(H.UL, this);
-        rw.writeAttribute(H.ID,getClientId(fc),H.ID);
+        rw.writeAttribute("id",getClientId(fc),"id");
         Tooltip.generateTooltip(fc, attrs, rw);
         if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
-            rw.writeAttribute(H.CLASS, getContainerStyles().concat(" ").concat(A.PULL).concat("-").concat(pull),H.CLASS);
+            rw.writeAttribute("class", getContainerStyles().concat(" ").concat(A.PULL).concat("-").concat(pull),"class");
         } else {
-            rw.writeAttribute(H.CLASS, getContainerStyles(),H.CLASS);
+            rw.writeAttribute("class", getContainerStyles(),"class");
         }
         
         

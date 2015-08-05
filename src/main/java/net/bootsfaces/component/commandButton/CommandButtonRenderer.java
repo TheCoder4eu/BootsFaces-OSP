@@ -66,15 +66,15 @@ public class CommandButtonRenderer extends CoreRenderer {
 		String style = commandButton.getStyle();
 
 		rw.startElement(H.BUTTON, component);
-		rw.writeAttribute(H.TYPE, type, null);
-		rw.writeAttribute(H.ID, CID, H.ID);
-		rw.writeAttribute(H.NAME, CID, H.NAME);
+		rw.writeAttribute("type", type, null);
+		rw.writeAttribute("id", CID, "id");
+		rw.writeAttribute("name", CID, "name");
 
 		Tooltip.generateTooltip(context, commandButton, rw);
 
 		writeAttribute(rw, H.STYLE, style, H.STYLE);
 
-		rw.writeAttribute(H.CLASS, getStyleClasses(commandButton), H.CLASS);
+		rw.writeAttribute("class", getStyleClasses(commandButton), "class");
 
 		String title = commandButton.getTitle();
 

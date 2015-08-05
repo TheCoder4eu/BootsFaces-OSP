@@ -231,35 +231,35 @@ public class DatePicker extends HtmlInputText {
 		/*
 		 * 6 modes: 1) inline 2) popup (no icons) 3) popup-icon 4) icon-popup 5) toggle-icon (Default) 6) icon-toggle
 		 */
-		mode = A.asString(attrs.get(A.MODE), A.TOGGLEICON);
+		mode = A.asString(attrs.get("mode"), A.TOGGLEICON);
 		boolean inline = mode.equals(A.INLINE);
 
 		if (inline) { // inline => div with ID
-			dpId = clientId + C.USCORE + H.DIV;
-			rw.startElement(H.DIV, this);
-			rw.writeAttribute(H.ID, dpId, null);
-			rw.endElement(H.DIV);
+			dpId = clientId + "_" + "div";
+			rw.startElement("div", this);
+			rw.writeAttribute("id", dpId, null);
+			rw.endElement("div");
 		} else { // popup
 			dpId = clientId;
 
 			if (!mode.equals(A.POPUP)) { // with icon => div with prepend/append style
-				rw.startElement(H.DIV, this);
-				rw.writeAttribute(H.CLASS, "input-group", H.CLASS);
+				rw.startElement("div", this);
+				rw.writeAttribute("class", "input-group", "class");
 				if (mode.equals(A.ICONPOP) || mode.equals(A.ICONTOGGLE)) {
 					R.addonIcon(rw, this, CALENDAR, false);
 				}
 			}
 		}
-		String type = inline ? H.HIDDEN : H.TEXT;
+		String type = inline ? "hidden" : "text";
 
-		rw.startElement(H.INPUT, null);
-		rw.writeAttribute(H.ID, clientId, null);
-		rw.writeAttribute(H.NAME, clientId, null);
+		rw.startElement("input", null);
+		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("name", clientId, null);
 		Tooltip.generateTooltip(fc, attrs, rw);
-		rw.writeAttribute(H.TYPE, type, null);
-		rw.writeAttribute(H.CLASS, "form-control", H.CLASS);
+		rw.writeAttribute("type", type, null);
+		rw.writeAttribute("class", "form-control", "class");
 		if (v != null) {
-			rw.writeAttribute(H.VALUE, getDateAsString(v, sdf, sloc), null);
+			rw.writeAttribute("value", getDateAsString(v, sdf, sloc), null);
 		}
 
 		String ph = A.asString(attrs.get(A.PHOLDER));
@@ -273,7 +273,7 @@ public class DatePicker extends HtmlInputText {
 		if (A.toBool(attrs.get(A.READONLY))) {
 			rw.writeAttribute(A.READONLY, A.READONLY, null);
 		}
-		rw.endElement(H.INPUT);
+		rw.endElement("input");
 
 		encodeJS(fc, rw, clientId, dpId);
 		if (mode.equals(A.POPICON) || mode.equals(A.TOGGLEICON)) {
@@ -281,8 +281,8 @@ public class DatePicker extends HtmlInputText {
 		}
 
 		if (!inline && !mode.equals(A.POPUP)) {
-			rw.endElement(H.DIV);
-			JQ.datePickerToggler(rw, clientId, clientId + C.USCORE + ADDON);
+			rw.endElement("div");
+			JQ.datePickerToggler(rw, clientId, clientId + "_" + ADDON);
 
 		} // Closes the popup prepend/append style div
 	}
@@ -291,39 +291,39 @@ public class DatePicker extends HtmlInputText {
 		Map<String, Object> attrs = getAttributes();
 
 		StringBuilder sb = new StringBuilder(150);
-		sb.append(JQ.DTFORMAT).append(C.COLON).append(C.QUOTE + convertFormat(sdf) + C.QUOTE).append(C.COMMA);
+		sb.append(JQ.DTFORMAT).append(":").append("'" + convertFormat(sdf) + "'").append(",");
 
 		if (A.toInt(attrs.get(JQ.NUMOFMONTHS)) > 0) {
-			sb.append(JQ.NUMOFMONTHS).append(C.COLON).append(attrs.get(JQ.NUMOFMONTHS)).append(C.COMMA);
+			sb.append(JQ.NUMOFMONTHS).append(":").append(attrs.get(JQ.NUMOFMONTHS)).append(",");
 		}
 		if (A.toInt(attrs.get(JQ.FIRSTDAY)) > 0) {
-			sb.append(JQ.FIRSTDAY).append(C.COLON).append(attrs.get(JQ.FIRSTDAY)).append(C.COMMA);
+			sb.append(JQ.FIRSTDAY).append(":").append(attrs.get(JQ.FIRSTDAY)).append(",");
 		}
 		if (A.toBool(attrs.get(JQ.SHOWBUTS))) {
-			sb.append(JQ.SHOWBUTS).append(C.COLON).append(C.TRUE).append(C.COMMA);
+			sb.append(JQ.SHOWBUTS).append(":").append(C.TRUE).append(",");
 		}
 		if (A.toBool(attrs.get(JQ.CHNGMONTH))) {
-			sb.append(JQ.CHNGMONTH).append(C.COLON).append(C.TRUE).append(C.COMMA);
+			sb.append(JQ.CHNGMONTH).append(":").append(C.TRUE).append(",");
 		}
 		if (A.toBool(attrs.get(JQ.CHNGYEAR))) {
-			sb.append(JQ.CHNGYEAR).append(C.COLON).append(C.TRUE).append(C.COMMA);
+			sb.append(JQ.CHNGYEAR).append(":").append(C.TRUE).append(",");
 		}
 		if (A.toBool(attrs.get(JQ.SHOWWK))) {
-			sb.append(JQ.SHOWWK).append(C.COLON).append(C.TRUE).append(C.COMMA);
+			sb.append(JQ.SHOWWK).append(":").append(C.TRUE).append(",");
 		}
 
 		if (mode.equals(A.TOGGLEICON) || mode.equals(A.ICONTOGGLE)) {
-			sb.append(JQ.SHOWON).append(C.COLON).append(C.QUOTE + H.BUTTON + C.QUOTE).append(C.COMMA);
+			sb.append(JQ.SHOWON).append(":").append("'" + H.BUTTON + "'").append(",");
 		}
 
 		/*
 		 * Attributes that need decoding the Date
 		 */
 		if (attrs.get(JQ.MINDATE) != null) {
-			sb.append(JQ.MINDATE + C.COLON + C.QUOTE).append(getDateAsString(attrs.get(JQ.MINDATE), sdf, sloc)).append(C.QUOTE);
+			sb.append(JQ.MINDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MINDATE), sdf, sloc)).append("'");
 		}
 		if (attrs.get(JQ.MAXDATE) != null) {
-			sb.append(JQ.MAXDATE + C.COLON + C.QUOTE).append(getDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append(C.QUOTE);
+			sb.append(JQ.MAXDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("'");
 		}
 
 		// If user specifies a specific language to use then we render the datepicker using this language

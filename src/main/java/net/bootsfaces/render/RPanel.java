@@ -89,8 +89,8 @@ public enum RPanel {
         boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
         
         if (isCollapsible) {
-	        rw.startElement(H.DIV, c);
-	        rw.writeAttribute(H.CLASS, "panel-group", null);
+	        rw.startElement("div", c);
+	        rw.writeAttribute("class", "panel-group", null);
         }
 
         String _look = A.asString(attrs,look);
@@ -104,8 +104,8 @@ public enum RPanel {
         }
 
         
-        rw.startElement(H.DIV, c);
-		rw.writeAttribute(H.ID, clientId, H.ID);
+        rw.startElement("div", c);
+		rw.writeAttribute("id", clientId, "id");
         Tooltip.generateTooltip(fc, attrs, rw);
         String _style = A.asString(attrs,style);
         if (null != _style && _style.length()>0) {
@@ -113,15 +113,15 @@ public enum RPanel {
         }
 
         if (_look != null) {
-            rw.writeAttribute(H.CLASS, _styleClass + PP + _look, H.CLASS); //"panel panel-" + Look
+            rw.writeAttribute("class", _styleClass + PP + _look, "class"); //"panel panel-" + Look
         } else {
-            rw.writeAttribute(H.CLASS, _styleClass + PPD, H.CLASS); //"panel panel-default"
+            rw.writeAttribute("class", _styleClass + PPD, "class"); //"panel panel-default"
         }
         
         UIComponent head = c.getFacet(heading.name());
         if (head != null || _title != null) {
-            rw.startElement(H.DIV, c);
-            rw.writeAttribute(H.CLASS, PH, H.CLASS); //"panel-heading"
+            rw.startElement("div", c);
+            rw.writeAttribute("class", PH, "class"); //"panel-heading"
             String _titleStyle = A.asString(attrs,titleStyle);
             if (null != _titleStyle) {
             	rw.writeAttribute("style", _titleStyle, "style");
@@ -129,9 +129,9 @@ public enum RPanel {
             if (_title != null) {
                 rw.startElement(H.H4, c);
                 if (_titleClass != null){
-                	rw.writeAttribute(H.CLASS, _titleClass, H.CLASS);
+                	rw.writeAttribute("class", _titleClass, "class");
                 } else {
-                	rw.writeAttribute(H.CLASS, "panel-title", H.CLASS);
+                	rw.writeAttribute("class", "panel-title", "class");
                 }
                 if (isCollapsible) {
 	                rw.startElement(H.A, c);
@@ -151,10 +151,10 @@ public enum RPanel {
                 head.encodeAll(fc);
                 rw.endElement(H.A);
             }
-            rw.endElement(H.DIV);
+            rw.endElement("div");
         }
 
-        rw.startElement(H.DIV, c);
+        rw.startElement("div", c);
         rw.writeAttribute("id", jQueryClientID+"content", null);
         String _contentClass = A.asString(attrs,contentClass);
         if (null == _contentClass) _contentClass="";
@@ -165,7 +165,7 @@ public enum RPanel {
         _contentClass = PB + " " + _contentClass;
         _contentClass=_contentClass.trim();
         if (_contentClass.length()>0)
-            rw.writeAttribute(H.CLASS, _contentClass, H.CLASS); //"panel-body"
+            rw.writeAttribute("class", _contentClass, "class"); //"panel-body"
         String _contentStyle = A.asString(attrs,contentStyle);
         if (null != _contentStyle && _contentStyle.length()>0) {
           rw.writeAttribute("style", _contentStyle, "style");
@@ -184,22 +184,22 @@ public enum RPanel {
             return;
         }
         ResponseWriter rw = fc.getResponseWriter();
-        rw.endElement(H.DIV); //panel-body
+        rw.endElement("div"); //panel-body
         UIComponent foot = c.getFacet(footer.name());
         if (foot != null) {
-            rw.startElement(H.DIV, c); //modal-footer
-            rw.writeAttribute(H.CLASS, PF, H.CLASS); //"panel-footer"
+            rw.startElement("div", c); //modal-footer
+            rw.writeAttribute("class", PF, "class"); //"panel-footer"
             foot.encodeAll(fc);
             
-            rw.endElement(H.DIV); //panel-footer
+            rw.endElement("div"); //panel-footer
         }
         
-        rw.endElement(H.DIV);
+        rw.endElement("div");
         Map<String, Object> attrs = c.getAttributes();
         boolean isCollapsible = attrs.get("collapsible") == null || attrs.get("collapsible").equals("true");
         if (isCollapsible) {
         	String jQueryClientID = c.getClientId().replace(":", "_");
-        	rw.endElement(H.DIV);
+        	rw.endElement("div");
             rw.startElement("input", c);
             rw.writeAttribute("type", "hidden", null);
 			String hiddenInputFieldID = jQueryClientID + "_collapsed";

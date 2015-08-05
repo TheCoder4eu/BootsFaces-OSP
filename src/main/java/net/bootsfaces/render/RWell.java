@@ -53,8 +53,8 @@ public enum RWell {
         Map<String, Object> attrs = c.getAttributes();
         String sz = A.asString(attrs, size);
         
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        rw.startElement("div", c);
+        rw.writeAttribute("id",c.getClientId(fc),"id");
         String style=(String) attrs.get("style");
         if (null!=style) {
         	rw.writeAttribute("style", style, null);
@@ -63,8 +63,8 @@ public enum RWell {
         if (null ==styleClass) styleClass=""; else styleClass=" "+styleClass;
         Tooltip.generateTooltip(fc, attrs, rw);
         
-        if(sz!=null) { rw.writeAttribute(H.CLASS, well+" "+well+"-"+sz+styleClass,H.CLASS); }
-        else           { rw.writeAttribute(H.CLASS, well+styleClass, H.CLASS); }
+        if(sz!=null) { rw.writeAttribute("class", well+" "+well+"-"+sz+styleClass,"class"); }
+        else           { rw.writeAttribute("class", well+styleClass, "class"); }
     }
     
     /**

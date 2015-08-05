@@ -105,34 +105,34 @@ public enum RnavBar {
          * See http://www.w3schools.com/tags/tag_nav.asp
          * Note: Internet Explorer 8 and earlier versions, do not support the <nav> tag.
          * When IE8 will be dropped there will be HTML5 <nav> tag instead of <div> */
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        rw.startElement("div", c);
+        rw.writeAttribute("id",c.getClientId(fc),"id");
         Tooltip.generateTooltip(fc, attrs, rw);
-        rw.writeAttribute(H.CLASS, ns,H.CLASS);
+        rw.writeAttribute("class", ns,"class");
         rw.writeAttribute(H.ROLE, "navigation", null);
         
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.CLASS, fluid ? "container-fluid" : "container",H.CLASS); //x Layout Centrato. TODO : layout full width
+        rw.startElement("div", c);
+        rw.writeAttribute("class", fluid ? "container-fluid" : "container","class"); //x Layout Centrato. TODO : layout full width
         
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.CLASS, NAVBARHEAD,H.CLASS); //navbar-header
+        rw.startElement("div", c);
+        rw.writeAttribute("class", NAVBARHEAD,"class"); //navbar-header
         rw.startElement(H.BUTTON, c);
         rw.writeAttribute(A.TYPE, A.BUTTON, A.TYPE);
-        rw.writeAttribute(H.CLASS, NAVBAR+"-toggle",H.CLASS); //navbar-toggle
+        rw.writeAttribute("class", NAVBAR+"-toggle","class"); //navbar-toggle
         rw.writeAttribute(A.DATA_TOGGLE, "collapse", A.TYPE);
         rw.writeAttribute(A.DATA_TARGET, ".navbar-ex1-collapse", A.TYPE);
         
-        rw.startElement(H.SPAN, c);rw.writeAttribute(H.CLASS, "sr-only",H.CLASS);rw.writeText("Toggle navigation", null);rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute(H.CLASS, "icon-bar",H.CLASS);rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute(H.CLASS, "icon-bar",H.CLASS);rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute(H.CLASS, "icon-bar",H.CLASS);rw.endElement(H.SPAN);
+        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "sr-only","class");rw.writeText("Toggle navigation", null);rw.endElement(H.SPAN);
+        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
+        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
+        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
         rw.endElement(H.BUTTON);
         String brand = A.asString(attrs.get(A.BRAND));
         String brandImg = A.asString(attrs.get(A.BRAND_IMG));
         //<a class="navbar-brand" href="#">Brand</a>
         if(brand!=null || brandImg!=null) {
         	rw.startElement(H.A, c);
-        	rw.writeAttribute(H.CLASS, NAVBARBRAND,H.CLASS); //navbar-brand
+        	rw.writeAttribute("class", NAVBARBRAND,"class"); //navbar-brand
         	String href = A.asString(attrs.get(A.BRAND_HREF));
         	if(href==null) { rw.writeAttribute(H.HREF, H.HASH,H.HREF); }
         	else           { rw.writeAttribute(H.HREF, href,H.HREF); }
@@ -149,15 +149,15 @@ public enum RnavBar {
                 rw.endElement(H.SPAN);
         	rw.endElement(H.A);
         }
-        rw.endElement(H.DIV); //navbar-header
+        rw.endElement("div"); //navbar-header
 
 
         /*
          * <!-- Collect the nav links, forms, and other content for toggling -->
          * <div class="collapse navbar-collapse navbar-ex1-collapse">
          */
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.CLASS, "collapse navbar-collapse navbar-ex1-collapse",H.CLASS);
+        rw.startElement("div", c);
+        rw.writeAttribute("class", "collapse navbar-collapse navbar-ex1-collapse","class");
         
         /* Brand now goes in navbar-header div */
     }
@@ -173,9 +173,9 @@ public enum RnavBar {
             return;
         }
         ResponseWriter rw = fc.getResponseWriter();
-        rw.endElement(H.DIV); //collapse
-        rw.endElement(H.DIV); //container
-        rw.endElement(H.DIV); //navbar
+        rw.endElement("div"); //collapse
+        rw.endElement("div"); //container
+        rw.endElement("div"); //navbar
         Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
 }

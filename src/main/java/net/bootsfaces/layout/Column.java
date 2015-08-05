@@ -91,7 +91,7 @@ public class Column extends UIComponentBase {
     
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
-        fc.getResponseWriter().endElement(H.DIV);
+        fc.getResponseWriter().endElement("div");
     }
 
     @Override

@@ -45,10 +45,10 @@ public enum RJumbotron {
          */
         ResponseWriter rw = fc.getResponseWriter();
         
-        rw.startElement(H.DIV, c);
-        rw.writeAttribute(H.ID,c.getClientId(fc),H.ID);
+        rw.startElement("div", c);
+        rw.writeAttribute("id",c.getClientId(fc),"id");
         Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        rw.writeAttribute(H.CLASS, jumbotron, H.CLASS);
+        rw.writeAttribute("class", jumbotron, "class");
     }
     
     /**
