@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.el.ValueExpression;
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 /**
@@ -30,6 +32,10 @@ import javax.faces.component.FacesComponent;
  * <p>By default, the <code>rendererType</code> property must be set to "<code>javax.faces.Messages</code>".
  * This value can be changed by calling the <code>setRendererType()</code> method.</p>
  */
+@ResourceDependencies({
+	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
+    @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
+    @ResourceDependency(library="bsf", name="js/alert.js", target="body")})
 @FacesComponent("net.bootsfaces.component.Messages")
 public class Messages extends javax.faces.component.UIMessages {
 
