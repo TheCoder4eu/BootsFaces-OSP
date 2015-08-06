@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -69,9 +70,33 @@ public class Row extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         
         Map<String, Object> attrs = getAttributes();
-       	R.encodeRow(rw, this, A.asString(attrs.get(H.STYLE)), A.asString(attrs.get(H.STYLECLASS)));
+       	encodeRow(rw, this, A.asString(attrs.get(H.STYLE)), A.asString(attrs.get(H.STYLECLASS)));
         
     }
+    
+    /**
+     * Encodes a Row
+     * @param rw
+     * @param c
+     * @param style
+     * @param sclass
+     * @throws IOException 
+     */
+    public static final void encodeRow(ResponseWriter rw, UIComponent c, String style, String sclass) throws IOException {
+        rw.startElement("div", c);
+        if (null != c) {
+        	Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+        }
+        String s = "row";
+        if(sclass!=null) { s+=" "+sclass; }        
+        if(c!=null) { rw.writeAttribute("id",c.getClientId(),"id"); }
+        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
+        rw.writeAttribute("class", s, "class");
+        if (null != c) {
+        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
+        }
+    }
+
     
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {

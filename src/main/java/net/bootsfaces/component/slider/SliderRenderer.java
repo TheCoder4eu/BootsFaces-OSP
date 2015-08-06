@@ -19,11 +19,11 @@
 
 package net.bootsfaces.component.slider;
 
-import javax.faces.component.*;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -31,6 +31,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
@@ -118,37 +119,44 @@ public class SliderRenderer extends CoreRenderer {
 		} else {
 			o = C.H;
 		}
-		boolean vo = o.startsWith("vertical");
+		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");
 
 		rw.startElement("div", null);// form-group
 		Tooltip.generateTooltip(context, slider, rw);
 		rw.writeAttribute("class", "form-group", "class");
-		R.encodeRow(rw, null, null, (vo ? "slider-vertical" : "slider")); 
+		rw.startElement("div", null);
+		String s = "row " +(isVertical ? "slider-vertical" : "slider");
+		rw.writeAttribute("class", s, "class");
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
-		if (vo) {
+		if (isVertical) {
 			if (label != null && !bottom) {
-				R.encodeRow(rw, null, null, null);
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div");/* Row */
 			}
-			R.encodeRow(rw, null, null, null);
+			rw.startElement("div", null);
+			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderDiv(rw, vo, clientId);
+				encodeSliderDiv(rw, isVertical, clientId);
 				rw.endElement("div");/* Row */
-				R.encodeRow(rw, null, null, null);
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
 			}
-			encodeInput(slider, rw, mode, context, val, clientId, vo, min, max);
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 			if (!bottom) {
 				rw.endElement("div"); /* Row */
 
-				R.encodeRow(rw, null, null, null);
-				encodeSliderDiv(rw, vo, clientId);
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
+				encodeSliderDiv(rw, isVertical, clientId);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
-				R.encodeRow(rw, null, null, null);
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div"); /* Row */
 			}
@@ -157,7 +165,8 @@ public class SliderRenderer extends CoreRenderer {
 			// <<-- Horizontal -->>
 
 			if (label != null) {
-				R.encodeRow(rw, null, null, null);
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
 
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);
@@ -169,14 +178,15 @@ public class SliderRenderer extends CoreRenderer {
 
 				rw.endElement("div");/* Row */
 			}
-			R.encodeRow(rw, null, null, null);
+			rw.startElement("div", null);
+			rw.writeAttribute("class", "row", "class");
 
-			encodeInput(slider, rw, mode, context, val, clientId, vo, min, max);
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderDiv(rw, vo, clientId);
+			encodeSliderDiv(rw, isVertical, clientId);
 			rw.endElement("div");/* Row */
 
-		} // if vo
+		} 
 
 		// <<---------------------------------------
 		rw.endElement("div"); // rw.write("<!-- Slider Widget Row
@@ -219,12 +229,18 @@ public class SliderRenderer extends CoreRenderer {
 		rw.writeAttribute("min", min, null);
 		rw.writeAttribute("max", max, null);
 		rw.writeAttribute("maxlength", String.valueOf(max).length(), null);
+		if (slider.isDisabled()) {
+			rw.writeAttribute("disabled", "disabled", null);
+		}
+		if (slider.isReadonly()) {
+			rw.writeAttribute("readonly", "readonly", null);
+		}
+
 
 		rw.writeAttribute("class", "form-control input-sm" + (vo ? " text-center" : ""), "class");
 
 		rw.writeAttribute("value", val, null);
 
-		// if (rdonly) { rw.writeAttribute(H.READONLY, H.READONLY, null); }
 		rw.endElement("input");
 
 		if (!mode.equals("basic")) {
@@ -270,6 +286,9 @@ public class SliderRenderer extends CoreRenderer {
 	private void encodeJS(Slider slider, ResponseWriter rw, String cId) throws IOException {
 		StringBuilder sb = new StringBuilder(100);
 		sb.append("value").append(":").append(slider.getValue()).append(",");
+		if (slider.isDisabled() || slider.isReadonly()) {
+			sb.append("disabled: true,");
+		}
 		if (slider.getMax() > 0) {
 			sb.append("max").append(":").append(slider.getMax()).append(",");
 		}

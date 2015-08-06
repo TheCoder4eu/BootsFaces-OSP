@@ -158,29 +158,7 @@ public final class R {
         //rw.endElement(H.SPAN);
     }
     
-    /**
-     * Encodes a Row
-     * @param rw
-     * @param c
-     * @param style
-     * @param sclass
-     * @throws IOException 
-     */
-    public static final void encodeRow(ResponseWriter rw, UIComponent c, String style, String sclass) throws IOException {
-        rw.startElement("div", c);
-        if (null != c) {
-        	Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
-        }
-        String s = ROW;
-        if(sclass!=null) { s+=" "+sclass; }        
-        if(c!=null) { rw.writeAttribute("id",c.getClientId(),"id"); }
-        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
-        rw.writeAttribute("class", s, "class");
-        if (null != c) {
-        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
-        }
-    }
-    
+     
     /**
      * Encodes a Column
      * @param rw
