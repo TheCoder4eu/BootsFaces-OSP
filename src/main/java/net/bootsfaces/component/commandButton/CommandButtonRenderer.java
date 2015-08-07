@@ -27,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -149,7 +150,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 			String type, boolean ajax) throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
 
-		String render = component.getUpdate();
+		String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
 		String complete = component.getOncomplete();
 		// 3) is it a Submit?
 		if (!type.equals(A.RESET) && !type.equals(A.BUTTON)) {
