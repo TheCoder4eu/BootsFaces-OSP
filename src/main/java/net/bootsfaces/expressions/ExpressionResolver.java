@@ -74,21 +74,31 @@ public class ExpressionResolver {
 		try {
 			List<UIComponent> c;
 			if (currentId.startsWith("@")) {
+				String[] params = null;
 				AbstractExpressionResolver resolver;
-				if (resolvers.containsKey(currentId)) {
-					resolver = resolvers.get(currentId);
+				String className = currentId.substring(1, 2).toUpperCase();
+				if (currentId.length() > 2)
+					className += currentId.substring(2);
+				int paramStart = className.indexOf('(');
+				if (paramStart > 0) {
+					int paramEnd = className.indexOf(')');
+					String paramsCSV = className.substring(paramStart + 1, paramEnd);
+					params = paramsCSV.split(",");
+					className = className.substring(0, paramStart).trim();
+				}
+				if (resolvers.containsKey(className)) {
+					resolver = resolvers.get(className);
 				} else {
-					String className = currentId.substring(1, 2).toUpperCase();
-					if (currentId.length()>2) className += currentId.substring(2);
 					Class<?> rc = Class.forName("net.bootsfaces.expressions." + className + "ExpressionResolver");
 					resolver = (AbstractExpressionResolver) rc.newInstance();
 					synchronized (resolvers) {
-						if (!resolvers.containsKey(currentId)) resolvers.put(currentId, resolver);
+						if (!resolvers.containsKey(className))
+							resolvers.put(className, resolver);
 					}
 				}
-				c = resolver.resolve(component, parentId, currentId, originalExpression);
+				c = resolver.resolve(component, parentId, currentId, originalExpression, params);
 			} else
-				c = idExpressionResolver.resolve(component, parentId, currentId, originalExpression);
+				c = idExpressionResolver.resolve(component, parentId, currentId, originalExpression, null);
 			if (null != c && c.size() == 1) {
 				parentId += ":" + c.get(0).getId();
 			} else
@@ -96,8 +106,8 @@ public class ExpressionResolver {
 						+ ":" + currentId);
 			return parentId;
 		} catch (ReflectiveOperationException e) {
-			throw new FacesException(
-					"Invalid search expression: " + originalExpression + " The subexpression " + currentId + " doesn't exist");
+			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
+					+ currentId + " doesn't exist");
 		}
 	}
 

@@ -10,7 +10,7 @@ import javax.faces.component.UIViewRoot;
 
 public class NoneExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId,
-			String originalExpression) {
+			String originalExpression, String[] parameters) {
 
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		return result;

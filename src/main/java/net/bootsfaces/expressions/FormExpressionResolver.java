@@ -9,7 +9,7 @@ import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
 
 public class FormExpressionResolver implements AbstractExpressionResolver {
-	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId, String originalExpression) {
+	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId, String originalExpression, String[] parameters) {
 		
 		UIComponent c = component;
 		

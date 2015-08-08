@@ -10,7 +10,7 @@ import javax.faces.component.UIViewRoot;
 
 public class ParentExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId,
-			String originalExpression) {
+			String originalExpression, String[] parameters) {
 		if (component.getParent() != null) {
 			List<UIComponent> result = new ArrayList<UIComponent>();
 			result.add(component.getParent());
