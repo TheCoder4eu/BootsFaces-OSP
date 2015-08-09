@@ -24,11 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.FacesException;
-import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
 import javax.faces.component.UINamingContainer;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
 /**
@@ -46,7 +43,7 @@ public class ExpressionResolver {
 		List<String> expressions = getExpressions(update);
 		String result = "";
 		for (String exp : expressions) {
-			result = getComponentId(context, component, exp);
+			result += getComponentId(context, component, exp) + " ";
 		}
 		return result.trim();
 	}
@@ -54,11 +51,15 @@ public class ExpressionResolver {
 	private static String getComponentId(FacesContext context, UIComponent component, String originalExpression) {
 		char separatorChar = UINamingContainer.getSeparatorChar(context);
 		String separator = "" + separatorChar;
-		String parentId = "";
+		UIComponent root;
 		if (originalExpression.startsWith(":")) {
 			originalExpression = originalExpression.substring(1);
-			parentId = ":";
+			root = context.getViewRoot();
+		} else {
+			root = component;
 		}
+		List<UIComponent> roots = new ArrayList<UIComponent>();
+		roots.add(root);
 		String[] subexpressions = originalExpression.split(separator);
 		for (int i = 0; i < subexpressions.length; i++) {
 			String currentId = subexpressions[i];
@@ -67,19 +68,22 @@ public class ExpressionResolver {
 					i++;
 					currentId = "@findId(" + subexpressions[i] + ")";
 				}
-				parentId = translateSearchExpressionToId(component, parentId, currentId, originalExpression);
+				roots = translateSearchExpressionToId(component, roots, currentId, originalExpression);
 			} else
 				throw new FacesException("Invalid search expression: " + originalExpression);
 		}
 
-		UIComponent c = component.findComponent(parentId);
-		return c.getClientId();
+		String result = "";
+		for (UIComponent c:roots) {
+			result += c.getClientId() + " ";
+		}
+		return result.trim();
 	}
 
-	private static String translateSearchExpressionToId(UIComponent component, String parentId, String currentId,
+	private static List<UIComponent> translateSearchExpressionToId(UIComponent component, List<UIComponent> roots, String currentId,
 			String originalExpression) {
+		List<UIComponent> result = new ArrayList<UIComponent>();
 		try {
-			List<UIComponent> c;
 			if (currentId.startsWith("@")) {
 				String[] params = null;
 				AbstractExpressionResolver resolver;
@@ -103,32 +107,17 @@ public class ExpressionResolver {
 							resolvers.put(className, resolver);
 					}
 				}
-				c = resolver.resolve(component, parentId, currentId, originalExpression, params);
+				result.addAll(resolver.resolve(component, roots, currentId, originalExpression, params));
 			} else
-				c = idExpressionResolver.resolve(component, parentId, currentId, originalExpression, null);
-			if (null != c && c.size() == 1) {
-				parentId = determineQualifiedId(parentId, c);
-			} else
-				throw new FacesException("Invalid search expression: " + originalExpression + " resolved to " + parentId
-						+ ":" + currentId);
-			return parentId;
+				result.addAll(idExpressionResolver.resolve(component, roots, currentId, originalExpression, null));
+			
+			return result;
 		} catch (ReflectiveOperationException e) {
 			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
 					+ currentId + " doesn't exist");
 		}
 	}
 
-	private static String determineQualifiedId(String parentId, List<UIComponent> c) {
-		UIComponent component = c.get(0);
-		String qualifiedId = component.getId();
-		while (component != null && (!(component instanceof UIViewRoot))&& (!(component instanceof UIForm))) {
-			component = component.getParent();
-			if (component instanceof NamingContainer)
-				qualifiedId = component.getId() + ":" + qualifiedId;
-		}
-		parentId = ":" + qualifiedId;
-		return parentId;
-	}
 
 	public static List<String> getExpressions(String commaSeparatedList) {
 		List<String> expressions = new ArrayList<String>();
@@ -136,7 +125,7 @@ public class ExpressionResolver {
 		int start = 0;
 		while (pos < commaSeparatedList.length()) {
 			char c = commaSeparatedList.charAt(pos);
-			if (c == ' ' | c == ',') {
+			if (c == ' ' || c == ',') {
 				if (pos - start > 0) {
 					expressions.add(commaSeparatedList.substring(start, pos));
 				}

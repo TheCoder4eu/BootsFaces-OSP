@@ -6,20 +6,27 @@ import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.NamingContainer;
+import javax.faces.component.UIViewRoot;
+import javax.faces.context.FacesContext;
 
 public class FindIdExpressionResolver implements AbstractExpressionResolver {
-	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId,
+	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 
-		UIComponent searchRoot = component;
-		if (parentId != null && parentId.length() > 0) {
-			searchRoot = component.findComponent(parentId);
+		List<UIComponent> result = new ArrayList<UIComponent>();
+		for (UIComponent parent : parentComponents) {
+			UIComponent searchRoot = parent;
+			while ((!(searchRoot instanceof UIViewRoot)) && (!(searchRoot instanceof NamingContainer))) {
+				searchRoot = searchRoot.getParent();
+			}
+				
+			UIComponent c = findIdRecursively(searchRoot, parameters[0]);
+			if (null != c) {
+				result.add(c);
+			}
 		}
-			
-		UIComponent c = findIdRecursively(searchRoot, parameters[0]);
-		if (null != c) {
-			List<UIComponent> result = new ArrayList<UIComponent>();
-			result.add(c);
+		if (result.size() > 0) {
 			return result;
 		}
 
@@ -27,6 +34,8 @@ public class FindIdExpressionResolver implements AbstractExpressionResolver {
 	}
 
 	public UIComponent findIdRecursively(UIComponent parent, String id) {
+		if (null==parent)
+			return null;
 		if (id.equals(parent.getId())) {
 			return parent;
 		}
@@ -38,5 +47,4 @@ public class FindIdExpressionResolver implements AbstractExpressionResolver {
 		}
 		return null;
 	}
-
 }

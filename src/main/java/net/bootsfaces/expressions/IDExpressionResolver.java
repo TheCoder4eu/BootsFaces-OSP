@@ -5,21 +5,30 @@ import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.NamingContainer;
+import javax.faces.component.UIViewRoot;
 
 public class IDExpressionResolver implements AbstractExpressionResolver {
-	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId,
+	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
-		String childId;
-		if (parentId.endsWith(":"))
-			childId = parentId + ":" + currentId;
-		else if (parentId.length() > 0)
-			childId = parentId + ":" + currentId;
-		else
-			childId = currentId;
-		UIComponent c = component.findComponent(childId);
-		if (null != c) {
-			List<UIComponent> result = new ArrayList<UIComponent>();
-			result.add(c);
+		List<UIComponent> result = new ArrayList<UIComponent>();
+		for (UIComponent parent : parentComponents) {
+			while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
+				parent = parent.getParent();
+			}
+
+			String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
+			String childId;
+			if (parentId.endsWith(":"))
+				childId = parentId + currentId;
+			else
+				childId = parentId + ":" + currentId;
+			UIComponent c = component.findComponent(childId);
+			if (null != c) {
+				result.add(c);
+			}
+		}
+		if (result.size() > 0) {
 			return result;
 		}
 		throw new FacesException("ID not found: " + currentId + " search expression: " + originalExpression);

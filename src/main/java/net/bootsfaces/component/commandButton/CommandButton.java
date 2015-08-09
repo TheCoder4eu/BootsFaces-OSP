@@ -73,7 +73,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	protected enum PropertyKeys {
-		accesskey, action, actionListener, ajax, binding, dir, disabled, icon, iconAlign, iconAwesome, id, immediate, lang, look, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, size, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value;
+		accesskey, ajax, binding, dir, disabled, icon, iconAlign, iconAwesome, immediate, lang, look, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, size, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value;
 
 		String toString;
 
@@ -109,25 +109,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * The button action, this can be method expression or a string outcome.
-	 * <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAction(javax.el.MethodExpression _action) {
-		getStateHelper().put(PropertyKeys.action, _action);
-	}
-
-	/**
-	 * A method expression that refers to a method with this signature: void
-	 * methodName(Action-Event). <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setActionListener(javax.faces.event.ActionListener _actionListener) {
-		getStateHelper().put(PropertyKeys.actionListener, _actionListener);
-	}
-
-	/**
-	 * Whether the Button submits the form with ajax. <br></br>
+	 * Whether the Button submits the form with AJAX. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -138,7 +120,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	/**
-	 * Whether the Button submits the form with ajax. <br></br>
+	 * Whether the Button submits the form with AJAX. <br></br>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -268,25 +250,6 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	 */
 	public void setIconAwesome(String _iconAwesome) {
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String) getStateHelper().eval(PropertyKeys.id);
-		return value;
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
 	}
 
 	/**
@@ -921,5 +884,4 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	public void setValue(String _value) {
 		getStateHelper().put(PropertyKeys.value, _value);
 	}
-
 }

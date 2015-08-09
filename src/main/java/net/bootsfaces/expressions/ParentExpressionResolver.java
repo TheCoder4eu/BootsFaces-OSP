@@ -5,15 +5,17 @@ import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
 
 public class ParentExpressionResolver implements AbstractExpressionResolver {
-	public List<UIComponent> resolve(UIComponent component, String parentId, String currentId,
+	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
-		if (component.getParent() != null) {
-			List<UIComponent> result = new ArrayList<UIComponent>();
-			result.add(component.getParent());
+		List<UIComponent> result = new ArrayList<UIComponent>();
+		for (UIComponent parent : parentComponents) {
+			if (parent.getParent() != null) {
+				result.add(parent.getParent());
+			}
+		}
+		if (result.size() > 0) {
 			return result;
 		}
 		throw new FacesException("Invalid search expression - the component isn't inside a form " + originalExpression);

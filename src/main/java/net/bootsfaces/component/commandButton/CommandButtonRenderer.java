@@ -57,12 +57,13 @@ public class CommandButtonRenderer extends CoreRenderer {
 		}
 		CommandButton commandButton = (CommandButton) component;
 		ResponseWriter rw = context.getResponseWriter();
-
+//		component.setId(component.getId());
 		String CID = component.getClientId(context);
 
 		// 2) get the type (submit, button, reset ; default submit)
 		String type = commandButton.getType();
-		if (null == type) type="submit";
+		if (null == type)
+			type = "submit";
 		// 3) is it Ajax? (default= false)
 		String style = commandButton.getStyle();
 
@@ -103,8 +104,8 @@ public class CommandButtonRenderer extends CoreRenderer {
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 		Map<String, Object> attrs = component.getAttributes();
-		
-		CommandButton commandButton = (CommandButton)component;
+
+		CommandButton commandButton = (CommandButton) component;
 
 		Object value = commandButton.getValue();
 		String icon = commandButton.getIcon();
@@ -121,22 +122,22 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 			Object ialign = commandButton.getIconAlign(); // Default Left
 
-            if (ialign != null && ialign.equals(A.RIGHT)) {
-                value = value != null ? value + " " : null;
-                writeText(rw, value, null);
+			if (ialign != null && ialign.equals(A.RIGHT)) {
+				value = value != null ? value + " " : null;
+				writeText(rw, value, null);
 				R.encodeIcon(rw, component, icon, fa);
 			} else {
 				R.encodeIcon(rw, component, icon, fa);
-                value = value != null ? " " + value : null;
-                writeText(rw, value, null);
+				value = value != null ? " " + value : null;
+				writeText(rw, value, null);
 			}
 
 		} else {
-			if (component.getChildCount() > 0 ){
-                value = value != null ? " " + value : null;
-                writeText(rw, value, null);
-			}else{
-                writeText(rw, value, null);
+			if (component.getChildCount() > 0) {
+				value = value != null ? " " + value : null;
+				writeText(rw, value, null);
+			} else {
+				writeText(rw, value, null);
 			}
 		}
 
@@ -145,12 +146,10 @@ public class CommandButtonRenderer extends CoreRenderer {
 		Tooltip.activateTooltips(context, attrs, component);
 	}
 
-
 	private void generateOnClickHandler(FacesContext context, CommandButton component, ResponseWriter rw, String CID,
 			String type, boolean ajax) throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
 
-		String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
 		String complete = component.getOncomplete();
 		// 3) is it a Submit?
 		if (!type.equals(A.RESET) && !type.equals(A.BUTTON)) {
@@ -161,18 +160,22 @@ public class CommandButtonRenderer extends CoreRenderer {
 			}
 
 			if (ajax) {
+				String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
 				cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
 						.append(render == null ? "" : (",'" + render + "'"));
 				if (complete != null) {
 					cJS.append(",function(){" + complete + "}");
 				}
 				cJS.append(");");
+				if (CID.contains("some_elements"))
+					System.out.println(CID + "/" + cJS);
 			} else {
 				cJS = new StringBuilder(encodeClick(component));// Fix
 				// Chrome//+"document.forms['"+formId+"'].submit();");
 			}
 		}
 		if (ajax && type.equals(A.RESET)) {
+			String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
 			cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
 					.append(render == null ? "" : (",'" + render + "'"));
 			if (complete != null) {
