@@ -66,7 +66,14 @@ public class ExpressionResolver {
 			if (currentId != null && currentId.length() > 0) {
 				if (currentId.equals("**")) {
 					i++;
+					currentId = "@findIdRecursively(" + subexpressions[i] + ")";
+				}
+				else if (currentId.equals("*")) {
+					i++;
 					currentId = "@findId(" + subexpressions[i] + ")";
+				}
+				else if (currentId.contains("*")) {
+					currentId = "@findPartialId(" + currentId + ")";
 				}
 				roots = translateSearchExpressionToId(component, roots, currentId, originalExpression);
 			} else

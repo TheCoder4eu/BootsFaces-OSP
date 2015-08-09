@@ -10,7 +10,7 @@ import javax.faces.component.NamingContainer;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
-public class FindIdExpressionResolver implements AbstractExpressionResolver {
+public class FindPartialIdExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 

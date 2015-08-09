@@ -10,7 +10,7 @@ import javax.faces.component.NamingContainer;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
-public class FindIdExpressionResolver implements AbstractExpressionResolver {
+public class FindIdRecursiveExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 
@@ -21,7 +21,7 @@ public class FindIdExpressionResolver implements AbstractExpressionResolver {
 				searchRoot = searchRoot.getParent();
 			}
 				
-			UIComponent c = findId(searchRoot, parameters[0]);
+			UIComponent c = findIdRecursively(searchRoot, parameters[0]);
 			if (null != c) {
 				result.add(c);
 			}
@@ -33,7 +33,7 @@ public class FindIdExpressionResolver implements AbstractExpressionResolver {
 		throw new FacesException("Invalid search expression - couldn't find id " + currentId + ". Complete search expression: " + originalExpression);
 	}
 
-	public UIComponent findId(UIComponent parent, String id) {
+	public UIComponent findIdRecursively(UIComponent parent, String id) {
 		if (null==parent)
 			return null;
 		if (id.equals(parent.getId())) {
@@ -42,9 +42,8 @@ public class FindIdExpressionResolver implements AbstractExpressionResolver {
 		Iterator<UIComponent> facetsAndChildren = parent.getFacetsAndChildren();
 		while (facetsAndChildren.hasNext()) {
 			UIComponent child = facetsAndChildren.next();
-			if (id.equals(child.getId())) {
-				return child;
-			}
+			UIComponent result = findIdRecursively(child, id);
+			if (null != result) return result;
 		}
 		return null;
 	}
