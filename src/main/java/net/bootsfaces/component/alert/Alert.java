@@ -81,7 +81,7 @@ tooltipPosition
 	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
@@ -90,7 +90,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <br />
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -99,7 +99,7 @@ tooltipPosition
 	
 
 	/**
-	 * If true close button will be displayed. <br />
+	 * If true close button will be displayed. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isClosable() {
@@ -108,7 +108,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * If true close button will be displayed. <br />
+	 * If true close button will be displayed. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setClosable(boolean _closable) {
@@ -117,7 +117,7 @@ tooltipPosition
 	
 
 	/**
-	 * Severity of the Alert, can be success, info, warning, danger. Default is warning. <br />
+	 * Severity of the Alert, can be success, info, warning, danger. Default is warning. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSeverity() {
@@ -126,7 +126,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Severity of the Alert, can be success, info, warning, danger. Default is warning. <br />
+	 * Severity of the Alert, can be success, info, warning, danger. Default is warning. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSeverity(String _severity) {
@@ -135,7 +135,7 @@ tooltipPosition
 	
 
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -144,7 +144,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Inline style of the input element. <br />
+	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -153,7 +153,7 @@ tooltipPosition
 	
 
 	/**
-	 * Style class of this element. <br />
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -162,7 +162,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Style class of this element. <br />
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -171,7 +171,7 @@ tooltipPosition
 	
 
 	/**
-	 * Bold Title displayed before your message. <br />
+	 * Bold Title displayed before your message. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTitle() {
@@ -180,7 +180,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Bold Title displayed before your message. <br />
+	 * Bold Title displayed before your message. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -189,7 +189,7 @@ tooltipPosition
 	
 
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
@@ -198,7 +198,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The text of the tooltip. <br />
+	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -207,7 +207,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
@@ -216,7 +216,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -225,7 +225,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
@@ -234,7 +234,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -243,7 +243,7 @@ tooltipPosition
 	
 
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
@@ -252,7 +252,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <br />
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -261,7 +261,7 @@ tooltipPosition
 	
 
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <br />
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
@@ -270,7 +270,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <br />
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

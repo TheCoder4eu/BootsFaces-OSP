@@ -71,7 +71,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br></br>
+	 * backing bean. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -84,7 +84,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <br></br>
+	 * backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -93,7 +93,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br></br>
+	 * with this specific class <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -105,7 +105,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br></br>
+	 * with this specific class <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -113,7 +113,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style of the content area. <br></br>
+	 * Inline style of the content area. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -124,7 +124,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style of the content area. <br></br>
+	 * Inline style of the content area. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -132,7 +132,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <br></br>
+	 * Use up For Dropup and down for Dropdown, default is down. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -143,7 +143,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <br></br>
+	 * Use up For Dropup and down for Dropdown, default is down. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDrop(String _drop) {
@@ -151,7 +151,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style <br></br>
+	 * Inline style <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -162,7 +162,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style <br></br>
+	 * Inline style <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -170,7 +170,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * CSS style class <br></br>
+	 * CSS style class <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -181,7 +181,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * CSS style class <br></br>
+	 * CSS style class <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -189,7 +189,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * The text of the tooltip. <br></br>
+	 * The text of the tooltip. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -200,7 +200,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * The text of the tooltip. <br></br>
+	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -209,7 +209,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -221,7 +221,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -230,7 +230,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -242,7 +242,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -251,7 +251,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -263,7 +263,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <br></br>
+	 * milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -273,7 +273,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br></br>
+	 * "auto left". Default to "bottom". <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -286,7 +286,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <br></br>
+	 * "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
