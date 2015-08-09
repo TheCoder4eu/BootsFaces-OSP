@@ -24,8 +24,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.FacesException;
+import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.UINamingContainer;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 
 /**
@@ -43,7 +46,7 @@ public class ExpressionResolver {
 		List<String> expressions = getExpressions(update);
 		String result = "";
 		for (String exp : expressions) {
-			result += " " + getComponentId(context, component, exp);
+			result = getComponentId(context, component, exp);
 		}
 		return result.trim();
 	}
@@ -60,6 +63,10 @@ public class ExpressionResolver {
 		for (int i = 0; i < subexpressions.length; i++) {
 			String currentId = subexpressions[i];
 			if (currentId != null && currentId.length() > 0) {
+				if (currentId.equals("**")) {
+					i++;
+					currentId = "@findId(" + subexpressions[i] + ")";
+				}
 				parentId = translateSearchExpressionToId(component, parentId, currentId, originalExpression);
 			} else
 				throw new FacesException("Invalid search expression: " + originalExpression);
@@ -100,7 +107,7 @@ public class ExpressionResolver {
 			} else
 				c = idExpressionResolver.resolve(component, parentId, currentId, originalExpression, null);
 			if (null != c && c.size() == 1) {
-				parentId += ":" + c.get(0).getId();
+				parentId = determineQualifiedId(parentId, c);
 			} else
 				throw new FacesException("Invalid search expression: " + originalExpression + " resolved to " + parentId
 						+ ":" + currentId);
@@ -109,6 +116,18 @@ public class ExpressionResolver {
 			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
 					+ currentId + " doesn't exist");
 		}
+	}
+
+	private static String determineQualifiedId(String parentId, List<UIComponent> c) {
+		UIComponent component = c.get(0);
+		String qualifiedId = component.getId();
+		while (component != null && (!(component instanceof UIViewRoot))&& (!(component instanceof UIForm))) {
+			component = component.getParent();
+			if (component instanceof NamingContainer)
+				qualifiedId = component.getId() + ":" + qualifiedId;
+		}
+		parentId = ":" + qualifiedId;
+		return parentId;
 	}
 
 	public static List<String> getExpressions(String commaSeparatedList) {

@@ -14,7 +14,6 @@ public class FormExpressionResolver implements AbstractExpressionResolver {
 		UIComponent c = component;
 		
 		while (c != null && c.getClass() != UIViewRoot.class) {
-			System.out.println(c.getClass().getName());
 			if (UIForm.class.isAssignableFrom(c.getClass())) {
 				List<UIComponent> result = new ArrayList<UIComponent>();
 				result.add(c);
