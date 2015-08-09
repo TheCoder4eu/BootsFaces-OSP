@@ -68,7 +68,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * By default, you can close a modal dialog by clicking somewhere outside
-	 * the modal. Set backdrop="false" to disable this feature. <br></br>
+	 * the modal. Set backdrop="false" to disable this feature. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -80,7 +80,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * By default, you can close a modal dialog by clicking somewhere outside
-	 * the modal. Set backdrop="false" to disable this feature. <br></br>
+	 * the modal. Set backdrop="false" to disable this feature. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBackdrop(boolean _backdrop) {
@@ -89,7 +89,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * If true, the modal dialog can be closed by clicking the small cross in
-	 * the upper right corner <br></br>
+	 * the upper right corner <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -101,7 +101,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * If true, the modal dialog can be closed by clicking the small cross in
-	 * the upper right corner <br></br>
+	 * the upper right corner <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setClosable(boolean _closable) {
@@ -110,7 +110,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * By default, users can close modal dialogs by hitting the ESC key. Set
-	 * close-on-escape="false" to disable this feature. <br></br>
+	 * close-on-escape="false" to disable this feature. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -122,7 +122,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * By default, users can close modal dialogs by hitting the ESC key. Set
-	 * close-on-escape="false" to disable this feature. <br></br>
+	 * close-on-escape="false" to disable this feature. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCloseOnEscape(boolean _closeOnEscape) {
@@ -131,7 +131,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br></br>
+	 * with this specific class <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -143,7 +143,7 @@ public class Modal extends UIComponentBase {
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <br></br>
+	 * with this specific class <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -151,7 +151,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Inline style of the content area. <br></br>
+	 * Inline style of the content area. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -162,7 +162,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Inline style of the content area. <br></br>
+	 * Inline style of the content area. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -170,7 +170,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
+	 * Unique identifier of the component in a namingContainer. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -181,7 +181,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
+	 * Unique identifier of the component in a namingContainer. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setId(String _id) {
@@ -189,7 +189,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Modal's size. Possible values modal-sm, modal-lg <br></br>
+	 * Modal's size. Possible values modal-sm, modal-lg <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -200,7 +200,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Modal's size. Possible values modal-sm, modal-lg <br></br>
+	 * Modal's size. Possible values modal-sm, modal-lg <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
@@ -208,7 +208,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Inline style <br></br>
+	 * Inline style <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -219,7 +219,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Inline style <br></br>
+	 * Inline style <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -227,7 +227,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Style class of this element. <br></br>
+	 * Style class of this element. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -238,7 +238,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Style class of this element. <br></br>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -246,7 +246,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Bold title displayed in Modal's header. <br></br>
+	 * Bold title displayed in Modal's header. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -257,7 +257,7 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Bold title displayed in Modal's header. <br></br>
+	 * Bold title displayed in Modal's header. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
