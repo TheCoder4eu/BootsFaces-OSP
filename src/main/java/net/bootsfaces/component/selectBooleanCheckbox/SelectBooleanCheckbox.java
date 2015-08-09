@@ -248,24 +248,6 @@ tooltipPosition
 	
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String)getStateHelper().eval(PropertyKeys.id);
-		return  value;
-	}
-	
-	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-	    getStateHelper().put(PropertyKeys.id, _id);
-    }
-	
-
-	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <br></br>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */

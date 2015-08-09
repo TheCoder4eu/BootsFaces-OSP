@@ -65,25 +65,6 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. 
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String) getStateHelper().eval(PropertyKeys.id);
-		return value;
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
-	}
-
-	/**
 	 * Inline CSS of the div surrounding the tab pane. 
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been

@@ -170,25 +170,6 @@ public class Modal extends UIComponentBase {
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String) getStateHelper().eval(PropertyKeys.id);
-		return value;
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
-	}
-
-	/**
 	 * Modal's size. Possible values modal-sm, modal-lg <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been

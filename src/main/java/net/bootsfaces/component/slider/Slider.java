@@ -167,25 +167,6 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br />
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String) getStateHelper().eval(PropertyKeys.id);
-		return value;
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br />
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
-	}
-
-	/**
 	 * Label for the widget field. <br />
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been

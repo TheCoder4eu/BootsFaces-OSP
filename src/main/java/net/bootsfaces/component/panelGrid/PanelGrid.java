@@ -135,25 +135,6 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getId() {
-		String value = (String) getStateHelper().eval(PropertyKeys.id);
-		return value;
-	}
-
-	/**
-	 * Unique identifier of the component in a namingContainer. <br></br>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setId(String _id) {
-		getStateHelper().put(PropertyKeys.id, _id);
-	}
-
-	/**
 	 * Comma-separated list of the CSS classes assigned to each row. <br></br>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
