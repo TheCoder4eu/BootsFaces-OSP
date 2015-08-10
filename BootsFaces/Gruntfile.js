@@ -46,7 +46,7 @@ module.exports = function(grunt) {
 					'css/tooltip.css',
 					'css/wells.css',
 					'css/bsf.css'],				
-		  dest: 'temp/BootsFaces.css',
+		  dest: '../BootsFaces/min/BootsFaces.css',
 		},
 	},
 	
@@ -65,7 +65,7 @@ module.exports = function(grunt) {
       target: {
         files: [{
           expand: true,
-          cwd: 'temp',
+          cwd: '../BootsFaces/min',
           src: ['BootsFaces.css'],
           dest: '../BootsFaces/min/css',
           ext: '.min.css'
