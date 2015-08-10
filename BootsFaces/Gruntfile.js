@@ -26,6 +26,7 @@ module.exports = function(grunt) {
                 option: {},
 		dist: {
 			src: [
+ 			        'css/core.css',			
 			        'css/jq.ui.slider.css',
 			        'css/jq.ui.theme.css',
 			        'css/jq.ui.core.css',			
@@ -37,7 +38,6 @@ module.exports = function(grunt) {
 					'css/bootstrap-switch.css',		
 					'css/labels.css',
 					'css/modals.css',
-					'css/core.css',			
 					'css/navbar.css',
 					'css/dropdown-submenu.css',		
 					'css/panels.css',
