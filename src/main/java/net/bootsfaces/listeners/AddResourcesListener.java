@@ -191,7 +191,7 @@ public class AddResourcesListener implements SystemEventListener {
 			viewMap.remove(RESOURCE_KEY);
 		}
 
-		replaceCSSResourcesByMinifiedResources(root, context);
+//		replaceCSSResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
 		enforceCorrectLoadOrder(root, context);
 
@@ -329,31 +329,38 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
-		// first, handle the CSS files.
-		// Put BootsFaces.css or BootsFaces.min.css first,
-		// theme.css second
-		// and everything else behind them.
+//		// first, handle the CSS files.
+//		// Put BootsFaces.css or BootsFaces.min.css first,
+//		// theme.css second
+//		// and everything else behind them.
 		List<UIComponent> resources = new ArrayList<UIComponent>();
-		for (UIComponent resource : root.getComponentResources(context, "head")) {
-			String name = (String) resource.getAttributes().get("name");
-			if (name != null && (name.equals("css/BootsFaces.min.css") || name.equals("css/BootsFaces.css")))
-				resources.add(resource);
-		}
-		for (UIComponent resource : root.getComponentResources(context, "head")) {
-			String name = (String) resource.getAttributes().get("name");
-			if (name != null && name.equals("css/theme.css"))
-				resources.add(resource);
-		}
-
-		// add every file except the JavaScript files and except the two files
-		// already added.
+//		for (UIComponent resource : root.getComponentResources(context, "head")) {
+//			String name = (String) resource.getAttributes().get("name");
+//			if (name != null && (name.equals("css/BootsFaces.min.css") || name.equals("css/BootsFaces.css")))
+//				resources.add(resource);
+//		}
+//		for (UIComponent resource : root.getComponentResources(context, "head")) {
+//			String name = (String) resource.getAttributes().get("name");
+//			if (name != null && name.equals("css/theme.css"))
+//				resources.add(resource);
+//		}
+//
+//		// add every file except the JavaScript files and except the two files
+//		// already added.
+//		for (UIComponent resource : root.getComponentResources(context, "head")) {
+//			String name = (String) resource.getAttributes().get("name");
+//			if (name != null && (!name.endsWith(".js")))
+//				if ((!name.equals("css/BootsFaces.min.css")) && (!name.equals("css/BootsFaces.css")))
+//					if (!name.equals("css/theme.css"))
+//						resources.add(resource);
+//		}
+		
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
 			if (name != null && (!name.endsWith(".js")))
-				if ((!name.equals("css/BootsFaces.min.css")) && (!name.equals("css/BootsFaces.css")))
-					if (!name.equals("css/theme.css"))
-						resources.add(resource);
+				resources.add(resource);
 		}
+
 
 		// add the JavaScript files in correct order.
 		Collections.sort(resources, new Comparator<UIComponent>() {
