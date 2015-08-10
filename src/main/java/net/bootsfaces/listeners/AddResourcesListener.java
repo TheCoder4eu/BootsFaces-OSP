@@ -357,7 +357,7 @@ public class AddResourcesListener implements SystemEventListener {
 		
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
-			if (name != null && (!name.endsWith(".js")))
+			if (name != null && (name.endsWith(".js")))
 				resources.add(resource);
 		}
 
