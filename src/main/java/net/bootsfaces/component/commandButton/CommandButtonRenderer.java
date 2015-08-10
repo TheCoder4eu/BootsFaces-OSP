@@ -167,8 +167,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 					cJS.append(",function(){" + complete + "}");
 				}
 				cJS.append(");");
-				if (CID.contains("some_elements"))
-					System.out.println(CID + "/" + cJS);
 			} else {
 				cJS = new StringBuilder(encodeClick(component));// Fix
 				// Chrome//+"document.forms['"+formId+"'].submit();");
