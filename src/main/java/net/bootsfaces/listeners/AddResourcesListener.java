@@ -250,7 +250,8 @@ public class AddResourcesListener implements SystemEventListener {
 		Application app = context.getApplication();
 		ResourceHandler rh = app.getResourceHandler();
 		Resource cssmin = rh.createResource("css/BootsFaces.min.css", C.BSF_LIBRARY);
-//		Resource jsmin = rh.createResource("js/BootsFaces.min.js", C.BSF_LIBRARY);
+		// Resource jsmin = rh.createResource("js/BootsFaces.min.js",
+		// C.BSF_LIBRARY);
 
 		if (cssmin != null) {
 			List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
@@ -260,7 +261,8 @@ public class AddResourcesListener implements SystemEventListener {
 				if ((library != null) && library.equals("bsf"))
 					if ((name != null) && (!name.startsWith("jq/"))) {
 						if (name.endsWith(".css")) {
-							resourcesToRemove.add(resource);
+							if (!name.equals("css/theme.css"))
+								resourcesToRemove.add(resource);
 						}
 					}
 			}
@@ -274,12 +276,12 @@ public class AddResourcesListener implements SystemEventListener {
 			output.getAttributes().put("target", "head");
 			addResourceIfNecessary(root, context, output);
 
-//			output = new UIOutput();
-//			output.setRendererType("javax.faces.resource.Script");
-//			output.getAttributes().put("name", "js/BootsFaces.min.js");
-//			output.getAttributes().put("library", C.BSF_LIBRARY);
-//			output.getAttributes().put("target", "head");
-//			addResourceIfNecessary(root, context, output);
+			// output = new UIOutput();
+			// output.setRendererType("javax.faces.resource.Script");
+			// output.getAttributes().put("name", "js/BootsFaces.min.js");
+			// output.getAttributes().put("library", C.BSF_LIBRARY);
+			// output.getAttributes().put("target", "head");
+			// addResourceIfNecessary(root, context, output);
 
 		}
 	}
@@ -327,12 +329,33 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
+		// first, handle the CSS files.
+		// Put BootsFaces.css or BootsFaces.min.css first,
+		// theme.css second
+		// and everything else behind them.
 		List<UIComponent> resources = new ArrayList<UIComponent>();
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
-			if (name != null && (name.endsWith(".js")))
+			if (name != null && (name.equals("css/BootsFaces.min.css") || name.equals("css/BootsFaces.css")))
 				resources.add(resource);
 		}
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			String name = (String) resource.getAttributes().get("name");
+			if (name != null && name.equals("css/theme.css"))
+				resources.add(resource);
+		}
+
+		// add every file except the JavaScript files and except the two files
+		// already added.
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			String name = (String) resource.getAttributes().get("name");
+			if (name != null && (!name.endsWith(".js")))
+				if ((!name.equals("css/BootsFaces.min.css")) && (!name.equals("css/BootsFaces.css")))
+					if (!name.equals("css/theme.css"))
+						resources.add(resource);
+		}
+
+		// add the JavaScript files in correct order.
 		Collections.sort(resources, new Comparator<UIComponent>() {
 
 			@Override
