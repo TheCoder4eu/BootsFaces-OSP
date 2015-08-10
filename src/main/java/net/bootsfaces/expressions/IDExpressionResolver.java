@@ -13,20 +13,25 @@ public class IDExpressionResolver implements AbstractExpressionResolver {
 			String originalExpression, String[] parameters) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		for (UIComponent parent : parentComponents) {
-			while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
-				parent = parent.getParent();
-			}
-
-			String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
-			String childId;
-			if (parentId.endsWith(":"))
-				childId = parentId + currentId;
-			else
-				childId = parentId + ":" + currentId;
-			UIComponent c = component.findComponent(childId);
-			if (null != c) {
-				result.add(c);
-			}
+				while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
+					parent = parent.getParent();
+				}
+	
+				String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
+				String childId;
+				if (parentId.length()==0)
+					childId=currentId;
+				else if (parentId.endsWith(":"))
+					childId = parentId + currentId;
+				else
+					childId = parentId + ":" + currentId;
+				UIComponent c = component.findComponent(childId);
+				if (null == c) {
+					c = component.findComponent(":"+childId);
+				}
+				if (null != c) {
+					result.add(c);
+				}
 		}
 		if (result.size() > 0) {
 			return result;

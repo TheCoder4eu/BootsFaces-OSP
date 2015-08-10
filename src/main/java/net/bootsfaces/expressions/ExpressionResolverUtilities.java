@@ -9,8 +9,8 @@ public class ExpressionResolverUtilities {
 	public static String determineQualifiedId(UIComponent component) {
 		String qualifiedId = "";
 		if (component instanceof NamingContainer)
-			qualifiedId = component.getId();
-		while (component != null && (!(component instanceof UIViewRoot)) && (!(component instanceof UIForm))) {
+			return "";
+		while (component != null && (!(component instanceof UIViewRoot)) && (!(component instanceof NamingContainer))) {
 			component = component.getParent();
 			if (component instanceof NamingContainer)
 				qualifiedId = component.getId() + ":" + qualifiedId;
