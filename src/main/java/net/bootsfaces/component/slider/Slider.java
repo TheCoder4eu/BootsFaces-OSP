@@ -19,6 +19,8 @@
 
 package net.bootsfaces.component.slider;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
@@ -28,6 +30,16 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:slider /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/badges.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/jq.ui.core.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/jq.ui.slider.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "jq/ui/widget.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "jq/ui/mouse.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "jq/ui/slider.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.slider.Slider")
 public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
