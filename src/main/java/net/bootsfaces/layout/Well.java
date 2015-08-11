@@ -31,7 +31,8 @@ import net.bootsfaces.render.Tooltip;
 
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css"),
-        @ResourceDependency(library="bsf", name="css/wells.css")
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+    @ResourceDependency(library="bsf", name="css/wells.css")
 })
 @FacesComponent(C.WELL_COMPONENT_TYPE)
 public class Well extends UIComponentBase {

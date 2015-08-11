@@ -26,7 +26,8 @@ import javax.faces.component.FacesComponent;
 import net.bootsfaces.render.Tooltip; 
 
 /** This class holds the attributes of &lt;b:switch /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target="head"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bootstrap-switch.css"),
 	@ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head") })
 @FacesComponent("net.bootsfaces.component.switch.Switch")

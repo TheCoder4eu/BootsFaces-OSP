@@ -36,6 +36,7 @@ import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
@@ -230,17 +231,7 @@ public class InputTextRenderer extends CoreRenderer {
 		rw.writeAttribute("value", v, null);
 
 		// Render Ajax Capabilities
-		Map<String, List<ClientBehavior>> clientBehaviors = inputText.getClientBehaviors();
-		Set<String> keysClientBehavior = clientBehaviors.keySet();
-		for (String keyClientBehavior : keysClientBehavior) {
-			List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
-			for (ClientBehavior cb : behaviors) {
-				ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context, inputText,
-						keyClientBehavior, null, null);
-				rw.writeAttribute("on" + keyClientBehavior, cb.getScript(behaviorContext), null);
-			}
-
-		}
+		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), inputText, rw);
 
 		rw.endElement("input");
 		if (append) {

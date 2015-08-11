@@ -19,14 +19,20 @@
 package net.bootsfaces.component.commandButton;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.ClientBehavior;
+import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 import javax.faces.render.FacesRenderer;
-import net.bootsfaces.C;
+
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
@@ -88,7 +94,15 @@ public class CommandButtonRenderer extends CoreRenderer {
 			rw.writeAttribute("disabled", "disabled", "disabled");
 		}
 
-		generateOnClickHandler(context, commandButton, rw, CID, type, commandButton.isAjax());
+		if (!type.equals("reset") && !type.equals("button")) {
+			// Check if it is in a Form
+			String formId = R.findComponentFormId(context, component);
+			if (formId == null) {
+				throw new FacesException("CommandButton : '" + CID + "' must be inside a form element");
+			}
+		}
+
+		AJAXRenderer.generateJavaScriptHandlers(context, commandButton, rw, CID, type);
 
 		// TODO : write DHTML attrs - onclick
 		// Encode attributes (HTML 4 pass-through + DHTML)
@@ -146,46 +160,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		Tooltip.activateTooltips(context, attrs, component);
 	}
 
-	private void generateOnClickHandler(FacesContext context, CommandButton component, ResponseWriter rw, String CID,
-			String type, boolean ajax) throws IOException {
-		StringBuilder cJS = new StringBuilder(150); // optimize int
 
-		String complete = component.getOncomplete();
-		// 3) is it a Submit?
-		if (!type.equals(A.RESET) && !type.equals(A.BUTTON)) {
-			// Check if it is in a Form
-			String formId = R.findComponentFormId(context, component);
-			if (formId == null) {
-				throw new FacesException("CommandButton : '" + CID + "' must be inside a form element");
-			}
-
-			if (ajax) {
-				String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
-				cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
-						.append(render == null ? "" : (",'" + render + "'"));
-				if (complete != null) {
-					cJS.append(",function(){" + complete + "}");
-				}
-				cJS.append(");");
-			} else {
-				cJS = new StringBuilder(encodeClick(component));// Fix
-				// Chrome//+"document.forms['"+formId+"'].submit();");
-			}
-		}
-		if (ajax && type.equals(A.RESET)) {
-			String render = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
-			cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
-					.append(render == null ? "" : (",'" + render + "'"));
-			if (complete != null) {
-				cJS.append(",function(){" + complete + "}");
-			}
-			cJS.append(");");
-			// cJS.append("execute: this.id, ");
-		}
-		if (cJS.toString().length() > 1) {// Fix Chrome
-			rw.writeAttribute(A.CLICK, cJS.toString(), null);
-		}
-	}
 
 	private String getStyleClasses(CommandButton component) {
 		StringBuilder sb = new StringBuilder(40); // optimize int
@@ -215,15 +190,5 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 	}
 
-	private String encodeClick(CommandButton component) {
-		String js;
-		String oc = (String) component.getOnclick();
-		if (oc != null) {
-			js = oc.endsWith(C.SCOLON) ? oc : oc + C.SCOLON;
-		} else {
-			js = "";
-		}
 
-		return js;
-	}
 }

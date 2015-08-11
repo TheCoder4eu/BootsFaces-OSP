@@ -26,10 +26,13 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
+import javax.faces.component.behavior.ClientBehavior;
+import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
@@ -37,6 +40,9 @@ import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.commandButton.CommandButton;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
@@ -139,6 +145,29 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		Tooltip.activateTooltips(context, menu);
 	}
 
+	private void generateAJAXCall(FacesContext context, CommandButton component, String complete) {
+		StringBuilder cJS = new StringBuilder(150); 
+		String update = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
+		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
+				.append(update == null ? "" : (",'" + update + "'"));
+		if (complete != null) {
+			cJS.append(",function(){" + complete + "}");
+		}
+		cJS.append(");");
+	}
+	private String encodeClick(CommandButton component) {
+		String js;
+		String oc = (String) component.getOnclick();
+		if (oc != null) {
+			js = oc.endsWith(";") ? oc : oc + ";";
+		} else {
+			js = "";
+		}
+
+		return js;
+	}
+
+	
 	/**
 	 * Renders components added seamlessly behind the input field.
 	 * 
@@ -565,6 +594,9 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		if (menu.isReadonly()) {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
+		
+		// Render Ajax Capabilities
+		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), menu, rw);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);

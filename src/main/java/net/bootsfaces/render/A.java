@@ -86,8 +86,6 @@ public final class A {
     public static final String TEXT="text";
     public static final String PANEL="panel";
     public static final String SHOWON="showOn";
-    public static final String CLICK="onclick";
-    
     //jQuery DatePicker
     public static final String DTFORMAT = JQ.DTFORMAT;
     public static final String LOCALE = JQ.LOCALE;
@@ -118,8 +116,6 @@ public final class A {
     public static final String AJAX="ajax";
     public static final String TYPE="type";
     public static final String SUBMIT="submit";
-    public static final String RESET="reset";
-    public static final String BUTTON="button";
     public static final String UPDATE="update";
     public static final String ONCOMPLETE="oncomplete";
     

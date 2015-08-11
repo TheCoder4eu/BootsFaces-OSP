@@ -95,8 +95,6 @@ public final class C {
     public static final String HASH="#";
     // Dot
     public static final String DOT=".";
-    // SemiColon
-    public static final String SCOLON=";";
     public static final String DISABLED="disabled";
     public static final String READONLY="readonly";
     public static final String LEFT="left";

@@ -281,7 +281,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		cJS.append(");");
 
 		if (cJS.toString().length() > 1) {// Fix Chrome
-			rw.writeAttribute(A.CLICK, cJS.toString(), null);
+			rw.writeAttribute("onclick", cJS.toString(), null);
 		}
 	}
 
@@ -289,7 +289,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		String js;
 		String oc = (String) attrs.get("onclick");
 		if (oc != null) {
-			js = oc.endsWith(C.SCOLON) ? oc : oc + C.SCOLON;
+			js = oc.endsWith(";") ? oc : oc + ";";
 		} else {
 			js = "";
 		}

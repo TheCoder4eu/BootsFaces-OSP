@@ -19,6 +19,10 @@
 
 package net.bootsfaces.component.selectOneMenu;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -29,6 +33,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+	    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
@@ -44,6 +49,16 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
+	
+    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("blur","change","valueChange","click","dblclick","focus","keydown","keypress","keyup","mousedown","mousemove","mouseout","mouseover","mouseup","select"));
+
+    public Collection<String> getEventNames() {
+        return EVENT_NAMES;    }
+
+
+    public String getDefaultEventName() {
+        return "valueChange";    }
+
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
@@ -265,7 +280,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 * Client side callback to execute when input element loses focus. 
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnblur(String _onblur) {
+	public void setOnblur(Object _onblur) {
 		getStateHelper().put(PropertyKeys.onblur, _onblur);
 	}
 

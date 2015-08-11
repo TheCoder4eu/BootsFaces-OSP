@@ -23,7 +23,6 @@ import static net.bootsfaces.C.BSFCOMPONENT;
 import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
 import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
 import static net.bootsfaces.render.A.ALLBUTTON_ATTRS;
-import static net.bootsfaces.render.A.CLICK;
 import static net.bootsfaces.render.A.DATA_DISMISS;
 import static net.bootsfaces.render.A.DISABLED;
 import static net.bootsfaces.render.A.DISMISS;
@@ -138,7 +137,7 @@ public class Button extends HtmlOutcomeTargetButton {
 		
 		final String clickHandler = encodeClick(context, attrs);
 		if (null != clickHandler && clickHandler.length()>0) {
-			rw.writeAttribute(CLICK, clickHandler, null);
+			rw.writeAttribute("onclick", clickHandler, null);
 		}
 		String d = asString(attrs.get(DISMISS));
 		if (d != null) {

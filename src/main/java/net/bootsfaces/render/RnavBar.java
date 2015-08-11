@@ -117,7 +117,7 @@ public enum RnavBar {
         rw.startElement("div", c);
         rw.writeAttribute("class", NAVBARHEAD,"class"); //navbar-header
         rw.startElement(H.BUTTON, c);
-        rw.writeAttribute(A.TYPE, A.BUTTON, A.TYPE);
+        rw.writeAttribute(A.TYPE, "button", A.TYPE);
         rw.writeAttribute("class", NAVBAR+"-toggle","class"); //navbar-toggle
         rw.writeAttribute(A.DATA_TOGGLE, "collapse", A.TYPE);
         rw.writeAttribute(A.DATA_TARGET, ".navbar-ex1-collapse", A.TYPE);

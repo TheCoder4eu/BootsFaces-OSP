@@ -27,8 +27,9 @@ import javax.faces.component.UIComponentBase;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
-		@ResourceDependency(library = "bsf", name = "css/panels.css"),
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target="head"),
+	    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+  		@ResourceDependency(library = "bsf", name = "css/panels.css"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.panel.Panel")

@@ -28,6 +28,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -265,6 +266,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
 		renderInputTag(rw, context, selectBooleanCheckbox);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
+		// Render Ajax Capabilities
+		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), selectBooleanCheckbox, rw);
+
 		renderInputTagValue(context, rw, selectBooleanCheckbox);
 		renderInputTagEnd(rw, selectBooleanCheckbox);
 	}
