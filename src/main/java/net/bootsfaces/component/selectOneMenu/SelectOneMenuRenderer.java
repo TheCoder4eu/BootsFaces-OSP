@@ -57,8 +57,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 */
 	public static final String ADDON = "input-group-addon";
 
-	// http://davidstutz.github.io/bootstrap-multiselect/
-
 	/** Receives the value from the client and sends it to the JSF bean. */
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -143,28 +141,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		closeColSpanDiv(rw, span);
 		rw.endElement("div"); // form-group
 		Tooltip.activateTooltips(context, menu);
-	}
-
-	private void generateAJAXCall(FacesContext context, CommandButton component, String complete) {
-		StringBuilder cJS = new StringBuilder(150); 
-		String update = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
-		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
-				.append(update == null ? "" : (",'" + update + "'"));
-		if (complete != null) {
-			cJS.append(",function(){" + complete + "}");
-		}
-		cJS.append(");");
-	}
-	private String encodeClick(CommandButton component) {
-		String js;
-		String oc = (String) component.getOnclick();
-		if (oc != null) {
-			js = oc.endsWith(";") ? oc : oc + ";";
-		} else {
-			js = "";
-		}
-
-		return js;
 	}
 
 	
