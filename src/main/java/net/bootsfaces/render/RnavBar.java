@@ -122,10 +122,10 @@ public enum RnavBar {
         rw.writeAttribute(A.DATA_TOGGLE, "collapse", A.TYPE);
         rw.writeAttribute(A.DATA_TARGET, ".navbar-ex1-collapse", A.TYPE);
         
-        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "sr-only","class");rw.writeText("Toggle navigation", null);rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
-        rw.startElement(H.SPAN, c);rw.writeAttribute("class", "icon-bar","class");rw.endElement(H.SPAN);
+        rw.startElement("span", c);rw.writeAttribute("class", "sr-only","class");rw.writeText("Toggle navigation", null);rw.endElement("span");
+        rw.startElement("span", c);rw.writeAttribute("class", "icon-bar","class");rw.endElement("span");
+        rw.startElement("span", c);rw.writeAttribute("class", "icon-bar","class");rw.endElement("span");
+        rw.startElement("span", c);rw.writeAttribute("class", "icon-bar","class");rw.endElement("span");
         rw.endElement(H.BUTTON);
         String brand = A.asString(attrs.get(A.BRAND));
         String brandImg = A.asString(attrs.get(A.BRAND_IMG));
@@ -136,7 +136,7 @@ public enum RnavBar {
         	String href = A.asString(attrs.get(A.BRAND_HREF));
         	if(href==null) { rw.writeAttribute(H.HREF, H.HASH,H.HREF); }
         	else           { rw.writeAttribute(H.HREF, href,H.HREF); }
-                rw.startElement(H.SPAN, c);
+                rw.startElement("span", c);
         	if(brandImg!=null) {
         		String altText = A.asString(attrs.get(A.ALT));
         		if(altText==null) altText = "Brand"; // default
@@ -146,7 +146,7 @@ public enum RnavBar {
         		rw.endElement(H.IMG);
         	}
         	if(brand!=null) rw.writeText(brand, null);
-                rw.endElement(H.SPAN);
+                rw.endElement("span");
         	rw.endElement(H.A);
         }
         rw.endElement("div"); //navbar-header

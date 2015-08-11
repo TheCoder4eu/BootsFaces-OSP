@@ -51,7 +51,6 @@ public final class H {
     public static final String LI="li";
     public static final String SELECT="select";
     
-    public static final String SPAN ="span";
     public static final String STRONG="strong";
     
     public static final String UL="ul";

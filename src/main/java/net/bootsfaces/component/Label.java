@@ -20,51 +20,75 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
+import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.render.RLabel;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;
 
-
-@ResourceDependencies({
-        @ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/labels.css", target="head")
-})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/labels.css", target = "head") })
 @FacesComponent(C.LABEL_COMPONENT_TYPE)
 public class Label extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.LABEL_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-    public Label() {
-        setRendererType(null); // this component renders itself
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = C.LABEL_COMPONENT_TYPE;
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	public Label() {
+		setRendererType(null); // this component renders itself
 		Tooltip.addResourceFile();
-    }
+	}
 
-    @Override
-    public void encodeBegin(FacesContext context) throws IOException {
-        /*
-         * <span class="label label-success">Success</span>
-         */
-        
-        RLabel.encBegin(this, context);
-    }
+	@Override
+	public void encodeBegin(FacesContext context) throws IOException {
+		if (!this.isRendered()) {
+			return;
+		}
+		/*
+		 * <span class="badge badge-important">6</span>
+		 */
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+		Map<String, Object> attrs = this.getAttributes();
+
+		String sev = A.asString(attrs.get("severity"));
+		String txt = A.asString(attrs.get("text"));
+		ResponseWriter rw = context.getResponseWriter();
+
+		rw.startElement("span", this);
+		rw.writeAttribute("id", this.getClientId(), "id");
+		Tooltip.generateTooltip(context, this.getAttributes(), rw);
+		String sclass = "label" + " " + "label";
+		if (sev != null) {
+			sclass += "-" + sev;
+		} else {
+			sclass += "-default";
+		}
+		rw.writeAttribute("class", sclass, "class");
+		rw.writeText(txt, null);
+		rw.endElement("span");
+		Tooltip.activateTooltips(context, this.getAttributes(), this);
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 }

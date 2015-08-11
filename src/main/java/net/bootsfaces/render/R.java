@@ -42,12 +42,8 @@ import net.bootsfaces.component.GenContainerDiv;
  */
 public final class R {
     public static final String BADGE="badge";
-    public static final String LABEL="label";
-    
     public static final String INVERSE="inverse";
     public static final String WHITE="white";
-    public static final String DFLT="-default";
-    
     public static final String ADDON="input-group-addon";
     public static final String CARET="caret";
     public static final String DROPDOWN="dropdown";
@@ -85,7 +81,7 @@ public final class R {
         Markup:
         <span><i class="icon-search"></i></span>
         */
-        rw.startElement(H.SPAN, c);
+        rw.startElement("span", c);
         if(addon) {
             rw.writeAttribute("id", c.getClientId()+"_"+ADDON, null);
             rw.writeAttribute("class", ADDON, "class");
@@ -119,7 +115,7 @@ public final class R {
         //!//rw.writeAttribute(H.CLASS, GLYPHICON+icon, H.CLASS);
         rw.endElement(H.I);
         
-        rw.endElement(H.SPAN);
+        rw.endElement("span");
     }
     /*public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean white) throws IOException {
         rw.startElement(H.I, c);
@@ -256,28 +252,6 @@ public final class R {
     }
     
     /**
-     * Encodes a Label
-     * @param fc
-     * @param c
-     * @param severity
-     * @param text
-     * @throws IOException 
-     */
-    public static void encodeLabel(FacesContext fc, UIComponent c, String severity, String text) throws IOException {
-        ResponseWriter rw = fc.getResponseWriter();
-        
-        rw.startElement(H.SPAN, c);
-        rw.writeAttribute("id",c.getClientId(),"id");
-        Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        String sclass=LABEL+" "+LABEL;
-        if(severity!=null) { sclass += "-"+severity; } else { sclass += DFLT; }
-        rw.writeAttribute("class", sclass,"class");
-        rw.writeText(text, null);
-        rw.endElement(H.SPAN);
-        Tooltip.activateTooltips(fc, c.getAttributes(), c);
-    }
-    
-    /**
      * Encodes a Badge
      * @param fc
      * @param c
@@ -288,14 +262,14 @@ public final class R {
     public static void encodeBadge(FacesContext fc, UIComponent c, String suffix, String val) throws IOException {
         ResponseWriter rw = fc.getResponseWriter();
         
-        rw.startElement(H.SPAN, c);
+        rw.startElement("span", c);
         String cid = c.getClientId(fc);
         if(suffix!=null) { cid=cid.concat(suffix); }
         rw.writeAttribute("id", cid,"id");
 		Tooltip.generateTooltip(fc, c.getAttributes(), rw);
         rw.writeAttribute("class", BADGE,"class");
         rw.writeText(val, null);
-        rw.endElement(H.SPAN);
+        rw.endElement("span");
 		Tooltip.activateTooltips(fc, c.getAttributes(), c);
     }
     
