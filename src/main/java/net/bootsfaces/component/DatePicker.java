@@ -64,7 +64,8 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/datepicker.js", target = "head") */
 		/* moved to constructor @ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"), */
-		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body")
+		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 
 })
 @FacesComponent(C.DATEPICKER_COMPONENT_TYPE)

@@ -37,7 +37,8 @@ import net.bootsfaces.render.Tooltip;
  */
 @ResourceDependencies({
         @ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/badges.css", target="head")
+        @ResourceDependency(library="bsf", name="css/badges.css", target="head"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent(C.BADGE_COMPONENT_TYPE)
 public class Badge extends UIComponentBase {

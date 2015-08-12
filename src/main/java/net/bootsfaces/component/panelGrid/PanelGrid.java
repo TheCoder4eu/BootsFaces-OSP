@@ -60,7 +60,8 @@ import net.bootsfaces.render.Tooltip;
  * @since 22.11.2014
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.panelGrid.PanelGrid")
 public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 

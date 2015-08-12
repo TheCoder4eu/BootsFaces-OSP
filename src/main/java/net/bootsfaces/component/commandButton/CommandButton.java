@@ -41,7 +41,8 @@ import net.bootsfaces.render.Tooltip;
 
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head") })
+		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent(CommandButton.COMPONENT_TYPE)
 public class CommandButton extends UICommand implements ClientBehaviorHolder, IHasTooltip {
 

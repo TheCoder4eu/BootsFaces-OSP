@@ -23,6 +23,7 @@
  */
 package net.bootsfaces.component;
 
+import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
@@ -33,7 +34,9 @@ import net.bootsfaces.C;
  * @author thecoder4.eu
  */
 
-@ResourceDependency(library="bsf", name="css/core.css", target="head")
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.NAVBARLINKS_COMPONENT_TYPE)
 public class NavBarLinks extends LinksContainer {
     

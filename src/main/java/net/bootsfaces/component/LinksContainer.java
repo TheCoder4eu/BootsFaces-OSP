@@ -22,6 +22,8 @@ package net.bootsfaces.component;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -36,6 +38,9 @@ import net.bootsfaces.render.Tooltip;
  * @author thecoder4eu
  */
 
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 public class LinksContainer extends UIComponentBase {
     
     /**

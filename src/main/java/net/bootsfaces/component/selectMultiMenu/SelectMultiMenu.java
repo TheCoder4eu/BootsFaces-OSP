@@ -31,7 +31,8 @@ import net.bootsfaces.render.Tooltip;
 	    @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
 	    @ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body")})
+		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {

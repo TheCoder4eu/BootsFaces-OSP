@@ -39,9 +39,10 @@ import net.bootsfaces.render.Tooltip;
  *
  * @author thecoder4.eu
  */
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css")
-})
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+
 @FacesComponent(C.CONTAINER_COMPONENT_TYPE)
 public class Container extends UIComponentBase {
     

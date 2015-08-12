@@ -21,6 +21,8 @@ package net.bootsfaces.layout;
 
 import java.io.IOException;
 import java.util.Map;
+
+import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
@@ -32,7 +34,9 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
-@ResourceDependency(library="bsf", name="css/core.css")
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.COLUMN_COMPONENT_TYPE)
 public class Column extends UIComponentBase {
     

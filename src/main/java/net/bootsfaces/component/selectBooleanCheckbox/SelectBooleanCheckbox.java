@@ -19,14 +19,18 @@
 
 package net.bootsfaces.component.selectBooleanCheckbox;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.render.Tooltip;
 
 
 /** This class holds the attributes of &lt;b:selectBooleanCheckbox /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+    @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
 public class SelectBooleanCheckbox extends HtmlInputText  implements net.bootsfaces.render.IHasTooltip  {
 	

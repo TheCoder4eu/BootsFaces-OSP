@@ -19,6 +19,7 @@
 
 package net.bootsfaces.component;
 
+import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
@@ -31,45 +32,51 @@ import net.bootsfaces.render.Tooltip;
  * @author thecoder4.eu
  */
 
-
-@ResourceDependency(library="bsf", name="css/core.css")
+@ResourceDependencies({ 
+	    @ResourceDependency(library = "bsf", name = "css/core.css"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.BUTTONGROUP_COMPONENT_TYPE)
 public class ButtonGroup extends GenContainerDiv {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.BUTTONGROUP_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    
-    
-    public ButtonGroup() {
-        setRendererType(null); // this component renders itself
-		Tooltip.addResourceFile();
-    }
-    
-    /*
-     * <div class="btn-group">
-     * ...
-     * </div>
-     */
-    @Override
-    public String getContainerStyles() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("btn-group");
-        String o = A.asString(getAttributes().get("orientation"));
-        String s = A.asString(getAttributes().get(A.SIZE));
-        if(o!=null && o.equals("vertical")) { sb.append("-vertical"); }
-        if(s!=null) { sb.append(" btn-group-").append(s); }
-        return sb.toString();
-    }
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = C.BUTTONGROUP_COMPONENT_TYPE;
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	public ButtonGroup() {
+		setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
+	}
+
+	/*
+	 * <div class="btn-group"> ... </div>
+	 */
+	@Override
+	public String getContainerStyles() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("btn-group");
+		String o = A.asString(getAttributes().get("orientation"));
+		String s = A.asString(getAttributes().get(A.SIZE));
+		if (o != null && o.equals("vertical")) {
+			sb.append("-vertical");
+		}
+		if (s != null) {
+			sb.append(" btn-group-").append(s);
+		}
+		return sb.toString();
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 }

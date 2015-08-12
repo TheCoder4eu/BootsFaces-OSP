@@ -38,7 +38,8 @@ import net.bootsfaces.C;
  * @author Stephan Rauh
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"), })
+@ResourceDependencies({ @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent(C.POLL_COMPONENT_TYPE)
 public class Poll extends HtmlCommandButton {
 

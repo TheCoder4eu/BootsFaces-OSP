@@ -19,13 +19,22 @@
 
 package net.bootsfaces.component.dropButton;
 
-import javax.faces.component.*;
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:dropButton /&gt;. */
+@ResourceDependencies({
+	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
+        @ResourceDependency(library="bsf", name="css/dropdowns.css", target="head"),
+        @ResourceDependency(library="bsf", name="js/dropdown.js", target="body"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
+})
 @FacesComponent("net.bootsfaces.component.dropButton.DropButton")
 public class DropButton extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 

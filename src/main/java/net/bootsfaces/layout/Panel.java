@@ -44,7 +44,8 @@ import net.bootsfaces.render.Tooltip;
 	@ResourceDependency(library="bsf", name="css/core.css"),
         @ResourceDependency(library="bsf", name="css/panels.css"),
         @ResourceDependency(library="bsf", name="css/bsf.css"),
-        @ResourceDependency(library="bsf", name="js/collapse.js", target="body")
+        @ResourceDependency(library="bsf", name="js/collapse.js", target="body"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent(C.PANEL_COMPONENT_TYPE)
 public class Panel extends UIComponentBase {

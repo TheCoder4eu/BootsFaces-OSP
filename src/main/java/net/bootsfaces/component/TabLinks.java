@@ -19,6 +19,7 @@
 
 package net.bootsfaces.component;
 
+import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 
 import net.bootsfaces.C;
@@ -28,7 +29,9 @@ import net.bootsfaces.C;
  * @author thecoder4.eu
  */
 
-@ResourceDependency(library="bsf", name="css/core.css")
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 public class TabLinks extends LinksContainer {
     
     /**

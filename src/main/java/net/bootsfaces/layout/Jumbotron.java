@@ -32,7 +32,8 @@ import net.bootsfaces.render.Tooltip;
 
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css"),
-        @ResourceDependency(library="bsf", name="css/jumbotron.css")
+        @ResourceDependency(library="bsf", name="css/jumbotron.css"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent(C.JUMBOTRON_COMPONENT_TYPE)
 public class Jumbotron extends UIComponentBase {

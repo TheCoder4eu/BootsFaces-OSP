@@ -36,7 +36,8 @@ import net.bootsfaces.render.Tooltip;
  * @author thecoder4.eu
  */
 @ResourceDependencies({
-        @ResourceDependency(library="bsf", name="css/font-awesome.css", target="head")
+        @ResourceDependency(library="bsf", name="css/font-awesome.css", target="head"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent(C.ICON_AWESOME_COMPONENT_TYPE)
 public class IconAwesome extends UIComponentBase {

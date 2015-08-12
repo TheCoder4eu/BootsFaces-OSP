@@ -39,7 +39,8 @@ import net.bootsfaces.render.Tooltip;
 	@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
 	@ResourceDependency(library = "bsf", name = "jq/ui/widget.js", target = "body"),
 	@ResourceDependency(library = "bsf", name = "jq/ui/mouse.js", target = "body"),
-	@ResourceDependency(library = "bsf", name = "jq/ui/slider.js", target = "body") })
+	@ResourceDependency(library = "bsf", name = "jq/ui/slider.js", target = "body") ,
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.slider.Slider")
 public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 

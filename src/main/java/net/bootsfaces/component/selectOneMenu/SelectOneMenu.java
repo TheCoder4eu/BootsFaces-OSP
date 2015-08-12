@@ -34,7 +34,8 @@ import net.bootsfaces.render.Tooltip;
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
+		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 

@@ -19,6 +19,7 @@
 
 package net.bootsfaces.component;
 
+import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
@@ -31,7 +32,9 @@ import net.bootsfaces.render.Tooltip;
  */
 
 
-@ResourceDependency(library="bsf", name="css/core.css")
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css"),
+	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.BUTTONTOOLBAR_COMPONENT_TYPE)
 public class ButtonToolbar extends GenContainerDiv {
     

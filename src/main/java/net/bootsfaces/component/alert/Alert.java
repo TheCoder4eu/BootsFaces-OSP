@@ -29,7 +29,8 @@ import net.bootsfaces.render.Tooltip;
 @ResourceDependencies({
 	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
         @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/alert.js", target="body")
+        @ResourceDependency(library="bsf", name="js/alert.js", target="body"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })@FacesComponent("net.bootsfaces.component.alert.Alert")
 public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
 	
