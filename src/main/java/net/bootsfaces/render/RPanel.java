@@ -134,22 +134,22 @@ public enum RPanel {
                 	rw.writeAttribute("class", "panel-title", "class");
                 }
                 if (isCollapsible) {
-	                rw.startElement(H.A, c);
+	                rw.startElement("a", c);
 	                rw.writeAttribute("data-toggle", "collapse", "null");
 	                rw.writeAttribute("data-target", "#"+ jQueryClientID+"content", "null");
                 }
 
                 rw.writeText(_title, null);
-                rw.endElement(H.A);
+                rw.endElement("a");
                 rw.endElement(H.H4);
             } else {
                 if (isCollapsible) {
-	                rw.startElement(H.A, c);
+	                rw.startElement("a", c);
 	                rw.writeAttribute("data-toggle", "collapse", "null");
 	                rw.writeAttribute("data-target", "#"+ jQueryClientID+"content", "null");
                 }
                 head.encodeAll(fc);
-                rw.endElement(H.A);
+                rw.endElement("a");
             }
             rw.endElement("div");
         }

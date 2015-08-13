@@ -29,40 +29,25 @@ import net.bootsfaces.C;
  * @author thecoder4.eu
  */
 public final class A {
-    //hyphen
-    public static final String HYP="-";
-    
     public static final String POPUP="popup";
-    public static final String TOGGLE="toggle";
-    
     /* Attributes */
     public static final String ACTIVE="active";
-    public static final String ALT="alt";
     public static final String BACKDROP="backdrop";
-    public static final String BRAND="brand";
-    public static final String BRAND_ALIGN=BRAND+"Align";
-    public static final String BRAND_IMG=BRAND+"Img";
+    public static final String BRAND_ALIGN="brand"+"Align";
     public static final String CLOSABLE="closable";
     public static final String CLOSE_ON_ESC="close-on-escape";
-    public static final String FIXED="fixed";
-    public static final String STATIC="static";
     public static final String FRAGMENT="fragment";
     
-    public static final String DATA="data";
-    public static final String DATA_TOGGLE=DATA+HYP+TOGGLE;
-    public static final String DATA_TARGET=DATA+"-target";
     public static final String DISMISS="dismiss";
-    public static final String DATA_DISMISS=DATA+HYP+DISMISS;
+    public static final String DATA_DISMISS="data"+"-"+DISMISS;
     public static final String DISABLED=C.DISABLED;
     public static final String DROP="drop";
     public static final String HEADER="header";
     public static final String HREF="href";
-    public static final String BRAND_HREF=BRAND+"Href";
     public static final String ICON="icon";
     public static final String ICONAWESOME="iconAwesome";
     public static final String ICON_ALIGN=ICON+"Align";
     public static final String ICON_POS=ICON+"Pos";
-    public static final String INVERSE="inverse";
     public static final String LOOK="look";
     public static final String LIBRARY="library";
     public static final String NAME="name";
@@ -96,15 +81,13 @@ public final class A {
     
     //DatePicker
     public static final String INLINE="inline";
-    public static final String POPICON=POPUP+HYP+ICON;
-    public static final String ICONPOP=ICON+HYP+POPUP;
-    public static final String TOGGLEICON=TOGGLE+HYP+ICON;
-    public static final String ICONTOGGLE=ICON+HYP+TOGGLE;
+    public static final String POPICON=POPUP+"-"+ICON;
+    public static final String ICONPOP=ICON+"-"+POPUP;
+    public static final String TOGGLEICON="toggle"+"-"+ICON;
+    public static final String ICONTOGGLE=ICON+"-"+"toggle";
     
-    public static final String BOTTOM="bottom";
     public static final String LEFT=C.LEFT;
     public static final String RIGHT=C.RIGHT;
-    public static final String TOP=C.TOP;
     public static final String DOWN=C.DOWN;
     public static final String UP=C.UP;
     public static final String BOTH="both";
@@ -114,7 +97,6 @@ public final class A {
     
     public static final String TRUE=C.TRUE;
     public static final String AJAX="ajax";
-    public static final String TYPE="type";
     public static final String SUBMIT="submit";
     public static final String UPDATE="update";
     public static final String ONCOMPLETE="oncomplete";

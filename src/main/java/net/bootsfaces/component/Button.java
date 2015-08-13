@@ -35,7 +35,6 @@ import static net.bootsfaces.render.A.RIGHT;
 import static net.bootsfaces.render.A.SIZE;
 import static net.bootsfaces.render.A.asString;
 import static net.bootsfaces.render.A.toBool;
-import static net.bootsfaces.render.H.BUTTON;
 import static net.bootsfaces.render.H.STYLE;
 import static net.bootsfaces.render.H.STYLECLASS;
 
@@ -125,10 +124,10 @@ public class Button extends HtmlOutcomeTargetButton {
 		Object value = attrs.get("value");
                 String style=asString(attrs.get(STYLE));
                 
-		rw.startElement(BUTTON, this);
+		rw.startElement("button", this);
 		rw.writeAttribute("id", getClientId(context), "id");
 		rw.writeAttribute("name", getClientId(context), "name");
-		rw.writeAttribute("type", BUTTON, null);
+		rw.writeAttribute("type", "button", null);
                 if(style!=null) { rw.writeAttribute(STYLE,style,STYLE); }
 		rw.writeAttribute("class", getStyleClasses(attrs), "class");
 		
@@ -172,7 +171,7 @@ public class Button extends HtmlOutcomeTargetButton {
 			rw.writeText(value, null);
 		}
 
-		rw.endElement(BUTTON);
+		rw.endElement("button");
 	}
 
 

@@ -192,7 +192,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");
 		}
-		rw.startElement(H.A, this);
+		rw.startElement("a", this);
 		style = A.asString(attrs.get("contentStyle"));
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");
@@ -218,7 +218,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 				rw.writeAttribute(H.TITLE, FacesContext.getCurrentInstance().getApplication().getProjectStage()
 						+ "WARNING! " + C.W_NONAVCASE_LINK, null);
 			}
-			url = C.HASH;
+			url = "#";
 
 		}
 
@@ -226,7 +226,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 			rw.writeAttribute("id", getClientId() + "_a", null);
 			generateOnClickHandler(context, rw, getClientId(context), A.toBool(attrs.get(A.AJAX), false), url);
 		} else {
-			rw.writeAttribute(H.HREF, url, null);
+			rw.writeAttribute("href", url, null);
 		}
 		rw.writeAttribute(H.ROLE, "menuitem", null);
 		rw.writeAttribute("tabindex", "-1", null);
@@ -256,7 +256,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		} else {
 			rw.writeText(value, null);
 		}
-		rw.endElement(H.A);
+		rw.endElement("a");
 		rw.endElement(H.LI);
 	}
 
@@ -350,7 +350,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 				return url;
 			} // return url; }
 			else {
-				return H.HASH;
+				return "#";
 			} // return #
 		}
 

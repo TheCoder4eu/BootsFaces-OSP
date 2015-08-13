@@ -26,22 +26,14 @@ import net.bootsfaces.C;
  * @author thecoder4.eu
  */
 public final class H {
-    public static final String HASH=C.HASH;
     //hyphen
     public static final String HYP="-";
     
     public static final String ARIA="aria";
     public static final String ARIALBLBY=ARIA+HYP+"labelledby";
-    /* TAGS */
-    public static final String A ="a";
-    public static final String ALT ="alt";
     public static final String B ="b";
     public static final String BR ="br";
-    /*HTML tag button */
-    public static final String BUTTON ="button";
-    
     public static final String I ="i";
-    public static final String IMG="img";
     public static final String H1 ="h1";
     public static final String H2 ="h2";
     public static final String H3 ="h3";
@@ -64,8 +56,6 @@ public final class H {
     
     public static final String STYLECLASS ="styleClass";
     public static final String DISABLED=C.DISABLED;
-    public static final String HREF="href";
-    public static final String SRC="src";
     public static final String READONLY=C.READONLY;
     public static final String STYLE="style";
     public static final String TITLE="title";

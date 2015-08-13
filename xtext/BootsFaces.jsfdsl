@@ -568,17 +568,18 @@ widget navBar
        has_children
        has_tooltip
  {
+ 	alt                 String                                             "alternative text"
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     brand                                                                  "Brand for the Navbar."
     brandAlign                                                             "Brand alignment, can be right or left."
     brandHref                                                              "Link URL for the Navbar Brand."
     brandImg                                                               "Brand image."
     fixed                                                                  "If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be bottom or top."
-    fluid               Boolean                                            "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
+    fluid               Boolean  default "false"                           "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     inverse             Boolean                                            "Boolean value to specify if Navbar should use inverse color scheme."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    static              Boolean                                            "If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false."
+    static              Boolean default "false"                            "If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false."
     tooltip                                                                "The text of the tooltip."
     tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."

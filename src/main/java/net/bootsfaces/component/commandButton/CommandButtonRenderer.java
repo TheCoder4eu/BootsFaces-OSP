@@ -73,7 +73,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		// 3) is it Ajax? (default= false)
 		String style = commandButton.getStyle();
 
-		rw.startElement(H.BUTTON, component);
+		rw.startElement("button", component);
 		rw.writeAttribute("type", type, null);
 		rw.writeAttribute("id", CID, "id");
 		rw.writeAttribute("name", CID, "name");
@@ -155,7 +155,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 			}
 		}
 
-		rw.endElement(H.BUTTON);
+		rw.endElement("button");
 
 		Tooltip.activateTooltips(context, attrs, component);
 	}

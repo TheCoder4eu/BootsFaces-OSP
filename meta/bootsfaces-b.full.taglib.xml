@@ -1126,107 +1126,108 @@
 	<tag>
 		<tag-name>navBar</tag-name>
 		<component>
-			<component-type>net.bootsfaces.component.NavBar</component-type>
+			<component-type>net.bootsfaces.component.navBar.NavBar</component-type>
 		</component>
-		<attribute>
-			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-			<name>id</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-			<name>rendered</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-			<name>binding</name>
-			<required>false</required>
-			<type>javax.faces.component.UIComponent</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be bottom or top.]]></description>
-			<name>fixed</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false.]]></description>
-			<name>static</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-			<name>tooltip-position</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The text of the tooltip.]]></description>
-			<name>tooltip</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-show</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-			<name>tooltip-delay-hide</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<!-- put more tooltip attributes here -->
-
-		<attribute>
-			<description><![CDATA[Boolean value to specify if Navbar should use inverse color scheme.]]></description>
-			<name>inverse</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport.]]></description>
-			<name>fluid</name>
-			<required>false</required>
-			<type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Brand for the Navbar.]]></description>
-			<name>brand</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Link URL for the Navbar Brand.]]></description>
-			<name>brandHref</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Brand image.]]></description>
-			<name>brandImg</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
-		<attribute>
-			<description><![CDATA[Brand alignment, can be right or left.]]></description>
-			<name>brandAlign</name>
-			<required>false</required>
-			<type>java.lang.String</type>
-		</attribute>
+		
+	  <attribute>
+	  	<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+	  	<name>binding</name>
+	  	<required>false</required>
+	  	<type>javax.faces.component.UIComponent</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Brand for the Navbar.]]></description>
+	  	<name>brand</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Brand alignment, can be right or left.]]></description>
+	  	<name>brandAlign</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Link URL for the Navbar Brand.]]></description>
+	  	<name>brandHref</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Brand image.]]></description>
+	  	<name>brandImg</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be bottom or top.]]></description>
+	  	<name>fixed</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport.]]></description>
+	  	<name>fluid</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify if Navbar should use inverse color scheme.]]></description>
+	  	<name>inverse</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	  	<name>rendered</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false.]]></description>
+	  	<name>static</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
 	</tag>
+
+
 	<tag>
 		<tag-name>navbarLinks</tag-name>
 		<component>

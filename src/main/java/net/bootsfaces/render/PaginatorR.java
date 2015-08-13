@@ -27,7 +27,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.PaginableData;
 
 /**
@@ -60,8 +59,8 @@ public class PaginatorR extends Renderer {
         rw.writeAttribute("id", cid, null);
         if(panel) { rw.writeAttribute("class", "thumbnail", "class"); }
         
-        if(show.equals(A.TOP)||show.equals(A.BOTH)) {
-           encodePaginator(context, c, C.TOP);
+        if(show.equals("top")||show.equals(A.BOTH)) {
+           encodePaginator(context, c, "top");
         }
     }
     
@@ -79,12 +78,12 @@ public class PaginatorR extends Renderer {
             rw.startElement("div", null); //Left link
             rw.writeAttribute("class", "pull-left", "class");
             rw.writeAttribute(H.STYLE, "width:25%;", H.STYLE);
-            rw.startElement(H.A, c);
-            rw.writeAttribute(H.HREF, C.HASH, null);
+            rw.startElement("a", c);
+            rw.writeAttribute("href", "#", null);
             rw.writeAttribute("class", "btn btn-small", "class");
             rw.writeAttribute("onclick", "return BsF.ajax.paginate(this,null,'<','" + cid + "','" + cid + " " + data.getClientId() + "');", null);
             rw.writeText("<", null);
-            rw.endElement(H.A);
+            rw.endElement("a");
             rw.endElement("div"); //Left link
 
             rw.startElement("div", null); //Pages
@@ -96,12 +95,12 @@ public class PaginatorR extends Renderer {
             rw.startElement("div", null); //Right link
             rw.writeAttribute("class", "pull-left", "class");
             rw.writeAttribute(H.STYLE, "width:25%;", H.STYLE);
-            rw.startElement(H.A, c);
-            rw.writeAttribute(H.HREF, C.HASH, null);
+            rw.startElement("a", c);
+            rw.writeAttribute("href", "#", null);
             rw.writeAttribute("class", "btn btn-small pull-right", "class");
             rw.writeAttribute("onclick", "return BsF.ajax.paginate(this,null,'>','" + cid + "','" + cid + " " + data.getClientId() + "');", null);
             rw.writeText(">", null);
-            rw.endElement(H.A);
+            rw.endElement("a");
             rw.endElement("div"); //Right link
 
             rw.endElement("div"); //Navbar inner
@@ -124,7 +123,7 @@ public class PaginatorR extends Renderer {
     public void encodeEnd(FacesContext context, UIComponent c) throws IOException {
         String show = A.asString(c.getAttributes().get(A.SHOWON),A.BOTH);
         ResponseWriter rw = context.getResponseWriter();
-        if(show.equals(A.BOTTOM)||show.equals(A.BOTH)) {
+        if(show.equals("bottom")||show.equals(A.BOTH)) {
            encodePaginator(context, c, "bottom");
         }
         rw.endElement("div"); //External Div

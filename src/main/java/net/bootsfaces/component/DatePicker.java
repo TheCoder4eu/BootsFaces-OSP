@@ -314,7 +314,7 @@ public class DatePicker extends HtmlInputText {
 		}
 
 		if (mode.equals(A.TOGGLEICON) || mode.equals(A.ICONTOGGLE)) {
-			sb.append(JQ.SHOWON).append(":").append("'" + H.BUTTON + "'").append(",");
+			sb.append(JQ.SHOWON).append(":").append("'" + "button" + "'").append(",");
 		}
 
 		/*

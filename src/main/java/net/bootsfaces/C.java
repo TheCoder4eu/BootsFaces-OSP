@@ -88,18 +88,12 @@ public final class C {
     public static final String PANEL_COMPONENT_TYPE=BSFLAYOUT+".Panel";
     public static final String WELL_COMPONENT_TYPE=BSFLAYOUT+".Well";
     
-    /*
-    * Common constants
-    */
-    //Hash
-    public static final String HASH="#";
     // Dot
     public static final String DOT=".";
     public static final String DISABLED="disabled";
     public static final String READONLY="readonly";
     public static final String LEFT="left";
     public static final String RIGHT="right";
-    public static final String TOP="top";
     public static final String DOWN="down";
     public static final String UP="up";
     public static final String H="horizontal";

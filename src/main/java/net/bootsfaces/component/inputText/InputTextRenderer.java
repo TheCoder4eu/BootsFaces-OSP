@@ -144,7 +144,7 @@ public class InputTextRenderer extends CoreRenderer {
 		if (component instanceof InputSecret) {
 			t = H.PASSWORD;
 		} else { // ordinary input fields
-			t = A.asString(attrs.get(A.TYPE));
+			t = A.asString(attrs.get("type"));
 			if (t == null)
 				t = "text";
 		}
