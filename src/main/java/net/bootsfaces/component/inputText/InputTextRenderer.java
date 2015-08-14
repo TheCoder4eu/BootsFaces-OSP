@@ -116,6 +116,7 @@ public class InputTextRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
+
 		// If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
 		if (prepend) {
 			R.addClass2FacetComponent(prep, "OutputText", InputText.ADDON);
@@ -128,6 +129,7 @@ public class InputTextRenderer extends CoreRenderer {
                         R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
 		}
 
+
 		String label = A.asString(attrs.get("label"));
 		{
 			Object rl = attrs.get(A.RENDERLABEL);
@@ -137,6 +139,7 @@ public class InputTextRenderer extends CoreRenderer {
 				}
 			}
 		}
+
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -149,24 +152,32 @@ public class InputTextRenderer extends CoreRenderer {
 				t = "text";
 		}
 
-		rw.startElement("div", component);
 		Tooltip.generateTooltip(context, attrs, rw);
+
+		rw.startElement("div", component);
+		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("class", "form-group", "class");
+
+
 		if (label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for", clientId, "for");
+			rw.writeAttribute("for","input_" + clientId, "for");
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
+
 		if (append || prepend) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
 		}
+
+
 		int span = A.toInt(attrs.get(A.SPAN));
 		if (span > 0) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "col-md-" + span, "class");
 		}
+
 
 		if (prepend) {
 			if (prep.getClass().getName().endsWith("Button")
@@ -179,29 +190,35 @@ public class InputTextRenderer extends CoreRenderer {
 				prep.encodeAll(context);
 			}
 		}
+
+
 		// Input
 		rw.startElement("input", inputText);
-		rw.writeAttribute("id", clientId, null);
-		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("id", "input_" + clientId, null);
+		rw.writeAttribute("name", "input_" + clientId, null);
 		rw.writeAttribute("type", t, null);
 
 		StringBuilder sb;
 		String s;
 		sb = new StringBuilder(20); // optimize int
 		sb.append("form-control");
+
 		String fsize = A.asString(attrs.get(A.FIELDSIZE));
 
 		if (fsize != null) {
 			sb.append(" input-").append(fsize);
 		}
+
 		// styleClass and class support
 		String sclass = A.asString(attrs.get(H.STYLECLASS));
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
+
 		if (inputText.isRequired()) {
 			sb.append(" ").append("bf-required");
 		}
+
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
 			rw.writeAttribute("class", s, H.STYLECLASS);
@@ -219,19 +236,25 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute(A.READONLY, A.READONLY, null);
 		}
 
+
+
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		// R.encodeHTML4DHTMLAttrs(rw, attrs, A.INPUT_TEXT_ATTRS);
 		renderPassThruAttributes(context, component, A.INPUT_TEXT_ATTRS);
+
 
 		if ((A.asString(attrs.get("autocomplete")) != null) && (A.asString(attrs.get("autocomplete")).equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
+
+
 		// Render Value
 		String v = R.getValue2Render(context, component);
 		rw.writeAttribute("value", v, null);
 
+
 		// Render Ajax Capabilities
 		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), inputText, rw);
+
 
 		rw.endElement("input");
 		if (append) {
@@ -254,6 +277,8 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("div"); // span
 			// rw.endElement(H.DIV); //row NO
 		}
+
+
 		Tooltip.activateTooltips(context, attrs, inputText);
 	}
 }
