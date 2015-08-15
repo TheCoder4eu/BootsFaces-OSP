@@ -127,6 +127,7 @@ public class ExpressionResolver {
 
 
 	public static List<String> getExpressions(String commaSeparatedList) {
+		if (commaSeparatedList==null) commaSeparatedList="@form";
 		List<String> expressions = new ArrayList<String>();
 		int pos = 0;
 		int start = 0;

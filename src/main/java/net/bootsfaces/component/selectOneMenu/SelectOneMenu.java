@@ -29,15 +29,19 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head")
+})
 @FacesComponent("net.bootsfaces.component.selectOneMenu.SelectOneMenu")
-public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
+public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
 
@@ -50,23 +54,29 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
+
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "valueChange";
+	}
 	
-    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("blur","change","valueChange","click","dblclick","focus","keydown","keypress","keyup","mousedown","mousemove","mouseout","mouseover","mouseup","select"));
-
-    public Collection<String> getEventNames() {
-        return EVENT_NAMES;    }
-
-
-    public String getDefaultEventName() {
-        return "valueChange";    }
-
+    public void validateValue(FacesContext context, Object newValue) {
+    	super.validateValue(context, newValue);
+    }
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
 	protected enum PropertyKeys {
-		accesskey, alt, binding, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, placeholder, readonly, renderLabel, required, requiredMessage, size, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		accesskey, alt, binding, dir, disabled, fieldSize, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, placeholder, readonly, renderLabel, required, requiredMessage, size, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -83,7 +93,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Access key to transfer focus to the input element. 
+	 * Access key to transfer focus to the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -94,7 +105,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Access key to transfer focus to the input element. 
+	 * Access key to transfer focus to the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAccesskey(String _accesskey) {
@@ -102,7 +114,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Alternate textual description of the input element. 
+	 * Alternate textual description of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -113,7 +126,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Alternate textual description of the input element. 
+	 * Alternate textual description of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAlt(String _alt) {
@@ -122,7 +136,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. 
+	 * backing bean.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -135,7 +150,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. 
+	 * backing bean.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -144,7 +160,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Direction indication for text that does not inherit directionality.
-	 * 
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -156,7 +172,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Direction indication for text that does not inherit directionality.
-	 * 
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
@@ -164,7 +180,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Disables the input element, default is false. 
+	 * Disables the input element, default is false.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -175,7 +192,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Disables the input element, default is false. 
+	 * Disables the input element, default is false.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
@@ -184,7 +202,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The size of the input. Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) . 
+	 * md (medium) and lg (large) .
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -196,7 +215,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The size of the input. Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) . 
+	 * md (medium) and lg (large) .
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFieldSize(String _fieldSize) {
@@ -207,7 +227,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 * Flag indicating that, if this component is activated by the user,
 	 * notifications should be delivered to interested listeners and actions
 	 * immediately (that is, during Apply Request Values phase) rather than
-	 * waiting until Invoke Application phase. Default is false. 
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -221,7 +242,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 * Flag indicating that, if this component is activated by the user,
 	 * notifications should be delivered to interested listeners and actions
 	 * immediately (that is, during Apply Request Values phase) rather than
-	 * waiting until Invoke Application phase. Default is false. 
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImmediate(boolean _immediate) {
@@ -229,7 +251,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The label of the field. 
+	 * The label of the field.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -240,7 +263,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The label of the field. 
+	 * The label of the field.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLabel(String _label) {
@@ -248,7 +272,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * A localized user presentable name. 
+	 * A localized user presentable name.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -259,7 +284,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * A localized user presentable name. 
+	 * A localized user presentable name.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLang(String _lang) {
@@ -267,7 +293,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus. 
+	 * Client side callback to execute when input element loses focus.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -278,16 +305,18 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus. 
+	 * Client side callback to execute when input element loses focus.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOnblur(Object _onblur) {
+	public void setOnblur(String _onblur) {
 		getStateHelper().put(PropertyKeys.onblur, _onblur);
 	}
 
 	/**
 	 * Client side callback to execute when input element loses focus and its
-	 * value has been modified since gaining focus. 
+	 * value has been modified since gaining focus.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -299,7 +328,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when input element loses focus and its
-	 * value has been modified since gaining focus. 
+	 * value has been modified since gaining focus.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnchange(String _onchange) {
@@ -307,7 +337,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * OnClick DHTML event . 
+	 * OnClick DHTML event .
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -318,7 +349,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * OnClick DHTML event . 
+	 * OnClick DHTML event .
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -326,8 +358,29 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Client side callback to execute when input element is double clicked.
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
 	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncomplete() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * Client side callback to execute when input element is double clicked.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -339,7 +392,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when input element is double clicked.
-	 * 
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndblclick(String _ondblclick) {
@@ -347,7 +400,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Client side callback to execute when input element receives focus. 
+	 * Client side callback to execute when input element receives focus.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -358,7 +412,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Client side callback to execute when input element receives focus. 
+	 * Client side callback to execute when input element receives focus.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnfocus(String _onfocus) {
@@ -367,7 +422,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is pressed down over input
-	 * element. 
+	 * element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -379,7 +435,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is pressed down over input
-	 * element. 
+	 * element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeydown(String _onkeydown) {
@@ -388,7 +445,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is pressed and released over
-	 * input element. 
+	 * input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -400,7 +458,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is pressed and released over
-	 * input element. 
+	 * input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeypress(String _onkeypress) {
@@ -409,7 +468,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is released over input
-	 * element. 
+	 * element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -421,7 +481,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a key is released over input
-	 * element. 
+	 * element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnkeyup(String _onkeyup) {
@@ -430,7 +491,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is pressed
-	 * down over input element. 
+	 * down over input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -442,7 +504,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is pressed
-	 * down over input element. 
+	 * down over input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousedown(String _onmousedown) {
@@ -451,7 +514,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * within input element. 
+	 * within input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -463,7 +527,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * within input element. 
+	 * within input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousemove(String _onmousemove) {
@@ -472,7 +537,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * away from input element. 
+	 * away from input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -484,7 +550,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * away from input element. 
+	 * away from input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseout(String _onmouseout) {
@@ -493,7 +560,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * onto input element. 
+	 * onto input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -505,7 +573,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved
-	 * onto input element. 
+	 * onto input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseover(String _onmouseover) {
@@ -514,7 +583,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is released
-	 * over input element. 
+	 * over input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -526,7 +596,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when a pointer input element is released
-	 * over input element. 
+	 * over input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseup(String _onmouseup) {
@@ -535,7 +606,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when text within input element is
-	 * selected by user. 
+	 * selected by user.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -547,7 +619,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Client side callback to execute when text within input element is
-	 * selected by user. 
+	 * selected by user.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnselect(String _onselect) {
@@ -556,7 +629,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The placeholder attribute shows text in a field until the field is
-	 * focused upon, then hides the text. 
+	 * focused upon, then hides the text.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -568,7 +642,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The placeholder attribute shows text in a field until the field is
-	 * focused upon, then hides the text. 
+	 * focused upon, then hides the text.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPlaceholder(String _placeholder) {
@@ -577,7 +652,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Flag indicating that this input element will prevent changes by the user.
-	 * 
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -589,7 +664,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Flag indicating that this input element will prevent changes by the user.
-	 * 
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setReadonly(boolean _readonly) {
@@ -598,7 +673,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by
-	 * AngularFaces, too. 
+	 * AngularFaces, too.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -610,7 +686,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by
-	 * AngularFaces, too. 
+	 * AngularFaces, too.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRenderLabel(boolean _renderLabel) {
@@ -619,7 +696,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Boolean value Require input in the component when the form is submitted.
-	 * 
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -631,7 +708,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Boolean value Require input in the component when the form is submitted.
-	 * 
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRequired(boolean _required) {
@@ -640,7 +717,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Message to show if the user did not specify a value and the attribute
-	 * required is set to true. 
+	 * required is set to true.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -652,7 +730,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Message to show if the user did not specify a value and the attribute
-	 * required is set to true. 
+	 * required is set to true.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRequiredMessage(String _requiredMessage) {
@@ -661,7 +740,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Number of characters used to determine the width of the input element.
-	 * 
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -673,7 +752,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * Number of characters used to determine the width of the input element.
-	 * 
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(int _size) {
@@ -681,7 +760,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The size of the input specified as number of grid columns. 
+	 * The size of the input specified as number of grid columns.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -692,7 +772,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The size of the input specified as number of grid columns. 
+	 * The size of the input specified as number of grid columns.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSpan(int _span) {
@@ -700,7 +781,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Inline style of the input element. 
+	 * Inline style of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -711,7 +793,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Inline style of the input element. 
+	 * Inline style of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -719,7 +802,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Style class of the input element. 
+	 * Style class of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -730,7 +814,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Style class of the input element. 
+	 * Style class of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -738,7 +823,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Advisory tooltip information. 
+	 * Advisory tooltip information.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -749,7 +835,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Advisory tooltip information. 
+	 * Advisory tooltip information.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTabindex(String _tabindex) {
@@ -757,7 +844,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Advisory tooltip information. 
+	 * Advisory tooltip information.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -768,7 +856,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Advisory tooltip information. 
+	 * Advisory tooltip information.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -776,7 +865,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -787,7 +877,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -796,7 +887,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -808,7 +900,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -817,7 +910,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -829,7 +923,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -838,7 +933,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -850,7 +946,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -860,7 +957,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -873,15 +971,33 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
-	
-    public void validateValue(FacesContext context, Object newValue) {
-    	super.validateValue(context, newValue);
-    }
+
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
+	}
+
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
 
 }

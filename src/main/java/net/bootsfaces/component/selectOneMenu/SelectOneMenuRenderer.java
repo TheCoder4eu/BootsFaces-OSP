@@ -87,6 +87,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 					menu.setSubmittedValue(currentOptionValue);
 					menu.setValid(true);
 					menu.validateValue(context, submittedOptionValue);
+					new AJAXRenderer().decode(context, component);
 					return;
 				}
 			}
@@ -99,6 +100,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		menu.setValid(true);
 		menu.validateValue(context, submittedOptionValue);
 		menu.setSubmittedValue(submittedOptionValue);
+		new AJAXRenderer().decode(context, component);
 	}
 
 	/** Generates the HTML code for this component. */
@@ -522,6 +524,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 *             may be thrown by the response writer
 	 */
 	protected void renderSelectTag(ResponseWriter rw, SelectOneMenu menu) throws IOException {
+		rw.write("\n");
 		rw.startElement("select", menu);
 	}
 
@@ -572,6 +575,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		}
 		
 		// Render Ajax Capabilities
+		rw.writeAttribute("schrott", "schrott", "schrott");;
 		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), menu, rw);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)

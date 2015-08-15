@@ -30,6 +30,7 @@ import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
@@ -40,11 +41,11 @@ import net.bootsfaces.render.Tooltip;
  */
 
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
+		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent(CommandButton.COMPONENT_TYPE)
-public class CommandButton extends UICommand implements ClientBehaviorHolder, IHasTooltip {
+public class CommandButton extends UICommand implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent {
 
 	/**
 	 * <p>
