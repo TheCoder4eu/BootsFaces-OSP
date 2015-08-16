@@ -574,9 +574,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
 		
-		// Render Ajax Capabilities
-		rw.writeAttribute("schrott", "schrott", "schrott");;
-		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), menu, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);

@@ -58,57 +58,60 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		String name="input_"+clientId;
+		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
-
 		}
 	}
-        
-        @Override
+
+	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-            Converter cnv = resolveConverter(fc, c);
+		Converter cnv = resolveConverter(fc, c);
 
-            if (cnv != null) {
-                return cnv.getAsObject(fc, c, (String) sval);
-            } else {
-                return sval;
-            }
-        }
-        
-    
-        protected Converter resolveConverter(FacesContext context, UIComponent c) {
-            if(!(c instanceof ValueHolder)) { return null; }
+		if (cnv != null) {
+			return cnv.getAsObject(fc, c, (String) sval);
+		} else {
+			return sval;
+		}
+	}
 
-            Converter cnv = ((ValueHolder) c).getConverter();
+	protected Converter resolveConverter(FacesContext context, UIComponent c) {
+		if (!(c instanceof ValueHolder)) {
+			return null;
+		}
 
-            if(cnv != null) { return cnv; } 
-            else {
-                ValueExpression ve = c.getValueExpression("value");
+		Converter cnv = ((ValueHolder) c).getConverter();
 
-                if(ve != null) {
-                    Class<?> valType = ve.getType(context.getELContext());
+		if (cnv != null) {
+			return cnv;
+		} else {
+			ValueExpression ve = c.getValueExpression("value");
 
-                    if(valType != null) { return context.getApplication().createConverter(valType); }
-                }
+			if (ve != null) {
+				Class<?> valType = ve.getType(context.getELContext());
 
-                return null;
-            }
-        }
+				if (valType != null) {
+					return context.getApplication().createConverter(valType);
+				}
+			}
+
+			return null;
+		}
+	}
 
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        if (!component.isRendered()) {
-            return;
-        }
+		if (!component.isRendered()) {
+			return;
+		}
 		InputText inputText = (InputText) component;
-		Map<String, Object> attrs = inputText.getAttributes();
+//		Map<String, Object> attrs = inputText.getAttributes();
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
 
-		// Map<String, Object> attrs = getAttributes();
 		// "Prepend" facet
 		UIComponent prep = inputText.getFacet(C.PREPEND);
 		// "Append" facet
@@ -116,30 +119,25 @@ public class InputTextRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-
-		// If the facet contains only one component, getChildCount()=0 and the Facet is the UIComponent
+		// If the facet contains only one component, getChildCount()=0 and the
+		// facet is the UIComponent
 		if (prepend) {
 			R.addClass2FacetComponent(prep, "OutputText", InputText.ADDON);
-                        R.setFacetComponentAttribute(prep, "Icon", "addon", "true");
-                        R.setFacetComponentAttribute(prep, "IconAwesome", "addon", "true");
+			R.setFacetComponentAttribute(prep, "Icon", "addon", "true");
+			R.setFacetComponentAttribute(prep, "IconAwesome", "addon", "true");
 		}
 		if (append) {
 			R.addClass2FacetComponent(app, "OutputText", InputText.ADDON);
-                        R.setFacetComponentAttribute(app, "Icon", "addon", "true");
-                        R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
+			R.setFacetComponentAttribute(app, "Icon", "addon", "true");
+			R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
 		}
 
-
-		String label = A.asString(attrs.get("label"));
+		String label = inputText.getLabel();
 		{
-			Object rl = attrs.get(A.RENDERLABEL);
-			if (null != rl) {
-				if (!A.toBool(attrs.get(A.RENDERLABEL))) {
-					label = null;
-				}
+			if (!inputText.isRenderLabel()) {
+				label = null;
 			}
 		}
-
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -147,21 +145,20 @@ public class InputTextRenderer extends CoreRenderer {
 		if (component instanceof InputSecret) {
 			t = H.PASSWORD;
 		} else { // ordinary input fields
-			t = A.asString(attrs.get("type"));
+			t = inputText.getType();
 			if (t == null)
 				t = "text";
 		}
 
-		Tooltip.generateTooltip(context, attrs, rw);
+		Tooltip.generateTooltip(context, inputText, rw);
 
 		rw.startElement("div", component);
 		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("class", "form-group", "class");
 
-
 		if (label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for","input_" + clientId, "for");
+			rw.writeAttribute("for", "input_" + clientId, "for");
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
@@ -171,17 +168,15 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "input-group", "class");
 		}
 
-
-		int span = A.toInt(attrs.get(A.SPAN));
+		int span = inputText.getSpan();
 		if (span > 0) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "col-md-" + span, "class");
 		}
 
-
 		if (prepend) {
-			if (prep.getClass().getName().endsWith("Button")
-					|| (prep.getChildCount() > 0 && prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
+			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0
+					&& prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
 				rw.startElement("div", inputText);
 				rw.writeAttribute("class", "input-group-btn", "class");
 				prep.encodeAll(context);
@@ -191,70 +186,40 @@ public class InputTextRenderer extends CoreRenderer {
 			}
 		}
 
-
 		// Input
 		rw.startElement("input", inputText);
 		rw.writeAttribute("id", "input_" + clientId, null);
 		rw.writeAttribute("name", "input_" + clientId, null);
 		rw.writeAttribute("type", t, null);
 
-		StringBuilder sb;
-		String s;
-		sb = new StringBuilder(20); // optimize int
-		sb.append("form-control");
+		generateStyleClass(inputText, rw);
 
-		String fsize = A.asString(attrs.get(A.FIELDSIZE));
-
-		if (fsize != null) {
-			sb.append(" input-").append(fsize);
-		}
-
-		// styleClass and class support
-		String sclass = A.asString(attrs.get(H.STYLECLASS));
-		if (sclass != null) {
-			sb.append(" ").append(sclass);
-		}
-
-		if (inputText.isRequired()) {
-			sb.append(" ").append("bf-required");
-		}
-
-		s = sb.toString().trim();
-		if (s != null && s.length() > 0) {
-			rw.writeAttribute("class", s, H.STYLECLASS);
-		}
-
-		String ph = A.asString(attrs.get(A.PHOLDER));
+		String ph = inputText.getPlaceholder();
 		if (ph != null) {
-			rw.writeAttribute(H.PHOLDER, ph, null);
+			rw.writeAttribute("placeholder", ph, null);
 		}
 
-		if (A.toBool(attrs.get(A.DISABLED))) {
-			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
+		if (inputText.isDisabled()) {
+			rw.writeAttribute("disabled", "disabled", null);
 		}
-		if (A.toBool(attrs.get(A.READONLY))) {
-			rw.writeAttribute(A.READONLY, A.READONLY, null);
+		if (inputText.isReadonly()) {
+			rw.writeAttribute("readonly", "readonly", null);
 		}
-
-
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		renderPassThruAttributes(context, component, A.INPUT_TEXT_ATTRS);
 
-
-		if ((A.asString(attrs.get("autocomplete")) != null) && (A.asString(attrs.get("autocomplete")).equals("off"))) {
+		String autocomplete=inputText.getAutocomplete();
+		if ((autocomplete != null) && (autocomplete.equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
-
 
 		// Render Value
 		String v = R.getValue2Render(context, component);
 		rw.writeAttribute("value", v, null);
 
-
 		// Render Ajax Capabilities
-		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), inputText, rw);
-
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw);
 
 		rw.endElement("input");
 		if (append) {
@@ -278,7 +243,34 @@ public class InputTextRenderer extends CoreRenderer {
 			// rw.endElement(H.DIV); //row NO
 		}
 
+		Tooltip.activateTooltips(context, inputText);
+	}
 
-		Tooltip.activateTooltips(context, attrs, inputText);
+	private void generateStyleClass(InputText inputText, ResponseWriter rw) throws IOException {
+		StringBuilder sb;
+		String s;
+		sb = new StringBuilder(20); // optimize int
+		sb.append("form-control");
+
+		String fsize = inputText.getFieldSize();
+
+		if (fsize != null) {
+			sb.append(" input-").append(fsize);
+		}
+
+		// styleClass and class support
+		String sclass = inputText.getStyleClass();
+		if (sclass != null) {
+			sb.append(" ").append(sclass);
+		}
+
+		if (inputText.isRequired()) {
+			sb.append(" ").append("bf-required");
+		}
+
+		s = sb.toString().trim();
+		if (s != null && s.length() > 0) {
+			rw.writeAttribute("class", s, "class");
+		}
 	}
 }

@@ -427,7 +427,7 @@ widget inputText
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -554,11 +554,10 @@ widget modal
     contentStyle                                                           "Inline style of the content area."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     size                                                                   "Modal's size. Possible values modal-sm, modal-lg"
     style                                                                  "Inline style"
     styleClass                                                             "Style class of this element."
-    title                                                                  "Bold title displayed in Modal's header."
+    title                                                                  "Bold title displayed in the modal's header."
 }
 
 

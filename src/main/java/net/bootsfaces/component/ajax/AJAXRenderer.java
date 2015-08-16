@@ -100,11 +100,19 @@ public class AJAXRenderer extends CoreRenderer {
 		return result;
 	}
 
-	public static void generateJavaScriptHandlers(FacesContext context, CommandButton component, ResponseWriter rw,
-			String CID, String type) throws IOException {
+	
+	/**
+	 * Public API for the command button.
+	 * @param context
+	 * @param component
+	 * @param rw
+	 * @throws IOException
+	 */
+	public static void generateBootsFacesAJAXAndJavaScriptForCommandButtons(FacesContext context, CommandButton component, ResponseWriter rw
+			) throws IOException {
 		// Render Ajax Capabilities and on<Event>-Handlers
 
-		generateMojarraAjax(context, component, rw);
+		generateBootsFacesAJAXAndJavaScript(context, component, rw);
 
 		StringBuilder cJS = null;
 
@@ -120,7 +128,14 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 	}
 
-	public static void generateMojarraAjax(FacesContext context, ClientBehaviorHolder component, ResponseWriter rw)
+	/**
+	 * Public API for every input component (effectively everything except the command button).
+	 * @param context
+	 * @param component
+	 * @param rw
+	 * @throws IOException
+	 */
+	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component, ResponseWriter rw)
 			throws IOException {
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		Collection<String> eventNames = component.getEventNames();
@@ -137,7 +152,6 @@ public class AJAXRenderer extends CoreRenderer {
 								jsCallback = convertAJAXToJavascript(context, jsCallback, component);
 								break;
 							}
-
 						}
 					}
 				}
@@ -145,6 +159,7 @@ public class AJAXRenderer extends CoreRenderer {
 				System.err.println("Couldn't invoke method " + nameOfGetter);
 			}
 
+			// TODO behaviors don't render correctly?
 			String script = "";
 			List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
 			if (null != behaviors) {
@@ -155,10 +170,11 @@ public class AJAXRenderer extends CoreRenderer {
 					script += cb.getScript(behaviorContext) + ";";
 				}
 			}
+			// TODO end
 			if (jsCallback.length() > 0 || script.length() > 0) {
 				if (script.length() > 0 && "click".equals(keyClientBehavior))
 					script += ";return false;";
-				rw.writeAttribute("\non" + keyClientBehavior, jsCallback + script, null);
+				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
 			}
 
 		}

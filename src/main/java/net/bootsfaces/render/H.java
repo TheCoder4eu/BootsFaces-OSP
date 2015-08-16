@@ -47,9 +47,6 @@ public final class H {
     
     public static final String UL="ul";
     
-    /* HTML5 */
-    public static final String PHOLDER="placeholder";
-    
     /* WAI-ARIA */
     public static final String ROLE="role";
     public static final String MENU="menu";

@@ -47,7 +47,6 @@ import javax.faces.convert.ConverterException;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
@@ -265,7 +264,7 @@ public class DatePicker extends HtmlInputText {
 
 		String ph = A.asString(attrs.get(A.PHOLDER));
 		if (ph != null) {
-			rw.writeAttribute(H.PHOLDER, ph, null);
+			rw.writeAttribute("placeholder", ph, null);
 		}
 
 		if (A.toBool(attrs.get(A.DISABLED))) {

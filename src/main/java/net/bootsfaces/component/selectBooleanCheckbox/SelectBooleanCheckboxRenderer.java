@@ -267,7 +267,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		renderInputTag(rw, context, selectBooleanCheckbox);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
 		// Render Ajax Capabilities
-		AJAXRenderer.generateMojarraAjax(FacesContext.getCurrentInstance(), selectBooleanCheckbox, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), selectBooleanCheckbox, rw);
 
 		renderInputTagValue(context, rw, selectBooleanCheckbox);
 		renderInputTagEnd(rw, selectBooleanCheckbox);

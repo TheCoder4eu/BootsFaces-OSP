@@ -102,7 +102,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 			}
 		}
 
-		AJAXRenderer.generateJavaScriptHandlers(context, commandButton, rw, CID, type);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScriptForCommandButtons(context, commandButton, rw);
 
 		// TODO : write DHTML attrs - onclick
 		// Encode attributes (HTML 4 pass-through + DHTML)
