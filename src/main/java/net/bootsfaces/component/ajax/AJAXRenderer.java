@@ -42,28 +42,32 @@ public class AJAXRenderer extends CoreRenderer {
 		String param = component.getClientId(context);
 		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-			String nameOfGetter = "getOn" + event;
-			try {
-				Method[] methods = component.getClass().getMethods();
-				for (Method m : methods) {
-					if (m.getParameterTypes().length == 0) {
-						if (m.getReturnType() == String.class) {
-							if (m.getName().equalsIgnoreCase(nameOfGetter)) {
-								String jsCallback = (String) m.invoke(component);
-							    if (jsCallback!=null && jsCallback.contains("ajax:")) {
-									Object result = executeAjaxCalls(context, jsCallback);
-									if (result != null) {
-										System.out.println("Redirection has not yet been implemented.");
+			if (component instanceof CommandButton && (event==null || event.equals("click"))) {
+				component.queueEvent(new ActionEvent(component));
+			} else {
+				String nameOfGetter = "getOn" + event;
+				try {
+					Method[] methods = component.getClass().getMethods();
+					for (Method m : methods) {
+						if (m.getParameterTypes().length == 0) {
+							if (m.getReturnType() == String.class) {
+								if (m.getName().equalsIgnoreCase(nameOfGetter)) {
+									String jsCallback = (String) m.invoke(component);
+									if (jsCallback != null && jsCallback.contains("ajax:")) {
+										Object result = executeAjaxCalls(context, jsCallback);
+										if (result != null) {
+											System.out.println("Redirection has not yet been implemented.");
+										}
 									}
+									break;
 								}
-								break;
-							}
 
+							}
 						}
 					}
+				} catch (ReflectiveOperationException ex) {
+					System.err.println("Couldn't invoke method " + nameOfGetter);
 				}
-			} catch (ReflectiveOperationException ex) {
-				System.err.println("Couldn't invoke method " + nameOfGetter);
 			}
 
 			// component.queueEvent(new ActionEvent(component));
@@ -100,16 +104,16 @@ public class AJAXRenderer extends CoreRenderer {
 		return result;
 	}
 
-	
 	/**
 	 * Public API for the command button.
+	 * 
 	 * @param context
 	 * @param component
 	 * @param rw
 	 * @throws IOException
 	 */
-	public static void generateBootsFacesAJAXAndJavaScriptForCommandButtons(FacesContext context, CommandButton component, ResponseWriter rw
-			) throws IOException {
+	public static void generateBootsFacesAJAXAndJavaScriptForCommandButtons(FacesContext context,
+			CommandButton component, ResponseWriter rw) throws IOException {
 		// Render Ajax Capabilities and on<Event>-Handlers
 
 		generateBootsFacesAJAXAndJavaScript(context, component, rw);
@@ -129,14 +133,16 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * Public API for every input component (effectively everything except the command button).
+	 * Public API for every input component (effectively everything except the
+	 * command button).
+	 * 
 	 * @param context
 	 * @param component
 	 * @param rw
 	 * @throws IOException
 	 */
-	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component, ResponseWriter rw)
-			throws IOException {
+	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
+			ResponseWriter rw) throws IOException {
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -190,7 +196,7 @@ public class AJAXRenderer extends CoreRenderer {
 				String rest = "";
 				int end = jsCallback.indexOf(";javascript:", pos);
 				if (end >= 0) {
-					rest = jsCallback.substring(end);
+					rest = jsCallback.substring(end+";javascript:".length());
 					jsCallback = jsCallback.substring(0, end);
 				}
 
@@ -253,7 +259,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (complete != null) {
 			cJS.append(",function(){" + complete + "}");
 		}
-		cJS.append(");console.log('after AJAX');");
+		cJS.append(");");
 		return cJS;
 	}
 

@@ -52,7 +52,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		String param = component.getClientId(context);
 		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
-			component.queueEvent(new ActionEvent(component));
+			new AJAXRenderer().decode(context, component);
 		}
 	}
 
