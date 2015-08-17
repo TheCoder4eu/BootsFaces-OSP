@@ -192,7 +192,7 @@ widget commandButton
     update                                                                 "Component(s) to be updated with ajax."
     value               mandatory                                          "Button text."
 }
-
+  
 
 widget container
        implemented_by net.bootsfaces.layout.Container
@@ -354,6 +354,7 @@ widget inputSecret
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "OnClick DHTML event ."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -383,6 +384,7 @@ widget inputSecret
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
+    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator                    "A method expression referring to a method validationg the input."
     validatorMessage                                                       "Message to display when validation fails."
     value               inherited                                          "Value."
@@ -414,6 +416,7 @@ widget inputText
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "OnClick DHTML event ."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -443,6 +446,7 @@ widget inputText
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
+    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator                    "A method expression referring to a method validationg the input."
     validatorMessage                                                       "Message to display when validation fails."
     value               inherited                                          "Value."

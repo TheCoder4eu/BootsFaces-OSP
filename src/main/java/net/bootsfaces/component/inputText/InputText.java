@@ -23,7 +23,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
-import net.bootsfaces.render.E;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
 
@@ -35,7 +35,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.INPUTTEXT_COMPONENT_TYPE)
-public class InputText extends HtmlInputText implements IHasTooltip {
+public class InputText extends HtmlInputText implements IHasTooltip, IAJAXComponent {
 
 	/**
 	 * <p>
@@ -66,7 +66,8 @@ public class InputText extends HtmlInputText implements IHasTooltip {
 
 	protected enum PropertyKeys {
 
-		placeholder, fieldSize, type, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,;
+		placeholder, fieldSize, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
+		update;
 
 		String toString;
 
@@ -274,6 +275,39 @@ public class InputText extends HtmlInputText implements IHasTooltip {
 
 	public void setType(java.lang.String _type) {
 		getStateHelper().put(PropertyKeys.type, _type);
+	}
+	public String getOncomplete() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
+	}
+
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
 	}
 
 }

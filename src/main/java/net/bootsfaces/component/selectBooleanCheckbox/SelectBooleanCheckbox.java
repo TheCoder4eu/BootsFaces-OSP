@@ -24,6 +24,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
 
@@ -32,7 +33,7 @@ import net.bootsfaces.render.Tooltip;
     @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
     @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
-public class SelectBooleanCheckbox extends HtmlInputText  implements net.bootsfaces.render.IHasTooltip  {
+public class SelectBooleanCheckbox extends HtmlInputText  implements net.bootsfaces.render.IHasTooltip, IAJAXComponent  {
 	
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox";
 	
@@ -68,6 +69,7 @@ lang,
 onblur,
 onchange,
 onclick,
+oncomplete,
 ondblclick,
 onfocus,
 onkeydown,
@@ -90,7 +92,8 @@ tooltip,
 tooltipDelay,
 tooltipDelayHide,
 tooltipDelayShow,
-tooltipPosition
+tooltipPosition,
+update
 ;
 
         String toString;
@@ -358,6 +361,19 @@ tooltipPosition
 	    getStateHelper().put(PropertyKeys.onclick, _onclick);
     }
 	
+	public String getOncomplete() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
 
 	/**
 	 * Client side callback to execute when input element is double clicked. <P>
@@ -771,6 +787,27 @@ tooltipPosition
 	public void setTooltipPosition(String _tooltipPosition) {
 	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
     }
+
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
+	}
+
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
 	
 }
 

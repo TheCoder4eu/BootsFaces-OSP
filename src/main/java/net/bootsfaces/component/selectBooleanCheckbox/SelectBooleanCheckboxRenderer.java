@@ -74,6 +74,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
 		}
+		new AJAXRenderer().decode(context, component);
 	}
 
 	/**
