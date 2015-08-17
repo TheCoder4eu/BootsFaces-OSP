@@ -28,6 +28,7 @@ import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
+import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
@@ -38,9 +39,14 @@ public class AJAXRenderer extends CoreRenderer {
 		if (componentIsDisabledOrReadonly(component)) {
 			return;
 		}
+		String source = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
 
-		String param = component.getClientId(context);
-		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
+		String id = component.getClientId(context);
+		if (component instanceof InputText) {
+			id="input_" + id; // Todo remove this hack
+		}
+		if (source!=null && source.equals(id)) {
+//		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			if (component instanceof CommandButton && (event==null || event.equals("click"))) {
 				component.queueEvent(new ActionEvent(component));
