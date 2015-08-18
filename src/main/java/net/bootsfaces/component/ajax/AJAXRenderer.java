@@ -43,12 +43,14 @@ public class AJAXRenderer extends CoreRenderer {
 
 		String id = component.getClientId(context);
 		if (component instanceof InputText) {
-			id="input_" + id; // Todo remove this hack
+			id = "input_" + id; // Todo remove this hack
 		}
-		if (source!=null && source.equals(id)) {
-//		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
+		if (source != null && source.equals(id)) {
+			// if
+			// (context.getExternalContext().getRequestParameterMap().containsKey(param))
+			// {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-			if (component instanceof CommandButton && (event==null || event.equals("click"))) {
+			if (component instanceof CommandButton && (event == null || event.equals("click"))) {
 				component.queueEvent(new ActionEvent(component));
 			} else {
 				String nameOfGetter = "getOn" + event;
@@ -60,9 +62,13 @@ public class AJAXRenderer extends CoreRenderer {
 								if (m.getName().equalsIgnoreCase(nameOfGetter)) {
 									String jsCallback = (String) m.invoke(component);
 									if (jsCallback != null && jsCallback.contains("ajax:")) {
-										Object result = executeAjaxCalls(context, jsCallback);
-										if (result != null) {
-											System.out.println("Redirection has not yet been implemented.");
+										if (component instanceof CommandButton && "action".equals(event)) {
+											component.queueEvent(new ActionEvent(component));
+										} else {
+											FacesEvent ajaxEvent = new BootsFacesAJAXEvent(component, event,
+													jsCallback);
+											ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+											component.queueEvent(ajaxEvent);
 										}
 									}
 									break;
@@ -76,38 +82,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 
-			// component.queueEvent(new ActionEvent(component));
-			// FacesEvent event = new BootsFacesAJAXEvent(component);
-			// event.setPhaseId(PhaseId.INVOKE_APPLICATION);
-			// component.queueEvent(event);
 		}
-	}
-
-	private Object executeAjaxCalls(FacesContext context, String command) {
-		Object result = null;
-		int pos = command.indexOf("ajax:");
-		while (pos >= 0) { // the command may contain several AJAX and
-							// JavaScript calls, in arbitrary order
-
-			String el = command.substring(pos + "ajax:".length());
-			if (el.contains("javascript:")) {
-				int end = el.indexOf("javascript:");
-				el = el.substring(0, end);
-			}
-			el = el.trim();
-			while (el.endsWith(";")) {
-				el = el.substring(0, el.length() - 1).trim();
-			}
-			// MethodExpression method = evalAsMethodExpression(el);
-			// method.invoke(FacesContext.getCurrentInstance().getELContext(),
-			// null);
-			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
-			result = vex.getValue(context.getELContext());
-
-			// look for the next AJAX call (if any)
-			pos = command.indexOf("ajax:", pos + 1);
-		}
-		return result;
 	}
 
 	/**
@@ -202,13 +177,10 @@ public class AJAXRenderer extends CoreRenderer {
 				String rest = "";
 				int end = jsCallback.indexOf(";javascript:", pos);
 				if (end >= 0) {
-					rest = jsCallback.substring(end+";javascript:".length());
+					rest = jsCallback.substring(end + ";javascript:".length());
 					jsCallback = jsCallback.substring(0, end);
 				}
 
-				// String el = jsCallback.substring(pos)+ "ajax:".length();
-				// Object method = evalAsObject(el);
-				// System.out.println(method);
 				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component);
 
 				jsCallback = jsCallback.substring(0, pos) + ";" + ajax + rest;
@@ -236,24 +208,6 @@ public class AJAXRenderer extends CoreRenderer {
 		ELContext elContext = context.getELContext();
 		MethodExpression vex = expressionFactory.createMethodExpression(elContext, p_expression, String.class,
 				new Class[0]);
-		return vex;
-	}
-
-	/**
-	 * Evaluates an EL expression into an object.
-	 *
-	 * @param p_expression
-	 *            the expression
-	 * @throws PropertyNotFoundException
-	 *             if the attribute doesn't exist at all (as opposed to being
-	 *             null)
-	 * @return the object
-	 */
-	public static ValueExpression evalAsValueExpression(String p_expression) throws PropertyNotFoundException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
-		ELContext elContext = context.getELContext();
-		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, String.class);
 		return vex;
 	}
 
