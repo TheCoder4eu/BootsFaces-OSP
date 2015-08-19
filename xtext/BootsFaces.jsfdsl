@@ -998,6 +998,7 @@ widget tab
     contentStyle                                                           "Inline CSS of the div surrounding the tab pane."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     onclick                                                                "Optional Javascript function that's called when the tab is clicked."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
     style                                                                  "Inline CSS of the tab."
     styleClass                                                             "Style class of the div surrounding the tab pane."
     title                                                                  "Caption of the tab."
@@ -1006,6 +1007,7 @@ widget tab
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
 }
 
 
@@ -1018,6 +1020,8 @@ widget tabView
     contentClass                                                           "Style class of the div surrounding the panes."
     contentStyle                                                           "Inline CSS style of the div surrounding the panes."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    onclick                                                                "OnClick DHTML event ."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
     role                                                                   "The role can be used to provide information to screenreaders."
     styleClass                                                             "Style class of the div surrounding this element."
     tooltip                                                                "The text of the tooltip."
@@ -1025,6 +1029,7 @@ widget tabView
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
 }
 
 

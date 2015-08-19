@@ -65,8 +65,8 @@ public class AJAXRenderer extends CoreRenderer {
 										if (component instanceof CommandButton && "action".equals(event)) {
 											component.queueEvent(new ActionEvent(component));
 										} else {
-											FacesEvent ajaxEvent = new BootsFacesAJAXEvent(component, event,
-													jsCallback);
+											FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
+													new AJAXBroadcastComponent(component), event, jsCallback);
 											ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
 											component.queueEvent(ajaxEvent);
 										}
@@ -124,6 +124,12 @@ public class AJAXRenderer extends CoreRenderer {
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw) throws IOException {
+		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null);
+
+	}
+
+	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
+			ResponseWriter rw, String specialEvent, String specialEventHandler) throws IOException {
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -136,6 +142,12 @@ public class AJAXRenderer extends CoreRenderer {
 						if (m.getReturnType() == String.class) {
 							if (m.getName().equalsIgnoreCase(nameOfGetter)) {
 								jsCallback = (String) m.invoke(component);
+								if (keyClientBehavior.equals(specialEvent)) {
+									if (null == jsCallback || jsCallback.length() == 0)
+										jsCallback = specialEventHandler;
+									else
+										jsCallback = jsCallback + ";javascript:" + specialEventHandler;
+								}
 								jsCallback = convertAJAXToJavascript(context, jsCallback, component);
 								break;
 							}
