@@ -21,9 +21,9 @@ public class FindPartialIdExpressionResolver implements AbstractExpressionResolv
 				searchRoot = searchRoot.getParent();
 			}
 				
-			UIComponent c = findId(searchRoot, parameters[0]);
+			List<UIComponent> c = findId(searchRoot, parameters[0]);
 			if (null != c) {
-				result.add(c);
+				result.addAll(c);
 			}
 		}
 		if (result.size() > 0) {
@@ -33,19 +33,47 @@ public class FindPartialIdExpressionResolver implements AbstractExpressionResolv
 		throw new FacesException("Invalid search expression - couldn't find id " + currentId + ". Complete search expression: " + originalExpression);
 	}
 
-	public UIComponent findId(UIComponent parent, String id) {
+	public List<UIComponent> findId(UIComponent parent, String id) {
 		if (null==parent)
 			return null;
-		if (id.equals(parent.getId())) {
-			return parent;
+		List<UIComponent> result = new ArrayList<UIComponent>();
+		boolean found = matches(id, parent);
+		if (found) {
+			result.add(parent);
 		}
 		Iterator<UIComponent> facetsAndChildren = parent.getFacetsAndChildren();
 		while (facetsAndChildren.hasNext()) {
 			UIComponent child = facetsAndChildren.next();
-			if (id.equals(child.getId())) {
-				return child;
+		    found = matches(id, child);
+			if (found) {
+				result.add(child);
 			}
 		}
-		return null;
+		return result;
 	}
+	
+	private boolean matches(String id, UIComponent child) {
+		boolean found=false;
+		if (id.startsWith("*") && id.endsWith("*")) {
+			String search=id.substring(1, id.length()-1);
+			if (child.getId().contains(search)) {
+				found=true;
+			}
+		} else if (id.endsWith("*")) {
+			String search=id.substring(0, id.length()-1);
+			if (child.getId().startsWith(search)) {
+				found=true;
+			}
+		} else if (id.startsWith("*")) {
+			String search=id.substring(1);
+			if (child.getId().endsWith(search)) {
+				found=true;
+			}
+		}
+		else if (id.equals(child.getId())) {
+			found=true;
+		}
+		return found;
+	}
+
 }
