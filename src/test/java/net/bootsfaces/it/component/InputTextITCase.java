@@ -52,19 +52,19 @@ public class InputTextITCase extends IntegrationTestsBase {
     }
 
     
-    @FindBy(id = "txt_1")
+    @FindBy(id = "input_txt_1")
     private GrapheneElement txt_1;
 
-    @FindBy(id = "txt_2")
+    @FindBy(id = "input_txt_2")
     private GrapheneElement txt_2;
 
-    @FindBy(id = "txt_3")
+    @FindBy(id = "input_txt_3")
     private GrapheneElement txt_3;
     
-    @FindBy(id = "txt_4")
+    @FindBy(id = "input_txt_4")
     private GrapheneElement txt_4;
     
-    @FindBy(id = "txt_5")
+    @FindBy(id = "input_txt_5")
     private GrapheneElement txt_5;
      
 
