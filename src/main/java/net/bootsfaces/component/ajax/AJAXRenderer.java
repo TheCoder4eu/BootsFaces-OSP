@@ -30,6 +30,7 @@ import javax.faces.event.PhaseId;
 import net.bootsfaces.component.commandButton.CommandButton;
 import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
+import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 
@@ -45,6 +46,19 @@ public class AJAXRenderer extends CoreRenderer {
 		if (component instanceof InputText) {
 			id = "input_" + id; // Todo remove this hack
 		}
+		
+		if (component instanceof TabView && source != null)
+		{
+			for (UIComponent tab: component.getChildren()) {
+				String tabId = tab.getClientId().replace(":", "_") + "_tab";
+				if (source.equals(tabId)) {
+					component=tab;
+					id=tabId;
+					break;
+				}
+			}
+		}
+		
 		if (source != null && source.equals(id)) {
 			// if
 			// (context.getExternalContext().getRequestParameterMap().containsKey(param))
@@ -171,7 +185,7 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 			// TODO end
 			if (jsCallback.length() > 0 || script.length() > 0) {
-				if (script.length() > 0 && "click".equals(keyClientBehavior))
+				if (jsCallback.length() > 0 && "click".equals(keyClientBehavior))
 					script += ";return false;";
 				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
 			}

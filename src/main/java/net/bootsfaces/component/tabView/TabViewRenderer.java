@@ -31,6 +31,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.tab.Tab;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
@@ -65,6 +66,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		if (null != activeIndexValue && activeIndexValue.length() > 0) {
 			try {
+				new AJAXRenderer().decode(context, component);
 				if (Integer.valueOf(activeIndexValue) != tabView.getActiveIndex()) {
 					tabView.setActiveIndex(Integer.valueOf(activeIndexValue));
 				}
@@ -95,242 +97,244 @@ public class TabViewRenderer extends CoreRenderer {
 		ResponseWriter writer = context.getResponseWriter();
 		String clientId = tabView.getClientId();
 
-        writer.startElement("input", tabView);
-        writer.writeAttribute("type", "hidden", null);
-        final String hiddenInputFieldID = clientId.replace(":", "_") + "_activeIndex";
-        writer.writeAttribute("name", hiddenInputFieldID, "name");
-        writer.writeAttribute("id", hiddenInputFieldID, "id");
-        writer.writeAttribute("value", tabView.getActiveIndex(), "value");
-        writer.endElement("input");
-        
-        writer.startElement("div", tabView);
-        writer.writeAttribute("class", "tab-panel", "class");
-        writer.writeAttribute("role", "tabpanel", "class");
-        writer.startElement("ul", tabView);
-        writer.writeAttribute("id", clientId, "id");
-        Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
-        String classes = "nav nav-tabs";
-        if (tabView.getStyleClass()!=null) {
-            classes += " ";
-            classes += tabView.getStyleClass();
-        }
-	
-        writer.writeAttribute("class", classes, "class");
-        
-        
-        String role = "tablist";
-        R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), TAB_VIEW_ATTRS);
-        if (tabView.getRole()!=null) {
-            role = tabView.getRole();
-        }
+		writer.startElement("input", tabView);
+		writer.writeAttribute("type", "hidden", null);
+		final String hiddenInputFieldID = clientId.replace(":", "_") + "_activeIndex";
+		writer.writeAttribute("name", hiddenInputFieldID, "name");
+		writer.writeAttribute("id", hiddenInputFieldID, "id");
+		writer.writeAttribute("value", tabView.getActiveIndex(), "value");
+		writer.endElement("input");
 
-        writer.writeAttribute("role", role, "role");
+		writer.startElement("div", tabView);
+		writer.writeAttribute("class", "tab-panel", "class");
+		writer.writeAttribute("role", "tabpanel", "class");
+		writer.startElement("ul", tabView);
+		writer.writeAttribute("id", clientId, "id");
+		Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
+		String classes = "nav nav-tabs";
+		if (tabView.getStyleClass() != null) {
+			classes += " ";
+			classes += tabView.getStyleClass();
+		}
 
-        final List<UIComponent> tabs = getTabs(tabView);
-        encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
-        writer.endElement("ul");
-        writer.endElement("div");
-        encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
-        Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
-    }
+		writer.writeAttribute("class", classes, "class");
 
-    /**
-     * Essentially, getTabs() does the same as getChildren(), but it filters everything that's not a tab. In particular, comments are
-     * ignored.
-     * See issue 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
-     * 
-     * @return
-     */
-    private List<UIComponent> getTabs(TabView tabView) {
-        List<UIComponent> children = tabView.getChildren();
-        List<UIComponent> filtered = new ArrayList<UIComponent>(children.size());
-        for (UIComponent c : children) {
-            if (c instanceof Tab)
-                filtered.add(c);
-        }
-        return filtered;
-    }
+		String role = "tablist";
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer);
+		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), TAB_VIEW_ATTRS);
+		if (tabView.getRole() != null) {
+			role = tabView.getRole();
+		}
 
-    
+		writer.writeAttribute("role", role, "role");
 
-    /**
-     * Generates the HTML of the tab panes.
-     * 
-     * @param context
-     *            the current FacesContext
-     * @param writer
-     *            the response writer
-     * @param tabs 
-     * @param children
-     *            the tabs
-     * @throws IOException
-     *             only thrown if something's wrong with the response writer
-     */
-    private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView,
-             int currentlyActiveIndex, List<UIComponent> tabs) throws IOException {
-        writer.startElement("div", tabView);
-        String classes = "tab-content";
-        if (tabView.getContentClass()!=null) {
-            classes += " ";
-            classes += tabView.getContentClass();
-        }
-        writer.writeAttribute("class", classes, "class");
+		final List<UIComponent> tabs = getTabs(tabView);
+		encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
+		writer.endElement("ul");
+		writer.endElement("div");
+		encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
+	}
 
-        if (tabView.getContentStyle()!=null) {
-            String inlineCSS = tabView.getContentStyle();
-            writer.writeAttribute("style", inlineCSS, "style");
-        }
+	/**
+	 * Essentially, getTabs() does the same as getChildren(), but it filters
+	 * everything that's not a tab. In particular, comments are ignored. See
+	 * issue 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
+	 * 
+	 * @return
+	 */
+	private List<UIComponent> getTabs(TabView tabView) {
+		List<UIComponent> children = tabView.getChildren();
+		List<UIComponent> filtered = new ArrayList<UIComponent>(children.size());
+		for (UIComponent c : children) {
+			if (c instanceof Tab)
+				filtered.add(c);
+		}
+		return filtered;
+	}
 
-        String role = "tablist";
-        if (tabView.getRole()!=null) {
-            role = tabView.getRole();
-        }
-        writer.writeAttribute("role", role, "role");
-        int activeIndex = tabView.getActiveIndex();
+	/**
+	 * Generates the HTML of the tab panes.
+	 * 
+	 * @param context
+	 *            the current FacesContext
+	 * @param writer
+	 *            the response writer
+	 * @param tabs
+	 * @param children
+	 *            the tabs
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
+	private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView,
+			int currentlyActiveIndex, List<UIComponent> tabs) throws IOException {
+		writer.startElement("div", tabView);
+		String classes = "tab-content";
+		if (tabView.getContentClass() != null) {
+			classes += " ";
+			classes += tabView.getContentClass();
+		}
+		writer.writeAttribute("class", classes, "class");
 
-        if (null != tabs) {
-            for (int index = 0; index < tabs.size(); index++) {
-                if (tabs.get(index).isRendered()) {
-                    encodeTabPane(context, writer, tabs.get(index), index == activeIndex);
-                }
-            }
-        }
-        writer.endElement("div");
-    }
+		if (tabView.getContentStyle() != null) {
+			String inlineCSS = tabView.getContentStyle();
+			writer.writeAttribute("style", inlineCSS, "style");
+		}
 
+		String role = "tablist";
+		if (tabView.getRole() != null) {
+			role = tabView.getRole();
+		}
+		writer.writeAttribute("role", role, "role");
+		int activeIndex = tabView.getActiveIndex();
 
-    /**
-     * Generate an individual tab pane. Basically, that's &lt;div role="tabpanel" class="tab-pane active" id="home"&lt; {{childContent}}
-     * &gt;/div&gt;
-     *
-     * @param context
-     *            the current FacesContext
-     * @param writer
-     *            the response writer
-     * @param tab
-     *            the tab to be rendered.
-     * @param isActive
-     *            is the current tab active?
-     * @throws IOException
-     *             only thrown if something's wrong with the response writer
-     */
+		if (null != tabs) {
+			for (int index = 0; index < tabs.size(); index++) {
+				if (tabs.get(index).isRendered()) {
+					encodeTabPane(context, writer, tabs.get(index), index == activeIndex);
+				}
+			}
+		}
+		writer.endElement("div");
+	}
 
-    private static void encodeTabPane(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive)
-            throws IOException {
-    	Tab tab = (Tab)child;
-        writer.startElement("div", tab);
-        writer.writeAttribute("id", tab.getClientId().replace(":", "_"), "id");
-        String classes = "tab-pane";
-        if (isActive) {
-            classes += " active";
-        }
-        if (tab.getStyleClass()!=null) {
-            classes += " ";
-            classes += tab.getStyleClass();
-        }
-        if (tab.getContentStyle() != null) {
-            writer.writeAttribute("style", tab.getContentStyle(), "style");
-        }
+	/**
+	 * Generate an individual tab pane. Basically, that's &lt;div
+	 * role="tabpanel" class="tab-pane active" id="home"&lt; {{childContent}}
+	 * &gt;/div&gt;
+	 *
+	 * @param context
+	 *            the current FacesContext
+	 * @param writer
+	 *            the response writer
+	 * @param tab
+	 *            the tab to be rendered.
+	 * @param isActive
+	 *            is the current tab active?
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
 
-        writer.writeAttribute("class", classes, "class");
-        tab.encodeChildren(context);
-        writer.endElement("div");
-    }
+	private static void encodeTabPane(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive)
+			throws IOException {
+		Tab tab = (Tab) child;
+		writer.startElement("div", tab);
+		writer.writeAttribute("id", tab.getClientId().replace(":", "_"), "id");
+		String classes = "tab-pane";
+		if (isActive) {
+			classes += " active";
+		}
+		if (tab.getStyleClass() != null) {
+			classes += " ";
+			classes += tab.getStyleClass();
+		}
+		if (tab.getContentStyle() != null) {
+			writer.writeAttribute("style", tab.getContentStyle(), "style");
+		}
 
-    /**
-     * Generates the HTML of the tabs.
-     * 
-     * @param context
-     *            the current FacesContext
-     * @param writer
-     *            the response writer
-     * @param children
-     *            the tabs
-     * @throws IOException
-     *             only thrown if something's wrong with the response writer
-     */
-    private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children,
-             int currentlyActiveIndex, String hiddenInputFieldID) throws IOException {
-        if (null != children) {
-            for (int index = 0; index < children.size(); index++) {
-                encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID, index);
-            }
-        }
-    }
+		writer.writeAttribute("class", classes, "class");
+		tab.encodeChildren(context);
+		writer.endElement("div");
+	}
 
-    /**
-     * Generate an individual tab. Basically, that's &lt;li role="presentation" class="active"&gt&lt;a href="#{clientID}" role="tab"
-     * data-toggle="tab"&lt; {{title}} &gt;/a&gt;
-     *
-     * @param context
-     *            the current FacesContext
-     * @param writer
-     *            the response writer
-     * @param tab
-     *            the tab to be rendered.
-     * @param isActive
-     *            is the current tab active?
-     * @throws IOException
-     *             only thrown if something's wrong with the response writer
-     */
-    private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive,
-            String hiddenInputFieldID, int tabIndex) throws IOException {
-    	Tab tab = (Tab)child;
-        if (!tab.isRendered())
-            return;
-        writer.startElement("li", tab);
-        writer.writeAttribute("role", "presentation", "role");
-        Tooltip.generateTooltip(context, tab.getAttributes(), writer);
+	/**
+	 * Generates the HTML of the tabs.
+	 * 
+	 * @param context
+	 *            the current FacesContext
+	 * @param writer
+	 *            the response writer
+	 * @param children
+	 *            the tabs
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
+	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children,
+			int currentlyActiveIndex, String hiddenInputFieldID) throws IOException {
+		if (null != children) {
+			for (int index = 0; index < children.size(); index++) {
+				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID,
+						index);
+			}
+		}
+	}
 
-        String classes = isActive ? "active" : "";
-        if (tab.getStyleClass() != null) {
-            classes += " ";
-            classes += tab.getStyleClass();
-        }
-        if (classes.length() > 0)
-            writer.writeAttribute("class", classes, "class");
-        if (tab.getStyle() != null) {
-            writer.writeAttribute("style", tab.getStyle(), "style");
-        }
+	/**
+	 * Generate an individual tab. Basically, that's &lt;li role="presentation"
+	 * class="active"&gt&lt;a href="#{clientID}" role="tab"
+	 * data-toggle="tab"&lt; {{title}} &gt;/a&gt;
+	 *
+	 * @param context
+	 *            the current FacesContext
+	 * @param writer
+	 *            the response writer
+	 * @param tab
+	 *            the tab to be rendered.
+	 * @param isActive
+	 *            is the current tab active?
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
+	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive,
+			String hiddenInputFieldID, int tabIndex) throws IOException {
+		Tab tab = (Tab) child;
+		if (!tab.isRendered())
+			return;
+		writer.startElement("li", tab);
+		writer.writeAttribute("role", "presentation", "role");
+		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
 
-        encodeTabAnchorTag(writer, tab, hiddenInputFieldID, tabIndex);
-        writer.endElement("li");
-    }
+		String classes = isActive ? "active" : "";
+		if (tab.getStyleClass() != null) {
+			classes += " ";
+			classes += tab.getStyleClass();
+		}
+		if (classes.length() > 0)
+			writer.writeAttribute("class", classes, "class");
+		if (tab.getStyle() != null) {
+			writer.writeAttribute("style", tab.getStyle(), "style");
+		}
 
-    /**
-     * Generate the clickable entity of the tab.
-     *
-     * @param writer
-     *            the response writer
-     * @param tab
-     *            the tab to be rendered.
-     * @throws IOException
-     *             only thrown if something's wrong with the response writer
-     */
-    private static void encodeTabAnchorTag(ResponseWriter writer, Tab tab, 
-            String hiddenInputFieldID, int tabindex) throws IOException {
-        writer.startElement("a", tab);
-        writer.writeAttribute("role", "tab", "role");
-        writer.writeAttribute("data-toggle", "tab", "data-toggle");
-        writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
-        String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
-                + "';";
-        String userClick = tab.getOnclick();
-        if (null != userClick && userClick.trim().length() > 0) {
-            onclick += userClick;
-        }
-        writer.writeAttribute("onclick", onclick, "onclick");
-        R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), TAB_ATTRS);
-        
-        UIComponent iconFacet = tab.getFacet("anchor");
-        if (null != iconFacet) {
-            iconFacet.encodeAll(FacesContext.getCurrentInstance());
-            if (null != tab.getTitle()) {
-                writer.writeText(" " + tab.getTitle(), null);
-            }
-        } else {
-            writer.writeText(tab.getTitle(), null);
-        }
-        writer.endElement("a");
-    }
+		encodeTabAnchorTag(context, writer, tab, hiddenInputFieldID, tabIndex);
+		writer.endElement("li");
+	}
+
+	/**
+	 * Generate the clickable entity of the tab.
+	 *
+	 * @param writer
+	 *            the response writer
+	 * @param tab
+	 *            the tab to be rendered.
+	 * @throws IOException
+	 *             only thrown if something's wrong with the response writer
+	 */
+	private static void encodeTabAnchorTag(FacesContext context, ResponseWriter writer, Tab tab,
+			String hiddenInputFieldID, int tabindex) throws IOException {
+		writer.startElement("a", tab);
+		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_tab", "id");
+		writer.writeAttribute("role", "tab", "role");
+		writer.writeAttribute("data-toggle", "tab", "data-toggle");
+		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
+		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
+				+ "';";
+		String userClick = tab.getOnclick();
+		if (null != userClick && userClick.trim().length() > 0) {
+			onclick += userClick;
+		}
+		// writer.writeAttribute("onclick", onclick, "onclick");
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick);
+		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), TAB_ATTRS);
+
+		UIComponent iconFacet = tab.getFacet("anchor");
+		if (null != iconFacet) {
+			iconFacet.encodeAll(FacesContext.getCurrentInstance());
+			if (null != tab.getTitle()) {
+				writer.writeText(" " + tab.getTitle(), null);
+			}
+		} else {
+			writer.writeText(tab.getTitle(), null);
+		}
+		writer.endElement("a");
+	}
 }

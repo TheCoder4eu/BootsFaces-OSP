@@ -17,6 +17,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 	
 	public AJAXBroadcastComponent(UIComponent source) {
 		this.source=source;
+		System.out.println("Created AJAXBroadCastComponent for " + source.getClass().getSimpleName());
 	}
 	
 	/**
@@ -46,7 +47,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 //		 Perform standard superclass processing 
 		source.broadcast(event);
 		if (event instanceof BootsFacesAJAXEvent) {
-			System.out.println("BootsFaceAJAXEvent" + ((BootsFacesAJAXEvent) event).getEvent());
+			System.out.println("broadcasting BootsFacesAJAXEvent " + ((BootsFacesAJAXEvent) event).getEvent());
 			Object result = executeAjaxCalls(FacesContext.getCurrentInstance(),
 					((BootsFacesAJAXEvent) event).getJsCallback());
 			if (result != null) {

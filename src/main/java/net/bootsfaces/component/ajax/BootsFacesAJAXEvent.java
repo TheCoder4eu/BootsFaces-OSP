@@ -19,6 +19,7 @@ public class BootsFacesAJAXEvent extends AjaxBehaviorEvent {
 		super(source, new BehaviorBase());
 		this.jsCallback=jsCallback;
 		this.event=event;
+		System.out.println("Created AJAXBroadCastComponent for " + event + " " + source.getClass().getSimpleName());
 	}
 
 	@Override

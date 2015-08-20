@@ -169,8 +169,8 @@ public final class A {
     public static final String[] ALLBUTTON_ATTRS = A.concatAll( H.ALLBUTTON);
     public static final String[] CHECKBOX_ATTRS = A.concatAll( H.CHECKBOX);
     public static final String[] INPUT_TEXT_ATTRS = A.concatAll( H.INPUT_TEXT);
-    public static final String[] TAB_ATTRS = A.concatAll( H.TAB, E.DBLCLICK, E.FOCUS, E.MOUSE);
-    public static final String[] TAB_VIEW_ATTRS = A.concatAll( H.TAB_VIEW, E.CLICK, E.FOCUS, E.MOUSE);
+    public static final String[] TAB_ATTRS = A.concatAll( H.TAB);
+    public static final String[] TAB_VIEW_ATTRS = A.concatAll( H.TAB_VIEW);
     public static final String[] SELECT_ONE_MENU_ATTRS = A.concatAll( H.SELECT_ONE_MENU);
    
     /**

@@ -20,22 +20,40 @@
 package net.bootsfaces.component.tab;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
 @FacesComponent("net.bootsfaces.component.tab.Tab")
-public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
+public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tab.Tab";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tab.Tab";
+	
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "valueChange";
+	}
+
 
 	public Tab() {
 
@@ -48,7 +66,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	}
 
 	protected enum PropertyKeys {
-		id, contentStyle, style, onclick, styleClass, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		id, contentStyle, style, onclick, oncomplete, styleClass, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -270,5 +288,39 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	public void encodeAll(FacesContext context) throws IOException {
 		// This component doesn't render itself. It's rendered by b:tabView.
 	}
+	
 
+	/**
+	 * Javascript to be executed when ajax completes with success. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOncomplete() {
+		String value = (String)getStateHelper().eval(PropertyKeys.oncomplete);
+		return  value;
+	}
+	
+	/**
+	 * Javascript to be executed when ajax completes with success. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+	    getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+    }
+	
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String)getStateHelper().eval(PropertyKeys.update);
+		return  value;
+	}
+	
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+	    getStateHelper().put(PropertyKeys.update, _update);
+    }
 }

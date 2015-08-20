@@ -19,12 +19,18 @@
 
 package net.bootsfaces.component.tabView;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
@@ -36,7 +42,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.tabView.TabView")
-public class TabView extends UIOutput implements net.bootsfaces.render.IHasTooltip {
+public class TabView extends UIOutput implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabView.TabView";
 
@@ -50,6 +56,18 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 		setRendererType(DEFAULT_RENDERER);
 	}
 
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "valueChange";
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -57,7 +75,7 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	protected enum PropertyKeys
 
 	{
-		activeIndex, contentClass, contentStyle, id, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		activeIndex, contentClass, contentStyle, oncomplete, onclick, id, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -273,5 +291,57 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
+
+
+	/**
+	 * Optional Javascript function that's called when the tab is clicked. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnclick() {
+		String value = (String)getStateHelper().eval(PropertyKeys.onclick);
+		return  value;
+	}
+	
+	/**
+	 * Optional Javascript function that's called when the tab is clicked. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+	    getStateHelper().put(PropertyKeys.onclick, _onclick);
+    }
+	
+
+	/**
+	 * Javascript to be executed when ajax completes with success. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOncomplete() {
+		String value = (String)getStateHelper().eval(PropertyKeys.oncomplete);
+		return  value;
+	}
+	
+	/**
+	 * Javascript to be executed when ajax completes with success. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+	    getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+    }
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String)getStateHelper().eval(PropertyKeys.update);
+		return  value;
+	}
+	
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+	    getStateHelper().put(PropertyKeys.update, _update);
+    }
 
 }

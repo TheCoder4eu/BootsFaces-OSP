@@ -66,7 +66,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			return;
 		}
 
-//		decodeBehaviors(context, selectBooleanCheckbox); moved to AJAXRenderer
+		decodeBehaviors(context, selectBooleanCheckbox); // moved to AJAXRenderer
 
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);

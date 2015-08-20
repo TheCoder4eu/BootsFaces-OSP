@@ -101,6 +101,12 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+	
+	@Override
+	public void decode(FacesContext context) {
+		// TODO Auto-generated method stub
+		super.decode(context);
+	}
 
 	protected enum PropertyKeys {
 		accesskey, ajax, binding, dir, disabled, icon, iconAlign, iconAwesome, immediate, lang, look, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, size, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value;
