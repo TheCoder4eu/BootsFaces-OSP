@@ -29,6 +29,8 @@ import net.bootsfaces.render.Tooltip;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target="head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bootstrap-switch.css"),
+	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.switch.Switch")

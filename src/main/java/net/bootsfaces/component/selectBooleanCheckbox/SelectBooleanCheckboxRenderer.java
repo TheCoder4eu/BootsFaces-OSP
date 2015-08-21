@@ -71,8 +71,16 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
+		String event = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
+			if (clientId.contains("3"))
+				System.out.println(event + " Checkbox: " + "on".equals(submittedValue));
+		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId+"_helper")){
+			selectBooleanCheckbox.setSubmittedValue(false);
+			if (clientId.contains("3"))
+				System.out.println(event + " Checkbox: " + "off");
 		}
 		new AJAXRenderer().decode(context, component);
 	}
@@ -272,6 +280,26 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 
 		renderInputTagValue(context, rw, selectBooleanCheckbox);
 		renderInputTagEnd(rw, selectBooleanCheckbox);
+		renderInputTagHelper(rw, context, selectBooleanCheckbox, clientId);
+	}
+	
+	/**
+	 * Renders the start of the input tag. This method is protected in order to
+	 * allow third-party frameworks to derive from it.
+	 *
+	 * @param rw
+	 *            the response writer
+	 * @param selectBooleanCheckbox the component to render
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void renderInputTagHelper(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox, String clientId)
+			throws IOException {
+		rw.startElement("input", selectBooleanCheckbox);
+		rw.writeAttribute("name", clientId+"_helper", null);
+		rw.writeAttribute("value", "off", "value");
+		rw.writeAttribute("type", "hidden", "type");
+		rw.endElement("input");
 	}
 
 	/**

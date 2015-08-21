@@ -36,6 +36,8 @@ import net.bootsfaces.render.Tooltip;
 	@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/jq.ui.slider.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
 	@ResourceDependency(library = "bsf", name = "jq/ui/widget.js", target = "body"),
 	@ResourceDependency(library = "bsf", name = "jq/ui/mouse.js", target = "body"),
