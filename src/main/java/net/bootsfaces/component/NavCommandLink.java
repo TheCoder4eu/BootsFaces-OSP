@@ -94,7 +94,6 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 		}
 
 		String param = this.getClientId(context) + "_a";
-		System.out.println(param);
 		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
 			queueEvent(new ActionEvent(this));
 		}

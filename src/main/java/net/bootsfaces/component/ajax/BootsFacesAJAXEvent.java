@@ -19,17 +19,18 @@ public class BootsFacesAJAXEvent extends AjaxBehaviorEvent {
 		super(source, new BehaviorBase());
 		this.jsCallback=jsCallback;
 		this.event=event;
-		System.out.println("Created AJAXBroadCastComponent for " + event + " " + source.getClass().getSimpleName());
 	}
 
 	@Override
 	public boolean isAppropriateListener(FacesListener faceslistener) {
-		return (faceslistener instanceof BootsFacesAJAXListener);
+		System.out.println("BootsFacesAJAXListener - isAppropriate - " + (faceslistener.getClass().getName()));
+		return false;
 	}
 
 	@Override
 	public void processListener(FacesListener faceslistener) {
-		((BootsFacesAJAXListener) faceslistener).processAjaxBehavior(getComponent());
+		System.out.println("BootsFacesAJAXListener - process");
+//		((BootsFacesAJAXListener) faceslistener).processAjaxBehavior(getComponent());
 	}
 
 	public String getJsCallback() {

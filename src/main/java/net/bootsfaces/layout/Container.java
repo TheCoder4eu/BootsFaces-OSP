@@ -61,6 +61,11 @@ public class Container extends UIComponentBase {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
         Tooltip.addResourceFile();
     }
+    
+    @Override
+    public void processDecodes(FacesContext context) {
+    	super.processDecodes(context);
+    }
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {

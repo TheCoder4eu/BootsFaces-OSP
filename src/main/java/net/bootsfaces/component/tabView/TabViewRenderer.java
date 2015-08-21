@@ -64,9 +64,9 @@ public class TabViewRenderer extends CoreRenderer {
 		String activeIndexId = clientId.replace(":", "_") + "_activeIndex";
 		String activeIndexValue = (String) context.getExternalContext().getRequestParameterMap().get(activeIndexId);
 
+		new AJAXRenderer().decode(context, component);
 		if (null != activeIndexValue && activeIndexValue.length() > 0) {
 			try {
-				new AJAXRenderer().decode(context, component);
 				if (Integer.valueOf(activeIndexValue) != tabView.getActiveIndex()) {
 					tabView.setActiveIndex(Integer.valueOf(activeIndexValue));
 				}
@@ -90,6 +90,7 @@ public class TabViewRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+		assertComponentIsInsideForm(component, "The initially opened tab is opened after an post-back request, regardless which tab has been previously activated by the user");
 		if (!component.isRendered()) {
 			return;
 		}
@@ -135,6 +136,7 @@ public class TabViewRenderer extends CoreRenderer {
 		encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
 		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
 	}
+
 
 	/**
 	 * Essentially, getTabs() does the same as getChildren(), but it filters

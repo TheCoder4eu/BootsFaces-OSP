@@ -24,7 +24,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import javax.faces.application.ProjectStage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -201,5 +203,19 @@ public class CoreRenderer extends Renderer{
         }
         rw.writeText(text,off,len);
     }
+
+	protected void assertComponentIsInsideForm(UIComponent component, String msg) {
+		if (!FacesContext.getCurrentInstance().isProjectStage(ProjectStage.Production)) {
+			UIComponent c = component;
+			while ((c != null) && (!(c instanceof UIForm))) {
+				c = c.getParent();
+			}
+			if (!(c instanceof UIForm)) {
+				System.out.println("Warning: The BootsFaces component " + component.getClass() + " works better if put inside a form. These capabilities get lost if not put in a form:");
+				System.out.println(msg);
+			}
+		}
+		
+	}
 
 }

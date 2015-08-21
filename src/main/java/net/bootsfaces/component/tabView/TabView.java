@@ -28,6 +28,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -72,6 +73,11 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+	
+	@Override
+	public void processDecodes(FacesContext context) {
+		super.processDecodes(context);
 	}
 
 	protected enum PropertyKeys

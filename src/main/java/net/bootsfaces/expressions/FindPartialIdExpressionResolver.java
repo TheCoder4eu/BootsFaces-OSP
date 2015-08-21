@@ -56,17 +56,17 @@ public class FindPartialIdExpressionResolver implements AbstractExpressionResolv
 		boolean found=false;
 		if (id.startsWith("*") && id.endsWith("*")) {
 			String search=id.substring(1, id.length()-1);
-			if (child.getId().contains(search)) {
+			if (child.getId() != null && child.getId().contains(search)) {
 				found=true;
 			}
 		} else if (id.endsWith("*")) {
 			String search=id.substring(0, id.length()-1);
-			if (child.getId().startsWith(search)) {
+			if (child.getId() != null && child.getId().startsWith(search)) {
 				found=true;
 			}
 		} else if (id.startsWith("*")) {
 			String search=id.substring(1);
-			if (child.getId().endsWith(search)) {
+			if (child.getId() != null && child.getId().endsWith(search)) {
 				found=true;
 			}
 		}

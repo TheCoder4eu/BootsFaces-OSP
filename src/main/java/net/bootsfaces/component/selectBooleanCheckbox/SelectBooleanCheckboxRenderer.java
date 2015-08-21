@@ -71,16 +71,10 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
-		String event = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-		
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
-			if (clientId.contains("3"))
-				System.out.println(event + " Checkbox: " + "on".equals(submittedValue));
 		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId+"_helper")){
 			selectBooleanCheckbox.setSubmittedValue(false);
-			if (clientId.contains("3"))
-				System.out.println(event + " Checkbox: " + "off");
 		}
 		new AJAXRenderer().decode(context, component);
 	}
