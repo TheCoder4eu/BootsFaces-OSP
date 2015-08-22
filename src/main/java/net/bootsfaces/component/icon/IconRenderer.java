@@ -131,8 +131,10 @@ public class IconRenderer extends AJAXRenderer {
 			rw.writeAttribute("class", "input-group-addon", "class");
 		}
 		rw.startElement("i", c);
-		rw.writeAttribute("id", c.getClientId(), null);
-//		rw.writeAttribute("id", c.getClientId() + "_icon", null);
+		if (addon)
+			rw.writeAttribute("id", c.getClientId() + "_icon", null);
+		else
+			rw.writeAttribute("id", c.getClientId(), null);
 		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
 
 		StringBuilder sb = new StringBuilder(100); // optimize int
