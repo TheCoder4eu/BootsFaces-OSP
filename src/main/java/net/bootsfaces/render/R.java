@@ -266,8 +266,13 @@ public final class R {
         String cid = c.getClientId(fc);
         if(suffix!=null) { cid=cid.concat(suffix); }
         rw.writeAttribute("id", cid,"id");
+        String styleClass = (String) c.getAttributes().get("styleClass");
+        if (styleClass==null) styleClass="badge";
+        else styleClass += " badge";
 		Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        rw.writeAttribute("class", BADGE,"class");
+        rw.writeAttribute("class", styleClass,"class");
+        String style=(String) c.getAttributes().get("style");
+        if (null != style) rw.writeAttribute("style", style, "style");
         rw.writeText(val, null);
         rw.endElement("span");
 		Tooltip.activateTooltips(fc, c.getAttributes(), c);
