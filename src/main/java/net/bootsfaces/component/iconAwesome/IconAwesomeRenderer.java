@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -17,24 +17,14 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.render;
+package net.bootsfaces.component.iconAwesome;
 
-/**
- * This class renders an &lt;alert&gt;.
- * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
- *
- */
+import javax.faces.render.FacesRenderer;
 
-public enum RAlert {
-    alert,
-    //attrs
-    severity,
-    title,
-    closable,
-    //Style
-    close,
-    fadein,
-    value;
-    
+import net.bootsfaces.component.icon.IconRenderer;
 
+
+/** This class generates the HTML code of &lt;b:iconAwesome /&gt;. */
+@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.iconAwesome.IconAwesome")
+public class IconAwesomeRenderer extends IconRenderer {
 }

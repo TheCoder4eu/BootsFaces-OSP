@@ -40,6 +40,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
@@ -244,11 +245,9 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 			Object ialign = attrs.get(A.ICON_ALIGN); // Default Left
 			if (ialign != null && ialign.equals(A.RIGHT)) {
 				rw.writeText(value + " ", null);
-				R.encodeIcon(rw, this, icon, fa);
-				// !//R.encodeIcon(rw, this, icon, white);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 			} else {
-				R.encodeIcon(rw, this, icon, fa);
-				// !//R.encodeIcon(rw, this, icon, white);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 				rw.writeText(" " + value, null);
 			}
 

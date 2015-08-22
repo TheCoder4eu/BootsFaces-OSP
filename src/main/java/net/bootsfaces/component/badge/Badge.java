@@ -21,7 +21,8 @@ package net.bootsfaces.component.badge;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIOutput;
 
 
 /** This class holds the attributes of &lt;b:badge /&gt;. */

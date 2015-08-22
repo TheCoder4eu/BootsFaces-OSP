@@ -40,6 +40,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
@@ -220,10 +221,9 @@ public class NavLink extends HtmlOutcomeTargetLink {
 			Object ialign = attrs.get(A.ICON_ALIGN); // Default Left
 			if (ialign != null && ialign.equals(A.RIGHT)) {
 				rw.writeText(value + " ", null);
-				R.encodeIcon(rw, this, icon, fa);
-				// !//R.encodeIcon(rw, this, icon, white);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 			} else {
-				R.encodeIcon(rw, this, icon, fa);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 				// !//R.encodeIcon(rw, this, icon, white);
 				rw.writeText(" " + value, null);
 			}

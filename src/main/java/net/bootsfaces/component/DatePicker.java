@@ -45,6 +45,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.JQ;
@@ -246,7 +247,7 @@ public class DatePicker extends HtmlInputText {
 				rw.startElement("div", this);
 				rw.writeAttribute("class", "input-group", "class");
 				if (mode.equals(A.ICONPOP) || mode.equals(A.ICONTOGGLE)) {
-					R.addonIcon(rw, this, CALENDAR, false);
+					IconRenderer.encodeIcon(rw, this, "calendar", false);
 				}
 			}
 		}
@@ -277,7 +278,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeJS(fc, rw, clientId, dpId);
 		if (mode.equals(A.POPICON) || mode.equals(A.TOGGLEICON)) {
-			R.addonIcon(rw, this, CALENDAR, false);
+			IconRenderer.encodeIcon(rw, this, "calendar", false);
 		}
 
 		if (!inline && !mode.equals(A.POPUP)) {

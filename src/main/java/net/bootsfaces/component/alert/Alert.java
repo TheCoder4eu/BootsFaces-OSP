@@ -21,7 +21,9 @@ package net.bootsfaces.component.alert;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
+
 import net.bootsfaces.render.Tooltip;
 
 

@@ -6,10 +6,12 @@
 package net.bootsfaces.ut.icon;
 
 import java.io.IOException;
-import net.bootsfaces.component.IconAwesome;
-import net.bootsfaces.ut.common.JsfMock;
+
 import org.junit.Rule;
 import org.junit.Test;
+
+import net.bootsfaces.component.iconAwesome.IconAwesome;
+import net.bootsfaces.ut.common.JsfMock;
 
 /**
  *

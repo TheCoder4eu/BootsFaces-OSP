@@ -28,6 +28,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
@@ -79,13 +80,13 @@ public class InputTextRenderer extends CoreRenderer {
 		// facet is the UIComponent
 		if (prepend) {
 			R.addClass2FacetComponent(prep, "OutputText", InputText.ADDON);
-			R.setFacetComponentAttribute(prep, "Icon", "addon", "true");
-			R.setFacetComponentAttribute(prep, "IconAwesome", "addon", "true");
+			if (prep instanceof Icon)
+				((Icon) prep).setAddon(true);
 		}
 		if (append) {
 			R.addClass2FacetComponent(app, "OutputText", InputText.ADDON);
-			R.setFacetComponentAttribute(app, "Icon", "addon", "true");
-			R.setFacetComponentAttribute(app, "IconAwesome", "addon", "true");
+			if (app instanceof Icon)
+				((Icon) app).setAddon(true);
 		}
 
 		String label = inputText.getLabel();

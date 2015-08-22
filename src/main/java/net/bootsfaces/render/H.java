@@ -33,7 +33,6 @@ public final class H {
     public static final String ARIALBLBY=ARIA+HYP+"labelledby";
     public static final String B ="b";
     public static final String BR ="br";
-    public static final String I ="i";
     public static final String H1 ="h1";
     public static final String H2 ="h2";
     public static final String H3 ="h3";

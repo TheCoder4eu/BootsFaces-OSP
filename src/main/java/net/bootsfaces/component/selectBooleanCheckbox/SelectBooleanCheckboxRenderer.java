@@ -19,10 +19,9 @@
 
 package net.bootsfaces.component.selectBooleanCheckbox;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -31,7 +30,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -397,7 +395,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 */
 	protected void renderInputTagValue(FacesContext context, ResponseWriter rw,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
-		String v = R.getValue2Render(context, selectBooleanCheckbox);
+		String v = getValue2Render(context, selectBooleanCheckbox);
 		if (v != null && "true".equals(v))
 			rw.writeAttribute("checked", v, null);
 	}

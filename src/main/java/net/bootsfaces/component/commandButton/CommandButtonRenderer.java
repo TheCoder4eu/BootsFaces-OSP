@@ -19,21 +19,16 @@
 package net.bootsfaces.component.commandButton;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.ClientBehavior;
-import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.event.ActionEvent;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.expressions.ExpressionResolver;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -139,9 +134,9 @@ public class CommandButtonRenderer extends CoreRenderer {
 			if (ialign != null && ialign.equals(A.RIGHT)) {
 				value = value != null ? value + " " : null;
 				writeText(rw, value, null);
-				R.encodeIcon(rw, component, icon, fa);
+				IconRenderer.encodeIcon(rw, component, icon, fa);
 			} else {
-				R.encodeIcon(rw, component, icon, fa);
+				IconRenderer.encodeIcon(rw, component, icon, fa);
 				value = value != null ? " " + value : null;
 				writeText(rw, value, null);
 			}

@@ -58,6 +58,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
@@ -68,8 +69,7 @@ import net.bootsfaces.render.Tooltip;
  * @author thecoder4.eu
  */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-		 })
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(BUTTON_COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton {
 
@@ -93,49 +93,56 @@ public class Button extends HtmlOutcomeTargetButton {
 
 	}
 
-	/** 
+	/**
 	 * Renders the button. <br>
 	 * General layout of the generated HTML code:<br>
-	 * &lt;button class="btn btn-large" href="#"%gt;&lt;i class="icon-star"&gt;&lt;/i&gt; Star&lt;/button&gt;
+	 * &lt;button class="btn btn-large" href="#"%gt;&lt;i
+	 * class="icon-star"&gt;&lt;/i&gt; Star&lt;/button&gt;
 	 * 
-	 * @param context the current FacesContext
-	 * @throws IOException thrown if something's wrong with the ResponseWriter
+	 * @param context
+	 *            the current FacesContext
+	 * @throws IOException
+	 *             thrown if something's wrong with the ResponseWriter
 	 */
 	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
+		if (!isRendered()) {
+			return;
+		}
 
 		encodeHTML(context, getAttributes());
 		Tooltip.activateTooltips(context, getAttributes(), this);
 	}
 
-	/** 
+	/**
 	 * Encode the HTML code of the button.
 	 * 
-	 * @param context the current FacesContext
-	 * @param attrs the attribute list
-	 * @throws IOException thrown if something's wrong with the ResponseWriter
+	 * @param context
+	 *            the current FacesContext
+	 * @param attrs
+	 *            the attribute list
+	 * @throws IOException
+	 *             thrown if something's wrong with the ResponseWriter
 	 */
 	public void encodeHTML(FacesContext context, Map<String, Object> attrs) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
 		Object value = attrs.get("value");
-                String style=asString(attrs.get(STYLE));
-                
+		String style = asString(attrs.get(STYLE));
+
 		rw.startElement("button", this);
 		rw.writeAttribute("id", getClientId(context), "id");
 		rw.writeAttribute("name", getClientId(context), "name");
 		rw.writeAttribute("type", "button", null);
-                if(style!=null) { rw.writeAttribute(STYLE,style,STYLE); }
+		if (style != null) {
+			rw.writeAttribute(STYLE, style, STYLE);
+		}
 		rw.writeAttribute("class", getStyleClasses(attrs), "class");
-		
+
 		Tooltip.generateTooltip(context, attrs, rw);
 
-		
 		final String clickHandler = encodeClick(context, attrs);
-		if (null != clickHandler && clickHandler.length()>0) {
+		if (null != clickHandler && clickHandler.length() > 0) {
 			rw.writeAttribute("onclick", clickHandler, null);
 		}
 		String d = asString(attrs.get(DISMISS));
@@ -151,19 +158,20 @@ public class Button extends HtmlOutcomeTargetButton {
 		renderPassThruAttributes(context, this, ALLBUTTON_ATTRS);
 
 		String icon = asString(attrs.get(ICON));
-                String faicon = asString(attrs.get(ICONAWESOME));
-                boolean fa=false; //flag to indicate wether the selected icon set is Font Awesome or not.
-                if(faicon != null) { icon=faicon; fa=true; }
+		String faicon = asString(attrs.get(ICONAWESOME));
+		boolean fa = false; // flag to indicate wether the selected icon set is
+							// Font Awesome or not.
+		if (faicon != null) {
+			icon = faicon;
+			fa = true;
+		}
 		if (icon != null) {
 			Object ialign = attrs.get(ICON_ALIGN); // Default Left
-			//!//boolean white=null!=attrs.get(LOOK);
 			if (ialign != null && ialign.equals(RIGHT)) {
 				rw.writeText(value + " ", null);
-				R.encodeIcon(rw, this, icon, fa);
-                                //!//R.encodeIcon(rw, this, icon, white);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 			} else {
-				R.encodeIcon(rw, this, icon, fa);
-                                //!//R.encodeIcon(rw, this, icon, white);
+				IconRenderer.encodeIcon(rw, this, icon, fa);
 				rw.writeText(" " + value, null);
 			}
 
@@ -174,13 +182,17 @@ public class Button extends HtmlOutcomeTargetButton {
 		rw.endElement("button");
 	}
 
-
 	/**
-	 * Renders the Javascript code dealing with the click event.
-	 * If the developer provides their own onclick handler, is precedes the generated Javascript code.
-	 * @param context The current FacesContext.
-	 * @param attrs the attribute list
-	 * @return some Javascript code, such as "window.location.href='/targetView.jsf';"
+	 * Renders the Javascript code dealing with the click event. If the
+	 * developer provides their own onclick handler, is precedes the generated
+	 * Javascript code.
+	 * 
+	 * @param context
+	 *            The current FacesContext.
+	 * @param attrs
+	 *            the attribute list
+	 * @return some Javascript code, such as
+	 *         "window.location.href='/targetView.jsf';"
 	 */
 	private String encodeClick(FacesContext context, Map<String, Object> attrs) {
 		String js;
@@ -191,18 +203,18 @@ public class Button extends HtmlOutcomeTargetButton {
 		else {
 			js = "";
 		}
-		
+
 		String fragment = asString(attrs.get(FRAGMENT));
 		String outcome = getOutcome();
-		
-		if (outcome==null ||outcome.equals("")||outcome.equals("@none"))
+
+		if (outcome == null || outcome.equals("") || outcome.equals("@none"))
 			return js;
-		
+
 		if (canOutcomeBeRendered(attrs, fragment, outcome)) {
 			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
-			
+
 			String url = determineTargetURL(context, outcome);
-	
+
 			if (url != null) {
 				if (fragment != null) {
 					url += "#" + fragment;
@@ -215,19 +227,23 @@ public class Button extends HtmlOutcomeTargetButton {
 	}
 
 	/**
-	 * Do we have to suppress the target URL? 
-	 * @param attrs the component's attribute list
-	 * @param fragment the fragment of the URL behind the hash (outcome#fragment)
-	 * @param outcome the value of the outcome attribute
+	 * Do we have to suppress the target URL?
+	 * 
+	 * @param attrs
+	 *            the component's attribute list
+	 * @param fragment
+	 *            the fragment of the URL behind the hash (outcome#fragment)
+	 * @param outcome
+	 *            the value of the outcome attribute
 	 * @return true if the outcome can be rendered.
 	 */
 	private boolean canOutcomeBeRendered(Map<String, Object> attrs, String fragment, String outcome) {
-		boolean renderOutcome=true;
-		if (null==outcome && attrs.containsKey("ng-click")) {
-			String ngClick=asString(attrs.get("ng-click"));
-			if (null!=ngClick && (ngClick.length()>0)) {
-				if (fragment==null) {
-					renderOutcome=false;
+		boolean renderOutcome = true;
+		if (null == outcome && attrs.containsKey("ng-click")) {
+			String ngClick = asString(attrs.get("ng-click"));
+			if (null != ngClick && (ngClick.length() > 0)) {
+				if (fragment == null) {
+					renderOutcome = false;
 				}
 			}
 		}
@@ -235,19 +251,27 @@ public class Button extends HtmlOutcomeTargetButton {
 	}
 
 	/**
-	 * Translate the outcome attribute value to the target URL. 
-	 * @param context the current FacesContext
-	 * @param outcome the value of the outcome attribute
-	 * @return the target URL of the navigation rule (or the outcome if there's not navigation rule)
+	 * Translate the outcome attribute value to the target URL.
+	 * 
+	 * @param context
+	 *            the current FacesContext
+	 * @param outcome
+	 *            the value of the outcome attribute
+	 * @return the target URL of the navigation rule (or the outcome if there's
+	 *         not navigation rule)
 	 */
 	private String determineTargetURL(FacesContext context, String outcome) {
-		ConfigurableNavigationHandler cnh = (ConfigurableNavigationHandler) context.getApplication().getNavigationHandler();
+		ConfigurableNavigationHandler cnh = (ConfigurableNavigationHandler) context.getApplication()
+				.getNavigationHandler();
 		NavigationCase navCase = cnh.getNavigationCase(context, null, outcome);
 		/*
-		 * Param Name: javax.faces.PROJECT_STAGE Default Value: The default value is ProjectStage#Production but IDE can set it differently
-		 * in web.xml Expected Values: Development, Production, SystemTest, UnitTest Since: 2.0
+		 * Param Name: javax.faces.PROJECT_STAGE Default Value: The default
+		 * value is ProjectStage#Production but IDE can set it differently in
+		 * web.xml Expected Values: Development, Production, SystemTest,
+		 * UnitTest Since: 2.0
 		 * 
-		 * If we cannot get an outcome we use an Alert to give a feedback to the Developer if this build is in the Development Stage
+		 * If we cannot get an outcome we use an Alert to give a feedback to the
+		 * Developer if this build is in the Development Stage
 		 */
 		if (navCase == null) {
 			if (FacesContext.getCurrentInstance().getApplication().getProjectStage().equals(ProjectStage.Development)) {
@@ -255,18 +279,20 @@ public class Button extends HtmlOutcomeTargetButton {
 			} else {
 				return "";
 			}
-		} // throw new FacesException("The outcome '"+outcome+"' cannot be resolved."); }
+		} // throw new FacesException("The outcome '"+outcome+"' cannot be
+			// resolved."); }
 		String vId = navCase.getToViewId(context);
 
 		Map<String, List<String>> params = getParams(navCase, this);
 		String url;
-		url = context.getApplication().getViewHandler()
-				.getBookmarkableURL(context, vId, params, isIncludeViewParams() || navCase.isIncludeViewParams());
+		url = context.getApplication().getViewHandler().getBookmarkableURL(context, vId, params,
+				isIncludeViewParams() || navCase.isIncludeViewParams());
 		return url;
 	}
 
 	/**
-	 * Find all parameters to include by looking at nested uiparams and params of navigation case
+	 * Find all parameters to include by looking at nested uiparams and params
+	 * of navigation case
 	 */
 	protected static Map<String, List<String>> getParams(NavigationCase navCase, Button button) {
 		Map<String, List<String>> params = new LinkedHashMap<String, List<String>>();
@@ -306,7 +332,9 @@ public class Button extends HtmlOutcomeTargetButton {
 
 	/**
 	 * Collects the CSS classes of the button.
-	 * @param attrs the attribute list.
+	 * 
+	 * @param attrs
+	 *            the attribute list.
 	 * @return the CSS classes (separated by a space).
 	 */
 	private static String getStyleClasses(Map<String, Object> attrs) {
@@ -337,71 +365,81 @@ public class Button extends HtmlOutcomeTargetButton {
 		return sb.toString().trim();
 	}
 
-    /**
-     * <p>Return the identifier of the component family to which this
-     * component belongs.  This identifier, in conjunction with the value
-     * of the <code>rendererType</code> property, may be used to select
-     * the appropriate {@link Renderer} for this component instance.</p>
-     */
+	/**
+	 * <p>
+	 * Return the identifier of the component family to which this component
+	 * belongs. This identifier, in conjunction with the value of the
+	 * <code>rendererType</code> property, may be used to select the appropriate
+	 * {@link Renderer} for this component instance.
+	 * </p>
+	 */
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
 	/**
-	 * Method temporarily copied from CoreRenderer. Should be replaced by a call of CoreRenderer in the long run.
-	 * @param context the current FacesContext
-	 * @param component the current component
-	 * @param attrs the component's attribute list
-	 * @throws IOException thrown if something's wrong with the response writer.
-	 */
-	
-    protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs) throws IOException {
-        ResponseWriter writer = context.getResponseWriter();
-
-        //pre-defined attributes
-        if(attrs != null && attrs.length > 0) {
-            for(String attribute : attrs) {
-                Object value = component.getAttributes().get(attribute);
-
-                if(shouldRenderAttribute(value))
-                    writer.writeAttribute(attribute, value.toString(), attribute);
-            }
-        }
-    }
-
-    /**
-     * Detects whether an attribute is a default value or not.
-     * Method temporarily copied from CoreRenderer. Should be replaced by a call of CoreRenderer in the long run.
+	 * Method temporarily copied from CoreRenderer. Should be replaced by a call
+	 * of CoreRenderer in the long run.
 	 * 
-     * @param value the value to be checked
-     * @return true if the value is not the default value
-     */
-    protected boolean shouldRenderAttribute(Object value) {
-        if(value == null)
-            return false;
+	 * @param context
+	 *            the current FacesContext
+	 * @param component
+	 *            the current component
+	 * @param attrs
+	 *            the component's attribute list
+	 * @throws IOException
+	 *             thrown if something's wrong with the response writer.
+	 */
 
-        if(value instanceof Boolean) {
-            return ((Boolean) value).booleanValue();
-        }
-        else if(value instanceof Number) {
-            Number number = (Number) value;
+	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs)
+			throws IOException {
+		ResponseWriter writer = context.getResponseWriter();
 
-            if (value instanceof Integer)
-                return number.intValue() != Integer.MIN_VALUE;
-            else if (value instanceof Double)
-                return number.doubleValue() != Double.MIN_VALUE;
-            else if (value instanceof Long)
-                return number.longValue() != Long.MIN_VALUE;
-            else if (value instanceof Byte)
-                return number.byteValue() != Byte.MIN_VALUE;
-            else if (value instanceof Float)
-                return number.floatValue() != Float.MIN_VALUE;
-            else if (value instanceof Short)
-                return number.shortValue() != Short.MIN_VALUE;
-        }
+		// pre-defined attributes
+		if (attrs != null && attrs.length > 0) {
+			for (String attribute : attrs) {
+				Object value = component.getAttributes().get(attribute);
 
-        return true;
-    }
+				if (shouldRenderAttribute(value))
+					writer.writeAttribute(attribute, value.toString(), attribute);
+			}
+		}
+	}
+
+	/**
+	 * Detects whether an attribute is a default value or not. Method
+	 * temporarily copied from CoreRenderer. Should be replaced by a call of
+	 * CoreRenderer in the long run.
+	 * 
+	 * @param value
+	 *            the value to be checked
+	 * @return true if the value is not the default value
+	 */
+	protected boolean shouldRenderAttribute(Object value) {
+		if (value == null)
+			return false;
+
+		if (value instanceof Boolean) {
+			return ((Boolean) value).booleanValue();
+		} else if (value instanceof Number) {
+			Number number = (Number) value;
+
+			if (value instanceof Integer)
+				return number.intValue() != Integer.MIN_VALUE;
+			else if (value instanceof Double)
+				return number.doubleValue() != Double.MIN_VALUE;
+			else if (value instanceof Long)
+				return number.longValue() != Long.MIN_VALUE;
+			else if (value instanceof Byte)
+				return number.byteValue() != Byte.MIN_VALUE;
+			else if (value instanceof Float)
+				return number.floatValue() != Float.MIN_VALUE;
+			else if (value instanceof Short)
+				return number.shortValue() != Short.MIN_VALUE;
+		}
+
+		return true;
+	}
 
 }

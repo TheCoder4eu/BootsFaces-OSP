@@ -302,6 +302,8 @@ widget icon
     rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
     size                                                                   "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                                            "Boolean value: if true the icon will spin."
+    style                                                                  "Inline style"
+    styleClass                                                             "CSS style class"
     tooltip                                                                "The text of the tooltip."
     tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
@@ -312,23 +314,25 @@ widget icon
 
 widget iconAwesome
        implemented_by net.bootsfaces.component.IconAwesome
-       extends UIComponentBase
+       extends Icon
        has_tooltip
  {
-    addon               Boolean                                            "Boolean value: if true the element is used as Addon."
-    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
-    flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
-    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    name                mandatory                                          "Icon name, mandatory."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
-    size                                                                   "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
-    spin                Boolean                                            "Boolean value: if true the icon will spin."
-    tooltip                                                                "The text of the tooltip."
-    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
+    binding             javax.faces.component.UIComponent   inherited      "An el expression referring to a server side UIComponent instance in a backing bean."
+    flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
+    id                                                      inherited      "Unique identifier of the component in a namingContainer."
+    name                mandatory                           inherited      "Icon name, mandatory."
+    rendered            Boolean                             inherited      "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
+    size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
+    style                                                   inherited      "Inline style"
+    styleClass                                              inherited      "CSS style class"
+    tooltip                                                 inherited      "The text of the tooltip."
+    tooltipDelay        Integer                             inherited      "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                             inherited      "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                             inherited      "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                         inherited      "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
 
