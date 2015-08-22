@@ -20,6 +20,8 @@
 package net.bootsfaces.component.icon;
 
 import javax.faces.component.*;
+import javax.faces.component.behavior.ClientBehaviorHolder;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -27,7 +29,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.iconAwesome.IconAwesome;
+import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.R;
@@ -35,7 +40,32 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:icon /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.icon.Icon")
-public class IconRenderer extends CoreRenderer {
+public class IconRenderer extends AJAXRenderer {
+
+	/**
+	 * This methods receives and processes input made by the user. More
+	 * specifically, it ckecks whether the user has interacted with the current
+	 * b:selectBooleanCheckbox. The default implementation simply stores the
+	 * input value in the list of submitted values. If the validation checks are
+	 * passed, the values in the <code>submittedValues</code> list are store in
+	 * the backend bean.
+	 * 
+	 * @param context
+	 *            the FacesContext.
+	 * @param component
+	 *            the current b:selectBooleanCheckbox.
+	 */
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		Icon icon = (Icon) component;
+
+		if (icon.isDisabled() || icon.isReadonly()) {
+			return;
+		}
+
+		decodeBehaviors(context, icon); // moved to AJAXRenderer
+		new AJAXRenderer().decode(context, component);
+	}
 
 	/**
 	 * This methods generates the HTML code of the current b:icon.
@@ -53,12 +83,6 @@ public class IconRenderer extends CoreRenderer {
 			return;
 		}
 		Icon icon = (Icon) component;
-		ResponseWriter rw = context.getResponseWriter();
-		String clientId = icon.getClientId();
-
-		/*
-		 * <span class="badge badge-important">6</span>
-		 */
 
 		String nameOfIcon = icon.getName();
 		String styleClass = icon.getStyleClass();
@@ -70,9 +94,8 @@ public class IconRenderer extends CoreRenderer {
 		boolean addon = icon.isAddon();
 
 		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
-				addon, styleClass, style);
+				addon, styleClass, style, icon.isDisabled());
 		Tooltip.activateTooltips(context, icon);
-
 	}
 
 	/**
@@ -100,15 +123,16 @@ public class IconRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,
-			String size, String rotate, String flip, boolean spin, boolean addon, String styleClass, String style)
-					throws IOException {
+			String size, String rotate, String flip, boolean spin, boolean addon, String styleClass, String style,
+			boolean isGrayedOut) throws IOException {
 		rw.startElement("span", c);
 		if (addon) {
 			rw.writeAttribute("id", c.getClientId() + "_" + "input-group-addon", null);
 			rw.writeAttribute("class", "input-group-addon", "class");
 		}
 		rw.startElement("i", c);
-		rw.writeAttribute("id", c.getClientId() + "_icon", null);
+		rw.writeAttribute("id", c.getClientId(), null);
+//		rw.writeAttribute("id", c.getClientId() + "_icon", null);
 		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
 
 		StringBuilder sb = new StringBuilder(100); // optimize int
@@ -149,8 +173,18 @@ public class IconRenderer extends CoreRenderer {
 			sb.append(" fa-spin");
 		}
 		rw.writeAttribute("class", sb.toString(), "class");
-		if (style != null) 
+		if (isGrayedOut) {
+			String filter = "filter: grayscale(100%);-webkit-filter: grayscale(100%);-moz-filter: grayscale(100%);-o-filter: grayscale(100%);-ms-filter: grayscale(100%);opacity:0.3";
+			if (style == null)
+				style = filter;
+			else
+				style += " " + filter;
+		}
+		if (style != null)
 			rw.writeAttribute("style", style, "style");
+		if (c instanceof IAJAXComponent && c instanceof ClientBehaviorHolder)
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(),
+					(ClientBehaviorHolder) c, rw);
 		rw.endElement("i");
 
 		rw.endElement("span");
@@ -170,8 +204,9 @@ public class IconRenderer extends CoreRenderer {
 	 *            Awesome
 	 * @throws IOException
 	 */
-	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome) throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, false, null, null);
+	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
+			throws IOException {
+		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, false, null, null, false);
 	}
 
 	/**
@@ -189,8 +224,9 @@ public class IconRenderer extends CoreRenderer {
 	 *            Awesome
 	 * @throws java.io.IOException
 	 */
-	public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome) throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, true, null, null);
+	public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
+			throws IOException {
+		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, true, null, null, false);
 	}
 
 }

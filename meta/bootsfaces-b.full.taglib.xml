@@ -228,6 +228,12 @@
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+			<name>disabled</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 			<name>flip</name>
 			<required>false</required>
@@ -244,6 +250,60 @@
 			<name>name</name>
 			<required>true</required>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The onclick attribute.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+			<name>oncomplete</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+			<name>readonly</name>
+			<required>false</required>
+			<type>Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
@@ -308,6 +368,12 @@
 		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltipPosition</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Component(s) to be updated with ajax.]]></description>
+			<name>update</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -332,6 +398,12 @@
 			<type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+			<name>disabled</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 			<name>flip</name>
 			<required>false</required>
@@ -348,6 +420,60 @@
 			<name>name</name>
 			<required>true</required>
 			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The onclick attribute.]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+			<name>oncomplete</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+			<name>readonly</name>
+			<required>false</required>
+			<type>Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
@@ -415,8 +541,13 @@
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[Component(s) to be updated with ajax.]]></description>
+			<name>update</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
-
 
 	<tag>
 		<tag-name>modal</tag-name>

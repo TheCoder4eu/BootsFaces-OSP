@@ -26,6 +26,7 @@ import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
+import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
@@ -43,6 +44,9 @@ public class AJAXRenderer extends CoreRenderer {
 		if (component instanceof InputText) {
 			id = "input_" + id; // Todo remove this hack
 		}
+//		else if (component instanceof Icon) {
+//			id += "_icon";
+//		}
 
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {

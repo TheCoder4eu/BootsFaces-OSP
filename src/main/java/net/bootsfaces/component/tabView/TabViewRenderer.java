@@ -282,6 +282,7 @@ public class TabViewRenderer extends CoreRenderer {
 		Tab tab = (Tab) child;
 		if (!tab.isRendered())
 			return;
+		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
 		writer.writeAttribute("role", "presentation", "role");
 		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
@@ -320,11 +321,6 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
 		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
 				+ "';";
-		String userClick = tab.getOnclick();
-		if (null != userClick && userClick.trim().length() > 0) {
-			onclick += userClick;
-		}
-		// writer.writeAttribute("onclick", onclick, "onclick");
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick);
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), TAB_ATTRS);
 
