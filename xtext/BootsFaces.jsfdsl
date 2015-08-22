@@ -27,7 +27,8 @@ widget badge
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    severity                                                               "Severity of the Badge, can be info, success, warning, important, error, inverse. Default is warning."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
     value               mandatory inherited                                "Label text."
 }
 

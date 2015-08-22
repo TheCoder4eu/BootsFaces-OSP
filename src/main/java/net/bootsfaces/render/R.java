@@ -24,14 +24,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
 
 import net.bootsfaces.component.GenContainerDiv;
 
@@ -252,33 +248,6 @@ public final class R {
     }
     
     /**
-     * Encodes a Badge
-     * @param fc
-     * @param c
-     * @param suffix
-     * @param val
-     * @throws IOException 
-     */
-    public static void encodeBadge(FacesContext fc, UIComponent c, String suffix, String val) throws IOException {
-        ResponseWriter rw = fc.getResponseWriter();
-        
-        rw.startElement("span", c);
-        String cid = c.getClientId(fc);
-        if(suffix!=null) { cid=cid.concat(suffix); }
-        rw.writeAttribute("id", cid,"id");
-        String styleClass = (String) c.getAttributes().get("styleClass");
-        if (styleClass==null) styleClass="badge";
-        else styleClass += " badge";
-		Tooltip.generateTooltip(fc, c.getAttributes(), rw);
-        rw.writeAttribute("class", styleClass,"class");
-        String style=(String) c.getAttributes().get("style");
-        if (null != style) rw.writeAttribute("style", style, "style");
-        rw.writeText(val, null);
-        rw.endElement("span");
-		Tooltip.activateTooltips(fc, c.getAttributes(), c);
-    }
-    
-    /**
      * Adds a CSS class to a component within a facet.
      * @param f the facet
      * @param cname the class name of the component to be manipulated.
@@ -373,74 +342,8 @@ public final class R {
         return null;
     }
     
-    /**
-     * Algorithm works as follows;
-     * - If it's an input component, submitted value is checked first since it'd be the value to be used in case validation errors
-     * terminates jsf lifecycle
-     * - Finally the value of the component is retrieved from backing bean and if there's a converter, converted value is returned
-     *
-     * @param fc			FacesContext instance
-     * @param c 			UIComponent instance whose value will be returned
-     * @return					End text
-     */
-    public static String getValue2Render(FacesContext fc, UIComponent c) {
-            if(c instanceof ValueHolder) {
-
-                    if(c instanceof EditableValueHolder) {
-                            Object sv = ((EditableValueHolder) c).getSubmittedValue();
-                            if(sv != null) {
-                                    return sv.toString();
-                            }
-                    }
-
-                    ValueHolder vh = (ValueHolder) c;
-                    Object val = vh.getValue();
-
-        //format the value as string
-        if(val != null) {
-            Converter converter = getConverter(fc, vh);
-
-            if(converter != null)
-                return converter.getAsString(fc, c, val);
-            else
-                return val.toString();    //Use toString as a fallback if there is no explicit or implicit converter
-
-        }
-        else {
-            //component is a value holder but has no value
-            return null;
-        }
-            }
-
-    //component it not a value holder
-    return null;
-    }
-    
-    /**
-    * Finds the appropriate converter for a given value holder
-    * 
-    * @param fc	FacesContext instance
-    * @param vh	ValueHolder instance to look converter for
-    * @return		Converter
-    */
-    public static Converter getConverter(FacesContext fc, ValueHolder vh) {
-        //explicit converter
-        Converter converter = vh.getConverter();
-                
-        //try to find implicit converter
-        if(converter == null) {
-            ValueExpression expr = ((UIComponent) vh).getValueExpression("value");
-            if(expr != null) {
-                Class<?> valueType = expr.getType(fc.getELContext());
-                if(valueType != null) {
-                    converter = fc.getApplication().createConverter(valueType);
-                }
-            }
-        }
-        
-        return converter;
-    }
-    
+     
+     
     /**
      * Renders the Childrens of a Component
      * @param fc

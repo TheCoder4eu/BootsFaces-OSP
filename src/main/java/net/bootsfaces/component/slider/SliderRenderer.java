@@ -29,63 +29,69 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.badge.BadgeRenderer;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
-
 /** This class generates the HTML code of &lt;b:slider /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.slider.Slider")
-public class SliderRenderer extends CoreRenderer {
+public class SliderRenderer extends BadgeRenderer {
 	/**
-	 * This methods receives and processes input made by the user. More specifically, it ckecks whether the
-	 * user has interacted with the current b:slider. The default implementation simply stores
-	 * the input value in the list of submitted values. If the validation checks are passed,
-	 * the values in the <code>submittedValues</code> list are store in the backend bean.
-	 * @param context the FacesContext.
-	 * @param component the current b:slider.
-	 */  
+	 * This methods receives and processes input made by the user. More
+	 * specifically, it ckecks whether the user has interacted with the current
+	 * b:slider. The default implementation simply stores the input value in the
+	 * list of submitted values. If the validation checks are passed, the values
+	 * in the <code>submittedValues</code> list are store in the backend bean.
+	 * 
+	 * @param context
+	 *            the FacesContext.
+	 * @param component
+	 *            the current b:slider.
+	 */
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-	    Slider slider = (Slider) component;
-	
+		Slider slider = (Slider) component;
+
 		if (slider.isDisabled() || slider.isReadonly()) {
-		    return;
+			return;
 		}
-	
-	    decodeBehaviors(context, slider);
-	
-	    String clientId = slider.getClientId(context);
-	    String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-	
-	    if (submittedValue != null) {
-	    	slider.setSubmittedValue(submittedValue);
-	    	slider.setValid(true);
-	    }
+
+		decodeBehaviors(context, slider);
+
+		String clientId = slider.getClientId(context);
+		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+
+		if (submittedValue != null) {
+			slider.setSubmittedValue(submittedValue);
+			slider.setValid(true);
+		}
 	}
-	
+
 	/**
 	 * This methods generates the HTML code of the current b:slider.
-	 * @param context the FacesContext.
-	 * @param component the current b:slider.
-	 * @throws IOException thrown if something goes wrong when writing the HTML code.
-	 */  
+	 * 
+	 * @param context
+	 *            the FacesContext.
+	 * @param component
+	 *            the current b:slider.
+	 * @throws IOException
+	 *             thrown if something goes wrong when writing the HTML code.
+	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	    if (!component.isRendered()) {
-	        return;
-	    }
+		if (!component.isRendered()) {
+			return;
+		}
 		Slider slider = (Slider) component;
 		ResponseWriter rw = context.getResponseWriter();
 		encodeHTML(slider, context, rw);
-		
+
 		Tooltip.activateTooltips(context, slider);
-		
+
 	}
-	
+
 	private void encodeHTML(Slider slider, FacesContext context, ResponseWriter rw) throws IOException {
 		String clientId = slider.getClientId(context);
 
@@ -126,7 +132,7 @@ public class SliderRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, slider, rw);
 		rw.writeAttribute("class", "form-group", "class");
 		rw.startElement("div", null);
-		String s = "row " +(isVertical ? "slider-vertical" : "slider");
+		String s = "row " + (isVertical ? "slider-vertical" : "slider");
 		rw.writeAttribute("class", s, "class");
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
@@ -186,7 +192,7 @@ public class SliderRenderer extends CoreRenderer {
 			encodeSliderDiv(rw, isVertical, clientId);
 			rw.endElement("div");/* Row */
 
-		} 
+		}
 
 		// <<---------------------------------------
 		rw.endElement("div"); // rw.write("<!-- Slider Widget Row
@@ -206,8 +212,8 @@ public class SliderRenderer extends CoreRenderer {
 		rw.endElement("div"); // Column
 	}
 
-	private void encodeInput(Slider slider, ResponseWriter rw, String mode, FacesContext context, int val, String clientId, boolean vo,
-			int min, int max) throws IOException {
+	private void encodeInput(Slider slider, ResponseWriter rw, String mode, FacesContext context, int val,
+			String clientId, boolean vo, int min, int max) throws IOException {
 		int cols = (vo ? 12 : 1);
 		if (!mode.equals("basic")) {
 			/*
@@ -216,7 +222,8 @@ public class SliderRenderer extends CoreRenderer {
 			 */
 			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null);
 			if (mode.equals("badge")) {
-				R.encodeBadge(context, slider, "_badge", Integer.toString(val));
+				generateBadge(context, slider, rw, clientId, slider.getStyleClass(), slider.getStyle(),
+						Integer.toString(val), "_badge");
 			}
 		}
 		removeMisleadingType(slider);
@@ -236,7 +243,6 @@ public class SliderRenderer extends CoreRenderer {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
 
-
 		rw.writeAttribute("class", "form-control input-sm" + (vo ? " text-center" : ""), "class");
 
 		rw.writeAttribute("value", val, null);
@@ -254,9 +260,9 @@ public class SliderRenderer extends CoreRenderer {
 	@SuppressWarnings("rawtypes")
 	private void removeMisleadingType(Slider slider) {
 		try {
-			Method method = getClass().getMethod("getPassThroughAttributes", (Class[])null);
+			Method method = getClass().getMethod("getPassThroughAttributes", (Class[]) null);
 			if (null != method) {
-				Object map = method.invoke(this, (Object[])null);
+				Object map = method.invoke(this, (Object[]) null);
 				if (null != map) {
 					Map attributes = (Map) map;
 					if (attributes.containsKey("type"))
@@ -278,7 +284,7 @@ public class SliderRenderer extends CoreRenderer {
 		// Slider <div>
 		rw.startElement("div", null);
 		rw.writeAttribute("id", clientId + "_slider", null);// concat
-																		// controproducente
+															// controproducente
 		rw.endElement("div");
 		rw.endElement("div"); // Column
 	}
