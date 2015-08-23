@@ -53,18 +53,40 @@ public class InputTextITCase extends IntegrationTestsBase {
 
     
     @FindBy(id = "input_txt_1")
+    private GrapheneElement input_txt_1;
+
+    @FindBy(id = "txt_1")
     private GrapheneElement txt_1;
 
+
+
     @FindBy(id = "input_txt_2")
+    private GrapheneElement input_txt_2;
+
+    @FindBy(id = "txt_2")
     private GrapheneElement txt_2;
 
+
+
     @FindBy(id = "input_txt_3")
+    private GrapheneElement input_txt_3;
+
+    @FindBy(id = "txt_3")
     private GrapheneElement txt_3;
-    
+
+
     @FindBy(id = "input_txt_4")
+    private GrapheneElement input_txt_4;
+
+    @FindBy(id = "txt_4")
     private GrapheneElement txt_4;
+
+
     
     @FindBy(id = "input_txt_5")
+    private GrapheneElement input_txt_5;
+
+    @FindBy(id = "txt_5")
     private GrapheneElement txt_5;
      
 
@@ -94,8 +116,8 @@ public class InputTextITCase extends IntegrationTestsBase {
         //assert page title
         assertEquals("InputText IT", pageTitle);
        
-        assertTrue("txt_1 rendered failed. onchange does nt exist.", txt_1.getAttribute("onchange").equals("var dummy = 0;"));
-        assertTrue("txt_1 rendered failed. onselect does nt exist.", txt_1.getAttribute("onselect").equals("var dummy = 0;"));
+        assertTrue("input_txt_1 rendered failed. onchange does nt exist.", input_txt_1.getAttribute("onchange").equals("var dummy = 0;"));
+        assertTrue("input_txt_1 rendered failed. onselect does nt exist.", input_txt_1.getAttribute("onselect").equals("var dummy = 0;"));
     }
     
     @Test
@@ -106,7 +128,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         assertFalse(facesMessage.isPresent());
         
         
-        txt_2.clear();
+        input_txt_2.clear();
         
         //submit
         guardAjax(cmd).click();
@@ -115,7 +137,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         assertTrue(facesMessage.getText().contains(RequiredInputTextValidator.VALUE_REQUIRED_MSG));
         
         
-        txt_2.sendKeys("DUMMY");
+        input_txt_2.sendKeys("DUMMY");
         
     }
     
@@ -123,7 +145,7 @@ public class InputTextITCase extends IntegrationTestsBase {
     @InSequence(20)
     public void testInputTextBinding() {
         //binding value was set in backed bean, must be checked
-        assertTrue("txt_3 binding failed", txt_3.getAttribute("value").contains("VALUE BINDING"));
+        assertTrue("input_txt_3 binding failed", input_txt_3.getAttribute("value").contains("VALUE BINDING"));
     }
     
     
@@ -131,12 +153,12 @@ public class InputTextITCase extends IntegrationTestsBase {
     @InSequence(30)
     public void testInputTextValuechangeListener() {
         
-        txt_1.clear();
+        input_txt_1.clear();
         
         //change listener count is 0 ?
         assertTrue(txt_1_label.getText().contains("0"));
         
-        txt_1.sendKeys("CHANGED VALUE");
+        input_txt_1.sendKeys("CHANGED VALUE");
         
          //submit
         guardAjax(cmd).click();
@@ -150,8 +172,8 @@ public class InputTextITCase extends IntegrationTestsBase {
     @InSequence(40)
     public void testImmediate() {
        
-        txt_4.clear();
-        txt_5.clear();
+        input_txt_4.clear();
+        input_txt_5.clear();
         
         //submit
         guardAjax(cmd2).click();
@@ -160,7 +182,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         //there is no message input required text for txt 5
         assertTrue(facesMessage.getText().contains(txt_4.getAttribute("id")) && !facesMessage.getText().contains(txt_5.getAttribute("id")));
         
-        txt_4.sendKeys("avoid required for txt 4");
+        input_txt_4.sendKeys("avoid required for txt 4");
         
         //submit
         guardAjax(cmd2).click();
