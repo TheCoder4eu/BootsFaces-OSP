@@ -11,6 +11,8 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import net.bootsfaces.component.icon.Icon;
+import net.bootsfaces.component.icon.IconRenderer;
+import net.bootsfaces.component.iconAwesome.IconAwesomeRenderer;
 import net.bootsfaces.ut.common.JsfMock;
 
 /**
@@ -25,10 +27,10 @@ public class IconTest {
     @Test
     public void testStyleClass() throws IOException{
         Icon icon = new Icon();
+        icon.setName("prueba");
+        String expected="<span><i> id=\"clientId1\" class=\"glyphicon glyphicon-prueba\"</i></span>";
         
-        String expected="<span><i> id=\"clientId1_icon\" class=\"glyphicon glyphicon-null\"</i></span>";
-        
-        jsfMock.generateAndTest(icon, expected);
+        jsfMock.generateAndTest(icon, expected, new IconAwesomeRenderer());
         
         
         this.jsfMock.resetResponseWriter();
@@ -36,10 +38,11 @@ public class IconTest {
         icon = new Icon();
         
         icon.getAttributes().put("styleClass", "styleClass1");
+        icon.setName("prueba");
+
+        expected="<span><i> id=\"clientId1\" class=\"styleClass1 glyphicon glyphicon-prueba\"</i></span>";
         
-        expected="<span><i> id=\"clientId1_icon\" class=\"styleClass1 glyphicon glyphicon-null\"</i></span>";
-        
-        jsfMock.generateAndTest(icon, expected);
+        jsfMock.generateAndTest(icon, expected, new IconRenderer());
         
     }
             
