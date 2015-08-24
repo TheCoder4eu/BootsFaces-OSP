@@ -47,6 +47,7 @@ public class AJAXRenderer extends CoreRenderer {
 //		else if (component instanceof Icon) {
 //			id += "_icon";
 //		}
+		
 
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
@@ -56,6 +57,12 @@ public class AJAXRenderer extends CoreRenderer {
 					id = tabId;
 					break;
 				}
+			}
+		}
+		if (source==null) {
+			// check for non-ajax call
+			if (context.getExternalContext().getRequestParameterMap().containsKey(id)) {
+				source=id;
 			}
 		}
 
