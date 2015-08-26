@@ -1,6 +1,8 @@
 BootsFaces-OSP
 ==============
 
+[![Join the chat at https://gitter.im/TheCoder4eu/BootsFaces-OSP](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/TheCoder4eu/BootsFaces-OSP?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 BootsFaces - Open Source Project
 
 This is the next gen JSF Framework that takes the best from
