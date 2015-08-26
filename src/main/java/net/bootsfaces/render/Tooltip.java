@@ -72,6 +72,7 @@ public class Tooltip {
 			}
 			rw.writeAttribute("data-toggle", "tooltip", null);
 			rw.writeAttribute("data-placement", position, "data-placement");
+			rw.writeAttribute("data-container", "body", "data-container"); // quick fix for #166
 			rw.writeAttribute("title", tooltip, null);
 		}
 	}
