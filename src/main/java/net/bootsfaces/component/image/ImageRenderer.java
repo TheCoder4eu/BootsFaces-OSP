@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -14,9 +15,22 @@ import net.bootsfaces.render.Tooltip;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.image.Image")
 public class ImageRenderer extends CoreRenderer {
 
+    @Override
+    public void decode(FacesContext context, UIComponent component) {
+        Image image = (Image) component;
+
+        if (componentIsDisabledOrReadonly(image)) {
+            return;
+        }
+
+        decodeBehaviors(context, image); // moved to AJAXRenderer
+        new AJAXRenderer().decode(context, component);
+    }
+
     /**
      * This methods generates the HTML code of the current b:image.
-     * @param context the FacesContext.
+     *
+     * @param context   the FacesContext.
      * @param component the current b:image.
      * @throws IOException thrown if something goes wrong when writing the HTML code.
      */
@@ -35,8 +49,7 @@ public class ImageRenderer extends CoreRenderer {
         Tooltip.generateTooltip(context, image, rw);
 
 
-
-
         rw.endElement("image");
         Tooltip.activateTooltips(context, image);
     }
+}

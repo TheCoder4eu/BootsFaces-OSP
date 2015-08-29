@@ -6,6 +6,10 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 
 /** This class holds the attributes of &lt;b:image /&gt;. */
 @FacesComponent("net.bootsfaces.component.image.Image")
@@ -18,20 +22,22 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
     public static final String DEFAULT_RENDERER = "net.bootsfaces.component.image.Image";
 
     public Image() {
-
-
         Tooltip.addResourceFile();
         setRendererType(DEFAULT_RENDERER);
     }
+
+    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
+            "click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
 
-
     protected enum PropertyKeys {
+        alt,
         binding,
         disabled,
+        height,
         name,
         onclick,
         oncomplete,
@@ -44,12 +50,14 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         readonly,
         style,
         styleClass,
+        title,
         tooltip,
         tooltipDelay,
         tooltipDelayHide,
         tooltipDelayShow,
         tooltipPosition,
-        update
+        update,
+        width
         ;
 
         String toString;
@@ -63,6 +71,24 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         public String toString() {
             return ((this.toString != null) ? this.toString : super.toString());
         }
+    }
+
+
+    /**
+     * Alternate textual description of the element rendered by this component. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getAlt() {
+        String value = (String)getStateHelper().eval(PropertyKeys.alt);
+        return  value;
+    }
+
+    /**
+     * Alternate textual description of the element rendered by this component. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setAlt(String _alt) {
+        getStateHelper().put(PropertyKeys.alt, _alt);
     }
 
 
@@ -99,6 +125,24 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
      */
     public void setDisabled(boolean _disabled) {
         getStateHelper().put(PropertyKeys.disabled, _disabled);
+    }
+
+
+    /**
+     * Override for the height of this image. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getHeight() {
+        String value = (String)getStateHelper().eval(PropertyKeys.height);
+        return  value;
+    }
+
+    /**
+     * Override for the height of this image. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setHeight(String _height) {
+        getStateHelper().put(PropertyKeys.height, _height);
     }
 
 
@@ -319,6 +363,24 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
 
 
     /**
+     * Advisory title information about markup elements generated for this component. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getTitle() {
+        String value = (String)getStateHelper().eval(PropertyKeys.title);
+        return  value;
+    }
+
+    /**
+     * Advisory title information about markup elements generated for this component. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setTitle(String _title) {
+        getStateHelper().put(PropertyKeys.title, _title);
+    }
+
+
+    /**
      * The text of the tooltip. <P>
      * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
      */
@@ -423,5 +485,23 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
      */
     public void setUpdate(String _update) {
         getStateHelper().put(PropertyKeys.update, _update);
+    }
+
+
+    /**
+     * Override for the width of this image. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getWidth() {
+        String value = (String)getStateHelper().eval(PropertyKeys.width);
+        return  value;
+    }
+
+    /**
+     * Override for the width of this image. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setWidth(String _width) {
+        getStateHelper().put(PropertyKeys.width, _width);
     }
 }
