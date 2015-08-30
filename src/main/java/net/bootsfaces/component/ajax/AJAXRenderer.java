@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -23,7 +22,6 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
-import javax.faces.component.behavior.ClientBehaviorHint;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -104,24 +102,20 @@ public class AJAXRenderer extends CoreRenderer {
 			UIComponentBase bb = (UIComponentBase) component;
 			Map<String, List<ClientBehavior>> clientBehaviors = bb.getClientBehaviors();
 			for (Entry<String, List<ClientBehavior>> entry : clientBehaviors.entrySet()) {
-				System.out.println(entry.getKey());
-				List<ClientBehavior> value = entry.getValue();
-				for (ClientBehavior bh : value) {
-					ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context,
-							(UIComponent) component, entry.getKey(), null, null);
-					String script = bh.getScript(behaviorContext);
-					System.out.println(bh.getClass().getName() + " Client: " + script);
-					if (bh instanceof AjaxBehavior) {
-						Collection<String> execute = ((AjaxBehavior) bh).getExecute();
-						Collection<String> render = ((AjaxBehavior) bh).getRender();
-						String delay = ((AjaxBehavior) bh).getDelay();
-						String onerror = ((AjaxBehavior) bh).getOnerror();
-						String onevent = ((AjaxBehavior) bh).getOnevent();
-						Set<ClientBehaviorHint> hints = bh.getHints();
-						boolean disabled = ((AjaxBehavior) bh).isDisabled();
-						boolean immediate = ((AjaxBehavior) bh).isImmediate();
-						boolean resetValues = ((AjaxBehavior) bh).isResetValues();
-						bh.decode(context, component);
+				if (event.equals(entry.getKey())) {
+					List<ClientBehavior> value = entry.getValue();
+					for (ClientBehavior bh : value) {
+						ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(
+								context, (UIComponent) component, entry.getKey(), null, null);
+						String script = bh.getScript(behaviorContext);
+						if (bh instanceof AjaxBehavior) {
+							String delay = ((AjaxBehavior) bh).getDelay();
+							bh.decode(context, component);
+//							FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
+//									new AJAXBroadcastComponent(component), event, jsCallback);
+//							ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+//							component.queueEvent(ajaxEvent);
+						}
 					}
 				}
 
@@ -146,7 +140,6 @@ public class AJAXRenderer extends CoreRenderer {
 				MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
 				if (null != actionExpression) {
 					String expressionString = actionExpression.getExpressionString();
-					System.out.println(expressionString);
 					component.queueEvent(new ActionEvent(component));
 					// actionExpression.invoke(context, params)
 				}
@@ -342,13 +335,18 @@ public class AJAXRenderer extends CoreRenderer {
 		String update = component.getUpdate();
 		String oncomplete = component.getOncomplete();
 		String process = "";// component.getProcess();
+		String onevent = "";
 		if (ajaxBehavior != null) {
 			// the default values can be overridden by the AJAX behavior
 			if (ajaxBehavior instanceof AjaxBehavior) {
 				boolean disabled = ((AjaxBehavior) ajaxBehavior).isDisabled();
 				if (!disabled) {
 					String onerror = ((AjaxBehavior) ajaxBehavior).getOnerror(); // todo
-					String onevent = ((AjaxBehavior) ajaxBehavior).getOnevent(); // todo
+					onevent = ((AjaxBehavior) ajaxBehavior).getOnevent();
+					if (onevent == null)
+						onevent = "";
+					else if (onevent.length() > 0)
+						onevent = onevent + ";";
 					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
 					if (null != execute && (!execute.isEmpty())) {
 						process = "";
@@ -370,8 +368,9 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
-		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
-				.append(update == null ? "" : (",'" + update + "'"));
+		cJS.append(encodeClick(component)).append(onevent).append("BsF.ajax.callAjax(this, event")
+				.append(update == null ? ",''" : (",'" + update + "'"))
+				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));
 		if (oncomplete != null) {
 			cJS.append(",function(){" + oncomplete + "}");
 		}
