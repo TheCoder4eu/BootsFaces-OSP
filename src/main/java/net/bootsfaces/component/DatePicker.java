@@ -232,6 +232,7 @@ public class DatePicker extends HtmlInputText {
 		/*
 		 * 6 modes: 1) inline 2) popup (no icons) 3) popup-icon 4) icon-popup 5) toggle-icon (Default) 6) icon-toggle
 		 */
+		boolean isDisabled = A.toBool(attrs.get(A.DISABLED));
 		mode = A.asString(attrs.get("mode"), A.TOGGLEICON);
 		boolean inline = mode.equals(A.INLINE);
 
@@ -247,7 +248,8 @@ public class DatePicker extends HtmlInputText {
 				rw.startElement("div", this);
 				rw.writeAttribute("class", "input-group", "class");
 				if (mode.equals(A.ICONPOP) || mode.equals(A.ICONTOGGLE)) {
-					IconRenderer.encodeIcon(rw, this, "calendar", false);
+					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, true, null, null, isDisabled);
+					
 				}
 			}
 		}
@@ -268,7 +270,7 @@ public class DatePicker extends HtmlInputText {
 			rw.writeAttribute("placeholder", ph, null);
 		}
 
-		if (A.toBool(attrs.get(A.DISABLED))) {
+		if (isDisabled) {
 			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
 		}
 		if (A.toBool(attrs.get(A.READONLY))) {
@@ -278,7 +280,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeJS(fc, rw, clientId, dpId);
 		if (mode.equals(A.POPICON) || mode.equals(A.TOGGLEICON)) {
-			IconRenderer.encodeIcon(rw, this, "calendar", false);
+			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, true, null, null, isDisabled);
 		}
 
 		if (!inline && !mode.equals(A.POPUP)) {
