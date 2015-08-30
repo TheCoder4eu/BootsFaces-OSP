@@ -341,6 +341,7 @@ public class AJAXRenderer extends CoreRenderer {
 		// find default values
 		String update = component.getUpdate();
 		String oncomplete = component.getOncomplete();
+		String process = "";// component.getProcess();
 		if (ajaxBehavior != null) {
 			// the default values can be overridden by the AJAX behavior
 			if (ajaxBehavior instanceof AjaxBehavior) {
@@ -350,13 +351,19 @@ public class AJAXRenderer extends CoreRenderer {
 					String onevent = ((AjaxBehavior) ajaxBehavior).getOnevent(); // todo
 					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
 					if (null != execute && (!execute.isEmpty())) {
-						update = "";
+						process = "";
 						for (String u : execute) {
-							update += u + " ";
+							process += u + " ";
 						}
 					}
 
 					Collection<String> render = ((AjaxBehavior) ajaxBehavior).getRender();
+					if (null != render && (!render.isEmpty())) {
+						update = "";
+						for (String u : render) {
+							update += u + " ";
+						}
+					}
 					oncomplete = component.getOncomplete();
 				}
 			}
