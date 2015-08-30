@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Image IT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+<h:body>
+    <h:form prependId="false">
+        <b:container>
+            <b:row>
+                <!-- test the markup -->
+                <b:image id="image_id_1"
+                         value="resources/images/bsf_logo.png"
+                         lang="lang"
+                         alt ="this is an alternative text"
+                         width="100"
+                         height="100"
+                         style="style"
+                         styleClass="styleClass"
+                         onclick="var dummy = 0;"
+                         ondblclick="var dummy = 0;"
+                         onmousedown="var dummy = 0;"
+                         onmousemove="var dummy = 0;"
+                         onmouseout="var dummy = 0;"
+                         onmouseover="var dummy = 0;"
+                         onmouseup="var dummy = 0;"/>
+
+                <b:image id="image_id_2"
+                         value="resources/images/bsf_logo.png"
+                         lang="lang"
+                         alt ="this is an alternative text"
+                         width="100"
+                         height="100"
+                         style="style"
+                         styleClass="styleClass"
+                         onclick="ajax:imageRequestBean.ajaxAction();"
+                         />
+
+                <b:image id="image_id_3"
+                         value="resources/images/bsf_logo.png"
+                         lang="lang"
+                         alt ="this is an alternative text"
+                         width="100"
+                         height="100"
+                         style="style"
+                         styleClass="styleClass">
+                    <f:ajax execute="@this" render="@this" listener="#{imageRequestBean.ajaxAction}" />
+                </b:image>
+            </b:row>
+        </b:container>
+    </h:form>
+</h:body>
+</html>

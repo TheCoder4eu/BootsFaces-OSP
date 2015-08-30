@@ -90,6 +90,14 @@
 				<scope>import</scope>
 			</dependency>
 
+			<dependency>
+				<groupId>org.jboss.arquillian.extension</groupId>
+				<artifactId>arquillian-warp-bom</artifactId>
+				<version>1.0.0.Alpha7</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
@@ -175,6 +183,17 @@
 			<artifactId>graphene-webdriver-impl</artifactId>
 			<version>2.1.0.Alpha2</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-warp</artifactId>
+			<type>pom</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.extension</groupId>
+			<artifactId>arquillian-warp-jsf</artifactId>
 		</dependency>
 
 	</dependencies>

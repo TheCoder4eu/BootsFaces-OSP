@@ -1,5 +1,7 @@
 package net.bootsfaces.component.image;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.*;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
@@ -12,6 +14,11 @@ import java.util.Collections;
 
 
 /** This class holds the attributes of &lt;b:image /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+        @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
+        @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+        @ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.image.Image")
 public class Image extends UICommand implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
 
