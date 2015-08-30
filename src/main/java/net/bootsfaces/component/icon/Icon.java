@@ -67,7 +67,7 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 	}
 
 	protected enum PropertyKeys {
-		addon, binding, disabled, flip, name, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, readonly, rotate, size, spin, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		addon, binding, disabled, flip, name, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, readonly, rotate, size, spin, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, ajax;
 
 		String toString;
 
@@ -169,6 +169,23 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 	public void setFlip(String _flip) {
 		getStateHelper().put(PropertyKeys.flip, _flip);
 	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+	    getStateHelper().put(PropertyKeys.ajax, _ajax);
+    }
 
 	/**
 	 * Icon name, mandatory.

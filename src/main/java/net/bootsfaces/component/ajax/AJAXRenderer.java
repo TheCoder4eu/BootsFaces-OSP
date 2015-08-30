@@ -6,27 +6,33 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
+import javax.faces.component.ActionSource;
+import javax.faces.component.ActionSource2;
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIComponentBase;
 import javax.faces.component.UINamingContainer;
 import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
+import javax.faces.component.behavior.ClientBehaviorHint;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
-import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
@@ -44,10 +50,9 @@ public class AJAXRenderer extends CoreRenderer {
 		if (component instanceof InputText) {
 			id = "input_" + id; // Todo remove this hack
 		}
-//		else if (component instanceof Icon) {
-//			id += "_icon";
-//		}
-		
+		// else if (component instanceof Icon) {
+		// id += "_icon";
+		// }
 
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
@@ -59,50 +64,102 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		}
-		if (source==null) {
+		if (source == null) {
 			// check for non-ajax call
 			if (context.getExternalContext().getRequestParameterMap().containsKey(id)) {
-				source=id;
+				source = id;
 			}
 		}
 
 		if (source != null && source.equals(id)) {
-			// if
-			// (context.getExternalContext().getRequestParameterMap().containsKey(param))
-			// {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-			if (component instanceof CommandButton && (event == null || event.equals("click"))) {
-				component.queueEvent(new ActionEvent(component));
-			} else {
-				String nameOfGetter = "getOn" + event;
-				try {
-					Method[] methods = component.getClass().getMethods();
-					for (Method m : methods) {
-						if (m.getParameterTypes().length == 0) {
-							if (m.getReturnType() == String.class) {
-								if (m.getName().equalsIgnoreCase(nameOfGetter)) {
-									String jsCallback = (String) m.invoke(component);
-									if (jsCallback != null && jsCallback.contains("ajax:")) {
-										if (component instanceof CommandButton && "action".equals(event)) {
-											component.queueEvent(new ActionEvent(component));
-										} else {
-											FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
-													new AJAXBroadcastComponent(component), event, jsCallback);
-											ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
-											component.queueEvent(ajaxEvent);
-										}
+			String nameOfGetter = "getOn" + event;
+			try {
+				Method[] methods = component.getClass().getMethods();
+				for (Method m : methods) {
+					if (m.getParameterTypes().length == 0) {
+						if (m.getReturnType() == String.class) {
+							if (m.getName().equalsIgnoreCase(nameOfGetter)) {
+								String jsCallback = (String) m.invoke(component);
+								if (jsCallback != null && jsCallback.contains("ajax:")) {
+									if (component instanceof CommandButton && "action".equals(event)) {
+										component.queueEvent(new ActionEvent(component));
+									} else {
+										FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
+												new AJAXBroadcastComponent(component), event, jsCallback);
+										ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+										component.queueEvent(ajaxEvent);
 									}
-									break;
 								}
-
+								break;
 							}
+
 						}
 					}
-				} catch (ReflectiveOperationException ex) {
-					System.err.println("Couldn't invoke method " + nameOfGetter);
+				}
+			} catch (ReflectiveOperationException ex) {
+				System.err.println("Couldn't invoke method " + nameOfGetter);
+			}
+
+			UIComponentBase bb = (UIComponentBase) component;
+			Map<String, List<ClientBehavior>> clientBehaviors = bb.getClientBehaviors();
+			for (Entry<String, List<ClientBehavior>> entry : clientBehaviors.entrySet()) {
+				System.out.println(entry.getKey());
+				List<ClientBehavior> value = entry.getValue();
+				for (ClientBehavior bh : value) {
+					ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context,
+							(UIComponent) component, entry.getKey(), null, null);
+					String script = bh.getScript(behaviorContext);
+					System.out.println(bh.getClass().getName() + " Client: " + script);
+					if (bh instanceof AjaxBehavior) {
+						Collection<String> execute = ((AjaxBehavior) bh).getExecute();
+						Collection<String> render = ((AjaxBehavior) bh).getRender();
+						String delay = ((AjaxBehavior) bh).getDelay();
+						String onerror = ((AjaxBehavior) bh).getOnerror();
+						String onevent = ((AjaxBehavior) bh).getOnevent();
+						Set<ClientBehaviorHint> hints = bh.getHints();
+						boolean disabled = ((AjaxBehavior) bh).isDisabled();
+						boolean immediate = ((AjaxBehavior) bh).isImmediate();
+						boolean resetValues = ((AjaxBehavior) bh).isResetValues();
+						bh.decode(context, component);
+					}
+				}
+
+			}
+
+			if (component instanceof ActionSource) {
+				ActionSource b = (ActionSource) component;
+				ActionListener[] actionListeners = b.getActionListeners();
+				if (null != actionListeners && actionListeners.length > 0) {
+					component.queueEvent(new ActionEvent(component));
+				}
+				// for (ActionListener l: actionListeners) {
+				//// l.processAction(new ActionEvent(component));
+				// FacesEvent ajaxEvent = new BootsFacesAJAXActionListenerEvent(
+				// component, event, l);
+				// ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+				// component.queueEvent(ajaxEvent);
+				// }
+
+			}
+			if (component instanceof ActionSource2) {
+				MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
+				if (null != actionExpression) {
+					String expressionString = actionExpression.getExpressionString();
+					System.out.println(expressionString);
+					component.queueEvent(new ActionEvent(component));
+					// actionExpression.invoke(context, params)
 				}
 			}
 
+			// if (component instanceof CommandButton && (event == null ||
+			// event.equals("click"))) {
+			//// component.queueEvent(new ActionEvent(component));
+			// FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
+			// new AJAXBroadcastComponent(component), event, null);
+			// ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+			// component.queueEvent(ajaxEvent);
+			// }
 		}
 	}
 
@@ -120,18 +177,18 @@ public class AJAXRenderer extends CoreRenderer {
 
 		generateBootsFacesAJAXAndJavaScript(context, component, rw);
 
-		StringBuilder cJS = null;
-
-		if (component.isAjax()) {
-			cJS = generateAJAXCall(context, component);
-		} else {
-			cJS = new StringBuilder(encodeClick(component));// Fix
-			// Chrome//+"document.forms['"+formId+"'].submit();");
-		}
-
-		if (null != cJS && cJS.toString().length() > 1) {// Fix Chrome
-			rw.writeAttribute("onclick", cJS.toString(), null);
-		}
+		// StringBuilder cJS = null;
+		//
+		// if (component.isAjax()) {
+		// cJS = generateAJAXCall(context, component);
+		// } else {
+		// cJS = new StringBuilder(encodeClick(component));// Fix
+		// // Chrome//+"document.forms['"+formId+"'].submit();");
+		// }
+		//
+		// if (null != cJS && cJS.toString().length() > 1) {// Fix Chrome
+		// rw.writeAttribute("onclick", cJS.toString(), null);
+		// }
 	}
 
 	/**
@@ -151,6 +208,7 @@ public class AJAXRenderer extends CoreRenderer {
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler) throws IOException {
+		boolean generatedAJAXCall = false;
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -184,11 +242,19 @@ public class AJAXRenderer extends CoreRenderer {
 			List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
 			if (null != behaviors) {
 				for (ClientBehavior cb : behaviors) {
-					ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(context,
-							(UIComponent) component, keyClientBehavior, null, null);
-					String s = buildAjaxCommand(behaviorContext, (AjaxBehavior) cb, false);
-					script += cb.getScript(behaviorContext) + ";";
+					if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
+						// ClientBehaviorContext behaviorContext =
+						// ClientBehaviorContext.createClientBehaviorContext(context,
+						// (UIComponent) component, keyClientBehavior, null,
+						// null);
+						StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, (AjaxBehavior) cb);
+						script += s.toString() + ";";
+					}
 				}
+			}
+			if (jsCallback.contains("BsF.ajax.cb(") || script.contains("BsF.ajax.cb(")) {
+				generatedAJAXCall = true;
+
 			}
 			// TODO end
 			if (jsCallback.length() > 0 || script.length() > 0) {
@@ -198,6 +264,18 @@ public class AJAXRenderer extends CoreRenderer {
 				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
 			}
 
+		}
+		if (!generatedAJAXCall) {
+			// should we generate AJAX nonetheless?
+			boolean ajax = ((IAJAXComponent) component).isAjax();
+			ajax |= null != ((IAJAXComponent) component).getUpdate();
+
+			if (ajax) {
+				StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, null);
+				String script = s.toString() + ";";
+				String defaultEvent = ((IAJAXComponent) component).getDefaultEventName();
+				rw.writeAttribute("on" + defaultEvent, script, null);
+			}
 		}
 	}
 
@@ -257,16 +335,41 @@ public class AJAXRenderer extends CoreRenderer {
 		return cJS;
 	}
 
-	private static StringBuilder generateAJAXCall(FacesContext context, CommandButton component) {
-		String complete = component.getOncomplete();
+	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component,
+			ClientBehavior ajaxBehavior) {
 		StringBuilder cJS = new StringBuilder(150);
-		String update = ExpressionResolver.getComponentIDs(context, component, component.getUpdate());
+		// find default values
+		String update = component.getUpdate();
+		String oncomplete = component.getOncomplete();
+		if (ajaxBehavior != null) {
+			// the default values can be overridden by the AJAX behavior
+			if (ajaxBehavior instanceof AjaxBehavior) {
+				boolean disabled = ((AjaxBehavior) ajaxBehavior).isDisabled();
+				if (!disabled) {
+					String onerror = ((AjaxBehavior) ajaxBehavior).getOnerror(); // todo
+					String onevent = ((AjaxBehavior) ajaxBehavior).getOnevent(); // todo
+					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
+					if (null != execute && (!execute.isEmpty())) {
+						update = "";
+						for (String u : execute) {
+							update += u + " ";
+						}
+					}
+
+					Collection<String> render = ((AjaxBehavior) ajaxBehavior).getRender();
+					oncomplete = component.getOncomplete();
+				}
+			}
+		}
+
+		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
 		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event")
 				.append(update == null ? "" : (",'" + update + "'"));
-		if (complete != null) {
-			cJS.append(",function(){" + complete + "}");
+		if (oncomplete != null) {
+			cJS.append(",function(){" + oncomplete + "}");
 		}
 		cJS.append(");");
+
 		return cJS;
 	}
 

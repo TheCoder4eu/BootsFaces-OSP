@@ -68,7 +68,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 
 	protected enum PropertyKeys {
 
-		placeholder, fieldSize, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
+		ajax, placeholder, fieldSize, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
 		update;
 
 		String toString;
@@ -95,6 +95,23 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+	    getStateHelper().put(PropertyKeys.ajax, _ajax);
+    }
 
 	public java.lang.String getPlaceholder() {
 		return (java.lang.String) getStateHelper().eval(PropertyKeys.placeholder, null);

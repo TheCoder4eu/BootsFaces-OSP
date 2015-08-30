@@ -69,7 +69,7 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 
 
 	protected enum PropertyKeys {
-		accesskey, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		accesskey, ajax, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -105,6 +105,23 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 	public void setAccesskey(String _accesskey) {
 		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
 	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+	    getStateHelper().put(PropertyKeys.ajax, _ajax);
+    }
 
 	/**
 	 * Alternate textual description of the input element.

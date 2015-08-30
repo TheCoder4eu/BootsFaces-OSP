@@ -43,9 +43,10 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.tabView.TabView")
-public class TabView extends UIOutput implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
+public class TabView extends UIOutput
+		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabView.TabView";
 
@@ -57,12 +58,19 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+		
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
+	@Override
+	public boolean getRendersChildren() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
@@ -74,16 +82,14 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
+
 	@Override
 	public void processDecodes(FacesContext context) {
 		super.processDecodes(context);
 	}
 
-	protected enum PropertyKeys
-
-	{
-		activeIndex, contentClass, contentStyle, oncomplete, onclick, id, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+	protected enum PropertyKeys {
+		activeIndex, ajax, contentClass, contentStyle, disabled, immediate, onclick, oncomplete, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -97,11 +103,11 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
-
 	}
 
 	/**
-	 * Optional attribute to define which tab is active initially. 
+	 * Optional attribute to define which tab is active initially.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -112,7 +118,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Optional attribute to define which tab is active initially. 
+	 * Optional attribute to define which tab is active initially.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setActiveIndex(int _activeIndex) {
@@ -120,7 +127,29 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding the panes. 
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isAjax() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Style class of the div surrounding the panes.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -131,7 +160,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding the panes. 
+	 * Style class of the div surrounding the panes.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -139,7 +169,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Inline CSS style of the div surrounding the panes. 
+	 * Inline CSS style of the div surrounding the panes.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -150,7 +181,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Inline CSS style of the div surrounding the panes. 
+	 * Inline CSS style of the div surrounding the panes.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -158,7 +190,98 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The role can be used to provide information to screenreaders. 
+	 * Disables the input element, default is false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Disables the input element, default is false.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isImmediate() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setImmediate(boolean _immediate) {
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
+
+	/**
+	 * OnClick DHTML event .
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnclick() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
+		return value;
+	}
+
+	/**
+	 * OnClick DHTML event .
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncomplete() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * The role can be used to provide information to screenreaders.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -169,7 +292,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The role can be used to provide information to screenreaders. 
+	 * The role can be used to provide information to screenreaders.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRole(String _role) {
@@ -177,7 +301,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding this element. 
+	 * Style class of the div surrounding this element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -188,7 +313,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * Style class of the div surrounding this element. 
+	 * Style class of the div surrounding this element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -196,7 +322,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -207,7 +334,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -216,7 +344,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -228,7 +357,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -237,7 +367,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -249,7 +380,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -258,7 +390,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -270,7 +403,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -280,7 +414,8 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -293,63 +428,33 @@ public class TabView extends UIOutput implements net.bootsfaces.render.IHasToolt
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
 
-
 	/**
-	 * Optional Javascript function that's called when the tab is clicked. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onclick);
-		return  value;
-	}
-	
-	/**
-	 * Optional Javascript function that's called when the tab is clicked. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnclick(String _onclick) {
-	    getStateHelper().put(PropertyKeys.onclick, _onclick);
-    }
-	
-
-	/**
-	 * Javascript to be executed when ajax completes with success. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOncomplete() {
-		String value = (String)getStateHelper().eval(PropertyKeys.oncomplete);
-		return  value;
-	}
-	
-	/**
-	 * Javascript to be executed when ajax completes with success. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOncomplete(String _oncomplete) {
-	    getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
-    }
-	/**
-	 * Component(s) to be updated with ajax. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getUpdate() {
-		String value = (String)getStateHelper().eval(PropertyKeys.update);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
 	}
-	
+
 	/**
-	 * Component(s) to be updated with ajax. <P>
+	 * Component(s) to be updated with ajax.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUpdate(String _update) {
-	    getStateHelper().put(PropertyKeys.update, _update);
-    }
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
 
 }

@@ -40,6 +40,12 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:tabView /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tabView.TabView")
 public class TabViewRenderer extends CoreRenderer {
+	
+	@Override
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
+		// TODO Auto-generated method stub
+		//super.encodeChildren(context, component);
+	}
 
 	/**
 	 * Decode to be used to implement an AJAX version of TabView. This methods

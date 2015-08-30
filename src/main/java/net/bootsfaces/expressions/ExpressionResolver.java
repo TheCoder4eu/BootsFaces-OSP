@@ -19,6 +19,7 @@
 package net.bootsfaces.expressions;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,6 +42,10 @@ public class ExpressionResolver {
 
 	public static String getComponentIDs(FacesContext context, UIComponent component, String update) {
 		List<String> expressions = getExpressions(update);
+		return getComponentIDs(context, component, expressions);
+	}
+
+	public static String getComponentIDs(FacesContext context, UIComponent component, Collection<String> expressions) {
 		String result = "";
 		for (String exp : expressions) {
 			result += getComponentId(context, component, exp) + " ";
