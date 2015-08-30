@@ -294,6 +294,7 @@ widget icon
        has_tooltip
  {
     addon               Boolean                                            "Boolean value: if true the element is used as Addon."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
@@ -329,6 +330,7 @@ widget iconAwesome
        has_tooltip
  {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
+    ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
     binding             javax.faces.component.UIComponent   inherited      "An el expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
@@ -427,6 +429,7 @@ widget inputText
        has_tooltip
  {
     accesskey                                                              "Access key to transfer focus to the input element."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
@@ -787,6 +790,7 @@ widget selectBooleanCheckbox
        has_tooltip
  {
     accesskey                                                              "Access key to transfer focus to the input element."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     caption                                                                "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
@@ -942,6 +946,7 @@ widget selectOneMenu
        description "This component is also known as combobox or drop-down-menu."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality."
@@ -1022,8 +1027,11 @@ widget tab
        extends UIOutput
        has_tooltip
  {
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     contentStyle                                                           "Inline CSS of the div surrounding the tab pane."
+    disabled            Boolean                                            "Disables the input element, default is false."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "Optional Javascript function that's called when the tab is clicked."
     oncomplete                                                             "Javascript to be executed when ajax completes with success."
     style                                                                  "Inline CSS of the tab."
@@ -1044,9 +1052,12 @@ widget tabView
        has_tooltip
  {
     activeIndex         Integer                                            "Optional attribute to define which tab is active initially."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     contentClass                                                           "Style class of the div surrounding the panes."
     contentStyle                                                           "Inline CSS style of the div surrounding the panes."
+    disabled            Boolean                                            "Disables the input element, default is false."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "OnClick DHTML event ."
     oncomplete                                                             "Javascript to be executed when ajax completes with success."
     role                                                                   "The role can be used to provide information to screenreaders."

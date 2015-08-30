@@ -54,5 +54,10 @@ public class TabRenderer extends CoreRenderer {
 		// Nothing to do: this component is rendered by b:tabView
 	}
 
+	@Override
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
+		// TODO Auto-generated method stub
+		super.encodeChildren(context, component);
+	}
 	
 }
