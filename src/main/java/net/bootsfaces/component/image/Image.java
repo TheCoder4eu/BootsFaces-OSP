@@ -29,15 +29,23 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
     private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
             "click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
+    public Collection<String> getEventNames() {
+        return EVENT_NAMES;
+    }
+
+    public String getDefaultEventName() {
+        return "click";
+    }
+
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
 
     protected enum PropertyKeys {
         alt,
-        binding,
         disabled,
         height,
+        lang,
         name,
         onclick,
         oncomplete,
@@ -93,24 +101,6 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
 
 
     /**
-     * An el expression referring to a server side UIComponent instance in a backing bean. <P>
-     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-     */
-    public javax.faces.component.UIComponent getBinding() {
-        javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
-        return  value;
-    }
-
-    /**
-     * An el expression referring to a server side UIComponent instance in a backing bean. <P>
-     * Usually this method is called internally by the JSF engine.
-     */
-    public void setBinding(javax.faces.component.UIComponent _binding) {
-        getStateHelper().put(PropertyKeys.binding, _binding);
-    }
-
-
-    /**
      * Boolean value to specify if the button is disabled. <P>
      * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
      */
@@ -143,6 +133,24 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
      */
     public void setHeight(String _height) {
         getStateHelper().put(PropertyKeys.height, _height);
+    }
+
+
+    /**
+     * Code describing the language used in the generated markup for this component. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getLang() {
+        String value = (String)getStateHelper().eval(PropertyKeys.lang);
+        return  value;
+    }
+
+    /**
+     * Code describing the language used in the generated markup for this component. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setLang(String _lang) {
+        getStateHelper().put(PropertyKeys.lang, _lang);
     }
 
 

@@ -117,15 +117,28 @@ public final class H {
     
     // NOTE: disabled, styleClass are handled by component
     public static final String[] ALLBUTTON = {
-		"accesskey",
-		"dir",
-                //DISABLED,
-		"lang",
-                STYLE,
-		"tabindex",
-		TITLE
+            "accesskey",
+            "dir",
+            //DISABLED,
+            "lang",
+            STYLE,
+            "tabindex",
+            TITLE
     };
-    
+
+
+    public static final String[] IMAGE = {
+            "alt",
+            "height",
+            "lang",
+            "style",
+            "title",
+            "width",
+    };
+
+
+
+
     // Suppress default constructor for noninstantiability
     private H() {
         throw new AssertionError();

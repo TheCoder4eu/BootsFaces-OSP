@@ -2,12 +2,17 @@ package net.bootsfaces.component.image;
 
 import java.io.IOException;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.application.ProjectStage;
+import javax.faces.application.Resource;
+import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -43,13 +48,49 @@ public class ImageRenderer extends CoreRenderer {
         ResponseWriter rw = context.getResponseWriter();
         String clientId = image.getClientId();
 
-        // put custom code here
-        // Simple demo widget that simply renders every attribute value
-        rw.startElement("image", image);
+
+        rw.startElement("img", image);
         Tooltip.generateTooltip(context, image, rw);
+        rw.writeAttribute("id", clientId, "id");
+        rw.writeURIAttribute("src", this.getImageSource(context, component, "value"), "value");
 
+        renderPassThruAttributes(context, image, A.IMAGE);
 
-        rw.endElement("image");
+        writeAttribute(rw, "class", image.getStyleClass(), "styleClass");
+
+        AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), image, rw);
+
+        rw.endElement("img");
         Tooltip.activateTooltips(context, image);
+    }
+
+    /**
+     * <p>
+     * Determine the path value of an image value.
+     * </p>
+     *
+     * @param context the {@link FacesContext} for the current request.
+     * @param component the component to obtain the image information from
+     * @param attrName the attribute name that needs to be queried if the
+     *  name and library attributes are not specified
+     *
+     * @return the encoded path to the image source
+     */
+    public static String getImageSource(FacesContext context, UIComponent component, String attrName) {
+
+
+        String value = (String) component.getAttributes().get(attrName);
+        if (value == null || value.length() == 0) {
+            return "";
+        }
+
+        ResourceHandler handler = context.getApplication().getResourceHandler();
+        if (handler.isResourceURL(value)) {
+            return value;
+        } else {
+            value = context.getApplication().getViewHandler().
+                    getResourceURL(context, value);
+            return (context.getExternalContext().encodeResourceURL(value));
+        }
     }
 }

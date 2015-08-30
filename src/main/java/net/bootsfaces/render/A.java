@@ -172,6 +172,9 @@ public final class A {
     public static final String[] TAB_ATTRS = A.concatAll( H.TAB);
     public static final String[] TAB_VIEW_ATTRS = A.concatAll( H.TAB_VIEW);
     public static final String[] SELECT_ONE_MENU_ATTRS = A.concatAll( H.SELECT_ONE_MENU);
+    public static final String[] IMAGE = A.concatAll( H.IMAGE);
+
+
    
     /**
      * Joins two arrays efficiently.
