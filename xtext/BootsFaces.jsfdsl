@@ -1108,6 +1108,7 @@ widget image
        extends UIComponentBase
        has_tooltip
  {
+    ajax                Boolean   inherited                                "Activates AJAX. The default value is false (no AJAX)."
 	alt																   	   "Alternate textual description of the element rendered by this component."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."

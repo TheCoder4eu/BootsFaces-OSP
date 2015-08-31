@@ -49,6 +49,7 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
     }
 
     protected enum PropertyKeys {
+        ajax,
         alt,
         disabled,
         height,
@@ -106,6 +107,23 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         getStateHelper().put(PropertyKeys.alt, _alt);
     }
 
+
+    /**
+     * Activates AJAX. The default value is false (no AJAX). <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public boolean isAjax() {
+        Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+        return (boolean) value;
+    }
+
+    /**
+     * Activates AJAX. The default value is false (no AJAX). <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setAjax(boolean _ajax) {
+        getStateHelper().put(PropertyKeys.ajax, _ajax);
+    }
 
     /**
      * Boolean value to specify if the button is disabled. <P>

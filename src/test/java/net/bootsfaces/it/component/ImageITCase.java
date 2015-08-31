@@ -76,7 +76,7 @@ public class ImageITCase extends IntegrationTestsBase {
         assertEquals("Wrong page title found", "Image IT", pageTitle);
 
 
-
+        assertTrue("image_id_1 rendered failed. src does not exist.", image_id_1.getAttribute("src").endsWith("resources/images/bsf_logo.png"));
         assertTrue("image_id_1 rendered failed. lang does not exist.", image_id_1.getAttribute("lang").equals("lang"));
         assertTrue("image_id_1 rendered failed. alt does not exist.", image_id_1.getAttribute("alt").equals("this is an alternative text"));
         assertTrue("image_id_1 rendered failed. width does not exist.", image_id_1.getAttribute("width").equals("100"));
