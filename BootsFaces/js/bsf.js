@@ -15,15 +15,21 @@ BsF.ajax.onevent=function(d) {
     if(d.status == "success") {
             var cid=d.source.id.replace(/[^a-zA-Z0-9]+/g,'_');
             var f=BsF.callback[cid];
-            f();
+            if (typeof(f)!='undefined') {
+            	f();
+            }
         }
     };
 BsF.ajax.cb=function(o,e,r,f) { //commandButton ajax helper (object, event, [render], [oncomplete])
+	BsF.ajax.callAjax(o,e,r,"@all",f);
+}
+
+BsF.ajax.callAjax=function(o,e,r,execute,f) { //commandButton ajax helper (object, event, [render], [oncomplete])	
     var argn=arguments.length;
     var oid=o.id;
     var cid=oid.replace(/[^a-zA-Z0-9]+/g,'_');
     var opts={};
-    opts.execute='@all';
+    opts.execute=execute;
     opts[oid]=oid;
     if(argn==4) {
     BsF.callback[cid]=f;
