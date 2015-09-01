@@ -268,45 +268,6 @@
 
 		<plugins>
 			<plugin>
-				<groupId>pl.allegro</groupId>
-				<artifactId>grunt-maven-plugin</artifactId>
-				<version>1.5.0</version>
-				
-				<configuration>
-					<disabled>true</disabled>
-				
-					<!-- relative to src/main/webapp/, default: static -->
-					<jsSourceDirectory>../../../BootsFaces</jsSourceDirectory>
-
-					<!-- example options usage to get verbose output in logs -->
-					<gruntOptions>
-						<gruntOption>--verbose</gruntOption>
-					</gruntOptions>
-
-					<!-- example npm install env variable -->
-					<npmEnvironmentVar>
-						<PHANTOMJS_CDNURL>http://cnpmjs.org/downloads</PHANTOMJS_CDNURL>
-					</npmEnvironmentVar>
-
-					<!-- example options usage to filter variables in given resource -->
-					<filteredResources>
-						<filteredResource>maven-properties.json</filteredResource>
-					</filteredResources>
-
-				</configuration>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>create-resources</goal>
-							<goal>npm</goal>
-							<!-- <goal>bower</goal> -->
-							<goal>grunt</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.5</version>
@@ -324,42 +285,30 @@
 		<!-- resources -->
 		<resources>
 			<resource>
-				<directory>BootsFaces/min/css</directory>
+				<directory>mavenResources/css</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
 			</resource>
 			<resource>
-				<directory>BootsFaces/min/js</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-
-
-		<!-- 
-			 -->
-			<resource>
-				<directory>BootsFaces/css</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			<resource>
-				<directory>BootsFaces/js</directory>
+				<directory>mavenResources/js</directory>
 				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
 			<resource>
-				<directory>BootsFaces/themes</directory>
+				<directory>mavenResources/themes</directory>
 				<targetPath>META-INF/resources/bsf/css</targetPath>
 			</resource>
 			 
 			<resource>
-				<directory>BootsFaces/jq</directory>
+				<directory>mavenResources/jq</directory>
 				<targetPath>META-INF/resources/bsf/jq</targetPath>
 			</resource>
 
 			<resource>
-				<directory>BootsFaces/ie8support</directory>
+				<directory>mavenResources/ie8support</directory>
 				<targetPath>META-INF/resources/bsf/js</targetPath>
 			</resource>
 
 			<resource>
-				<directory>BootsFaces/fonts</directory>
+				<directory>mavenResources/fonts</directory>
 				<targetPath>META-INF/resources/fonts</targetPath>
 			</resource>
 			<resource>
@@ -374,22 +323,6 @@
 
 	<!-- PROFILES SECTION -->
 	<profiles>
-		<profile>
-			<id>Grunt</id>
-			<dependencies>
-				<dependency>
-					<groupId>javax.faces</groupId>
-					<artifactId>jsf-api</artifactId>
-					<version>2.0</version>
-					<scope>provided</scope>
-				</dependency>
-			</dependencies>
-			<build>
-				<plugins>
-				</plugins>
-			</build>
-		</profile>
-
 		<profile>
 			<id>Mojarra 2.0</id>
 			<activation>
