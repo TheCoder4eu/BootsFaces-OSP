@@ -1,0 +1,87 @@
+/*
+ * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ * 
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+//Compile BootsFaces Less files to CSS
+
+buildscript {
+    dependencies {
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.3.0'
+    }
+}
+
+plugins {
+  id "com.bertramlabs.asset-pipeline" version "2.5.0"
+}
+
+Properties props = new Properties()
+props.load(new FileInputStream("${projectDir}/../build.properties"))
+ext.BootstrapVersion = props['bootstrap.version']
+
+assets {
+  minifyJs = true
+  minifyCss = true
+  enableSourceMaps = false
+  configOptions = [:]
+
+  includes = ['less/bs-*.less']
+  excludes = ['less/*.less','less/mixins/*.less'] //Exclude mixins
+
+  // Can add custom asset locations (directories or individual jar files)
+  from "${buildDir}/process"
+}
+
+assetCompile.dependsOn assetClean
+
+task cleanAssetDir(type: Delete) {
+     delete fileTree(dir: "${buildDir}/assets/js", includes: ['*.gz', '*-*.js'])
+     delete fileTree(dir: "${buildDir}/assets/less", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'])
+     delete fileTree(dir: "${buildDir}/assets/", includes: ['*.gz', 'bsf-*.*'])
+  }
+
+/*
+task addLicense2AssetCss {
+    
+     
+     // Iterate over the contents of the tree
+     tree.each {
+     File css -> println 'Adding license to '+css
+     String file = css
+     String contents = css.getText( 'UTF-8' )
+     contents = license+contents
+     new File( file ).write( contents, 'UTF-8' )
+     }
+}
+
+addLicense2AssetCss.mustRunAfter assetCompile
+*/
+
+assetCompile.doLast {
+   cleanAssetDir.execute()
+   //addLicense2AssetCss.execute()
+   String license = "/*! Bootstrap v"+BootstrapVersion+" (http://getbootstrap.com) | Copyright 2011-2015 Twitter, Inc. | Licensed under MIT */\n"
+   println license
+   
+   FileTree tree = fileTree("${buildDir}/assets/less") {
+     include '**/*.css'
+     }
+     // Iterate over the contents of the tree
+     tree.each {
+     File css -> println 'Adding license to '+css
+     String file = css
+     String contents = css.getText( 'UTF-8' )
+     contents = license+contents
+     new File( file ).write( contents, 'UTF-8' )
+     }
+}

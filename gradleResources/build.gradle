@@ -1,0 +1,130 @@
+/*
+ * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ * 
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+Properties props = new Properties()
+props.load(new FileInputStream("${projectDir}/../build.properties"))
+ext.BootstrapVersion = props['bootstrap.version']
+
+task getBootstrap(type: GradleBuild) {
+    buildFile = 'bootstrap.gradle'
+    tasks = ['downloadAndUnzipBootstrap']
+}
+
+task copyOriginalLess(type: Copy) {
+  from 'Bootstrap/bootstrap-'+BootstrapVersion+'/less'
+  into "${buildDir}/process/less"
+}
+task copyBootstrapFonts(type: Copy) {
+  from 'Bootstrap/bootstrap-'+BootstrapVersion+'/fonts'
+  into "${buildDir}/resources/META-INF/resources/fonts"
+}
+task copyBootstrapJs(type: Copy) {
+  from 'Bootstrap/bootstrap-'+BootstrapVersion+'/js'
+  include '*.js'
+  exclude 'affix.js', 'carousel.js', 'popover.js', 'scrollspy.js'
+  filter{String line -> line.startsWith('/* ') ? line.replace('/* ', '/** @license ') : line }
+  into "${buildDir}/process/js"
+}
+task copyBootsFacesLess(type: Copy) {
+  from 'less'
+  into "${buildDir}/process/less"
+}
+task copyBootsFacesFiles(type: Copy) {
+  from 'css/bsf.css'
+  from 'js/bsf.js'
+  filter{String line -> line.startsWith('/*!') ? line.replace('/*!', '/** @license ') : line }
+
+  into "${buildDir}/process"
+}
+task copyCssResources(type: Copy) {
+  from 'css/bootstrap-multiselect.css'
+  from 'css/bootstrap-switch.css'
+  from 'css/dropdowns.css'
+  from 'css/dropdown-submenu.css'
+  from 'css/jq.ui.core.css'
+  from 'css/jq.ui.datepicker.css'
+  from 'css/jq.ui.slider.css'
+  from 'css/jq.ui.theme.css'
+
+  into "${buildDir}/resources/META-INF/resources/bsf/css"
+}
+task copyJsResources(type: Copy) {
+  from 'js/bootstrap-multiselect-collapsible-groups.js'
+  from 'js/bootstrap-multiselect.js'
+  from 'js/bootstrap-switch.js'
+  from 'ie8support/respond.js'
+  from 'ie8support/html5shiv.js'
+
+  into "${buildDir}/resources/META-INF/resources/bsf/js"
+}
+task copyJqResources(type: Copy) {
+  from 'jq'
+  into "${buildDir}/resources/META-INF/resources/bsf/jq"
+}
+/*
+task copyFonts(type: Copy) {
+  from 'fonts'
+  into "${buildDir}/resources/META-INF/resources/fonts"
+}
+*/
+task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapFonts', 'copyBootstrapJs']) {
+
+}
+
+task copyBootsFacesResources(dependsOn: ['copyCssResources', 'copyJsResources', 'copyJqResources']) { ////, 'copyFonts']) {
+
+}
+task lesscss(type: GradleBuild) {
+    buildFile = 'lessc.gradle'
+    tasks = ['assetCompile']
+}
+
+
+task copyAssetCss2Resources(type: Copy) {
+    from "${buildDir}/assets/less"
+    into "${buildDir}/resources/META-INF/resources/bsf/css"
+    // Use a closure to map the file name
+    rename { String fileName ->
+        fileName.replace('bs-', '')
+    }
+}
+
+task copyAssetJs2Resources(type: Copy) {
+    from "${buildDir}/assets/js"
+    into "${buildDir}/resources/META-INF/resources/bsf/js"
+}
+task copyBsfCss(type: Copy) {
+  from "${buildDir}/assets/bsf.css"
+  into "${buildDir}/resources/META-INF/resources/bsf/css"
+}
+task copyBsfJs(type: Copy) {
+  from "${buildDir}/assets/bsf.js"
+  into "${buildDir}/resources/META-INF/resources/bsf/js"
+}
+
+task copyAssetResources(dependsOn: ['copyAssetCss2Resources', 'copyAssetJs2Resources', 'copyBsfCss', 'copyBsfJs']) {
+
+}
+
+getBootstrap.mustRunAfter copyBootsFacesResources
+copyFiles2Process.mustRunAfter getBootstrap
+lesscss.mustRunAfter copyFiles2Process
+copyAssetResources.mustRunAfter lesscss
+
+task buildResources(dependsOn: ['copyBootsFacesResources', 'getBootstrap', 'copyFiles2Process', 'lesscss', 'copyAssetResources']) {
+
+}
+
+//defaultTasks 'lesscss'

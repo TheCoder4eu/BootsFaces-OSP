@@ -1,0 +1,43 @@
+/*
+ * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ * 
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+ 
+// Apply the plugin to add support for Bootstrap download
+plugins {
+    id "de.undercouch.download" version "2.0.0"
+}
+
+import de.undercouch.gradle.tasks.download.Download
+
+//Configuration
+Properties props = new Properties()
+props.load(new FileInputStream("${projectDir}/../build.properties"))
+ext.BootstrapVersion = props['bootstrap.version']
+
+ext.downloadURL = 'https://github.com/twbs/bootstrap/archive/v'+BootstrapVersion+'.zip'
+
+/**
+ * The following two tasks download a ZIP file and extract its
+ * contents to the build directory
+ */
+task downloadBootstrapZipFile(type: Download) {
+    src downloadURL
+    dest new File(buildDir, 'bootstrap'+BootstrapVersion+'.zip')
+}
+
+task downloadAndUnzipBootstrap(dependsOn: downloadBootstrapZipFile, type: Copy) {
+    from zipTree(downloadBootstrapZipFile.dest)
+    into 'Bootstrap'
+}
+
