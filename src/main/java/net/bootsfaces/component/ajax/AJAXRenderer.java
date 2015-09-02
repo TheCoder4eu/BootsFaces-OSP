@@ -267,6 +267,9 @@ public class AJAXRenderer extends CoreRenderer {
 				StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, null);
 				String script = s.toString() + ";";
 				String defaultEvent = ((IAJAXComponent) component).getDefaultEventName();
+				if (component instanceof CommandButton)
+					if (script.length() > 0 && "click".equals(defaultEvent))
+						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
 			}
 		}
