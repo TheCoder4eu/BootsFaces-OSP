@@ -1,0 +1,72 @@
+/*
+ * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ * 
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+Properties props = new Properties()
+props.load(new FileInputStream("build.properties"))
+ext.BootsFacesVersion = props['VERSION']
+ext.BootstrapVersion = props['bootstrap.version']
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+//Configurations
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
+
+repositories {
+mavenCentral()
+}
+
+dependencies {
+compile 'javax.servlet:servlet-api:3.+'
+compile 'com.sun.faces:jsf-api:2.2.+'
+compile 'javax.el:javax.el-api:3.0.0'
+}
+
+sourceSets {
+    main {
+    	resources {
+    	srcDirs = ["gradleResources/build/resources","src/main/meta"]
+    	}
+    }
+}
+
+jar {
+   manifest {
+      attributes(
+                 "Built-By": "BootsFaces OSP Gradle builder.",
+                 "Gradle-Version": project.gradle.gradleVersion,
+                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
+                 "Bundle-Name": "BootsFaces",
+                 "Bundle-Version": BootsFacesVersion,
+                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
+                 "Implementation-Title": "BootsFaces",
+                 "Implementation-Version": BootsFacesVersion,
+                 "Implementation-Vendor": "TheCoder4.eu",
+                 "Implementation-Vendor-Id": "eu.thecoder4",
+                 "Implementation-URL":"http://www.bootsfaces.net"
+                )
+   }
+}
+
+task copyToLib(type: Copy) {
+    into "$buildDir/proguard/libs"
+    from configurations.runtime
+}
+compileJava.dependsOn(copyToLib)
+
+defaultTasks 'gradleResources:buildResources', 'jar'
