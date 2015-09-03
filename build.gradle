@@ -13,17 +13,19 @@
  * If not, see http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-ant.importBuild 'build.xml'
+Properties props = new Properties()
+props.load(new FileInputStream("build.properties"))
+ext.BootsFacesVersion = props['VERSION']
+ext.BootstrapVersion = props['bootstrap.version']
+
+// Apply the java plugin to add support for Java
 apply plugin: 'java'
 
 //Configurations
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
-libsDirName =buildDir
-archivesBaseName = 'BootsFaces-OSP-'+ant.properties.VERSION
-ant.properties.'proguard.jar.path'='lib/proguard-anttask-5.1.jar'
-ant.properties.'bsf.jar'='build/BootsFaces-OSP-'+ant.properties.VERSION+'.jar'
+archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
 
 repositories {
 mavenCentral()
@@ -33,67 +35,38 @@ dependencies {
 compile 'javax.servlet:servlet-api:3.+'
 compile 'com.sun.faces:jsf-api:2.2.+'
 compile 'javax.el:javax.el-api:3.0.0'
-runtime 'com.yahoo.platform.yui:yuicompressor:2.4.8'
-runtime 'net.sf.proguard:proguard-anttask:5.1'
 }
 
-//Tasks and task dependencies
-task getDeps(type: Copy) {
-  from sourceSets.main.runtimeClasspath
-  into 'lib/'
+sourceSets {
+    main {
+    	resources {
+    	srcDirs = ["gradleResources/build/resources","src/main/meta"]
+    	}
+    }
 }
 
-task buildLib(dependsOn: ['jar', 'buildResources'])
-
-init.dependsOn getDeps
-
-cleanup.dependsOn init
-buildResources.dependsOn cleanup
-buildResources.mustRunAfter jar
-
-jar.doLast {
-copy {
-       from buildDir
-       into 'jartemp'
-       include '*.jar'
-     }
-}
-task combinedJar(type: Jar) {
-   from zipTree('jartemp/BootsFaces-OSP-'+ant.properties.VERSION+'.jar')
-   from ('./build/META-INF') {
-     include '**'
-     into 'META-INF'
-   }
+jar {
    manifest {
       attributes(
                  "Built-By": "BootsFaces OSP Gradle builder.",
                  "Gradle-Version": project.gradle.gradleVersion,
                  "Created-By": org.gradle.internal.jvm.Jvm.current(),
                  "Bundle-Name": "BootsFaces",
-                 "Bundle-Version": ant.properties.VERSION,
+                 "Bundle-Version": BootsFacesVersion,
                  "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
                  "Implementation-Title": "BootsFaces",
-                 "Implementation-Version": ant.properties.VERSION,
+                 "Implementation-Version": BootsFacesVersion,
                  "Implementation-Vendor": "TheCoder4.eu",
                  "Implementation-Vendor-Id": "eu.thecoder4",
                  "Implementation-URL":"http://www.bootsfaces.net"
                 )
    }
 }
-task deleteJarTemp(type: Delete) {
-    delete "jartemp"
-}
-buildResources.doLast {
-combinedJar.execute()
-deleteJarTemp.execute()
-}
 
-//Java Plugin config
-//sourceSets {
-//    main {
-//        java {
-//            srcDir 'src'
-//        }
-//    }
-//}
+task copyToLib(type: Copy) {
+    into "$buildDir/proguard/libs"
+    from configurations.runtime
+}
+compileJava.dependsOn(copyToLib)
 
+defaultTasks 'gradleResources:buildResources', 'jar'
