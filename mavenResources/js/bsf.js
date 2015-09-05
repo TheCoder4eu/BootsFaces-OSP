@@ -25,19 +25,20 @@ BsF.ajax.cb=function(o,e,r,f) { //commandButton ajax helper (object, event, [ren
 }
 
 BsF.ajax.callAjax=function(o,e,r,execute,f) { //commandButton ajax helper (object, event, [render], [oncomplete])	
+	console.log("render = " + r);
     var argn=arguments.length;
     var oid=o.id;
     var cid=oid.replace(/[^a-zA-Z0-9]+/g,'_');
     var opts={};
     opts.execute=execute;
     opts[oid]=oid;
-    if(argn==4) {
-    BsF.callback[cid]=f;
-    
-    opts.render=r;
-    opts.onevent=BsF.ajax.onevent;
+    if(argn==5) {
+	    BsF.callback[cid]=f;
+	    
+	    opts.render=r;
+	    opts.onevent=BsF.ajax.onevent;
     }
-    if(argn==3) {
+    if(argn==3 || argn==4) {
         if(BsF.isFunction(r)) {
             BsF.callback[cid]=r;
             opts.onevent=BsF.ajax.onevent;
