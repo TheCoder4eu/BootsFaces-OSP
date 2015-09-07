@@ -31,13 +31,13 @@ BsF.ajax.callAjax=function(o,e,r,execute,f) { //commandButton ajax helper (objec
     var opts={};
     opts.execute=execute;
     opts[oid]=oid;
-    if(argn==4) {
-    BsF.callback[cid]=f;
-    
-    opts.render=r;
-    opts.onevent=BsF.ajax.onevent;
+    if(argn==5) {
+	    BsF.callback[cid]=f;
+	    
+	    opts.render=r;
+	    opts.onevent=BsF.ajax.onevent;
     }
-    if(argn==3) {
+    if(argn==3 || argn==4) {
         if(BsF.isFunction(r)) {
             BsF.callback[cid]=r;
             opts.onevent=BsF.ajax.onevent;

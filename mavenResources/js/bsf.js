@@ -25,7 +25,6 @@ BsF.ajax.cb=function(o,e,r,f) { //commandButton ajax helper (object, event, [ren
 }
 
 BsF.ajax.callAjax=function(o,e,r,execute,f) { //commandButton ajax helper (object, event, [render], [oncomplete])	
-	console.log("render = " + r);
     var argn=arguments.length;
     var oid=o.id;
     var cid=oid.replace(/[^a-zA-Z0-9]+/g,'_');
