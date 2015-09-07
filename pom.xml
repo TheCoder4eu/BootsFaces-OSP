@@ -312,7 +312,7 @@
 				<targetPath>META-INF/resources/fonts</targetPath>
 			</resource>
 			<resource>
-				<directory>meta</directory>
+				<directory>src/main/meta/META-INF</directory>
 				<targetPath>META-INF</targetPath>
 			</resource>
 
