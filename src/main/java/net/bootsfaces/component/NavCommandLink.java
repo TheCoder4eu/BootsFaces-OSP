@@ -35,12 +35,15 @@ import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.H;
@@ -222,6 +225,7 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 
 		}
 
+
 		if ((getActionExpression() != null) || (getActionListeners().length > 0)) {
 			rw.writeAttribute("id", getClientId() + "_a", null);
 			generateOnClickHandler(context, rw, getClientId(context), A.toBool(attrs.get(A.AJAX), false), url);
@@ -271,9 +275,11 @@ public class NavCommandLink extends javax.faces.component.UICommand {
 			throw new FacesException(
 					"NavLink with action or actionListener : '" + CID + "' must be inside a form element");
 		}
+		
+		String update = ExpressionResolver.getComponentIDs(context, this, render);
 
 		cJS.append(encodeClick()).append("return BsF.ajax.cb(this, event")
-				.append(render == null ? "" : (",'" + render + "'"));
+				.append(update == null ? "" : (",'" + update + "'"));
 		if (complete != null) {
 			cJS.append(",function(){" + complete + "}");
 		}
