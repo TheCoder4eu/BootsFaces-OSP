@@ -105,6 +105,10 @@ public class NavBarRenderer extends CoreRenderer {
 		//<a class="navbar-brand" href="#">Brand</a>
 		if(brand!=null || brandImg!=null) {
 			rw.startElement("a", navBar);
+			String onClick = navBar.getOnclick();
+			if (null != onClick) {
+				rw.writeAttribute("onclick", onClick, "onclick");
+			}
 			rw.writeAttribute("class", "navbar-brand","class"); //navbar-brand
 			String href = navBar.getBrandHref();
 			if(href==null) { rw.writeAttribute("href", "#","href"); }

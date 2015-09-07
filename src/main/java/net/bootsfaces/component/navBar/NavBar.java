@@ -53,7 +53,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	}
 
 	protected enum PropertyKeys {
-		alt, binding, brand, brandAlign, brandHref, brandImg, fixed, fluid, inverse,
+		alt, binding, brand, brandAlign, brandHref, brandImg, fixed, fluid, inverse, onclick,
 		/* static, replaced by a String due to syntactical reasons */
 		tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
@@ -267,6 +267,27 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 */
 	public void setInverse(boolean _inverse) {
 		getStateHelper().put(PropertyKeys.inverse, _inverse);
+	}
+
+	/**
+	 * JavaScript function which is called when the widget is clicked.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnclick() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
+		return value;
+	}
+
+	/**
+	 * JavaScript function which is called when the widget is clicked.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
 	}
 
 	/**

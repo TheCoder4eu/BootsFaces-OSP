@@ -611,6 +611,7 @@ widget navBar
     fluid               Boolean  default "false"                           "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     inverse             Boolean                                            "Boolean value to specify if Navbar should use inverse color scheme."
+    onclick                                                                "JavaScript function which is called when the widget is clicked."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     static              Boolean default "false"                            "If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false."
     tooltip                                                                "The text of the tooltip."
