@@ -1,16 +1,17 @@
 package net.bootsfaces.component.image;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 
 /** This class holds the attributes of &lt;b:image /&gt;. */
@@ -34,7 +35,7 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
     }
 
     private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
-            "click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+            "click", "dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
     public Collection<String> getEventNames() {
         return EVENT_NAMES;
@@ -58,6 +59,9 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         onclick,
         oncomplete,
         ondblclick,
+        ondragstart,
+        ondragover,
+        ondrop,
         onmousedown,
         onmousemove,
         onmouseout,
@@ -251,7 +255,60 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
     }
 
 
-    /**
+	/**
+	 * Client side callback when a drag-and-drop action starts. May also call an AJAX function. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndragstart() {
+		String value = (String)getStateHelper().eval(PropertyKeys.ondragstart);
+		return  value;
+	}
+	
+	/**
+	 * Client side callback when a drag-and-drop action starts. May also call an AJAX function. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndragstart(String _ondragstart) {
+	    getStateHelper().put(PropertyKeys.ondragstart, _ondragstart);
+    }
+	
+
+	/**
+	 * Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndragover() {
+		String value = (String)getStateHelper().eval(PropertyKeys.ondragover);
+		return  value;
+	}
+	
+	/**
+	 * Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndragover(String _ondragover) {
+	    getStateHelper().put(PropertyKeys.ondragover, _ondragover);
+    }
+	
+
+	/**
+	 * Client side callback when a drag-and-drop action ends. May also call an AJAX function. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndrop() {
+		String value = (String)getStateHelper().eval(PropertyKeys.ondrop);
+		return  value;
+	}
+	
+	/**
+	 * Client side callback when a drag-and-drop action ends. May also call an AJAX function. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndrop(String _ondrop) {
+	    getStateHelper().put(PropertyKeys.ondrop, _ondrop);
+    }
+
+	/**
      * Client side callback to execute when a pointer input element is pressed down over input element. <P>
      * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
      */

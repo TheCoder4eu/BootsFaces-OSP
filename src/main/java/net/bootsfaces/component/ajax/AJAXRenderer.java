@@ -221,6 +221,9 @@ public class AJAXRenderer extends CoreRenderer {
 										jsCallback = jsCallback + ";javascript:" + specialEventHandler;
 								}
 								jsCallback = convertAJAXToJavascript(context, jsCallback, component);
+								if ("dragstart".equals(keyClientBehavior)) {
+									rw.writeAttribute("draggable", "true", "draggable");
+								}
 								break;
 							}
 						}
