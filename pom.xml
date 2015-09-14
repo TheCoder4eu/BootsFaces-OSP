@@ -285,31 +285,8 @@
 		<!-- resources -->
 		<resources>
 			<resource>
-				<directory>mavenResources/css</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			<resource>
-				<directory>mavenResources/js</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-			<resource>
-				<directory>mavenResources/themes</directory>
-				<targetPath>META-INF/resources/bsf/css</targetPath>
-			</resource>
-			 
-			<resource>
-				<directory>mavenResources/jq</directory>
-				<targetPath>META-INF/resources/bsf/jq</targetPath>
-			</resource>
-
-			<resource>
-				<directory>mavenResources/ie8support</directory>
-				<targetPath>META-INF/resources/bsf/js</targetPath>
-			</resource>
-
-			<resource>
-				<directory>mavenResources/fonts</directory>
-				<targetPath>META-INF/resources/fonts</targetPath>
+				<directory>mavenResources/META-INF</directory>
+				<targetPath>META-INF</targetPath>
 			</resource>
 			<resource>
 				<directory>src/main/meta/META-INF</directory>
