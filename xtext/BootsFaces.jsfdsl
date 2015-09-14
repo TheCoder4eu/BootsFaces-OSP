@@ -116,6 +116,140 @@ widget buttonToolbar
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
+widget carousel
+       implemented_by net.bootsfaces.component.Carousel
+       processes_input
+       extends UICommand
+       has_children
+       has_tooltip
+ {
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    activeIndex         Integer                                            "Optional attribute to define which slide is active initially."
+    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
+    interval                    default "5000"                             "Specifies the delay (in milliseconds) between each slide."
+    pause                       default "hover"                            "Pauses the carousel from going through the next slide when the mouse pointer enters the carousel, and resumes the sliding when the mouse pointer leaves the carousel. Set pause to false to stop the ability to pause on hover."
+    wrap                Boolean default "true"                             "Specifies whether the carousel should go through all slides continuously, or stop at the last slide."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onslidestart                                                           "Client side callback to execute when the carousel start to slide to another item."
+    onslid                                                                 "Client side callback to execute when the carousel just finished sliding to another item."  
+    startAnimation      Boolean default "true"                             "tells Bootstrap to begin animating the carousel immediately when the page loads."
+    showControls        Boolean default "true"                             "adds 'left' and 'right' buttons that allows the user to go back and forth between the slides manually"
+    showIndicators      Boolean default "true"                             "The indicators are the little dots at the bottom of each slide (which indicates how many slides there are in the carousel, and which slide the user are currently viewing)."
+    slide               Boolean default "true"                             "Tells Bootstrap to show new items by sliding them into view"
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    tooltip                                                                "The text of the tooltip."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
+}
+
+widget carouselItem implemented_by net.bootsfaces.component.Carousel
+       processes_input
+       extends UICommand
+       has_children
+       has_tooltip 
+{
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean    default "false"                         "Optional attribute to define which slide is active initially."
+    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
+    caption                                                                "Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    tooltip                                                                "The text of the tooltip."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    update                                                                 "Component(s) to be updated with ajax."
+}
+
+widget carouselCaption implemented_by net.bootsfaces.component.Carousel
+       processes_input
+       extends UICommand
+       has_children
+       has_tooltip 
+{
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    tooltip                                                                "The text of the tooltip."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    update                                                                 "Component(s) to be updated with ajax."
+}
+	
+
+widget carouselControl implemented_by net.bootsfaces.component.Carousel
+       processes_input
+       extends UICommand
+       has_children
+       has_tooltip 
+{
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
+	direction															   "can take one of the values 'left' and 'right'"
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    style                                                                  "Inline style of the input element."
+    styleClass                                                             "Style class of this element."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    tooltip                                                                "The text of the tooltip."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    update                                                                 "Component(s) to be updated with ajax."
+}
 
 widget column
        implemented_by net.bootsfaces.layout.Column

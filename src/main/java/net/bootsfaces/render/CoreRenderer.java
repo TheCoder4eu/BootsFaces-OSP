@@ -150,6 +150,33 @@ public class CoreRenderer extends Renderer {
 		}
 		rw.writeAttribute(name, value, property);
 	}
+	
+	/**
+	 * @param rw
+	 *            ResponseWriter to be used
+	 * @param name
+	 *            Attribute name to be added
+	 * @param value
+	 *            Attribute value to be added
+	 * @param property
+	 *            Name of the property or attribute (if any) of the
+	 *            {@link UIComponent} associated with the containing element, to
+	 *            which this generated attribute corresponds
+	 * @throws IllegalStateException
+	 *             if this method is called when there is no currently open
+	 *             element
+	 * @throws IOException
+	 *             if an input/output error occurs
+	 * @throws NullPointerException
+	 *             if <code>name</code> is <code>null</code>
+	 */
+	protected void writeAttribute(ResponseWriter rw, String name, Object value) throws IOException {
+		if (value == null) {
+			return;
+		}
+		rw.writeAttribute(name, value, name);
+	}
+
 
 	/**
 	 * @param rw
