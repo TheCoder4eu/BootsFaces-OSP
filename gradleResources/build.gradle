@@ -2,11 +2,11 @@
  * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
- * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of
  * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
- * 
- * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; 
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+ *
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License along with BootsFaces.
@@ -33,7 +33,7 @@ task copyBootstrapFonts(type: Copy) {
 task copyBootstrapJs(type: Copy) {
   from 'Bootstrap/bootstrap-'+BootstrapVersion+'/js'
   include '*.js'
-  exclude 'affix.js', 'carousel.js', 'popover.js', 'scrollspy.js'
+  exclude 'affix.js', 'popover.js', 'scrollspy.js'
   filter{String line -> line.startsWith('/* ') ? line.replace('/* ', '/** @license ') : line }
   into "${buildDir}/process/js"
 }
