@@ -167,7 +167,7 @@ public class CarouselRenderer extends CoreRenderer {
 				if (c instanceof CarouselControl) {
 					foundCustomControl=true;
 					ccr.myEncodeBegin(context, c);
-					ccr.encodeChildren(context, c);
+					//ccr.encodeChildren(context, c);
 					ccr.myEncodeEnd(context, c);
 				}
 			}
