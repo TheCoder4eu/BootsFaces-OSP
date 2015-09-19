@@ -327,7 +327,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
 		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
 				+ "';";
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false);
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), TAB_ATTRS);
 
 		UIComponent iconFacet = tab.getFacet("anchor");

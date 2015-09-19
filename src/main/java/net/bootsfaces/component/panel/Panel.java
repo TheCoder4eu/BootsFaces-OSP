@@ -19,6 +19,12 @@
 
 package net.bootsfaces.component.panel;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -51,6 +57,33 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+	
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+	
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
+     * @return
+     */
+    public Map<String, String> getJQueryEvents() {
+    	Map<String, String> result= new HashMap<String, String>();
+    	result.put("expande", "show.bs.collapse");
+    	result.put("expaneded", "shown.bs.collapse");
+    	result.put("collapse", "hide.bs.collapse");
+    	result.put("collapsed", "hidden.bs.collapse");
+    	return result;
+    }
+	
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "click";
+	}
+
 
 	protected enum PropertyKeys {
 		binding, collapsed, collapsible, contentClass, contentStyle, id, look, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;

@@ -22,6 +22,8 @@ package net.bootsfaces.component.tabView;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -64,6 +66,18 @@ public class TabView extends UIOutput
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+	
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
+     * @return
+     */
+    public Map<String, String> getJQueryEvents() {
+    	Map<String, String> result= new HashMap<String, String>();
+    	result.put("click", "click");
+    	return result;
+    }
+
 
 	@Override
 	public boolean getRendersChildren() {

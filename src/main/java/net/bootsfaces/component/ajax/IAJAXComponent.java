@@ -87,6 +87,14 @@ public interface IAJAXComponent {
      * @since 2.0
      */
     public Collection<String> getEventNames();
+    
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
+     * @return
+     */
+    public Map<String, String> getJQueryEvents();
+    
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>

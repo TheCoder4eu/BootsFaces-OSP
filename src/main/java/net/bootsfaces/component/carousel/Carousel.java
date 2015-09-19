@@ -22,6 +22,8 @@ package net.bootsfaces.component.carousel;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -59,6 +61,19 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 			"dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "slidestart", "slid"));
+	
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
+     * @return
+     */
+    public Map<String, String> getJQueryEvents() {
+    	Map<String, String> result= new HashMap<String, String>();
+    	result.put("slidestart", "slide.bs.carousel");
+    	result.put("slid", "slid.bs.carousel");
+    	return result;
+    }
+
 
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;

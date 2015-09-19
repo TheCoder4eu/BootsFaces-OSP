@@ -22,6 +22,7 @@ package net.bootsfaces.component.selectOneMenu;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -59,7 +60,16 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
-	public Collection<String> getEventNames() {
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).
+     * @return
+     */
+    public Map<String, String> getJQueryEvents() {
+    	return null;
+    }
+
+    public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 

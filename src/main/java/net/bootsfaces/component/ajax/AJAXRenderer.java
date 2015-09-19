@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -48,9 +49,6 @@ public class AJAXRenderer extends CoreRenderer {
 		if (component instanceof InputText) {
 			id = "input_" + id; // Todo remove this hack
 		}
-		// else if (component instanceof Icon) {
-		// id += "_icon";
-		// }
 
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
@@ -99,6 +97,7 @@ public class AJAXRenderer extends CoreRenderer {
 				System.err.println("Couldn't invoke method " + nameOfGetter);
 			}
 
+			if (null != event) {
 			UIComponentBase bb = (UIComponentBase) component;
 			Map<String, List<ClientBehavior>> clientBehaviors = bb.getClientBehaviors();
 			for (Entry<String, List<ClientBehavior>> entry : clientBehaviors.entrySet()) {
@@ -107,18 +106,17 @@ public class AJAXRenderer extends CoreRenderer {
 					for (ClientBehavior bh : value) {
 						ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(
 								context, (UIComponent) component, entry.getKey(), null, null);
-						String script = bh.getScript(behaviorContext);
 						if (bh instanceof AjaxBehavior) {
 							String delay = ((AjaxBehavior) bh).getDelay();
 							bh.decode(context, component);
-//							FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
-//									new AJAXBroadcastComponent(component), event, jsCallback);
-//							ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
-//							component.queueEvent(ajaxEvent);
 						}
 					}
 				}
 
+			}
+			}
+			else {
+				System.out.println("Event is null - probably that's a bug in AJAXRenderer, roughly line 100");
 			}
 
 			if (component instanceof ActionSource) {
@@ -127,32 +125,13 @@ public class AJAXRenderer extends CoreRenderer {
 				if (null != actionListeners && actionListeners.length > 0) {
 					component.queueEvent(new ActionEvent(component));
 				}
-				// for (ActionListener l: actionListeners) {
-				//// l.processAction(new ActionEvent(component));
-				// FacesEvent ajaxEvent = new BootsFacesAJAXActionListenerEvent(
-				// component, event, l);
-				// ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
-				// component.queueEvent(ajaxEvent);
-				// }
-
 			}
 			if (component instanceof ActionSource2) {
 				MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
 				if (null != actionExpression) {
-					String expressionString = actionExpression.getExpressionString();
 					component.queueEvent(new ActionEvent(component));
-					// actionExpression.invoke(context, params)
 				}
 			}
-
-			// if (component instanceof CommandButton && (event == null ||
-			// event.equals("click"))) {
-			//// component.queueEvent(new ActionEvent(component));
-			// FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
-			// new AJAXBroadcastComponent(component), event, null);
-			// ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
-			// component.queueEvent(ajaxEvent);
-			// }
 		}
 	}
 
@@ -169,19 +148,6 @@ public class AJAXRenderer extends CoreRenderer {
 		// Render Ajax Capabilities and on<Event>-Handlers
 
 		generateBootsFacesAJAXAndJavaScript(context, component, rw);
-
-		// StringBuilder cJS = null;
-		//
-		// if (component.isAjax()) {
-		// cJS = generateAJAXCall(context, component);
-		// } else {
-		// cJS = new StringBuilder(encodeClick(component));// Fix
-		// // Chrome//+"document.forms['"+formId+"'].submit();");
-		// }
-		//
-		// if (null != cJS && cJS.toString().length() > 1) {// Fix Chrome
-		// rw.writeAttribute("onclick", cJS.toString(), null);
-		// }
 	}
 
 	/**
@@ -195,70 +161,21 @@ public class AJAXRenderer extends CoreRenderer {
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw) throws IOException {
-		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null);
+		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null, false);
 
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String specialEvent, String specialEventHandler) throws IOException {
+			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback)
+					throws IOException {
 		boolean generatedAJAXCall = false;
-		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
-			String jsCallback = "";
-			String nameOfGetter = "getOn" + keyClientBehavior;
-			try {
-				Method[] methods = component.getClass().getMethods();
-				for (Method m : methods) {
-					if (m.getParameterTypes().length == 0) {
-						if (m.getReturnType() == String.class) {
-							if (m.getName().equalsIgnoreCase(nameOfGetter)) {
-								jsCallback = (String) m.invoke(component);
-								if (keyClientBehavior.equals(specialEvent)) {
-									if (null == jsCallback || jsCallback.length() == 0)
-										jsCallback = specialEventHandler;
-									else
-										jsCallback = jsCallback + ";javascript:" + specialEventHandler;
-								}
-								jsCallback = convertAJAXToJavascript(context, jsCallback, component);
-								if ("dragstart".equals(keyClientBehavior)) {
-									rw.writeAttribute("draggable", "true", "draggable");
-								}
-								break;
-							}
-						}
-					}
-				}
-			} catch (ReflectiveOperationException ex) {
-				System.err.println("Couldn't invoke method " + nameOfGetter);
-			}
-
-			// TODO behaviors don't render correctly?
-			String script = "";
-			List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
-			if (null != behaviors) {
-				for (ClientBehavior cb : behaviors) {
-					if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
-						// ClientBehaviorContext behaviorContext =
-						// ClientBehaviorContext.createClientBehaviorContext(context,
-						// (UIComponent) component, keyClientBehavior, null,
-						// null);
-						StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, (AjaxBehavior) cb);
-						script += s.toString() + ";";
-					}
-				}
-			}
-			if (jsCallback.contains("BsF.ajax.cb(") || script.contains("BsF.ajax.cb(")) {
-				generatedAJAXCall = true;
-
-			}
-			// TODO end
-			if (jsCallback.length() > 0 || script.length() > 0) {
-				if (component instanceof CommandButton)
-					if (jsCallback.length() > 0 && "click".equals(keyClientBehavior))
-						script += ";return false;";
-				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
-			}
+			if (null != ((IAJAXComponent) component).getJQueryEvents())
+				if (((IAJAXComponent) component).getJQueryEvents().containsKey(keyClientBehavior))
+					continue;
+			generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
+					specialEventHandler, isJQueryCallback, keyClientBehavior, null);
 
 		}
 		if (!generatedAJAXCall) {
@@ -276,6 +193,74 @@ public class AJAXRenderer extends CoreRenderer {
 				rw.writeAttribute("on" + defaultEvent, script, null);
 			}
 		}
+	}
+
+	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
+			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
+			String keyClientBehavior, StringBuilder generatedJSCode) throws IOException {
+		boolean generatedAJAXCall = false;
+		String jsCallback = "";
+		String nameOfGetter = "getOn" + keyClientBehavior;
+		try {
+			Method[] methods = component.getClass().getMethods();
+			for (Method m : methods) {
+				if (m.getParameterTypes().length == 0) {
+					if (m.getReturnType() == String.class) {
+						if (m.getName().equalsIgnoreCase(nameOfGetter)) {
+							jsCallback = (String) m.invoke(component);
+							if (keyClientBehavior.equals(specialEvent)) {
+								if (null == jsCallback || jsCallback.length() == 0)
+									jsCallback = specialEventHandler;
+								else
+									jsCallback = jsCallback + ";javascript:" + specialEventHandler;
+							}
+							jsCallback = convertAJAXToJavascript(context, jsCallback, component);
+							if ("dragstart".equals(keyClientBehavior)) {
+								rw.writeAttribute("draggable", "true", "draggable");
+							}
+							break;
+						}
+					}
+				}
+			}
+		} catch (ReflectiveOperationException ex) {
+			System.err.println("Couldn't invoke method " + nameOfGetter);
+		}
+
+		// TODO behaviors don't render correctly?
+		String script = "";
+		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
+		List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
+		if (null != behaviors) {
+			for (ClientBehavior cb : behaviors) {
+				if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
+					StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, (AjaxBehavior) cb);
+					script += s.toString() + ";";
+				}
+			}
+		}
+		if (jsCallback.contains("BsF.ajax.cb(") || script.contains("BsF.ajax.cb(")) {
+			generatedAJAXCall = true;
+
+		}
+		if (!isJQueryCallback) {
+			// TODO end
+			if (jsCallback.length() > 0 || script.length() > 0) {
+				if (component instanceof CommandButton)
+					if (jsCallback.length() > 0 && "click".equals(keyClientBehavior))
+						script += ";return false;";
+				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
+			}
+		}
+		if (null != generatedJSCode) {
+			generatedJSCode.setLength(0);
+			if (jsCallback.length() > 0)
+				generatedJSCode.append(jsCallback);
+			if (script.length() > 0)
+				generatedJSCode.append(script);
+		}
+
+		return generatedAJAXCall;
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
@@ -398,178 +383,6 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
-	private static String buildAjaxCommand(ClientBehaviorContext behaviorContext, AjaxBehavior ajaxBehavior,
-			boolean namespaceParameters) {
-
-		// First things first - if AjaxBehavior is disabled, we are done.
-		if (ajaxBehavior.isDisabled()) {
-			return null;
-		}
-
-		UIComponent component = behaviorContext.getComponent();
-		String eventName = behaviorContext.getEventName();
-
-		StringBuilder ajaxCommand = new StringBuilder(256);
-		Collection<String> execute = ajaxBehavior.getExecute();
-		Collection<String> render = ajaxBehavior.getRender();
-		String onevent = ajaxBehavior.getOnevent();
-		String onerror = ajaxBehavior.getOnerror();
-		String sourceId = behaviorContext.getSourceId();
-		String delay = ajaxBehavior.getDelay();
-		Boolean resetValues = null;
-		if (ajaxBehavior.isResetValuesSet()) {
-			resetValues = ajaxBehavior.isResetValues();
-		}
-		Collection<ClientBehaviorContext.Parameter> params = behaviorContext.getParameters();
-
-		// Needed workaround for SelectManyCheckbox - if execute doesn't have
-		// sourceId,
-		// we need to add it - otherwise, we use the default, which is
-		// sourceId:child, which
-		// won't work.
-		ClientBehaviorContext.Parameter foundparam = null;
-		for (ClientBehaviorContext.Parameter param : params) {
-			if (param.getName().equals("incExec") && (Boolean) param.getValue()) {
-				foundparam = param;
-			}
-		}
-		if (foundparam != null && !execute.contains(sourceId)) {
-			execute = new LinkedList<String>(execute);
-			execute.add(component.getClientId());
-		}
-		if (foundparam != null) {
-			try {
-				// And since this is a hack, we now try to remove the param
-				params.remove(foundparam);
-			} catch (UnsupportedOperationException uoe) {
-				System.err.println("Unsupported operation" + uoe);
-			}
-		}
-
-		return generateAJAXCall(behaviorContext.getFacesContext(), namespaceParameters, component, eventName,
-				ajaxCommand, execute, render, onevent, onerror, sourceId, delay, resetValues, params);
-	}
-
-	private static String generateAJAXCall(FacesContext context, boolean namespaceParameters, UIComponent component,
-			String eventName, StringBuilder ajaxCommand, Collection<String> execute, Collection<String> render,
-			String onevent, String onerror, String sourceId, String delay, Boolean resetValues,
-			Collection<ClientBehaviorContext.Parameter> params) {
-		ajaxCommand.append("mojarra.ab(");
-
-		if (sourceId == null) {
-			ajaxCommand.append("this");
-		} else {
-			ajaxCommand.append("'");
-			ajaxCommand.append(sourceId);
-			ajaxCommand.append("'");
-		}
-
-		ajaxCommand.append(",event,'");
-		ajaxCommand.append(eventName);
-		ajaxCommand.append("',");
-
-		appendIds(component, ajaxCommand, execute);
-		ajaxCommand.append(",");
-		appendIds(component, ajaxCommand, render);
-
-		String namingContainerId = null;
-		if (namespaceParameters) {
-			UIViewRoot viewRoot = context.getViewRoot();
-			if (viewRoot instanceof NamingContainer) {
-				namingContainerId = viewRoot.getContainerClientId(context);
-			}
-		}
-
-		if ((namingContainerId != null) || (onevent != null) || (onerror != null) || (delay != null)
-				|| (resetValues != null) || !params.isEmpty()) {
-
-			ajaxCommand.append(",{");
-
-			if (namingContainerId != null) {
-				// the literal string must exactly match the corresponding value
-				// in jsf.js.
-				appendProperty(ajaxCommand, "com.sun.faces.namingContainerId", namingContainerId, true);
-			}
-
-			if (onevent != null) {
-				appendProperty(ajaxCommand, "onevent", onevent, false);
-			}
-
-			if (onerror != null) {
-				appendProperty(ajaxCommand, "onerror", onerror, false);
-			}
-
-			if (delay != null) {
-				appendProperty(ajaxCommand, "delay", delay, true);
-			}
-
-			if (resetValues != null) {
-				appendProperty(ajaxCommand, "resetValues", resetValues, false);
-			}
-
-			if (!params.isEmpty()) {
-				for (ClientBehaviorContext.Parameter param : params) {
-					appendProperty(ajaxCommand, param.getName(), param.getValue(), true);
-				}
-			}
-
-			ajaxCommand.append("}");
-		}
-
-		ajaxCommand.append(")");
-
-		return ajaxCommand.toString();
-	}
-
-	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
-	// Appends an ids argument to the ajax command
-	private static void appendIds(UIComponent component, StringBuilder builder, Collection<String> ids) {
-
-		if ((null == ids) || ids.isEmpty()) {
-			builder.append('0');
-			return;
-		}
-
-		builder.append("'");
-
-		boolean first = true;
-
-		for (String id : ids) {
-			if (id.trim().length() == 0) {
-				continue;
-			}
-			if (!first) {
-				builder.append(' ');
-			} else {
-				first = false;
-			}
-
-			if (id.equals("@all") || id.equals("@none") || id.equals("@form") || id.equals("@this")) {
-				builder.append(id);
-			} else {
-				builder.append(getResolvedId(component, id));
-			}
-		}
-
-		builder.append("'");
-	}
-
-	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
-	// Returns the resolved (client id) for a particular id.
-	private static String getResolvedId(UIComponent component, String id) {
-
-		UIComponent resolvedComponent = component.findComponent(id);
-		if (resolvedComponent == null) {
-			if (id.charAt(0) == UINamingContainer.getSeparatorChar(FacesContext.getCurrentInstance())) {
-				return id.substring(1);
-			}
-			return id;
-		}
-
-		return resolvedComponent.getClientId();
-	}
-
-	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
 	// Appends an name/value property pair to a JSON object. Assumes
 	// object has already been opened by the caller.
 	public static void appendProperty(StringBuilder builder, String name, Object value, boolean quoteValue) {
@@ -613,6 +426,30 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		builder.append("'");
+	}
+
+	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
+			ResponseWriter rw, String clientId) throws IOException {
+		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
+		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
+		for (String event : events) {
+			StringBuilder code = new StringBuilder();
+			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, null, null, true, event,
+					code);
+			if (code.length() > 0) {
+				rw.write("<script>");
+				String js = "$('" + clientId + "').on('" + ajaxComponent.getJQueryEvents().get(event) + "', function(){"
+						+ code.toString() + "});";
+				rw.write(js);
+				rw.write("</script>");
+			}
+			//
+			//
+			// $('#myCarousel').on('slide.bs.carousel', function () {
+			// // do something…
+			// })
+		}
+
 	}
 
 }

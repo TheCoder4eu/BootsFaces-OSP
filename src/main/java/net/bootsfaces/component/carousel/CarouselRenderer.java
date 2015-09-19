@@ -55,12 +55,6 @@ public class CarouselRenderer extends CoreRenderer {
 		}
 	
 		new AJAXRenderer().decode(context, component);	
-//	    String clientId = carousel.getClientId(context);
-//	    String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-	
-//	    if (submittedValue != null) {
-//	    	carousel.setSubmittedValue(submittedValue);
-//	    }
 	}
 	
 	/**
@@ -177,6 +171,7 @@ public class CarouselRenderer extends CoreRenderer {
 		}
 		
 		rw.endElement("div");
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, clientId);
 		Tooltip.activateTooltips(context, carousel);
 	}	
 }

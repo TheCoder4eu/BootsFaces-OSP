@@ -22,6 +22,8 @@ package net.bootsfaces.component.carouselCaption;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
@@ -57,6 +59,16 @@ IAJAXComponent, ClientBehaviorHolder{
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
+	
+    /**
+     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
+     * (such as the onclick event of b:tabView, which has to be implemented manually).
+     * @return
+     */
+    public Map<String, String> getJQueryEvents() {
+    	return null;
+    }
+
 
 	public String getDefaultEventName() {
 		return "click";
