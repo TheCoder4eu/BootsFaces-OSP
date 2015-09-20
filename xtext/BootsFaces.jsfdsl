@@ -142,6 +142,7 @@ widget carousel
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onslidestart                                                           "Client side callback to execute when the carousel start to slide to another item."
     onslid                                                                 "Client side callback to execute when the carousel just finished sliding to another item."  
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     startAnimation      Boolean default "true"                             "tells Bootstrap to begin animating the carousel immediately when the page loads."
     showControls        Boolean default "true"                             "adds 'left' and 'right' buttons that allows the user to go back and forth between the slides manually"
     showIndicators      Boolean default "true"                             "The indicators are the little dots at the bottom of each slide (which indicates how many slides there are in the carousel, and which slide the user are currently viewing)."
@@ -178,6 +179,7 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     style                                                                  "Inline style of the input element."
     styleClass                                                             "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -208,6 +210,7 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     style                                                                  "Inline style of the input element."
     styleClass                                                             "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -240,6 +243,7 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     style                                                                  "Inline style of the input element."
     styleClass                                                             "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -312,6 +316,7 @@ widget commandButton
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
     style                                                                  "Inline style of the input element."
@@ -442,6 +447,7 @@ widget icon
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
@@ -530,6 +536,7 @@ widget inputSecret
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -593,6 +600,7 @@ widget inputText
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -840,18 +848,28 @@ widget navbarLinks
 
 
 widget panel
-       implemented_by net.bootsfaces.component.panel.Panel
-       processes_input
+       implemented_by net.bootsfaces.component.panel.Panel       
+       processes_input 
        has_children
        has_tooltip
  {
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     collapsed           Boolean                                            "Is the panel collapsed?"
     collapsible         Boolean default "true"                             "By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature."
     contentClass                                                           "contentClass is optional: if specified, the content will be displayed with this specific class"
     contentStyle                                                           "Inline style of the content area."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     look                                                                   "Look of the Panel, can be primary, success, info, warning, danger. Default is warning."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+	oncollapse                                                             "JavaScript code or AJAX method to be executed when the panel starts to be collapsed."
+	oncollapsed                                                            "JavaScript code or AJAX method to be executed when the panel has finished collapsing."
+	onexpand                                                               "JavaScript code or AJAX method to be executed when the panel starts to be expanded."
+	onexpanded                                                             "JavaScript code or AJAX method to be executed when the panel has finished expandeding."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     style                                                                  "Inline style of the entire panel area."
     styleClass                                                             "Style class of the input element."
@@ -863,6 +881,7 @@ widget panel
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Which region of the screen is to be updated? Default value: @form"
 }
 
 
@@ -952,6 +971,7 @@ widget selectBooleanCheckbox
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     renderLabel         Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -1107,6 +1127,7 @@ widget selectOneMenu
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     renderLabel         Boolean  default "true"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -1169,6 +1190,7 @@ widget tab
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "Optional Javascript function that's called when the tab is clicked."
     oncomplete                                                             "Javascript to be executed when ajax completes with success."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     style                                                                  "Inline CSS of the tab."
     styleClass                                                             "Style class of the div surrounding the tab pane."
     title                                                                  "Caption of the tab."
@@ -1195,6 +1217,7 @@ widget tabView
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "OnClick DHTML event ."
     oncomplete                                                             "Javascript to be executed when ajax completes with success."
+	process                     default "@form"                            "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     role                                                                   "The role can be used to provide information to screenreaders."
     styleClass                                                             "Style class of the div surrounding this element."
     tooltip                                                                "The text of the tooltip."

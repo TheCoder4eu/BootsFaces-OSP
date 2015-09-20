@@ -72,7 +72,7 @@ public class CarouselControl extends UICommand
 	}
 
 	protected enum PropertyKeys {
-		ajax, direction, disabled, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		ajax, direction, disabled, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -88,6 +88,22 @@ public class CarouselControl extends UICommand
 		}
 	}
 
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		return  value;
+	}
+	
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+	    getStateHelper().put(PropertyKeys.process, _process);
+    }
 	/**
 	 * Whether the Button submits the form with AJAX.
 	 * <P>

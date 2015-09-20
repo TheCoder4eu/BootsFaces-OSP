@@ -79,7 +79,7 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 
 
 	protected enum PropertyKeys {
-		accesskey, ajax, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		accesskey, ajax, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, process, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -94,6 +94,23 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		return  value;
+	}
+	
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+	    getStateHelper().put(PropertyKeys.process, _process);
+    }
 
 	/**
 	 * Access key to transfer focus to the input element.

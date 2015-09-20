@@ -3,7 +3,6 @@ package net.bootsfaces.component.ajax;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,11 +14,8 @@ import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
 import javax.faces.component.ActionSource;
 import javax.faces.component.ActionSource2;
-import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.UINamingContainer;
-import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorContext;
@@ -32,7 +28,6 @@ import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
-import net.bootsfaces.component.inputText.InputText;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
@@ -40,35 +35,44 @@ import net.bootsfaces.render.CoreRenderer;
 public class AJAXRenderer extends CoreRenderer {
 
 	public void decode(FacesContext context, UIComponent component) {
+		String id = component.getClientId(context);
+		decode(context, component, id);
+	}
+
+	public void decode(FacesContext context, UIComponent component, String componentId) {
 		if (componentIsDisabledOrReadonly(component)) {
 			return;
 		}
 		String source = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
-
-		String id = component.getClientId(context);
-		if (component instanceof InputText) {
-			id = "input_" + id; // Todo remove this hack
-		}
 
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
 				String tabId = tab.getClientId().replace(":", "_") + "_tab";
 				if (source.equals(tabId)) {
 					component = tab;
-					id = tabId;
+					componentId = tabId;
 					break;
 				}
 			}
 		}
 		if (source == null) {
 			// check for non-ajax call
-			if (context.getExternalContext().getRequestParameterMap().containsKey(id)) {
-				source = id;
+			if (context.getExternalContext().getRequestParameterMap().containsKey(componentId)) {
+				source = componentId;
 			}
 		}
 
-		if (source != null && source.equals(id)) {
+		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
+			if (realEvent.startsWith("BsFEvent=")) {
+				realEvent = realEvent.substring("BfFEvent=".length());
+				if (!realEvent.equals(event)) {
+					System.out.println("Difference between event and realEvent:" + event + " vs. " + realEvent
+							+ " Component: " + component.getClass().getSimpleName());
+					event = realEvent;
+				}
+			}
 			String nameOfGetter = "getOn" + event;
 			try {
 				Method[] methods = component.getClass().getMethods();
@@ -98,24 +102,23 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 
 			if (null != event) {
-			UIComponentBase bb = (UIComponentBase) component;
-			Map<String, List<ClientBehavior>> clientBehaviors = bb.getClientBehaviors();
-			for (Entry<String, List<ClientBehavior>> entry : clientBehaviors.entrySet()) {
-				if (event.equals(entry.getKey())) {
-					List<ClientBehavior> value = entry.getValue();
-					for (ClientBehavior bh : value) {
-						ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(
-								context, (UIComponent) component, entry.getKey(), null, null);
-						if (bh instanceof AjaxBehavior) {
-							String delay = ((AjaxBehavior) bh).getDelay();
-							bh.decode(context, component);
+				UIComponentBase bb = (UIComponentBase) component;
+				Map<String, List<ClientBehavior>> clientBehaviors = bb.getClientBehaviors();
+				for (Entry<String, List<ClientBehavior>> entry : clientBehaviors.entrySet()) {
+					if (event.equals(entry.getKey())) {
+						List<ClientBehavior> value = entry.getValue();
+						for (ClientBehavior bh : value) {
+							ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(
+									context, (UIComponent) component, entry.getKey(), null, null);
+							if (bh instanceof AjaxBehavior) {
+								String delay = ((AjaxBehavior) bh).getDelay();
+								bh.decode(context, component);
+							}
 						}
 					}
-				}
 
-			}
-			}
-			else {
+				}
+			} else {
 				System.out.println("Event is null - probably that's a bug in AJAXRenderer, roughly line 100");
 			}
 
@@ -184,7 +187,8 @@ public class AJAXRenderer extends CoreRenderer {
 			ajax |= null != ((IAJAXComponent) component).getUpdate();
 
 			if (ajax) {
-				StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, null);
+				StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
+						(ClientBehavior) null);
 				String script = s.toString() + ";";
 				String defaultEvent = ((IAJAXComponent) component).getDefaultEventName();
 				if (component instanceof CommandButton)
@@ -208,13 +212,13 @@ public class AJAXRenderer extends CoreRenderer {
 					if (m.getReturnType() == String.class) {
 						if (m.getName().equalsIgnoreCase(nameOfGetter)) {
 							jsCallback = (String) m.invoke(component);
-							if (keyClientBehavior.equals(specialEvent)) {
+							if (specialEventHandler != null && keyClientBehavior.equals(specialEvent)) {
 								if (null == jsCallback || jsCallback.length() == 0)
 									jsCallback = specialEventHandler;
 								else
 									jsCallback = jsCallback + ";javascript:" + specialEventHandler;
 							}
-							jsCallback = convertAJAXToJavascript(context, jsCallback, component);
+							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior);
 							if ("dragstart".equals(keyClientBehavior)) {
 								rw.writeAttribute("draggable", "true", "draggable");
 							}
@@ -228,23 +232,27 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		// TODO behaviors don't render correctly?
+		// SR 19.09.2015: looks a bit odd, indeed. The method generateAJAXCall()
+		// generates an onclick handler -
+		// regardless of which event we currently deal with
 		String script = "";
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
 		if (null != behaviors) {
 			for (ClientBehavior cb : behaviors) {
 				if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
-					StringBuilder s = generateAJAXCall(context, (IAJAXComponent) component, (AjaxBehavior) cb);
+					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
+							(AjaxBehavior) cb);
 					script += s.toString() + ";";
 				}
 			}
 		}
-		if (jsCallback.contains("BsF.ajax.cb(") || script.contains("BsF.ajax.cb(")) {
+		// TODO end
+		if (jsCallback.contains("BsF.ajax.") || script.contains("BsF.ajax.")) {
 			generatedAJAXCall = true;
 
 		}
 		if (!isJQueryCallback) {
-			// TODO end
 			if (jsCallback.length() > 0 || script.length() > 0) {
 				if (component instanceof CommandButton)
 					if (jsCallback.length() > 0 && "click".equals(keyClientBehavior))
@@ -264,7 +272,7 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
-			ClientBehaviorHolder component) {
+			ClientBehaviorHolder component, String event) {
 		if (jsCallback == null)
 			jsCallback = "";
 		else {
@@ -277,7 +285,7 @@ public class AJAXRenderer extends CoreRenderer {
 					jsCallback = jsCallback.substring(0, end);
 				}
 
-				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component);
+				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component, event);
 
 				jsCallback = jsCallback.substring(0, pos) + ";" + ajax + rest;
 			}
@@ -307,25 +315,48 @@ public class AJAXRenderer extends CoreRenderer {
 		return vex;
 	}
 
-	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component) {
+	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
 		StringBuilder cJS = new StringBuilder(150);
-		String update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, component.getUpdate());
-		cJS.append("BsF.ajax.cb(this, event").append(update == null ? "" : (",'" + update + "'"));
+		String update = component.getUpdate();
+		if (null == update) {
+			update = "@none";
+		}
+		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
+		String process = component.getProcess();
+		if (null == process) {
+			if (component.getClass().getName().contains("Command")) {
+				// CommandButton and CommandLink default to @form - see
+				// http://stackoverflow.com/questions/25339056/understanding-process-and-update-attributes-of-primefaces
+				process = "@form";
+			} else {
+				process = "@this";
+			}
+		}
+
+		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
+		// BsF.ajax.callAjax(o,e,r,"@all",f, null);
+		cJS.append("BsF.ajax.callAjax(this, event").append(",'" + update + "'").append(",'").append(process)
+				.append("'");
 		if (complete != null) {
 			cJS.append(",function(){" + complete + "}");
+		} else
+			cJS.append(", null");
+		if (event != null) {
+			cJS.append(", '" + event + "'");
+			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}
 		cJS.append(");");
 		return cJS;
 	}
 
-	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component,
+	private static StringBuilder generateAJAXCallForClientBehavior(FacesContext context, IAJAXComponent component,
 			ClientBehavior ajaxBehavior) {
 		StringBuilder cJS = new StringBuilder(150);
 		// find default values
 		String update = component.getUpdate();
 		String oncomplete = component.getOncomplete();
-		String process = "";// component.getProcess();
+		String process = component.getProcess();
 		String onevent = "";
 		if (ajaxBehavior != null) {
 			// the default values can be overridden by the AJAX behavior
@@ -340,9 +371,8 @@ public class AJAXRenderer extends CoreRenderer {
 						onevent = onevent + ";";
 					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
 					if (null != execute && (!execute.isEmpty())) {
-						process = "";
 						for (String u : execute) {
-							process += u + " ";
+							process += " " + u;
 						}
 					}
 
@@ -358,6 +388,7 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 
+		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
 		cJS.append(encodeClick(component)).append(onevent).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
@@ -428,28 +459,35 @@ public class AJAXRenderer extends CoreRenderer {
 		builder.append("'");
 	}
 
+	/**
+	 * Registers a callback with jQuery.
+	 * 
+	 * @param context
+	 * @param component
+	 * @param rw
+	 * @param clientId
+	 * @param additionalEventHandlers
+	 * @throws IOException
+	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String clientId) throws IOException {
+			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) throws IOException {
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
 		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
 		for (String event : events) {
 			StringBuilder code = new StringBuilder();
-			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, null, null, true, event,
-					code);
+			String additionalEventHandler = null;
+			if (null != additionalEventHandlers)
+				additionalEventHandler = additionalEventHandlers.get(event);
+
+			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, event,
+					additionalEventHandler, true, event, code);
 			if (code.length() > 0) {
-				rw.write("<script>");
-				String js = "$('" + clientId + "').on('" + ajaxComponent.getJQueryEvents().get(event) + "', function(){"
-						+ code.toString() + "});";
-				rw.write(js);
-				rw.write("</script>");
+				rw.startElement("script", component);
+				String js = "$('#" + clientId + "').on('" + ajaxComponent.getJQueryEvents().get(event)
+						+ "', function(){" + code.toString() + "});";
+				rw.writeText(js, null);
+				rw.endElement("script");
 			}
-			//
-			//
-			// $('#myCarousel').on('slide.bs.carousel', function () {
-			// // do something…
-			// })
 		}
-
 	}
-
 }

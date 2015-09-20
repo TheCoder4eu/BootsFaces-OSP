@@ -48,9 +48,9 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		if (event instanceof BootsFacesAJAXEvent) {
 			Object result = executeAjaxCalls(FacesContext.getCurrentInstance(),
 					((BootsFacesAJAXEvent) event).getJsCallback());
-			if (result != null) {
-				System.out.println("Redirection has not yet been implemented.");
-			}
+//			if (result != null) {
+//				System.out.println("Redirection has not yet been implemented.");
+//			}
 
 		}
 	}

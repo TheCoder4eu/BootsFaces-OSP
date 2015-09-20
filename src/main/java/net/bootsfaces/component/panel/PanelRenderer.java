@@ -20,12 +20,15 @@
 package net.bootsfaces.component.panel;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -48,9 +51,10 @@ public class PanelRenderer extends CoreRenderer {
 	public void decode(FacesContext context, UIComponent component) {
 		Panel panel = (Panel) component;
 
-		decodeBehaviors(context, panel);
-
 		String clientId = panel.getClientId(context);
+		String jQueryClientID = clientId.replace(":", "_");
+		new AJAXRenderer().decode(context, component, jQueryClientID+"content");
+
 		String collapseStateId = clientId.replace(":", "_") + "_collapsed";
 
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(collapseStateId);
@@ -224,19 +228,14 @@ public class PanelRenderer extends CoreRenderer {
 			rw.writeAttribute("id", hiddenInputFieldID, "id");
 			rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
 			rw.endElement("input");
-			rw.startElement("script", panel);
-			rw.writeText("\r\n", null);
-			rw.writeText(" $('" + "#" + jQueryClientID + "content"
-					+ "').on('show.bs.collapse', function(){ document.getElementById('" + hiddenInputFieldID
-					+ "').value='false'; });", null);
-			rw.writeText("\r\n", null);
-			rw.writeText(" $('" + "#" + jQueryClientID + "content"
-					+ "').on('hide.bs.collapse', function(){ document.getElementById('" + hiddenInputFieldID
-					+ "').value='true'; });", null);
-			rw.writeText("\r\n", null);
-			rw.endElement("script");
+			Map<String, String> eventHandlers = new HashMap<String, String>();
+			eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID
+					+ "').value='false';");
+			eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
+					+ "').value='true';");
+			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryClientID+"content", eventHandlers);
 		}
-
 		Tooltip.activateTooltips(context, panel.getAttributes(), panel);
 	}
+	//  $('#j_idt40_j_idt43content').on('show.bs.collapse', function(){ document.getElementById('j_idt40_j_idt43_collapsed').value='false'; });
 }

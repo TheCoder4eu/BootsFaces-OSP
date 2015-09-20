@@ -108,7 +108,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	}
 
 	protected enum PropertyKeys {
-		accesskey, ajax, binding, dir, disabled, icon, iconAlign, iconAwesome, immediate, lang, look, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, size, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value;
+		accesskey, ajax, binding, dir, disabled, icon, iconAlign, iconAwesome, immediate, lang, look, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, process, size, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value;
 
 		String toString;
 
@@ -123,6 +123,23 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		return  value;
+	}
+	
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+	    getStateHelper().put(PropertyKeys.process, _process);
+    }
 
 	/**
 	 * Access key to transfer focus to the input element.

@@ -29,18 +29,21 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target="head"),
-	    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-  		@ResourceDependency(library = "bsf", name = "css/panels.css"),
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/panels.css"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css"),
-		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body") ,
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
+		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.panel.Panel")
-public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
+public class Panel extends UIComponentBase
+		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.panel.Panel";
 
@@ -57,25 +60,27 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
-					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
-	
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	Map<String, String> result= new HashMap<String, String>();
-    	result.put("expande", "show.bs.collapse");
-    	result.put("expaneded", "shown.bs.collapse");
-    	result.put("collapse", "hide.bs.collapse");
-    	result.put("collapsed", "hidden.bs.collapse");
-    	return result;
-    }
-	
+
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("blur",
+			"change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup", "mousedown",
+			"mousemove", "mouseout", "mouseover", "mouseup", "select", "expand", "expanded", "collapse", "collapsed"));
+
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).Ø
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("expand", "show.bs.collapse");
+		result.put("expanded", "shown.bs.collapse");
+		result.put("collapse", "hide.bs.collapse");
+		result.put("collapsed", "hidden.bs.collapse");
+		return result;
+	}
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
@@ -84,9 +89,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 		return "click";
 	}
 
-
 	protected enum PropertyKeys {
-		binding, collapsed, collapsible, contentClass, contentStyle, id, look, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, oncollapsed, onexpand, onexpanded, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -103,8 +107,30 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isAjax() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. 
+	 * backing bean.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -117,7 +143,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. 
+	 * backing bean.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -125,7 +152,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Is the panel collapsed? 
+	 * Is the panel collapsed?
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -136,7 +164,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Is the panel collapsed? 
+	 * Is the panel collapsed?
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapsed(boolean _collapsed) {
@@ -145,7 +174,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. 
+	 * collapsible to false will suppress the collapse/expand feature.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -157,7 +187,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * By default, panels can be folded by clicking the title bar. Seting
-	 * collapsible to false will suppress the collapse/expand feature. 
+	 * collapsible to false will suppress the collapse/expand feature.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapsible(boolean _collapsible) {
@@ -166,7 +197,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class 
+	 * with this specific class
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -178,7 +210,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class 
+	 * with this specific class
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -186,7 +219,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the content area. 
+	 * Inline style of the content area.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -197,7 +231,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the content area. 
+	 * Inline style of the content area.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -205,8 +240,57 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isImmediate() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setImmediate(boolean _immediate) {
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
+
+	/**
 	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. 
+	 * Default is warning.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -218,7 +302,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Look of the Panel, can be primary, success, info, warning, danger.
-	 * Default is warning. 
+	 * Default is warning.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLook(String _look) {
@@ -226,7 +311,161 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the entire panel area. 
+	 * The onclick attribute.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnclick() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
+		return value;
+	}
+
+	/**
+	 * The onclick attribute.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncomplete() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
+	}
+
+	/**
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel starts to be
+	 * collapsed.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncollapse() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncollapse);
+		return value;
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel starts to be
+	 * collapsed.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncollapse(String _oncollapse) {
+		getStateHelper().put(PropertyKeys.oncollapse, _oncollapse);
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel has finished
+	 * collapsing.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncollapsed() {
+		String value = (String) getStateHelper().eval(PropertyKeys.oncollapsed);
+		return value;
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel has finished
+	 * collapsing.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncollapsed(String _oncollapsed) {
+		getStateHelper().put(PropertyKeys.oncollapsed, _oncollapsed);
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel starts to be
+	 * expanded.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnexpand() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onexpand);
+		return value;
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel starts to be
+	 * expanded.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnexpand(String _onexpand) {
+		getStateHelper().put(PropertyKeys.onexpand, _onexpand);
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel has finished
+	 * expandeding.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnexpanded() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onexpanded);
+		return value;
+	}
+
+	/**
+	 * JavaScript code or AJAX method to be executed when the panel has finished
+	 * expandeding.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnexpanded(String _onexpanded) {
+		getStateHelper().put(PropertyKeys.onexpanded, _onexpanded);
+	}
+
+	/**
+		   	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+		   	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+		   	 */
+		   	public String getProcess() {
+		   		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		   		return  value;
+		   	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
+	/**
+	 * Inline style of the entire panel area.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -237,7 +476,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the entire panel area. 
+	 * Inline style of the entire panel area.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -245,7 +485,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. 
+	 * Style class of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -256,7 +497,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Style class of the input element. 
+	 * Style class of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -265,7 +507,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. 
+	 * and the panel will render with a heading with this Title.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -277,7 +520,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * Title is optional: if specified, the heading facet will not be rendered
-	 * and the panel will render with a heading with this Title. 
+	 * and the panel will render with a heading with this Title.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
@@ -286,7 +530,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class 
+	 * this specific class
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -298,7 +543,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * TitleClass is optional: if specified, the title will be displayed with
-	 * this specific class 
+	 * this specific class
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitleClass(String _titleClass) {
@@ -306,7 +552,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the title area. 
+	 * Inline style of the title area.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -317,7 +564,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Inline style of the title area. 
+	 * Inline style of the title area.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitleStyle(String _titleStyle) {
@@ -325,7 +573,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -336,7 +585,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * The text of the tooltip. 
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -345,7 +595,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -357,7 +608,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -366,7 +618,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -378,7 +631,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -387,7 +641,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -399,7 +654,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -409,7 +665,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -422,11 +679,33 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". 
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+
+	/**
+	 * Which region of the screen is to be updated? Default value: @form
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getUpdate() {
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
+	}
+
+	/**
+	 * Which region of the screen is to be updated? Default value: @form
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
 	}
 
 }

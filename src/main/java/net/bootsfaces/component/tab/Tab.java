@@ -80,6 +80,7 @@ disabled,
 immediate,
 onclick,
 oncomplete,
+process,
 style,
 styleClass,
 title,
@@ -104,6 +105,23 @@ update
         }
     }
 	
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		return  value;
+	}
+	
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+	    getStateHelper().put(PropertyKeys.process, _process);
+    }
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>

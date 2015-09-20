@@ -21,31 +21,40 @@ BsF.ajax.onevent=function(d) {
         }
     };
 BsF.ajax.cb=function(o,e,r,f) { //commandButton ajax helper (object, event, [render], [oncomplete])
-	BsF.ajax.callAjax(o,e,r,"@all",f);
+	BsF.ajax.callAjax(o,e,r,"@all",f, null);
 }
 
-BsF.ajax.callAjax=function(o,e,r,execute,f) { //commandButton ajax helper (object, event, [render], [oncomplete])	
+/**
+ * Initiates an asynchronous AJAX request.
+ * param eventType In the case of jQuery events, JSF sends the wrong event type to the backend. The real event is put in this parameter.
+ */
+BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { //commandButton ajax helper (object, event, [render], [oncomplete])	
     var argn=arguments.length;
-    var oid=o.id;
+    var oid=source.id;
     var cid=oid.replace(/[^a-zA-Z0-9]+/g,'_');
     var opts={};
-    opts.execute=execute;
+    if (eventType) {
+    	opts.params="BsFEvent="+eventType;
+    }
+    if (execute && execute != null) {
+    	opts.execute=execute;
+    }
     opts[oid]=oid;
-    if(argn==5) {
-	    BsF.callback[cid]=f;
+    if(argn==5 && oncomplete!=null) {
+	    BsF.callback[cid]=oncomplete;
 	    
-	    opts.render=r;
+	    opts.render=update;
 	    opts.onevent=BsF.ajax.onevent;
     }
-    if(argn==3 || argn==4) {
-        if(BsF.isFunction(r)) {
-            BsF.callback[cid]=r;
+    if(argn>=3) {
+        if(BsF.isFunction(update)) {
+            BsF.callback[cid]=update;
             opts.onevent=BsF.ajax.onevent;
         }
-        else { opts.render=r; } //jsf.ajax.request(o,e, { execute: '@form', render: r }); }
+        else { opts.render=update; } //jsf.ajax.request(o,e, { execute: '@form', render: r }); }
     }
     
-    jsf.ajax.request(o,e, opts);
+    jsf.ajax.request(source,event, opts);
     return false;
 };
 

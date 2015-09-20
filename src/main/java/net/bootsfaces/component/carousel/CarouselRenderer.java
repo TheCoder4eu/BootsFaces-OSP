@@ -171,7 +171,7 @@ public class CarouselRenderer extends CoreRenderer {
 		}
 		
 		rw.endElement("div");
-		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, clientId);
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, clientId, null);
 		Tooltip.activateTooltips(context, carousel);
 	}	
 }

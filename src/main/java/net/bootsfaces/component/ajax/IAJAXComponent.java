@@ -96,6 +96,14 @@ public interface IAJAXComponent {
     public Map<String, String> getJQueryEvents();
     
 	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getProcess();
+	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
 	 * 
