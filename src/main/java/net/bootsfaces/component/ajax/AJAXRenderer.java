@@ -65,7 +65,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
-			if (realEvent.startsWith("BsFEvent=")) {
+			if (null != realEvent && realEvent.startsWith("BsFEvent=")) {
 				realEvent = realEvent.substring("BfFEvent=".length());
 				if (!realEvent.equals(event)) {
 					System.out.println("Difference between event and realEvent:" + event + " vs. " + realEvent

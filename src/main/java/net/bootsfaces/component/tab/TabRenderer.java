@@ -32,6 +32,12 @@ import net.bootsfaces.render.CoreRenderer;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tab.Tab")
 public class TabRenderer extends CoreRenderer {
 	
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		// The AJAXRenderer generates the id of the child element, but the AJAX event is processed by the parent instead
+		component.getParent().decode(context);
+	}
+	
 	/**
 	 * This methods generates the HTML code of the current b:tab.
 	 * @param context the FacesContext.

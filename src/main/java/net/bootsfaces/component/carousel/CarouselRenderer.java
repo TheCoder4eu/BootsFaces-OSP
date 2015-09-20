@@ -53,8 +53,10 @@ public class CarouselRenderer extends CoreRenderer {
 		if (carousel.isDisabled()) {
 		    return;
 		}
+		
+		String clientId = escapeClientId(component.getClientId());
 	
-		new AJAXRenderer().decode(context, component);	
+		new AJAXRenderer().decode(context, component, clientId);	
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class CarouselRenderer extends CoreRenderer {
 	    }
 		Carousel carousel = (Carousel) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = super.escapeClientId(component.getClientId());
+		String clientId = escapeClientId(component.getClientId());
 				
 		rw.startElement("div", carousel);
 		Tooltip.generateTooltip(context, carousel, rw);
@@ -148,6 +150,7 @@ public class CarouselRenderer extends CoreRenderer {
 	    if (!component.isRendered()) {
 	        return;
 	    }
+	    
 		Carousel carousel = (Carousel) component;
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div");
@@ -172,6 +175,7 @@ public class CarouselRenderer extends CoreRenderer {
 		
 		rw.endElement("div");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, clientId, null);
+
 		Tooltip.activateTooltips(context, carousel);
 	}	
 }

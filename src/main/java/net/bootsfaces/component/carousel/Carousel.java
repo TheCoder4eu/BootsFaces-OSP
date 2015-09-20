@@ -31,7 +31,9 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:carousel /&gt;. */
@@ -40,6 +42,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.carousel.Carousel")
 public class Carousel extends UICommand implements net.bootsfaces.render.IHasTooltip,IAJAXComponent, ClientBehaviorHolder {
@@ -52,6 +55,7 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 
 	public Carousel() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

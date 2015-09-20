@@ -38,9 +38,6 @@ import javax.faces.render.Renderer;
 
 public class CoreRenderer extends Renderer {
 
-	// characters to be escaped in clientId when used in jquery
-	private final Pattern charsToEscape = Pattern.compile("([:\\.])");
-
 	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs)
 			throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
@@ -120,9 +117,8 @@ public class CoreRenderer extends Renderer {
 		if (clientId == null) {
 			return null;
 		}
-		// prefix all chars in group 1 with double backslash (doubled escaping
-		// necessary here)
-		return charsToEscape.matcher(clientId).replaceAll("\\\\\\\\$1");
+		// replace colons by underscores to avoid problems with jQuery
+		return clientId.replace(':', '_');
 	}
 
 	/**
