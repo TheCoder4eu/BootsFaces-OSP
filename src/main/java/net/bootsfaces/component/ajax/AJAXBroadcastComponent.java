@@ -4,6 +4,7 @@ import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.el.PropertyNotFoundException;
 import javax.el.ValueExpression;
+import javax.faces.application.ProjectStage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -69,7 +70,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
 		ELContext elContext = context.getELContext();
-		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, String.class);
+		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
 		return vex;
 	}
 
@@ -88,9 +89,10 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 			while (el.endsWith(";")) {
 				el = el.substring(0, el.length() - 1).trim();
 			}
-			// MethodExpression method = evalAsMethodExpression(el);
-			// method.invoke(FacesContext.getCurrentInstance().getELContext(),
-			// null);
+			
+			if (context.isProjectStage(ProjectStage.Development)) {
+				evaluateThouroughly(el,context.getELContext());
+			}
 			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
 			result = vex.getValue(context.getELContext());
 
@@ -98,6 +100,26 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 			pos = command.indexOf("ajax:", pos + 1);
 		}
 		return result;
+	}
+
+	private void evaluateThouroughly(String el, ELContext context) {
+		int pos = el.indexOf('.');
+		int end = 
+				el.indexOf('(');
+		if (end < 0) end = el.length();
+		if (el.indexOf('[')>=0) end=Math.min(end,  el.indexOf('['));
+		while (pos < end) {
+			String object = el.substring(0, pos);
+			ValueExpression vex = evalAsValueExpression("#{" + object + "}");
+			vex.getValue(context);
+			Object result = vex.getValue(context);
+			if (result==null) {
+				System.out.println("Please check your EL expression - intermediate term " + object + " is null");
+			}
+			pos = el.indexOf('.', pos+1);
+			if (pos<0) break;
+		}
+		
 	}
 
 	@Override

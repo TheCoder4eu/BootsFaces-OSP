@@ -296,24 +296,6 @@ public class AJAXRenderer extends CoreRenderer {
 		return jsCallback;
 	}
 
-	/**
-	 * Evaluates an EL expression into an object.
-	 *
-	 * @param p_expression
-	 *            the expression
-	 * @throws PropertyNotFoundException
-	 *             if the attribute doesn't exist at all (as opposed to being
-	 *             null)
-	 * @return the object
-	 */
-	public static MethodExpression evalAsMethodExpression(String p_expression) throws PropertyNotFoundException {
-		FacesContext context = FacesContext.getCurrentInstance();
-		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
-		ELContext elContext = context.getELContext();
-		MethodExpression vex = expressionFactory.createMethodExpression(elContext, p_expression, String.class,
-				new Class[0]);
-		return vex;
-	}
 
 	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
