@@ -68,8 +68,8 @@ public class AJAXRenderer extends CoreRenderer {
 			if (null != realEvent && realEvent.startsWith("BsFEvent=")) {
 				realEvent = realEvent.substring("BfFEvent=".length());
 				if (!realEvent.equals(event)) {
-					System.out.println("Difference between event and realEvent:" + event + " vs. " + realEvent
-							+ " Component: " + component.getClass().getSimpleName());
+//					System.out.println("Difference between event and realEvent:" + event + " vs. " + realEvent
+//							+ " Component: " + component.getClass().getSimpleName());
 					event = realEvent;
 				}
 			}
