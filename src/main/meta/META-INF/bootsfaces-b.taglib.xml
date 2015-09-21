@@ -2947,122 +2947,6 @@
   </tag>
 
   <tag>
-    <tag-name>panel</tag-name>
-    <component>
-      <component-type>net.bootsfaces.component.panel.Panel</component-type>
-    </component>
-
-    <attribute>
-      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-      <name>binding</name>
-      <required>false</required>
-      <type>javax.faces.component.UIComponent</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Is the panel collapsed?]]></description>
-      <name>collapsed</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature.]]></description>
-      <name>collapsible</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
-      <name>contentClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the content area.]]></description>
-      <name>contentStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Look of the Panel, can be primary, success, info, warning, danger. Default is warning.]]></description>
-      <name>look</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the entire panel area.]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Style class of the input element.]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
-      <name>title</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[TitleClass is optional: if specified, the title will be displayed with this specific class]]></description>
-      <name>titleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the title area.]]></description>
-      <name>titleStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The text of the tooltip.]]></description>
-      <name>tooltip</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelay</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayHide</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayShow</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltipPosition</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-  </tag>
-
-  <tag>
     <tag-name>jumbotron</tag-name>
     <component>
       <component-type>net.bootsfaces.layout.Jumbotron</component-type>
@@ -4603,6 +4487,224 @@
     </attribute>
   </tag>
 
+  <tag>
+    <tag-name>panel</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.panel.Panel</component-type>
+    </component>
+    
+    <attribute>
+      <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+      <name>binding</name>
+      <required>false</required>
+      <type>javax.faces.component.UIComponent</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Is the panel collapsed?]]></description>
+      <name>collapsed</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature.]]></description>
+      <name>collapsible</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
+      <name>contentClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the content area.]]></description>
+      <name>contentStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+      <name>immediate</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Look of the Panel, can be primary, success, info, warning, danger. Default is warning.]]></description>
+      <name>look</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The onclick attribute.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[JavaScript code or AJAX method to be executed when the panel starts to be collapsed.]]></description>
+      <name>oncollapse</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+      <name>ondblclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[JavaScript code or AJAX method to be executed when the panel has finished collapsing.]]></description>
+      <name>oncollapsed</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[JavaScript code or AJAX method to be executed when the panel starts to be expanded.]]></description>
+      <name>onexpand</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[JavaScript code or AJAX method to be executed when the panel has finished expandeding.]]></description>
+      <name>onexpanded</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+      <name>onmousedown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+      <name>onmousemove</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+      <name>onmouseout</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+      <name>onmouseover</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+      <name>onmouseup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the entire panel area.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of the input element.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
+      <name>title</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[TitleClass is optional: if specified, the title will be displayed with this specific class]]></description>
+      <name>titleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the title area.]]></description>
+      <name>titleStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The text of the tooltip.]]></description>
+      <name>tooltip</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
   <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
     15, 2014. -->
   <tag>
@@ -4614,7 +4716,7 @@
     <attribute>
       <description><![CDATA[Comma-separated list of the column spans]]></description>
       <name>colSpans</name>
-      <required>true</required>
+      <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
@@ -4624,10 +4726,22 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Synonym to colSpans: comma-separated list of the column spans]]></description>
+      <name>columns</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
       <required>false</required>
       <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
     </attribute>
     <attribute>
       <description><![CDATA[Comma-separated list of the CSS classes assigned to each row.]]></description>

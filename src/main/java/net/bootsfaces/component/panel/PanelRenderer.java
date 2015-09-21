@@ -53,6 +53,8 @@ public class PanelRenderer extends CoreRenderer {
 
 		String clientId = panel.getClientId(context);
 		String jQueryClientID = clientId.replace(":", "_");
+		// the panel uses two ids to send requests to the server!
+		new AJAXRenderer().decode(context, component, panel.getClientId(context)); 
 		new AJAXRenderer().decode(context, component, jQueryClientID+"content");
 
 		String collapseStateId = clientId.replace(":", "_") + "_collapsed";
@@ -111,6 +113,7 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", clientId, "id");
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw);
 		Tooltip.generateTooltip(context, panel, rw);
 		String _style = panel.getStyle();
 		if (null != _style && _style.length() > 0) {

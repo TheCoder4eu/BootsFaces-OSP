@@ -61,9 +61,9 @@ public class Panel extends UIComponentBase
 		return COMPONENT_FAMILY;
 	}
 
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("blur",
-			"change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup", "mousedown",
-			"mousemove", "mouseout", "mouseover", "mouseup", "select", "expand", "expanded", "collapse", "collapsed"));
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
+			"click", "dblclick", "mousedown",
+			"mousemove", "mouseout", "mouseover", "mouseup", "expand", "expanded", "collapse", "collapsed"));
 
 	/**
 	 * returns the subset of AJAX requests that are implemented by jQuery
@@ -90,7 +90,7 @@ public class Panel extends UIComponentBase
 	}
 
 	protected enum PropertyKeys {
-		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, oncollapsed, onexpand, onexpanded, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -376,6 +376,27 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
+	 * Client side callback to execute when input element is double clicked.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOndblclick() {
+		String value = (String) getStateHelper().eval(PropertyKeys.ondblclick);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when input element is double clicked.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndblclick(String _ondblclick) {
+		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
 	 * JavaScript code or AJAX method to be executed when the panel has finished
 	 * collapsing.
 	 * <P>
@@ -445,13 +466,128 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-		   	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-		   	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-		   	 */
-		   	public String getProcess() {
-		   		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		   		return  value;
-		   	}
+	 * Client side callback to execute when a pointer input element is pressed
+	 * down over input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnmousedown() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onmousedown);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is pressed
+	 * down over input element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnmousedown(String _onmousedown) {
+		getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * within input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnmousemove() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onmousemove);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * within input element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnmousemove(String _onmousemove) {
+		getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * away from input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnmouseout() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseout);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * away from input element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnmouseout(String _onmouseout) {
+		getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * onto input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnmouseover() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseover);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is moved
+	 * onto input element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnmouseover(String _onmouseover) {
+		getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is released
+	 * over input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOnmouseup() {
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseup);
+		return value;
+	}
+
+	/**
+	 * Client side callback to execute when a pointer input element is released
+	 * over input element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnmouseup(String _onmouseup) {
+		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		String value = (String)getStateHelper().eval(PropertyKeys.process);
+		return  value;
+	}
 
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which

@@ -110,6 +110,10 @@ public class PanelGridRenderer extends CoreRenderer {
 		String columnsCSV = panelGrid.getColSpans();
 		if (null == columnsCSV || columnsCSV.trim().length()==0)
 		{
+		    columnsCSV = panelGrid.getColumns();
+		}
+		if (null == columnsCSV || columnsCSV.trim().length()==0)
+		{
 		    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
 		}
 		String[] columnList = columnsCSV.split(",");

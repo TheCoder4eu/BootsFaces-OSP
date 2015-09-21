@@ -80,242 +80,249 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 		return COMPONENT_FAMILY;
 	}
 
-	protected enum PropertyKeys {
-		colSpans, columnClasses, id, rowClasses, size, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+    protected enum PropertyKeys {
+colSpans,
+columnClasses,
+columns,
+rowClasses,
+size,
+style,
+styleClass,
+tooltip,
+tooltipDelay,
+tooltipDelayHide,
+tooltipDelayShow,
+tooltipPosition
+;
 
-		String toString;
+        String toString;
 
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
 
-		PropertyKeys() {
-		}
+        PropertyKeys() {}
 
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+	
 
 	/**
 	 * Comma-separated list of the column spans <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColSpans() {
-		String value = (String) getStateHelper().eval(PropertyKeys.colSpans);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.colSpans);
+		return  value;
 	}
-
+	
 	/**
 	 * Comma-separated list of the column spans <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColSpans(String _colSpans) {
-		getStateHelper().put(PropertyKeys.colSpans, _colSpans);
-	}
+	    getStateHelper().put(PropertyKeys.colSpans, _colSpans);
+    }
+	
 
 	/**
 	 * Comma-separated list of the CSS classes assigned to each column. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColumnClasses() {
-		String value = (String) getStateHelper().eval(PropertyKeys.columnClasses);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.columnClasses);
+		return  value;
 	}
-
+	
 	/**
 	 * Comma-separated list of the CSS classes assigned to each column. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColumnClasses(String _columnClasses) {
-		getStateHelper().put(PropertyKeys.columnClasses, _columnClasses);
+	    getStateHelper().put(PropertyKeys.columnClasses, _columnClasses);
+    }
+	
+
+	/**
+	 * Synonym to colSpans: comma-separated list of the column spans <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColumns() {
+		String value = (String)getStateHelper().eval(PropertyKeys.columns);
+		return  value;
 	}
+	
+	/**
+	 * Synonym to colSpans: comma-separated list of the column spans <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColumns(String _columns) {
+	    getStateHelper().put(PropertyKeys.columns, _columns);
+    }
+	
 
 	/**
 	 * Comma-separated list of the CSS classes assigned to each row. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getRowClasses() {
-		String value = (String) getStateHelper().eval(PropertyKeys.rowClasses);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.rowClasses);
+		return  value;
 	}
-
+	
 	/**
 	 * Comma-separated list of the CSS classes assigned to each row. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRowClasses(String _rowClasses) {
-		getStateHelper().put(PropertyKeys.rowClasses, _rowClasses);
-	}
+	    getStateHelper().put(PropertyKeys.rowClasses, _rowClasses);
+    }
+	
 
 	/**
-	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences
-	 * the grid size. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSize() {
-		String value = (String) getStateHelper().eval(PropertyKeys.size);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.size);
+		return  value;
 	}
-
+	
 	/**
-	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences
-	 * the grid size. <P>
+	 * Optional. Legal values are lg, md, sm and xs. Default is lg. Influences the grid size. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
-		getStateHelper().put(PropertyKeys.size, _size);
-	}
+	    getStateHelper().put(PropertyKeys.size, _size);
+    }
+	
 
 	/**
 	 * CSS inline style of the div surrounding the panel grid. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.style);
+		return  value;
 	}
-
+	
 	/**
 	 * CSS inline style of the div surrounding the panel grid. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-		getStateHelper().put(PropertyKeys.style, _style);
-	}
+	    getStateHelper().put(PropertyKeys.style, _style);
+    }
+	
 
 	/**
 	 * Style class of the div surrounding the panel grid. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return  value;
 	}
-
+	
 	/**
 	 * Style class of the div surrounding the panel grid. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
+	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+    }
+	
 
 	/**
 	 * The text of the tooltip. <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltip);
+		return  value;
 	}
-
+	
 	/**
 	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
-		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
-	}
+	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+    }
+	
 
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 		return (int) value;
 	}
-
+	
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
-		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-	}
+	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+    }
+	
 
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 		return (int) value;
 	}
-
+	
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
-		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-	}
+	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+    }
+	
 
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 		return (int) value;
 	}
-
+	
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
-		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-	}
+	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+    }
+	
 
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
-	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return  value;
 	}
-
+	
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
-	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
-		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-	}
-
+	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+    }
+	
 }
+
