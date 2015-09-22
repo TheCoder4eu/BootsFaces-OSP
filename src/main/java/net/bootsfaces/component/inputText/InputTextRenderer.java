@@ -94,6 +94,9 @@ public class InputTextRenderer extends CoreRenderer {
 			if (!inputText.isRenderLabel()) {
 				label = null;
 			}
+			else if (inputText.isRequired()) {
+				label += " *";
+			}
 		}
 
 		// Define TYPE ( if null set default = text )
