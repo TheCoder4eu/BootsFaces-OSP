@@ -53,23 +53,38 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	}
 
 	protected enum PropertyKeys {
-		alt, binding, brand, brandAlign, brandHref, brandImg, fixed, fluid, inverse, onclick,
-		/* static, replaced by a String due to syntactical reasons */
-		tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+alt,
+binding,
+brand,
+brandAlign,
+brandHref,
+brandImg,
+fixed,
+fluid,
+inverse,
+onclick,
+/* static, replaced by a String due to syntactical reasons */
+style,
+styleClass,
+tooltip,
+tooltipDelay,
+tooltipDelayHide,
+tooltipDelayShow,
+tooltipPosition
+;
 
-		String toString;
+        String toString;
 
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
 
-		PropertyKeys() {
-		}
+        PropertyKeys() {}
 
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
 
 	/**
 	 * alternative text
@@ -291,26 +306,62 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	}
 
 	/**
-	 * If true, a full-width navbar that scrolls away with the page will be
-	 * rendered. Can be true or false, default false.
+	 * If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isStatic() {
+		Boolean value = (Boolean)getStateHelper().eval("static", false);
+		return (boolean) value;
+	}
+
+	/**
+	 * If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStatic(boolean _static) {
+	    getStateHelper().put("static", _static);
+    }
+
+	/**
+	 * Inline style of the navBar element.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public boolean isStatic() {
-		Boolean value = (Boolean) getStateHelper().eval("static", false);
-		return (boolean) value;
+	public String getStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.style);
+		return value;
 	}
 
 	/**
-	 * If true, a full-width navbar that scrolls away with the page will be
-	 * rendered. Can be true or false, default false.
+	 * Inline style of the navBar element.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStatic(boolean _static) {
-		getStateHelper().put("static", _static);
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of the navBar element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getStyleClass() {
+		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
+		return value;
+	}
+
+	/**
+	 * Style class of the navBar element.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
 
 	/**

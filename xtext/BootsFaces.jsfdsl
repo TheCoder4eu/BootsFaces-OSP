@@ -756,6 +756,8 @@ widget navBar
     onclick                                                                "JavaScript function which is called when the widget is clicked."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     static              Boolean default "false"                            "If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false."
+    style                                                                  "Inline style of the navBar element."
+    styleClass                                                             "Style class of the navBar element."
     tooltip                                                                "The text of the tooltip."
     tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."

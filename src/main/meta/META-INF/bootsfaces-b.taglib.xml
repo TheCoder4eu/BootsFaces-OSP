@@ -1929,6 +1929,12 @@
     </component>
 
     <attribute>
+      <description><![CDATA[alternative text]]></description>
+      <name>alt</name>
+      <required>false</required>
+      <type>String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
       <name>binding</name>
       <required>false</required>
@@ -1983,6 +1989,12 @@
       <type>Boolean</type>
     </attribute>
     <attribute>
+      <description><![CDATA[JavaScript function which is called when the widget is clicked.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
       <name>rendered</name>
       <required>false</required>
@@ -1993,6 +2005,18 @@
       <name>static</name>
       <required>false</required>
       <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the navBar element.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of the navBar element.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[The text of the tooltip.]]></description>
@@ -4492,7 +4516,7 @@
     <component>
       <component-type>net.bootsfaces.component.panel.Panel</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
       <name>ajax</name>

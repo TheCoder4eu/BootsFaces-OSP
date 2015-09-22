@@ -63,9 +63,9 @@ public class NavBarRenderer extends CoreRenderer {
 		boolean sttc = navBar.isStatic();
 		boolean inverse = navBar.isInverse();
 		boolean fluid = navBar.isFluid();
-		String ns=null;
+		String ns=navBar.getStyleClass();
 		
-		if (inverse) { ns = "navbar navbar-inverse"; } else { ns = "navbar navbar-default"; }
+		if (inverse) { ns += " navbar navbar-inverse"; } else { ns += " navbar navbar-default"; }
 		if (fixed != null) {
 		    if (fixed.equals("top")) { ns += " navbar-fixed-top"; }
 		    if (fixed.equals("bottom")) { ns += " navbar-fixed-bottom"; }
@@ -82,6 +82,7 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.writeAttribute("id",navBar.getClientId(context),"id");
 		Tooltip.generateTooltip(context, navBar, rw);
 		rw.writeAttribute("class", ns,"class");
+		super.writeAttribute(rw, "style", navBar.getStyle());
 		rw.writeAttribute(H.ROLE, "navigation", null);
 		
 		rw.startElement("div", navBar);
