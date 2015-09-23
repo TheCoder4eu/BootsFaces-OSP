@@ -68,8 +68,9 @@ public class AJAXRenderer extends CoreRenderer {
 			if (null != realEvent && realEvent.startsWith("BsFEvent=")) {
 				realEvent = realEvent.substring("BfFEvent=".length());
 				if (!realEvent.equals(event)) {
-//					System.out.println("Difference between event and realEvent:" + event + " vs. " + realEvent
-//							+ " Component: " + component.getClass().getSimpleName());
+					// System.out.println("Difference between event and
+					// realEvent:" + event + " vs. " + realEvent
+					// + " Component: " + component.getClass().getSimpleName());
 					event = realEvent;
 				}
 			}
@@ -296,7 +297,6 @@ public class AJAXRenderer extends CoreRenderer {
 		return jsCallback;
 	}
 
-
 	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
 		StringBuilder cJS = new StringBuilder(150);
@@ -354,7 +354,10 @@ public class AJAXRenderer extends CoreRenderer {
 					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
 					if (null != execute && (!execute.isEmpty())) {
 						for (String u : execute) {
-							process += " " + u;
+							if (null == process)
+								process = u;
+							else
+								process += " " + u;
 						}
 					}
 
