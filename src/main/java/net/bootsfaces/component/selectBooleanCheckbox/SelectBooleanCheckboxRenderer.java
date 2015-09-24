@@ -97,8 +97,6 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
 
-		Tooltip.generateTooltip(context, selectBooleanCheckbox, rw);
-
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		// "Prepend" facet
@@ -265,7 +263,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 */
 	protected void renderInputTag(FacesContext context, ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
-		renderInputTag(rw, context, selectBooleanCheckbox);
+		renderInputTag(rw, context, selectBooleanCheckbox,clientId);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
 		// Render Ajax Capabilities
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), selectBooleanCheckbox, rw);
@@ -305,9 +303,12 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox)
+	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
+			String clientId)
 			throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
+		rw.writeAttribute("id", clientId, null);
+
 		Tooltip.generateTooltip(context, selectBooleanCheckbox, rw);
 
 		rw.writeAttribute("class", "checkbox", "class");
@@ -330,7 +331,6 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 */
 	protected void renderInputTagAttributes(ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
-		rw.writeAttribute("id", clientId, null);
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", "checkbox", null);
 
