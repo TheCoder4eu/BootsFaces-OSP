@@ -26,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckboxRenderer;
 
 
@@ -60,10 +61,17 @@ public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
 	
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		// TODO Auto-generated method stub
-		super.encodeBegin(context, component);
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = component.getClientId();
+		Switch _switch = (Switch) component;
+		rw.startElement("input", _switch);
+		rw.writeAttribute("id", clientId, "id");
+		renderInputTagAttributes(rw, clientId, _switch);
+		// Render Ajax Capabilities
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), _switch, rw);
+
+		renderInputTagValue(context, rw, _switch);
+		rw.endElement("input");
 		clientId=clientId.replace(":","\\\\:");
 		rw.append("<script>");
 		rw.append("$('#" + clientId + "').bootstrapSwitch();");
