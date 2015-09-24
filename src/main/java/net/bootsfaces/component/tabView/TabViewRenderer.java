@@ -290,6 +290,7 @@ public class TabViewRenderer extends CoreRenderer {
 			return;
 		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
+		writer.writeAttribute("id", tab.getClientId(), "id");
 		writer.writeAttribute("role", "presentation", "role");
 		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
 
@@ -306,6 +307,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		encodeTabAnchorTag(context, writer, tab, hiddenInputFieldID, tabIndex);
 		writer.endElement("li");
+		Tooltip.activateTooltips(context, tab);
 	}
 
 	/**

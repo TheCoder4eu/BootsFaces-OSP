@@ -79,7 +79,7 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 
 
 	protected enum PropertyKeys {
-		accesskey, ajax, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, process, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		accesskey, ajax, alt, binding, caption, converterMessage, dir, disabled, fieldSize, id, immediate, label, lang, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, process, readonly, renderLabel, span, style, styleClass, tabindex, title, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
 
 		String toString;
 
@@ -95,6 +95,22 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 		}
 	}
 
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.

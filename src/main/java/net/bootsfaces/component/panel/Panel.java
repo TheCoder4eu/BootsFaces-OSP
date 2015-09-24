@@ -90,7 +90,7 @@ public class Panel extends UIComponentBase
 	}
 
 	protected enum PropertyKeys {
-		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
 
 		String toString;
 
@@ -106,6 +106,22 @@ public class Panel extends UIComponentBase
 		}
 	}
 
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
 	/**
 	 * Activates AJAX. The default value is false (no AJAX).
 	 * <P>

@@ -101,7 +101,7 @@ tooltip,
 tooltipDelay,
 tooltipDelayHide,
 tooltipDelayShow,
-tooltipPosition
+tooltipPosition, tooltipContainer
 ;
 
         String toString;
@@ -118,6 +118,22 @@ tooltipPosition
     }
 	
 
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
 	/**
 	 * Access key to transfer focus to the input element. 
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.

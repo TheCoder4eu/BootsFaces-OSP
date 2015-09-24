@@ -49,4 +49,10 @@ public interface IHasTooltip  {
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition();
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in
+	 * special cases. Also see data-container in the documentation of Bootstrap. The default value is "body".
+	 */
+	public String getTooltipContainer();
 }

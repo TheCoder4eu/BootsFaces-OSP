@@ -88,7 +88,7 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 	}
 
 	protected enum PropertyKeys {
-		disabled, activeIndex, ajax, interval, pause, wrap, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onslidestart, onslid, process, slide, startAnimation, showControls, showIndicators, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		disabled, activeIndex, ajax, interval, pause, wrap, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onslidestart, onslid, process, slide, startAnimation, showControls, showIndicators, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
 
 		String toString;
 
@@ -104,6 +104,22 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 		}
 	}
 
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
 	/**
 	 * Boolean value to specify if the button is disabled. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.

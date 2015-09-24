@@ -40,11 +40,15 @@ public class Tooltip {
 
 	public static void generateTooltip(FacesContext context, IHasTooltip component, ResponseWriter rw)
 			throws IOException {
-		/**
-		 * TODO quick and dirty solution - needs to be reworked to support EL
-		 * expressions
-		 */
-		generateTooltip(context, ((UIComponent) component).getAttributes(), rw);
+		String tooltipPosition = component.getTooltipPosition();
+		if (null == tooltipPosition) // compatibility for the HTML-style using "-" characters instead of camelcase
+			tooltipPosition = (String) ((UIComponent) component).getAttributes().get("tooltip-position");
+		String tooltipContainer = component.getTooltipContainer();
+		if ("body".equals(tooltipContainer)) // compatibility for the HTML-style using "-" characters instead of camelcase
+			tooltipContainer = (String) ((UIComponent) component).getAttributes().get("tooltip-container");
+		if (null == tooltipContainer)
+			tooltipContainer = "body";
+		generateTooltipInternal(context, rw, component.getTooltip(), tooltipPosition, tooltipContainer);
 	}
 
 	public static void generateTooltip(FacesContext context, Map<String, Object> attrs, ResponseWriter rw)
@@ -52,29 +56,39 @@ public class Tooltip {
 		String tooltip = (String) attrs.get("tooltip");
 		if (null != tooltip) {
 			String position = (String) attrs.get("tooltipPosition");
-			if (null == position)
+			if (null == position) // compatibility for the HTML-style using "-" characters instead of camelcase
 				position = (String) attrs.get("tooltip-position");
 			if (null == position)
 				position = "auto";
-			boolean ok = "top".equals(position);
-			ok |= "bottom".equals(position);
-			ok |= "right".equals(position);
-			ok |= "left".equals(position);
-			ok |= "auto".equals(position);
-			ok |= "auto top".equals(position);
-			ok |= "auto bottom".equals(position);
-			ok |= "auto right".equals(position);
-			ok |= "auto left".equals(position);
-			if (!ok) {
-				position = "bottom";
-				context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong JSF markup",
-						"Tooltip position must either be 'auto', 'top', 'bottom', 'left' or 'right'."));
-			}
-			rw.writeAttribute("data-toggle", "tooltip", null);
-			rw.writeAttribute("data-placement", position, "data-placement");
-			rw.writeAttribute("data-container", "body", "data-container"); // quick fix for #166
-			rw.writeAttribute("title", tooltip, null);
+			String container = (String) attrs.get("tooltipContainer");
+			if (null == container) // compatibility for the HTML-style using "-" characters instead of camelcase
+				container = (String) attrs.get("tooltip-container");
+			if (null == container || container.length() == 0)
+				container = "body";
+			generateTooltipInternal(context, rw, tooltip, position, container);
 		}
+	}
+
+	private static void generateTooltipInternal(FacesContext context, ResponseWriter rw, String tooltip,
+			String position, String container) throws IOException {
+		boolean ok = "top".equals(position);
+		ok |= "bottom".equals(position);
+		ok |= "right".equals(position);
+		ok |= "left".equals(position);
+		ok |= "auto".equals(position);
+		ok |= "auto top".equals(position);
+		ok |= "auto bottom".equals(position);
+		ok |= "auto right".equals(position);
+		ok |= "auto left".equals(position);
+		if (!ok) {
+			position = "bottom";
+			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Wrong JSF markup",
+					"Tooltip position must either be 'auto', 'top', 'bottom', 'left' or 'right'."));
+		}
+		rw.writeAttribute("data-toggle", "tooltip", null);
+		rw.writeAttribute("data-placement", position, "data-placement");
+		rw.writeAttribute("data-container", container, "data-container"); 
+		rw.writeAttribute("title", tooltip, null);
 	}
 
 	private static String generateDelayAttributes(Map<String, Object> attrs) throws IOException {
@@ -96,6 +110,26 @@ public class Tooltip {
 			return "{" + json.substring(0, json.length() - 1) + "}";
 		}
 		return null;
+	}
+
+	private static String generateDelayAttributes(IHasTooltip component) throws IOException {
+		String json = "";
+		int tooltipDelayShow = component.getTooltipDelayShow();
+		if (0 == tooltipDelayShow)
+			tooltipDelayShow = component.getTooltipDelay();
+
+		if (0 != tooltipDelayShow) 
+			json += "tooltip-delay-show" + tooltipDelayShow + ",";
+		int tooltipDelayHide = component.getTooltipDelayHide();
+		if (0 == tooltipDelayHide)
+			tooltipDelayHide = component.getTooltipDelay();
+		if (0 != tooltipDelayHide)
+			json += "tooltip-delay-show" + tooltipDelayShow + ",";
+
+		if (json.length() > 0) {
+			return "{" + json.substring(0, json.length() - 1) + "}";
+		} else // compatibility for the HTML-style using "-" characters instead of camelcase
+			return generateDelayAttributes(((UIComponent) component).getAttributes());
 	}
 
 	private static String getAndCheckDelayAttribute(String attributeName, Map<String, Object> attrs,
@@ -143,7 +177,7 @@ public class Tooltip {
 			String id = ((UIComponent) component).getClientId();
 			id = id.replace(":", "\\\\:"); // we need to escape the id for
 											// jQuery
-			String delayOptions = generateDelayAttributes(((UIComponent) component).getAttributes());
+			String delayOptions = generateDelayAttributes(component);
 			String options = "";
 			if (null != delayOptions)
 				options = "'delay':" + delayOptions + ",";

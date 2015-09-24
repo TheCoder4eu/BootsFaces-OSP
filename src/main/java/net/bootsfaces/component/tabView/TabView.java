@@ -103,7 +103,7 @@ public class TabView extends UIOutput
 	}
 
 	protected enum PropertyKeys {
-		activeIndex, ajax, contentClass, contentStyle, disabled, immediate, onclick, oncomplete, process, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		tooltipContainer,activeIndex, ajax, contentClass, contentStyle, disabled, immediate, onclick, oncomplete, process, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -119,6 +119,22 @@ public class TabView extends UIOutput
 		}
 	}
 
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
