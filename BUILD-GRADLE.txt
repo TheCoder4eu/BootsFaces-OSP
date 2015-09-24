@@ -1,0 +1,20 @@
+-------------------------------
+Build instructions with Gradle.
+-------------------------------
+
+Building BootsFaces with Gradle is very straightforward, the only prerequisite is having java installed (JDK 7 or later),
+there is no need to have Gradle installed.
+
+Just change your directory to the root directory of the project (where you found this file) and execute:
+
+./gradlew
+
+on *NIX systems or
+
+gradlew.bat
+
+on Windows systems.
+
+After few seconds you should see the "BUILD SUCCESSFUL" message and will find the library
+in the subdirectory build/libs .
+
