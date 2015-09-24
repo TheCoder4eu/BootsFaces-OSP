@@ -129,7 +129,9 @@ public class SliderRenderer extends BadgeRenderer {
 		boolean bottom = o.endsWith("bottom");
 
 		rw.startElement("div", null);// form-group
+		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
+		
 		rw.writeAttribute("class", "form-group", "class");
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
@@ -229,7 +231,7 @@ public class SliderRenderer extends BadgeRenderer {
 		removeMisleadingType(slider);
 		// Input
 		rw.startElement("input", slider);
-		rw.writeAttribute("id", clientId, null);
+//		rw.writeAttribute("id", clientId, null);
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", (mode.equals("edit") ? "text" : "hidden"), null);
 		rw.writeAttribute("size", String.valueOf(max).length() - 1, null);

@@ -109,7 +109,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context);
 		rw.startElement("div", menu);
-		Tooltip.generateTooltip(context, menu, rw);
 		rw.writeAttribute("class", "form-group", "class");
 
 		addLabel(rw, clientId, menu);
@@ -537,6 +536,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectOneMenu menu)
 			throws IOException {
 		rw.writeAttribute("id", clientId, null);
+		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), menu, rw);
 		rw.writeAttribute("name", clientId, null);
 
 		StringBuilder sb;
