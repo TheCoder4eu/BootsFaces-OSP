@@ -293,6 +293,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	protected void addLabel(ResponseWriter rw, String clientId, SelectMultiMenu menu) throws IOException {
 		String label = menu.getLabel();
 		{
+			if (label != null && menu.isRequired())
+				label += " *";
 			if (!menu.isRenderLabel()) {
 				label = null;
 			}

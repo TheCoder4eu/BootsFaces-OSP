@@ -183,6 +183,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	protected void addLabel(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
 		String label = menu.getLabel();
 		{
+			if (label != null && menu.isRequired())
+				label += " *";
 			if (!menu.isRenderLabel()) {
 				label = null;
 			}

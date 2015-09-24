@@ -97,6 +97,9 @@ public class SliderRenderer extends BadgeRenderer {
 
 		String mode = slider.getMode();
 		String label = slider.getLabel();
+		if (label != null && slider.isRequired())
+			label += " *";
+
 
 		int min = slider.getMin();
 		int max = slider.getMax();
