@@ -194,6 +194,7 @@
 		<dependency>
 			<groupId>org.jboss.arquillian.extension</groupId>
 			<artifactId>arquillian-warp-jsf</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
