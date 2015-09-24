@@ -111,7 +111,6 @@ public class Button extends HtmlOutcomeTargetButton {
 		}
 
 		encodeHTML(context, getAttributes());
-		Tooltip.activateTooltips(context, getAttributes(), this);
 	}
 
 	/**
@@ -179,6 +178,7 @@ public class Button extends HtmlOutcomeTargetButton {
 			rw.writeText(value, null);
 		}
 
+		Tooltip.activateTooltips(context, getAttributes(), this);
 		rw.endElement("button");
 	}
 
