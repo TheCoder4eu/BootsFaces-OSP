@@ -40,15 +40,18 @@ public class Tooltip {
 
 	public static void generateTooltip(FacesContext context, IHasTooltip component, ResponseWriter rw)
 			throws IOException {
-		String tooltipPosition = component.getTooltipPosition();
-		if (null == tooltipPosition) // compatibility for the HTML-style using "-" characters instead of camelcase
-			tooltipPosition = (String) ((UIComponent) component).getAttributes().get("tooltip-position");
-		String tooltipContainer = component.getTooltipContainer();
-		if ("body".equals(tooltipContainer)) // compatibility for the HTML-style using "-" characters instead of camelcase
-			tooltipContainer = (String) ((UIComponent) component).getAttributes().get("tooltip-container");
-		if (null == tooltipContainer)
-			tooltipContainer = "body";
-		generateTooltipInternal(context, rw, component.getTooltip(), tooltipPosition, tooltipContainer);
+		if (null != component.getTooltip()) {
+			String tooltipPosition = component.getTooltipPosition();
+			if (null == tooltipPosition) // compatibility for the HTML-style using "-" characters instead of camelcase
+				tooltipPosition = (String) ((UIComponent) component).getAttributes().get("tooltip-position");
+			String tooltipContainer = component.getTooltipContainer();
+			if ("body".equals(tooltipContainer)) // compatibility for the HTML-style using "-" characters instead of camelcase
+				tooltipContainer = (String) ((UIComponent) component).getAttributes().get("tooltip-container");
+			if (null == tooltipContainer)
+				tooltipContainer = "body";
+			
+			generateTooltipInternal(context, rw, component.getTooltip(), tooltipPosition, tooltipContainer);
+		}
 	}
 
 	public static void generateTooltip(FacesContext context, Map<String, Object> attrs, ResponseWriter rw)
