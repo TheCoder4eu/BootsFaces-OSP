@@ -138,8 +138,8 @@ public class TabViewRenderer extends CoreRenderer {
 		final List<UIComponent> tabs = getTabs(tabView);
 		encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
 		writer.endElement("ul");
-		writer.endElement("div");
 		encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+		writer.endElement("div");
 		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
 	}
 
@@ -227,7 +227,7 @@ public class TabViewRenderer extends CoreRenderer {
 			throws IOException {
 		Tab tab = (Tab) child;
 		writer.startElement("div", tab);
-		writer.writeAttribute("id", tab.getClientId().replace(":", "_"), "id");
+		writer.writeAttribute("id", tab.getClientId().replace(":", "_")+"_pane", "id");
 		String classes = "tab-pane";
 		if (isActive) {
 			classes += " active";
@@ -326,7 +326,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_tab", "id");
 		writer.writeAttribute("role", "tab", "role");
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
-		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_"), "href");
+		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
 		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
 				+ "';";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false);
