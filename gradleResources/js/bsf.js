@@ -36,6 +36,10 @@ BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { /
     if (eventType) {
     	opts.params="BsFEvent="+eventType;
     }
+
+    update=BsF.ajax.resolveJQuery(update);
+    execute=BsF.ajax.resolveJQuery(execute);
+    
     if (execute && execute != null) {
     	opts.execute=execute;
     }
@@ -56,6 +60,29 @@ BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { /
     
     jsf.ajax.request(source,event, opts);
     return false;
+};
+
+BsF.ajax.resolveJQuery = function(update) {
+	if (typeof(update)=='undefined') return "";
+	if (update==null) return "";
+	var newUpdate="";
+	var parts = update.split(" ");
+	for (i = 0; i < parts.length; i++) {
+		part = parts[i];
+	    if ((part.indexOf("@(")==0) && (part.lastIndexOf(")")==part.length-1)) {
+	    	var jqueryexp = part.substring(2, part.length-1);
+	    	var jQueryObjects = $(jqueryexp);
+	    	if (jQueryObjects) {
+	    		jQueryObjects.each(
+	    				function(index, element){
+	    					newUpdate+=" " + element.id;
+	    					});
+	    	
+	    	}
+	    }
+	    else newUpdate += part + " ";
+	}
+	return newUpdate.trim();
 };
 
 BsF.ajax.paginate=function(o,e,v,c,r) { //Paginator ajax helper (object, event, value, component, render)

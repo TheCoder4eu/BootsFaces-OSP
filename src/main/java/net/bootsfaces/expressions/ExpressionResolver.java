@@ -65,38 +65,43 @@ public class ExpressionResolver {
 		}
 		List<UIComponent> roots = new ArrayList<UIComponent>();
 		roots.add(root);
+		String result = "";
 		String[] subexpressions = originalExpression.split(separator);
 		for (int i = 0; i < subexpressions.length; i++) {
 			String currentId = subexpressions[i];
 			if (currentId != null && currentId.length() > 0) {
-				if (currentId.equals("**")) {
-					i++;
-					if (subexpressions[i].contains("*"))
-						currentId = "@findPartialIdRecursively(" + subexpressions[i] + ")";
-					else
-						currentId = "@findIdRecursively(" + subexpressions[i] + ")";
+				if (currentId.startsWith("@(") && currentId.endsWith(")")) {
+					// the jQuery expression is evaluated on the client side
+					result += currentId + " ";
+					roots.clear();
+				} else {
+					if (currentId.equals("**")) {
+						i++;
+						if (subexpressions[i].contains("*"))
+							currentId = "@findPartialIdRecursively(" + subexpressions[i] + ")";
+						else
+							currentId = "@findIdRecursively(" + subexpressions[i] + ")";
+					} else if (currentId.equals("*")) {
+						i++;
+						currentId = "@findId(" + subexpressions[i] + ")";
+					} else if (currentId.contains("*")) {
+						currentId = "@findPartialId(" + currentId + ")";
+					}
+					roots = translateSearchExpressionToId(component, roots, currentId, originalExpression);
 				}
-				else if (currentId.equals("*")) {
-					i++;
-					currentId = "@findId(" + subexpressions[i] + ")";
-				}
-				else if (currentId.contains("*")) {
-					currentId = "@findPartialId(" + currentId + ")";
-				}
-				roots = translateSearchExpressionToId(component, roots, currentId, originalExpression);
 			} else
 				throw new FacesException("Invalid search expression: " + originalExpression);
 		}
 
-		String result = "";
-		for (UIComponent c:roots) {
+		
+		for (UIComponent c : roots) {
 			result += c.getClientId() + " ";
 		}
 		return result.trim();
 	}
 
-	private static List<UIComponent> translateSearchExpressionToId(UIComponent component, List<UIComponent> roots, String currentId,
-			String originalExpression) {
+	private static List<UIComponent> translateSearchExpressionToId(UIComponent component, List<UIComponent> roots,
+			String currentId, String originalExpression) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		try {
 			if (currentId.startsWith("@")) {
@@ -125,7 +130,7 @@ public class ExpressionResolver {
 				result.addAll(resolver.resolve(component, roots, currentId, originalExpression, params));
 			} else
 				result.addAll(idExpressionResolver.resolve(component, roots, currentId, originalExpression, null));
-			
+
 			return result;
 		} catch (ReflectiveOperationException e) {
 			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
@@ -133,9 +138,9 @@ public class ExpressionResolver {
 		}
 	}
 
-
 	public static List<String> getExpressions(String commaSeparatedList) {
-		if (commaSeparatedList==null) commaSeparatedList="@formOrThis";
+		if (commaSeparatedList == null)
+			commaSeparatedList = "@formOrThis";
 		List<String> expressions = new ArrayList<String>();
 		int pos = 0;
 		int start = 0;
