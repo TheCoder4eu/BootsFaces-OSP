@@ -58,6 +58,7 @@ task copyCssResources(type: Copy) {
   description 'BootsFaces task: copies additional CSS files to the target folder (i.e. files that are not part of Bootstrap).'
   from 'css/bootstrap-multiselect.css'
   from 'css/bootstrap-switch.css'
+  from 'css/dataTables.bootstrap.min.css'
   from 'css/dropdowns.css'
   from 'css/dropdown-submenu.css'
   from 'css/jq.ui.core.css'
@@ -72,6 +73,8 @@ task copyJsResources(type: Copy) {
   from 'js/bootstrap-multiselect-collapsible-groups.js'
   from 'js/bootstrap-multiselect.js'
   from 'js/bootstrap-switch.js'
+  from 'js/jquery.dataTables.min.js'
+  from 'dataTables.bootstrap.min.js'
   from 'ie8support/respond.js'
   from 'ie8support/html5shiv.js'
 

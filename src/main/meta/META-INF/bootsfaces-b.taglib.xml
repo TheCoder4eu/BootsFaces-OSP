@@ -778,6 +778,151 @@
     </attribute>
   </tag>
 
+  <tag>
+    <tag-name>dataTable</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
+    </component>
+    
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the input element.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of this element.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The text of the tooltip.]]></description>
+      <name>tooltip</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
+      <name>value</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table.]]></description>
+      <name>var</name>
+      <required>false</required>
+      <type>String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The onclick attribute.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+      <name>ondblclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+      <name>onmousedown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+      <name>onmousemove</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+      <name>onmouseout</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+      <name>onmouseover</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+      <name>onmouseup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
 
 
   <tag>
