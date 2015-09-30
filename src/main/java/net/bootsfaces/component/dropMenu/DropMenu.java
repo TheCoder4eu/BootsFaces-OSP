@@ -54,10 +54,12 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	protected enum PropertyKeys {
-		binding, contentClass, contentStyle, drop, id, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, tooltipContainer;
+		binding, contentClass, contentStyle, drop,icon,
+		iconAlign,
+		iconAwesome, id, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, tooltipContainer;
 
 		String toString;
-
+		
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
@@ -166,6 +168,60 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	public void setDrop(String _drop) {
 		getStateHelper().put(PropertyKeys.drop, _drop);
 	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIcon() {
+		String value = (String)getStateHelper().eval(PropertyKeys.icon);
+		return  value;
+	}
+	
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIcon(String _icon) {
+	    getStateHelper().put(PropertyKeys.icon, _icon);
+    }
+	
+
+	/**
+	 * Alignment can right or left. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAlign() {
+		String value = (String)getStateHelper().eval(PropertyKeys.iconAlign);
+		return  value;
+	}
+	
+	/**
+	 * Alignment can right or left. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAlign(String _iconAlign) {
+	    getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
+    }
+	
+
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAwesome() {
+		String value = (String)getStateHelper().eval(PropertyKeys.iconAwesome);
+		return  value;
+	}
+	
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAwesome(String _iconAwesome) {
+	    getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+    }
+	
 
 	/**
 	 * Inline style <P>

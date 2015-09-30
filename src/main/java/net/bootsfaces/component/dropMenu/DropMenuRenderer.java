@@ -26,6 +26,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.icon.IconRenderer;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -84,10 +86,30 @@ public class DropMenuRenderer extends CoreRenderer {
 
 				// Encode value
 				String value = (String) dropMenu.getAttributes().get("value");
-				rw.writeText(value, null);
+				String icon = dropMenu.getIcon();
+				String faicon = dropMenu.getIconAwesome();
+				boolean fa = false; // flag to indicate wether the selected icon
+									// set is
+									// Font Awesome or not.
+				if (faicon != null) {
+					icon = faicon;
+					fa = true;
+				}
+				if (icon != null) {
+					Object ialign = dropMenu.getIconAlign();
+					if (ialign != null && ialign.equals(A.RIGHT)) {
+						rw.writeText(value + " ", null);
+						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
+					} else {
+						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
+						// !//R.encodeIcon(rw, this, icon, white);
+						rw.writeText(" " + value, null);
+					}
+				} else {
+					rw.writeText(value, null);
+				}
 				// Encode Caret
-				if (!(dropMenu.getParent() instanceof DropMenu))
-				{
+				if (!(dropMenu.getParent() instanceof DropMenu)) {
 					rw.startElement("b", dropMenu);
 					rw.writeAttribute("class", "caret", "class");
 					rw.endElement("b");
