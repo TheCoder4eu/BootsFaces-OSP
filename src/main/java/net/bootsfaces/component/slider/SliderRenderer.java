@@ -97,9 +97,6 @@ public class SliderRenderer extends BadgeRenderer {
 
 		String mode = slider.getMode();
 		String label = slider.getLabel();
-		if (label != null && slider.isRequired())
-			label += " *";
-
 
 		int min = slider.getMin();
 		int max = slider.getMax();
@@ -144,7 +141,7 @@ public class SliderRenderer extends BadgeRenderer {
 		if (isVertical) {
 			if (label != null && !bottom) {
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row", "class");
+				rw.writeAttribute("class", "row" + getErrorAndRequiredClass(slider, clientId), "class");
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div");/* Row */
 			}
@@ -161,13 +158,12 @@ public class SliderRenderer extends BadgeRenderer {
 				rw.endElement("div"); /* Row */
 
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row", "class");
-				encodeSliderDiv(rw, isVertical, clientId);
+				rw.writeAttribute("class", "row"+ getErrorAndRequiredClass(slider, clientId), "class");
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row", "class");
+				rw.writeAttribute("class", "row" + getErrorAndRequiredClass(slider, clientId), "class");
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div"); /* Row */
 			}
@@ -177,7 +173,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 			if (label != null) {
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row", "class");
+				rw.writeAttribute("class", "row"+ getErrorAndRequiredClass(slider, clientId), "class");
 
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);

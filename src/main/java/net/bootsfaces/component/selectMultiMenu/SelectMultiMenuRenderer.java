@@ -292,16 +292,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 */
 	protected void addLabel(ResponseWriter rw, String clientId, SelectMultiMenu menu) throws IOException {
 		String label = menu.getLabel();
-		{
-			if (label != null && menu.isRequired())
-				label += " *";
-			if (!menu.isRenderLabel()) {
-				label = null;
-			}
-		}
 		if (label != null) {
 			rw.startElement("label", menu);
 			rw.writeAttribute("for", clientId, "for");
+			generateErrorAndRequiredClass(menu, rw, clientId);
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
@@ -685,10 +679,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (cssClass != null) {
 			sb.append(" ").append(cssClass);
 		}
-		boolean isRequired = menu.isRequired();
-		if (isRequired) {
-			sb.append(" ").append("bf-required");
-		}
+		sb.append(" ").append(getErrorAndRequiredClass(menu, clientId));
 
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
