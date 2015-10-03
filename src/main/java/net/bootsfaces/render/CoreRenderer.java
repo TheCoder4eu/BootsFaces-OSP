@@ -19,15 +19,17 @@
 package net.bootsfaces.render;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import javax.el.ValueExpression;
+import javax.faces.application.FacesMessage;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.UIInput;
 import javax.faces.component.ValueHolder;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
@@ -52,6 +54,51 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 	}
+	
+	/**
+	 * Renders the CSS pseudo classes for required fields and for the error levels.
+	 * @param input
+	 * @param rw
+	 * @param clientId
+	 * @throws IOException
+	 */
+	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId)
+			throws IOException {
+		String styleClass = getErrorAndRequiredClass(input, clientId);
+		
+		rw.writeAttribute("class", styleClass, "class");
+	}
+
+	/**
+	 * Yields the value of the required and error level CSS class.
+	 * @param input
+	 * @param clientId
+	 * @return
+	 */
+	protected String getErrorAndRequiredClass(UIInput input, String clientId) {
+		String[] levels = {"bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal"};
+		int level=0;
+		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
+		if (null != messages) {
+			while (messages.hasNext()) {
+				FacesMessage message = messages.next();
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
+					if (level<1) level=1;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
+					if (level<2) level=2;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
+					if (level<3) level=3;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
+					if (level<4) level=4;
+			}
+		}
+		String styleClass = levels[level];
+		if (input.isRequired()) {
+			styleClass += " bf-required";
+		}
+		return styleClass;
+	}
+
 
 	protected boolean shouldRenderAttribute(Object value) {
 		if (value == null)

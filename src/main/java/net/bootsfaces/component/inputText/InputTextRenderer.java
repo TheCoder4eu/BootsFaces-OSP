@@ -20,7 +20,9 @@
 package net.bootsfaces.component.inputText;
 
 import java.io.IOException;
+import java.util.Iterator;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -50,7 +52,7 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String name="input_"+clientId;
+		String name = "input_" + clientId;
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 
 		if (submittedValue != null) {
@@ -94,9 +96,6 @@ public class InputTextRenderer extends CoreRenderer {
 			if (!inputText.isRenderLabel()) {
 				label = null;
 			}
-			else if (inputText.isRequired()) {
-				label += " *";
-			}
 		}
 
 		// Define TYPE ( if null set default = text )
@@ -118,6 +117,8 @@ public class InputTextRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
+			generateErrorAndRequiredClass(inputText, rw, clientId);
+
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
@@ -168,7 +169,7 @@ public class InputTextRenderer extends CoreRenderer {
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		renderPassThruAttributes(context, component, A.INPUT_TEXT_ATTRS);
 
-		String autocomplete=inputText.getAutocomplete();
+		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
@@ -222,10 +223,7 @@ public class InputTextRenderer extends CoreRenderer {
 			sb.append(" ").append(sclass);
 		}
 
-		if (inputText.isRequired()) {
-			sb.append(" ").append("bf-required");
-		}
-
+		sb.append(" ").append(getErrorAndRequiredClass(inputText, inputText.getClientId()));
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
 			rw.writeAttribute("class", s, "class");
