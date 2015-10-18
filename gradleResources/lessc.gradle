@@ -17,7 +17,8 @@
 
 buildscript {
     dependencies {
-        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.3.0'
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.5.4'
+//        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.3.0'
     }
 }
 

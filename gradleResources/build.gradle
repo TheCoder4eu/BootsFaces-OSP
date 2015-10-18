@@ -17,11 +17,40 @@ Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/../build.properties"))
 ext.BootstrapVersion = props['bootstrap.version']
 
+ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
+ext.BootswatchFolder = 'Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
+ext.theme = props['bootswatch.theme']
+
 task getBootstrap(type: GradleBuild) {
   description 'BootsFaces task: downloads and unzips Bootstrap.'
     buildFile = 'bootstrap.gradle'
     tasks = ['downloadAndUnzipBootstrap']
 }
+
+task getBootswatchTheme(type: GradleBuild) {
+  description 'BootsFaces task: downloads and unzips Bootswatch Theme.'
+  println 'Task= getBootswatchTheme:'
+    buildFile = 'bootswatch.gradle'
+    tasks = ['downloadAndUnzipBootswatch']
+}
+getBootswatchTheme.onlyIf { theme.length() > 1}
+
+task copyBootswatchLess(type: Copy) {
+  description 'BootsFaces task: copies the Bootswatch less files to the process folder.'
+  println 'copyBootswatchLess:'+BootswatchFolder+'/'+theme
+  from BootswatchFolder+'/'+theme
+  into "${buildDir}/process/less"
+  
+  //rename 'variables.less', 'extra-variables.less'
+  rename 'bootswatch.less', 'extra-theme.less'
+}
+copyBootswatchLess.onlyIf { theme.length() > 1}
+
+task addBootswatchTheme(dependsOn: ['getBootswatchTheme']) {
+     println 'Task= addBootswatchTheme:'
+}
+copyBootswatchLess.mustRunAfter getBootswatchTheme
+
 
 task copyOriginalLess(type: Copy) {
   description 'BootsFaces task: copies the Bootstrap less folders to the process folder.'
@@ -91,7 +120,7 @@ task copyFonts(type: Copy) {
   into "${buildDir}/resources/META-INF/resources/fonts"
 }
 */
-task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapFonts', 'copyBootstrapJs']) {
+task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapFonts', 'copyBootstrapJs','copyBootswatchLess']) {
 
 }
 
@@ -147,11 +176,15 @@ task updateMavenResources(type: Copy) {
 }
 
 getBootstrap.mustRunAfter copyBootsFacesResources
+//addBootswatchTheme.mustRunAfter getBootstrap
+//copyFiles2Process.mustRunAfter addBootswatchTheme
+copyBootswatchLess.mustRunAfter copyOriginalLess
 copyFiles2Process.mustRunAfter getBootstrap
+addBootswatchTheme.mustRunAfter copyFiles2Process
 lesscss.mustRunAfter copyFiles2Process
 copyAssetResources.mustRunAfter lesscss
 
-task buildResources(dependsOn: ['copyBootsFacesResources', 'getBootstrap', 'copyFiles2Process', 'lesscss', 'copyAssetResources',
+task buildResources(dependsOn: ['copyBootsFacesResources', 'getBootstrap', 'copyFiles2Process', 'addBootswatchTheme', 'lesscss', 'copyAssetResources',
                                 'cleanMavenResources', 'updateMavenResources']) {
    description 'BootsFaces task: downloads Bootstrap from the internet and generates both the mavenResource folder and the Gradle resource folder from scratch.'
                                 

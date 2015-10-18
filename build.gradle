@@ -17,6 +17,7 @@ Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
 ext.BootstrapVersion = props['bootstrap.version']
+ext.theme = props['bootswatch.theme']
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
@@ -26,6 +27,7 @@ sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
 archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
+//if(theme.length() > 1) archivesBaseName = archivesBaseName+'-'+theme
 
 repositories {
 mavenCentral()
