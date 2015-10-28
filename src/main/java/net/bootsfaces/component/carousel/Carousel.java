@@ -42,7 +42,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"),
+		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"), */
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.carousel.Carousel")
 public class Carousel extends UICommand implements net.bootsfaces.render.IHasTooltip,IAJAXComponent, ClientBehaviorHolder {
@@ -56,6 +56,7 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 	public Carousel() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

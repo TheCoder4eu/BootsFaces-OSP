@@ -128,6 +128,26 @@ public class AddResourcesListener implements SystemEventListener {
 		// Do we have to add font-awesome and jQuery, or are the resources
 		// already there?
 		boolean loadJQuery = true;
+		String suppressJQuery = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.get_jquery_from_cdn");
+		if (null != suppressJQuery)
+			if (suppressJQuery.equalsIgnoreCase("true") || suppressJQuery.equals("yes"))
+				loadJQuery = false;
+		
+		boolean loadJQueryUI = true;
+		String suppressJQueryUI = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.get_jqueryui_from_cdn");
+		if (null != suppressJQueryUI)
+			if (suppressJQueryUI.equalsIgnoreCase("true") || suppressJQueryUI.equals("yes"))
+				loadJQueryUI = false;
+		
+		boolean loadBootstrapFromCDN = false;
+		String loadBootstrapFromCDNParam = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.get_bootstrap_from_cdn");
+		if (null != loadBootstrapFromCDNParam)
+			if (loadBootstrapFromCDNParam.equalsIgnoreCase("true") || loadBootstrapFromCDNParam.equals("yes"))
+				loadBootstrapFromCDN = true;
+		
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
 			String name = (String) ava.getAttributes().get("name");
@@ -138,6 +158,7 @@ public class AddResourcesListener implements SystemEventListener {
 				if (name.contains("jquery-ui") && name.endsWith(".js")) {
 					// do nothing - the if is needed to avoid confusion between
 					// jQuery and jQueryUI
+					loadJQueryUI = false;
 				} else if (name.contains("jquery") && name.endsWith(".js")) {
 					loadJQuery = false;
 				}
@@ -178,13 +199,15 @@ public class AddResourcesListener implements SystemEventListener {
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file)) {
-					UIOutput output = new UIOutput();
-					output.setRendererType("javax.faces.resource.Script");
-					output.getAttributes().put("name", file);
-					output.getAttributes().put("library", library);
-					output.getAttributes().put("target", "head");
-					addResourceIfNecessary(root, context, output);
+				if (!"jq/jquery.js".equals(file) || (!"bsf".equals(library))) {
+					if ((!file.startsWith("jq/ui")) || (!"bsf".equals(library)) || loadJQueryUI) {
+						UIOutput output = new UIOutput();
+						output.setRendererType("javax.faces.resource.Script");
+						output.getAttributes().put("name", file);
+						output.getAttributes().put("library", library);
+						output.getAttributes().put("target", "head");
+						addResourceIfNecessary(root, context, output);
+					}
 				}
 
 			}
@@ -193,6 +216,9 @@ public class AddResourcesListener implements SystemEventListener {
 
 //		replaceCSSResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
+		if (loadBootstrapFromCDN) {
+			removeBootstrapResources(root, context);
+		}
 		enforceCorrectLoadOrder(root, context);
 
 		{
@@ -316,6 +342,29 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 	}
+	
+	/**
+	 * Remove Bootstrap CSS files (called if the context param "net.bootsfaces.get_bootstrap_from_cdn" is set).
+	 * 
+	 * @param root
+	 *            The current UIViewRoot
+	 * @param context
+	 *            The current FacesContext
+	 */
+	private void removeBootstrapResources(UIViewRoot root, FacesContext context) {
+		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			String name = (String) resource.getAttributes().get("name");
+			String library = (String) resource.getAttributes().get("library");
+			if ("bsf".equals(library) && name !=null && name.endsWith(".css")) {
+				resourcesToRemove.add(resource);
+			}
+		}
+		for (UIComponent c : resourcesToRemove) {
+			root.removeComponentResource(context, c);
+		}
+	}
+
 
 	/**
 	 * Make sure jQuery is loaded before jQueryUI, and that every other
