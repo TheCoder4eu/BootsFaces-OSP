@@ -44,6 +44,27 @@ task copyBootswatchLess(type: Copy) {
   //rename 'variables.less', 'extra-variables.less'
   rename 'bootswatch.less', 'extra-theme.less'
 }
+copyBootswatchLess.doLast {
+    //Patch for Font URL in Bootswatch v3.3.5+3 and later
+    def lessfile="${buildDir}/process/less/extra-theme.less"
+    def bswFile = new File( lessfile )
+    String contents = bswFile.getText( 'UTF-8' )
+    
+    def fonturlexp=/(\@[A-Za-z\-\_]*font[A-Za-z\-\_]*)\s*\:\s*\"(http[^"]+)\"\s*\;/
+    def matcher = (contents=~ fonturlexp)
+    if (matcher.getCount()>0) {
+        def fontvar=matcher[0][1]
+        def fonturl=matcher[0][2]
+        println(matcher.getCount()+ " web font occurrence found.");
+        println(" font var: " + fontvar )
+        println(" font URL:" + fonturl )
+        contents=contents.replaceFirst(/\s*\@import\s+url\(\s*"\@\{\w+\}"\s*\)\s*\;/,'')
+        contents=contents.replaceFirst(/\.[A-Za-z\-\_]+\s*\(\s*${fontvar}\s*\)\s*\;/,'')
+        contents=contents.replaceFirst( fonturlexp ) { '@import url("'+it[2]+'");' }
+    }
+
+    bswFile.write( contents, 'UTF-8' )
+}
 copyBootswatchLess.onlyIf { theme.length() > 1}
 
 task addBootswatchTheme(dependsOn: ['getBootswatchTheme']) {
