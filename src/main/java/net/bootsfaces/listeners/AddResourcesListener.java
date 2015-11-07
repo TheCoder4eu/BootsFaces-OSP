@@ -113,7 +113,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		// deactive FontAwesome support if the no-fa facet is found in the
+		// deactivate FontAwesome support if the no-fa facet is found in the
 		// h:head tag
 		UIComponent header = findHeader(root);
 		boolean useCDNImportForFontAwesome = (null == header) || (null == header.getFacet("no-fa"));
@@ -133,21 +133,21 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null != suppressJQuery)
 			if (suppressJQuery.equalsIgnoreCase("true") || suppressJQuery.equals("yes"))
 				loadJQuery = false;
-		
+
 		boolean loadJQueryUI = true;
 		String suppressJQueryUI = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_jqueryui_from_cdn");
 		if (null != suppressJQueryUI)
 			if (suppressJQueryUI.equalsIgnoreCase("true") || suppressJQueryUI.equals("yes"))
 				loadJQueryUI = false;
-		
+
 		boolean loadBootstrapFromCDN = false;
 		String loadBootstrapFromCDNParam = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_bootstrap_from_cdn");
 		if (null != loadBootstrapFromCDNParam)
 			if (loadBootstrapFromCDNParam.equalsIgnoreCase("true") || loadBootstrapFromCDNParam.equals("yes"))
 				loadBootstrapFromCDN = true;
-		
+
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
 			String name = (String) ava.getAttributes().get("name");
@@ -214,7 +214,7 @@ public class AddResourcesListener implements SystemEventListener {
 			viewMap.remove(RESOURCE_KEY);
 		}
 
-//		replaceCSSResourcesByMinifiedResources(root, context);
+		// replaceCSSResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
 		if (loadBootstrapFromCDN) {
 			removeBootstrapResources(root, context);
@@ -342,9 +342,10 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 	}
-	
+
 	/**
-	 * Remove Bootstrap CSS files (called if the context param "net.bootsfaces.get_bootstrap_from_cdn" is set).
+	 * Remove Bootstrap CSS files (called if the context param
+	 * "net.bootsfaces.get_bootstrap_from_cdn" is set).
 	 * 
 	 * @param root
 	 *            The current UIViewRoot
@@ -356,7 +357,7 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
 			String library = (String) resource.getAttributes().get("library");
-			if ("bsf".equals(library) && name !=null && name.endsWith(".css")) {
+			if ("bsf".equals(library) && name != null && name.endsWith(".css")) {
 				resourcesToRemove.add(resource);
 			}
 		}
@@ -364,7 +365,6 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 	}
-
 
 	/**
 	 * Make sure jQuery is loaded before jQueryUI, and that every other
@@ -378,38 +378,31 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
-//		// first, handle the CSS files.
-//		// Put BootsFaces.css or BootsFaces.min.css first,
-//		// theme.css second
-//		// and everything else behind them.
+		// // first, handle the CSS files.
+		// // Put BootsFaces.css or BootsFaces.min.css first,
+		// // theme.css second
+		// // and everything else behind them.
 		List<UIComponent> resources = new ArrayList<UIComponent>();
-//		for (UIComponent resource : root.getComponentResources(context, "head")) {
-//			String name = (String) resource.getAttributes().get("name");
-//			if (name != null && (name.equals("css/BootsFaces.min.css") || name.equals("css/BootsFaces.css")))
-//				resources.add(resource);
-//		}
-//		for (UIComponent resource : root.getComponentResources(context, "head")) {
-//			String name = (String) resource.getAttributes().get("name");
-//			if (name != null && name.equals("css/theme.css"))
-//				resources.add(resource);
-//		}
-//
-//		// add every file except the JavaScript files and except the two files
-//		// already added.
-//		for (UIComponent resource : root.getComponentResources(context, "head")) {
-//			String name = (String) resource.getAttributes().get("name");
-//			if (name != null && (!name.endsWith(".js")))
-//				if ((!name.equals("css/BootsFaces.min.css")) && (!name.equals("css/BootsFaces.css")))
-//					if (!name.equals("css/theme.css"))
-//						resources.add(resource);
-//		}
-		
+		List<UIComponent> first = new ArrayList<UIComponent>();
+		List<UIComponent> middle = new ArrayList<UIComponent>();
+		List<UIComponent> last = new ArrayList<UIComponent>();
+
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
-			if (name != null && (name.endsWith(".js")))
-				resources.add(resource);
-		}
 
+			String position = (String) resource.getAttributes().get("position");
+			if ("first".equals(position)) {
+				first.add(resource);
+			} else if ("last".equals(position)) {
+				last.add(resource);
+			} else if ("middle".equals(position)) {
+				middle.add(resource);
+			} else {
+				if (name != null && (name.endsWith(".js"))) {
+					resources.add(resource);
+				}
+			}
+		}
 
 		// add the JavaScript files in correct order.
 		Collections.sort(resources, new Comparator<UIComponent>() {
@@ -454,10 +447,32 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		});
 
-		for (UIComponent c : resources) {
+		for (UIComponent c : first) {
 			root.removeComponentResource(context, c);
 		}
 		for (UIComponent c : resources) {
+			root.removeComponentResource(context, c);
+		}
+		for (UIComponent c : last) {
+			root.removeComponentResource(context, c);
+		}
+		
+		for (UIComponent c : root.getComponentResources(context, "head")) {
+			middle.add(c);
+		}
+		for (UIComponent c : middle) {
+			root.removeComponentResource(context, c);
+		}
+		for (UIComponent c : first) {
+			root.getComponentResources(context, "head").add(c);
+		}
+		for (UIComponent c : middle) {
+			root.addComponentResource(context, c, "head");
+		}
+		for (UIComponent c : resources) {
+			root.addComponentResource(context, c, "head");
+		}
+		for (UIComponent c : last) {
 			root.addComponentResource(context, c, "head");
 		}
 	}
