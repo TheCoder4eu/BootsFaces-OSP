@@ -291,6 +291,8 @@ public class NavLink extends HtmlOutcomeTargetLink {
 	}
 
 	protected String getResourceURL(FacesContext fc, String value) {
+            return fc.getExternalContext().encodeResourceURL(value);
+            /*
 		if (value.contains(ResourceHandler.RESOURCE_IDENTIFIER)) {
 			return value;
 		} else {
@@ -298,6 +300,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
 			return fc.getExternalContext().encodeResourceURL(url);
 		}
+            */
 	}
 
 	/**
