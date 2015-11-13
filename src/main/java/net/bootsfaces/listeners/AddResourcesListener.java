@@ -123,6 +123,7 @@ public class AddResourcesListener implements SystemEventListener {
 			if (null != useCDN)
 				if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
 					useCDNImportForFontAwesome = false;
+				else useCDNImportForFontAwesome = true;
 		}
 
 		// Do we have to add font-awesome and jQuery, or are the resources
@@ -422,21 +423,21 @@ public class AddResourcesListener implements SystemEventListener {
 				if (name2.endsWith(".js") && (!(name1.endsWith(".js"))))
 					return -1;
 				if (name1.endsWith(".js")) {
-					if (name1.contains("jquery-ui"))
+					if (name1.toLowerCase().contains("jquery-ui"))
 						name1 = "2.js"; // make it the second JS file
-					else if (name1.contains("jquery"))
+					else if (name1.toLowerCase().contains("jquery"))
 						name1 = "1.js"; // make it the second JS file
-					else if (name1.contains("bsf.js"))
+					else if (name1.toLowerCase().contains("bsf.js"))
 						name1 = "zzz.js"; // make it the last JS file
 					else
 						name1 = "keep.js"; // don't move it
 				}
 				if (name2.endsWith(".js")) {
-					if (name2.contains("jquery-ui"))
+					if (name2.toLowerCase().contains("jquery-ui"))
 						name2 = "2.js"; // make it the second JS file
-					else if (name2.contains("jquery"))
+					else if (name2.toLowerCase().contains("jquery"))
 						name2 = "1.js"; // make it the second JS file
-					else if (name2.contains("bsf.js"))
+					else if (name2.toLowerCase().contains("bsf.js"))
 						name2 = "zzz.js"; // make it the last JS file
 					else
 						name2 = "keep.js"; // don't move it
