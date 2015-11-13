@@ -9,10 +9,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import javax.el.ELContext;
-import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
-import javax.el.PropertyNotFoundException;
 import javax.faces.FacesException;
 import javax.faces.component.ActionSource;
 import javax.faces.component.ActionSource2;
@@ -28,8 +25,6 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
-
-import org.apache.commons.collections.iterators.ArrayListIterator;
 
 import net.bootsfaces.component.commandButton.CommandButton;
 import net.bootsfaces.component.tabView.TabView;
