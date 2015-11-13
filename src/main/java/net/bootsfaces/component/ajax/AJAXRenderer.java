@@ -2,6 +2,7 @@ package net.bootsfaces.component.ajax;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
+import javax.faces.FacesException;
 import javax.faces.component.ActionSource;
 import javax.faces.component.ActionSource2;
 import javax.faces.component.UIComponent;
@@ -26,6 +28,8 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
 import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
+
+import org.apache.commons.collections.iterators.ArrayListIterator;
 
 import net.bootsfaces.component.commandButton.CommandButton;
 import net.bootsfaces.component.tabView.TabView;
@@ -241,9 +245,20 @@ public class AJAXRenderer extends CoreRenderer {
 		List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
 		if (null != behaviors) {
 			for (ClientBehavior cb : behaviors) {
-				if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
+				if (cb instanceof AjaxBehavior) {
 					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
 							(AjaxBehavior) cb);
+					script += s.toString() + ";";
+				} else if (cb.getClass().getSimpleName().equals("AjaxBehavior")) {
+					AjaxBehavior ab = new AjaxBehavior();
+					Object disabled = readBeanAttribute(cb, "isDisabled");
+					ab.setDisabled((Boolean) disabled);
+					ab.setOnerror((String) readBeanAttribute(cb, "getOnerror"));
+					ab.setRender((Collection<String>) readBeanAttributeAsCollection(cb, "getUpdate"));
+					ab.setExecute((Collection<String>) readBeanAttributeAsCollection(cb, "getProcess"));
+					ab.setOnevent(keyClientBehavior);
+					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
+							ab);
 					script += s.toString() + ";";
 				}
 			}
@@ -270,6 +285,36 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		return generatedAJAXCall;
+	}
+	
+	private static Object readBeanAttribute(Object bean, String getter) {
+		try {
+			Method method = bean.getClass().getMethod(getter);
+			Object result = method.invoke(bean);
+			return result;
+		} catch (ReflectiveOperationException e) {
+			throw new FacesException("An error occured when reading the property " + getter + " from the bean " + bean.getClass().getName(), e);
+		}
+		
+	}
+
+	private static Collection<String> readBeanAttributeAsCollection(Object bean, String getter) {
+		Collection<String> result = null;
+		try {
+			Method method = bean.getClass().getMethod(getter);
+			Object value = method.invoke(bean);
+			if (null != value) {
+				String[] partials = ((String)value).split(" ");
+				result = new ArrayList<String>();
+				for (String p:partials) {
+					result.add(p);
+				}
+			}
+			return result;
+		} catch (ReflectiveOperationException e) {
+			throw new FacesException("An error occured when reading the property " + getter + " from the bean " + bean.getClass().getName(), e);
+		}
+		
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
@@ -349,8 +394,6 @@ public class AJAXRenderer extends CoreRenderer {
 					onevent = ((AjaxBehavior) ajaxBehavior).getOnevent();
 					if (onevent == null)
 						onevent = "";
-					else if (onevent.length() > 0)
-						onevent = onevent + ";";
 					Collection<String> execute = ((AjaxBehavior) ajaxBehavior).getExecute();
 					if (null != execute && (!execute.isEmpty())) {
 						for (String u : execute) {
@@ -375,11 +418,16 @@ public class AJAXRenderer extends CoreRenderer {
 
 		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
-		cJS.append(encodeClick(component)).append(onevent).append("BsF.ajax.callAjax(this, event")
+		cJS.append(encodeClick(component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
 				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));
 		if (oncomplete != null) {
 			cJS.append(",function(){" + oncomplete + "}");
+		} else
+			cJS.append(", null");
+		if (onevent != null) {
+			cJS.append(", '" + onevent + "'");
+			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}
 		cJS.append(");");
 
@@ -396,52 +444,6 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		return js;
-	}
-
-	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
-	// Appends an name/value property pair to a JSON object. Assumes
-	// object has already been opened by the caller.
-	public static void appendProperty(StringBuilder builder, String name, Object value, boolean quoteValue) {
-
-		if ((null == name) || (name.length() == 0))
-			throw new IllegalArgumentException();
-
-		char lastChar = builder.charAt(builder.length() - 1);
-		if ((lastChar != ',') && (lastChar != '{'))
-			builder.append(',');
-
-		appendQuotedValue(builder, name);
-		builder.append(":");
-
-		if (value == null) {
-			builder.append("''");
-		} else if (quoteValue) {
-			appendQuotedValue(builder, value.toString());
-		} else {
-			builder.append(value.toString());
-		}
-	}
-
-	// ToDo - copied from Mojarra, and has to be adapted to BootsFaces AJAX
-	// Append a script to the chain, escaping any single quotes, since
-	// our script content is itself nested within single quotes.
-	private static void appendQuotedValue(StringBuilder builder, String script) {
-
-		builder.append("'");
-
-		int length = script.length();
-
-		for (int i = 0; i < length; i++) {
-			char c = script.charAt(i);
-
-			if (c == '\'' || c == '\\') {
-				builder.append('\\');
-			}
-
-			builder.append(c);
-		}
-
-		builder.append("'");
 	}
 
 	/**
