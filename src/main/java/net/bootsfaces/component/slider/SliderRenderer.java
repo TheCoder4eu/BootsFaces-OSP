@@ -139,59 +139,60 @@ public class SliderRenderer extends BadgeRenderer {
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
 		if (isVertical) {
-			if (label != null && !bottom) {
-				rw.startElement("div", null);
-				rw.writeAttribute("class", "row" + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeVLabel(slider, rw, label);
-				rw.endElement("div");/* Row */
-			}
-			rw.startElement("div", null);
-			rw.writeAttribute("class", "row", "class");
-			if (bottom) {
-				encodeSliderDiv(rw, isVertical, clientId);
-				rw.endElement("div");/* Row */
-				rw.startElement("div", null);
-				rw.writeAttribute("class", "row", "class");
-			}
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
-			if (!bottom) {
-				rw.endElement("div"); /* Row */
+                    if (label != null && !bottom) {
+                            rw.startElement("div", null);
+                            rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+                            encodeVLabel(slider, rw, label);
+                            rw.endElement("div");/* Row */
+                    }
+                    rw.startElement("div", null);
+                    rw.writeAttribute("class", "row", "class");
+                    if (bottom) {
+                            encodeSliderDiv(rw, isVertical, clientId);
+                            rw.endElement("div");/* Row */
+                            rw.startElement("div", null);
+                            rw.writeAttribute("class", "row", "class");
+                    }
+                    encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+                    if (!bottom) {
+                            rw.endElement("div"); /* Row */
 
-				rw.startElement("div", null);
-				rw.writeAttribute("class", "row"+ getErrorAndRequiredClass(slider, clientId), "class");
-			}
-			rw.endElement("div"); /* Row */
-			if (label != null && bottom) {
-				rw.startElement("div", null);
-				rw.writeAttribute("class", "row" + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeVLabel(slider, rw, label);
-				rw.endElement("div"); /* Row */
-			}
+                            rw.startElement("div", null);
+                            rw.writeAttribute("class", "row "+ getErrorAndRequiredClass(slider, clientId), "class");
+                            encodeSliderDiv(rw, isVertical, clientId);
+                    }
+                    rw.endElement("div"); /* Row */
+                    if (label != null && bottom) {
+                            rw.startElement("div", null);
+                            rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+                            encodeVLabel(slider, rw, label);
+                            rw.endElement("div"); /* Row */
+                    }
 
 		} else {
-			// <<-- Horizontal -->>
+                // <<-- Horizontal -->>
 
-			if (label != null) {
-				rw.startElement("div", null);
-				rw.writeAttribute("class", "row"+ getErrorAndRequiredClass(slider, clientId), "class");
+                    if (label != null) {
+                            rw.startElement("div", null);
+                            rw.writeAttribute("class", "row "+ getErrorAndRequiredClass(slider, clientId), "class");
 
-				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
-				rw.startElement("label", slider);
-				rw.writeAttribute("for", clientId, null);
-				rw.write(label);
-				rw.endElement("label"); // Label
+                            R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
+                            rw.startElement("label", slider);
+                            rw.writeAttribute("for", clientId, null);
+                            rw.write(label);
+                            rw.endElement("label"); // Label
 
-				rw.endElement("div");// Column
+                            rw.endElement("div");// Column
 
-				rw.endElement("div");/* Row */
-			}
-			rw.startElement("div", null);
-			rw.writeAttribute("class", "row", "class");
+                            rw.endElement("div");/* Row */
+                    }
+                    rw.startElement("div", null);
+                    rw.writeAttribute("class", "row", "class");
 
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+                    encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderDiv(rw, isVertical, clientId);
-			rw.endElement("div");/* Row */
+                    encodeSliderDiv(rw, isVertical, clientId);
+                    rw.endElement("div");/* Row */
 
 		}
 
