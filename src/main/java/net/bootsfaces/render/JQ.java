@@ -62,10 +62,10 @@ public final class JQ {
     //Because JQ1.8+ gives Error: Syntax error, unrecognized expression: unsupported pseudo: j_idt13
     //with #id0:id1 we use the [id=] selector
     public static final String SLIDER_START= "$('div[id=\"CID_slider\"]').slider({";
-    public static final String SLIDER_SLIDE="slide: function( event, ui ) { $('input[id=\"CID\"]').val( ui.value ); BADGE}";
+    public static final String SLIDER_SLIDE="slide: function( event, ui ) { $('input[name=\"CID\"]').val( ui.value ); BADGE}";
     public static final String SLIDER_SLIDE_BADGE="$('span[id=\"CID_badge\"]').text( ui.value ); ";
-    public static final String SLIDER_UPDATE="$('input[id=\"CID\"]').val($('div[id=\"CID_slider\"]').slider('value'));";
-    public static final String SLIDER_INPUT_KEYUP="$('input[id=\"CID\"]').keyup(function( event ) {$('div[id=\"CID_slider\"]').slider('value',$('input[id=\"CID\"]').val())});";
+    public static final String SLIDER_UPDATE="$('input[name=\"CID\"]').val($('div[id=\"CID_slider\"]').slider('value'));";
+    public static final String SLIDER_INPUT_KEYUP="$('input[name=\"CID\"]').keyup(function( event ) {$('div[id=\"CID_slider\"]').slider('value',$('input[name=\"CID\"]').val())});";
     
     //$('div[id="fslider:j_idt60_slider"] > .ui-slider-handle').addClass('ui-slider-handle-round');
     public static final String SLIDER_HANDLE_ROUND="$('div[id=\"CID_slider\"] > .ui-slider-handle').addClass('ui-slider-handle-round');";
