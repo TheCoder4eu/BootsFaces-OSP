@@ -71,8 +71,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 				Object currentOptionValue;
 				if (currentOption instanceof SelectItem) {
 					currentOptionValue = ((SelectItem) currentOption).getValue();
+					if (null == currentOptionValue) // use the label as fall-back
+						currentOptionValue = ((SelectItem) currentOption).getLabel(); 
 				} else {
 					currentOptionValue = ((UISelectItem) currentOption).getItemValue();
+					if (null == currentOptionValue) // use the label as fall-back
+						currentOptionValue = ((UISelectItem) currentOption).getItemLabel(); 
 				}
 				if (currentOptionValue instanceof String) {
 					currentOptionValueAsString = (String) currentOptionValue;
