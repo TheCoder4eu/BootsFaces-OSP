@@ -176,13 +176,15 @@ public class InputTextareaRenderer extends CoreRenderer {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
 
-		String v = getValue2Render(context, component);
-		rw.writeAttribute("value", v, null);
-
 		// Render Ajax Capabilities
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw);
 
+		String v = getValue2Render(context, component);
+		if (null == v)
+			v="";
+		rw.writeText(v, null);
 		rw.endElement("textarea");
+
 		if (append) {
 			if (app.getClass().getName().endsWith("Button")
 					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
