@@ -364,7 +364,7 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(",function(){" + complete + "}");
 		} else
 			cJS.append(", null");
-		if (event != null) {
+		if ((event != null)&&(event.length()>0)) {
 			cJS.append(", '" + event + "'");
 			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}
