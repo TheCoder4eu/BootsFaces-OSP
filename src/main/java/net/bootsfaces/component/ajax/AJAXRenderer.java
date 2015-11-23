@@ -266,7 +266,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (!isJQueryCallback) {
 			if (jsCallback.length() > 0 || script.length() > 0) {
 				if (component instanceof CommandButton)
-					if (jsCallback.length() > 0 && "click".equals(keyClientBehavior))
+					if (generatedAJAXCall && "click".equals(keyClientBehavior))
 						script += ";return false;";
 				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
 			}
