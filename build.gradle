@@ -37,6 +37,17 @@ dependencies {
 compile 'javax.servlet:servlet-api:3.+'
 compile 'com.sun.faces:jsf-api:2.2.+'
 compile 'javax.el:javax.el-api:3.0.0'
+testCompile 'junit:junit:4.11'
+testCompile 'org.mockito:mockito-core:2.0.17-beta'
+// testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
+// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.1.1'
+// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.1.1'
+// testCompile 'org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-javaee:2.0.0-alpha-7'
+// testCompile 'org.jboss.arquillian.extension:arquillian-drone-webdriver-depchain:2.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.graphene:graphene-webdriver-impl:2.1.0.Alpha2'
+// testCompile 'org.jboss.arquillian.extension:arquillian-warp:1.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.extension:arquillian-warp-jsf:1.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.8.Final'
 }
 
 sourceSets {

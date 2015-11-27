@@ -24,8 +24,7 @@ public class InputTextTest {
         
         input.getAttributes().put("styleClass", "styleClass1"); 
         input.setRequired(true);
-        String expected="<div> id=\"clientId1\" class=\"form-group\"<input> id=\"input_clientId1\" name=\"input_clientId1\" type=\"text\" class=\"form-control styleClass1 bf-no-message bf-required\" value=\"null\"</input></div>";
-        
+        String expected="<div> id=\"clientId1\" class=\"form-group\"<input> id=\"input_clientId1\" name=\"clientId1\" type=\"text\" class=\"form-control styleClass1 bf-no-message bf-required\" value=\"null\"</input></div>";
         InputTextRenderer inputTextRenderer = new InputTextRenderer();
 
         jsfMock.generateAndTest(input, expected, inputTextRenderer);

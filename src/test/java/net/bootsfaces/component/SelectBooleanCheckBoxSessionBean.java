@@ -7,9 +7,9 @@ package net.bootsfaces.component;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
-import javax.inject.Named;
 
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 
@@ -18,7 +18,7 @@ import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
  * 
  * @author yersan
  */
-@Named
+@ManagedBean
 @SessionScoped
 public class SelectBooleanCheckBoxSessionBean implements Serializable {
 
