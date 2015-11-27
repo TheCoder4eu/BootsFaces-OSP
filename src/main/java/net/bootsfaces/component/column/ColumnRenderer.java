@@ -19,6 +19,7 @@
 
 package net.bootsfaces.component.column;
 
+import javax.faces.FacesException;
 import javax.faces.component.*;
 import java.io.IOException;
 import java.util.HashMap;
@@ -109,7 +110,7 @@ public class ColumnRenderer extends CoreRenderer {
 			}
 			if (componentAttrs.get("col-xs") != null && colxs == 0) {
 				sb.append(" hidden-xs");
-			}
+			}  
 
 			if (colsm > 0) {
 				sb.append(" col-sm-").append(colsm);
@@ -124,7 +125,42 @@ public class ColumnRenderer extends CoreRenderer {
 			if (componentAttrs.get("col-lg") != null && collg == 0) {
 				sb.append(" hidden-lg");
 			}
-
+			
+			if (column.getHidden() != null) {
+				if ("xs".equals(column.getHidden())) {
+					sb.append(" hidden-xs");
+				}
+				else if ("sm".equals(column.getHidden())) {
+					sb.append(" hidden-xs  hidden-sm");
+				}
+				else if ("md".equals(column.getHidden())) {
+					sb.append(" hidden-xs hidden-sm  hidden-md");
+				}
+				else throw new FacesException("Error rendering the \"hidden\" attribute of b:column: unexpected value found. Legal values are xs, sm, md.");
+			}
+			
+			if (column.getVisible() != null) {
+				if ("sm".equals(column.getVisible())) {
+					sb.append(" visible-sm-");
+					sb.append(column.getDisplay());
+					sb.append(" visible-md-");
+					sb.append(column.getDisplay());
+					sb.append(" visible-lg-");
+					sb.append(column.getDisplay());
+				}
+				else if ("md".equals(column.getVisible())) {
+					sb.append(" visible-md-");
+					sb.append(column.getDisplay());
+					sb.append(" visible-lg-");
+					sb.append(column.getDisplay());
+				}
+				else if ("lg".equals(column.getVisible())) {
+					sb.append(" visible-lg-");
+					sb.append(column.getDisplay());
+				}
+				else throw new FacesException("Error rendering the \"visible\" attribute of b:column: unexpected value found. Legal values are sm, md and lg.");
+			}
+			
 			if (oxs > 0) {
 				sb.append(" col-xs-offset-").append(oxs);
 			}
