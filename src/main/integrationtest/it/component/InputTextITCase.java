@@ -29,7 +29,7 @@ import net.bootsfaces.it.IntegrationTestsBase;
  *
  * @author yersan
  */
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class InputTextITCase extends IntegrationTestsBase {
 
     
@@ -108,7 +108,7 @@ public class InputTextITCase extends IntegrationTestsBase {
     
     
 
-    @Test
+//    @Test
     @InSequence(1)
     public void testInputTextRender() {
         String pageTitle = browser.getTitle();
@@ -120,7 +120,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         assertTrue("input_txt_1 rendered failed. onselect does nt exist.", input_txt_1.getAttribute("onselect").equals("var dummy = 0;"));
     }
     
-    @Test
+//    @Test
     @InSequence(10)
     public void testInputTextValidator() {
         
@@ -141,7 +141,7 @@ public class InputTextITCase extends IntegrationTestsBase {
         
     }
     
-    @Test
+//    @Test
     @InSequence(20)
     public void testInputTextBinding() {
         //binding value was set in backed bean, must be checked
@@ -149,7 +149,7 @@ public class InputTextITCase extends IntegrationTestsBase {
     }
     
     
-    @Test
+//    @Test
     @InSequence(30)
     public void testInputTextValuechangeListener() {
         
@@ -168,7 +168,7 @@ public class InputTextITCase extends IntegrationTestsBase {
     }
     
     
-    @Test
+//    @Test
     @InSequence(40)
     public void testImmediate() {
        

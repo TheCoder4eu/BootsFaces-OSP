@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 @WarpTest
 public class ImageITCase extends IntegrationTestsBase {
 
@@ -66,7 +66,7 @@ public class ImageITCase extends IntegrationTestsBase {
 
 
 
-    @Test
+ //   @Test
     @InSequence(1)
     @RunAsClient
     public void testImageItRender() {
@@ -93,7 +93,7 @@ public class ImageITCase extends IntegrationTestsBase {
 
     }
 
-    @Test
+//    @Test
     @InSequence(10)
     @RunAsClient
     public void testBootsfacesAjaxClick() {
@@ -127,7 +127,7 @@ public class ImageITCase extends IntegrationTestsBase {
         });
     }
 
-    @Test
+//    @Test
     @InSequence(10)
     @RunAsClient
     public void testJsfAjaxClick() {

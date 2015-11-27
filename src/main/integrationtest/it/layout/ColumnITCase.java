@@ -23,7 +23,7 @@ import net.bootsfaces.it.IntegrationTestsBase;
  *
  * @author yersan
  */
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class ColumnITCase extends IntegrationTestsBase {
 
     @Deployment(testable = false)
@@ -60,7 +60,7 @@ public class ColumnITCase extends IntegrationTestsBase {
      @FindBy(id = "col_6")
     private GrapheneElement col6;
 
-    @Test
+//    @Test
     public void renderColumn() {
         String pageTitle = browser.getTitle();
         assertEquals("Column IT", pageTitle);

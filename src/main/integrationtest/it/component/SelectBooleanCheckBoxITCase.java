@@ -29,7 +29,7 @@ import net.bootsfaces.it.IntegrationTestsBase;
  *
  * @author yersan
  */
-@RunWith(Arquillian.class)
+//@RunWith(Arquillian.class)
 public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
 
     
@@ -76,7 +76,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
     
     
 
-    @Test
+//    @Test
     @InSequence(1)
     public void testSelectBooleanCheckBoxRender() {
         String pageTitle = browser.getTitle();
@@ -88,7 +88,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
         assertTrue("chk_1 rendered failed", chk_1.getAttribute("onselect").equals("var dummy=0;"));
     }
     
-    @Test
+//    @Test
     @InSequence(10)
     public void testSelectBooleanCheckBoxValidator() {
         
@@ -106,7 +106,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
         
     }
     
-    @Test
+//    @Test
     @InSequence(20)
     public void testSelectBooleanCheckBoxBinding() {
         
@@ -115,7 +115,7 @@ public class SelectBooleanCheckBoxITCase extends IntegrationTestsBase {
     }
     
     
-    @Test
+//    @Test
     @InSequence(30)
     public void testSelectBooleanCheckBoxValuechangeListener() {
         //change listener count is 0 ?
