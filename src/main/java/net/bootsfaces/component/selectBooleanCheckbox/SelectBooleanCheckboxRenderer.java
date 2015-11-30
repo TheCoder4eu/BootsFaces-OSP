@@ -287,7 +287,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			throws IOException {
 		rw.startElement("input", selectBooleanCheckbox);
 		rw.writeAttribute("name", clientId+"_helper", null);
-		rw.writeAttribute("value", "oxff", "value");
+		rw.writeAttribute("value", "on", "value");
+		rw.writeAttribute("checked", "true", "checked");
 		rw.writeAttribute("type", "hidden", "type");
 		rw.writeAttribute("style", "display:none", "style");
 		rw.endElement("input");
