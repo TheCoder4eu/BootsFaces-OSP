@@ -44,6 +44,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.faces.FacesException;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.NavigationCase;
 import javax.faces.application.ProjectStage;
@@ -206,7 +207,25 @@ public class Button extends HtmlOutcomeTargetButton {
 
 		String fragment = asString(attrs.get(FRAGMENT));
 		String outcome = getOutcome();
+		if (null != outcome && outcome.contains("#")) {
+			if (null != fragment && fragment.length()>0) {
+				throw new FacesException("Please define the URL fragment either in the fragment attribute or in the outcome attribute, but not both");
+			}
+			int pos = outcome.indexOf("#");
+			fragment = outcome.substring(pos);
+			outcome = outcome.substring(0,  pos);
+		}
 
+		if (outcome == null || outcome.equals("")) {
+			if (null != fragment && fragment.length()>0) {
+				if (!fragment.startsWith("#")) {
+					fragment = "#" + fragment;
+				}
+				js += "window.location.href='" + fragment + "';";
+				return js;
+			}
+		}
+		
 		if (outcome == null || outcome.equals("") || outcome.equals("@none"))
 			return js;
 
@@ -216,10 +235,18 @@ public class Button extends HtmlOutcomeTargetButton {
 			String url = determineTargetURL(context, outcome);
 
 			if (url != null) {
-				if (fragment != null) {
-					url += "#" + fragment;
+				if (url.startsWith("alert(")) {
+					js=url;
+				} else {
+					if (fragment != null) {
+						if (fragment.startsWith("#")) {
+							url += fragment;
+						} else {
+							url += "#" + fragment;
+						}
+					}
+					js += "window.location.href='" + url + "';";
 				}
-				js += "window.location.href='" + url + "';";
 			}
 		}
 
