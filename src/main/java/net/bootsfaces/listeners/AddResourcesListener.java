@@ -95,18 +95,27 @@ public class AddResourcesListener implements SystemEventListener {
 		ResourceHandler rh = app.getResourceHandler();
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
+		UIOutput bootsfaces = new UIOutput();
+		bootsfaces.setRendererType("javax.faces.resource.Stylesheet");
+		bootsfaces.getAttributes().put("name", "css/bootsfaces.css");
+		bootsfaces.getAttributes().put("library", C.BSF_LIBRARY);
+		bootsfaces.getAttributes().put("target", "head");
+		addResourceIfNecessary(root, context, bootsfaces);
 		String theme = null;
 		theme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-		if (isFontAwesomeComponentUsedAndRemoveIt() || (theme != null && theme.equals(C.TRUE))) {
-			Resource themeResource = rh.createResource(C.BSF_CSS_TBSTHEME, C.BSF_LIBRARY);
+		if (isFontAwesomeComponentUsedAndRemoveIt() || (theme != null && (!theme.equalsIgnoreCase("false")))) {
+			String filename = theme + ".css";
+			if (theme.equalsIgnoreCase("true"))
+				filename = "default.css";
+			Resource themeResource = rh.createResource("themes/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
-				throw new FacesException("Error loading theme, cannot find \"" + C.BSF_CSS_TBSTHEME
+				throw new FacesException("Error loading theme, cannot find \"" + "themes/" + filename
 						+ "\" resource of \"" + C.BSF_LIBRARY + "\" library");
 			} else {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Stylesheet");
-				output.getAttributes().put("name", C.BSF_CSS_TBSTHEME);
+				output.getAttributes().put("name", "themes/" + filename);
 				output.getAttributes().put("library", C.BSF_LIBRARY);
 				output.getAttributes().put("target", "head");
 				addResourceIfNecessary(root, context, output);
@@ -123,7 +132,8 @@ public class AddResourcesListener implements SystemEventListener {
 			if (null != useCDN)
 				if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
 					useCDNImportForFontAwesome = false;
-				else useCDNImportForFontAwesome = true;
+				else
+					useCDNImportForFontAwesome = true;
 		}
 
 		// Do we have to add font-awesome and jQuery, or are the resources
@@ -457,7 +467,7 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : last) {
 			root.removeComponentResource(context, c);
 		}
-		
+
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			middle.add(c);
 		}
