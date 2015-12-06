@@ -111,8 +111,8 @@ public class AddResourcesListener implements SystemEventListener {
 			theme = "default";
 		if (true) { // isFontAwesomeComponentUsedAndRemoveIt() || (theme != null
 					// && (!theme.equalsIgnoreCase("false")))) {
-			String filename = theme + "/bsf.css";
-			Resource themeResource = rh.createResource("css/" + filename, C.BSF_LIBRARY);
+			String filename = "bsf.css";
+			Resource themeResource = rh.createResource("css/" + theme + "/"+ filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
 				throw new FacesException("Error loading theme, cannot find \"" + "css/" + filename + "\" resource of \""
