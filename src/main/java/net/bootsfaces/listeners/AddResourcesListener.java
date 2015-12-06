@@ -97,7 +97,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
 		UIOutput bootsfaces = new UIOutput();
 		bootsfaces.setRendererType("javax.faces.resource.Stylesheet");
-		bootsfaces.getAttributes().put("name", "css/default/bootsfaces.css");
+		bootsfaces.getAttributes().put("name", "css/bootsfaces.css");
 		bootsfaces.getAttributes().put("library", C.BSF_LIBRARY);
 		bootsfaces.getAttributes().put("target", "head");
 		addResourceIfNecessary(root, context, bootsfaces);
@@ -120,7 +120,7 @@ public class AddResourcesListener implements SystemEventListener {
 			} else {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Stylesheet");
-				output.getAttributes().put("name", "themes/" + filename);
+				output.getAttributes().put("name", "css/" + filename);
 				output.getAttributes().put("library", C.BSF_LIBRARY);
 				output.getAttributes().put("target", "head");
 				addResourceIfNecessary(root, context, output);
@@ -245,12 +245,12 @@ public class AddResourcesListener implements SystemEventListener {
 		List<UIComponent> res = root.getComponentResources(context, "head");
 		for (UIComponent ava : res) {
 			String library = (String) ava.getAttributes().get("library");
-			if (library.equals("bsf")) {
+			if (library != null && library.equals("bsf")) {
 				String name = (String) ava.getAttributes().get("name");
 				if (null != name) {
-					if (name.endsWith(".css")) {
+					if (name.endsWith(".css") && name.startsWith("css/")) {
 						ava.getAttributes().remove("name");
-						ava.getAttributes().put("name", theme + "/" + name);
+						ava.getAttributes().put("name", "css/" + theme + "/" + name.substring(4));
 					}
 				}
 			}
