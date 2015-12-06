@@ -97,21 +97,26 @@ public class AddResourcesListener implements SystemEventListener {
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
 		UIOutput bootsfaces = new UIOutput();
 		bootsfaces.setRendererType("javax.faces.resource.Stylesheet");
-		bootsfaces.getAttributes().put("name", "css/bootsfaces.css");
+		bootsfaces.getAttributes().put("name", "css/default/bootsfaces.css");
 		bootsfaces.getAttributes().put("library", C.BSF_LIBRARY);
 		bootsfaces.getAttributes().put("target", "head");
 		addResourceIfNecessary(root, context, bootsfaces);
 		String theme = null;
 		theme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-		if (isFontAwesomeComponentUsedAndRemoveIt() || (theme != null && (!theme.equalsIgnoreCase("false")))) {
-			String filename = theme + ".css";
-			if (theme.equalsIgnoreCase("true"))
-				filename = "default.css";
-			Resource themeResource = rh.createResource("themes/" + filename, C.BSF_LIBRARY);
+		if (theme != null) {
+			if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("true")) {
+				theme = "default";
+			}
+		} else
+			theme = "default";
+		if (true) { // isFontAwesomeComponentUsedAndRemoveIt() || (theme != null
+					// && (!theme.equalsIgnoreCase("false")))) {
+			String filename = theme + "/bsf.css";
+			Resource themeResource = rh.createResource("css/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
-				throw new FacesException("Error loading theme, cannot find \"" + "themes/" + filename
-						+ "\" resource of \"" + C.BSF_LIBRARY + "\" library");
+				throw new FacesException("Error loading theme, cannot find \"" + "css/" + filename + "\" resource of \""
+						+ C.BSF_LIBRARY + "\" library");
 			} else {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Stylesheet");
@@ -235,6 +240,20 @@ public class AddResourcesListener implements SystemEventListener {
 		{
 			InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
 			addResourceIfNecessary(root, context, output);
+		}
+
+		List<UIComponent> res = root.getComponentResources(context, "head");
+		for (UIComponent ava : res) {
+			String library = (String) ava.getAttributes().get("library");
+			if (library.equals("bsf")) {
+				String name = (String) ava.getAttributes().get("name");
+				if (null != name) {
+					if (name.endsWith(".css")) {
+						ava.getAttributes().remove("name");
+						ava.getAttributes().put("name", theme + "/" + name);
+					}
+				}
+			}
 		}
 
 	}

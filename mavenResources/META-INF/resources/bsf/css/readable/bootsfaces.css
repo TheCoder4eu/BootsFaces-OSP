@@ -1,0 +1,6 @@
+label.bf-required:after { content:" *"; }
+label.bf-no-message {  }
+label.bf-info {  }
+label.bf-warn { font-color: orange; }
+label.bf-error { color: red; }
+label.bf-fatal { font-color: red; }
