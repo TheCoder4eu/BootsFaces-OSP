@@ -72,15 +72,24 @@ public class LinksContainer extends UIComponentBase {
         
         Map<String, Object> attrs = getAttributes();
         
+        
         String pull = A.asString(attrs.get(A.PULL));
         
         rw.startElement(H.UL, this);
         rw.writeAttribute("id",getClientId(fc),"id");
+        String style = (String) attrs.get("style");
+        if (null != style && style.length()>0) {
+        	rw.writeAttribute("style", style, "style");
+        }
         Tooltip.generateTooltip(fc, attrs, rw);
+        String styleClass = (String) attrs.get("styleClass");
+        if (null == styleClass) {
+        	styleClass="";
+        }
         if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
-            rw.writeAttribute("class", getContainerStyles().concat(" ").concat(A.PULL).concat("-").concat(pull),"class");
+            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat(A.PULL).concat("-").concat(pull),"class");
         } else {
-            rw.writeAttribute("class", getContainerStyles(),"class");
+            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()),"class");
         }
         
         
