@@ -44,6 +44,7 @@ import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
 
 import net.bootsfaces.C;
+import net.bootsfaces.beans.ELTools;
 
 /**
  * This class adds the resource needed by BootsFaces and ensures that they are
@@ -103,16 +104,19 @@ public class AddResourcesListener implements SystemEventListener {
 		addResourceIfNecessary(root, context, bootsfaces);
 		String theme = null;
 		theme = context.getExternalContext().getInitParameter(C.P_USETHEME);
+		theme = ELTools.evalAsString(theme);
 		if (theme != null) {
-			if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("true")) {
+			if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("yes")) {
 				theme = "default";
+			} else if (theme.equalsIgnoreCase("false") || theme.equalsIgnoreCase("no")
+					|| theme.equalsIgnoreCase("custom")) {
+				theme = "other";
 			}
 		} else
-			theme = "default";
-		if (true) { // isFontAwesomeComponentUsedAndRemoveIt() || (theme != null
-					// && (!theme.equalsIgnoreCase("false")))) {
+			theme = "other";
+		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
 			String filename = "bsf.css";
-			Resource themeResource = rh.createResource("css/" + theme + "/"+ filename, C.BSF_LIBRARY);
+			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
 				throw new FacesException("Error loading theme, cannot find \"" + "css/" + filename + "\" resource of \""
@@ -120,7 +124,7 @@ public class AddResourcesListener implements SystemEventListener {
 			} else {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Stylesheet");
-				output.getAttributes().put("name", "css/" + filename);
+				output.getAttributes().put("name", "css/" + theme + "/" + filename);
 				output.getAttributes().put("library", C.BSF_LIBRARY);
 				output.getAttributes().put("target", "head");
 				addResourceIfNecessary(root, context, output);
@@ -250,7 +254,8 @@ public class AddResourcesListener implements SystemEventListener {
 				if (null != name) {
 					if (name.endsWith(".css") && name.startsWith("css/")) {
 						ava.getAttributes().remove("name");
-						ava.getAttributes().put("name", "css/" + theme + "/" + name.substring(4));
+						int pos = name.lastIndexOf('/');
+						ava.getAttributes().put("name", "css/" + theme + "/" + name.substring(pos + 1));
 					}
 				}
 			}
