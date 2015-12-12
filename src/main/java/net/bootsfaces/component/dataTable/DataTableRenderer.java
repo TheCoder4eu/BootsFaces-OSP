@@ -66,9 +66,11 @@ public class DataTableRenderer extends CoreRenderer {
 		// Simple demo widget that simply renders every attribute value
 		rw.startElement("table", dataTable);
 		rw.writeAttribute("id", clientId, "id");
+
 		String styleClass = "table table-striped table-bordered";
 		if (dataTable.getStyleClass() != null)
 			styleClass += " " + dataTable.getStyleClass();
+		styleClass += " " + clientId.replace(":", "") + "Table";
 		rw.writeAttribute("class", styleClass, "class");
 		Tooltip.generateTooltip(context, dataTable, rw);
 		rw.writeAttribute("cellspacing", "0", "cellspacing");
@@ -116,9 +118,32 @@ public class DataTableRenderer extends CoreRenderer {
 			if (column.getFacet("header") != null) {
 				UIComponent facet = column.getFacet("header");
 				facet.encodeAll(context);
+			} else if (column.getAttributes().get("label") != null) {
+				rw.writeText(column.getAttributes().get("label"), null);
 			} else {
-				rw.writeText("Column #" + index, null);
+				boolean labelHasBeenRendered = false;
+				for (UIComponent c : column.getChildren()) {
+					if (c.getAttributes().get("label") != null) {
+						rw.writeText(c.getAttributes().get("label"), null);
+						labelHasBeenRendered = true;
+						break;
+					}
+				}
+				if (!labelHasBeenRendered) {
+					for (UIComponent c : column.getChildren()) {
+						if (c.getAttributes().get("value") != null) {
+							rw.writeText(c.getAttributes().get("value"), null);
+							labelHasBeenRendered = true;
+							break;
+						}
+					}
+
+				}
+				if (!labelHasBeenRendered) {
+					rw.writeText("Column #" + index, null);
+				}
 			}
+
 			rw.endElement("th");
 			index++;
 		}
@@ -149,11 +174,12 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = dataTable.getClientId().replace(":", "\\:");
+		String clientId = dataTable.getClientId().replace(":", "");
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		rw.writeText("$(document).ready(function() {$('#" + clientId + "').DataTable();} );", null);
+		rw.writeText("$(document).ready(function() {$('." + clientId + "Table" + "').DataTable();} );",
+				null);
 		rw.endElement("script");
 	}
 
