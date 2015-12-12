@@ -126,7 +126,11 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		;
 		rw.startElement("div", menu);
 		Tooltip.generateTooltip(context, menu, rw);
-		rw.writeAttribute("class", "form-group", "class");
+		if (menu.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 
 		addLabel(rw, clientId, menu);
 

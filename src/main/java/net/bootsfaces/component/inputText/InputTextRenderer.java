@@ -112,7 +112,12 @@ public class InputTextRenderer extends CoreRenderer {
 		rw.startElement("div", component);
 		Tooltip.generateTooltip(context, inputText, rw);
 		rw.writeAttribute("id", clientId, "id");
-		rw.writeAttribute("class", "form-group", "class");
+		if (inputText.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 
 		if (label != null) {
 			rw.startElement("label", component);

@@ -783,7 +783,7 @@
     <component>
       <component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
@@ -3003,7 +3003,7 @@
     <component>
       <component-type>net.bootsfaces.component.column.Column</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colLg</name>
@@ -3447,6 +3447,12 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+      <name>inline</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[The maximum length of the input.]]></description>
       <name>maxlength</name>
       <required>false</required>
@@ -3746,6 +3752,12 @@
     </attribute>
     <!-- put more tooltip attributes here -->
     <attribute>
+      <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+      <name>inline</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Type of the input. The default is text.]]></description>
       <name>type</name>
       <required>false</required>
@@ -4003,14 +4015,14 @@
     </attribute>
   </tag>
 
-   <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 
+  <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 
     07, 2015. -->
   <tag>
     <tag-name>inputTextarea</tag-name>
     <component>
       <component-type>net.bootsfaces.component.inputTextarea.InputTextarea</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Access key to transfer focus to the input element.]]></description>
       <name>accesskey</name>

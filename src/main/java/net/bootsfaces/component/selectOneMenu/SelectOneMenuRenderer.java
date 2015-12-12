@@ -113,7 +113,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context);
 		rw.startElement("div", menu);
-		rw.writeAttribute("class", "form-group", "class");
+		if (menu.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 
 		addLabel(rw, clientId, menu);
 
