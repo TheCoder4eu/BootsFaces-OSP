@@ -104,8 +104,9 @@ public class AddResourcesListener implements SystemEventListener {
 		addResourceIfNecessary(root, context, bootsfaces);
 		String theme = null;
 		theme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-		theme = ELTools.evalAsString(theme);
-		if (theme != null) {
+                if (theme != null) { theme = ELTools.evalAsString(theme); }
+                else               { theme = ""; }
+		if (theme.trim().length()>0) {
 			if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("yes")) {
 				theme = "default";
 			} else if (theme.equalsIgnoreCase("false") || theme.equalsIgnoreCase("no")
