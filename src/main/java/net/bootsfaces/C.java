@@ -36,6 +36,7 @@ public final class C {
     //Theme
     public static final String BSF_LIBRARY="bsf";
     public static final String P_USETHEME ="BootsFaces_USETHEME";
+    public static final String P_THEME ="BootsFaces_THEME";
     
     //Font Awesome
     //public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
