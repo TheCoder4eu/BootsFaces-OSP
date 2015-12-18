@@ -133,7 +133,7 @@ public class AddResourcesListener implements SystemEventListener {
                 
                 if (usetheme != null) { usetheme = ELTools.evalAsString(usetheme); } else { usetheme = ""; }
                 if (usetheme.trim().length()>0) {
-                    if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("yes")) {
+                    if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
                         UIOutput output = new UIOutput();
                         output.setRendererType("javax.faces.resource.Stylesheet");
                         output.getAttributes().put("name", "css/" + theme + "/theme.css");
