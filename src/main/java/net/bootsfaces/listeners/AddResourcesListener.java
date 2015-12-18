@@ -96,12 +96,7 @@ public class AddResourcesListener implements SystemEventListener {
 		ResourceHandler rh = app.getResourceHandler();
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
-		UIOutput bootsfaces = new UIOutput();
-		bootsfaces.setRendererType("javax.faces.resource.Stylesheet");
-		bootsfaces.getAttributes().put("name", "css/bootsfaces.css");
-		bootsfaces.getAttributes().put("library", C.BSF_LIBRARY);
-		bootsfaces.getAttributes().put("target", "head");
-		addResourceIfNecessary(root, context, bootsfaces);
+		
                 /*
                 As of v0.8.0 we have two Context Parameters:
                 BootsFaces_USETHEME - as in previous versions controls if the current theme is to be rendered in the Flat variant (default)
