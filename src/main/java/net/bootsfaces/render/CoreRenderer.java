@@ -201,10 +201,6 @@ public class CoreRenderer extends Renderer {
 	 *            Attribute name to be added
 	 * @param value
 	 *            Attribute value to be added
-	 * @param property
-	 *            Name of the property or attribute (if any) of the
-	 *            {@link UIComponent} associated with the containing element, to
-	 *            which this generated attribute corresponds
 	 * @throws IllegalStateException
 	 *             if this method is called when there is no currently open
 	 *             element
