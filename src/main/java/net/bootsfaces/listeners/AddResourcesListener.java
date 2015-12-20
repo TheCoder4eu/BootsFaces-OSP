@@ -97,25 +97,24 @@ public class AddResourcesListener implements SystemEventListener {
 		ResourceHandler rh = app.getResourceHandler();
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
-		UIOutput bootsfaces = new UIOutput();
-		bootsfaces.setRendererType("javax.faces.resource.Stylesheet");
-		bootsfaces.getAttributes().put("name", "css/bootsfaces.css");
-		bootsfaces.getAttributes().put("library", C.BSF_LIBRARY);
-		bootsfaces.getAttributes().put("target", "head");
-		addResourceIfNecessary(root, context, bootsfaces);
-		String theme = null;
-		theme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-                if (theme != null) { theme = ELTools.evalAsString(theme); }
-                else               { theme = ""; }
+		
+                /*
+                As of v0.8.0 we have two Context Parameters:
+                BootsFaces_USETHEME - as in previous versions controls if the current theme is to be rendered in the Flat variant (default)
+                                      or in its Enhanced variant, with shadows and decorations turned on.
+                BootsFaces_THEME - controls the Theme to use: the value "default" is plain Bootstrap, the other options are a Bootswach Theme name (lowercase) or "custom".
+                                   If custom is chosen, you will have to provide your custom CSS in the "other" folder.
+                */
+		String theme = null; String usetheme = null;
+                theme = context.getExternalContext().getInitParameter(C.P_THEME);
+		usetheme = context.getExternalContext().getInitParameter(C.P_USETHEME);
+                if (theme != null) { theme = ELTools.evalAsString(theme); } else { theme = ""; }
 		if (theme.trim().length()>0) {
-			if (theme.equalsIgnoreCase("true") || theme.equalsIgnoreCase("yes")) {
-				theme = "default";
-			} else if (theme.equalsIgnoreCase("false") || theme.equalsIgnoreCase("no")
-					|| theme.equalsIgnoreCase("custom")) {
-				theme = "other";
-			}
-		} else
-			theme = "other";
+                    if (theme.equalsIgnoreCase("custom")) { theme = "other"; }
+			 
+		} else theme = "default";
+                
+                //Theme loading
 		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
 			String filename = "bsf.css";
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
@@ -132,6 +131,18 @@ public class AddResourcesListener implements SystemEventListener {
 				addResourceIfNecessary(root, context, output);
 			}
 		}
+                
+                if (usetheme != null) { usetheme = ELTools.evalAsString(usetheme); } else { usetheme = ""; }
+                if (usetheme.trim().length()>0) {
+                    if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
+                        UIOutput output = new UIOutput();
+                        output.setRendererType("javax.faces.resource.Stylesheet");
+                        output.getAttributes().put("name", "css/" + theme + "/theme.css");
+                        output.getAttributes().put("library", C.BSF_LIBRARY);
+                        output.getAttributes().put("target", "head");
+                        addResourceIfNecessary(root, context, output);
+                    }
+                }
 
 		// deactivate FontAwesome support if the no-fa facet is found in the
 		// h:head tag
