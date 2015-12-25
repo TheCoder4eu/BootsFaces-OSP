@@ -29,7 +29,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
 import net.bootsfaces.component.icon.IconRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -105,7 +104,7 @@ public class DropMenuRenderer extends CoreRenderer {
 				}
 				if (icon != null) {
 					Object ialign = dropMenu.getIconAlign();
-					if (ialign != null && ialign.equals(A.RIGHT)) {
+					if (ialign != null && ialign.equals("right")) {
 						rw.writeText(value + " ", null);
 						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
 					} else {

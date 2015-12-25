@@ -12,8 +12,8 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 
@@ -54,7 +54,7 @@ public class ImageRenderer extends CoreRenderer {
         rw.writeAttribute("id", clientId, "id");
         rw.writeURIAttribute("src", this.getImageSource(context, component, "value"), "value");
 
-        renderPassThruAttributes(context, image, A.IMAGE);
+        renderPassThruAttributes(context, image, H.IMAGE);
 
         writeAttribute(rw, "class", image.getStyleClass(), "styleClass");
 

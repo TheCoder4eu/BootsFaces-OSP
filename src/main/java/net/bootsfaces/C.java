@@ -88,31 +88,9 @@ public final class C {
     public static final String PANEL_COMPONENT_TYPE=BSFLAYOUT+".Panel";
     public static final String WELL_COMPONENT_TYPE=BSFLAYOUT+".Well";
     
-    // Dot
-    public static final String DOT=".";
-    public static final String DISABLED="disabled";
-    public static final String READONLY="readonly";
-    public static final String LEFT="left";
-    public static final String RIGHT="right";
-    public static final String DOWN="down";
-    public static final String UP="up";
-    public static final String H="horizontal";
-    public static final String APPEND="append";
-    public static final String PREPEND="prepend";
-    
-    public static final String TRUE="true";
-    //public static final String ="";
-    
-    /*
-     * Messages
-     */
-    //Errors
-    //Warnings
     public static final String W_NONAVCASE_LINK="This link is disabled because a navigation case could not be matched.";
     public static final String W_NONAVCASE_BUTTON="This link is disabled because a navigation case could not be matched.";
     
-    
-    //Info
     
     // Suppress default constructor for noninstantiability
     private C() {

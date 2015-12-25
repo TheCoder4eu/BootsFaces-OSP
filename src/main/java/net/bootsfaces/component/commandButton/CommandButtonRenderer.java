@@ -29,7 +29,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -75,14 +74,14 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		Tooltip.generateTooltip(context, commandButton, rw);
 
-		writeAttribute(rw, H.STYLE, style, H.STYLE);
+		writeAttribute(rw, "style", style, "style");
 
 		rw.writeAttribute("class", getStyleClasses(commandButton), "class");
 
 		String title = commandButton.getTitle();
 
 		if (title != null && title.length() > 0) {
-			rw.writeAttribute(H.TITLE, title, H.TITLE);
+			rw.writeAttribute("title", title, "title");
 		}
 
 		if (commandButton.isDisabled()) {
@@ -97,11 +96,11 @@ public class CommandButtonRenderer extends CoreRenderer {
 			}
 		}
 
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScriptForCommandButtons(context, commandButton, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, commandButton, rw);
 
 		// TODO : write DHTML attrs - onclick
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, commandButton.getAttributes(), A.ALLBUTTON_ATTRS);
+		R.encodeHTML4DHTMLAttrs(rw, commandButton.getAttributes(), H.ALLBUTTON);
 	}
 
 	@Override
@@ -131,7 +130,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 			Object ialign = commandButton.getIconAlign(); // Default Left
 
-			if (ialign != null && ialign.equals(A.RIGHT)) {
+			if (ialign != null && ialign.equals("right")) {
 				value = value != null ? value + " " : null;
 				writeText(rw, value, null);
 				IconRenderer.encodeIcon(rw, component, icon, fa);
@@ -174,7 +173,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		}
 
 		if (component.isDisabled()) {
-			sb.append(" " + A.DISABLED);
+			sb.append(" " + "disabled");
 		}
 		String sclass = component.getStyleClass();
 		if (sclass != null) {

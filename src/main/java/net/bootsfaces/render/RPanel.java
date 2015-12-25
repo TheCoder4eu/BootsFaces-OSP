@@ -127,7 +127,7 @@ public enum RPanel {
             	rw.writeAttribute("style", _titleStyle, "style");
             }
             if (_title != null) {
-                rw.startElement(H.H4, c);
+                rw.startElement("h4", c);
                 if (_titleClass != null){
                 	rw.writeAttribute("class", _titleClass, "class");
                 } else {
@@ -141,7 +141,7 @@ public enum RPanel {
 
                 rw.writeText(_title, null);
                 rw.endElement("a");
-                rw.endElement(H.H4);
+                rw.endElement("h4");
             } else {
                 if (isCollapsible) {
 	                rw.startElement("a", c);

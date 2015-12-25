@@ -139,21 +139,6 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * Public API for the command button.
-	 * 
-	 * @param context
-	 * @param component
-	 * @param rw
-	 * @throws IOException
-	 */
-	public static void generateBootsFacesAJAXAndJavaScriptForCommandButtons(FacesContext context,
-			CommandButton component, ResponseWriter rw) throws IOException {
-		// Render Ajax Capabilities and on<Event>-Handlers
-
-		generateBootsFacesAJAXAndJavaScript(context, component, rw);
-	}
-
-	/**
 	 * Public API for every input component (effectively everything except the
 	 * command button).
 	 * 

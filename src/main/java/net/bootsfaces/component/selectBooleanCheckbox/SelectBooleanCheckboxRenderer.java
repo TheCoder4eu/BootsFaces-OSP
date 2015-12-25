@@ -26,10 +26,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -100,13 +99,13 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		// "Prepend" facet
-		UIComponent prependingAddOnFacet = selectBooleanCheckbox.getFacet(C.PREPEND);
+		UIComponent prependingAddOnFacet = selectBooleanCheckbox.getFacet("prepend");
 		if ((prependingAddOnFacet != null)) {
 			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
 		}
 
 		// "Append" facet
-		UIComponent appendingAddOnFacet = selectBooleanCheckbox.getFacet(C.APPEND);
+		UIComponent appendingAddOnFacet = selectBooleanCheckbox.getFacet("append");
 		if ((appendingAddOnFacet != null)) {
 			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
 		}
@@ -360,7 +359,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), A.CHECKBOX_ATTRS);
+		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), H.CHECKBOX);
 	}
 
 	/**

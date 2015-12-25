@@ -121,7 +121,7 @@ public final class R {
 		}
 		rw.writeAttribute("class", sb.toString().trim(), "class");
 		if (style != null) {
-			rw.writeAttribute(H.STYLE, style, H.STYLE);
+			rw.writeAttribute("style", style, "style");
 		}
 
 		if (null != c) {
@@ -144,13 +144,13 @@ public final class R {
 
 		Map<String, Object> attrs = c.getAttributes();
 
-		String pull = A.asString(attrs.get(A.PULL));
+		String pull = A.asString(attrs.get("pull"));
 
 		rw.startElement("div", c);
 		rw.writeAttribute("id", c.getClientId(fc), "id");
 		Tooltip.generateTooltip(fc, attrs, rw);
-		if (pull != null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT))) {
-			rw.writeAttribute("class", c.getContainerStyles().concat(" ").concat(A.PULL).concat("-").concat(pull),
+		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
+			rw.writeAttribute("class", c.getContainerStyles().concat(" ").concat("pull").concat("-").concat(pull),
 					"class");
 		} else {
 			rw.writeAttribute("class", c.getContainerStyles(), "class");
@@ -194,10 +194,10 @@ public final class R {
 	 */
 	protected static void addClass2Component(UIComponent c, String aclass) {
 		Map<String, Object> a = c.getAttributes();
-		if (a.containsKey(H.STYLECLASS)) {
-			a.put(H.STYLECLASS, a.get(H.STYLECLASS) + " " + aclass);
+		if (a.containsKey("styleClass")) {
+			a.put("styleClass", a.get("styleClass") + " " + aclass);
 		} else {
-			a.put(H.STYLECLASS, aclass);
+			a.put("styleClass", aclass);
 		}
 	}
 

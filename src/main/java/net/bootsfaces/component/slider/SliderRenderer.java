@@ -28,7 +28,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.badge.BadgeRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.JQ;
@@ -123,7 +122,7 @@ public class SliderRenderer extends BadgeRenderer {
 		if (slider.getOrientation() != null) {
 			o = slider.getOrientation();
 		} else {
-			o = C.H;
+			o = "horizontal";
 		}
 		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");

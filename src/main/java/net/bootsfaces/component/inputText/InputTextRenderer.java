@@ -32,7 +32,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -72,9 +71,9 @@ public class InputTextRenderer extends CoreRenderer {
 		String clientId = inputText.getClientId();
 
 		// "Prepend" facet
-		UIComponent prep = inputText.getFacet(C.PREPEND);
+		UIComponent prep = inputText.getFacet("prepend");
 		// "Append" facet
-		UIComponent app = inputText.getFacet(C.APPEND);
+		UIComponent app = inputText.getFacet("append");
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
@@ -102,7 +101,7 @@ public class InputTextRenderer extends CoreRenderer {
 		// support for b:inputSecret
 		String t;
 		if (component instanceof InputSecret) {
-			t = H.PASSWORD;
+			t = "password";
 		} else { // ordinary input fields
 			t = inputText.getType();
 			if (t == null)
@@ -172,7 +171,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, A.INPUT_TEXT_ATTRS);
+		renderPassThruAttributes(context, component, H.INPUT_TEXT);
 
 		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {

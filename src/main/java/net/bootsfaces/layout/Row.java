@@ -31,7 +31,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import net.bootsfaces.render.A;
 import net.bootsfaces.C;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -74,7 +73,7 @@ public class Row extends UIComponentBase {
         ResponseWriter rw = fc.getResponseWriter();
         
         Map<String, Object> attrs = getAttributes();
-       	encodeRow(rw, this, A.asString(attrs.get(H.STYLE)), A.asString(attrs.get(H.STYLECLASS)));
+       	encodeRow(rw, this, A.asString(attrs.get("style")), A.asString(attrs.get("styleClass")));
         
     }
     
@@ -94,7 +93,7 @@ public class Row extends UIComponentBase {
         String s = "row";
         if(sclass!=null) { s+=" "+sclass; }        
         if(c!=null) { rw.writeAttribute("id",c.getClientId(),"id"); }
-        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
+        if(style!=null) { rw.writeAttribute("style",style,"style"); }
         rw.writeAttribute("class", s, "class");
         if (null != c) {
         	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);

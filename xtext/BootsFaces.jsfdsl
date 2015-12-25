@@ -969,6 +969,7 @@ widget navLink
     iconAlign                                                              "Alignment can right or left."
     iconAwesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "The onclick attribute."

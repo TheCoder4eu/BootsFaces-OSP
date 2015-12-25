@@ -32,7 +32,6 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 /**
@@ -84,8 +83,8 @@ public class Container extends UIComponentBase {
         
         Map<String, Object> attrs = getAttributes();
         boolean fluid=A.toBool(attrs.get("fluid"), false);
-        String style=A.asString(attrs.get(H.STYLE)); 
-        String sc=A.asString(attrs.get(H.STYLECLASS));
+        String style=A.asString(attrs.get("style")); 
+        String sc=A.asString(attrs.get("styleClass"));
         
         String c=(fluid ? "container-fluid" : "container");
         if(sc!=null) { c+=" "+sc; }
@@ -93,7 +92,7 @@ public class Container extends UIComponentBase {
         rw.startElement("div", this);
         rw.writeAttribute("id",getClientId(fc),"id");
         Tooltip.generateTooltip(fc, attrs, rw);
-        if(style!=null) { rw.writeAttribute(H.STYLE,style,H.STYLE); }
+        if(style!=null) { rw.writeAttribute("style",style,"style"); }
         rw.writeAttribute("class", c, "class");
         //rw.writeAttribute(H.CLASS, (fluid ? "container-fluid" : "container"),H.CLASS);
     }

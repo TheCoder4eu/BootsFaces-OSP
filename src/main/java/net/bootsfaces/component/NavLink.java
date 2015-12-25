@@ -43,7 +43,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.JSEventHandlerRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
@@ -98,7 +97,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		attrs = getAttributes();
 
 		// If there is the header attribute, we only render a Header
-		String head = A.asString(attrs.get(A.HEADER));
+		String head = A.asString(attrs.get("header"));
 		if (head != null) {
 			encodeHeader(context, head);
 		} else {
@@ -116,7 +115,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 	public void encodeHeader(FacesContext context, String h) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		rw.startElement(H.LI, this);
+		rw.startElement("li", this);
 		rw.writeAttribute("id", getClientId(context), "id");
 		String styleClass = A.asString(attrs.get("styleClass"));
 		if (null == styleClass)
@@ -127,14 +126,14 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");
 		}
-		rw.writeAttribute(H.ROLE, "presentation", null);
+		rw.writeAttribute("role", "presentation", null);
 		rw.writeText(h, null);
-		rw.endElement(H.LI);
+		rw.endElement("li");
 	}
 
 	public void encodeDivider(FacesContext context) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
-		rw.startElement(H.LI, this);
+		rw.startElement("li", this);
 		Tooltip.generateTooltip(context, attrs, rw);
 		// rw.writeAttribute("data-class",
 		// this.getParent().getClass().getSimpleName()+"-"+this.getParent().getClass().getName(),
@@ -153,9 +152,9 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		if (null != style) {
 			rw.writeAttribute("style", style, "style");
 		}
-		rw.writeAttribute(H.ROLE, "presentation", null);
+		rw.writeAttribute("role", "presentation", null);
 
-		rw.endElement(H.LI);
+		rw.endElement("li");
 	}
 
 	public void encodeHTML(FacesContext context) throws IOException {
@@ -165,7 +164,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		String url = encodeHref(context);
 		// else {
 
-		rw.startElement(H.LI, this);
+		rw.startElement("li", this);
 		rw.writeAttribute("id", getClientId(context), "id");
 		Tooltip.generateTooltip(context, attrs, rw);
 		// rw.writeAttribute(H.TYPE, H.BUTTON, null);
@@ -196,21 +195,21 @@ public class NavLink extends HtmlOutcomeTargetLink {
 			 */
 			// R.encodeLabel(rw, this, "important", C.W_NONAVCASE_LINK);
 			if (FacesContext.getCurrentInstance().getApplication().getProjectStage().equals(ProjectStage.Development)) {
-				rw.writeAttribute(H.TOGGLE, H.TOOLTIP, null);
-				rw.writeAttribute(H.TITLE, FacesContext.getCurrentInstance().getApplication().getProjectStage()
+				rw.writeAttribute("data-toggle", "tooltip", null);
+				rw.writeAttribute("title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
 						+ "WARNING! " + C.W_NONAVCASE_LINK, null);
 			}
 			url = "#";
 
 		}
 		rw.writeAttribute("href", url, null);
-		rw.writeAttribute(H.ROLE, "menuitem", null);
+		rw.writeAttribute("role", "menuitem", null);
 		rw.writeAttribute("tabindex", "-1", null);
 
 		JSEventHandlerRenderer.generateJSEventHandlers(rw, this);
 
-		String icon = A.asString(attrs.get(A.ICON));
-		String faicon = A.asString(attrs.get(A.ICONAWESOME));
+		String icon = A.asString(attrs.get("icon"));
+		String faicon = A.asString(attrs.get("iconAwesome"));
 		boolean fa = false; // flag to indicate wether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
@@ -218,8 +217,8 @@ public class NavLink extends HtmlOutcomeTargetLink {
 			fa = true;
 		}
 		if (icon != null) {
-			Object ialign = attrs.get(A.ICON_ALIGN); // Default Left
-			if (ialign != null && ialign.equals(A.RIGHT)) {
+			Object ialign = attrs.get("icon"+"Align"); // Default Left
+			if (ialign != null && ialign.equals("right")) {
 				rw.writeText(value + " ", null);
 				IconRenderer.encodeIcon(rw, this, icon, fa);
 			} else {
@@ -232,12 +231,12 @@ public class NavLink extends HtmlOutcomeTargetLink {
 			rw.writeText(value, null);
 		}
 		rw.endElement("a");
-		rw.endElement(H.LI);
+		rw.endElement("li");
 	}
 
 	private String getStyleClasses() {
 		String c = "";
-		boolean active = A.toBool(attrs.get(A.ACTIVE));
+		boolean active = A.toBool(attrs.get("active"));
 		if (active) {
 			c += "active";
 		}
@@ -250,7 +249,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 	}
 
 	private String encodeHref(FacesContext context) {
-		String href = A.asString(attrs.get(A.HREF));
+		String href = A.asString(attrs.get("href"));
 
 		String url;
 
@@ -277,7 +276,7 @@ public class NavLink extends HtmlOutcomeTargetLink {
 
 			if (url != null) {
 				// fragment
-				String frag = A.asString(attrs.get(A.FRAGMENT));
+				String frag = A.asString(attrs.get("fragment"));
 				if (frag != null) {
 					url += "#" + frag;
 				}
