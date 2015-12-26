@@ -36,6 +36,8 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.navLink.NavLink")
 public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.render.IHasTooltip, IAJAXComponent {
@@ -341,22 +343,32 @@ public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isImmediate() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImmediate(boolean _immediate) {
-	    getStateHelper().put(PropertyKeys.immediate, _immediate);
-    }
-	
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
+
 	/**
 	 * Client side callback to execute when input element loses focus.
 	 * <P>

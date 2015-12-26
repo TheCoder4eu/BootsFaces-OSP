@@ -98,17 +98,14 @@ public class NavLinkRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 
 		rw.startElement("li", navlink);
-		rw.writeAttribute("id", navlink.getClientId(context), "id");
+		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		String styleClass = navlink.getStyleClass();
 		if (null == styleClass)
-			rw.writeAttribute("class", "dropdown-header", "class");
+			writeAttribute(rw, "class", "dropdown-header", "class");
 		else
-			rw.writeAttribute("class", "dropdown-header " + styleClass, "class");
-		String style = navlink.getStyle();
-		if (null != style) {
-			rw.writeAttribute("style", style, "style");
-		}
-		rw.writeAttribute("role", "presentation", null);
+			writeAttribute(rw, "class", "dropdown-header " + styleClass, "class");
+		writeAttribute(rw, "style", navlink.getStyle(), "style");
+		writeAttribute(rw, "role", "presentation", null);
 		rw.writeText(h, null);
 		rw.endElement("li");
 	}
@@ -123,15 +120,12 @@ public class NavLinkRenderer extends CoreRenderer {
 		else
 			styleClass += " ";
 		if (navlink.getParent().getClass().equals(NavBarLinks.class)) {
-			rw.writeAttribute("class", styleClass + "divider-vertical", "class");
+			writeAttribute(rw, "class", styleClass + "divider-vertical", "class");
 		} else {
-			rw.writeAttribute("class", styleClass + "divider", "class");
+			writeAttribute(rw, "class", styleClass + "divider", "class");
 		}
-		String style = navlink.getStyle();
-		if (null != style) {
-			rw.writeAttribute("style", style, "style");
-		}
-		rw.writeAttribute("role", "presentation", null);
+		writeAttribute(rw, "style", navlink.getStyle(), "style");
+		writeAttribute(rw, "role", "presentation", null);
 
 		rw.endElement("li");
 	}
@@ -140,50 +134,41 @@ public class NavLinkRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 
 		String value = (String) navlink.getValue();
-		String url = encodeHref(context, navlink);
-		// else {
-
 		rw.startElement("li", navlink);
-		rw.writeAttribute("id", navlink.getClientId(context), "id");
+		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		Tooltip.generateTooltip(context, navlink, rw);
-		rw.writeAttribute("class", getStyleClasses(navlink), "class");
-		String style = navlink.getStyle();
-		if (null != style) {
-			rw.writeAttribute("style", style, "style");
-		}
-		rw.startElement("a", navlink);
-		style = navlink.getContentStyle();
-		if (null != style) {
-			rw.writeAttribute("style", style, "style");
-		}
-		String contentClass = navlink.getContentClass();
-		if (null != style) {
-			rw.writeAttribute("class", contentClass, "class");
-		}
-		if (url == null) {
-			/*
-			 * If we cannot get an outcome we use the Bootstrap Framework to
-			 * give a feedback to the developer if this build is in the
-			 * Development Stage
-			 */
-			if (FacesContext.getCurrentInstance().getApplication().getProjectStage().equals(ProjectStage.Development)) {
-				rw.writeAttribute("data-toggle", "tooltip", null);
-				rw.writeAttribute("title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
-						+ "WARNING! " + "This link is disabled because a navigation case could not be matched.", null);
-			}
-			url = "#";
-
-		}
-		rw.writeAttribute("href", url, null);
-		rw.writeAttribute("role", "menuitem", null);
-		rw.writeAttribute("tabindex", "-1", null);
-
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, navlink, rw);
 
-		// TODO : write DHTML attrs - onclick
-		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
 
+		writeAttribute(rw, "class", getStyleClasses(navlink));
+		writeAttribute(rw, "style", navlink.getStyle());
+
+		rw.startElement("a", navlink);
+		writeAttribute(rw, "style", navlink.getContentStyle(), "style");
+		writeAttribute(rw, "class", navlink.getContentClass(), "class");
+		if (navlink.getUpdate() == null && (!navlink.isAjax())) {
+			String url = encodeHref(context, navlink);
+			if (url == null) {
+				/*
+				 * If we cannot get an outcome we use the Bootstrap Framework to
+				 * give a feedback to the developer if this build is in the
+				 * Development Stage
+				 */
+				if (FacesContext.getCurrentInstance().getApplication().getProjectStage()
+						.equals(ProjectStage.Development)) {
+					writeAttribute(rw, "data-toggle", "tooltip", null);
+					writeAttribute(rw, "title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
+							+ "WARNING! " + "This link is disabled because a navigation case could not be matched.",
+							null);
+				}
+				url = "#";
+
+			}
+			writeAttribute(rw, "href", url, null);
+		}
+		writeAttribute(rw, "role", "menuitem", null);
+		writeAttribute(rw, "tabindex", "-1", null);
 
 		String icon = navlink.getIcon();
 		String faicon = navlink.getIconAwesome();
@@ -241,7 +226,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			NavigationCase navCase = cnh.getNavigationCase(context, null, outcome);
 			if (navCase == null) {
 				return null;
-			} 
+			}
 			String vId = navCase.getToViewId(context);
 
 			Map<String, List<String>> params = getParams(navCase, navlink);
@@ -255,8 +240,7 @@ public class NavLinkRenderer extends CoreRenderer {
 					url += "#" + frag;
 				}
 				return url;
-			}
-			else {
+			} else {
 				return "#";
 			}
 		}
