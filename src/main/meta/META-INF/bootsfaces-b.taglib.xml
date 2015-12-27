@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
   version="2.0">
   <namespace>http://bootsfaces.net/ui</namespace>
@@ -783,7 +782,7 @@
     <component>
       <component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
@@ -3003,7 +3002,7 @@
     <component>
       <component-type>net.bootsfaces.component.column.Column</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colLg</name>
@@ -3686,8 +3685,7 @@
     </attribute>
   </tag>
 
-  <!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 
-    5, 2014. -->
+  <!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 5, 2014. -->
   <!-- inputSecret is mostly a copy of inputText. -->
 
   <tag>
@@ -4003,14 +4001,13 @@
     </attribute>
   </tag>
 
-   <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    07, 2015. -->
+  <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 07, 2015. -->
   <tag>
     <tag-name>inputTextarea</tag-name>
     <component>
       <component-type>net.bootsfaces.component.inputTextarea.InputTextarea</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Access key to transfer focus to the input element.]]></description>
       <name>accesskey</name>
@@ -4349,8 +4346,7 @@
     </attribute>
   </tag>
 
-  <!-- Checkbox added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    08, 2014. -->
+  <!-- Checkbox added by Stephan Rauh, http://www.beyondjava.net, on Nov 08, 2014. -->
   <tag>
     <tag-name>selectBooleanCheckbox</tag-name>
     <component>
@@ -4872,8 +4868,7 @@
   </tag>
 
 
-  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, 
-    on Nov 09, 2014. -->
+  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on Nov 09, 2014. -->
   <tag>
     <tag-name>tabView</tag-name>
     <component>
@@ -4948,8 +4943,7 @@
     </attribute>
   </tag>
 
-  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, 
-    on Nov 09, 2014. -->
+  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on Nov 09, 2014. -->
   <tag>
     <tag-name>tab</tag-name>
     <component>
@@ -5242,8 +5236,7 @@
     </attribute>
   </tag>
 
-  <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    15, 2014. -->
+  <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 15, 2014. -->
   <tag>
     <tag-name>panelGrid</tag-name>
     <component>
@@ -5623,8 +5616,7 @@
   </tag>
 
 
-  <!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh 
-    on Dec 28, 2014. -->
+  <!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh on Dec 28, 2014. -->
   <tag>
     <tag-name>selectOneMenu</tag-name>
     <component>
@@ -6078,6 +6070,117 @@
       <type>javax.el.MethodExpression</type>
     </attribute>
   </tag>
+
+  <tag>
+    <tag-name>message</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.message.Message</component-type>
+    </component>
+
+    <attribute>
+      <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+      <name>errorClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+      <name>errorStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+      <name>fatalClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+      <name>fatalStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly.]]></description>
+      <name>for</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+      <name>infoClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+      <name>infoStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
+      <name>showDetail</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+      <name>showSummary</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
+      <name>redisplay</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[HTML: CSS styling instructions.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+      <name>warnClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+      <name>warnStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
   <tag>
     <description><![CDATA[Renders all or some FacesMessages depending on the "for" and
 "globalOnly" attributes.

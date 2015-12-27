@@ -4,3 +4,6 @@
     font-family: "Glyphicons Halflings";
     src: url("../../../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../../../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../../../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../../../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }
+.bf-message { padding-top: 2px !important; padding-bottom:2px !important;margin-top:7px; margin-bottom:0px !important;}
+.bf-message-summary { padding-left:10px; font-weight:bold;}
+.bf-message-detail { padding-left:10px;}
