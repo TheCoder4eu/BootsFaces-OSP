@@ -832,6 +832,30 @@ widget listLinks
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
+widget message
+       implemented_by net.bootsfaces.component.Message
+       rendered_by net.bootsfaces.component.MessageRenderer
+       extends UIMessage
+ {
+    dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
+    errorClass                                                             "CSS class to be used for messages with severity \"ERROR\"."
+    errorStyle                                                             "CSS style to be used for messages with severity \"ERROR\"."
+    fatalClass                                                             "CSS class to be used for messages with severity \"FATAL\"."
+    fatalStyle                                                             "CSS style to be used for messages with severity \"FATAL\"."
+    for                 inherited                                          "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
+    id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
+    infoClass                                                              "CSS class to be used for messages with severity \"INFO\"."
+    infoStyle                                                              "CSS style to be used for messages with severity \"INFO\"."
+    rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
+    showDetail          Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to false."
+    showIcon            Boolean default "true"                             "If false, the icon of the message is not show. Default = true."
+    showSummary         Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
+	redisplay           Boolean default "true"                             "Flag indicating whether previously handled messages are redisplayed or not"
+    style                                                                  "HTML: CSS styling instructions."
+    styleClass                                                             "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
+    warnClass                                                              "CSS class to be used for messages with severity \"WARN\"."
+    warnStyle                                                              "CSS style to be used for messages with severity \"WARN\"."
+}
 
 widget messages
        implemented_by net.bootsfaces.component.Messages
