@@ -27,7 +27,8 @@ import java.util.Map;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.html.HtmlOutcomeTargetLink;
+import javax.faces.component.UICommand;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -40,7 +41,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.navLink.NavLink")
-public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.render.IHasTooltip, IAJAXComponent {
+public class NavLink extends UICommand implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navLink.NavLink";
 
@@ -59,7 +60,7 @@ public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.ren
 	}
 
 	protected enum PropertyKeys {
-		active, ajax, binding, contentClass, contentStyle, fragment, header, href, icon, iconAlign, iconAwesome, immediate, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		active, ajax, binding, contentClass, contentStyle, disabled, fragment, header, href, icon, iconAlign, iconAwesome, immediate, includeViewParams, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -369,7 +370,34 @@ public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.ren
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
-	/**
+    /**
+     * <p class="changed_added_2_0">Return whether or not the view
+     * parameters should be encoded into the target url.</p>
+     *
+     * @since 2.0
+     */
+    public boolean isIncludeViewParams() {
+
+        return (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
+
+    }
+
+    /**
+     * <p class="changed_added_2_0">Set whether or not the page
+     * parameters should be encoded into the target url.</p>
+     *
+     * @param includeViewParams The state of the switch for encoding
+     * page parameters
+     *
+     * @since 2.0
+     */
+    public void setIncludeViewParams(boolean includeViewParams) {
+
+        getStateHelper().put(PropertyKeys.includeViewParams, includeViewParams);
+
+    }
+    
+ 	/**
 	 * Client side callback to execute when input element loses focus.
 	 * <P>
 	 * 
@@ -952,5 +980,22 @@ public class NavLink extends HtmlOutcomeTargetLink implements net.bootsfaces.ren
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
+
+	/**
+	 * Boolean value to specify if the button is disabled. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Boolean value to specify if the button is disabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+	    getStateHelper().put(PropertyKeys.disabled, _disabled);
+    }
 
 }

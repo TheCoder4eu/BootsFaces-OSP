@@ -147,7 +147,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		rw.startElement("a", navlink);
 		writeAttribute(rw, "style", navlink.getContentStyle(), "style");
 		writeAttribute(rw, "class", navlink.getContentClass(), "class");
-		if (navlink.getUpdate() == null && (!navlink.isAjax())) {
+		if (navlink.getUpdate() == null && (!navlink.isAjax()) && (navlink.getActionExpression()==null)) {
 			String url = encodeHref(context, navlink);
 			if (url == null) {
 				/*
