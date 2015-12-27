@@ -55,8 +55,6 @@ public class FlyOutMenuRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
-		// <ul class="dropdown-menu" style="display: block; position: static;
-		// margin-bottom: 5px; *width: 180px">
 		FlyOutMenu flyOutMenu = (FlyOutMenu) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = flyOutMenu.getClientId();
@@ -74,12 +72,22 @@ public class FlyOutMenuRenderer extends CoreRenderer {
 		else
 			styleClass = "dropdown-menu " + flyOutMenu.getStyleClass();
 		writeAttribute(rw, "class", styleClass);
+		String width = flyOutMenu.getWidth();
+		addUnitToWidthIfNecessary(width);
 		String style = flyOutMenu.getStyle();
 		if (null == style)
-			style = "display: block; position: static; margin-bottom: 5px; *width: 180px";
+			style = "display: block; position: static; margin-bottom: 5px; *width: "+width;
 		else
-			style = "display: block; position: static; margin-bottom: 5px; *width: 180px;" + flyOutMenu.getStyle();
+			style = "display: block; position: static; margin-bottom: 5px; *width: " + width +";" + flyOutMenu.getStyle();
 		writeAttribute(rw, "style", style);
+	}
+
+	private void addUnitToWidthIfNecessary(String width) {
+		try {
+			Integer.parseInt(width);
+			width += "px";
+		} catch (NumberFormatException noError) {
+		}
 	}
 
 	/**

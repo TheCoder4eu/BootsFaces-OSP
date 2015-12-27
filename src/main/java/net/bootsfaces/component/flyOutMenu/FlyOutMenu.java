@@ -61,7 +61,8 @@ tooltipContainer,
 tooltipDelay,
 tooltipDelayHide,
 tooltipDelayShow,
-tooltipPosition
+tooltipPosition,
+width
 ;
 
         String toString;
@@ -95,6 +96,7 @@ tooltipPosition
 	    getStateHelper().put(PropertyKeys.binding, _binding);
     }
 	
+
 	/**
 	 * Inline style <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -236,6 +238,24 @@ tooltipPosition
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+    }
+	
+
+	/**
+	 * Width of the menu items. Needed to position the child menus correctly. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidth() {
+		String value = (String)getStateHelper().eval(PropertyKeys.width, "180px");
+		return  value;
+	}
+	
+	/**
+	 * Width of the menu items. Needed to position the child menus correctly. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidth(String _width) {
+	    getStateHelper().put(PropertyKeys.width, _width);
     }
 	
 }
