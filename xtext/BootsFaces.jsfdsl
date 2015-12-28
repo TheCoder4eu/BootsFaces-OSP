@@ -1210,6 +1210,17 @@ widget switch
     tooltipPosition                                                  inherited      "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value                                                            inherited      "EL expression referring to the back-end bean attribute providing the value of the field."
     valueChangeListener javax.faces.event.ValueChangeListener        inherited      "A method binding expression referring to a method for handling a valuchangeevent."
+    onColor                                                                         "Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'."
+    offColor                                                                        "Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'."
+    indeterminate       Boolean                                                     "Indeterminate state. Turned off by default."
+    inverse             Boolean                                                     "Inverse switch direction. Default value: false"
+    switchsize                                                                            "The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'."
+    animate             Boolean                                                     "Animate the switch. Default value: true."
+    disabled            Boolean                                                     "Is the switch disabled? Default value: false."
+    readonly            Boolean                                                     "Is the switch readonly? Default value: false."
+    labelText                                                                       "Text of the center handle of the switch. Default value: a space (nbsp)."
+    handleWidth         Integer                                                     "Width of the left and right sides in pixels."
+    labelWidth          Integer                                                     "Width of the center handle in pixels."
 }
 
 
@@ -1220,6 +1231,7 @@ widget selectMultiMenu
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    buttonContainer                                                        "HTML snippet of the container holding both the button as well as the dropdown. Default: <div class='btn-group' style='display:block' />. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     fieldSize                                                              "The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
@@ -1351,7 +1363,7 @@ widget slider
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               inherited                                          "Value."
-}
+    }
 
 
 widget tab
