@@ -125,6 +125,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		String clientId = menu.getClientId(context).replace(":", "-");
 		;
 		rw.startElement("div", menu);
+		writeAttribute(rw, "dir", menu.getDir(), "dir");
+
 		Tooltip.generateTooltip(context, menu, rw);
 		rw.writeAttribute("class", "form-group", "class");
 
@@ -165,7 +167,14 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options += "," + "nonSelectedText:'" + nonSelectedText + "'";
 		}
 		String nSelectedText = menu.getNSelectedText();
-		nSelectedText = (String) menu.getAttributes().get("nSelectedText"); // workaround - the regular getter always yields null
+		nSelectedText = (String) menu.getAttributes().get("nSelectedText"); // workaround
+																			// -
+																			// the
+																			// regular
+																			// getter
+																			// always
+																			// yields
+																			// null
 		if (nSelectedText != null) {
 			options += "," + "nSelectedText:'" + nSelectedText + "'";
 		}
@@ -195,7 +204,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (filterPlaceholder != null) {
 			options += "," + "filterPlaceholder:'" + filterPlaceholder + "'";
 		}
-		
+
 		boolean enableCaseInsensitiveFiltering = menu.isEnableCaseInsensitiveFiltering();
 		if (enableCaseInsensitiveFiltering) {
 			options += "," + "enableCaseInsensitiveFiltering:" + "true";
@@ -210,7 +219,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (dropRight) {
 			options += "," + "dropRight:" + "true";
 		}
-		
+
 		String onChange = menu.getOnchange();
 		if (onChange != null) {
 			options += "," + "onChange:" + onChange;

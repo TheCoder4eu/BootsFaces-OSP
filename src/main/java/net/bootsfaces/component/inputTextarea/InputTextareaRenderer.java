@@ -110,6 +110,10 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", component);
+		if (null != inputText.getDir()) {
+			rw.writeAttribute("dir", inputText.getDir(), "dir");
+		}
+
 		Tooltip.generateTooltip(context, inputText, rw);
 		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("class", "form-group", "class");

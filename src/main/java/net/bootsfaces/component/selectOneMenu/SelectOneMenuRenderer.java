@@ -114,6 +114,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		String clientId = menu.getClientId(context);
 		rw.startElement("div", menu);
 		rw.writeAttribute("class", "form-group", "class");
+		writeAttribute(rw, "dir", menu.getDir(), "dir");
 
 		addLabel(rw, clientId, menu);
 

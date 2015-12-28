@@ -1532,7 +1532,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -1834,7 +1834,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -3546,7 +3546,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -3862,7 +3862,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4051,7 +4051,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4390,7 +4390,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4646,12 +4646,6 @@
     <attribute>
       <description><![CDATA[Message to display when conversion fails.]]></description>
       <name>converterMessage</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
-      <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -5356,7 +5350,7 @@
       <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -5641,7 +5635,7 @@
       <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>

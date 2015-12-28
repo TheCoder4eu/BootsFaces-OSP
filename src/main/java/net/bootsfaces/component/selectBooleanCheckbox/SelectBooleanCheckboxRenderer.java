@@ -98,6 +98,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
 
+		int span = startColSpanDiv(rw, selectBooleanCheckbox);
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		// "Prepend" facet
@@ -114,7 +115,6 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), selectBooleanCheckbox);
 
-		int span = startColSpanDiv(rw, selectBooleanCheckbox);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null),
 				selectBooleanCheckbox);
@@ -181,6 +181,10 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
+				if (null != selectBooleanCheckbox.getDir()) {
+					rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+				}
+
 				rw.writeAttribute("for", "input_" + clientId, "for");
 				rw.writeText(label, null);
 				rw.endElement("label");
@@ -315,6 +319,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String clientId) throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
 		rw.writeAttribute("id", clientId, null);
+		if (null != selectBooleanCheckbox.getDir()) {
+			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+		}
 
 		Tooltip.generateTooltip(context, selectBooleanCheckbox, rw);
 
@@ -428,6 +435,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (span > 0) {
 			rw.startElement("div", selectBooleanCheckbox);
 			rw.writeAttribute("class", "col-md-" + span, "class");
+			if (null != selectBooleanCheckbox.getDir()) {
+				rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+			}
 		}
 		return span;
 	}
@@ -453,6 +463,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (hasAddon) {
 			rw.startElement("div", selectBooleanCheckbox);
 			rw.writeAttribute("class", "input-group", "class");
+			if (null != selectBooleanCheckbox.getDir()) {
+				rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+			}
 		}
 		return hasAddon;
 	}

@@ -28,53 +28,21 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckboxRenderer;
+import net.bootsfaces.render.Tooltip;
 
 
 /** This class generates the HTML code of &lt;b:switchWidget /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.switch.Switch")
 public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
-	/**
-	 * This methods receives and processes input made by the user. More specifically, it ckecks whether the
-	 * user has interacted with the current b:switchWidget. The default implementation simply stores
-	 * the input value in the list of submitted values. If the validation checks are passed,
-	 * the values in the <code>submittedValues</code> list are store in the backend bean.
-	 * @param context the FacesContext.
-	 * @param component the current b:switchWidget.
-	 */  
-	@Override
-	public void decode(FacesContext context, UIComponent component) {
-	    Switch switchWidget = (Switch) component;
-	
-		if (switchWidget.isDisabled() || switchWidget.isReadonly()) {
-		    return;
-		}
-	
-	    decodeBehaviors(context, switchWidget);
-	
-	    String clientId = switchWidget.getClientId(context);
-	    String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-	
-	    if (submittedValue != null) {
-	    	switchWidget.setSubmittedValue(submittedValue);
-	    }
-	}
 	
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = component.getClientId();
-		Switch _switch = (Switch) component;
-		rw.startElement("input", _switch);
-		rw.writeAttribute("id", clientId, "id");
-		renderInputTagAttributes(rw, clientId, _switch);
-		// Render Ajax Capabilities
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), _switch, rw);
-
-		renderInputTagValue(context, rw, _switch);
-		rw.endElement("input");
+		super.encodeBegin(context, component);
 		clientId=clientId.replace(":","\\\\:");
 		rw.append("<script>");
-		rw.append("$('#" + clientId + "').bootstrapSwitch();");
+		rw.append("$('#input_" + clientId + "').bootstrapSwitch();");
 		rw.append("</script>");
 	}
 }

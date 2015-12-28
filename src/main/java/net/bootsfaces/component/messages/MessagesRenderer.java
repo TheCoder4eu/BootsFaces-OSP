@@ -48,7 +48,7 @@ public class MessagesRenderer extends CoreRenderer {
             return;
         }
         
-        UIMessages uiMessages = (UIMessages) component;
+        Messages uiMessages = (Messages) component;
         ResponseWriter writer = facesContext.getResponseWriter();
         
         String clientId = uiMessages.getClientId(facesContext);
@@ -73,6 +73,10 @@ public class MessagesRenderer extends CoreRenderer {
         }
         
         writer.startElement("div", uiMessages);
+		if (null != uiMessages.getDir()) {
+			writer.writeAttribute("dir", uiMessages.getDir(), "dir");
+		}
+
         writer.writeAttribute("id", clientId, "id");
 
         for (String severity : messages.keySet()){
