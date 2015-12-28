@@ -52,5 +52,58 @@ public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.Selec
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+    protected enum PropertyKeys {
+onText,
+offText
+;
+
+        String toString;
+
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
+
+        PropertyKeys() {}
+
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+	
+
+	/**
+	 * Optional label of the active switch. The default value is 'on'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.onText);
+		return  value;
+	}
+	
+	/**
+	 * Optional label of the active switch. The default value is 'on'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnText(String _onText) {
+	    getStateHelper().put(PropertyKeys.onText, _onText);
+    }
+	
+
+	/**
+	 * Optional label of the inactive switch. The default value is 'off'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffText() {
+		String value = (String)getStateHelper().eval(PropertyKeys.offText);
+		return  value;
+	}
+	
+	/**
+	 * Optional label of the inactive switch. The default value is 'off'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffText(String _offText) {
+	    getStateHelper().put(PropertyKeys.offText, _offText);
+    }
 }
 

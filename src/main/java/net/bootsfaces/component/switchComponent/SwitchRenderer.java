@@ -26,9 +26,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckboxRenderer;
-import net.bootsfaces.render.Tooltip;
 
 
 /** This class generates the HTML code of &lt;b:switchWidget /&gt;. */
@@ -45,4 +44,17 @@ public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
 		rw.append("$('#input_" + clientId + "').bootstrapSwitch();");
 		rw.append("</script>");
 	}
+	
+	/**
+	 * The b:switch and the b:selectBooleanCheckbox share most of their code. This method allows to add extra attributes for the switch.
+	 * @param rw
+	 * @param selectBooleanCheckbox
+	 * @throws IOException
+	 */
+	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
+		Switch switchComponent = (Switch)selectBooleanCheckbox;
+		writeAttribute(rw, "data-off-text", switchComponent.getOffText());
+		writeAttribute(rw, "data-on-text", switchComponent.getOnText());
+	}
+
 }

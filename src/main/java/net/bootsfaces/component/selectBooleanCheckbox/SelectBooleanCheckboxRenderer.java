@@ -181,6 +181,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
+				writeAttribute(rw, "class", getErrorAndRequiredClass(selectBooleanCheckbox, clientId));
 				if (null != selectBooleanCheckbox.getDir()) {
 					rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
 				}
@@ -327,6 +328,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 
 		rw.writeAttribute("class", "checkbox", "class");
 		rw.startElement("label", selectBooleanCheckbox);
+		writeAttribute(rw, "class", getErrorAndRequiredClass(selectBooleanCheckbox, clientId));
 
 		rw.startElement("input", selectBooleanCheckbox);
 	}
@@ -373,9 +375,19 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (selectBooleanCheckbox.isReadonly()) {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
+		addAttributesForSwitch(rw, selectBooleanCheckbox);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), A.CHECKBOX_ATTRS);
+	}
+
+	/**
+	 * The b:switch and the b:selectBooleanCheckbox share most of their code. This method allows to add extra attributes for the switch.
+	 * @param rw
+	 * @param selectBooleanCheckbox
+	 * @throws IOException
+	 */
+	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
 	}
 
 	/**
