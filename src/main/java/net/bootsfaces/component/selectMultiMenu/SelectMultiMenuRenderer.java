@@ -124,6 +124,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context).replace(":", "-");
 		;
+		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
 
@@ -146,15 +147,13 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), menu);
 
-		int span = startColSpanDiv(rw, menu);
-
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
 		renderSelectTag(context, rw, clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
 		closeInputGroupForAddOn(rw, hasAddon);
-		closeColSpanDiv(rw, span);
 		rw.endElement("div"); // form-group
+		closeColSpanDiv(rw, span);
 		Tooltip.activateTooltips(context, menu);
 
 		String options = "";
@@ -235,14 +234,24 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options += "," + "onDropdownHide:" + onDropdownHide;
 		}
 
+		
 		String buttonClass = menu.getButtonClass();
 		if (buttonClass != null) {
 			options += "," + "buttonClass:'" + buttonClass + "'";
 		}
 
-		String styleClass = menu.getStyleClass();
-		if (styleClass != null) {
-			options += "," + "buttonContainer:'<div class=\"" + styleClass + "\" />'";
+		String buttonContainer = menu.getButtonContainer();
+		if (buttonContainer != null) {
+			options += "," + "buttonContainer:'" + buttonClass + "'";
+			if (menu.getStyleClass()!=null)
+				throw new FacesException("b:selectMultiMenu can't process the styleClass attribute if the buttonContainer attribute is set.");
+		} else {
+			String styleClass = menu.getStyleClass();
+			if (styleClass != null) {
+				options += "," + "buttonContainer:'<div class=\"" + styleClass + "\"  style=\"display:block\"/>'";
+			} else {
+				options += "," + "buttonContainer:'<div class=\"btn-group\" style=\"display:block\" />'";
+			}
 		}
 
 		int buttonWidth = menu.getButtonWidth();
