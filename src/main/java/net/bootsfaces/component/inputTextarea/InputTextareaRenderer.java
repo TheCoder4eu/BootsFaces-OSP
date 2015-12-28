@@ -68,6 +68,11 @@ public class InputTextareaRenderer extends CoreRenderer {
 		InputTextarea inputText = (InputTextarea) component;
 
 		ResponseWriter rw = context.getResponseWriter();
+		int span = inputText.getSpan();
+		if (span > 0) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", "col-md-" + span, "class");
+		}
 		String clientId = inputText.getClientId();
 
 		// "Prepend" facet
@@ -109,6 +114,10 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", component);
+		if (null != inputText.getDir()) {
+			rw.writeAttribute("dir", inputText.getDir(), "dir");
+		}
+
 		Tooltip.generateTooltip(context, inputText, rw);
 		rw.writeAttribute("id", clientId, "id");
 		if (inputText.isInline()) {
@@ -132,11 +141,6 @@ public class InputTextareaRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "input-group", "class");
 		}
 
-		int span = inputText.getSpan();
-		if (span > 0) {
-			rw.startElement("div", component);
-			rw.writeAttribute("class", "col-md-" + span, "class");
-		}
 
 		if (prepend) {
 			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0

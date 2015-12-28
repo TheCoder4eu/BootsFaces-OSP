@@ -122,6 +122,9 @@ public class Button extends HtmlOutcomeTargetButton {
 		rw.writeAttribute("id", getClientId(context), "id");
 		rw.writeAttribute("name", getClientId(context), "name");
 		rw.writeAttribute("type", "button", null);
+		if (null != attrs.get("dir")) {
+			rw.writeAttribute("dir", attrs.get("dir"), "dir");
+		}
 		if (style != null) {
 			rw.writeAttribute("style", style, "style");
 		}

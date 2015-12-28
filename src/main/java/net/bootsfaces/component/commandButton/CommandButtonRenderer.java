@@ -71,6 +71,10 @@ public class CommandButtonRenderer extends CoreRenderer {
 		rw.writeAttribute("type", type, null);
 		rw.writeAttribute("id", CID, "id");
 		rw.writeAttribute("name", CID, "name");
+		if (null != commandButton.getDir()) {
+			rw.writeAttribute("dir", commandButton.getDir(), "dir");
+		}
+
 
 		Tooltip.generateTooltip(context, commandButton, rw);
 

@@ -72,6 +72,10 @@ public class MessageRenderer extends CoreRenderer {
 		if (null != messageList && (!messageList.isEmpty())) {
 			rw.startElement("div", message);
 			writeAttribute(rw, "id", clientId);
+			if (null != message.getDir()) {
+				rw.writeAttribute("dir", message.getDir(), "dir");
+			}
+
 			String styleClass = message.getStyleClass();
 			if (null != styleClass && styleClass.length() > 0)
 				styleClass = styleClass + " ";

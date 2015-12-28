@@ -111,12 +111,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context);
+		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		if (menu.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
 		}
+		writeAttribute(rw, "dir", menu.getDir(), "dir");
 
 		addLabel(rw, clientId, menu);
 
@@ -134,15 +136,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), menu);
 
-		int span = startColSpanDiv(rw, menu);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
 		renderSelectTag(context, rw, clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
 		closeInputGroupForAddOn(rw, hasAddon);
-		closeColSpanDiv(rw, span);
 		rw.endElement("div"); // form-group
+		closeColSpanDiv(rw, span);
 		Tooltip.activateTooltips(context, menu);
 	}
 
