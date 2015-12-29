@@ -53,7 +53,9 @@ import net.bootsfaces.render.Tooltip;
  * @author thecoder4.eu
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+@ResourceDependencies({ 
+	@ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+	@ResourceDependency(library = "bsf", name = "css/badges.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent(C.NAVLINK_COMPONENT_TYPE)
@@ -231,6 +233,16 @@ public class NavLink extends HtmlOutcomeTargetLink {
 		} else {
 			rw.writeText(value, null);
 		}
+
+		String badge = A.asString(attrs.get(A.BADGE));
+		if (badge != null) {
+			rw.startElement("span", this);
+			rw.writeAttribute("class", "badge", null);
+			rw.writeAttribute("style", "height: 50%; overflow: auto; margin: auto; position: absolute; top: 0; bottom: 0; right: 12px;", "style");
+			rw.writeText(badge, null);
+			rw.endElement("span");			
+		}
+
 		rw.endElement("a");
 		rw.endElement(H.LI);
 	}
