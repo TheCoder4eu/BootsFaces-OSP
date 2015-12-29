@@ -2399,7 +2399,7 @@
   <tag>
     <tag-name>navCommandLink</tag-name>
     <component>
-      <component-type>net.bootsfaces.component.navLink.NavLink</component-type>
+      <component-type>net.bootsfaces.component.navLink.NavCommandLink</component-type>
     </component>
     
     <attribute>

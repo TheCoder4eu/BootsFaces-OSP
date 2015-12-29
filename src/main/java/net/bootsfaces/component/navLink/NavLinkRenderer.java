@@ -30,6 +30,7 @@ import javax.faces.application.NavigationCase;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -70,7 +71,7 @@ public class NavLinkRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		NavLink navlink = (NavLink) component;
+		AbstractNavLink navlink = (AbstractNavLink) component;
 		if (!navlink.isRendered()) {
 			return;
 		}
@@ -78,46 +79,46 @@ public class NavLinkRenderer extends CoreRenderer {
 		// If there is the header attribute, we only render a Header
 		String head = navlink.getHeader();
 		if (head != null) {
-			encodeHeader(context, head, navlink);
+			encodeHeader(context, head, (UIComponent) navlink);
 		} else {
 			// if there is no href, no outcome, no child and no value we render
 			// a divider
-			if ((navlink.getValue() == null) && (navlink.getChildCount() == 0)) {
+			if ((navlink.getValue() == null) && (((UIComponent)navlink).getChildCount() == 0)) {
 				encodeDivider(context, navlink);
 			} else {
-				encodeHTML(context, navlink);
+				encodeHTML(context, (UIComponent) navlink);
 			}
 		} // if header
 		Tooltip.activateTooltips(context, navlink);
 
 	}
 
-	public void encodeHeader(FacesContext context, String h, NavLink navlink) throws IOException {
+	public void encodeHeader(FacesContext context, String h, UIComponent navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
 		rw.startElement("li", navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
-		String styleClass = navlink.getStyleClass();
+		String styleClass = ((AbstractNavLink)navlink).getStyleClass();
 		if (null == styleClass)
 			writeAttribute(rw, "class", "dropdown-header", "class");
 		else
 			writeAttribute(rw, "class", "dropdown-header " + styleClass, "class");
-		writeAttribute(rw, "style", navlink.getStyle(), "style");
+		writeAttribute(rw, "style", ((AbstractNavLink)navlink).getStyle(), "style");
 		writeAttribute(rw, "role", "presentation", null);
 		rw.writeText(h, null);
 		rw.endElement("li");
 	}
 
-	public void encodeDivider(FacesContext context, NavLink navlink) throws IOException {
+	public void encodeDivider(FacesContext context, AbstractNavLink navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
-		rw.startElement("li", navlink);
+		rw.startElement("li", (UIComponent) navlink);
 		Tooltip.generateTooltip(context, navlink, rw);
 		String styleClass = navlink.getStyleClass();
 		if (null == styleClass)
 			styleClass = "";
 		else
 			styleClass += " ";
-		if (navlink.getParent().getClass().equals(NavBarLinks.class)) {
+		if (((UIComponent)navlink).getParent().getClass().equals(NavBarLinks.class)) {
 			writeAttribute(rw, "class", styleClass + "divider-vertical", "class");
 		} else {
 			writeAttribute(rw, "class", styleClass + "divider", "class");
@@ -128,25 +129,29 @@ public class NavLinkRenderer extends CoreRenderer {
 		rw.endElement("li");
 	}
 
-	public void encodeHTML(FacesContext context, NavLink navlink) throws IOException {
+	public void encodeHTML(FacesContext context, UIComponent navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		String value = (String) navlink.getValue();
+		String value = (String) ((AbstractNavLink)navlink).getValue();
 		rw.startElement("li", navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
-		Tooltip.generateTooltip(context, navlink, rw);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, navlink, rw);
+		Tooltip.generateTooltip(context, ((AbstractNavLink)navlink), rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder)navlink, rw);
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
 
-		writeAttribute(rw, "class", getStyleClasses(navlink));
-		writeAttribute(rw, "style", navlink.getStyle());
+		writeAttribute(rw, "class", getStyleClasses(((AbstractNavLink)navlink)));
+		writeAttribute(rw, "style", ((AbstractNavLink)navlink).getStyle());
 
 		rw.startElement("a", navlink);
-		writeAttribute(rw, "style", navlink.getContentStyle(), "style");
-		writeAttribute(rw, "class", navlink.getContentClass(), "class");
-		if (navlink.getUpdate() == null && (!navlink.isAjax()) && (navlink.getActionExpression() == null)) {
-			String url = encodeHref(context, navlink);
+		writeAttribute(rw, "style", ((AbstractNavLink)navlink).getContentStyle(), "style");
+		writeAttribute(rw, "class", ((AbstractNavLink)navlink).getContentClass(), "class");
+		boolean hasActionExpression=false;
+		if (navlink instanceof NavCommandLink)
+			if (((NavCommandLink) navlink).getActionExpression() != null)
+				hasActionExpression=true;
+		if (((AbstractNavLink)navlink).getUpdate() == null && (!((AbstractNavLink)navlink).isAjax()) && (!hasActionExpression)) {
+			String url = encodeHref(context, ((AbstractNavLink)navlink));
 			if (url == null) {
 				/*
 				 * If we cannot get an outcome we use the Bootstrap Framework to
@@ -168,8 +173,8 @@ public class NavLinkRenderer extends CoreRenderer {
 		writeAttribute(rw, "role", "menuitem", null);
 		writeAttribute(rw, "tabindex", "-1", null);
 
-		String icon = navlink.getIcon();
-		String faicon = navlink.getIconAwesome();
+		String icon = ((AbstractNavLink)navlink).getIcon();
+		String faicon = ((AbstractNavLink)navlink).getIconAwesome();
 		boolean fa = false; // flag to indicate wether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
@@ -177,7 +182,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			fa = true;
 		}
 		if (icon != null) {
-			Object ialign = navlink.getIconAlign(); // Default Left
+			Object ialign = ((AbstractNavLink)navlink).getIconAlign(); // Default Left
 			if (ialign != null && ialign.equals("right")) {
 				if (value != null)
 					rw.writeText(value + " ", null);
@@ -211,7 +216,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		rw.endElement("li");
 	}
 
-	private String getStyleClasses(NavLink navlink) {
+	private String getStyleClasses(AbstractNavLink navlink) {
 		String c = "";
 		boolean active = navlink.isActive();
 		if (active) {
@@ -225,7 +230,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		return c;
 	}
 
-	private String encodeHref(FacesContext context, NavLink navlink) {
+	private String encodeHref(FacesContext context, AbstractNavLink navlink) {
 		String href = navlink.getHref();
 
 		String url;
@@ -271,11 +276,11 @@ public class NavLinkRenderer extends CoreRenderer {
 	 * Find all parameters to include by looking at nested uiparams and params
 	 * of navigation case
 	 */
-	protected Map<String, List<String>> getParams(NavigationCase navCase, NavLink button) {
+	protected Map<String, List<String>> getParams(NavigationCase navCase, AbstractNavLink button) {
 		Map<String, List<String>> params = new LinkedHashMap<String, List<String>>();
 
 		// UIParams
-		for (UIComponent child : button.getChildren()) {
+		for (UIComponent child : ((UIComponent)button).getChildren()) {
 			if (child.isRendered() && (child instanceof UIParameter)) {
 				UIParameter uiParam = (UIParameter) child;
 
