@@ -175,7 +175,7 @@ tooltipPosition
 	
 
 	/**
-	 * HTML snippet of the container holding both the button as well as the dropdown. Default: <div class='btn-group' style='display:block' />. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug. <P>
+	 * HTML snippet of the container holding both the button as well as the dropdown. Default: <div class='btn-group' style='display:block'></div>. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getButtonContainer() {
@@ -184,7 +184,7 @@ tooltipPosition
 	}
 	
 	/**
-	 * HTML snippet of the container holding both the button as well as the dropdown. Default: <div class='btn-group' style='display:block' />. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug. <P>
+	 * HTML snippet of the container holding both the button as well as the dropdown. Default: <div class='btn-group' style='display:block'></div>. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setButtonContainer(String _buttonContainer) {
