@@ -58,6 +58,11 @@ public class NavLink extends UICommand implements ClientBehaviorHolder, net.boot
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+	
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
 
 	protected enum PropertyKeys {
 		active, ajax, binding, contentClass, contentStyle, disabled, fragment, header, href, icon, iconAlign, iconAwesome, immediate, includeViewParams, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;

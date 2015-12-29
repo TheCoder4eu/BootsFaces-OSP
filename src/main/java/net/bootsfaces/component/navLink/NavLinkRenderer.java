@@ -39,7 +39,6 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
-import net.bootsfaces.render.JSEventHandlerRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -81,10 +80,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (head != null) {
 			encodeHeader(context, head, navlink);
 		} else {
-			// if there is no href, no outcome and no value attributes
-			// we render a divider
-
-			if (navlink.getValue() == null) {
+			// if there is no href, no outcome, no child and no value we render
+			// a divider
+			if ((navlink.getValue() == null) && (navlink.getChildCount() == 0)) {
 				encodeDivider(context, navlink);
 			} else {
 				encodeHTML(context, navlink);
@@ -147,7 +145,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		rw.startElement("a", navlink);
 		writeAttribute(rw, "style", navlink.getContentStyle(), "style");
 		writeAttribute(rw, "class", navlink.getContentClass(), "class");
-		if (navlink.getUpdate() == null && (!navlink.isAjax()) && (navlink.getActionExpression()==null)) {
+		if (navlink.getUpdate() == null && (!navlink.isAjax()) && (navlink.getActionExpression() == null)) {
 			String url = encodeHref(context, navlink);
 			if (url == null) {
 				/*
@@ -181,15 +179,33 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (icon != null) {
 			Object ialign = navlink.getIconAlign(); // Default Left
 			if (ialign != null && ialign.equals("right")) {
-				rw.writeText(value + " ", null);
+				if (value != null)
+					rw.writeText(value + " ", null);
+				if (navlink.getChildCount() > 0) {
+					for (UIComponent c : navlink.getChildren()) {
+						c.encodeAll(context);
+					}
+				}
 				IconRenderer.encodeIcon(rw, navlink, icon, fa);
 			} else {
 				IconRenderer.encodeIcon(rw, navlink, icon, fa);
-				rw.writeText(" " + value, null);
+				if (navlink.getChildCount() > 0) {
+					for (UIComponent c : navlink.getChildren()) {
+						c.encodeAll(context);
+					}
+				}
+				if (value != null)
+					rw.writeText(" " + value, null);
 			}
 
 		} else {
-			rw.writeText(value, null);
+			if (value != null)
+				rw.writeText(value, null);
+			if (navlink.getChildCount() > 0) {
+				for (UIComponent c : navlink.getChildren()) {
+					c.encodeAll(context);
+				}
+			}
 		}
 		rw.endElement("a");
 		rw.endElement("li");
@@ -289,5 +305,10 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 
 		return params;
+	}
+
+	@Override
+	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
+		// this component rendered it's children itself
 	}
 }
