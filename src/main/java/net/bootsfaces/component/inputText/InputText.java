@@ -78,7 +78,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 
 	protected enum PropertyKeys {
 
-		ajax, placeholder, fieldSize, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
+		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
 		process, update, tooltipContainer;
 
 		String toString;
@@ -171,6 +171,23 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public void setFieldSize(java.lang.String _fieldSize) {
 		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
 	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInline() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+	    getStateHelper().put(PropertyKeys.inline, _inline);
+    }
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by

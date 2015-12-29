@@ -66,7 +66,7 @@ public class ColumnRenderer extends CoreRenderer {
 			int colsm = A.toInt(attrs.get("col-sm"));
 			int collg = A.toInt(attrs.get("col-lg"));
 
-			int span = A.toInt(attrs.get(A.SPAN));
+			int span = A.toInt(attrs.get("span"));
 
 			int colmd = (span > 0) ? span : A.toInt(attrs.get("col-md"));
 			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {

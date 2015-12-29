@@ -36,10 +36,9 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -114,19 +113,23 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		String clientId = menu.getClientId(context);
 		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
-		rw.writeAttribute("class", "form-group", "class");
+		if (menu.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
 
 		addLabel(rw, clientId, menu);
 
 		// "Prepend" facet
-		UIComponent prependingAddOnFacet = menu.getFacet(C.PREPEND);
+		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		if ((prependingAddOnFacet != null)) {
 			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
 		}
 
 		// "Append" facet
-		UIComponent appendingAddOnFacet = menu.getFacet(C.APPEND);
+		UIComponent appendingAddOnFacet = menu.getFacet("append");
 		if ((appendingAddOnFacet != null)) {
 			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
 		}
@@ -575,7 +578,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), A.SELECT_ONE_MENU_ATTRS);
+		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), H.SELECT_ONE_MENU);
 	}
 
 	/**

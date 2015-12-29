@@ -17,7 +17,7 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.selectOneMenu;
+package net.bootsfaces.component.navLink;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -27,69 +27,40 @@ import java.util.Map;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
+import javax.faces.component.UICommand;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
-/** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
+/** This class holds the attributes of &lt;b:navLink /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head")
-})
-@FacesComponent("net.bootsfaces.component.selectOneMenu.SelectOneMenu")
-public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip, IAJAXComponent {
+		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+@FacesComponent("net.bootsfaces.component.navLink.NavLink")
+public class NavLink extends UICommand implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navLink.NavLink";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navLink.NavLink";
 
-	public SelectOneMenu() {
-
+	public NavLink() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
-
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
-					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
-
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	return null;
-    }
-
-    public Collection<String> getEventNames() {
-		return EVENT_NAMES;
-	}
-
-	public String getDefaultEventName() {
-		return "valueChange";
-	}
-	
-    public void validateValue(FacesContext context, Object newValue) {
-    	super.validateValue(context, newValue);
-    }
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
 	protected enum PropertyKeys {
-		accesskey, ajax, alt, binding, dir, disabled, fieldSize, immediate, inline, label, lang, onblur, onchange, onclick, oncomplete, 
-		ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, 
-		onselect, placeholder, process, readonly, renderLabel, required, requiredMessage, size, span, style, styleClass, tabindex, 
-		title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		active, ajax, binding, contentClass, contentStyle, disabled, fragment, header, href, icon, iconAlign, iconAwesome, immediate, includeViewParams, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -105,96 +76,69 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 		}
 	}
 
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
-	}
-	
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
-	}
-	
-	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress",
+					"keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
-	 * Access key to transfer focus to the input element.
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "click";
+	}
+
+	/**
+	 * Adds the active state to the link.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public String getAccesskey() {
-		String value = (String) getStateHelper().eval(PropertyKeys.accesskey);
-		return value;
+	public boolean isActive() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.active, false);
+		return (boolean) value;
 	}
 
 	/**
-	 * Access key to transfer focus to the input element.
+	 * Adds the active state to the link.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAccesskey(String _accesskey) {
-		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+	public void setActive(boolean _active) {
+		getStateHelper().put(PropertyKeys.active, _active);
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Whether the Button submits the form with AJAX.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
-	    getStateHelper().put(PropertyKeys.ajax, _ajax);
-    }
-
-	/**
-	 * Alternate textual description of the input element.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getAlt() {
-		String value = (String) getStateHelper().eval(PropertyKeys.alt);
-		return value;
-	}
-
-	/**
-	 * Alternate textual description of the input element.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAlt(String _alt) {
-		getStateHelper().put(PropertyKeys.alt, _alt);
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
 	/**
@@ -222,68 +166,181 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Direction indication for text that does not inherit directionality.
+	 * contentClass is optional: if specified, the content (i.e. the anchor tag)
+	 * will be displayed with this specific class
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public String getDir() {
-		String value = (String) getStateHelper().eval(PropertyKeys.dir);
+	public String getContentClass() {
+		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
 		return value;
 	}
 
 	/**
-	 * Direction indication for text that does not inherit directionality.
+	 * contentClass is optional: if specified, the content (i.e. the anchor tag)
+	 * will be displayed with this specific class
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDir(String _dir) {
-		getStateHelper().put(PropertyKeys.dir, _dir);
+	public void setContentClass(String _contentClass) {
+		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
 	}
 
 	/**
-	 * Disables the input element, default is false.
+	 * Inline style of the content area (i.e the anchor tag).
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public boolean isDisabled() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
-		return (boolean) value;
-	}
-
-	/**
-	 * Disables the input element, default is false.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDisabled(boolean _disabled) {
-		getStateHelper().put(PropertyKeys.disabled, _disabled);
-	}
-
-	/**
-	 * The size of the input. Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) .
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getFieldSize() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fieldSize);
+	public String getContentStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
 		return value;
 	}
 
 	/**
-	 * The size of the input. Possible values are xs (extra small), sm (small),
-	 * md (medium) and lg (large) .
+	 * Inline style of the content area (i.e the anchor tag).
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setFieldSize(String _fieldSize) {
-		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
+	public void setContentStyle(String _contentStyle) {
+		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * The fragment that is to be appended to the target URL. The # separator is
+	 * applied automatically and needs not be included.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getFragment() {
+		String value = (String) getStateHelper().eval(PropertyKeys.fragment);
+		return value;
+	}
+
+	/**
+	 * The fragment that is to be appended to the target URL. The # separator is
+	 * applied automatically and needs not be included.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFragment(String _fragment) {
+		getStateHelper().put(PropertyKeys.fragment, _fragment);
+	}
+
+	/**
+	 * If present, this element is rendered as Header in a menu with the text
+	 * specifide by this attribute value: all other attributes will be ignored.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getHeader() {
+		String value = (String) getStateHelper().eval(PropertyKeys.header);
+		return value;
+	}
+
+	/**
+	 * If present, this element is rendered as Header in a menu with the text
+	 * specifide by this attribute value: all other attributes will be ignored.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHeader(String _header) {
+		getStateHelper().put(PropertyKeys.header, _header);
+	}
+
+	/**
+	 * URL to link directly to implement anchor behavior.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getHref() {
+		String value = (String) getStateHelper().eval(PropertyKeys.href);
+		return value;
+	}
+
+	/**
+	 * URL to link directly to implement anchor behavior.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHref(String _href) {
+		getStateHelper().put(PropertyKeys.href, _href);
+	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
+	 * names. Alignment can be specified with the iconAlign attribute.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getIcon() {
+		String value = (String) getStateHelper().eval(PropertyKeys.icon);
+		return value;
+	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
+	 * names. Alignment can be specified with the iconAlign attribute.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIcon(String _icon) {
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
+
+	/**
+	 * Alignment can right or left.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getIconAlign() {
+		String value = (String) getStateHelper().eval(PropertyKeys.iconAlign);
+		return value;
+	}
+
+	/**
+	 * Alignment can right or left.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAlign(String _iconAlign) {
+		getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
+	}
+
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
+	 * names. Alignment can be specified with the iconAlign attribute.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getIconAwesome() {
+		String value = (String) getStateHelper().eval(PropertyKeys.iconAwesome);
+		return value;
+	}
+
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
+	 * names. Alignment can be specified with the iconAlign attribute.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAwesome(String _iconAwesome) {
+		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
 	}
 
 	/**
@@ -313,66 +370,34 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
-	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isInline() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
-		return (boolean) value;
-	}
-	
-	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setInline(boolean _inline) {
-	    getStateHelper().put(PropertyKeys.inline, _inline);
+    /**
+     * <p class="changed_added_2_0">Return whether or not the view
+     * parameters should be encoded into the target url.</p>
+     *
+     * @since 2.0
+     */
+    public boolean isIncludeViewParams() {
+
+        return (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
+
     }
 
-	/**
-	 * The label of the field.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getLabel() {
-		String value = (String) getStateHelper().eval(PropertyKeys.label);
-		return value;
-	}
+    /**
+     * <p class="changed_added_2_0">Set whether or not the page
+     * parameters should be encoded into the target url.</p>
+     *
+     * @param includeViewParams The state of the switch for encoding
+     * page parameters
+     *
+     * @since 2.0
+     */
+    public void setIncludeViewParams(boolean includeViewParams) {
 
-	/**
-	 * The label of the field.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLabel(String _label) {
-		getStateHelper().put(PropertyKeys.label, _label);
-	}
+        getStateHelper().put(PropertyKeys.includeViewParams, includeViewParams);
 
-	/**
-	 * A localized user presentable name.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getLang() {
-		String value = (String) getStateHelper().eval(PropertyKeys.lang);
-		return value;
-	}
-
-	/**
-	 * A localized user presentable name.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLang(String _lang) {
-		getStateHelper().put(PropertyKeys.lang, _lang);
-	}
-
-	/**
+    }
+    
+ 	/**
 	 * Client side callback to execute when input element loses focus.
 	 * <P>
 	 * 
@@ -417,7 +442,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * OnClick DHTML event .
+	 * The onclick attribute.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -429,7 +454,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * OnClick DHTML event .
+	 * The onclick attribute.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -708,160 +733,51 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * The placeholder attribute shows text in a field until the field is
-	 * focused upon, then hides the text.
+	 * The outcome to navigate to.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public String getPlaceholder() {
-		String value = (String) getStateHelper().eval(PropertyKeys.placeholder);
+	public String getOutcome() {
+		String value = (String) getStateHelper().eval(PropertyKeys.outcome);
 		return value;
 	}
 
 	/**
-	 * The placeholder attribute shows text in a field until the field is
-	 * focused upon, then hides the text.
+	 * The outcome to navigate to.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setPlaceholder(String _placeholder) {
-		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	public void setOutcome(String _outcome) {
+		getStateHelper().put(PropertyKeys.outcome, _outcome);
 	}
 
 	/**
-	 * Flag indicating that this input element will prevent changes by the user.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public boolean isReadonly() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.readonly, false);
-		return (boolean) value;
-	}
-
-	/**
-	 * Flag indicating that this input element will prevent changes by the user.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setReadonly(boolean _readonly) {
-		getStateHelper().put(PropertyKeys.readonly, _readonly);
-	}
-
-	/**
-	 * Allows you to suppress automatic rendering of labels. Used by
-	 * AngularFaces, too.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public boolean isRenderLabel() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, true);
-		return (boolean) value;
-	}
-
-	/**
-	 * Allows you to suppress automatic rendering of labels. Used by
-	 * AngularFaces, too.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRenderLabel(boolean _renderLabel) {
-		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
-	}
-
-	/**
-	 * Boolean value Require input in the component when the form is submitted.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public boolean isRequired() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.required, false);
-		return (boolean) value;
-	}
-
-	/**
-	 * Boolean value Require input in the component when the form is submitted.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRequired(boolean _required) {
-		getStateHelper().put(PropertyKeys.required, _required);
-	}
-
-	/**
-	 * Message to show if the user did not specify a value and the attribute
-	 * required is set to true.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getRequiredMessage() {
-		String value = (String) getStateHelper().eval(PropertyKeys.requiredMessage);
+	public String getProcess() {
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
 		return value;
 	}
 
 	/**
-	 * Message to show if the user did not specify a value and the attribute
-	 * required is set to true.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setRequiredMessage(String _requiredMessage) {
-		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
 	}
 
 	/**
-	 * Number of characters used to determine the width of the input element.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public int getSize() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.size, 0);
-		return (int) value;
-	}
-
-	/**
-	 * Number of characters used to determine the width of the input element.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSize(int _size) {
-		getStateHelper().put(PropertyKeys.size, _size);
-	}
-
-	/**
-	 * The size of the input specified as number of grid columns.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public int getSpan() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.span, 0);
-		return (int) value;
-	}
-
-	/**
-	 * The size of the input specified as number of grid columns.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSpan(int _span) {
-		getStateHelper().put(PropertyKeys.span, _span);
-	}
-
-	/**
-	 * Inline style of the input element.
+	 * Inline style
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -873,7 +789,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Inline style of the input element.
+	 * Inline style
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -882,7 +798,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Style class of the input element.
+	 * CSS style class
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -894,54 +810,12 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Style class of the input element.
+	 * CSS style class
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
-	/**
-	 * Advisory tooltip information.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getTabindex() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tabindex);
-		return value;
-	}
-
-	/**
-	 * Advisory tooltip information.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTabindex(String _tabindex) {
-		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
-	}
-
-	/**
-	 * Advisory tooltip information.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getTitle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.title);
-		return value;
-	}
-
-	/**
-	 * Advisory tooltip information.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTitle(String _title) {
-		getStateHelper().put(PropertyKeys.title, _title);
 	}
 
 	/**
@@ -963,6 +837,33 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	 */
 	public void setTooltip(String _tooltip) {
 		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
 	}
 
 	/**
@@ -1079,5 +980,22 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
+
+	/**
+	 * Boolean value to specify if the button is disabled. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Boolean value to specify if the button is disabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+	    getStateHelper().put(PropertyKeys.disabled, _disabled);
+    }
 
 }

@@ -23,8 +23,6 @@ import java.io.IOException;
 
 import javax.faces.context.ResponseWriter;
 
-import net.bootsfaces.C;
-
 /**
  * Class with jQuery specific encoding functions
  * @author thecoder4.eu
@@ -40,7 +38,7 @@ public final class JQ {
     public static final String JS_SUFFIX="_js";
     public static final String jQo ="$('";
     public static final String jQc ="')";
-    public static final String DOT=C.DOT;
+    public static final String DOT=".";
     
     public static final String CID="CID"; //Client ID
     public static final String WID="WID"; //Widget ID

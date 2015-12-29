@@ -17,7 +17,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
-import javax.faces.component.behavior.ClientBehaviorContext;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -108,8 +107,6 @@ public class AJAXRenderer extends CoreRenderer {
 					if (event.equals(entry.getKey())) {
 						List<ClientBehavior> value = entry.getValue();
 						for (ClientBehavior bh : value) {
-							ClientBehaviorContext behaviorContext = ClientBehaviorContext.createClientBehaviorContext(
-									context, (UIComponent) component, entry.getKey(), null, null);
 							if (bh instanceof AjaxBehavior) {
 								String delay = ((AjaxBehavior) bh).getDelay();
 								bh.decode(context, component);
@@ -136,21 +133,6 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Public API for the command button.
-	 * 
-	 * @param context
-	 * @param component
-	 * @param rw
-	 * @throws IOException
-	 */
-	public static void generateBootsFacesAJAXAndJavaScriptForCommandButtons(FacesContext context,
-			CommandButton component, ResponseWriter rw) throws IOException {
-		// Render Ajax Capabilities and on<Event>-Handlers
-
-		generateBootsFacesAJAXAndJavaScript(context, component, rw);
 	}
 
 	/**
@@ -195,8 +177,37 @@ public class AJAXRenderer extends CoreRenderer {
 					if (script.length() > 0 && "click".equals(defaultEvent))
 						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
+			} else {
+				boolean generateNonAJAXCommand = false;
+				if (component instanceof ActionSource) {
+					ActionSource b = (ActionSource) component;
+					ActionListener[] actionListeners = b.getActionListeners();
+					if (null != actionListeners && actionListeners.length > 0) {
+						generateNonAJAXCommand = true;
+					}
+				}
+				if (component instanceof ActionSource2) {
+					MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
+					if (null != actionExpression) {
+						generateNonAJAXCommand = true;
+					}
+				}
+				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
+					// rw.writeAttribute("id", getClientId() + "_a", null);
+					generateOnClickHandler(context, rw, (IAJAXComponent) component);
+				}
 			}
+
 		}
+	}
+
+	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
+			throws IOException {
+		StringBuilder cJS = new StringBuilder(150); // optimize int
+
+		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
+
+		rw.writeAttribute("onclick", cJS.toString(), null);
 	}
 
 	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
@@ -252,8 +263,7 @@ public class AJAXRenderer extends CoreRenderer {
 					ab.setRender((Collection<String>) readBeanAttributeAsCollection(cb, "getUpdate"));
 					ab.setExecute((Collection<String>) readBeanAttributeAsCollection(cb, "getProcess"));
 					ab.setOnevent(keyClientBehavior);
-					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
-							ab);
+					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component, ab);
 					script += s.toString() + ";";
 				}
 			}
@@ -281,16 +291,17 @@ public class AJAXRenderer extends CoreRenderer {
 
 		return generatedAJAXCall;
 	}
-	
+
 	private static Object readBeanAttribute(Object bean, String getter) {
 		try {
 			Method method = bean.getClass().getMethod(getter);
 			Object result = method.invoke(bean);
 			return result;
 		} catch (ReflectiveOperationException e) {
-			throw new FacesException("An error occured when reading the property " + getter + " from the bean " + bean.getClass().getName(), e);
+			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
+					+ bean.getClass().getName(), e);
 		}
-		
+
 	}
 
 	private static Collection<String> readBeanAttributeAsCollection(Object bean, String getter) {
@@ -299,17 +310,18 @@ public class AJAXRenderer extends CoreRenderer {
 			Method method = bean.getClass().getMethod(getter);
 			Object value = method.invoke(bean);
 			if (null != value) {
-				String[] partials = ((String)value).split(" ");
+				String[] partials = ((String) value).split(" ");
 				result = new ArrayList<String>();
-				for (String p:partials) {
+				for (String p : partials) {
 					result.add(p);
 				}
 			}
 			return result;
 		} catch (ReflectiveOperationException e) {
-			throw new FacesException("An error occured when reading the property " + getter + " from the bean " + bean.getClass().getName(), e);
+			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
+					+ bean.getClass().getName(), e);
 		}
-		
+
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
@@ -364,7 +376,7 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(",function(){" + complete + "}");
 		} else
 			cJS.append(", null");
-		if ((event != null)&&(event.length()>0)) {
+		if ((event != null) && (event.length() > 0)) {
 			cJS.append(", '" + event + "'");
 			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}
@@ -420,7 +432,7 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(",function(){" + oncomplete + "}");
 		} else
 			cJS.append(", null");
-		if ((onevent != null)&&(onevent.length()>0)) {
+		if ((onevent != null) && (onevent.length() > 0)) {
 			cJS.append(", '" + onevent + "'");
 			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}

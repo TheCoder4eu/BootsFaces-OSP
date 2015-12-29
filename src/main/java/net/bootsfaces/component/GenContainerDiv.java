@@ -38,7 +38,7 @@ public class GenContainerDiv extends UIComponentBase {
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+C.DOT+"GenericDivContainer";
+    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+"."+"GenericDivContainer";
     /**
      * <p>The component family for this component.</p>
      */

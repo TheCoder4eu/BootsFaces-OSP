@@ -479,6 +479,24 @@ widget fetchBeanInfos
        extends UIComponentBase
  {}
 
+widget flyOutMenu
+       implemented_by net.bootsfaces.component.FlyOutMenu
+       has_children
+       has_tooltip
+ {
+    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    style                                                                  "Inline style"
+    styleClass                                                             "CSS style class"
+    tooltip                                                                "The text of the tooltip."
+    tooltipContainer    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."         
+}
 
 widget icon
        implemented_by net.bootsfaces.component.Icon
@@ -574,6 +592,7 @@ widget inputSecret
     fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+ 	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
     label                                                                  "The label of the field."
     lang                                                                  "Code describing the language used in the generated markup for this component."
     maxlength           Integer                                            "The maximum length of the input."
@@ -639,6 +658,7 @@ widget inputText
     fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+ 	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
     label                                                                  "The label of the field."
     lang                                                                  "Code describing the language used in the generated markup for this component."
     maxlength           Integer                                            "The maximum length of the input."
@@ -918,19 +938,19 @@ widget navBar
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
-
-widget navCommandLink
-       implemented_by net.bootsfaces.component.NavCommandLink
-       processes_input
+widget navLink
+       implemented_by net.bootsfaces.component.NavLink
        extends UICommand
        has_tooltip
  {
-    action              javax.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
-    actionListener      javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
     binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
     contentClass                                                           "contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     contentStyle                                                           "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
     header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
     href                                                                   "URL to link directly to implement anchor behavior."
@@ -938,10 +958,25 @@ widget navCommandLink
     iconAlign                                                              "Alignment can right or left."
     iconAwesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    onblur                                                                 "JavaScript function which is called when the widget looses the focus."
-    onclick                                                                "JavaScript function which is called when the widget is clicked."
-    onmouseover                                                            "JavaScript function which is called when the mouse hovers over the widget."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    includeViewParams   Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
+	process                                                                  "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     style                                                                  "Inline style"
     styleClass                                                             "CSS style class"
@@ -951,39 +986,7 @@ widget navCommandLink
     tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-    value               inherited                                          "Navigation Link text."
-}
-
-
-widget navLink
-       implemented_by net.bootsfaces.component.NavLink
-       extends HtmlOutcomeTargetLink
-       has_tooltip
- {
-    active              Boolean                                            "Adds the active state to the link."
-    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
-    contentClass                                                           "contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
-    contentStyle                                                           "Inline style of the content area (i.e the anchor tag)."
-    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
-    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
-    href                                                                   "URL to link directly to implement anchor behavior."
-    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute."
-    iconAlign                                                              "Alignment can right or left."
-    iconAwesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute."
-    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    onblur                                                                 "JavaScript function which is called when the widget looses the focus."
-    onclick                                                                "JavaScript function which is called when the widget is clicked."
-    onmouseover                                                            "JavaScript function which is called when the mouse hovers over the widget."
-    outcome                                                                "The outcome to navigate to."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    style                                                                  "Inline style"
-    styleClass                                                             "CSS style class"
-    tooltip                                                                "The text of the tooltip."
-    tooltipContainer    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltipDelay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipDelayHide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
 }
 
@@ -1237,6 +1240,7 @@ widget selectMultiMenu
     fieldSize                                                              "The size of the input.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+   	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
     label                                                                  "The Label of the field ."
     lang                                                                  "Code describing the language used in the generated markup for this component."
     maxHeight           Integer                                            "Maximum height of the options panel."
@@ -1295,6 +1299,7 @@ widget selectOneMenu
     fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+   	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
     label                                                                  "The label of the field."
     lang                                                                   "Code describing the language used in the generated markup for this component."
     onblur                                                                 "Client side callback to execute when input element loses focus."
@@ -1347,6 +1352,7 @@ widget slider
     handleShape                                                            "The default handle is squared. Specifing the \"round\" value for this attribute will turn the handle shape to a circle."
     handleSize                                                             "In some situations (eg. mobile phones) the slider handle may be difficult to operate because of its size. Specifing the \"md\" or \"lg\" value for this attribute will change the handle size accordingly."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
+ 	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
     label                                                                  "Label for the widget field."
     max                 Integer default "100"                              "The maximum value of the slider. (default 100)"
     min                 Integer default "0"                                "The minimum value of the slider. (default 0)"

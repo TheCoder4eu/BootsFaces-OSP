@@ -27,7 +27,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 
@@ -83,7 +82,7 @@ public class NavBarRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, navBar, rw);
 		rw.writeAttribute("class", ns,"class");
 		super.writeAttribute(rw, "style", navBar.getStyle());
-		rw.writeAttribute(H.ROLE, "navigation", null);
+		rw.writeAttribute("role", "navigation", null);
 		
 		rw.startElement("div", navBar);
 		rw.writeAttribute("class", fluid ? "container-fluid" : "container","class"); //x Layout Centrato. TODO : layout full width

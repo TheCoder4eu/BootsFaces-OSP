@@ -63,6 +63,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ResourceFiles";
 
 	static {
+		LOGGER.info("This application is running on BootsFaces 0.9.0.");
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
 	}
 

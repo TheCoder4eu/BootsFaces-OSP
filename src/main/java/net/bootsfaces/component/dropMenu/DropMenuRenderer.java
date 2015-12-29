@@ -22,12 +22,13 @@ package net.bootsfaces.component.dropMenu;
 import java.io.IOException;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
 import net.bootsfaces.component.icon.IconRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -60,10 +61,12 @@ public class DropMenuRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dropMenu.getClientId();
 
+		boolean isFlyOutMenu = isFlyOutMenu(component);
+
 		{
 			rw.startElement("li", dropMenu);
 			rw.writeAttribute("id", clientId, "id");
-			rw.writeAttribute("class", getStyleClass(dropMenu), "class");
+			rw.writeAttribute("class", getStyleClass(dropMenu, isFlyOutMenu), "class");
 			if (dropMenu.getStyle() != null) {
 				rw.writeAttribute("style", dropMenu.getStyle(), "style");
 			}
@@ -72,7 +75,10 @@ public class DropMenuRenderer extends CoreRenderer {
 			{
 				rw.startElement("a", dropMenu);
 				rw.writeAttribute("id", "dtL" + clientId, "id");
-				rw.writeAttribute("class", "dropdown-toggle", "class");
+				if (isFlyOutMenu)
+					rw.writeAttribute("class", "dropdown-submenu", "class");
+				else
+					rw.writeAttribute("class", "dropdown-toggle", "class");
 				if (dropMenu.getStyle() != null) {
 					rw.writeAttribute("style", dropMenu.getStyle(), "style");
 				}
@@ -82,7 +88,8 @@ public class DropMenuRenderer extends CoreRenderer {
 					rw.writeAttribute("href", "#", null);
 				}
 				rw.writeAttribute("role", "button", null);
-				rw.writeAttribute("data-toggle", "dropdown", null);
+				if (!isFlyOutMenu)
+					rw.writeAttribute("data-toggle", "dropdown", null);
 
 				// Encode value
 				String value = (String) dropMenu.getAttributes().get("value");
@@ -97,7 +104,7 @@ public class DropMenuRenderer extends CoreRenderer {
 				}
 				if (icon != null) {
 					Object ialign = dropMenu.getIconAlign();
-					if (ialign != null && ialign.equals(A.RIGHT)) {
+					if (ialign != null && ialign.equals("right")) {
 						rw.writeText(value + " ", null);
 						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
 					} else {
@@ -109,7 +116,7 @@ public class DropMenuRenderer extends CoreRenderer {
 					rw.writeText(value, null);
 				}
 				// Encode Caret
-				if (!(dropMenu.getParent() instanceof DropMenu)) {
+				if ((!isFlyOutMenu) && (!(dropMenu.getParent() instanceof DropMenu))) {
 					rw.startElement("b", dropMenu);
 					rw.writeAttribute("class", "caret", "class");
 					rw.endElement("b");
@@ -122,7 +129,16 @@ public class DropMenuRenderer extends CoreRenderer {
 
 	}
 
-	private String getStyleClass(DropMenu dropMenu) {
+	private boolean isFlyOutMenu(UIComponent component) {
+		while (component != null && (!(component instanceof UIViewRoot))) {
+			if (component instanceof FlyOutMenu)
+				return true;
+			component = component.getParent();
+		}
+		return false;
+	}
+
+	private String getStyleClass(DropMenu dropMenu, boolean isFlyOutMenu) {
 		String userClass = dropMenu.getStyleClass();
 		if (null == userClass)
 			userClass = "";
@@ -135,7 +151,11 @@ public class DropMenuRenderer extends CoreRenderer {
 		if (!direction.equals("up") && !direction.equals("down")) {
 			direction = "down";
 		}
-		if (dropMenu.getParent() instanceof DropMenu) {
+		if (isFlyOutMenu) {
+			userClass += "dropdown-submenu" + " ";
+			return userClass;
+		}
+		else if (dropMenu.getParent() instanceof DropMenu) {
 			userClass += "dropdown-submenu" + " ";
 		}
 		return userClass + "drop" + direction;

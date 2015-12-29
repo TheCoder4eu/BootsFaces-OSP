@@ -27,7 +27,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 
 /** This class generates the HTML code of &lt;b:modal /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.modal.Modal")
@@ -115,7 +114,7 @@ public class ModalRenderer extends CoreRenderer {
 			rw.startElement("button", component);
 			rw.writeAttribute("type", "button", "type");
 			rw.writeAttribute("class", "close", "class");
-			rw.writeAttribute(H.DISMISS, "modal", "data-dismiss");
+			rw.writeAttribute("data-dismiss", "modal", "data-dismiss");
 			rw.write("&times;");
 			rw.endElement("button");
 		}

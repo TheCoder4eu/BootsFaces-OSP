@@ -30,7 +30,6 @@ import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
 import net.bootsfaces.render.A;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
 /**
@@ -46,7 +45,7 @@ public class LinksContainer extends UIComponentBase {
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+C.DOT+"LinksContainer";
+    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+"."+"LinksContainer";
     /**
      * <p>The component family for this component.</p>
      */
@@ -73,9 +72,9 @@ public class LinksContainer extends UIComponentBase {
         Map<String, Object> attrs = getAttributes();
         
         
-        String pull = A.asString(attrs.get(A.PULL));
+        String pull = A.asString(attrs.get("pull"));
         
-        rw.startElement(H.UL, this);
+        rw.startElement("ul", this);
         rw.writeAttribute("id",getClientId(fc),"id");
         String style = (String) attrs.get("style");
         if (null != style && style.length()>0) {
@@ -86,8 +85,8 @@ public class LinksContainer extends UIComponentBase {
         if (null == styleClass) {
         	styleClass="";
         }
-        if(pull!=null && (pull.equals(A.RIGHT) || pull.equals(A.LEFT)) ) {
-            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat(A.PULL).concat("-").concat(pull),"class");
+        if(pull!=null && (pull.equals("right") || pull.equals("left")) ) {
+            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat("pull").concat("-").concat(pull),"class");
         } else {
             rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()),"class");
         }
@@ -107,7 +106,7 @@ public class LinksContainer extends UIComponentBase {
     @Override
     public void encodeEnd(FacesContext fc) throws IOException {
         fc.getResponseWriter()
-               .endElement(H.UL);
+               .endElement("ul");
         Tooltip.activateTooltips(fc, getAttributes(), this);
     }
 
