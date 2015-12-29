@@ -74,7 +74,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId + "_helper")) {
 			selectBooleanCheckbox.setSubmittedValue(false);
 		}
-		new AJAXRenderer().decode(context, component);
+		String id = component.getClientId(context);
+		new AJAXRenderer().decode(context, component, "input_" +id);
 	}
 
 	/**
