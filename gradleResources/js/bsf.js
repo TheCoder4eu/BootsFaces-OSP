@@ -4,6 +4,7 @@
  * author: TheCoder4.eu
  */
 
+$(document).ajaxStop($.unblockUI); 
 BsF={};
 BsF.ajax={};
 BsF.callback={};
@@ -46,10 +47,7 @@ BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { /
     opts[oid]=oid;
     if(argn==5 && oncomplete!=null) {
 	    BsF.callback[cid]=oncomplete;
-	    
-	    opts.render=update;
-	    opts.onevent=BsF.ajax.onevent;
-    }
+	}
     if(argn>=3) {
         if(BsF.isFunction(update)) {
             BsF.callback[cid]=update;
@@ -57,7 +55,7 @@ BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { /
         }
         else { opts.render=update; } //jsf.ajax.request(o,e, { execute: '@form', render: r }); }
     }
-    
+    $.blockUI({ message: '<h1><img src="busy.gif" /> Just a moment...</h1>' }); 
     jsf.ajax.request(source,event, opts);
     return false;
 };
