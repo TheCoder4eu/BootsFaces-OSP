@@ -166,11 +166,15 @@ public class AddResourcesListener implements SystemEventListener {
 		if (useCDNImportForFontAwesome) {
 			String useCDN = FacesContext.getCurrentInstance().getExternalContext()
 					.getInitParameter("net.bootsfaces.get_fontawesome_from_cdn");
-			if (null != useCDN)
+			if (null != useCDN) {
+				useCDN = ELTools.evalAsString(useCDN);
+			}
+			if (null != useCDN) {
 				if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
 					useCDNImportForFontAwesome = false;
 				else
 					useCDNImportForFontAwesome = true;
+			}
 		}
 
 		// Do we have to add font-awesome and jQuery, or are the resources
@@ -179,6 +183,8 @@ public class AddResourcesListener implements SystemEventListener {
 		String suppressJQuery = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_jquery_from_cdn");
 		if (null != suppressJQuery)
+			suppressJQuery = ELTools.evalAsString(suppressJQuery);
+		if (null != suppressJQuery)
 			if (suppressJQuery.equalsIgnoreCase("true") || suppressJQuery.equals("yes"))
 				loadJQuery = false;
 
@@ -186,12 +192,16 @@ public class AddResourcesListener implements SystemEventListener {
 		String suppressJQueryUI = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_jqueryui_from_cdn");
 		if (null != suppressJQueryUI)
+			suppressJQueryUI = ELTools.evalAsString(suppressJQueryUI);
+		if (null != suppressJQueryUI)
 			if (suppressJQueryUI.equalsIgnoreCase("true") || suppressJQueryUI.equals("yes"))
 				loadJQueryUI = false;
 
 		boolean loadBootstrapFromCDN = false;
 		String loadBootstrapFromCDNParam = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_bootstrap_from_cdn");
+		if (null != loadBootstrapFromCDNParam)
+			loadBootstrapFromCDNParam = ELTools.evalAsString(loadBootstrapFromCDNParam);
 		if (null != loadBootstrapFromCDNParam)
 			if (loadBootstrapFromCDNParam.equalsIgnoreCase("true") || loadBootstrapFromCDNParam.equals("yes"))
 				loadBootstrapFromCDN = true;
@@ -261,6 +271,11 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
+		String blockUI = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.blockUI");
+		if (null != blockUI)
+			blockUI = ELTools.evalAsString(blockUI);
+		if (null != blockUI && (blockUI.equalsIgnoreCase("yes") || blockUI.equalsIgnoreCase("true")))
 		{
 			UIOutput output = new UIOutput();
 			output.setRendererType("javax.faces.resource.Script");
@@ -328,59 +343,6 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 		root.addComponentResource(context, output, "head");
-	}
-
-	/**
-	 * Remove duplicate resource files. For some reason, many resource files are
-	 * added more than once, especially when AJAX is used. The method removes
-	 * the duplicate files.
-	 * 
-	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or
-	 * of the Mojarra library itself.
-	 * 
-	 * @param root
-	 *            The current UIViewRoot
-	 * @param context
-	 *            The current FacesContext
-	 */
-	private void replaceCSSResourcesByMinifiedResources(UIViewRoot root, FacesContext context) {
-		Application app = context.getApplication();
-		ResourceHandler rh = app.getResourceHandler();
-		Resource cssmin = rh.createResource("css/BootsFaces.min.css", C.BSF_LIBRARY);
-		// Resource jsmin = rh.createResource("js/BootsFaces.min.js",
-		// C.BSF_LIBRARY);
-
-		if (cssmin != null) {
-			List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
-			for (UIComponent resource : root.getComponentResources(context, "head")) {
-				String name = (String) resource.getAttributes().get("name");
-				String library = (String) resource.getAttributes().get("library");
-				if ((library != null) && library.equals("bsf"))
-					if ((name != null) && (!name.startsWith("jq/"))) {
-						if (name.endsWith(".css")) {
-							if (!name.equals("css/theme.css"))
-								resourcesToRemove.add(resource);
-						}
-					}
-			}
-			for (UIComponent c : resourcesToRemove) {
-				root.removeComponentResource(context, c);
-			}
-			UIOutput output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Stylesheet");
-			output.getAttributes().put("name", "css/BootsFaces.min.css");
-			output.getAttributes().put("library", C.BSF_LIBRARY);
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
-
-			// output = new UIOutput();
-			// output.setRendererType("javax.faces.resource.Script");
-			// output.getAttributes().put("name", "js/BootsFaces.min.js");
-			// output.getAttributes().put("library", C.BSF_LIBRARY);
-			// output.getAttributes().put("target", "head");
-			// addResourceIfNecessary(root, context, output);
-
-		}
 	}
 
 	/**

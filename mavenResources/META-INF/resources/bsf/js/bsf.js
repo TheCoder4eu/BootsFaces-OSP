@@ -6,16 +6,27 @@
 
 BsF={};
 BsF.ajax={};
-BsF.callback={};
-BsF.isFunction=function(f) {
- var getType = {};
- return f && getType.toString.call(f) === '[object Function]';
-}
-BsF.ajax.onevent=function(d) {
-    if(d.status == "success") {
-            var cid=d.source.id.replace(/[^a-zA-Z0-9]+/g,'_');
-            var f=BsF.callback[cid];
-            if (typeof(f)!='undefined') {
+BsF.onSuccessCallback={};
+
+BsF.ajax.onevent=function(data) {
+//	console.log(data.status);
+//	if (data.status === 'begin') {
+//		requestOngoing = true;
+//		onCompleteCallbacks = [];
+//	}
+	if (data.status === 'complete') {
+	    if ($.blockUI && $.blockUI != null) {
+	    	$.unblockUI();
+	    }
+	}
+//	if (data.status === 'success') {
+//		handleAjaxUpdates(data);
+//		requestOngoing = false;
+//	}
+    if(data.status == "success") {
+            var cid=data.source.id.replace(/[^a-zA-Z0-9]+/g,'_');
+            var f=BsF.onSuccessCallback[cid];
+            if (f && f != null && typeof(f)!='undefined') {
             	f();
             }
         }
@@ -37,26 +48,26 @@ BsF.ajax.callAjax=function(source,event,update,execute,oncomplete,eventType) { /
     	opts.params="BsFEvent="+eventType;
     }
 
-    update=BsF.ajax.resolveJQuery(update);
+    update=BsF.ajax.resolveJQuery(update);    
+    if (update && update != null) {
+    	opts.render=update;
+    }
+
     execute=BsF.ajax.resolveJQuery(execute);
-    
     if (execute && execute != null) {
     	opts.execute=execute;
     }
     opts[oid]=oid;
-    if(argn==5 && oncomplete!=null) {
-	    BsF.callback[cid]=oncomplete;
+    if(oncomplete && oncomplete!=null) {
+	    BsF.onSuccessCallback[cid]=oncomplete;
+	} else {
+		BsF.onSuccessCallback[cid]=null;
 	}
-    if(argn>=3) {
-        if(BsF.isFunction(update)) {
-            BsF.callback[cid]=update;
-            opts.onevent=BsF.ajax.onevent;
-        }
-        else { opts.render=update; } //jsf.ajax.request(o,e, { execute: '@form', render: r }); }
-    }
     opts.onevent=BsF.ajax.onevent;
     jsf.ajax.request(source,event, opts);
-    $.blockUI({ message: '<h1><img src="javax.faces.resource/images/waitcursor.gif.jsf?ln=bsf" /> Just a moment...</h1>' }); 
+    if ($.blockUI && $.blockUI != null) {
+    	$.blockUI({ message: '<h1><img src="javax.faces.resource/images/waitcursor.gif.jsf?ln=bsf" /> Just a moment...</h1>' }); 
+    }
     return false;
 };
 
@@ -82,21 +93,6 @@ BsF.ajax.resolveJQuery = function(update) {
 	}
 	return newUpdate.trim();
 };
-
-BsF.ajax.onevent=function (data) {
-//	console.log(data.status);
-//	if (data.status === 'begin') {
-//		requestOngoing = true;
-//		onCompleteCallbacks = [];
-//	}
-	if (data.status === 'complete') {
-		$.unblockUI();
-	}
-//	if (data.status === 'success') {
-//		handleAjaxUpdates(data);
-//		requestOngoing = false;
-//	}
-}
 
 BsF.ajax.paginate=function(o,e,v,c,r) { //Paginator ajax helper (object, event, value, component, render)
     var opts={};
