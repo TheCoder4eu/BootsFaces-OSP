@@ -90,7 +90,7 @@ public class Panel extends UIComponentBase
 	}
 
 	protected enum PropertyKeys {
-		ajax, binding, collapsed, collapsible, contentClass, contentStyle, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
+		ajax, binding, collapsed, collapsible, contentClass, contentStyle, dir, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
 
 		String toString;
 
@@ -858,6 +858,27 @@ public class Panel extends UIComponentBase
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String) getStateHelper().eval(PropertyKeys.dir);
+		return value;
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+		getStateHelper().put(PropertyKeys.dir, _dir);
 	}
 
 }

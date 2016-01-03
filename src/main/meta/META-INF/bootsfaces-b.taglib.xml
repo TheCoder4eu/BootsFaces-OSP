@@ -3187,6 +3187,12 @@
       <component-type>net.bootsfaces.layout.Container</component-type>
     </component>
     <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
       <required>false</required>
@@ -3254,6 +3260,12 @@
     <component>
       <component-type>net.bootsfaces.layout.Row</component-type>
     </component>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
     <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
@@ -3340,6 +3352,12 @@
       <name>colXs</name>
       <required>false</required>
       <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
@@ -5471,6 +5489,12 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
       <name>disabled</name>
       <required>false</required>
@@ -5668,6 +5692,12 @@
     <attribute>
       <description><![CDATA[Synonym to colSpans: comma-separated list of the column spans]]></description>
       <name>columns</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>

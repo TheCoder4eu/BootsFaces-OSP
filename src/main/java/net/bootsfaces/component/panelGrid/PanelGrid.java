@@ -84,6 +84,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 colSpans,
 columnClasses,
 columns,
+dir, 
 rowClasses,
 size,
 style,
@@ -339,6 +340,27 @@ tooltipPosition, tooltipContainer
 	public void setTooltipPosition(String _tooltipPosition) {
 	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
     }
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String) getStateHelper().eval(PropertyKeys.dir);
+		return value;
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
 	
 }
 

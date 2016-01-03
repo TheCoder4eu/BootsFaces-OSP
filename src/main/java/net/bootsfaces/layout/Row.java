@@ -38,80 +38,94 @@ import net.bootsfaces.render.Tooltip;
  *
  * @author thecoder4.eu
  */
-@ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.ROW_COMPONENT_TYPE)
 public class Row extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.ROW_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFLAYOUT;
 
-    public Row() {
-        setRendererType(null); // this component renders itself
-        Tooltip.addResourceFile();
-    }
-    
-    @Override
-    public void encodeBegin(FacesContext fc) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
-        /*
-         * <div class="row">  || <div class="row-fluid">
-         * ...
-         * </div>
-         * BS3: Always fluid
-         */
-        
-        ResponseWriter rw = fc.getResponseWriter();
-        
-        Map<String, Object> attrs = getAttributes();
-       	encodeRow(rw, this, A.asString(attrs.get("style")), A.asString(attrs.get("styleClass")));
-        
-    }
-    
-    /**
-     * Encodes a Row
-     * @param rw
-     * @param c
-     * @param style
-     * @param sclass
-     * @throws IOException 
-     */
-    public static final void encodeRow(ResponseWriter rw, UIComponent c, String style, String sclass) throws IOException {
-        rw.startElement("div", c);
-        if (null != c) {
-        	Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
-        }
-        String s = "row";
-        if(sclass!=null) { s+=" "+sclass; }        
-        if(c!=null) { rw.writeAttribute("id",c.getClientId(),"id"); }
-        if(style!=null) { rw.writeAttribute("style",style,"style"); }
-        rw.writeAttribute("class", s, "class");
-        if (null != c) {
-        	Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
-        }
-    }
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = C.ROW_COMPONENT_TYPE;
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFLAYOUT;
 
-    
-    @Override
-    public void encodeEnd(FacesContext fc) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
-        fc.getResponseWriter().endElement("div");
-    }
+	public Row() {
+		setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
+	}
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+	@Override
+	public void encodeBegin(FacesContext fc) throws IOException {
+		if (!isRendered()) {
+			return;
+		}
+		/*
+		 * <div class="row"> || <div class="row-fluid"> ... </div> BS3: Always
+		 * fluid
+		 */
+
+		ResponseWriter rw = fc.getResponseWriter();
+
+		Map<String, Object> attrs = getAttributes();
+		encodeRow(rw, this, A.asString(attrs.get("style")), A.asString(attrs.get("styleClass")));
+
+	}
+
+	/**
+	 * Encodes a Row
+	 * 
+	 * @param rw
+	 * @param c
+	 * @param style
+	 * @param sclass
+	 * @throws IOException
+	 */
+	public static final void encodeRow(ResponseWriter rw, UIComponent c, String style, String sclass)
+			throws IOException {
+		rw.startElement("div", c);
+		if (null != c) {
+			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+		}
+		// if (null != container.getDir()) {
+		// rw.writeAttribute("dir", container.getDir(), "dir");
+		// }
+		String dir = A.asString(c.getAttributes().get("dir"));
+		if (null != dir)
+			rw.writeAttribute("dir", dir, "dir");
+		String s = "row";
+		if (sclass != null) {
+			s += " " + sclass;
+		}
+		if (c != null) {
+			rw.writeAttribute("id", c.getClientId(), "id");
+		}
+		if (style != null) {
+			rw.writeAttribute("style", style, "style");
+		}
+		rw.writeAttribute("class", s, "class");
+		if (null != c) {
+			Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
+		}
+	}
+
+	@Override
+	public void encodeEnd(FacesContext fc) throws IOException {
+		if (!isRendered()) {
+			return;
+		}
+		fc.getResponseWriter().endElement("div");
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 }

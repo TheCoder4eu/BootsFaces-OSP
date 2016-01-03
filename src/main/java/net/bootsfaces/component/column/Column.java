@@ -57,6 +57,7 @@ colLg,
 colMd,
 colSm,
 colXs,
+dir, 
 display,
 hidden,
 offset,
@@ -447,6 +448,27 @@ visible
 	public void setVisible(String _visible) {
 	    getStateHelper().put(PropertyKeys.visible, _visible);
     }
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String) getStateHelper().eval(PropertyKeys.dir);
+		return value;
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
 	
 }
 

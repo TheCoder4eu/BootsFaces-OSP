@@ -84,11 +84,15 @@ public class ColumnRenderer extends CoreRenderer {
 			String sclass = A.asString(attrs.get("styleClass"));
 
 			rw.startElement("div", column);
+			if (null != column.getDir()) {
+				rw.writeAttribute("dir", column.getDir(), "dir");
+			}
+
 			Map<String, Object> componentAttrs = new HashMap<String, Object>();
 
 			if (this != null) {
 				rw.writeAttribute("id", column.getClientId(), "id");
-				Tooltip.generateTooltip(FacesContext.getCurrentInstance(), column.getAttributes(), rw);
+				Tooltip.generateTooltip(FacesContext.getCurrentInstance(), column, rw);
 				componentAttrs = column.getAttributes();
 			}
 

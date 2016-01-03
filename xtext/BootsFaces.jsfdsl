@@ -271,6 +271,7 @@ widget column
     colMd               Integer                                            "Integer value to specify how many columns to span."
     colSm               Integer                                            "Integer value to specify how many columns to span."
     colXs               Integer                                            "Integer value to specify how many columns to span."
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
     hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -351,6 +352,7 @@ widget container
        has_children
        has_tooltip
  {
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     fluid               Boolean                                            "Boolean value default is false; when set to true, the container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
@@ -1021,6 +1023,7 @@ widget panel
     contentClass                                                           "contentClass is optional: if specified, the content will be displayed with this specific class"
     contentStyle                                                           "Inline style of the content area."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     look                                                                   "Look of the Panel, can be primary, success, info, warning, danger. Default is warning."
@@ -1060,6 +1063,7 @@ widget panelGrid
     colSpans                                                               "Comma-separated list of the column spans"
     columnClasses                                                          "Comma-separated list of the CSS classes assigned to each column."
     columns                                                                "Synonym to colSpans: comma-separated list of the column spans"
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     rowClasses                                                             "Comma-separated list of the CSS classes assigned to each row."
@@ -1096,6 +1100,7 @@ widget row
        has_children
        has_tooltip
  {
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
     style                                                                  "Inline style of the input element."

@@ -270,6 +270,8 @@ public class PanelGridRenderer extends CoreRenderer {
 			String clientId = panelGrid.getClientId();
 			writer.writeAttribute("id", clientId, "id");
 		}
+		writeAttribute(writer, "dir", panelGrid.getDir(), "dir");
+
         Tooltip.generateTooltip(FacesContext.getCurrentInstance(), panelGrid, writer);
 
 

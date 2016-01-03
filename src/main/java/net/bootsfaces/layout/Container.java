@@ -91,6 +91,12 @@ public class Container extends UIComponentBase {
         
         rw.startElement("div", this);
         rw.writeAttribute("id",getClientId(fc),"id");
+//		if (null != container.getDir()) {
+//			rw.writeAttribute("dir", container.getDir(), "dir");
+//		}
+        String dir = A.asString(attrs.get("dir"));
+        if (null != dir) rw.writeAttribute("dir", dir, "dir");
+
         Tooltip.generateTooltip(fc, attrs, rw);
         if(style!=null) { rw.writeAttribute("style",style,"style"); }
         rw.writeAttribute("class", c, "class");

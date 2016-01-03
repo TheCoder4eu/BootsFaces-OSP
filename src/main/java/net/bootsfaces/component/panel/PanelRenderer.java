@@ -113,6 +113,8 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", clientId, "id");
+		writeAttribute(rw, "dir", panel.getDir(), "dir");
+
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw);
 		Tooltip.generateTooltip(context, panel, rw);
 		String _style = panel.getStyle();
@@ -172,6 +174,8 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", jQueryClientID + "content", null);
+		writeAttribute(rw, "dir", panel.getDir(), "dir");
+
 		String _contentClass = panel.getContentClass();
 		if (null == _contentClass)
 			_contentClass = "";
