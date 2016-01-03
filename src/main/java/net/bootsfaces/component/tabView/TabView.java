@@ -103,7 +103,7 @@ public class TabView extends UIOutput
 	}
 
 	protected enum PropertyKeys {
-		tooltipContainer,activeIndex, ajax, contentClass, contentStyle, disabled, immediate, onclick, oncomplete, process, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		tooltipContainer,activeIndex, ajax, contentClass, contentStyle, dir, disabled, immediate, onclick, oncomplete, process, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 
 		String toString;
 
@@ -235,6 +235,23 @@ public class TabView extends UIOutput
 	public void setContentStyle(String _contentStyle) {
 		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
 	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String)getStateHelper().eval(PropertyKeys.dir);
+		return  value;
+	}
+	
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+	    getStateHelper().put(PropertyKeys.dir, _dir);
+    }
 
 	/**
 	 * Disables the input element, default is false.

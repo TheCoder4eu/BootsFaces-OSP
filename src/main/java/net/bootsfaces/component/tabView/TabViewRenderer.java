@@ -113,6 +113,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.startElement("div", tabView);
 		writer.writeAttribute("class", "tab-panel", "class");
 		writer.writeAttribute("role", "tabpanel", "class");
+		writer.writeAttribute("dir", tabView.getDir(), "dir");
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
@@ -226,6 +227,8 @@ public class TabViewRenderer extends CoreRenderer {
 		Tab tab = (Tab) child;
 		writer.startElement("div", tab);
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_")+"_pane", "id");
+		if (tab.getDir()!=null)
+			writer.writeAttribute("dir", tab.getDir(), "dir");
 		String classes = "tab-pane";
 		if (isActive) {
 			classes += " active";
@@ -288,6 +291,8 @@ public class TabViewRenderer extends CoreRenderer {
 			return;
 		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
+		if (tab.getDir()!=null)
+			writer.writeAttribute("dir", tab.getDir(), "dir");
 		writer.writeAttribute("id", tab.getClientId(), "id");
 		writer.writeAttribute("role", "presentation", "role");
 		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
