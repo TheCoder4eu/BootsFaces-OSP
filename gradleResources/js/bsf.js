@@ -32,7 +32,7 @@ BsF.ajax.onevent = function(data) {
 	}
 };
 BsF.ajax.cb = function(o, e, r, f) { // commandButton ajax helper (object,
-										// event, [render], [oncomplete])
+	// event, [render], [oncomplete])
 	BsF.ajax.callAjax(o, e, r, "@all", f, null);
 }
 
@@ -43,7 +43,7 @@ BsF.ajax.cb = function(o, e, r, f) { // commandButton ajax helper (object,
  */
 BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		eventType) { // commandButton ajax helper (object, event, [render],
-						// [oncomplete])
+	// [oncomplete])
 	var argn = arguments.length;
 	var oid = source.id;
 	var cid = oid.replace(/[^a-zA-Z0-9]+/g, '_');
@@ -70,10 +70,8 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	opts.onevent = BsF.ajax.onevent;
 	jsf.ajax.request(source, event, opts);
 	if ($.blockUI && $.blockUI != null) {
-		$
-				.blockUI({
-					message : '<h1><img src="javax.faces.resource/images/waitcursor.gif.jsf?ln=bsf" /> Just a moment...</h1>'
-				});
+		var message = $.blockUI.defaults.message;
+		$.blockUI();
 	}
 	return false;
 };
@@ -104,8 +102,8 @@ BsF.ajax.resolveJQuery = function(update) {
 };
 
 BsF.ajax.paginate = function(o, e, v, c, r) { // Paginator ajax helper
-												// (object, event, value,
-												// component, render)
+	// (object, event, value,
+	// component, render)
 	var opts = {};
 	opts.execute = '@this';
 	opts.render = r;
