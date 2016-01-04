@@ -67,15 +67,21 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 			for (int index = 0; index < items.size(); index++) {
 				Object currentOption = items.get(index);
 				String currentOptionValueAsString;
-				Object currentOptionValue;
+				Object currentOptionValue = null;
 				if (currentOption instanceof SelectItem) {
-					currentOptionValue = ((SelectItem) currentOption).getValue();
-					if (null == currentOptionValue) // use the label as fall-back
-						currentOptionValue = ((SelectItem) currentOption).getLabel(); 
+					if (!((SelectItem) currentOption).isDisabled()) {
+						currentOptionValue = ((SelectItem) currentOption).getValue();
+						if (null == currentOptionValue) // use the label as
+														// fall-back
+							currentOptionValue = ((SelectItem) currentOption).getLabel();
+					}
 				} else {
-					currentOptionValue = ((UISelectItem) currentOption).getItemValue();
-					if (null == currentOptionValue) // use the label as fall-back
-						currentOptionValue = ((UISelectItem) currentOption).getItemLabel(); 
+					if (!((UISelectItem) currentOption).isItemDisabled()) {
+						currentOptionValue = ((UISelectItem) currentOption).getItemValue();
+						if (null == currentOptionValue) // use the label as
+														// fall-back
+							currentOptionValue = ((UISelectItem) currentOption).getItemLabel();
+					}
 				}
 				if (currentOptionValue instanceof String) {
 					currentOptionValueAsString = (String) currentOptionValue;
@@ -136,7 +142,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), menu);
 
-
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
 		renderSelectTag(context, rw, clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
@@ -147,7 +152,6 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		Tooltip.activateTooltips(context, menu);
 	}
 
-	
 	/**
 	 * Renders components added seamlessly behind the input field.
 	 * 
@@ -454,7 +458,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		final String description = selectItem.getDescription();
 		final Object itemValue = selectItem.getValue();
 
-		renderOption(rw, selectedOption, index, itemLabel, description, itemValue);
+		renderOption(rw, selectedOption, index, itemLabel, description, itemValue, selectItem.isDisabled());
 	}
 
 	/**
@@ -481,11 +485,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
 		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
-		renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue);
+		renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue, selectItem.isItemDisabled());
 	}
 
 	private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
-			final String description, final Object itemValue) throws IOException {
+			final String description, final Object itemValue, boolean isDisabled) throws IOException {
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
 		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
@@ -507,6 +511,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		} else if (itemLabel.equals(selectedOption)) {
 			rw.writeAttribute("selected", "true", "selected");
 		}
+		if (isDisabled)
+			rw.writeAttribute("disabled", "disabled", "disabled");
 
 		if (itemLabel.equals("&nbsp;"))
 			rw.write(itemLabel);
@@ -574,7 +580,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		if (menu.isReadonly()) {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
-		
+
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
@@ -616,6 +622,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Starts the input field group (if needed to display a component seamlessly
 	 * in front of or behind the input field). This method is protected in order
 	 * to allow third-party frameworks to derive from it.
+	 * 
 	 * @param hasAppendingAddOn
 	 * 
 	 * @param rw
