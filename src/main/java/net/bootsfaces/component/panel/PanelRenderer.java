@@ -153,7 +153,9 @@ public class PanelRenderer extends CoreRenderer {
 				}
 
 				rw.writeText(_title, null);
-				rw.endElement("a");
+				if (isCollapsible) {
+					rw.endElement("a");
+				}
 				rw.endElement("h4");
 			} else {
 				if (isCollapsible) {
