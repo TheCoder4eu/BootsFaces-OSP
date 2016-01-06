@@ -126,6 +126,7 @@ task copyJsResources(type: Copy) {
   from 'js/bootstrap-multiselect.js'
   from 'js/bootstrap-switch.js'
   from 'js/jquery.dataTables.min.js'
+  from 'js/jquery.blockUI.js'
   from 'js/dataTables.bootstrap.min.js'
   from 'ie8support/respond.js'
   from 'ie8support/html5shiv.js'
