@@ -133,6 +133,13 @@ task copyJsResources(type: Copy) {
 
   into "${buildDir}/resources/META-INF/resources/bsf/js"
 }
+
+task copyImageResources(type: Copy) {
+  description 'BootsFaces task: copies additional image files to the target folder (i.e. files that are not part of Bootstrap).'
+  from 'images/waitcursor.gif'
+  into "${buildDir}/resources/META-INF/resources/bsf/images"
+}
+
 task copyJqResources(type: Copy) {
   description 'BootsFaces task: copies the jQuery JS files to the target folder.'
   from 'jq'
@@ -148,7 +155,7 @@ task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'co
 
 }
 
-task copyBootsFacesResources(dependsOn: ['copyCssResources', 'copyJsResources', 'copyJqResources']) { ////, 'copyFonts']) {
+task copyBootsFacesResources(dependsOn: ['copyCssResources', 'copyJsResources', 'copyImageResources', 'copyJqResources']) { ////, 'copyFonts']) {
 
 }
 task lesscss(type: GradleBuild) {
