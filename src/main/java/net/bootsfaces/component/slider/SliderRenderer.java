@@ -286,7 +286,7 @@ public class SliderRenderer extends BadgeRenderer {
 		 * int olg
 		 */
                 //For Horizontal, we keep one column for the input/badge
-		R.encodeColumn(rw, null, 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), 0, 0, 0, 0, null, null); //Issue #172
+		R.encodeColumn(rw, null, (vo ? 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), 0, 0, 0, 0, null, null); //Issue #172
                 //R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
 		rw.startElement("div", null);
