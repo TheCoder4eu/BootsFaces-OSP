@@ -6390,6 +6390,12 @@
     </attribute>
     <attribute>
       <description><![CDATA[The step of the slider.]]></description>
+      <name>span</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The step of the slider.]]></description>
       <name>step</name>
       <required>false</required>
       <type>Integer</type>
