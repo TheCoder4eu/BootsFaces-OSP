@@ -126,6 +126,7 @@ public class SliderRenderer extends BadgeRenderer {
 		}
 		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");
+                int span = slider.getSpan();
 
 		rw.startElement("div", null);// form-group
 		rw.writeAttribute("id", clientId, "id");
@@ -151,7 +152,7 @@ public class SliderRenderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderDiv(rw, isVertical, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
 				rw.endElement("div");/* Row */
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
@@ -162,7 +163,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeSliderDiv(rw, isVertical, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
@@ -194,7 +195,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderDiv(rw, isVertical, clientId);
+			encodeSliderDiv(rw, isVertical, mode, span, clientId);
 			rw.endElement("div");/* Row */
 
 		}
@@ -280,13 +281,14 @@ public class SliderRenderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String clientId) throws IOException {
-		/*
-		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,
-		 * int olg
+	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId) throws IOException {
+		int cols=span;
+                if (!mode.equals("basic")) { cols--; }
+                /*
+		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg
 		 */
                 //For Horizontal, we keep one column for the input/badge
-		R.encodeColumn(rw, null, (vo ? 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), (vo ? 12 : 11), 0, 0, 0, 0, null, null); //Issue #172
+		R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0, null, null); //Issue #172
                 //R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
 		rw.startElement("div", null);

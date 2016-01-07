@@ -84,7 +84,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	protected enum PropertyKeys {
-		binding, disabled, handleShape, handleSize, id, inline, label, max, min, mode, orientation, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		binding, disabled, handleShape, handleSize, id, inline, label, max, min, mode, orientation, span, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
 		String toString;
 
@@ -344,6 +344,25 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
+	 * The column span of a Horizontal slider. <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getSpan() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.span, 12);
+		return (int) value;
+	}
+
+	/**
+	 * The column span of the slider. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpan(int _span) {
+		getStateHelper().put(PropertyKeys.span, _span);
+	}
+        
+        /**
 	 * The step of the slider. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
