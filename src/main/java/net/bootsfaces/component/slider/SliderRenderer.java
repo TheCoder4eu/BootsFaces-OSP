@@ -285,11 +285,12 @@ public class SliderRenderer extends BadgeRenderer {
 		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,
 		 * int olg
 		 */
-		R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
+		R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null); //Issue #172
+                //R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
 		rw.startElement("div", null);
 		rw.writeAttribute("id", clientId + "_slider", null);// concat
-															// controproducente
+                
 		rw.endElement("div");
 		rw.endElement("div"); // Column
 	}
