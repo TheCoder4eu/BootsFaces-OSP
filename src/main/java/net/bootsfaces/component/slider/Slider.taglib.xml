@@ -79,7 +79,7 @@
 	  	<type>Boolean</type>
 	  </attribute>
           <attribute>
-	  	<description><![CDATA[The column span of the slider.]]></description>
+	  	<description><![CDATA[The step of the slider.]]></description>
 	  	<name>span</name>
 	  	<required>false</required>
 	  	<type>Integer</type>
