@@ -26,55 +26,55 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckboxRenderer;
-
 
 /** This class generates the HTML code of &lt;b:switchWidget /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.switch.Switch")
 public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
-	/**
-	 * This methods receives and processes input made by the user. More specifically, it ckecks whether the
-	 * user has interacted with the current b:switchWidget. The default implementation simply stores
-	 * the input value in the list of submitted values. If the validation checks are passed,
-	 * the values in the <code>submittedValues</code> list are store in the backend bean.
-	 * @param context the FacesContext.
-	 * @param component the current b:switchWidget.
-	 */  
-	@Override
-	public void decode(FacesContext context, UIComponent component) {
-	    Switch switchWidget = (Switch) component;
-	
-		if (switchWidget.isDisabled() || switchWidget.isReadonly()) {
-		    return;
-		}
-	
-	    decodeBehaviors(context, switchWidget);
-	
-	    String clientId = switchWidget.getClientId(context);
-	    String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-	
-	    if (submittedValue != null) {
-	    	switchWidget.setSubmittedValue(submittedValue);
-	    }
-	}
-	
+
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = component.getClientId();
-		Switch _switch = (Switch) component;
-		rw.startElement("input", _switch);
-		rw.writeAttribute("id", clientId, "id");
-		renderInputTagAttributes(rw, clientId, _switch);
-		// Render Ajax Capabilities
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), _switch, rw);
-
-		renderInputTagValue(context, rw, _switch);
-		rw.endElement("input");
-		clientId=clientId.replace(":","\\\\:");
+		super.encodeBegin(context, component);
+		clientId = clientId.replace(":", "\\\\:");
 		rw.append("<script>");
-		rw.append("$('#" + clientId + "').bootstrapSwitch();");
+		rw.append("$('#input_" + clientId + "').bootstrapSwitch();");
 		rw.append("</script>");
 	}
+
+	/**
+	 * The b:switch and the b:selectBooleanCheckbox share most of their code.
+	 * This method allows to add extra attributes for the switch.
+	 * 
+	 * @param rw
+	 * @param selectBooleanCheckbox
+	 * @throws IOException
+	 */
+	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox)
+			throws IOException {
+		Switch switchComponent = (Switch) selectBooleanCheckbox;
+		writeAttribute(rw, "data-off-text", switchComponent.getOffText());
+		writeAttribute(rw, "data-on-text", switchComponent.getOnText());
+		writeAttribute(rw, "data-on-color", switchComponent.getOnColor());
+		writeAttribute(rw, "data-off-color", switchComponent.getOffColor());
+		if (switchComponent.isIndeterminate())
+			writeAttribute(rw, "data-indeterminate", switchComponent.isIndeterminate());
+		if (switchComponent.isInverse())
+			writeAttribute(rw, "data-inverse", switchComponent.isInverse());
+		writeAttribute(rw, "data-size", switchComponent.getSwitchsize());
+		if (!switchComponent.isAnimate())
+			writeAttribute(rw, "data-animate", switchComponent.isAnimate());
+		if (switchComponent.isDisabled())
+			writeAttribute(rw, "data-disabled", switchComponent.isDisabled());
+		if (switchComponent.isReadonly())
+			writeAttribute(rw, "data-readonly", switchComponent.isReadonly());
+		writeAttribute(rw, "data-label-text", switchComponent.getLabelText());
+		if (switchComponent.getHandleWidth() > 0)
+			writeAttribute(rw, "data-handle-width", switchComponent.getHandleWidth());
+		if (switchComponent.getLabelWidth() > 0)
+			writeAttribute(rw, "data-label-width", switchComponent.getLabelWidth());
+	}
+
 }

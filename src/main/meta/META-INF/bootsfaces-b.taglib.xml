@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
   version="2.0">
   <namespace>http://bootsfaces.net/ui</namespace>
@@ -783,7 +782,7 @@
     <component>
       <component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
@@ -997,9 +996,88 @@
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
-    <!-- put more tooltip attributes here -->
-
   </tag>
+
+  <tag>
+    <tag-name>flyOutMenu</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.flyOutMenu.FlyOutMenu</component-type>
+    </component>
+
+    <attribute>
+      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+      <name>binding</name>
+      <required>false</required>
+      <type>javax.faces.component.UIComponent</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style class]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The text of the tooltip.]]></description>
+      <name>tooltip</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Width of the menu items. Needed to position the child menus correctly.]]></description>
+      <name>width</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
 
   <tag>
     <tag-name>icon</tag-name>
@@ -1533,7 +1611,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -1673,75 +1751,16 @@
       <type>java.lang.String</type>
     </attribute>
   </tag>
+
   <tag>
     <tag-name>commandButton</tag-name>
     <component>
       <component-type>net.bootsfaces.component.commandButton.CommandButton</component-type>
     </component>
+    
     <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
-      <name>disabled</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-
-    <attribute>
-      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-      <name>binding</name>
-      <required>false</required>
-      <type>javax.faces.component.UIComponent</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Look of the Button, can be primary, block, info, success, warning, important, danger. If not specified, Standard gray button with gradient is rendered.]]></description>
-      <name>look</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Button text.]]></description>
-      <name>value</name>
-      <required>true</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Button Icon, can be one of the Bootstrap icon names. Alignment can be specified with iconAlign attribute.]]></description>
-      <name>icon</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Font Awesome Icon to show in this CommandButton, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
-      <name>iconAwesome</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Alignment can right or left.]]></description>
-      <name>iconAlign</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered.]]></description>
-      <name>size</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The button type, can be submit, button, reset ; default submit.]]></description>
-      <name>type</name>
+      <description><![CDATA[Access key to transfer focus to the input element.]]></description>
+      <name>accesskey</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -1752,121 +1771,74 @@
       <type>javax.el.MethodExpression</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Whether the Button submits the form with ajax.]]></description>
-      <name>ajax</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
-      <name>update</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
-      <name>oncomplete</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Style class of this element.]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltip-position</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The text of the tooltip.]]></description>
-      <name>tooltip</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-show</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-hide</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <!-- put more tooltip attributes here -->
-
-    <attribute>
-      <description><![CDATA[Flag indicating that, if this component is activated by the user,
-                                              notifications should be delivered to interested listeners and actions
-                                              immediately (that is, during Apply Request Values phase) rather than
-                                              waiting until Invoke Application phase. Default is false.]]></description>
-      <name>immediate</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
       <name>actionListener</name>
       <required>false</required>
       <type>javax.faces.event.ActionListener</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The onclick attribute.]]></description>
-      <name>onclick</name>
+      <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
+      <name>ajax</name>
       <required>false</required>
-      <type>java.lang.String</type>
+      <type>Boolean</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Access key to transfer focus to the input element.]]></description>
-      <name>accesskey</name>
+      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+      <name>binding</name>
       <required>false</required>
-      <type>java.lang.String</type>
+      <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[A localized user presentable name.]]></description>
+      <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Button Icon, can be one of the Bootstrap icon names. Alignment can be specified with iconAlign attribute.]]></description>
+      <name>icon</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Alignment can right or left.]]></description>
+      <name>iconAlign</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Font Awesome Icon to show in this CommandButton, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+      <name>iconAwesome</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+      <name>immediate</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
       <name>lang</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Inline style of the input element.]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Advisory tooltip information.]]></description>
-      <name>tabindex</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Advisory tooltip information.]]></description>
-      <name>title</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
-      <name>ondblclick</name>
+      <description><![CDATA[Look of the Button, can be primary, block, info, success, warning, important, danger. If not specified, Standard gray button with gradient is rendered.]]></description>
+      <name>look</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -1879,6 +1851,24 @@
     <attribute>
       <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
       <name>onchange</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The onclick attribute.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+      <name>ondblclick</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -1942,7 +1932,106 @@
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
+    <attribute>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered.]]></description>
+      <name>size</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the input element.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of this element.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
+      <name>tabindex</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Advisory tooltip information.]]></description>
+      <name>title</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The text of the tooltip.]]></description>
+      <name>tooltip</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The button type, can be submit, button, reset ; default submit.]]></description>
+      <name>type</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Button text.]]></description>
+      <name>value</name>
+      <required>true</required>
+      <type>java.lang.String</type>
+    </attribute>
   </tag>
+
+
+
   <tag>
     <tag-name>buttonGroup</tag-name>
     <component>
@@ -2319,188 +2408,11 @@
 
 
   <tag>
-    <tag-name>navLink</tag-name>
-    <component>
-      <component-type>net.bootsfaces.component.NavLink</component-type>
-    </component>
-    <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-      <name>binding</name>
-      <required>false</required>
-      <type>javax.faces.component.UIComponent</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
-      <name>contentClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
-      <name>contentStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[JavaScript function which is called when the widget is clicked.]]></description>
-      <name>onclick</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[JavaScript function which is called when the widget looses the focus.]]></description>
-      <name>onblur</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[JavaScript function which is called when the mouse hovers over the widget.]]></description>
-      <name>onmouseover</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Navigation Link text.]]></description>
-      <name>value</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored.]]></description>
-      <name>header</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[URL to link directly to implement anchor behavior.]]></description>
-      <name>href</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute.]]></description>
-      <name>icon</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
-      <name>iconAwesome</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Alignment can right or left.]]></description>
-      <name>iconAlign</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The outcome to navigate to.]]></description>
-      <name>outcome</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
-      <name>fragment</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Adds the active state to the link.]]></description>
-      <name>active</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style class]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltip-position</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The text of the tooltip.]]></description>
-      <name>tooltip</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-show</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-hide</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <!-- put more tooltip attributes here -->
-
-  </tag>
-
-
-  <tag>
     <tag-name>navCommandLink</tag-name>
     <component>
-      <component-type>net.bootsfaces.component.NavCommandLink</component-type>
+      <component-type>net.bootsfaces.component.navLink.NavCommandLink</component-type>
     </component>
-    <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
-      <name>contentClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
-      <name>contentStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
+    
     <attribute>
       <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
       <name>action</name>
@@ -2513,7 +2425,18 @@
       <required>false</required>
       <type>javax.faces.event.ActionListener</type>
     </attribute>
-
+    <attribute>
+      <description><![CDATA[Adds the active state to the link.]]></description>
+      <name>active</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Whether the navLink submits the form with AJAX.]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
     <attribute>
       <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
       <name>binding</name>
@@ -2521,26 +2444,26 @@
       <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[JavaScript function which is called when the widget is clicked.]]></description>
-      <name>onclick</name>
+      <description><![CDATA[contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
+      <name>contentClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[JavaScript function which is called when the widget looses the focus.]]></description>
-      <name>onblur</name>
+      <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
+      <name>contentStyle</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[JavaScript function which is called when the mouse hovers over the widget.]]></description>
-      <name>onmouseover</name>
+      <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+      <name>disabled</name>
       <required>false</required>
-      <type>java.lang.String</type>
+      <type>Boolean</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Navigation Link text.]]></description>
-      <name>value</name>
+      <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
+      <name>fragment</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -2563,14 +2486,122 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Alignment can right or left.]]></description>
+      <name>iconAlign</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
       <name>iconAwesome</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Alignment can right or left.]]></description>
-      <name>iconAlign</name>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+      <name>immediate</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set whether or not the page parameters should be encoded into the target url.]]></description>
+      <name>includeViewParams</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
+      <name>onblur</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+      <name>onchange</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The onclick attribute.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+      <name>ondblclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
+      <name>onfocus</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
+      <name>onkeydown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
+      <name>onkeypress</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
+      <name>onkeyup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+      <name>onmousedown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+      <name>onmousemove</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+      <name>onmouseout</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+      <name>onmouseover</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+      <name>onmouseup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
+      <name>onselect</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -2581,16 +2612,16 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
-      <name>fragment</name>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Adds the active state to the link.]]></description>
-      <name>active</name>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
       <required>false</required>
-      <type>java.lang.Boolean</type>
+      <type>Boolean</type>
     </attribute>
     <attribute>
       <description><![CDATA[Inline style]]></description>
@@ -2605,8 +2636,280 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[The text of the tooltip.]]></description>
+      <name>tooltip</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltip-position</name>
+      <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Navigation Link text.]]></description>
+      <name>value</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
+  <tag>
+    <tag-name>navLink</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.navLink.NavLink</component-type>
+    </component>
+    
+    <attribute>
+      <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
+      <name>action</name>
+      <required>false</required>
+      <type>javax.el.MethodExpression</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
+      <name>actionListener</name>
+      <required>false</required>
+      <type>javax.faces.event.ActionListener</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Adds the active state to the link.]]></description>
+      <name>active</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Whether the Navlink submits the form with AJAX.]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+      <name>binding</name>
+      <required>false</required>
+      <type>javax.faces.component.UIComponent</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[contentClass is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
+      <name>contentClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
+      <name>contentStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
+      <name>fragment</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored.]]></description>
+      <name>header</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[URL to link directly to implement anchor behavior.]]></description>
+      <name>href</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+      <name>icon</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Alignment can right or left.]]></description>
+      <name>iconAlign</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute.]]></description>
+      <name>iconAwesome</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+      <name>immediate</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set whether or not the page parameters should be encoded into the target url.]]></description>
+      <name>includeViewParams</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
+      <name>onblur</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+      <name>onchange</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The onclick attribute.]]></description>
+      <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+      <name>ondblclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
+      <name>onfocus</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
+      <name>onkeydown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
+      <name>onkeypress</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
+      <name>onkeyup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+      <name>onmousedown</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+      <name>onmousemove</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+      <name>onmouseout</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+      <name>onmouseover</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+      <name>onmouseup</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
+      <name>onselect</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The outcome to navigate to.]]></description>
+      <name>outcome</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Inline style]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style class]]></description>
+      <name>styleClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -2617,27 +2920,48 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay</name>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-show</name>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelay</name>
       <required>false</required>
-      <type>java.lang.String</type>
+      <type>Integer</type>
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-hide</name>
+      <name>tooltipDelayHide</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltipDelayShow</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltipPosition</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
-    <!-- put more tooltip attributes here -->
-
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Navigation Link text.]]></description>
+      <name>value</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
   </tag>
-
 
   <tag>
     <tag-name>dropButton</tag-name>
@@ -2874,6 +3198,12 @@
       <component-type>net.bootsfaces.layout.Container</component-type>
     </component>
     <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
       <required>false</required>
@@ -2942,6 +3272,12 @@
       <component-type>net.bootsfaces.layout.Row</component-type>
     </component>
     <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
       <name>id</name>
       <required>false</required>
@@ -3006,7 +3342,19 @@
     
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-lg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colLg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-md</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3018,7 +3366,19 @@
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-sm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colSm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-xs</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3027,6 +3387,12 @@
       <name>colXs</name>
       <required>false</required>
       <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
@@ -3054,13 +3420,43 @@
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-lg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
       <name>offsetLg</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-md</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offsetMd</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-sm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
       <name>offsetSm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-xs</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3102,13 +3498,31 @@
     </attribute>
     <attribute>
       <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltip-container</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
       <name>tooltipContainer</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-hide</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3120,9 +3534,21 @@
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-show</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelayShow</name>
       <required>false</required>
       <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltip-position</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
@@ -3447,6 +3873,12 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+      <name>inline</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[The maximum length of the input.]]></description>
       <name>maxlength</name>
       <required>false</required>
@@ -3547,7 +3979,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -3686,8 +4118,7 @@
     </attribute>
   </tag>
 
-  <!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 
-    5, 2014. -->
+  <!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 5, 2014. -->
   <!-- inputSecret is mostly a copy of inputText. -->
 
   <tag>
@@ -3745,6 +4176,12 @@
       <type>java.lang.String</type>
     </attribute>
     <!-- put more tooltip attributes here -->
+    <attribute>
+      <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+      <name>inline</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
     <attribute>
       <description><![CDATA[Type of the input. The default is text.]]></description>
       <name>type</name>
@@ -3864,7 +4301,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4003,14 +4440,13 @@
     </attribute>
   </tag>
 
-   <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    07, 2015. -->
+  <!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 07, 2015. -->
   <tag>
     <tag-name>inputTextarea</tag-name>
     <component>
       <component-type>net.bootsfaces.component.inputTextarea.InputTextarea</component-type>
     </component>
-    
+
     <attribute>
       <description><![CDATA[Access key to transfer focus to the input element.]]></description>
       <name>accesskey</name>
@@ -4054,7 +4490,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4349,8 +4785,7 @@
     </attribute>
   </tag>
 
-  <!-- Checkbox added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    08, 2014. -->
+  <!-- Checkbox added by Stephan Rauh, http://www.beyondjava.net, on Nov 08, 2014. -->
   <tag>
     <tag-name>selectBooleanCheckbox</tag-name>
     <component>
@@ -4394,7 +4829,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -4611,269 +5046,352 @@
     </attribute>
   </tag>
 
-  <tag>
-    <tag-name>switch</tag-name>
-    <component>
-      <component-type>net.bootsfaces.component.switch.Switch</component-type>
-    </component>
+	<tag>
+		<tag-name>switch</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.switch.Switch</component-type>
+		</component>
+		
+	  <attribute>
+	  	<description><![CDATA[Access key to transfer focus to the input element.]]></description>
+	  	<name>accesskey</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Alternate textual description of the input element.]]></description>
+	  	<name>alt</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+	  	<name>binding</name>
+	  	<required>false</required>
+	  	<type>javax.faces.component.UIComponent</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)]]></description>
+	  	<name>caption</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[An el expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]></description>
+	  	<name>converter</name>
+	  	<required>false</required>
+	  	<type>java.faces.convert.Converter</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Message to display when conversion fails.]]></description>
+	  	<name>converterMessage</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+	  	<name>dir</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Disables the input element, default is false.]]></description>
+	  	<name>disabled</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+	  	<name>fieldSize</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	  	<name>id</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+	  	<name>immediate</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The label above of the field .]]></description>
+	  	<name>label</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
+	  	<name>lang</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
+	  	<name>onblur</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+	  	<name>onchange</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[OnClick DHTML event .]]></description>
+	  	<name>onclick</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+	  	<name>ondblclick</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
+	  	<name>onfocus</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
+	  	<name>onkeydown</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
+	  	<name>onkeypress</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
+	  	<name>onkeyup</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+	  	<name>onmousedown</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+	  	<name>onmousemove</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+	  	<name>onmouseout</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+	  	<name>onmouseover</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+	  	<name>onmouseup</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
+	  	<name>onselect</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Optional label of the active switch. The default value is 'on'.]]></description>
+	  	<name>onText</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
+	  	<name>offText</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+	  	<name>readonly</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+	  	<name>renderLabel</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	  	<name>rendered</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+	  	<name>span</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inline style of the input element.]]></description>
+	  	<name>style</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Style class of the input element.]]></description>
+	  	<name>styleClass</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Advisory tooltip information.]]></description>
+	  	<name>tabindex</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Advisory tooltip information.]]></description>
+	  	<name>title</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The text of the tooltip.]]></description>
+	  	<name>tooltip</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+	  	<name>tooltipContainer</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelay</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayHide</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	  	<name>tooltipDelayShow</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	  	<name>tooltipPosition</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
+	  	<name>value</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[A method binding expression referring to a method for handling a valuchangeevent.]]></description>
+	  	<name>valueChangeListener</name>
+	  	<required>false</required>
+	  	<type>javax.faces.event.ValueChangeListener</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+	  	<name>onColor</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+	  	<name>offColor</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Indeterminate state. Turned off by default.]]></description>
+	  	<name>indeterminate</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Inverse switch direction. Default value: false]]></description>
+	  	<name>inverse</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'.]]></description>
+	  	<name>switchsize</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Animate the switch. Default value: true.]]></description>
+	  	<name>animate</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Is the switch disabled? Default value: false.]]></description>
+	  	<name>disabled</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Is the switch readonly? Default value: false.]]></description>
+	  	<name>readonly</name>
+	  	<required>false</required>
+	  	<type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Text of the center handle of the switch. Default value: a space (nbsp).]]></description>
+	  	<name>labelText</name>
+	  	<required>false</required>
+	  	<type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Width of the left and right sides in pixels.]]></description>
+	  	<name>handleWidth</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	  <attribute>
+	  	<description><![CDATA[Width of the center handle in pixels.]]></description>
+	  	<name>labelWidth</name>
+	  	<required>false</required>
+	  	<type>Integer</type>
+	  </attribute>
+	</tag>
 
-    <attribute>
-      <description><![CDATA[Access key to transfer focus to the input element.]]></description>
-      <name>accesskey</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Alternate textual description of the input element.]]></description>
-      <name>alt</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
-      <name>binding</name>
-      <required>false</required>
-      <type>javax.faces.component.UIComponent</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)]]></description>
-      <name>caption</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[An el expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]></description>
-      <name>converter</name>
-      <required>false</required>
-      <type>java.faces.convert.Converter</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Message to display when conversion fails.]]></description>
-      <name>converterMessage</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
-      <name>dir</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Disables the input element, default is false.]]></description>
-      <name>disabled</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
-      <name>fieldSize</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
-      <name>immediate</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The label above of the field .]]></description>
-      <name>label</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[A localized user presentable name.]]></description>
-      <name>lang</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
-      <name>onblur</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
-      <name>onchange</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[OnClick DHTML event .]]></description>
-      <name>onclick</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
-      <name>ondblclick</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
-      <name>onfocus</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
-      <name>onkeydown</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
-      <name>onkeypress</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
-      <name>onkeyup</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
-      <name>onmousedown</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
-      <name>onmousemove</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
-      <name>onmouseout</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
-      <name>onmouseover</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
-      <name>onmouseup</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
-      <name>onselect</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
-      <name>readonly</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
-      <name>renderLabel</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
-      <name>span</name>
-      <required>false</required>
-      <type>Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the input element.]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Style class of the input element.]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Advisory tooltip information.]]></description>
-      <name>tabindex</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Advisory tooltip information.]]></description>
-      <name>title</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The text of the tooltip.]]></description>
-      <name>tooltip</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelay</name>
-      <required>false</required>
-      <type>Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayHide</name>
-      <required>false</required>
-      <type>Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayShow</name>
-      <required>false</required>
-      <type>Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltipPosition</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
-      <name>value</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[A method binding expression referring to a method for handling a valuchangeevent.]]></description>
-      <name>valueChangeListener</name>
-      <required>false</required>
-      <type>javax.faces.event.ValueChangeListener</type>
-    </attribute>
-  </tag>
 
-
-  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, 
-    on Nov 09, 2014. -->
+  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on Nov 09, 2014. -->
   <tag>
     <tag-name>tabView</tag-name>
     <component>
@@ -4948,8 +5466,7 @@
     </attribute>
   </tag>
 
-  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, 
-    on Nov 09, 2014. -->
+  <!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on Nov 09, 2014. -->
   <tag>
     <tag-name>tab</tag-name>
     <component>
@@ -5063,6 +5580,12 @@
     <attribute>
       <description><![CDATA[Inline style of the content area.]]></description>
       <name>contentStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -5187,7 +5710,7 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title.]]></description>
+      <description><![CDATA[Title is optional: if specified, the heading facet will not be rendered and the panel will render with a ing with this Title.]]></description>
       <name>title</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -5242,8 +5765,7 @@
     </attribute>
   </tag>
 
-  <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
-    15, 2014. -->
+  <!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 15, 2014. -->
   <tag>
     <tag-name>panelGrid</tag-name>
     <component>
@@ -5265,6 +5787,12 @@
     <attribute>
       <description><![CDATA[Synonym to colSpans: comma-separated list of the column spans]]></description>
       <name>columns</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+      <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -5363,7 +5891,7 @@
       <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -5623,8 +6151,7 @@
   </tag>
 
 
-  <!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh 
-    on Dec 28, 2014. -->
+  <!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh on Dec 28, 2014. -->
   <tag>
     <tag-name>selectOneMenu</tag-name>
     <component>
@@ -5649,7 +6176,7 @@
       <type>javax.faces.component.UIComponent</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Direction indication for text that does not inherit directionality.]]></description>
+      <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
       <name>dir</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -5957,6 +6484,12 @@
       <type>Boolean</type>
     </attribute>
     <attribute>
+      <description><![CDATA[The column span of the slider.]]></description>
+      <name>span</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[The step of the slider.]]></description>
       <name>step</name>
       <required>false</required>
@@ -6078,6 +6611,117 @@
       <type>javax.el.MethodExpression</type>
     </attribute>
   </tag>
+
+  <tag>
+    <tag-name>message</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.message.Message</component-type>
+    </component>
+
+    <attribute>
+      <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
+      <name>dir</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+      <name>errorClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+      <name>errorStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+      <name>fatalClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+      <name>fatalStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly.]]></description>
+      <name>for</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+      <name>infoClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+      <name>infoStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
+      <name>showDetail</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+      <name>showSummary</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
+      <name>redisplay</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[HTML: CSS styling instructions.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+      <name>warnClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+      <name>warnStyle</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
+
   <tag>
     <description><![CDATA[Renders all or some FacesMessages depending on the "for" and
 "globalOnly" attributes.

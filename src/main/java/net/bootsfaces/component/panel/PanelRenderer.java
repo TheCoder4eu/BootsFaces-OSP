@@ -113,6 +113,8 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", clientId, "id");
+		writeAttribute(rw, "dir", panel.getDir(), "dir");
+
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw);
 		Tooltip.generateTooltip(context, panel, rw);
 		String _style = panel.getStyle();
@@ -145,16 +147,24 @@ public class PanelRenderer extends CoreRenderer {
 					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+					if (panel.isCollapsed()) {
+						rw.writeAttribute("class", "collapsed", null);
+					}
 				}
 
 				rw.writeText(_title, null);
-				rw.endElement("a");
+				if (isCollapsible) {
+					rw.endElement("a");
+				}
 				rw.endElement("h4");
 			} else {
 				if (isCollapsible) {
 					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+					if (panel.isCollapsed()) {
+						rw.writeAttribute("class", "collapsed", null);
+					}
 				}
 				head.encodeAll(context);
 				if (isCollapsible) {
@@ -166,6 +176,8 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", jQueryClientID + "content", null);
+		writeAttribute(rw, "dir", panel.getDir(), "dir");
+
 		String _contentClass = panel.getContentClass();
 		if (null == _contentClass)
 			_contentClass = "";

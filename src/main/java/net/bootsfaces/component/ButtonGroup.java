@@ -64,7 +64,7 @@ public class ButtonGroup extends GenContainerDiv {
 		StringBuilder sb = new StringBuilder();
 		sb.append("btn-group");
 		String o = A.asString(getAttributes().get("orientation"));
-		String s = A.asString(getAttributes().get(A.SIZE));
+		String s = A.asString(getAttributes().get("size"));
 		if (o != null && o.equals("vertical")) {
 			sb.append("-vertical");
 		}

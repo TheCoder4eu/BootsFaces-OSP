@@ -84,7 +84,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	protected enum PropertyKeys {
-		binding, disabled, handleShape, handleSize, id, label, max, min, mode, orientation, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		binding, disabled, handleShape, handleSize, id, inline, label, max, min, mode, orientation, span, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
 		String toString;
 
@@ -200,6 +200,23 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	public void setHandleSize(String _handleSize) {
 		getStateHelper().put(PropertyKeys.handleSize, _handleSize);
 	}
+	
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInline() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+	    getStateHelper().put(PropertyKeys.inline, _inline);
+    }
 
 	/**
 	 * Label for the widget field. <P>
@@ -327,6 +344,25 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
+	 * The column span of a Horizontal slider. <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getSpan() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.span, 12);
+		return (int) value;
+	}
+
+	/**
+	 * The column span of the slider. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpan(int _span) {
+		getStateHelper().put(PropertyKeys.span, _span);
+	}
+        
+        /**
 	 * The step of the slider. <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been

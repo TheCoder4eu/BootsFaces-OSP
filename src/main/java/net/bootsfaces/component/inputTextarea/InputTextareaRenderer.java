@@ -32,7 +32,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -69,12 +68,17 @@ public class InputTextareaRenderer extends CoreRenderer {
 		InputTextarea inputText = (InputTextarea) component;
 
 		ResponseWriter rw = context.getResponseWriter();
+		int span = inputText.getSpan();
+		if (span > 0) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", "col-md-" + span, "class");
+		}
 		String clientId = inputText.getClientId();
 
 		// "Prepend" facet
-		UIComponent prep = inputText.getFacet(C.PREPEND);
+		UIComponent prep = inputText.getFacet("prepend");
 		// "Append" facet
-		UIComponent app = inputText.getFacet(C.APPEND);
+		UIComponent app = inputText.getFacet("append");
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
@@ -102,7 +106,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 		// support for b:inputSecret
 		String t;
 		if (component instanceof InputSecret) {
-			t = H.PASSWORD;
+			t = "password";
 		} else { // ordinary input fields
 			t = inputText.getType();
 			if (t == null)
@@ -110,9 +114,18 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", component);
+		if (null != inputText.getDir()) {
+			rw.writeAttribute("dir", inputText.getDir(), "dir");
+		}
+
 		Tooltip.generateTooltip(context, inputText, rw);
 		rw.writeAttribute("id", clientId, "id");
-		rw.writeAttribute("class", "form-group", "class");
+		if (inputText.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 
 		if (label != null) {
 			rw.startElement("label", component);
@@ -128,11 +141,6 @@ public class InputTextareaRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "input-group", "class");
 		}
 
-		int span = inputText.getSpan();
-		if (span > 0) {
-			rw.startElement("div", component);
-			rw.writeAttribute("class", "col-md-" + span, "class");
-		}
 
 		if (prepend) {
 			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0
@@ -169,7 +177,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, A.INPUT_TEXT_ATTRS);
+		renderPassThruAttributes(context, component, H.INPUT_TEXT);
 
 		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {

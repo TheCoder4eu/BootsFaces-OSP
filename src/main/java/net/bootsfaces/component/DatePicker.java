@@ -152,8 +152,8 @@ public class DatePicker extends HtmlInputText {
 			return converter.getAsObject(fc, this, val);
 		}
 		// Else we use our own converter
-		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(getAttributes().get(A.LOCALE)));
-		sdf = selectDateFormat(sloc, A.asString(getAttributes().get(A.DTFORMAT)));
+		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(getAttributes().get(JQ.LOCALE)));
+		sdf = selectDateFormat(sloc, A.asString(getAttributes().get(JQ.DTFORMAT)));
 		SimpleDateFormat format = null;
 		Object date = null;
 		try {
@@ -216,8 +216,8 @@ public class DatePicker extends HtmlInputText {
 		ResponseWriter rw = fc.getResponseWriter();
 		// stz = selectTimeZone(attrs.get(A.TZ));
 
-		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(A.LOCALE)));
-		sdf = selectDateFormat(sloc, A.asString(attrs.get(A.DTFORMAT)));
+		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(JQ.LOCALE)));
+		sdf = selectDateFormat(sloc, A.asString(attrs.get(JQ.DTFORMAT)));
 
 		// Debugging Locale and dateformat
 		// rw.write("<span>DEBUG sloc='"+sloc+"', sdf='"+sdf+"' </span>");
@@ -232,9 +232,9 @@ public class DatePicker extends HtmlInputText {
 		/*
 		 * 6 modes: 1) inline 2) popup (no icons) 3) popup-icon 4) icon-popup 5) toggle-icon (Default) 6) icon-toggle
 		 */
-		boolean isDisabled = A.toBool(attrs.get(A.DISABLED));
-		mode = A.asString(attrs.get("mode"), A.TOGGLEICON);
-		boolean inline = mode.equals(A.INLINE);
+		boolean isDisabled = A.toBool(attrs.get("disabled"));
+		mode = A.asString(attrs.get("mode"), "toggle-icon");
+		boolean inline = mode.equals("inline");
 
 		if (inline) { // inline => div with ID
 			dpId = clientId + "_" + "div";
@@ -244,10 +244,10 @@ public class DatePicker extends HtmlInputText {
 		} else { // popup
 			dpId = clientId;
 
-			if (!mode.equals(A.POPUP)) { // with icon => div with prepend/append style
+			if (!mode.equals("popup")) { // with icon => div with prepend/append style
 				rw.startElement("div", this);
 				rw.writeAttribute("class", "input-group", "class");
-				if (mode.equals(A.ICONPOP) || mode.equals(A.ICONTOGGLE)) {
+				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, true, null, null, isDisabled);
 					
 				}
@@ -265,25 +265,25 @@ public class DatePicker extends HtmlInputText {
 			rw.writeAttribute("value", getDateAsString(v, sdf, sloc), null);
 		}
 
-		String ph = A.asString(attrs.get(A.PHOLDER));
+		String ph = A.asString(attrs.get("placeholder"));
 		if (ph != null) {
 			rw.writeAttribute("placeholder", ph, null);
 		}
 
 		if (isDisabled) {
-			rw.writeAttribute(A.DISABLED, A.DISABLED, null);
+			rw.writeAttribute("disabled", "disabled", null);
 		}
-		if (A.toBool(attrs.get(A.READONLY))) {
-			rw.writeAttribute(A.READONLY, A.READONLY, null);
+		if (A.toBool(attrs.get("readonly"))) {
+			rw.writeAttribute("readonly", "readonly", null);
 		}
 		rw.endElement("input");
 
 		encodeJS(fc, rw, clientId, dpId);
-		if (mode.equals(A.POPICON) || mode.equals(A.TOGGLEICON)) {
+		if (mode.equals("popup-icon") || mode.equals("toggle-icon")) {
 			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, true, null, null, isDisabled);
 		}
 
-		if (!inline && !mode.equals(A.POPUP)) {
+		if (!inline && !mode.equals("popup")) {
 			rw.endElement("div");
 			JQ.datePickerToggler(rw, clientId, clientId + "_" + ADDON);
 
@@ -303,19 +303,19 @@ public class DatePicker extends HtmlInputText {
 			sb.append(JQ.FIRSTDAY).append(":").append(attrs.get(JQ.FIRSTDAY)).append(",");
 		}
 		if (A.toBool(attrs.get(JQ.SHOWBUTS))) {
-			sb.append(JQ.SHOWBUTS).append(":").append(C.TRUE).append(",");
+			sb.append(JQ.SHOWBUTS).append(":").append("true").append(",");
 		}
 		if (A.toBool(attrs.get(JQ.CHNGMONTH))) {
-			sb.append(JQ.CHNGMONTH).append(":").append(C.TRUE).append(",");
+			sb.append(JQ.CHNGMONTH).append(":").append("true").append(",");
 		}
 		if (A.toBool(attrs.get(JQ.CHNGYEAR))) {
-			sb.append(JQ.CHNGYEAR).append(":").append(C.TRUE).append(",");
+			sb.append(JQ.CHNGYEAR).append(":").append("true").append(",");
 		}
 		if (A.toBool(attrs.get(JQ.SHOWWK))) {
-			sb.append(JQ.SHOWWK).append(":").append(C.TRUE).append(",");
+			sb.append(JQ.SHOWWK).append(":").append("true").append(",");
 		}
 
-		if (mode.equals(A.TOGGLEICON) || mode.equals(A.ICONTOGGLE)) {
+		if (mode.equals("toggle-icon") || mode.equals("icon-toggle")) {
 			sb.append(JQ.SHOWON).append(":").append("'" + "button" + "'").append(",");
 		}
 

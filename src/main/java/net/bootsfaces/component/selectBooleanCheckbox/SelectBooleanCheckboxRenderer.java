@@ -26,10 +26,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -64,17 +63,19 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			return;
 		}
 
-		decodeBehaviors(context, selectBooleanCheckbox); // moved to AJAXRenderer
+		decodeBehaviors(context, selectBooleanCheckbox); // moved to
+															// AJAXRenderer
 
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
-		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId+"_helper")){
+		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId + "_helper")) {
 			selectBooleanCheckbox.setSubmittedValue(false);
 		}
-		new AJAXRenderer().decode(context, component);
+		String id = component.getClientId(context);
+		new AJAXRenderer().decode(context, component, "input_" +id);
 	}
 
 	/**
@@ -97,23 +98,23 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
 
+		int span = startColSpanDiv(rw, selectBooleanCheckbox);
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		// "Prepend" facet
-		UIComponent prependingAddOnFacet = selectBooleanCheckbox.getFacet(C.PREPEND);
+		UIComponent prependingAddOnFacet = selectBooleanCheckbox.getFacet("prepend");
 		if ((prependingAddOnFacet != null)) {
 			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
 		}
 
 		// "Append" facet
-		UIComponent appendingAddOnFacet = selectBooleanCheckbox.getFacet(C.APPEND);
+		UIComponent appendingAddOnFacet = selectBooleanCheckbox.getFacet("append");
 		if ((appendingAddOnFacet != null)) {
 			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
 		}
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), selectBooleanCheckbox);
 
-		int span = startColSpanDiv(rw, selectBooleanCheckbox);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null),
 				selectBooleanCheckbox);
@@ -139,8 +140,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            optional facet behind the field. Can be null.
 	 * @param hasAppendingAddOn
 	 *            optional facet in front of the field. Can be null.
-	 * @param selectBooleanCheckbox the component to render
-
+	 * @param selectBooleanCheckbox
+	 *            the component to render
+	 * 
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -168,7 +170,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            the response writer
 	 * @param clientId
 	 *            the id used by the label to reference the input field
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -178,7 +181,12 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
-				rw.writeAttribute("for", clientId, "for");
+				writeAttribute(rw, "class", getErrorAndRequiredClass(selectBooleanCheckbox, clientId));
+				if (null != selectBooleanCheckbox.getDir()) {
+					rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+				}
+
+				rw.writeAttribute("for", "input_" + clientId, "for");
 				rw.writeText(label, null);
 				rw.endElement("label");
 			}
@@ -195,7 +203,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 * @param prependingAddOnFacet
 	 * 
 	 * @param hasPrependingAddOn
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -258,12 +267,13 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            the FacesContext
 	 * @param rw
 	 * @param clientId
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws java.io.IOException
 	 */
 	protected void renderInputTag(FacesContext context, ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
-		renderInputTag(rw, context, selectBooleanCheckbox,clientId);
+		renderInputTag(rw, context, selectBooleanCheckbox, clientId);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
 		// Render Ajax Capabilities
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), selectBooleanCheckbox, rw);
@@ -272,21 +282,22 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		renderInputTagEnd(rw, selectBooleanCheckbox);
 		renderInputTagHelper(rw, context, selectBooleanCheckbox, clientId);
 	}
-	
+
 	/**
 	 * Renders the start of the input tag. This method is protected in order to
 	 * allow third-party frameworks to derive from it.
 	 *
 	 * @param rw
 	 *            the response writer
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void renderInputTagHelper(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox, String clientId)
-			throws IOException {
+	protected void renderInputTagHelper(ResponseWriter rw, FacesContext context,
+			SelectBooleanCheckbox selectBooleanCheckbox, String clientId) throws IOException {
 		rw.startElement("input", selectBooleanCheckbox);
-		rw.writeAttribute("name", clientId+"_helper", null);
+		rw.writeAttribute("name", clientId + "_helper", null);
 		rw.writeAttribute("value", "on", "value");
 		rw.writeAttribute("checked", "true", "checked");
 		rw.writeAttribute("type", "hidden", "type");
@@ -300,20 +311,24 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *
 	 * @param rw
 	 *            the response writer
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
-			String clientId)
-			throws IOException {
+			String clientId) throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
 		rw.writeAttribute("id", clientId, null);
+		if (null != selectBooleanCheckbox.getDir()) {
+			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+		}
 
 		Tooltip.generateTooltip(context, selectBooleanCheckbox, rw);
 
 		rw.writeAttribute("class", "checkbox", "class");
 		rw.startElement("label", selectBooleanCheckbox);
+		writeAttribute(rw, "class", getErrorAndRequiredClass(selectBooleanCheckbox, clientId));
 
 		rw.startElement("input", selectBooleanCheckbox);
 	}
@@ -326,13 +341,15 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            the response writer
 	 * @param clientId
 	 *            the client id (used both as id and name)
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
 	protected void renderInputTagAttributes(ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
 		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("id", "input_" + clientId, null);
 		rw.writeAttribute("type", "checkbox", null);
 
 		StringBuilder sb;
@@ -358,9 +375,19 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (selectBooleanCheckbox.isReadonly()) {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
+		addAttributesForSwitch(rw, selectBooleanCheckbox);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), A.CHECKBOX_ATTRS);
+		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), H.CHECKBOX);
+	}
+
+	/**
+	 * The b:switch and the b:selectBooleanCheckbox share most of their code. This method allows to add extra attributes for the switch.
+	 * @param rw
+	 * @param selectBooleanCheckbox
+	 * @throws IOException
+	 */
+	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
 	}
 
 	/**
@@ -369,7 +396,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *
 	 * @param rw
 	 *            the response writer
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -391,7 +419,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            the FacesContext
 	 * @param rw
 	 *            the response writer
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -408,7 +437,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *
 	 * @param rw
 	 *            the response writer
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
@@ -417,6 +447,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (span > 0) {
 			rw.startElement("div", selectBooleanCheckbox);
 			rw.writeAttribute("class", "col-md-" + span, "class");
+			if (null != selectBooleanCheckbox.getDir()) {
+				rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+			}
 		}
 		return span;
 	}
@@ -430,7 +463,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 *            the response writer
 	 * @param hasPrependingAddOn
 	 * @param hasAppendingAddOn
-	 * @param selectBooleanCheckbox the component to render
+	 * @param selectBooleanCheckbox
+	 *            the component to render
 	 * @return true if there is an add-on in front of or behind the input field
 	 * @throws IOException
 	 *             may be thrown by the response writer
@@ -441,6 +475,9 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (hasAddon) {
 			rw.startElement("div", selectBooleanCheckbox);
 			rw.writeAttribute("class", "input-group", "class");
+			if (null != selectBooleanCheckbox.getDir()) {
+				rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+			}
 		}
 		return hasAddon;
 	}

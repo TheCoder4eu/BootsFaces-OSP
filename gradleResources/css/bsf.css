@@ -214,10 +214,14 @@
 /* required fields and displaying errors */
 label.bf-required:after { content:" *"; }
 label.bf-no-message {  }
-label.bf-info {  }
-label.bf-warn { font-color: orange; }
+label.bf-info  {  }
+label.bf-warning  { color: orange; }
 label.bf-error { color: red; }
-label.bf-fatal { font-color: red; }
+label.bf-fatal { color: red; }
+
+.bf-message { padding-top: 2px !important; padding-bottom:2px !important;margin-top:7px; margin-bottom:0px !important;}
+.bf-message-summary { padding-left:10px; font-weight:bold;}
+.bf-message-detail { padding-left:10px;}
 
 /* Glyphicons path override */
 @font-face {

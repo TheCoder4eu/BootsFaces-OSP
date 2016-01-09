@@ -86,7 +86,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	}
 
 	protected enum PropertyKeys {
-		accesskey, ajax, alt, binding, dir, disabled, fieldSize, immediate, label, lang, onblur, onchange, onclick, oncomplete, 
+		accesskey, ajax, alt, binding, dir, disabled, fieldSize, immediate, inline, label, lang, onblur, onchange, onclick, oncomplete, 
 		ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, 
 		onselect, placeholder, process, readonly, renderLabel, required, requiredMessage, size, span, style, styleClass, tabindex, 
 		title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
@@ -312,6 +312,23 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public void setImmediate(boolean _immediate) {
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInline() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+	    getStateHelper().put(PropertyKeys.inline, _inline);
+    }
 
 	/**
 	 * The label of the field.

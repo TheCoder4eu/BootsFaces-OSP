@@ -22,21 +22,8 @@ package net.bootsfaces.component;
 import static net.bootsfaces.C.BSFCOMPONENT;
 import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
 import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
-import static net.bootsfaces.render.A.ALLBUTTON_ATTRS;
-import static net.bootsfaces.render.A.DATA_DISMISS;
-import static net.bootsfaces.render.A.DISABLED;
-import static net.bootsfaces.render.A.DISMISS;
-import static net.bootsfaces.render.A.FRAGMENT;
-import static net.bootsfaces.render.A.ICON;
-import static net.bootsfaces.render.A.ICONAWESOME;
-import static net.bootsfaces.render.A.ICON_ALIGN;
-import static net.bootsfaces.render.A.LOOK;
-import static net.bootsfaces.render.A.RIGHT;
-import static net.bootsfaces.render.A.SIZE;
 import static net.bootsfaces.render.A.asString;
 import static net.bootsfaces.render.A.toBool;
-import static net.bootsfaces.render.H.STYLE;
-import static net.bootsfaces.render.H.STYLECLASS;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,6 +48,7 @@ import javax.faces.render.Renderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -128,14 +116,17 @@ public class Button extends HtmlOutcomeTargetButton {
 		ResponseWriter rw = context.getResponseWriter();
 
 		Object value = attrs.get("value");
-		String style = asString(attrs.get(STYLE));
+		String style = asString(attrs.get("style"));
 
 		rw.startElement("button", this);
 		rw.writeAttribute("id", getClientId(context), "id");
 		rw.writeAttribute("name", getClientId(context), "name");
 		rw.writeAttribute("type", "button", null);
+		if (null != attrs.get("dir")) {
+			rw.writeAttribute("dir", attrs.get("dir"), "dir");
+		}
 		if (style != null) {
-			rw.writeAttribute(STYLE, style, STYLE);
+			rw.writeAttribute("style", style, "style");
 		}
 		rw.writeAttribute("class", getStyleClasses(attrs), "class");
 
@@ -145,20 +136,20 @@ public class Button extends HtmlOutcomeTargetButton {
 		if (null != clickHandler && clickHandler.length() > 0) {
 			rw.writeAttribute("onclick", clickHandler, null);
 		}
-		String d = asString(attrs.get(DISMISS));
+		String d = asString(attrs.get("dismiss"));
 		if (d != null) {
-			rw.writeAttribute(DATA_DISMISS, d, null);
+			rw.writeAttribute("data-dismiss", d, null);
 		}
-		boolean disabled = (toBool(attrs.get(DISABLED)));
+		boolean disabled = (toBool(attrs.get("disabled")));
 		if (disabled) {
-			rw.writeAttribute(DISABLED, DISABLED, null);
+			rw.writeAttribute("disabled", "disabled", null);
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, this, ALLBUTTON_ATTRS);
+		renderPassThruAttributes(context, this, H.ALLBUTTON);
 
-		String icon = asString(attrs.get(ICON));
-		String faicon = asString(attrs.get(ICONAWESOME));
+		String icon = asString(attrs.get("icon"));
+		String faicon = asString(attrs.get("iconAwesome"));
 		boolean fa = false; // flag to indicate wether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
@@ -166,8 +157,8 @@ public class Button extends HtmlOutcomeTargetButton {
 			fa = true;
 		}
 		if (icon != null) {
-			Object ialign = attrs.get(ICON_ALIGN); // Default Left
-			if (ialign != null && ialign.equals(RIGHT)) {
+			Object ialign = attrs.get("icon"+"Align"); // Default Left
+			if (ialign != null && ialign.equals("right")) {
 				rw.writeText(value + " ", null);
 				IconRenderer.encodeIcon(rw, this, icon, fa);
 			} else {
@@ -205,7 +196,7 @@ public class Button extends HtmlOutcomeTargetButton {
 			js = "";
 		}
 
-		String fragment = asString(attrs.get(FRAGMENT));
+		String fragment = asString(attrs.get("fragment"));
 		String outcome = getOutcome();
 		if (null != outcome && outcome.contains("#")) {
 			if (null != fragment && fragment.length()>0) {
@@ -368,23 +359,23 @@ public class Button extends HtmlOutcomeTargetButton {
 		StringBuilder sb;
 		sb = new StringBuilder(40); // optimize int
 		sb.append("btn");
-		String size = asString(attrs.get(SIZE));
+		String size = asString(attrs.get("size"));
 		if (size != null) {
 			sb.append(" btn-").append(size);
 		}
 
-		String look = asString(attrs.get(LOOK));
+		String look = asString(attrs.get("look"));
 		if (look != null) {
 			sb.append(" btn-").append(look);
 		} else {
 			sb.append(" btn-default");
 		}
 
-		if (toBool(attrs.get(DISABLED))) {
-			sb.append(" " + DISABLED);
+		if (toBool(attrs.get("disabled"))) {
+			sb.append(" " + "disabled");
 		}
 		// TODO add styleClass and class support
-		String sclass = asString(attrs.get(STYLECLASS));
+		String sclass = asString(attrs.get("styleClass"));
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}

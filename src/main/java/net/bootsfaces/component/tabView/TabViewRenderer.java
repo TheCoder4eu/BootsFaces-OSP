@@ -19,9 +19,6 @@
 
 package net.bootsfaces.component.tabView;
 
-import static net.bootsfaces.render.A.TAB_ATTRS;
-import static net.bootsfaces.render.A.TAB_VIEW_ATTRS;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +31,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.tab.Tab;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -115,6 +113,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.startElement("div", tabView);
 		writer.writeAttribute("class", "tab-panel", "class");
 		writer.writeAttribute("role", "tabpanel", "class");
+		writer.writeAttribute("dir", tabView.getDir(), "dir");
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
@@ -128,7 +127,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		String role = "tablist";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer);
-		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), TAB_VIEW_ATTRS);
+		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), H.TAB_VIEW);
 		if (tabView.getRole() != null) {
 			role = tabView.getRole();
 		}
@@ -228,6 +227,8 @@ public class TabViewRenderer extends CoreRenderer {
 		Tab tab = (Tab) child;
 		writer.startElement("div", tab);
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_")+"_pane", "id");
+		if (tab.getDir()!=null)
+			writer.writeAttribute("dir", tab.getDir(), "dir");
 		String classes = "tab-pane";
 		if (isActive) {
 			classes += " active";
@@ -290,6 +291,8 @@ public class TabViewRenderer extends CoreRenderer {
 			return;
 		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
+		if (tab.getDir()!=null)
+			writer.writeAttribute("dir", tab.getDir(), "dir");
 		writer.writeAttribute("id", tab.getClientId(), "id");
 		writer.writeAttribute("role", "presentation", "role");
 		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
@@ -330,7 +333,7 @@ public class TabViewRenderer extends CoreRenderer {
 		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
 				+ "';";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false);
-		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), TAB_ATTRS);
+		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
 
 		UIComponent iconFacet = tab.getFacet("anchor");
 		if (null != iconFacet) {

@@ -40,7 +40,7 @@ public final class C {
     
     //Font Awesome
     //public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
-    public static final String FA_VERSION="4.3.0";
+    public static final String FA_VERSION="4.5.0";
     public static final String FONTAWESOME_CDN_URL="//maxcdn.bootstrapcdn.com/font-awesome/"+FA_VERSION+"/css/font-awesome.min.css";
     
     /**
@@ -88,31 +88,9 @@ public final class C {
     public static final String PANEL_COMPONENT_TYPE=BSFLAYOUT+".Panel";
     public static final String WELL_COMPONENT_TYPE=BSFLAYOUT+".Well";
     
-    // Dot
-    public static final String DOT=".";
-    public static final String DISABLED="disabled";
-    public static final String READONLY="readonly";
-    public static final String LEFT="left";
-    public static final String RIGHT="right";
-    public static final String DOWN="down";
-    public static final String UP="up";
-    public static final String H="horizontal";
-    public static final String APPEND="append";
-    public static final String PREPEND="prepend";
-    
-    public static final String TRUE="true";
-    //public static final String ="";
-    
-    /*
-     * Messages
-     */
-    //Errors
-    //Warnings
     public static final String W_NONAVCASE_LINK="This link is disabled because a navigation case could not be matched.";
     public static final String W_NONAVCASE_BUTTON="This link is disabled because a navigation case could not be matched.";
     
-    
-    //Info
     
     // Suppress default constructor for noninstantiability
     private C() {

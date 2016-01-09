@@ -62,34 +62,35 @@ public class ColumnRenderer extends CoreRenderer {
 
 			Map<String, Object> attrs = column.getAttributes();
 
-			int colxs = A.toInt(attrs.get("col-xs"));
-			int colsm = A.toInt(attrs.get("col-sm"));
-			int collg = A.toInt(attrs.get("col-lg"));
+			int colxs = column.getColXs();
+			int colsm = column.getColSm(); 
+			int collg = column.getColLg();
 
-			int span = A.toInt(attrs.get(A.SPAN));
+			int span = column.getSpan(); 
 
-			int colmd = (span > 0) ? span : A.toInt(attrs.get("col-md"));
+			int colmd = (span > 0) ? span : column.getColMd();
 			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
 				colmd = (colmd > 0) ? colmd : 0;
 			} else {
 				colmd = (colmd > 0) ? colmd : 12;
 			}
 
-			int offs = A.toInt(attrs.get("offset"));
-			int offsmd = (offs > 0) ? offs : A.toInt(attrs.get("offset-md"));
-			int oxs = A.toInt(attrs.get("offset-xs"));
-			int osm = A.toInt(attrs.get("offset-sm"));
-			int olg = A.toInt(attrs.get("offset-lg"));
-			String style = A.asString(attrs.get("style"));
-			String sclass = A.asString(attrs.get("styleClass"));
+			int offs = column.getOffset(); 
+			int offsmd = (offs > 0) ? offs : column.getOffsetMd();
+			int oxs = column.getOffsetXs(); 
+			int osm = column.getOffsetSm(); 
+			int olg = column.getOffsetLg();
+			String style = column.getStyle(); 
+			String sclass = column.getStyleClass();
 
 			rw.startElement("div", column);
-			Map<String, Object> componentAttrs = new HashMap<String, Object>();
+			if (null != column.getDir()) {
+				rw.writeAttribute("dir", column.getDir(), "dir");
+			}
 
 			if (this != null) {
 				rw.writeAttribute("id", column.getClientId(), "id");
-				Tooltip.generateTooltip(FacesContext.getCurrentInstance(), column.getAttributes(), rw);
-				componentAttrs = column.getAttributes();
+				Tooltip.generateTooltip(FacesContext.getCurrentInstance(), column, rw);
 			}
 
 			StringBuilder sb = new StringBuilder();
@@ -108,21 +109,21 @@ public class ColumnRenderer extends CoreRenderer {
 			if (colxs > 0) {
 				sb.append(" col-xs-").append(colxs);
 			}
-			if (componentAttrs.get("col-xs") != null && colxs == 0) {
+			if (colxs == 0) {
 				sb.append(" hidden-xs");
 			}  
 
 			if (colsm > 0) {
 				sb.append(" col-sm-").append(colsm);
 			}
-			if (componentAttrs.get("col-sm") != null && colsm == 0) {
+			if (colsm == 0) {
 				sb.append(" hidden-sm");
 			}
 
 			if (collg > 0) {
 				sb.append(" col-lg-").append(collg);
 			}
-			if (componentAttrs.get("col-lg") != null && collg == 0) {
+			if (collg == 0) {
 				sb.append(" hidden-lg");
 			}
 			

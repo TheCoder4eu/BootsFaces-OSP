@@ -54,42 +54,48 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 	}
-	
+
 	/**
-	 * Renders the CSS pseudo classes for required fields and for the error levels.
+	 * Renders the CSS pseudo classes for required fields and for the error
+	 * levels.
+	 * 
 	 * @param input
 	 * @param rw
 	 * @param clientId
 	 * @throws IOException
 	 */
-	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId)
-			throws IOException {
+	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
-		
+
 		rw.writeAttribute("class", styleClass, "class");
 	}
 
 	/**
 	 * Yields the value of the required and error level CSS class.
+	 * 
 	 * @param input
 	 * @param clientId
 	 * @return
 	 */
 	protected String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String[] levels = {"bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal"};
-		int level=0;
+		String[] levels = { "bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal" };
+		int level = 0;
 		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
 		if (null != messages) {
 			while (messages.hasNext()) {
 				FacesMessage message = messages.next();
 				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
-					if (level<1) level=1;
+					if (level < 1)
+						level = 1;
 				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
-					if (level<2) level=2;
+					if (level < 2)
+						level = 2;
 				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
-					if (level<3) level=3;
+					if (level < 3)
+						level = 3;
 				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
-					if (level<4) level=4;
+					if (level < 4)
+						level = 4;
 			}
 		}
 		String styleClass = levels[level];
@@ -98,7 +104,6 @@ public class CoreRenderer extends Renderer {
 		}
 		return styleClass;
 	}
-
 
 	protected boolean shouldRenderAttribute(Object value) {
 		if (value == null)
@@ -191,9 +196,12 @@ public class CoreRenderer extends Renderer {
 		if (value == null) {
 			return;
 		}
+		if (value instanceof String)
+			if (((String) value).length() == 0)
+				return;
 		rw.writeAttribute(name, value, property);
 	}
-	
+
 	/**
 	 * @param rw
 	 *            ResponseWriter to be used
@@ -201,10 +209,6 @@ public class CoreRenderer extends Renderer {
 	 *            Attribute name to be added
 	 * @param value
 	 *            Attribute value to be added
-	 * @param property
-	 *            Name of the property or attribute (if any) of the
-	 *            {@link UIComponent} associated with the containing element, to
-	 *            which this generated attribute corresponds
 	 * @throws IllegalStateException
 	 *             if this method is called when there is no currently open
 	 *             element
@@ -217,9 +221,11 @@ public class CoreRenderer extends Renderer {
 		if (value == null) {
 			return;
 		}
+		if (value instanceof String)
+			if (((String) value).length() == 0)
+				return;
 		rw.writeAttribute(name, value, name);
 	}
-
 
 	/**
 	 * @param rw

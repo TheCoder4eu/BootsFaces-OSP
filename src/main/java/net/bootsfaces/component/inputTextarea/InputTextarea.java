@@ -59,16 +59,18 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	return null;
-    }
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
 
-    public Collection<String> getEventNames() {
+	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
@@ -78,8 +80,7 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 
 	protected enum PropertyKeys {
 
-		ajax, placeholder, fieldSize, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
-		process, update, tooltipContainer, rows;
+		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer, rows;
 
 		String toString;
 
@@ -107,54 +108,75 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
-	    getStateHelper().put(PropertyKeys.ajax, _ajax);
-    }
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
 
 	public java.lang.String getPlaceholder() {
 		return (java.lang.String) getStateHelper().eval(PropertyKeys.placeholder, null);
@@ -164,12 +186,37 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
 	}
 
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+		getStateHelper().put(PropertyKeys.inline, _inline);
+	}
+
 	public java.lang.String getFieldSize() {
 		return (java.lang.String) getStateHelper().eval(PropertyKeys.fieldSize, null);
 	}
 
 	public void setFieldSize(java.lang.String _fieldSize) {
 		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
+	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isInline() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
+		return (boolean) value;
 	}
 
 	/**
@@ -338,6 +385,7 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 	public void setType(java.lang.String _type) {
 		getStateHelper().put(PropertyKeys.type, _type);
 	}
+
 	public String getOncomplete() {
 		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
 		return value;
@@ -351,6 +399,7 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
 	}
+
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
@@ -372,22 +421,25 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
 
-
 	/**
-	 * Number of rows <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Number of rows
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public int getRows() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.rows, 5);
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.rows, 5);
 		return (int) value;
 	}
-	
+
 	/**
-	 * Number of rows <P>
+	 * Number of rows
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRows(int _rows) {
-	    getStateHelper().put(PropertyKeys.rows, _rows);
-    }
+		getStateHelper().put(PropertyKeys.rows, _rows);
+	}
 
 }

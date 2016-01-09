@@ -63,6 +63,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ResourceFiles";
 
 	static {
+		LOGGER.info("This application is running on BootsFaces 0.9.0.");
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
 	}
 
@@ -96,24 +97,35 @@ public class AddResourcesListener implements SystemEventListener {
 		ResourceHandler rh = app.getResourceHandler();
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
-		
-                /*
-                As of v0.8.0 we have two Context Parameters:
-                BootsFaces_USETHEME - as in previous versions controls if the current theme is to be rendered in the Flat variant (default)
-                                      or in its Enhanced variant, with shadows and decorations turned on.
-                BootsFaces_THEME - controls the Theme to use: the value "default" is plain Bootstrap, the other options are a Bootswach Theme name (lowercase) or "custom".
-                                   If custom is chosen, you will have to provide your custom CSS in the "other" folder.
-                */
-		String theme = null; String usetheme = null;
-                theme = context.getExternalContext().getInitParameter(C.P_THEME);
+
+		/*
+		 * As of v0.8.0 we have two Context Parameters: BootsFaces_USETHEME - as
+		 * in previous versions controls if the current theme is to be rendered
+		 * in the Flat variant (default) or in its Enhanced variant, with
+		 * shadows and decorations turned on. BootsFaces_THEME - controls the
+		 * Theme to use: the value "default" is plain Bootstrap, the other
+		 * options are a Bootswach Theme name (lowercase) or "custom". If custom
+		 * is chosen, you will have to provide your custom CSS in the "other"
+		 * folder.
+		 */
+		String theme = null;
+		String usetheme = null;
+		theme = context.getExternalContext().getInitParameter(C.P_THEME);
 		usetheme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-                if (theme != null) { theme = ELTools.evalAsString(theme); } else { theme = ""; }
-		if (theme.trim().length()>0) {
-                    if (theme.equalsIgnoreCase("custom")) { theme = "other"; }
-			 
-		} else theme = "default";
-                
-                //Theme loading
+		if (theme != null) {
+			theme = ELTools.evalAsString(theme);
+		} else {
+			theme = "";
+		}
+		if (theme.trim().length() > 0) {
+			if (theme.equalsIgnoreCase("custom")) {
+				theme = "other";
+			}
+
+		} else
+			theme = "default";
+
+		// Theme loading
 		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
 			String filename = "bsf.css";
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
@@ -130,18 +142,22 @@ public class AddResourcesListener implements SystemEventListener {
 				addResourceIfNecessary(root, context, output);
 			}
 		}
-                
-                if (usetheme != null) { usetheme = ELTools.evalAsString(usetheme); } else { usetheme = ""; }
-                if (usetheme.trim().length()>0) {
-                    if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
-                        UIOutput output = new UIOutput();
-                        output.setRendererType("javax.faces.resource.Stylesheet");
-                        output.getAttributes().put("name", "css/" + theme + "/theme.css");
-                        output.getAttributes().put("library", C.BSF_LIBRARY);
-                        output.getAttributes().put("target", "head");
-                        addResourceIfNecessary(root, context, output);
-                    }
-                }
+
+		if (usetheme != null) {
+			usetheme = ELTools.evalAsString(usetheme);
+		} else {
+			usetheme = "";
+		}
+		if (usetheme.trim().length() > 0) {
+			if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
+				UIOutput output = new UIOutput();
+				output.setRendererType("javax.faces.resource.Stylesheet");
+				output.getAttributes().put("name", "css/" + theme + "/theme.css");
+				output.getAttributes().put("library", C.BSF_LIBRARY);
+				output.getAttributes().put("target", "head");
+				addResourceIfNecessary(root, context, output);
+			}
+		}
 
 		// deactivate FontAwesome support if the no-fa facet is found in the
 		// h:head tag
@@ -150,11 +166,15 @@ public class AddResourcesListener implements SystemEventListener {
 		if (useCDNImportForFontAwesome) {
 			String useCDN = FacesContext.getCurrentInstance().getExternalContext()
 					.getInitParameter("net.bootsfaces.get_fontawesome_from_cdn");
-			if (null != useCDN)
+			if (null != useCDN) {
+				useCDN = ELTools.evalAsString(useCDN);
+			}
+			if (null != useCDN) {
 				if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
 					useCDNImportForFontAwesome = false;
 				else
 					useCDNImportForFontAwesome = true;
+			}
 		}
 
 		// Do we have to add font-awesome and jQuery, or are the resources
@@ -163,6 +183,8 @@ public class AddResourcesListener implements SystemEventListener {
 		String suppressJQuery = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_jquery_from_cdn");
 		if (null != suppressJQuery)
+			suppressJQuery = ELTools.evalAsString(suppressJQuery);
+		if (null != suppressJQuery)
 			if (suppressJQuery.equalsIgnoreCase("true") || suppressJQuery.equals("yes"))
 				loadJQuery = false;
 
@@ -170,12 +192,16 @@ public class AddResourcesListener implements SystemEventListener {
 		String suppressJQueryUI = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_jqueryui_from_cdn");
 		if (null != suppressJQueryUI)
+			suppressJQueryUI = ELTools.evalAsString(suppressJQueryUI);
+		if (null != suppressJQueryUI)
 			if (suppressJQueryUI.equalsIgnoreCase("true") || suppressJQueryUI.equals("yes"))
 				loadJQueryUI = false;
 
 		boolean loadBootstrapFromCDN = false;
 		String loadBootstrapFromCDNParam = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.get_bootstrap_from_cdn");
+		if (null != loadBootstrapFromCDNParam)
+			loadBootstrapFromCDNParam = ELTools.evalAsString(loadBootstrapFromCDNParam);
 		if (null != loadBootstrapFromCDNParam)
 			if (loadBootstrapFromCDNParam.equalsIgnoreCase("true") || loadBootstrapFromCDNParam.equals("yes"))
 				loadBootstrapFromCDN = true;
@@ -245,6 +271,19 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
+		String blockUI = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.blockUI");
+		if (null != blockUI)
+			blockUI = ELTools.evalAsString(blockUI);
+		if (null != blockUI && (blockUI.equalsIgnoreCase("yes") || blockUI.equalsIgnoreCase("true")))
+		{
+			UIOutput output = new UIOutput();
+			output.setRendererType("javax.faces.resource.Script");
+			output.getAttributes().put("name", "js/jquery.blockUI.js");
+			output.getAttributes().put("library", C.BSF_LIBRARY);
+			output.getAttributes().put("target", "head");
+			addResourceIfNecessary(root, context, output);
+		}
 
 		// replaceCSSResourcesByMinifiedResources(root, context);
 		removeDuplicateResources(root, context);
@@ -304,59 +343,6 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 		root.addComponentResource(context, output, "head");
-	}
-
-	/**
-	 * Remove duplicate resource files. For some reason, many resource files are
-	 * added more than once, especially when AJAX is used. The method removes
-	 * the duplicate files.
-	 * 
-	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or
-	 * of the Mojarra library itself.
-	 * 
-	 * @param root
-	 *            The current UIViewRoot
-	 * @param context
-	 *            The current FacesContext
-	 */
-	private void replaceCSSResourcesByMinifiedResources(UIViewRoot root, FacesContext context) {
-		Application app = context.getApplication();
-		ResourceHandler rh = app.getResourceHandler();
-		Resource cssmin = rh.createResource("css/BootsFaces.min.css", C.BSF_LIBRARY);
-		// Resource jsmin = rh.createResource("js/BootsFaces.min.js",
-		// C.BSF_LIBRARY);
-
-		if (cssmin != null) {
-			List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
-			for (UIComponent resource : root.getComponentResources(context, "head")) {
-				String name = (String) resource.getAttributes().get("name");
-				String library = (String) resource.getAttributes().get("library");
-				if ((library != null) && library.equals("bsf"))
-					if ((name != null) && (!name.startsWith("jq/"))) {
-						if (name.endsWith(".css")) {
-							if (!name.equals("css/theme.css"))
-								resourcesToRemove.add(resource);
-						}
-					}
-			}
-			for (UIComponent c : resourcesToRemove) {
-				root.removeComponentResource(context, c);
-			}
-			UIOutput output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Stylesheet");
-			output.getAttributes().put("name", "css/BootsFaces.min.css");
-			output.getAttributes().put("library", C.BSF_LIBRARY);
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
-
-			// output = new UIOutput();
-			// output.setRendererType("javax.faces.resource.Script");
-			// output.getAttributes().put("name", "js/BootsFaces.min.js");
-			// output.getAttributes().put("library", C.BSF_LIBRARY);
-			// output.getAttributes().put("target", "head");
-			// addResourceIfNecessary(root, context, output);
-
-		}
 	}
 
 	/**

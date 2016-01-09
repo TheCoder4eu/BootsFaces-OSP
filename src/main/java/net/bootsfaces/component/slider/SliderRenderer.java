@@ -28,7 +28,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.badge.BadgeRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.JQ;
@@ -123,76 +122,81 @@ public class SliderRenderer extends BadgeRenderer {
 		if (slider.getOrientation() != null) {
 			o = slider.getOrientation();
 		} else {
-			o = C.H;
+			o = "horizontal";
 		}
 		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");
+                int span = slider.getSpan();
 
 		rw.startElement("div", null);// form-group
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
-		
-		rw.writeAttribute("class", "form-group", "class");
+
+		if (slider.isInline()) {
+			rw.writeAttribute("class", "form-inline", "class");
+		} else {
+			rw.writeAttribute("class", "form-group", "class");
+		}
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
 		rw.writeAttribute("class", s, "class");
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
 		if (isVertical) {
-                    if (label != null && !bottom) {
-                            rw.startElement("div", null);
-                            rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-                            encodeVLabel(slider, rw, label);
-                            rw.endElement("div");/* Row */
-                    }
-                    rw.startElement("div", null);
-                    rw.writeAttribute("class", "row", "class");
-                    if (bottom) {
-                            encodeSliderDiv(rw, isVertical, clientId);
-                            rw.endElement("div");/* Row */
-                            rw.startElement("div", null);
-                            rw.writeAttribute("class", "row", "class");
-                    }
-                    encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
-                    if (!bottom) {
-                            rw.endElement("div"); /* Row */
+			if (label != null && !bottom) {
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+				encodeVLabel(slider, rw, label);
+				rw.endElement("div");/* Row */
+			}
+			rw.startElement("div", null);
+			rw.writeAttribute("class", "row", "class");
+			if (bottom) {
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
+				rw.endElement("div");/* Row */
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row", "class");
+			}
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			if (!bottom) {
+				rw.endElement("div"); /* Row */
 
-                            rw.startElement("div", null);
-                            rw.writeAttribute("class", "row "+ getErrorAndRequiredClass(slider, clientId), "class");
-                            encodeSliderDiv(rw, isVertical, clientId);
-                    }
-                    rw.endElement("div"); /* Row */
-                    if (label != null && bottom) {
-                            rw.startElement("div", null);
-                            rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-                            encodeVLabel(slider, rw, label);
-                            rw.endElement("div"); /* Row */
-                    }
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
+			}
+			rw.endElement("div"); /* Row */
+			if (label != null && bottom) {
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+				encodeVLabel(slider, rw, label);
+				rw.endElement("div"); /* Row */
+			}
 
 		} else {
-                // <<-- Horizontal -->>
+			// <<-- Horizontal -->>
 
-                    if (label != null) {
-                            rw.startElement("div", null);
-                            rw.writeAttribute("class", "row "+ getErrorAndRequiredClass(slider, clientId), "class");
+			if (label != null) {
+				rw.startElement("div", null);
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
 
-                            R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
-                            rw.startElement("label", slider);
-                            rw.writeAttribute("for", clientId, null);
-                            rw.write(label);
-                            rw.endElement("label"); // Label
+				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
+				rw.startElement("label", slider);
+				rw.writeAttribute("for", clientId, null);
+				rw.write(label);
+				rw.endElement("label"); // Label
 
-                            rw.endElement("div");// Column
+				rw.endElement("div");// Column
 
-                            rw.endElement("div");/* Row */
-                    }
-                    rw.startElement("div", null);
-                    rw.writeAttribute("class", "row", "class");
+				rw.endElement("div");/* Row */
+			}
+			rw.startElement("div", null);
+			rw.writeAttribute("class", "row", "class");
 
-                    encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-                    encodeSliderDiv(rw, isVertical, clientId);
-                    rw.endElement("div");/* Row */
+			encodeSliderDiv(rw, isVertical, mode, span, clientId);
+			rw.endElement("div");/* Row */
 
 		}
 
@@ -231,7 +235,7 @@ public class SliderRenderer extends BadgeRenderer {
 		removeMisleadingType(slider);
 		// Input
 		rw.startElement("input", slider);
-//		rw.writeAttribute("id", clientId, null);
+		// rw.writeAttribute("id", clientId, null);
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", (mode.equals("edit") ? "text" : "hidden"), null);
 		rw.writeAttribute("size", String.valueOf(max).length() - 1, null);
@@ -277,16 +281,19 @@ public class SliderRenderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String clientId) throws IOException {
-		/*
-		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,
-		 * int olg
+	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId) throws IOException {
+		int cols=span;
+                if (!mode.equals("basic")) { cols--; }
+                /*
+		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg
 		 */
-		R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
+                //For Horizontal, we keep one column for the input/badge
+		R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0, null, null); //Issue #172
+                //R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
 		rw.startElement("div", null);
 		rw.writeAttribute("id", clientId + "_slider", null);// concat
-															// controproducente
+                
 		rw.endElement("div");
 		rw.endElement("div"); // Column
 	}
