@@ -311,7 +311,6 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
-
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalIE8CompatiblityLinks output) {
@@ -497,10 +496,12 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 		for (UIComponent c : first) {
-			root.getComponentResources(context, "head").add(c);
+			root.addComponentResource(context, c, "head");
+//			root.getComponentResources(context, "head").add(c);
 		}
 		for (UIComponent c : middle) {
 			root.addComponentResource(context, c, "head");
+//			root.addComponentResource(context, c, "head");
 		}
 		for (UIComponent c : resources) {
 			root.addComponentResource(context, c, "head");
