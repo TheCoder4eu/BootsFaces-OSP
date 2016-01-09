@@ -3339,10 +3339,22 @@
     <component>
       <component-type>net.bootsfaces.component.column.Column</component-type>
     </component>
-
+    
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-lg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colLg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-md</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3354,7 +3366,19 @@
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-sm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
       <name>colSm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to span.]]></description>
+      <name>col-xs</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3396,13 +3420,43 @@
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-lg</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
       <name>offsetLg</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
     <attribute>
       <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-md</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offsetMd</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-sm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
       <name>offsetSm</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+      <name>offset-xs</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3444,13 +3498,31 @@
     </attribute>
     <attribute>
       <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltip-container</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
       <name>tooltipContainer</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-hide</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -3462,9 +3534,21 @@
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-show</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelayShow</name>
       <required>false</required>
       <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltip-position</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>

@@ -19,11 +19,14 @@
 
 package net.bootsfaces.component.column;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
 
 
@@ -40,6 +43,8 @@ public class Column extends UIOutput  implements net.bootsfaces.render.IHasToolt
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.column.Column";
 	
+	private Map<String, Object> attributes = null;
+	
 	public Column() {
 		
 		
@@ -51,17 +56,25 @@ public class Column extends UIOutput  implements net.bootsfaces.render.IHasToolt
 		return COMPONENT_FAMILY;
 	}
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+	
 	
     protected enum PropertyKeys {
 colLg,
 colMd,
 colSm,
 colXs,
-dir, 
+dir,
 display,
 hidden,
 offset,
 offsetLg,
+offsetMd,
 offsetSm,
 offsetXs,
 span,
@@ -90,12 +103,13 @@ visible
     }
 	
 
+
 	/**
 	 * Integer value to specify how many columns to span. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getColLg() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colLg, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colLg, -1);
 		return (int) value;
 	}
 	
@@ -113,7 +127,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getColMd() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colMd, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colMd, -1);
 		return (int) value;
 	}
 	
@@ -131,7 +145,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getColSm() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colSm, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colSm, -1);
 		return (int) value;
 	}
 	
@@ -149,7 +163,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getColXs() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colXs, 0);
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.colXs, -1);
 		return (int) value;
 	}
 	
@@ -159,6 +173,24 @@ visible
 	 */
 	public void setColXs(int _colXs) {
 	    getStateHelper().put(PropertyKeys.colXs, _colXs);
+    }
+	
+
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDir() {
+		String value = (String)getStateHelper().eval(PropertyKeys.dir);
+		return  value;
+	}
+	
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+	    getStateHelper().put(PropertyKeys.dir, _dir);
     }
 	
 
@@ -231,6 +263,24 @@ visible
 	 */
 	public void setOffsetLg(int _offsetLg) {
 	    getStateHelper().put(PropertyKeys.offsetLg, _offsetLg);
+    }
+	
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getOffsetMd() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.offsetMd, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetMd(int _offsetMd) {
+	    getStateHelper().put(PropertyKeys.offsetMd, _offsetMd);
     }
 	
 
@@ -448,27 +498,6 @@ visible
 	public void setVisible(String _visible) {
 	    getStateHelper().put(PropertyKeys.visible, _visible);
     }
-
-	/**
-	 * Direction indication for text that does not inherit directionality.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getDir() {
-		String value = (String) getStateHelper().eval(PropertyKeys.dir);
-		return value;
-	}
-
-	/**
-	 * Direction indication for text that does not inherit directionality.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDir(String _dir) {
-		getStateHelper().put(PropertyKeys.dir, _dir);
-	}
 	
 }
 
