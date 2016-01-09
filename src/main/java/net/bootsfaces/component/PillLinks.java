@@ -30,7 +30,7 @@ import net.bootsfaces.C;
  */
 
 @ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css"),
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 public class PillLinks extends LinksContainer {
     

@@ -32,7 +32,7 @@ import net.bootsfaces.C;
 
 
 @ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css"),
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.LISTLINKS_COMPONENT_TYPE)
 public class ListLinks extends LinksContainer {

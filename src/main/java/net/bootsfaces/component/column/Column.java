@@ -29,7 +29,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:column /&gt;. */
 @ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css"),
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.column.Column")
 public class Column extends UIOutput  implements net.bootsfaces.render.IHasTooltip  {

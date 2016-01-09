@@ -35,7 +35,7 @@ import net.bootsfaces.C;
  */
 
 @ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css"),
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.NAVBARLINKS_COMPONENT_TYPE)
 public class NavBarLinks extends LinksContainer {
