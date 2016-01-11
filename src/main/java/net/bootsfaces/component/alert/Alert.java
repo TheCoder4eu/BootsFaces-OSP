@@ -19,21 +19,17 @@
 
 package net.bootsfaces.component.alert;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
+import java.util.Map;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
 
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/alert.js", target="body"),
-        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-})@FacesComponent("net.bootsfaces.component.alert.Alert")
+@FacesComponent("net.bootsfaces.component.alert.Alert")
 public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
 	
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.alert.Alert";
@@ -41,6 +37,8 @@ public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHa
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.alert.Alert";
+	
+	private Map<String, Object> attributes = null;
 	
 	public Alert() {
 		
@@ -53,20 +51,27 @@ public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHa
 		return COMPONENT_FAMILY;
 	}
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+	
 	
     protected enum PropertyKeys {
 binding,
 closable,
-id,
 severity,
 style,
 styleClass,
 title,
 tooltip,
+tooltipContainer,
 tooltipDelay,
 tooltipDelayHide,
 tooltipDelayShow,
-tooltipPosition, tooltipContainer
+tooltipPosition
 ;
 
         String toString;
@@ -83,22 +88,6 @@ tooltipPosition, tooltipContainer
     }
 	
 
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
-	}
-	
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
 	/**
 	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -222,6 +211,24 @@ tooltipPosition, tooltipContainer
 	 */
 	public void setTooltip(String _tooltip) {
 	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+    }
+	
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
     }
 	
 
