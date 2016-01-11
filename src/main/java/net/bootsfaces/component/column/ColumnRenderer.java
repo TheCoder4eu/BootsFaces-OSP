@@ -60,15 +60,13 @@ public class ColumnRenderer extends CoreRenderer {
 		if (column.isRendered()) {
 			ResponseWriter rw = context.getResponseWriter();
 
-			Map<String, Object> attrs = column.getAttributes();
+			int colxs = columnToInt(column.getColXs());
+			int colsm = columnToInt(column.getColSm()); 
+			int collg = columnToInt(column.getColLg());
 
-			int colxs = column.getColXs();
-			int colsm = column.getColSm(); 
-			int collg = column.getColLg();
+			int span = columnToInt(column.getSpan()); 
 
-			int span = column.getSpan(); 
-
-			int colmd = (span > 0) ? span : column.getColMd();
+			int colmd = (span > 0) ? span : columnToInt(column.getColMd());
 			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
 				colmd = (colmd > 0) ? colmd : 0;
 			} else {
@@ -203,4 +201,23 @@ public class ColumnRenderer extends CoreRenderer {
 	        Tooltip.activateTooltips(FacesContext.getCurrentInstance(), column);
 		}
     }
+	
+	private int columnToInt(String column) {
+		if (column==null) return -1;
+		if ("half".equals(column)) return 6;
+		if ("one-third".equals(column)) return 4;
+		if ("oneThird".equals(column)) return 4;
+		if ("two-thirds".equals(column)) return 8;
+		if ("twoThirds".equals(column)) return 8;
+		if ("one-forth".equals(column)) return 3;
+		if ("oneForth".equals(column)) return 3;
+		if ("three-forth".equals(column)) return 9;
+		if ("threeForth".equals(column)) return 9;
+		if (column.length()>2) {
+			column=column.replace("columns", "");
+			column=column.replace("column", "");
+			column=column.trim();
+		}
+		return new Integer(column).intValue();
+	}
 }

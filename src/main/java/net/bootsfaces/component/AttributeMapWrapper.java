@@ -41,6 +41,12 @@ public class AttributeMapWrapper implements Map<String, Object> {
 	public Object put(String key, Object value) {
 		if ("class".equals(key))
 			realMap.put("styleClass", value);
+		if (("large-screen".equals(key)) || ("largeScreen".equals(key))) key="colLg";
+		if (("medium-screen".equals(key)) || ("mediumScreen".equals(key))) key="colMd";
+		if (("small-screen".equals(key)) || ("smallScreen".equals(key))) key="colSm";
+		if (("tiny-screen".equals(key)) || ("tinyScreen".equals(key))) key="colXs";
+		if ("class".equals(key)) key="styleClass";
+		
 		if (key != null && key.indexOf('-') > 0) {
 			StringBuilder newKey = new StringBuilder(key.length());
 			boolean toUpperCase = false;
@@ -56,7 +62,7 @@ public class AttributeMapWrapper implements Map<String, Object> {
 				}
 			}
 			Object newValue=value;
-			if (key.startsWith("col-") || key.startsWith("tooltip-delay")) {
+			if (key.startsWith("tooltip-delay")) {
 				newValue = new Integer((String) value);
 			}
 			realMap.put(key, value); // for the sake of compatibility
