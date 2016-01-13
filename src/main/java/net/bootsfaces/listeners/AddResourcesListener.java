@@ -225,7 +225,8 @@ public class AddResourcesListener implements SystemEventListener {
                 // Glyphicons
                 UIOutput goutput = new UIOutput();
                 goutput.setRendererType("javax.faces.resource.Stylesheet");
-                goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
+                goutput.getAttributes().put("name", "css/icons.css");
+                //goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
                 goutput.getAttributes().put("library", C.BSF_LIBRARY);
                 goutput.getAttributes().put("target", "head");
                 addResourceIfNecessary(root, context, goutput);

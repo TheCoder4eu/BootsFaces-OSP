@@ -174,6 +174,20 @@ task copyAssetCss2Resources(type: Copy) {
         fileName.replace('bs-', '')
     }
 }
+task copyIconsCss2Resources(type: Copy) {
+    description 'BootsFaces task: copies the Icons CSS to the final folder.'
+    from "${buildDir}/assets/less"
+    into "${buildDir}/resources/META-INF/resources/bsf/css"
+    include 'bs-icons.css'
+    // Use a closure to map the file name
+    rename { String fileName ->
+        fileName.replace('bs-', '')
+    }   
+}
+task removeThemeIconCss(type: Delete) {
+    description 'BootsFaces task: removes the redundant Icons CSS file in Theme folder.'
+    delete "${buildDir}/resources/META-INF/resources/bsf/css/${themeFolder}/icons.css"
+}
 
 task copyAssetJs2Resources(type: Copy) {
     description 'BootsFaces task: copies the Bootstrap JS file to the target folder.'
@@ -191,7 +205,7 @@ task copyBsfJs(type: Copy) {
   into "${buildDir}/resources/META-INF/resources/bsf/js"
 }
 
-task copyAssetResources(dependsOn: ['copyAssetCss2Resources', 'copyAssetJs2Resources', 'copyBsfCss', 'copyBsfJs']) {
+task copyAssetResources(dependsOn: ['copyAssetCss2Resources', 'copyIconsCss2Resources', 'removeThemeIconCss', 'copyAssetJs2Resources', 'copyBsfCss', 'copyBsfJs']) {
 
 }
 
@@ -227,6 +241,7 @@ addBootswatchTheme.mustRunAfter copyFiles2Process
 lesscss.mustRunAfter copyFiles2Process
 copyAssetResources.mustRunAfter lesscss
 updateGradleResources.mustRunAfter updateMavenResources
+removeThemeIconCss.mustRunAfter copyAssetCss2Resources
 
 task buildResources(dependsOn: ['copyBootsFacesResources', 'getBootstrap', 'copyFiles2Process', 'addBootswatchTheme', 'lesscss', 'copyAssetResources',
                                 'cleanMavenResources', 'updateMavenResources', 'updateGradleResources']) {
