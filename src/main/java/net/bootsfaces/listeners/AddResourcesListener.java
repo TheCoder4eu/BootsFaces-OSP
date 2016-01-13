@@ -222,14 +222,7 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
-                // Glyphicons
-                UIOutput goutput = new UIOutput();
-                goutput.setRendererType("javax.faces.resource.Stylesheet");
-                goutput.getAttributes().put("name", "css/icons.css");
-                //goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
-                goutput.getAttributes().put("library", C.BSF_LIBRARY);
-                goutput.getAttributes().put("target", "head");
-                root.addComponentResource(context, goutput, "head");
+                
 		// Font Awesome
 		if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
 			InternalFALink output = new InternalFALink();
@@ -318,6 +311,14 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
+                // Glyphicons
+                UIOutput goutput = new UIOutput();
+                goutput.setRendererType("javax.faces.resource.Stylesheet");
+                goutput.getAttributes().put("name", "css/icons.css");
+                //goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
+                goutput.getAttributes().put("library", C.BSF_LIBRARY);
+                goutput.getAttributes().put("target", "head");
+                root.addComponentResource(context, goutput, "head");
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalIE8CompatiblityLinks output) {
