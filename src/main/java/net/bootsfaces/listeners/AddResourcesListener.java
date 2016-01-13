@@ -229,7 +229,7 @@ public class AddResourcesListener implements SystemEventListener {
                 //goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
                 goutput.getAttributes().put("library", C.BSF_LIBRARY);
                 goutput.getAttributes().put("target", "head");
-                addResourceIfNecessary(root, context, goutput);
+                root.addComponentResource(context, goutput, "head");
 		// Font Awesome
 		if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
 			InternalFALink output = new InternalFALink();
