@@ -82,12 +82,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		rw.writeAttribute("class", getStyleClasses(commandButton), "class");
 
-		String title = commandButton.getTitle();
-
-		if (title != null && title.length() > 0) {
-			rw.writeAttribute("title", title, "title");
-		}
-
 		if (commandButton.isDisabled()) {
 			rw.writeAttribute("disabled", "disabled", "disabled");
 		}
