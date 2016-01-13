@@ -99,6 +99,8 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		String clientId = selectBooleanCheckbox.getClientId();
 
 		int span = startColSpanDiv(rw, selectBooleanCheckbox);
+		rw.startElement("div", component);
+		writeAttribute(rw, "class", "form-group");
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		// "Prepend" facet
@@ -123,6 +125,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 				selectBooleanCheckbox);
 
 		closeInputGroupForAddOn(rw, hasAddon);
+		rw.endElement("div");
 		closeColSpanDiv(rw, span);
 
 		Tooltip.activateTooltips(context, selectBooleanCheckbox);
