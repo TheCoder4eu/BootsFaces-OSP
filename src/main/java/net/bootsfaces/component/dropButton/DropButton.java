@@ -19,12 +19,15 @@
 
 package net.bootsfaces.component.dropButton;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
@@ -44,10 +47,19 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropButton.DropButton";
 
+	private Map<String, Object> attributes;
+
 	public DropButton() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

@@ -31,6 +31,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -51,10 +52,19 @@ public class Panel extends UIComponentBase
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panel.Panel";
 
+	private Map<String, Object> attributes;
+
 	public Panel() {
 
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

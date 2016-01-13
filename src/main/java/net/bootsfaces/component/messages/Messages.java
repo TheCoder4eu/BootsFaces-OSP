@@ -21,11 +21,14 @@ package net.bootsfaces.component.messages;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+
+import net.bootsfaces.component.AttributeMapWrapper;
 
 /**
  * 
@@ -43,6 +46,7 @@ import javax.faces.component.FacesComponent;
 public class Messages extends javax.faces.component.UIMessages {
 
 	private static final String OPTIMIZED_PACKAGE = "javax.faces.component.";
+	private Map<String, Object> attributes;
 
 	public Messages() {
 		super();
@@ -63,6 +67,13 @@ public class Messages extends javax.faces.component.UIMessages {
 		public String toString() {
 			return ((toString != null) ? toString : super.toString());
 		}
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	/**

@@ -19,6 +19,8 @@
 
 package net.bootsfaces.component;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -46,12 +48,19 @@ public class ButtonToolbar extends GenContainerDiv {
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	private Map<String, Object> attributes;
     
     
     public ButtonToolbar() {
         setRendererType(null); // this component renders itself
 		Tooltip.addResourceFile();
     }
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
     
     /*
      * <div class="btn-toolbar">

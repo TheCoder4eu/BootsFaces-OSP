@@ -19,10 +19,13 @@
 
 package net.bootsfaces.component.iconAwesome;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.render.Tooltip;
 
@@ -41,9 +44,18 @@ public class IconAwesome extends Icon {
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.iconAwesome.IconAwesome";
 
+	private Map<String, Object> attributes;
+
 	public IconAwesome() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

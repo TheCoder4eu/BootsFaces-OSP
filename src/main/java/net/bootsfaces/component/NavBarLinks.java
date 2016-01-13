@@ -23,6 +23,8 @@
  */
 package net.bootsfaces.component;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -51,12 +53,20 @@ public class NavBarLinks extends LinksContainer {
     
     public static final String NAV="nav";
     public static final String NAVBAR="navbar";
+	private Map<String, Object> attributes;
 
     public NavBarLinks() {
         setRendererType(null); // this component renders itself
     }
     
-    /*
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
+	/*
      * <ul class="nav navbar-nav">
      * ...
      * </ul>

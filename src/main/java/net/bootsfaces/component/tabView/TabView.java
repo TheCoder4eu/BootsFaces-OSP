@@ -33,6 +33,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -56,11 +57,20 @@ public class TabView extends UIOutput
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
+	private Map<String, Object> attributes;
+
 	public TabView() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 		
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(

@@ -19,10 +19,14 @@
 
 package net.bootsfaces.component.badge;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+
+import net.bootsfaces.component.AttributeMapWrapper;
 
 
 /** This class holds the attributes of &lt;b:badge /&gt;. */
@@ -37,6 +41,8 @@ public class Badge extends UIOutput {
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.badge.Badge";
+
+	private Map<String, Object> attributes;
 	
 	public Badge() {
 		
@@ -48,6 +54,12 @@ public class Badge extends UIOutput {
 		return COMPONENT_FAMILY;
 	}
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
 	
     protected enum PropertyKeys {
 binding,

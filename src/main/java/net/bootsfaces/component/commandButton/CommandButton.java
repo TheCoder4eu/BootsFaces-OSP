@@ -32,6 +32,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
@@ -72,6 +73,7 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	private static final Collection<String> EVENT_NAMES = Collections
 			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress",
 					"keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+	private Map<String, Object> attributes;
 
 	public CommandButton() {
 		setRendererType(DEFAULT_RENDERER); // this component renders itself
@@ -79,7 +81,14 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 		Tooltip.addResourceFile();
 	}
 
-    /**
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
+	/**
      * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
      * (such as the onclick event of b:tabView, which has to be implemented manually).
      * @return
@@ -1004,26 +1013,5 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
-	}
-
-	/**
-	 * Button text.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getValue() {
-		String value = (String) getStateHelper().eval(PropertyKeys.value);
-		return value;
-	}
-
-	/**
-	 * Button text.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(String _value) {
-		getStateHelper().put(PropertyKeys.value, _value);
 	}
 }

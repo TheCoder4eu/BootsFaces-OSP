@@ -19,6 +19,8 @@
 
 package net.bootsfaces.component;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -47,6 +49,15 @@ public class ListLinks extends LinksContainer {
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     
     private static final String STYLE="nav nav-list";//S.NAV+S.SP+S.NAVLIST;
+	private Map<String, Object> attributes;
+    
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
     
     public ListLinks() {
         setRendererType(null); // this component renders itself

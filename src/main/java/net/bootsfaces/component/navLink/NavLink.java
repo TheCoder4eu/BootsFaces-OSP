@@ -31,6 +31,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlOutcomeTargetLink;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -49,10 +50,19 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navLink.NavLink";
 
+	private AttributeMapWrapper attributes;
+
 	public NavLink() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	@Override

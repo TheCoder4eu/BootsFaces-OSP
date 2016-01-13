@@ -30,6 +30,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -48,9 +49,18 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.icon.Icon";
 
+	private Map<String, Object> attributes;
+
 	public Icon() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(

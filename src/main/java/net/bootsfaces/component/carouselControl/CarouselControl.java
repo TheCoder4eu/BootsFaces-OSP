@@ -28,6 +28,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -42,9 +43,18 @@ public class CarouselControl extends UICommand
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselControl.CarouselControl";
 
+	private Map<String, Object> attributes;
+
 	public CarouselControl() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

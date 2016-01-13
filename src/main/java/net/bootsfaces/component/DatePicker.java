@@ -97,6 +97,7 @@ public class DatePicker extends HtmlInputText {
 	 */
 	private String sdf;
 	private String mode;
+	private Map<String, Object> attributes;
 
 	public DatePicker() {
 		setRendererType(null); // this component renders itself
@@ -122,6 +123,12 @@ public class DatePicker extends HtmlInputText {
 	}
 
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
 
 	@Override
 	public void decode(FacesContext fc) {

@@ -29,6 +29,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -51,7 +52,17 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
-    /**
+	private Map<String, Object> attributes;
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
+	
+	/**
      * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
      * (such as the onclick event of b:tabView, which has to be implemented manually).
      * @return

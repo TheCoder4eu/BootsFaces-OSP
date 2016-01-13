@@ -19,12 +19,15 @@
 
 package net.bootsfaces.component.modal;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
@@ -41,11 +44,20 @@ public class Modal extends UIComponentBase {
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.modal.Modal";
 
+	private Map<String, Object> attributes;
+
 	public Modal() {
 		setRendererType(DEFAULT_RENDERER);
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 	}
 
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+	
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}

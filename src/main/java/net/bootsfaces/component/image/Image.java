@@ -11,6 +11,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -30,12 +31,21 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
 
     public static final String DEFAULT_RENDERER = "net.bootsfaces.component.image.Image";
 
+	private Map<String, Object> attributes;
+
     public Image() {
         Tooltip.addResourceFile();
         setRendererType(DEFAULT_RENDERER);
     }
 
-    private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
             "click", "dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
     /**

@@ -28,6 +28,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -44,6 +45,8 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+
+	private Map<String, Object> attributes;
 
     /**
      * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
@@ -67,6 +70,13 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

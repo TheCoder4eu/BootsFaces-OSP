@@ -19,11 +19,14 @@
 
 package net.bootsfaces.component.dropMenu;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
@@ -43,10 +46,19 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropMenu.DropMenu";
 
+	private Map<String, Object> attributes;
+
 	public DropMenu() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

@@ -19,12 +19,15 @@
 
 package net.bootsfaces.component.slider;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;
@@ -52,6 +55,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider.Slider";
 
+	private Map<String, Object> attributes;
+
 	public Slider() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
@@ -60,6 +65,13 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/slider.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

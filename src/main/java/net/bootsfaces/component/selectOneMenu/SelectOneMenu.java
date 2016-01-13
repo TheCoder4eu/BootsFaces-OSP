@@ -30,6 +30,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 
@@ -50,10 +51,19 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
 
+	private Map<String, Object> attributes;
+
 	public SelectOneMenu() {
 
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(

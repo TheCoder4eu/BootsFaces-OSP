@@ -19,11 +19,14 @@
 
 package net.bootsfaces.component.panelGrid;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
 
 /**
@@ -71,9 +74,18 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panelGrid.PanelGrid";
 
+	private Map<String, Object> attributes;
+
 	public PanelGrid() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

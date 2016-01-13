@@ -19,11 +19,14 @@
 
 package net.bootsfaces.component.selectMultiMenu;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:selectMultiMenu /&gt;. */
@@ -44,6 +47,8 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
+
+	private Map<String, Object> attributes;
 	
 	public SelectMultiMenu() {
 		
@@ -52,6 +57,13 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 		setRendererType(DEFAULT_RENDERER);
 	}
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}

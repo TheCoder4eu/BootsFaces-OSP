@@ -19,8 +19,12 @@
 
 package net.bootsfaces.component.message;
 
+import java.util.Map;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessage;
+
+import net.bootsfaces.component.AttributeMapWrapper;
 
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
@@ -32,6 +36,8 @@ public class Message extends UIMessage  {
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.message.Message";
+
+	private Map<String, Object> attributes;
 	
 	public Message() {
 		
@@ -39,6 +45,13 @@ public class Message extends UIMessage  {
 		setRendererType(DEFAULT_RENDERER);
 	}
 	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}

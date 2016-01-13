@@ -24,6 +24,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
@@ -58,6 +59,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+	private Map<String, Object> attributes;
 
     /**
      * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
@@ -99,6 +101,13 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public InputText() {
 		setRendererType("net.bootsfaces.component.InputTextRenderer");
 		Tooltip.addResourceFile();
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	@Override

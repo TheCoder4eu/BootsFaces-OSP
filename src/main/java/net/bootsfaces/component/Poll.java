@@ -55,9 +55,17 @@ public class Poll extends HtmlCommandButton {
 	 * </p>
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	private Map<String, Object> attributes;
 
 	public Poll() {
 		setRendererType(null); // this component renders itself
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public void decode(FacesContext context) {

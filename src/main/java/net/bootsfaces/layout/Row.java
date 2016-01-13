@@ -31,6 +31,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;
 
@@ -56,11 +57,20 @@ public class Row extends UIComponentBase {
 	 * </p>
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFLAYOUT;
+	private Map<String, Object> attributes;
 
 	public Row() {
 		setRendererType(null); // this component renders itself
 		Tooltip.addResourceFile();
 	}
+	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {

@@ -19,10 +19,13 @@
 
 package net.bootsfaces.component.switchComponent;
 
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip; 
 
 /** This class holds the attributes of &lt;b:switch /&gt;. */
@@ -43,10 +46,19 @@ public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.Selec
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.switch.Switch";
 
+	private Map<String, Object> attributes;
+
 	public Switch() {
 
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

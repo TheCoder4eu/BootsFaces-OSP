@@ -20,12 +20,15 @@
 package net.bootsfaces.layout;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.RWell;
 import net.bootsfaces.render.Tooltip;
 
@@ -45,11 +48,20 @@ public class Well extends UIComponentBase {
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFLAYOUT;
+	private Map<String, Object> attributes;
 
     public Well() {
         setRendererType(null); // this component renders itself
         Tooltip.addResourceFile();
     }
+    
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 
     @Override
     public void encodeBegin(FacesContext context) throws IOException {

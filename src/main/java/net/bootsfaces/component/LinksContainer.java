@@ -50,11 +50,20 @@ public class LinksContainer extends UIComponentBase {
      * <p>The component family for this component.</p>
      */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	private Map<String, Object> attributes;
     
     public LinksContainer() {
         setRendererType(null); // this component renders itself
         Tooltip.addResourceFile();
     }
+    
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 
     @Override
     public void encodeBegin(FacesContext fc) throws IOException {

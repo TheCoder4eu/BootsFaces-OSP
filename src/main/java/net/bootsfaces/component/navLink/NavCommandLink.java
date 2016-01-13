@@ -31,6 +31,7 @@ import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -49,10 +50,19 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navLink.NavLink";
 
+	private Map<String, Object> attributes;
+
 	public NavCommandLink() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
 	}
 
 	public String getFamily() {

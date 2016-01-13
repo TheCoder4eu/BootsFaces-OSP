@@ -74,6 +74,7 @@ public class Button extends HtmlOutcomeTargetButton {
 	 * </p>
 	 */
 	public static final String COMPONENT_FAMILY = BSFCOMPONENT;
+	private Map<String, Object> attributes;
 
 	public Button() {
 		setRendererType(null); // this component renders itself
@@ -81,6 +82,14 @@ public class Button extends HtmlOutcomeTargetButton {
 		Tooltip.addResourceFile();
 
 	}
+	
+	@Override
+	public Map<String, Object> getAttributes() {
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(super.getAttributes());
+		return attributes;
+	}
+
 
 	/**
 	 * Renders the button. <br>
