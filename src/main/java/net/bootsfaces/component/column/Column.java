@@ -162,7 +162,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on tiny screens (< 768 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
@@ -171,7 +171,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on tiny screens (< 768 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColXs(String _colXs) {
@@ -234,7 +234,7 @@ visible
 	
 
 	/**
-	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (< 768 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
@@ -243,7 +243,7 @@ visible
 	}
 	
 	/**
-	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (< 768 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTinyScreen(String _tinyScreen) {
