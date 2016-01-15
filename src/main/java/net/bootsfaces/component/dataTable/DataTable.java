@@ -39,6 +39,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/jquery.dataTables.min.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "js/dataTables.bootstrap.min.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/dataTables.bootstrap.min.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
