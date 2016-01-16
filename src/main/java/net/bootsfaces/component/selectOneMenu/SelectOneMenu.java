@@ -62,7 +62,7 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	@Override
 	public Map<String, Object> getAttributes() {
 		if (attributes == null)
-			attributes = new AttributeMapWrapper(super.getAttributes());
+			attributes = new AttributeMapWrapper(this, super.getAttributes());
 		return attributes;
 	}
 

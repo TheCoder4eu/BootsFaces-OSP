@@ -1424,81 +1424,98 @@
     <component>
       <component-type>net.bootsfaces.component.modal.Modal</component-type>
     </component>
-
-    <attribute>
-      <description><![CDATA[By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop="false" to disable this feature.]]></description>
-      <name>backdrop</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[If true, the modal dialog can be closed by clicking the small cross in the upper right corner]]></description>
-      <name>closable</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape="false" to disable this feature.]]></description>
-      <name>closeOnEscape</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[contentClass is optional: if specified, the content will be displayed with this specific class]]></description>
-      <name>contentClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style of the content area.]]></description>
-      <name>contentStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Modal's size. Possible values modal-sm, modal-lg]]></description>
-      <name>size</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Inline style]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Style class of this element.]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Bold title displayed in Modal's header.]]></description>
-      <name>title</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
+		
+	  <attribute>
+	    <description><![CDATA[By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop="false" to disable this feature.]]></description>
+	    <name>backdrop</name>
+	    <required>false</required>
+	    <type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the modal dialog can be closed by clicking the small cross in the upper right corner]]></description>
+	    <name>closable</name>
+	    <required>false</required>
+	    <type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape="false" to disable this feature.]]></description>
+	    <name>close-on-escape</name>
+	    <required>false</required>
+	    <type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape="false" to disable this feature.]]></description>
+	    <name>closeOnEscape</name>
+	    <required>false</required>
+	    <type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[content-class is optional: if specified, the content will be displayed with this specific class]]></description>
+	    <name>content-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[content-class is optional: if specified, the content will be displayed with this specific class]]></description>
+	    <name>contentClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Inline style of the content area.]]></description>
+	    <name>content-style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Inline style of the content area.]]></description>
+	    <name>contentStyle</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	    <name>id</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+	    <name>rendered</name>
+	    <required>false</required>
+	    <type>Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Modal's size. Possible values modal-sm, modal-lg]]></description>
+	    <name>size</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Inline style]]></description>
+	    <name>style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Style class of this element.]]></description>
+	    <name>style-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Style class of this element.]]></description>
+	    <name>styleClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Bold title displayed in the modal's header.]]></description>
+	    <name>title</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
   </tag>
-
 
   <tag>
     <tag-name>button</tag-name>

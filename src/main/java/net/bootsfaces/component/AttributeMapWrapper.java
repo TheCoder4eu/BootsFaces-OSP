@@ -7,9 +7,19 @@ import java.util.Set;
 public class AttributeMapWrapper implements Map<String, Object> {
 
 	private Map<String, Object> realMap;
+	
+//	private Map<String, Object> types = new HashMap<String, Object>();
 
-	public AttributeMapWrapper(Map<String, Object> realMap) {
+	public AttributeMapWrapper(Object component, Map<String, Object> realMap) {
 		this.realMap = realMap;
+//		Method[] methods = component.getClass().getMethods();
+//		for (Method m: methods) {
+//			if (m.getName().startsWith("get") && m.getParameterCount()==0) {
+//				String attribute = m.getName().substring(3,4).toLowerCase() + m.getName().substring(4);
+//				Object type = m.getReturnType();
+//				types.put(attribute, type);
+//			}
+//		}
 	}
 
 	@Override
@@ -39,36 +49,58 @@ public class AttributeMapWrapper implements Map<String, Object> {
 
 	@Override
 	public Object put(String key, Object value) {
-		if ("class".equals(key))
-			realMap.put("styleClass", value);
-		if (("large-screen".equals(key)) || ("largeScreen".equals(key))) key="colLg";
-		if (("medium-screen".equals(key)) || ("mediumScreen".equals(key))) key="colMd";
-		if (("small-screen".equals(key)) || ("smallScreen".equals(key))) key="colSm";
-		if (("tiny-screen".equals(key)) || ("tinyScreen".equals(key))) key="colXs";
-		if ("class".equals(key)) key="styleClass";
-		
-		if (key != null && key.indexOf('-') > 0) {
-			StringBuilder newKey = new StringBuilder(key.length());
-			boolean toUpperCase = false;
-			for (char c : key.toCharArray()) {
-				if (c == '-')
-					toUpperCase = true;
-				else {
-					if (toUpperCase) {
-						toUpperCase = false;
-						c = Character.toUpperCase(c);
+		try {
+			if ("class".equals(key))
+				realMap.put("styleClass", value);
+			if (("large-screen".equals(key)) || ("largeScreen".equals(key)))
+				key = "colLg";
+			if (("medium-screen".equals(key)) || ("mediumScreen".equals(key)))
+				key = "colMd";
+			if (("small-screen".equals(key)) || ("smallScreen".equals(key)))
+				key = "colSm";
+			if (("tiny-screen".equals(key)) || ("tinyScreen".equals(key)))
+				key = "colXs";
+			if ("class".equals(key))
+				key = "styleClass";
+
+			if (key != null && key.indexOf('-') > 0) {
+				StringBuilder newKey = new StringBuilder(key.length());
+				boolean toUpperCase = false;
+				for (char c : key.toCharArray()) {
+					if (c == '-')
+						toUpperCase = true;
+					else {
+						if (toUpperCase) {
+							toUpperCase = false;
+							c = Character.toUpperCase(c);
+						}
+						newKey.append(c);
 					}
-					newKey.append(c);
 				}
+				Object newValue = value;
+				if (key.startsWith("tooltip-delay")) {
+					newValue = new Integer((String) value);
+				}
+				if (newKey.toString().equals("closeOnEscape")) {
+					newValue = new Boolean((String) value);
+				}
+				else newValue = convertValueToType(newKey.toString(), value);
+				realMap.put(key, value); // for the sake of compatibility
+				return realMap.put(newKey.toString(), newValue);
 			}
-			Object newValue=value;
-			if (key.startsWith("tooltip-delay")) {
-				newValue = new Integer((String) value);
-			}
-			realMap.put(key, value); // for the sake of compatibility
-			return realMap.put(newKey.toString(), newValue);
+			return realMap.put(key, convertValueToType(key, value));
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		return realMap.put(key, value);
+		return null;
+	}
+	
+	public Object convertValueToType(String key, Object value) {
+//		Object type = types.get(key);
+//		if (type != null && type != Object.class) 
+//			System.out.println(type);
+		
+		return value;
 	}
 
 	@Override

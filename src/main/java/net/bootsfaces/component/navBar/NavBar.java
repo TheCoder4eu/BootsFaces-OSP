@@ -56,7 +56,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	@Override
 	public Map<String, Object> getAttributes() {
 		if (attributes == null)
-			attributes = new AttributeMapWrapper(super.getAttributes());
+			attributes = new AttributeMapWrapper(this, super.getAttributes());
 		return attributes;
 	}
 
