@@ -115,8 +115,6 @@ public class AJAXRenderer extends CoreRenderer {
 					}
 
 				}
-			} else {
-				System.out.println("Event is null - probably that's a bug in AJAXRenderer, roughly line 100");
 			}
 
 			if (component instanceof ActionSource) {
