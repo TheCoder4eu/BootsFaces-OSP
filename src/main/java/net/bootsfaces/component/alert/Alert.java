@@ -21,6 +21,8 @@ package net.bootsfaces.component.alert;
 
 import java.util.Map;
 
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
@@ -29,6 +31,12 @@ import net.bootsfaces.render.Tooltip;
 
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
+@ResourceDependencies({
+	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
+        @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
+        @ResourceDependency(library="bsf", name="js/alert.js", target="body"),
+        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
+})
 @FacesComponent("net.bootsfaces.component.alert.Alert")
 public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
 	
