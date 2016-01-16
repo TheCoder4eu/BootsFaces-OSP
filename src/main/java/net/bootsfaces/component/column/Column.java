@@ -108,7 +108,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
@@ -117,7 +117,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColLg(String _colLg) {
@@ -126,7 +126,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
@@ -135,7 +135,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColMd(String _colMd) {
@@ -144,7 +144,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
@@ -153,7 +153,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColSm(String _colSm) {
@@ -162,7 +162,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
@@ -171,7 +171,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColXs(String _colXs) {
@@ -180,7 +180,7 @@ visible
 	
 
 	/**
-	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
@@ -189,7 +189,7 @@ visible
 	}
 	
 	/**
-	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLargeScreen(String _largeScreen) {
@@ -198,7 +198,7 @@ visible
 	
 
 	/**
-	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
@@ -207,7 +207,7 @@ visible
 	}
 	
 	/**
-	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMediumScreen(String _mediumScreen) {
@@ -216,7 +216,7 @@ visible
 	
 
 	/**
-	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
@@ -225,7 +225,7 @@ visible
 	}
 	
 	/**
-	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSmallScreen(String _smallScreen) {
@@ -234,7 +234,7 @@ visible
 	
 
 	/**
-	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
@@ -243,7 +243,7 @@ visible
 	}
 	
 	/**
-	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTinyScreen(String _tinyScreen) {
@@ -396,7 +396,7 @@ visible
 	
 
 	/**
-	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSpan() {
@@ -405,7 +405,7 @@ visible
 	}
 	
 	/**
-	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-forth. <P>
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally by followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSpan(String _span) {

@@ -204,6 +204,11 @@ public class ColumnRenderer extends CoreRenderer {
 	
 	private int columnToInt(String column) {
 		if (column==null) return -1;
+		if ("full".equals(column)) return 12;
+		if ("full-size".equals(column)) return 12;
+		if ("fullSize".equals(column)) return 12;
+		if ("full-width".equals(column)) return 12;
+		if ("fullWidth".equals(column)) return 12;
 		if ("half".equals(column)) return 6;
 		if ("one-third".equals(column)) return 4;
 		if ("oneThird".equals(column)) return 4;
@@ -211,8 +216,8 @@ public class ColumnRenderer extends CoreRenderer {
 		if ("twoThirds".equals(column)) return 8;
 		if ("one-forth".equals(column)) return 3;
 		if ("oneForth".equals(column)) return 3;
-		if ("three-forth".equals(column)) return 9;
-		if ("threeForth".equals(column)) return 9;
+		if ("three-fourths".equals(column)) return 9;
+		if ("threeFourths".equals(column)) return 9;
 		if (column.length()>2) {
 			column=column.replace("columns", "");
 			column=column.replace("column", "");
