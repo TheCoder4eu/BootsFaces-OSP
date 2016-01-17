@@ -1,5 +1,5 @@
 /**
- * Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
