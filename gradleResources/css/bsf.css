@@ -53,10 +53,10 @@
 .slider-vertical .ui-widget { margin: 0 auto; }
 
 .ui-slider .ui-slider-handle-round { border-radius: 10px; }
-.ui-slider .ui-slider-handle-md { height: 20px; margin: -2px 0 0 -2px; width: 20px; }
-.ui-slider .ui-slider-handle-lg { height: 24px; margin: -4px 0 0 -4px; width: 24px; }
-.ui-slider.ui-slider-vertical .ui-slider-handle-md { height: 20px; margin: -2px 0 -8px -2px; width: 20px; }
-.ui-slider.ui-slider-vertical .ui-slider-handle-lg { height: 24px; margin: -4px 0 -8px -4px; width: 24px; }
+.ui-slider .ui-slider-handle-md { height: 20px !important; margin: -2px 0 0 -2px; width: 20px !important; }
+.ui-slider .ui-slider-handle-lg { height: 24px !important; margin: -4px 0 0 -4px; width: 24px !important; }
+.ui-slider.ui-slider-vertical .ui-slider-handle-md { height: 20px !important; margin: -2px 0 -8px -2px; width: 20px !important; }
+.ui-slider.ui-slider-vertical .ui-slider-handle-lg { height: 24px !important; margin: -4px 0 -8px -4px; width: 24px !important; }
 .ui-slider .ui-slider-handle-lg.ui-slider-handle-round { border-radius: 15px; }
 
 @media (min-width: 992px) { .slider .col-md-1 { width: 6%; } }
