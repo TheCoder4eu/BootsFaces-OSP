@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -68,9 +68,9 @@ public class TabView extends UIOutput
 
 	@Override
 	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+//		if (attributes == null)
+//			attributes = new AttributeMapWrapper(this, super.getAttributes());
+		return super.getAttributes();
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(

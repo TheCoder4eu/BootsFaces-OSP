@@ -1,5 +1,5 @@
 /**
- *  Copyright 2015 Stephan Rauh, http://www.beyondjava.net.
+ *  Copyright 2015-2016 Stephan Rauh, http://www.beyondjava.net.
  *  
  *  This file is part of BootsFaces.
  *  

@@ -1,6 +1,6 @@
 package net.bootsfaces.beans;
 /**
- *  (C) 2013-2015 Stephan Rauh http://www.beyondjava.net
+ *  (C) 2013-2016 Stephan Rauh http://www.beyondjava.net
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
