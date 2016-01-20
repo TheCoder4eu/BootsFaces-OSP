@@ -131,7 +131,7 @@ public class AddResourcesListener implements SystemEventListener {
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
-				throw new FacesException("Error loading theme, cannot find \"" + "css/" + filename + "\" resource of \""
+				throw new FacesException("Error loading theme, cannot find \"" + "css/" + theme + "/" + filename + "\" resource of \""
 						+ C.BSF_LIBRARY + "\" library");
 			} else {
 				UIOutput output = new UIOutput();
