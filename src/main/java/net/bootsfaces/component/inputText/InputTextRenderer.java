@@ -63,8 +63,8 @@ public class InputTextRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * This method is called by the JSF framework to get the type-safe value of the attribute. Do not delete
-	 * this method.
+	 * This method is called by the JSF framework to get the type-safe value of
+	 * the attribute. Do not delete this method.
 	 */
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
@@ -124,19 +124,6 @@ public class InputTextRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-		// If the facet contains only one component, getChildCount()=0 and the
-		// facet is the UIComponent
-		if (prepend) {
-			R.addClass2FacetComponent(prep, "OutputText", InputText.ADDON);
-			if (prep instanceof Icon)
-				((Icon) prep).setAddon(true);
-		}
-		if (append) {
-			R.addClass2FacetComponent(app, "OutputText", InputText.ADDON);
-			if (app instanceof Icon)
-				((Icon) app).setAddon(true);
-		}
-
 		String label = inputText.getLabel();
 		{
 			if (!inputText.isRenderLabel()) {
@@ -191,7 +178,12 @@ public class InputTextRenderer extends CoreRenderer {
 				prep.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (prep instanceof Icon)
+					((Icon) prep).setAddon(true); // modifies the id of the icon
+				rw.startElement("span", inputText);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				prep.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 
@@ -238,7 +230,12 @@ public class InputTextRenderer extends CoreRenderer {
 				app.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (app instanceof Icon)
+					((Icon) app).setAddon(true);
+				rw.startElement("span", inputText);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				app.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 

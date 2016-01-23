@@ -136,17 +136,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 		addLabel(rw, clientId, menu);
 
-		// "Prepend" facet
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
-		if ((prependingAddOnFacet != null)) {
-			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
-		}
-
-		// "Append" facet
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
-		if ((appendingAddOnFacet != null)) {
-			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
-		}
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), menu);
 
@@ -295,7 +286,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				appendingAddOnFacet.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				rw.startElement("span", menu);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				appendingAddOnFacet.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 	}
@@ -345,7 +339,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				prependingAddOnFacet.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				rw.startElement("span", menu);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				prependingAddOnFacet.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 	}

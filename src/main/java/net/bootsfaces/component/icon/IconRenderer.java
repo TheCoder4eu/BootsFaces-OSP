@@ -19,12 +19,10 @@
 
 package net.bootsfaces.component.icon;
 
-import javax.faces.component.*;
-import javax.faces.component.behavior.ClientBehaviorHolder;
-
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -32,10 +30,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.iconAwesome.IconAwesome;
-import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
-import net.bootsfaces.render.A;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:icon /&gt;. */
@@ -91,10 +85,9 @@ public class IconRenderer extends AJAXRenderer {
 		String rotate = icon.getRotate();
 		String flip = icon.getFlip();
 		boolean spin = icon.isSpin();
-		boolean addon = icon.isAddon();
 
 		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
-				addon, styleClass, style, icon.isDisabled());
+			 styleClass, style, icon.isDisabled(), icon.isAddon());
 		Tooltip.activateTooltips(context, icon);
 	}
 
@@ -123,15 +116,11 @@ public class IconRenderer extends AJAXRenderer {
 	 * @throws IOException
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,
-			String size, String rotate, String flip, boolean spin, boolean addon, String styleClass, String style,
-			boolean isGrayedOut) throws IOException {
+			String size, String rotate, String flip, boolean spin, String styleClass, String style,
+			boolean isGrayedOut, boolean isAddon) throws IOException {
 		rw.startElement("span", c);
-		if (addon) {
-			rw.writeAttribute("id", c.getClientId() + "_" + "input-group-addon", null);
-			rw.writeAttribute("class", "input-group-addon", "class");
-		}
 		rw.startElement("i", c);
-		if (addon)
+		if (isAddon)
 			rw.writeAttribute("id", c.getClientId() + "_icon", null);
 		else
 			rw.writeAttribute("id", c.getClientId(), null);
@@ -208,27 +197,6 @@ public class IconRenderer extends AJAXRenderer {
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
 			throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, false, null, null, false);
+		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, null, null, false, false);
 	}
-
-	/**
-	 * Renders an addon Icon Markup:
-	 * <span class="add-on"><i class="icon-envelope"></i></span>
-	 * 
-	 * @param rw
-	 *            ResponseWriter
-	 * @param c
-	 *            UIComponent
-	 * @param icon
-	 *            Icon Name
-	 * @param isFontAwesome
-	 *            Icon set: false for Bootstrap Glyphicons, true for Font
-	 *            Awesome
-	 * @throws java.io.IOException
-	 */
-	public static final void addonIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
-			throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, true, null, null, false);
-	}
-
 }

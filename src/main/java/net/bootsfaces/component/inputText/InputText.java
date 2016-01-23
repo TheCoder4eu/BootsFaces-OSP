@@ -54,8 +54,6 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	public static final String ADDON = "input-group-addon";
-
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));

@@ -37,6 +37,7 @@ import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -45,11 +46,6 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenuRenderer extends CoreRenderer {
-	/**
-	 * Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in
-	 * front of or behind the input field).
-	 */
-	public static final String ADDON = "input-group-addon";
 
 	/** Receives the value from the client and sends it to the JSF bean. */
 	@Override
@@ -128,17 +124,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
 		addLabel(rw, clientId, menu);
 
-		// "Prepend" facet
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
-		if ((prependingAddOnFacet != null)) {
-			R.addClass2FacetComponent(prependingAddOnFacet, "OutputText", ADDON);
-		}
-
-		// "Append" facet
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
-		if ((appendingAddOnFacet != null)) {
-			R.addClass2FacetComponent(appendingAddOnFacet, "OutputText", ADDON);
-		}
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),
 				(appendingAddOnFacet != null), menu);
 
@@ -176,7 +163,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 				appendingAddOnFacet.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (appendingAddOnFacet instanceof Icon)
+					((Icon) appendingAddOnFacet).setAddon(true); // modifies the id of the icon
+				rw.startElement("span", menu);
+				rw.writeAttribute("class", "y input-group-addon", "class");
 				appendingAddOnFacet.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 	}
@@ -231,7 +223,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 				prependingAddOnFacet.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (prependingAddOnFacet instanceof Icon)
+					((Icon) prependingAddOnFacet).setAddon(true); // modifies the id of the icon
+				rw.startElement("span", menu);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				prependingAddOnFacet.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 	}

@@ -82,19 +82,6 @@ public class InputTextareaRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-		// If the facet contains only one component, getChildCount()=0 and the
-		// facet is the UIComponent
-		if (prepend) {
-			R.addClass2FacetComponent(prep, "OutputText", InputTextarea.ADDON);
-			if (prep instanceof Icon)
-				((Icon) prep).setAddon(true);
-		}
-		if (append) {
-			R.addClass2FacetComponent(app, "OutputText", InputTextarea.ADDON);
-			if (app instanceof Icon)
-				((Icon) app).setAddon(true);
-		}
-
 		String label = inputText.getLabel();
 		{
 			if (!inputText.isRenderLabel()) {
@@ -150,11 +137,15 @@ public class InputTextareaRenderer extends CoreRenderer {
 				prep.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (prep instanceof Icon)
+					((Icon) prep).setAddon(true);
+				rw.startElement("span", inputText);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				prep.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 
-		// Input
 		rw.startElement("textarea", inputText);
 		rw.writeAttribute("id", "input_" + clientId, null);
 		rw.writeAttribute("name", "input_" + clientId, null);
@@ -201,7 +192,12 @@ public class InputTextareaRenderer extends CoreRenderer {
 				app.encodeAll(context);
 				rw.endElement("div");
 			} else {
+				if (app instanceof Icon)
+					((Icon) app).setAddon(true);
+				rw.startElement("span", inputText);
+				rw.writeAttribute("class", "input-group-addon", "class");
 				app.encodeAll(context);
+				rw.endElement("span");
 			}
 		}
 
@@ -211,7 +207,6 @@ public class InputTextareaRenderer extends CoreRenderer {
 		rw.endElement("div"); // form-group
 		if (span > 0) {
 			rw.endElement("div"); // span
-			// rw.endElement(H.DIV); //row NO
 		}
 
 		Tooltip.activateTooltips(context, inputText);
