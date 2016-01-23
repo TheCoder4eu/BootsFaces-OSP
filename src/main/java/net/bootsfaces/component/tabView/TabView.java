@@ -68,9 +68,9 @@ public class TabView extends UIOutput
 
 	@Override
 	public Map<String, Object> getAttributes() {
-//		if (attributes == null)
-//			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return super.getAttributes();
+		if (attributes == null)
+			attributes = new AttributeMapWrapper(this, super.getAttributes());
+		return attributes;
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
