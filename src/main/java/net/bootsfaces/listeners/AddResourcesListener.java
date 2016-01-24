@@ -213,11 +213,11 @@ public class AddResourcesListener implements SystemEventListener {
 				name = name.toLowerCase();
 				if ((name.contains("font-awesome") || name.contains("fontawesome")) && name.endsWith("css"))
 					useCDNImportForFontAwesome = false;
-				if (name.contains("jquery-ui") && name.endsWith(".js")) {
+				if (name.startsWith("jquery-ui") && name.endsWith(".js")) {
 					// do nothing - the if is needed to avoid confusion between
 					// jQuery and jQueryUI
 					loadJQueryUI = false;
-				} else if (name.contains("jquery") && name.endsWith(".js")) {
+				} else if (name.startsWith("jquery") && name.endsWith(".js")) {
 					loadJQuery = false;
 				}
 			}
