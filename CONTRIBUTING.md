@@ -45,7 +45,7 @@ Click [here][1] to open a bug issue with a pre-filled template.
 Issues opened without any of these info will be **closed** without any explanation.
 
 ## <a name="setup"></a> BootsFaces project setup
-BootsFaces is developed as a [Gradle](http://gradle.com/) Project, however we support also Maven (see how to [build with Maven](https://github.com/TheCoder4eu/BootsFaces-OSP/blob/master/BUILD-MAVEN.txt) ).
+BootsFaces is developed as a [Gradle](http://gradle.org/) Project, however we support also Maven (see how to [build with Maven](https://github.com/TheCoder4eu/BootsFaces-OSP/blob/master/BUILD-MAVEN.txt) ).
 
 Building BootsFaces with Gradle is very straightforward, the only prerequisite is having java installed (JDK 7 or later), there is no need to have Gradle installed.
 
