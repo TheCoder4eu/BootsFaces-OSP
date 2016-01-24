@@ -117,18 +117,22 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 
+			boolean addEventToQueue=false;
 			if (component instanceof ActionSource) {
 				ActionSource b = (ActionSource) component;
 				ActionListener[] actionListeners = b.getActionListeners();
 				if (null != actionListeners && actionListeners.length > 0) {
-					component.queueEvent(new ActionEvent(component));
+					addEventToQueue=true;
 				}
 			}
 			if (component instanceof ActionSource2) {
 				MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
 				if (null != actionExpression) {
-					component.queueEvent(new ActionEvent(component));
+					addEventToQueue=true;
 				}
+			}
+			if (addEventToQueue) {
+				component.queueEvent(new ActionEvent(component));
 			}
 		}
 	}
@@ -176,38 +180,39 @@ public class AJAXRenderer extends CoreRenderer {
 						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
 			}
-//			else {
-//				boolean generateNonAJAXCommand = false;
-//				if (component instanceof ActionSource) {
-//					ActionSource b = (ActionSource) component;
-//					ActionListener[] actionListeners = b.getActionListeners();
-//					if (null != actionListeners && actionListeners.length > 0) {
-//						generateNonAJAXCommand = true;
-//					}
-//				}
-//				if (component instanceof ActionSource2) {
-//					MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
-//					if (null != actionExpression) {
-//						generateNonAJAXCommand = true;
-//					}
-//				}
-//				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
-//					// rw.writeAttribute("id", getClientId() + "_a", null);
-//					generateOnClickHandler(context, rw, (IAJAXComponent) component);
-//				}
-//			}
+			else if (!(component instanceof CommandButton)) {
+				// b:navCommandLink doesn't submit the form, so we need to use AJAX
+				boolean generateNonAJAXCommand = false;
+				if (component instanceof ActionSource) {
+					ActionSource b = (ActionSource) component;
+					ActionListener[] actionListeners = b.getActionListeners();
+					if (null != actionListeners && actionListeners.length > 0) {
+						generateNonAJAXCommand = true;
+					}
+				}
+				if (component instanceof ActionSource2) {
+					MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
+					if (null != actionExpression) {
+						generateNonAJAXCommand = true;
+					}
+				}
+				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
+					// rw.writeAttribute("id", getClientId() + "_a", null);
+					generateOnClickHandler(context, rw, (IAJAXComponent) component);
+				}
+			}
 
 		}
 	}
 
-//	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
-//			throws IOException {
-//		StringBuilder cJS = new StringBuilder(150); // optimize int
-//
-//		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
-//
-//		rw.writeAttribute("onclick", cJS.toString(), null);
-//	}
+	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
+			throws IOException {
+		StringBuilder cJS = new StringBuilder(150); // optimize int
+
+		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
+
+		rw.writeAttribute("onclick", cJS.toString(), null);
+	}
 
 	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
