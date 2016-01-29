@@ -19,17 +19,16 @@
 
 package net.bootsfaces.component.dataTable;
 
-import java.io.IOException;
-import java.util.List;
-
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Tooltip;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
-import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Tooltip;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /** This class generates the HTML code of &lt;b:dataTable /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
@@ -173,12 +172,20 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
+		Map<String, Object> dataTableProperties = dataTable.getDataTableProperties();
+		Integer page = 0;
+		if(dataTableProperties!=null){
+			Object currentPage = dataTableProperties.get( "currentPage" );
+			if(currentPage!=null){
+				page = (Integer)currentPage;
+			}
+		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId().replace(":", "");
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		rw.writeText("$(document).ready(function() {$('." + clientId + "Table" + "').DataTable();} );",
+		rw.writeText("$(document).ready(function() {$('." + clientId + "Table" + "').DataTable().page("+page+").draw('page');} );",
 				null);
 		rw.endElement("script");
 	}
