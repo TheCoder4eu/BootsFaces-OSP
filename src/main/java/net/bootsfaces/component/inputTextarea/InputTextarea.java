@@ -40,6 +40,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.inputTextarea.InputTextarea")
 public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXComponent {
+	private String renderLabel = null;
 
 	/**
 	 * <p>
@@ -235,6 +236,11 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 	 *         set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
+		if (null != renderLabel) {
+			boolean defaultValue = Boolean.valueOf(renderLabel);
+			Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, defaultValue);
+			return (boolean) value;
+		}
 		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 		return (boolean) value;
 	}

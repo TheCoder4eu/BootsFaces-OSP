@@ -41,6 +41,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
 public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfaces.render.IHasTooltip, IAJAXComponent {
+	private String renderLabel = null;
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox";
 
@@ -758,7 +759,12 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 	 *         set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, true);
+		if (null != renderLabel) {
+			boolean defaultValue = Boolean.valueOf(renderLabel);
+			Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, defaultValue);
+			return (boolean) value;
+		}
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 		return (boolean) value;
 	}
 

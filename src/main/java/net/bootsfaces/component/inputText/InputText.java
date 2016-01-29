@@ -22,8 +22,10 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IHasTooltip;
@@ -40,6 +42,8 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent(C.INPUTTEXT_COMPONENT_TYPE)
 public class InputText extends HtmlInputText implements IHasTooltip, IAJAXComponent {
+	
+	private String renderLabel = null;
 
 	/**
 	 * <p>
@@ -59,16 +63,18 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 	private Map<String, Object> attributes;
 
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	return null;
-    }
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
 
-    public Collection<String> getEventNames() {
+	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
@@ -78,8 +84,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 
 	protected enum PropertyKeys {
 
-		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition,
-		process, update, tooltipContainer;
+		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer;
 
 		String toString;
 
@@ -99,6 +104,11 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public InputText() {
 		setRendererType("net.bootsfaces.component.InputTextRenderer");
 		Tooltip.addResourceFile();
+		renderLabel= FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter("net.bootsfaces.defaults.renderLabel");
+		if (null != renderLabel && renderLabel.contains("#{")) {
+			renderLabel = ELTools.evalAsString(renderLabel);
+		}
 	}
 
 	@Override
@@ -114,54 +124,75 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
-	    getStateHelper().put(PropertyKeys.ajax, _ajax);
-    }
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
 
 	public java.lang.String getPlaceholder() {
 		return (java.lang.String) getStateHelper().eval(PropertyKeys.placeholder, null);
@@ -180,21 +211,29 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isInline() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInline(boolean _inline) {
-	    getStateHelper().put(PropertyKeys.inline, _inline);
-    }
+		getStateHelper().put(PropertyKeys.inline, _inline);
+	}
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by
@@ -205,6 +244,11 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 *         set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
+		if (null != renderLabel) {
+			boolean defaultValue = Boolean.valueOf(renderLabel);
+			Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, defaultValue);
+			return (boolean) value;
+		}
 		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 		return (boolean) value;
 	}
@@ -362,6 +406,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public void setType(java.lang.String _type) {
 		getStateHelper().put(PropertyKeys.type, _type);
 	}
+
 	public String getOncomplete() {
 		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
 		return value;
@@ -375,6 +420,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
 	}
+
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>

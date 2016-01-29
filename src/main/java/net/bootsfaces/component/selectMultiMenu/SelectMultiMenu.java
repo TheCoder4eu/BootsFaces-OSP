@@ -41,6 +41,7 @@ import net.bootsfaces.render.Tooltip;
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
+	private String renderLabel = null;
 	
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
 	
@@ -713,7 +714,12 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.renderLabel, true);
+		if (null != renderLabel) {
+			boolean defaultValue = Boolean.valueOf(renderLabel);
+			Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, defaultValue);
+			return (boolean) value;
+		}
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 		return (boolean) value;
 	}
 	
