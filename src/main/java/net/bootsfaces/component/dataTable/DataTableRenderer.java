@@ -185,8 +185,16 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		rw.writeText("$(document).ready(function() {$('." + clientId + "Table" + "').DataTable().page("+page+").draw('page');} );",
-				null);
+		//# Start JS
+		rw.writeText("$(document).ready(function() {", null);
+		//# Initialize table at nth page
+		rw.writeText("var element = $('." + clientId + "Table" + "');" +
+					 "var table = element.DataTable();" +
+					 "table.page("+page+").draw('page');", null);
+		//# TODO Create some BSF? callback that updates the "currentPage" property in our map. Not sure how that works yet...
+		//# Event setup: http://datatables.net/reference/event/page
+		//# End JS
+		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
 
