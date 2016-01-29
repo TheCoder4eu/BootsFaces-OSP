@@ -6906,6 +6906,12 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+      <name>escape</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
       <name>fatalClass</name>
       <required>false</required>
@@ -7028,6 +7034,12 @@ are displayed.</li>
       <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
       <name>errorStyle</name>
       <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+      <name>escape</name>
+      <required>false</required>
+      <type>Boolean</type>
     </attribute>
     <attribute>
       <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>

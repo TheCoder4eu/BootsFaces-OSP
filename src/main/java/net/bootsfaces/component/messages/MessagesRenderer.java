@@ -28,11 +28,11 @@ import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIMessages;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.message.MessageRenderer;
 import net.bootsfaces.render.CoreRenderer;
 
 /**
@@ -89,7 +89,7 @@ public class MessagesRenderer extends CoreRenderer {
         writer.endElement("div");
     }
 
-    private void encodeSeverityMessages(FacesContext facesContext, UIMessages uiMessages, String severity, List<FacesMessage> messages) throws IOException {
+    private void encodeSeverityMessages(FacesContext facesContext, Messages uiMessages, String severity, List<FacesMessage> messages) throws IOException {
         ResponseWriter writer = facesContext.getResponseWriter();
         String styleClassPrefix = "";
         if ("warn".equals(severity)){
@@ -106,7 +106,6 @@ public class MessagesRenderer extends CoreRenderer {
         }
         
         writer.startElement("div", null);
-//        if (messages.size() > 1) styleClassPrefix = styleClassPrefix + " alert-block";
         
         writer.writeAttribute("class", "alert fadein "+styleClassPrefix, null);
         writer.writeAttribute("style", "padding:15px;margin-top:10px", null);
@@ -126,12 +125,22 @@ public class MessagesRenderer extends CoreRenderer {
 
             if (uiMessages.isShowSummary()){
                 writer.startElement("strong", null);
-                writer.writeText(summary, null);
+                if (uiMessages.isEscape()) {
+					writer.writeText(summary, null);
+				} else {
+					MessageRenderer.warnOnFirstUse();
+					writer.write(summary);
+				}
                 writer.endElement("strong");
             }
             
             if (uiMessages.isShowDetail()){
-                writer.writeText(" "+detail, null);
+                if (uiMessages.isEscape()) {
+					writer.writeText(" "+detail, null);
+				} else {
+					MessageRenderer.warnOnFirstUse();
+					writer.write(" "+detail);
+				}
             }
             
             writer.endElement("div");
@@ -139,6 +148,4 @@ public class MessagesRenderer extends CoreRenderer {
         }
         writer.endElement("div");
     }
-    
-    
 }

@@ -37,6 +37,7 @@ import net.bootsfaces.render.CoreRenderer;
 /** This class generates the HTML code of &lt;b:message /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.message.Message")
 public class MessageRenderer extends CoreRenderer {
+	private static boolean escapeWarningHasBeenShown=false;
 
 	/**
 	 * This methods generates the HTML code of the current b:message.
@@ -99,50 +100,37 @@ public class MessageRenderer extends CoreRenderer {
 					if (msg.getSummary() != null && (!msg.getSummary().equals(msg.getDetail()))) {
 						rw.startElement("span", component);
 						writeAttribute(rw, "class", "bf-message-summary");
-						rw.writeText(msg.getSummary(), null);
+						if (message.isEscape()) {
+							rw.writeText(msg.getSummary(), null);
+						} else {
+							warnOnFirstUse();
+							rw.write(msg.getSummary());
+						}
 						rw.endElement("span");
 					}
 				}
 				if (message.isShowDetail()) {
 					rw.startElement("span", component);
 					writeAttribute(rw, "class", "bf-message-detail");
-					rw.writeText(msg.getDetail(), null);
+					if (message.isEscape()) {
+						rw.writeText(msg.getDetail(), null);
+					} else {
+						warnOnFirstUse();
+						rw.write(msg.getDetail());
+					}
+					
 					rw.endElement("span");
 				}
 			}
 			rw.endElement("div");
 		}
+	}
 
-		// rw.startElement("message", message);
-		//
-		// rw.writeAttribute("dir", message.getDir(), "dir");
-		// rw.writeAttribute("errorClass", message.getErrorClass(),
-		// "errorClass");
-		// rw.writeAttribute("errorStyle", message.getErrorStyle(),
-		// "errorStyle");
-		// rw.writeAttribute("fatalClass", message.getFatalClass(),
-		// "fatalClass");
-		// rw.writeAttribute("fatalStyle", message.getFatalStyle(),
-		// "fatalStyle");
-		// rw.writeAttribute("for", message.getFor(), "for");
-		// rw.writeAttribute("id", message.getId(), "id");
-		// rw.writeAttribute("infoClass", message.getInfoClass(), "infoClass");
-		// rw.writeAttribute("infoStyle", message.getInfoStyle(), "infoStyle");
-		// rw.writeAttribute("rendered", String.valueOf(message.isRendered()),
-		// "rendered");
-		// rw.writeAttribute("showDetail",
-		// String.valueOf(message.isShowDetail()), "showDetail");
-		// rw.writeAttribute("showSummary",
-		// String.valueOf(message.isShowSummary()), "showSummary");
-		// rw.writeAttribute("redisplay", String.valueOf(message.isRedisplay()),
-		// "redisplay");
-		// rw.writeAttribute("style", message.getStyle(), "style");
-		// rw.writeAttribute("styleClass", message.getStyleClass(),
-		// "styleClass");
-		// rw.writeAttribute("warnClass", message.getWarnClass(), "warnClass");
-		// rw.writeAttribute("warnStyle", message.getWarnStyle(), "warnStyle");
-		// rw.writeText("Dummy content of b:message", null);
-		// rw.endElement("message");
+	public static void warnOnFirstUse() {
+		if (!escapeWarningHasBeenShown) {
+			System.out.println("One of your application's component deactivates HTML and JavaScript escaping. This is discouraged because it might be a security issue if not used carefully. Use at own risk.");
+			escapeWarningHasBeenShown=true;
+		}
 	}
 
 	private String findHighestSeverityClass(List<FacesMessage> messageList, Message message) {
