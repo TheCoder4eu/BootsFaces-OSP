@@ -19,20 +19,18 @@
 
 package net.bootsfaces.component.dataTable;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-
+import net.bootsfaces.component.AttributeMapWrapper;
+import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.render.Tooltip;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-
-import net.bootsfaces.component.AttributeMapWrapper;
-import net.bootsfaces.component.ajax.IAJAXComponent;
-import net.bootsfaces.render.Tooltip;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
@@ -118,7 +116,8 @@ onmouseout,
 onmouseover,
 onmouseup,
 process,
-update
+update,
+dataTableProperties
 ;
 
         String toString;
@@ -513,6 +512,22 @@ update
 	public void setUpdate(String _update) {
 	    getStateHelper().put(PropertyKeys.update, _update);
     }
-	
+
+	/**
+	 * Get the property map for the DataTable state. <p>
+	 * @return The property map for the DataTable state managed by a backing bean.
+     */
+	public Map<String, Object> getDataTableProperties() {
+		Map<String, Object> value = (Map<String, Object>)getStateHelper().eval( PropertyKeys.dataTableProperties );
+		return value;
+	}
+
+	/**
+	 * Set the map cntaining the DataTable properties for this instance.
+	 * @param _dataTableProperties The map
+     */
+	public void setDataTableProperties(Map<String, Object> _dataTableProperties){
+		getStateHelper().put( PropertyKeys.dataTableProperties, _dataTableProperties );
+	}
 }
 
