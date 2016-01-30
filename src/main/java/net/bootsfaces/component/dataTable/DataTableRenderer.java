@@ -206,14 +206,6 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	@Override
-	public void decode( FacesContext context, UIComponent component )
-	{
-		DataTable dataTable = (DataTable)component;
-		String clientId = dataTable.getClientId(context);
-		super.decode( context, component );
-	}
-
-	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// Children are already rendered in encodeBegin()
 	}
