@@ -214,8 +214,8 @@ public class ColumnRenderer extends CoreRenderer {
 		if ("oneThird".equals(column)) return 4;
 		if ("two-thirds".equals(column)) return 8;
 		if ("twoThirds".equals(column)) return 8;
-		if ("one-forth".equals(column)) return 3;
-		if ("oneForth".equals(column)) return 3;
+		if ("one-fourth".equals(column)) return 3;
+		if ("oneFourth".equals(column)) return 3;
 		if ("three-fourths".equals(column)) return 9;
 		if ("threeFourths".equals(column)) return 9;
 		if (column.length()>2) {
