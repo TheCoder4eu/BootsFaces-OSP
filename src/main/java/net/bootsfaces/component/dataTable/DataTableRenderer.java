@@ -174,9 +174,9 @@ public class DataTableRenderer extends CoreRenderer {
 		DataTable dataTable = (DataTable) component;
 		Map<String, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Integer page = 0;
-		if(dataTableProperties!=null){
+		if(dataTableProperties != null){
 			Object currentPage = dataTableProperties.get( "currentPage" );
-			if(currentPage!=null){
+			if(currentPage != null){
 				page = (Integer)currentPage;
 			}
 		}
