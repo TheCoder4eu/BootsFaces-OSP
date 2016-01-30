@@ -20,6 +20,7 @@
 package net.bootsfaces.component.dataTable;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 import javax.faces.component.UIComponent;
@@ -172,10 +173,10 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
-		Map<String, Object> dataTableProperties = dataTable.getDataTableProperties();
+		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Integer page = 0;
 		if(dataTableProperties != null){
-			Object currentPage = dataTableProperties.get( "currentPage" );
+			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			if(currentPage != null){
 				page = (Integer)currentPage;
 			}
@@ -196,9 +197,9 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText( "element.on('page.dt', function(){" +
 					  "var info = table.page.info();" +
 					  "console.log(info.page);" +
-					  "BsF.ajax.callAjax(this, event, '"+clientId+"Table', '"+clientId+"Table', null, " +
+					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
 					  //# TODO More comma-separated parameters.
-					  "'"+DataTable.DataTablePropertyType.currentPage.name()+":'+info.page);" +
+					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
 					  "});", null );
 		//# End JS
 		rw.writeText("} );",null );

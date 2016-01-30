@@ -1,10 +1,12 @@
 package net.bootsfaces.component.dataTable;
 
+import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import org.junit.Test;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import java.util.HashMap;
 import java.util.Map;
+import static net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType.currentPage;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -17,7 +19,7 @@ public class DataTableTest
     public void testDecode() throws Exception
     {
         DataTable dataTable = mock( DataTable.class );
-        when( dataTable.getDataTableProperties() ).thenReturn( new HashMap<String, Object>() );
+        when( dataTable.getDataTableProperties() ).thenReturn( new HashMap<DataTablePropertyType, Object>() );
         Map<String, String> parameterMap = new HashMap<String, String>();
         FacesContext facesContext = mock( FacesContext.class );
         ExternalContext externalContext = mock( ExternalContext.class );
@@ -26,6 +28,6 @@ public class DataTableTest
         parameterMap.put( "params", "BsFEvent=currentPage:2" );
         doCallRealMethod().when( dataTable ).decode( facesContext );
         dataTable.decode( facesContext );
-        assertEquals( dataTable.getDataTableProperties().get( "currentPage" ), 2 );
+        assertEquals( dataTable.getDataTableProperties().get( currentPage ), 2 );
     }
 }

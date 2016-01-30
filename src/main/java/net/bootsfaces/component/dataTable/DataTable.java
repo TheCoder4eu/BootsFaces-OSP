@@ -55,7 +55,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 
 	private Map<String, Object> attributes;
 
-    protected enum DataTablePropertyType
+    public enum DataTablePropertyType
     {
         currentPage
     }
@@ -64,7 +64,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
     public void decode( FacesContext context )
     {
         super.decode( context );
-        Map<String, Object> dataTableProperties = getDataTableProperties();
+        Map<DataTablePropertyType, Object> dataTableProperties = getDataTableProperties();
         if ( dataTableProperties != null )
         {
             String params = context.getExternalContext().getRequestParameterMap().get( "params" );
@@ -83,7 +83,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
                             value = Integer.parseInt( value.toString() );
                             break;
                     }
-                    dataTableProperties.put( key, value );
+                    dataTableProperties.put( DataTablePropertyType.valueOf( key ), value );
                 }
             }
         }
@@ -552,8 +552,8 @@ dataTableProperties
 	 * Get the property map for the DataTable state. <p>
 	 * @return The property map for the DataTable state managed by a backing bean.
      */
-	public Map<String, Object> getDataTableProperties() {
-		Map<String, Object> value = (Map<String, Object>)getStateHelper().eval( PropertyKeys.dataTableProperties );
+	public Map<DataTablePropertyType, Object> getDataTableProperties() {
+		Map<DataTablePropertyType, Object> value = (Map<DataTablePropertyType, Object>)getStateHelper().eval( PropertyKeys.dataTableProperties );
 		return value;
 	}
 
@@ -561,7 +561,7 @@ dataTableProperties
 	 * Set the map cntaining the DataTable properties for this instance.
 	 * @param _dataTableProperties The map
      */
-	public void setDataTableProperties(Map<String, Object> _dataTableProperties){
+	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties){
 		getStateHelper().put( PropertyKeys.dataTableProperties, _dataTableProperties );
 	}
 }
