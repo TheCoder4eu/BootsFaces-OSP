@@ -193,9 +193,24 @@ public class DataTableRenderer extends CoreRenderer {
 					 "table.page("+page+").draw('page');", null);
 		//# TODO Create some BSF? callback that updates the "currentPage" property in our map. Not sure how that works yet...
 		//# Event setup: http://datatables.net/reference/event/page
+		rw.writeText( "element.on('page.dt', function(){" +
+					  "var info = table.page.info();" +
+					  "console.log(info.page);" +
+					  "BsF.ajax.callAjax(this, event, '"+clientId+"Table', '"+clientId+"Table', null, " +
+					  //# TODO More comma-separated parameters.
+					  "'"+DataTable.DataTablePropertyType.currentPage.name()+":'+info.page);" +
+					  "});", null );
 		//# End JS
 		rw.writeText("} );",null );
 		rw.endElement("script");
+	}
+
+	@Override
+	public void decode( FacesContext context, UIComponent component )
+	{
+		DataTable dataTable = (DataTable)component;
+		String clientId = dataTable.getClientId(context);
+		super.decode( context, component );
 	}
 
 	@Override

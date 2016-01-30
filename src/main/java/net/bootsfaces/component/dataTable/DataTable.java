@@ -27,6 +27,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -53,7 +54,41 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
 	private Map<String, Object> attributes;
-	
+
+    protected enum DataTablePropertyType
+    {
+        currentPage
+    }
+
+    @Override
+    public void decode( FacesContext context )
+    {
+        super.decode( context );
+        Map<String, Object> dataTableProperties = getDataTableProperties();
+        if ( dataTableProperties != null )
+        {
+            String params = context.getExternalContext().getRequestParameterMap().get( "params" );
+            if ( params != null )
+            {
+                params = params.replace( "BsFEvent=", "" );
+                String[] paramArray = params.split( "," );
+                for ( String keyValuePair : paramArray )
+                {
+                    String[] pair = keyValuePair.split( ":" );
+                    String key = pair[ 0 ];
+                    Object value = pair[ 1 ];
+                    switch ( DataTablePropertyType.valueOf( key ) )
+                    {
+                        case currentPage:
+                            value = Integer.parseInt( value.toString() );
+                            break;
+                    }
+                    dataTableProperties.put( key, value );
+                }
+            }
+        }
+    }
+
 	@Override
 	public Map<String, Object> getAttributes() {
 		if (attributes == null)
