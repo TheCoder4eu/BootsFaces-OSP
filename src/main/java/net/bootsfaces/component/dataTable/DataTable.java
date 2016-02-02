@@ -19,20 +19,19 @@
 
 package net.bootsfaces.component.dataTable;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-
+import net.bootsfaces.component.AttributeMapWrapper;
+import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.render.Tooltip;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-
-import net.bootsfaces.component.AttributeMapWrapper;
-import net.bootsfaces.component.ajax.IAJAXComponent;
-import net.bootsfaces.render.Tooltip;
+import javax.faces.context.FacesContext;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
@@ -55,7 +54,54 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
 	private Map<String, Object> attributes;
-	
+
+    public enum DataTablePropertyType
+    {
+        pageLength, searchTerm, currentPage
+    }
+
+    @Override
+    public void decode( FacesContext context )
+    {
+        super.decode( context );
+        Map<DataTablePropertyType, Object> dataTableProperties = getDataTableProperties();
+        if ( dataTableProperties != null )
+        {
+            String params = context.getExternalContext().getRequestParameterMap().get( "params" );
+            if ( params != null )
+            {
+                params = params.replace( "BsFEvent=", "" );
+                String[] paramArray = params.split( "," );
+                for ( String keyValuePair : paramArray )
+                {
+                    String[] pair = keyValuePair.split( ":", 2 );
+                    String key = pair[ 0 ];
+                    Object value = null;
+                    if ( pair.length == 2 )
+                    {
+                        value = pair[ 1 ];
+                    }
+                    if ( value != null )
+                    {
+                        switch ( DataTablePropertyType.valueOf( key ) )
+                        {
+                            case pageLength:
+                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
+                            case currentPage:
+                                value = Integer.parseInt( value.toString() );
+                                break;
+                            case searchTerm:
+                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
+                                value = value.toString();
+                                break;
+                        }
+                    }
+                    dataTableProperties.put( DataTablePropertyType.valueOf( key ), value );
+                }
+            }
+        }
+    }
+
 	@Override
 	public Map<String, Object> getAttributes() {
 		if (attributes == null)
@@ -118,7 +164,8 @@ onmouseout,
 onmouseover,
 onmouseup,
 process,
-update
+update,
+dataTableProperties
 ;
 
         String toString;
@@ -513,6 +560,22 @@ update
 	public void setUpdate(String _update) {
 	    getStateHelper().put(PropertyKeys.update, _update);
     }
-	
+
+	/**
+	 * Get the property map for the DataTable state. <p>
+	 * @return The property map for the DataTable state managed by a backing bean.
+     */
+	public Map<DataTablePropertyType, Object> getDataTableProperties() {
+		Map<DataTablePropertyType, Object> value = (Map<DataTablePropertyType, Object>)getStateHelper().eval( PropertyKeys.dataTableProperties );
+		return value;
+	}
+
+	/**
+	 * Set the map cntaining the DataTable properties for this instance.
+	 * @param _dataTableProperties The map
+     */
+	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties){
+		getStateHelper().put( PropertyKeys.dataTableProperties, _dataTableProperties );
+	}
 }
 
