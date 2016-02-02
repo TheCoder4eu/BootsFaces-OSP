@@ -176,14 +176,19 @@ public class DataTableRenderer extends CoreRenderer {
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Integer page = 0;
 		Integer pageLength = 10;
+		String searchTerm = "''";
 		if(dataTableProperties != null){
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
+			Object currentSearchTerm = dataTableProperties.get( DataTablePropertyType.searchTerm );
 			if(currentPage != null){
 				page = (Integer)currentPage;
 			}
 			if(currentPageLength != null){
 				pageLength = (Integer)currentPageLength;
+			}
+			if(currentSearchTerm != null){
+				searchTerm = String.format("'%s'", (String)currentSearchTerm);
 			}
 		}
 		ResponseWriter rw = context.getResponseWriter();
@@ -197,6 +202,7 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText("var element = $('." + clientId + "Table" + "');" +
 					 "var table = element.DataTable();" +
 					 "table.page("+page+");" +
+					 "table.search("+searchTerm+");" +
 					 "table.page.len("+pageLength+").draw('page');", null);
 		//# Event setup: http://datatables.net/reference/event/page
 		rw.writeText( "element.on('page.dt', function(){" +
@@ -209,6 +215,11 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
 					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
 					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
+					  "});", null );
+		//# Event setup: https://datatables.net/reference/event/search
+		rw.writeText( "element.on('search.dt', function() {" +
+					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
+					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 					  "});", null );
 
 		//# End JS

@@ -57,7 +57,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 
     public enum DataTablePropertyType
     {
-        pageLength, currentPage
+        pageLength, searchTerm, currentPage
     }
 
     @Override
@@ -74,15 +74,25 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
                 String[] paramArray = params.split( "," );
                 for ( String keyValuePair : paramArray )
                 {
-                    String[] pair = keyValuePair.split( ":" );
+                    String[] pair = keyValuePair.split( ":", 2 );
                     String key = pair[ 0 ];
-                    Object value = pair[ 1 ];
-                    switch ( DataTablePropertyType.valueOf( key ) )
+                    Object value = null;
+                    if ( pair.length == 2 )
                     {
-                        case currentPage:
-                        case pageLength:
-                            value = Integer.parseInt( value.toString() );
-                            break;
+                        value = pair[ 1 ];
+                    }
+                    if ( value != null )
+                    {
+                        switch ( DataTablePropertyType.valueOf( key ) )
+                        {
+                            case currentPage:
+                            case pageLength:
+                                value = Integer.parseInt( value.toString() );
+                                break;
+                            case searchTerm:
+                                value = value.toString();
+                                break;
+                        }
                     }
                     dataTableProperties.put( DataTablePropertyType.valueOf( key ), value );
                 }
