@@ -85,11 +85,13 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
                     {
                         switch ( DataTablePropertyType.valueOf( key ) )
                         {
-                            case currentPage:
                             case pageLength:
+                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
+                            case currentPage:
                                 value = Integer.parseInt( value.toString() );
                                 break;
                             case searchTerm:
+                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
                                 value = value.toString();
                                 break;
                         }
