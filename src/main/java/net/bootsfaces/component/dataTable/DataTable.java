@@ -57,7 +57,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 
     public enum DataTablePropertyType
     {
-        currentPage
+        pageLength, currentPage
     }
 
     @Override
@@ -80,6 +80,7 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
                     switch ( DataTablePropertyType.valueOf( key ) )
                     {
                         case currentPage:
+                        case pageLength:
                             value = Integer.parseInt( value.toString() );
                             break;
                     }

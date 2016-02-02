@@ -175,10 +175,15 @@ public class DataTableRenderer extends CoreRenderer {
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Integer page = 0;
+		Integer pageLength = 10;
 		if(dataTableProperties != null){
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
+			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
 			if(currentPage != null){
 				page = (Integer)currentPage;
+			}
+			if(currentPageLength != null){
+				pageLength = (Integer)currentPageLength;
 			}
 		}
 		ResponseWriter rw = context.getResponseWriter();
@@ -191,16 +196,21 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Initialize table at nth page
 		rw.writeText("var element = $('." + clientId + "Table" + "');" +
 					 "var table = element.DataTable();" +
-					 "table.page("+page+").draw('page');", null);
-		//# TODO Create some BSF? callback that updates the "currentPage" property in our map. Not sure how that works yet...
+					 "table.page("+page+");" +
+					 "table.page.len("+pageLength+").draw('page');", null);
 		//# Event setup: http://datatables.net/reference/event/page
 		rw.writeText( "element.on('page.dt', function(){" +
 					  "var info = table.page.info();" +
 					  "console.log(info.page);" +
 					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
-					  //# TODO More comma-separated parameters.
 					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
 					  "});", null );
+		//# Event setup: https://datatables.net/reference/event/length
+		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
+					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
+					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
+					  "});", null );
+
 		//# End JS
 		rw.writeText("} );",null );
 		rw.endElement("script");

@@ -28,6 +28,6 @@ public class DataTableTest
         parameterMap.put( "params", "BsFEvent=currentPage:2" );
         doCallRealMethod().when( dataTable ).decode( facesContext );
         dataTable.decode( facesContext );
-        assertEquals( dataTable.getDataTableProperties().get( currentPage ), 2 );
+        assertEquals( 2, dataTable.getDataTableProperties().get( currentPage ) );
     }
 }
