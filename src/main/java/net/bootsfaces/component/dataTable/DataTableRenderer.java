@@ -207,21 +207,19 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Event setup: http://datatables.net/reference/event/page
 		rw.writeText( "element.on('page.dt', function(){" +
 					  "var info = table.page.info();" +
-					  "console.log(info.page);" +
-					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
 					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
 					  "});", null );
 		//# Event setup: https://datatables.net/reference/event/length
 		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
-					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
 					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
 					  "});", null );
 		//# Event setup: https://datatables.net/reference/event/search
 		rw.writeText( "element.on('search.dt', function() {" +
-					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
 					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 					  "});", null );
-
 		//# End JS
 		rw.writeText("} );",null );
 		rw.endElement("script");
