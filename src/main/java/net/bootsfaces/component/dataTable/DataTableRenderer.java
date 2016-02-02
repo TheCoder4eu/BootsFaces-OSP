@@ -214,14 +214,15 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Event setup: https://datatables.net/reference/event/length
 		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
 					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
-					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
+					  "'" + DataTablePropertyType.currentPage + ":0," +
+					  DataTablePropertyType.pageLength + ":'+len);" +
 					  "});", null );
 		//# Event setup: https://datatables.net/reference/event/search
 		rw.writeText( "element.on('search.dt', function() {" +
 					  "BsF.ajax.callAjax(this, event, '" + clientId + "Table', '" + clientId + "Table', null, " +
-					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
+					  "'" + DataTablePropertyType.currentPage + ":0," +
+					  DataTablePropertyType.searchTerm + ":'+table.search());" +
 					  "});", null );
-
 		//# End JS
 		rw.writeText("} );",null );
 		rw.endElement("script");
