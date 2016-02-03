@@ -196,12 +196,16 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		//# Start JS
+		//# Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
-		//# Initialize table at nth page
+		//# Enclosure-scoped variable initialization
 		rw.writeText("var element = $('." + clientId + "Table" + "');" +
-					 "var table = element.DataTable();" +
-					 "table.page("+page+");" +
+					 //# Get instance of wrapper, and replace it with the unwrapped table.
+					 "var wrapper = $('#" + clientId + "_wrapper');" +
+					 "wrapper.replaceWith(element);" +
+					 "var table = element.DataTable();", null);
+		//# Use DataTable API to set initial state of the table display
+		rw.writeText("table.page("+page+");" +
 					 "table.search("+searchTerm+");" +
 					 "table.page.len("+pageLength+").draw('page');", null);
 		//# Event setup: http://datatables.net/reference/event/page
@@ -220,7 +224,7 @@ public class DataTableRenderer extends CoreRenderer {
 					  "BsF.ajax.callAjax(this, event, null, null, null, " +
 					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 					  "});", null );
-		//# End JS
+		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
