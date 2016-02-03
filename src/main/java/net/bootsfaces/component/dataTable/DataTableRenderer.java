@@ -83,19 +83,21 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	private void generateFooter(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
-		rw.startElement("tfoot", dataTable);
-		rw.startElement("tr", dataTable);
-		List<UIComponent> columns = dataTable.getChildren();
-		for (UIComponent column : columns) {
-			rw.startElement("th", dataTable);
-			if (column.getFacet("header") != null) {
-				UIComponent facet = column.getFacet("header");
-				facet.encodeAll(context);
+		if(dataTable.isMultiColumnSearch()) {
+			rw.startElement( "tfoot", dataTable );
+			rw.startElement( "tr", dataTable );
+			List<UIComponent> columns = dataTable.getChildren();
+			for ( UIComponent column : columns ) {
+				rw.startElement( "th", dataTable );
+				if ( column.getFacet( "header" ) != null ) {
+					UIComponent facet = column.getFacet( "header" );
+					facet.encodeAll( context );
+				}
+				rw.endElement( "th" );
 			}
-			rw.endElement("th");
+			rw.endElement( "tr" );
+			rw.endElement( "tfoot" );
 		}
-		rw.endElement("tr");
-		rw.endElement("tfoot");
 	}
 
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
@@ -231,21 +233,23 @@ public class DataTableRenderer extends CoreRenderer {
 					  "BsF.ajax.callAjax(this, event, null, null, null, " +
 					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 					  "});", null );
-		//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
-		//# Convert footer column text to input textfields
-		rw.writeText( "$('#" + clientId +" tfoot th').each(function() {" +
-					  "var title = $(this).text();" +
-					  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
-					  "});", null );
-		//# Add event listeners for each input
-		rw.writeText( "table.columns().every( function () {" +
-					  "var that = this;" +
-					  "$( 'input', this.footer() ).on( 'keyup change', function () {" +
-					  "    if ( that.search() !== this.value ) {" +
-					  "        that.search( this.value ).draw('page');" +
-					  "    }" +
-					  "} );" +
-					  "} );", null );
+		if(dataTable.isMultiColumnSearch())	{
+			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
+			//# Convert footer column text to input textfields
+			rw.writeText( "$('#" + clientId + " tfoot th').each(function() {" +
+						  "var title = $(this).text();" +
+						  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
+						  "});", null );
+			//# Add event listeners for each input
+			rw.writeText( "table.columns().every( function () {" +
+						  "var that = this;" +
+						  "$( 'input', this.footer() ).on( 'keyup change', function () {" +
+						  "    if ( that.search() !== this.value ) {" +
+						  "        that.search( this.value ).draw('page');" +
+						  "    }" +
+						  "} );" +
+						  "} );", null );
+		}
 		//# End JS
 		rw.writeText("} );",null );
 		rw.endElement("script");

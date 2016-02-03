@@ -165,7 +165,8 @@ onmouseover,
 onmouseup,
 process,
 update,
-dataTableProperties
+dataTableProperties,
+multiColumSearch
 ;
 
         String toString;
@@ -576,6 +577,23 @@ dataTableProperties
      */
 	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties){
 		getStateHelper().put( PropertyKeys.dataTableProperties, _dataTableProperties );
+	}
+
+	/**
+	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). <P>
+	 * @return Returns the value of the attribute.
+	 */
+	public boolean isMultiColumnSearch() {
+		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.multiColumSearch, false );
+		return value;
+	}
+
+	/**
+	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). <P>
+	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 */
+	public void setMultiColumnSearch(boolean _multiColumnSearch) {
+		getStateHelper().put(PropertyKeys.multiColumSearch, _multiColumnSearch);
 	}
 }
 
