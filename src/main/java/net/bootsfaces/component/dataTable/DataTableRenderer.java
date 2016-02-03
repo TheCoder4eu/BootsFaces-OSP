@@ -242,8 +242,9 @@ public class DataTableRenderer extends CoreRenderer {
 					  "var that = this;" +
 					  "$( 'input', this.footer() ).on( 'keyup change', function () {" +
 					  "    if ( that.search() !== this.value ) {" +
-					  "        that.search( this.value ).draw('page')}" +
-					  "    } );" +
+					  "        that.search( this.value ).draw('page');" +
+					  "    }" +
+					  "} );" +
 					  "} );", null );
 		//# End JS
 		rw.writeText("} );",null );
