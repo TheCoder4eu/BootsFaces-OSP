@@ -571,7 +571,8 @@ dataTableProperties
 	}
 
 	/**
-	 * Set the map cntaining the DataTable properties for this instance.
+	 * Set the map containing the DataTable properties for this instance. <p>
+	 * EXPERIMENTAL: Does not support multiple DataTables on the same page.
 	 * @param _dataTableProperties The map
      */
 	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties){
