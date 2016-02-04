@@ -402,7 +402,8 @@ widget dataTable
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     update                                                                 "Component(s) to be updated with ajax."
-
+    dataTableProperties     java.util.Map                                  "A java.util.Map<net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object> map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
+    multiColumnSearch   Boolean                                            "If true, <b:inputText /> fields will be generated at the bottom of each column which allow you to perform per-column filtering."
 }
 
 
