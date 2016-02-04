@@ -208,22 +208,24 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText("table.page("+page+");" +
 					 "table.search("+searchTerm+");" +
 					 "table.page.len("+pageLength+").draw('page');", null);
-		//# Event setup: http://datatables.net/reference/event/page
-		rw.writeText( "element.on('page.dt', function(){" +
-					  "var info = table.page.info();" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
-					  "});", null );
-		//# Event setup: https://datatables.net/reference/event/length
-		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
-					  "});", null );
-		//# Event setup: https://datatables.net/reference/event/search
-		rw.writeText( "element.on('search.dt', function() {" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
-					  "});", null );
+		if(dataTableProperties != null) {
+			//# Event setup: http://datatables.net/reference/event/page
+			rw.writeText("element.on('page.dt', function(){" +
+				"var info = table.page.info();" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.currentPage + ":'+info.page);" +
+				"});", null);
+			//# Event setup: https://datatables.net/reference/event/length
+			rw.writeText("element.on('length.dt', function(e, settings, len) {" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.pageLength + ":'+len);" +
+				"});", null);
+			//# Event setup: https://datatables.net/reference/event/search
+			rw.writeText("element.on('search.dt', function() {" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
+				"});", null);
+		}
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
