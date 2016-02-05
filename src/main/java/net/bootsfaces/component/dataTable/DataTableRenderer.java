@@ -192,7 +192,8 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 		}
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = dataTable.getClientId().replace(":", "");
+		String clientIdRaw = dataTable.getClientId();
+		String clientId = clientIdRaw.replace(":", "");
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
@@ -201,7 +202,7 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Enclosure-scoped variable initialization
 		rw.writeText("var element = $('." + clientId + "Table" + "');" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
-					 "var wrapper = $('#" + clientId + "_wrapper');" +
+					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
 					 "wrapper.replaceWith(element);" +
 					 "var table = element.DataTable();" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
