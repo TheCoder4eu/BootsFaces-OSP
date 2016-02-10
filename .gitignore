@@ -3,6 +3,7 @@ build
 /optimized
 /nbproject/
 /nbproject/private/
+.nb-gradle/
 /.settings
 .classpath
 .project
