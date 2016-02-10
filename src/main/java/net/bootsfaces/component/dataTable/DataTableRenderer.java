@@ -19,17 +19,17 @@
 
 package net.bootsfaces.component.dataTable;
 
-import java.io.IOException;
-import java.util.List;
-
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
+import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Tooltip;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
-import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Tooltip;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /** This class generates the HTML code of &lt;b:dataTable /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
@@ -83,8 +83,21 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	private void generateFooter(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
-		// TODO Auto-generated method stub
-
+		if(dataTable.isMultiColumnSearch()) {
+			rw.startElement( "tfoot", dataTable );
+			rw.startElement( "tr", dataTable );
+			List<UIComponent> columns = dataTable.getChildren();
+			for ( UIComponent column : columns ) {
+				rw.startElement( "th", dataTable );
+				if ( column.getFacet( "header" ) != null ) {
+					UIComponent facet = column.getFacet( "header" );
+					facet.encodeAll( context );
+				}
+				rw.endElement( "th" );
+			}
+			rw.endElement( "tr" );
+			rw.endElement( "tfoot" );
+		}
 	}
 
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
@@ -173,13 +186,76 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
+		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+		Integer page = 0;
+		Integer pageLength = 10;
+		String searchTerm = "''";
+		if(dataTableProperties != null){
+			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
+			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
+			Object currentSearchTerm = dataTableProperties.get( DataTablePropertyType.searchTerm );
+			if(currentPage != null){
+				page = (Integer)currentPage;
+			}
+			if(currentPageLength != null){
+				pageLength = (Integer)currentPageLength;
+			}
+			if(currentSearchTerm != null){
+				searchTerm = String.format("'%s'", (String)currentSearchTerm);
+			}
+		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId().replace(":", "");
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		rw.writeText("$(document).ready(function() {$('." + clientId + "Table" + "').DataTable();} );",
-				null);
+		//# Start enclosure
+		rw.writeText("$(document).ready(function() {", null);
+		//# Enclosure-scoped variable initialization
+		rw.writeText("var element = $('." + clientId + "Table" + "');" +
+					 //# Get instance of wrapper, and replace it with the unwrapped table.
+					 "var wrapper = $('#" + clientId + "_wrapper');" +
+					 "wrapper.replaceWith(element);" +
+					 "var table = element.DataTable();", null);
+		//# Use DataTable API to set initial state of the table display
+		rw.writeText("table.page("+page+");" +
+					 "table.search("+searchTerm+");" +
+					 "table.page.len("+pageLength+").draw('page');", null);
+		//# Event setup: http://datatables.net/reference/event/page
+		rw.writeText( "element.on('page.dt', function(){" +
+					  "var info = table.page.info();" +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
+					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
+					  "});", null );
+		//# Event setup: https://datatables.net/reference/event/length
+		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
+					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
+					  "});", null );
+		//# Event setup: https://datatables.net/reference/event/search
+		rw.writeText( "element.on('search.dt', function() {" +
+					  "BsF.ajax.callAjax(this, event, null, null, null, " +
+					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
+					  "});", null );
+		if(dataTable.isMultiColumnSearch())	{
+			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
+			//# Convert footer column text to input textfields
+			rw.writeText( "$('#" + clientId + " tfoot th').each(function() {" +
+						  "var title = $(this).text();" +
+						  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
+						  "});", null );
+			//# Add event listeners for each input
+			rw.writeText( "table.columns().every( function () {" +
+						  "var that = this;" +
+						  "$( 'input', this.footer() ).on( 'keyup change', function () {" +
+						  "    if ( that.search() !== this.value ) {" +
+						  "        that.search( this.value ).draw('page');" +
+						  "    }" +
+						  "} );" +
+						  "} );", null );
+		}
+		//# End enclosure
+		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
 

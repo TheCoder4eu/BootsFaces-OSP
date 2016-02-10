@@ -15,3 +15,5 @@ src-gen
 /gradleResources/.nb-gradle/
 .DS_Store
 .gradle
+.idea/
+*.iml
