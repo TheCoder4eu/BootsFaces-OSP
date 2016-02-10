@@ -581,7 +581,10 @@ public class DatePicker extends HtmlInputText {
 			if (null != vex)
 				return (String) vex.getValue(context.getELContext());
 		}
-		// Use the "clientId" if there was no label specified.
-		return (String) getClientId(context);
+        if (o == null) {
+        	// Use the "clientId" if there was no label specified.
+            o = getClientId(context);
+        }
+        return (String)o;
 	}
 }
