@@ -205,7 +205,8 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 		}
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = dataTable.getClientId().replace(":", "");
+		String clientIdRaw = dataTable.getClientId();
+		String clientId = clientIdRaw.replace(":", "");
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
@@ -214,29 +215,40 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Enclosure-scoped variable initialization
 		rw.writeText("var element = $('." + clientId + "Table" + "');" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
-					 "var wrapper = $('#" + clientId + "_wrapper');" +
+					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
 					 "wrapper.replaceWith(element);" +
-					 "var table = element.DataTable();", null);
+					 "var table = element.DataTable();" +
+					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
+					 "dataTableProperties attribute; Could not save state';", null);
 		//# Use DataTable API to set initial state of the table display
 		rw.writeText("table.page("+page+");" +
 					 "table.search("+searchTerm+");" +
 					 "table.page.len("+pageLength+").draw('page');", null);
-		//# Event setup: http://datatables.net/reference/event/page
-		rw.writeText( "element.on('page.dt', function(){" +
-					  "var info = table.page.info();" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.currentPage + ":'+info.page);" +
-					  "});", null );
-		//# Event setup: https://datatables.net/reference/event/length
-		rw.writeText( "element.on('length.dt', function(e, settings, len) {" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.pageLength + ":'+len);" +
-					  "});", null );
-		//# Event setup: https://datatables.net/reference/event/search
-		rw.writeText( "element.on('search.dt', function() {" +
-					  "BsF.ajax.callAjax(this, event, null, null, null, " +
-					  "'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
-					  "});", null );
+
+		if(dataTableProperties != null) {
+			//# Event setup: http://datatables.net/reference/event/page
+			rw.writeText("element.on('page.dt', function(){" +
+				"var info = table.page.info();" +
+				"try {" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.currentPage + ":'+info.page);" +
+				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
+				"});", null);
+			//# Event setup: https://datatables.net/reference/event/length
+			rw.writeText("element.on('length.dt', function(e, settings, len) {" +
+				"try {" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.pageLength + ":'+len);" +
+				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
+				"});", null);
+			//# Event setup: https://datatables.net/reference/event/search
+			rw.writeText("element.on('search.dt', function() {" +
+				"try {" +
+				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
+				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
+				"});", null);
+                }
 		if(dataTable.isMultiColumnSearch())	{
 			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
 			//# Convert footer column text to input textfields
