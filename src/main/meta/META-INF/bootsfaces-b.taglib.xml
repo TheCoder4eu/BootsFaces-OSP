@@ -3881,6 +3881,42 @@
       <type>java.lang.String</type>
     </attribute>
     <!-- put more tooltip attributes here -->
+    <attribute>
+      <description><![CDATA[The pattern of the input date.]]></description>
+      <name>dateFormat</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The value of the earliest accepted date. Types can be java.lang.String, java.util.Date, java.time.LocalDate, java.time.LocalDateTime )]]></description>
+      <name>minDate</name>
+      <required>false</required>
+      <type>java.lang.Object</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The value of the latest accepted date. Types can be java.lang.String, java.util.Date, java.time.LocalDate, java.time.LocalDateTime )]]></description>
+      <name>maxDate</name>
+      <required>false</required>
+      <type>java.lang.Object</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Disables the input element, default is false.]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+      <name>readonly</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The label of the field.]]></description>
+      <name>label</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
   </tag>
   <tag>
     <tag-name>inputText</tag-name>

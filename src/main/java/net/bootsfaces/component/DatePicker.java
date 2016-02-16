@@ -23,6 +23,9 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
@@ -364,11 +367,14 @@ public class DatePicker extends HtmlInputText {
 		} else if (dt instanceof Date) {
 			SimpleDateFormat dtFormat = new SimpleDateFormat(format, locale);
 			dtFormat.setTimeZone(java.util.TimeZone.getDefault());
-			// dateFormat.setTimeZone(tz);
 
 			return dtFormat.format((Date) dt);
+		} else if (dt instanceof LocalDate) {
+			return ((LocalDate)dt).format(DateTimeFormatter.ofPattern(format, locale));
+		} else if (dt instanceof LocalDateTime) {
+			return ((LocalDateTime)dt).format(DateTimeFormatter.ofPattern(format, locale));
 		} else {
-			throw new IllegalArgumentException("Value could be either String or java.util.Date");
+			throw new IllegalArgumentException("Value could be either String, java.util.Date, java.time.LocalDate or java.time.LocalDateTime");
 		}
 	}
 
