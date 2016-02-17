@@ -6726,6 +6726,12 @@
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
   </tag>
 
   <tag>
