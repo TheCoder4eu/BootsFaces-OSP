@@ -77,6 +77,7 @@ public final class C {
     public static final String TAB_COMPONENT_TYPE=BSFCOMPONENT+".Tab";
     public static final String TAB_VIEW_COMPONENT_TYPE=BSFCOMPONENT+".TabView";
     public static final String THUMBNAIL_COMPONENT_TYPE=BSFCOMPONENT+".Thumbnail";
+    public static final String SCROLL_COMPONENT_TYPE=BSFCOMPONENT+".ScrollUp";
     //jQuery Components
     public static final String DATEPICKER_COMPONENT_TYPE=BSFCOMPONENT+".DatePicker";
     public static final String SLIDER_COMPONENT_TYPE=BSFCOMPONENT+".Slider";

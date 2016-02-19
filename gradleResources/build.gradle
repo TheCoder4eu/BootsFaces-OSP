@@ -107,6 +107,7 @@ task copyCssResources(type: Copy) {
   from 'css/dataTables.bootstrap.min.css'
   from 'css/dropdowns.css'
   from 'css/dropdown-submenu.css'
+  from 'css/scrollup.css'
   from 'css/jq.ui.core.css'
   from 'css/jq.ui.datepicker.css'
   from 'css/jq.ui.slider.css'
@@ -122,6 +123,7 @@ task copyJsResources(type: Copy) {
   from 'js/jquery.dataTables.min.js'
   from 'js/jquery.blockUI.js'
   from 'js/dataTables.bootstrap.min.js'
+  from 'js/jquery.scrollUp.min.js'
   from 'ie8support/respond.js'
   from 'ie8support/html5shiv.js'
 

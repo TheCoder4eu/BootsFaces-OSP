@@ -68,6 +68,7 @@ public class NavBarRenderer extends CoreRenderer {
 		if (fixed != null) {
 		    if (fixed.equals("top")) { ns += " navbar-fixed-top"; }
 		    if (fixed.equals("bottom")) { ns += " navbar-fixed-bottom"; }
+		    if (fixed.equals("non-sticky")) { ns += " navbar-fixed-bottom navbar-nonsticky"; }
 		}
 		if (sttc) { ns += " navbar-static-top"; }
 		
