@@ -7371,4 +7371,77 @@ component. The id is not necessarily unique across all components in the current
       <type>java.lang.String</type>
     </attribute>
   </tag>
+  <!-- Scroll added by Dario D'Urzo, on Feb 19, 2016 -->
+  <tag>
+    <tag-name>scrollup</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.ScrollUp</component-type>
+    </component>
+    <attribute>
+      <description><![CDATA[Element ID.]]></description>
+      <name>name</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Distance from top/bottom before showing element (px).]]></description>
+      <name>distance</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[scroll direction: 'top' or 'bottom'.]]></description>
+      <name>from</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Speed back to top (ms).]]></description>
+      <name>speed</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Animation type: Fade, slide, none.]]></description>
+      <name>animation</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Animation speed (ms).]]></description>
+      <name>animationSpeed</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Text for element, can contain HTML.]]></description>
+      <name>text</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set a custom <a> title if required..]]></description>
+      <name>title</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Set true to use image.]]></description>
+      <name>image</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Scroll to top easing (see http://easings.net/).]]></description>
+      <name>easying</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
 </facelet-taglib>
