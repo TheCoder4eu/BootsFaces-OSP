@@ -54,7 +54,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		if (menu.isDisabled() || menu.isReadonly()) {
 			return;
 		}
-		String clientId = menu.getClientId();
+		String outerClientId = menu.getClientId(context);
+		String clientId = outerClientId+"Inner";
 		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		List<Object> items = collectOptions(context, menu);
@@ -112,7 +113,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 			return;
 		}
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = menu.getClientId(context);
+		String outerClientId = menu.getClientId(context);
+		String clientId = outerClientId+"Inner";
 		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		if (menu.isInline()) {
@@ -120,6 +122,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
 		}
+		rw.writeAttribute("id", outerClientId, "id");
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
 
 		addLabel(rw, clientId, menu);
