@@ -6474,11 +6474,18 @@
     <component>
       <component-type>net.bootsfaces.component.selectOneMenu.SelectOneMenu</component-type>
     </component>
+    
     <attribute>
       <description><![CDATA[Access key to transfer focus to the input element.]]></description>
       <name>accesskey</name>
       <required>false</required>
       <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>Boolean</type>
     </attribute>
     <attribute>
       <description><![CDATA[Alternate textual description of the input element.]]></description>
@@ -6506,6 +6513,12 @@
     </attribute>
     <attribute>
       <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+      <name>field-size</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
       <name>fieldSize</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -6523,13 +6536,19 @@
       <type>Boolean</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+      <name>inline</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[The label of the field.]]></description>
       <name>label</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[A localized user presentable name.]]></description>
+      <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
       <name>lang</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -6549,6 +6568,12 @@
     <attribute>
       <description><![CDATA[OnClick DHTML event .]]></description>
       <name>onclick</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Javascript to be executed when ajax completes with success.]]></description>
+      <name>oncomplete</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -6625,8 +6650,20 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+      <name>process</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
       <name>readonly</name>
+      <required>false</required>
+      <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+      <name>render-label</name>
       <required>false</required>
       <type>Boolean</type>
     </attribute>
@@ -6647,6 +6684,12 @@
       <name>required</name>
       <required>false</required>
       <type>Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+      <name>required-message</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
@@ -6674,12 +6717,18 @@
     </attribute>
     <attribute>
       <description><![CDATA[Style class of the input element.]]></description>
+      <name>style-class</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of the input element.]]></description>
       <name>styleClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Advisory tooltip information.]]></description>
+      <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
       <name>tabindex</name>
       <required>false</required>
       <type>java.lang.String</type>
@@ -6697,8 +6746,32 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltip-container</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+      <name>tooltipContainer</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
       <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelay</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-hide</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
@@ -6710,13 +6783,31 @@
     </attribute>
     <attribute>
       <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+      <name>tooltip-delay-show</name>
+      <required>false</required>
+      <type>Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>tooltipDelayShow</name>
       <required>false</required>
       <type>Integer</type>
     </attribute>
     <attribute>
       <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+      <name>tooltip-position</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
       <name>tooltipPosition</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+      <name>update</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
