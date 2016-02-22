@@ -21,6 +21,8 @@ ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subvers
 ext.BootswatchFolder = 'Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
 ext.theme = props['bootswatch.theme']
 ext.themeFolder=ext.theme?.length()>0?ext.theme:"default"
+ext.themeList = props['bootswatch.themelist']
+ext.themeFolders=ext.themeList?.length()>0?ext.themeList:"default"
 
 task getBootstrap(type: GradleBuild) {
   description 'BootsFaces task: downloads and unzips Bootstrap.'
@@ -100,6 +102,29 @@ task copyBootsFacesFiles(type: Copy) {
 
   into "${buildDir}/process"
 }
+
+  
+task multiCopyCssResources << {
+	description 'BootsFaces task: copies additional CSS files to the target folder (i.e. files that are not part of Bootstrap).'
+  
+  	themeFolders.split(',').each { dest ->
+    	copy {
+      		from 'css/bootstrap-multiselect.css'
+	  		from 'css/bootstrap-switch.css'
+  			from 'css/dataTables.bootstrap.min.css'
+		  	from 'css/dropdowns.css'
+		  	from 'css/dropdown-submenu.css'
+		  	from 'css/scrollup.css'
+		  	from 'css/sticky-footer-navbar.css'
+		  	from 'css/jq.ui.core.css'
+		  	from 'css/jq.ui.datepicker.css'
+		  	from 'css/jq.ui.slider.css'
+		  	from 'css/jq.ui.theme.css'
+	      	into "${buildDir}/resources/META-INF/resources/bsf/css/${dest}"
+    	}
+  	}
+}
+
 task copyCssResources(type: Copy) {
   description 'BootsFaces task: copies additional CSS files to the target folder (i.e. files that are not part of Bootstrap).'
   from 'css/bootstrap-multiselect.css'
@@ -112,7 +137,7 @@ task copyCssResources(type: Copy) {
   from 'css/jq.ui.datepicker.css'
   from 'css/jq.ui.slider.css'
   from 'css/jq.ui.theme.css'
-
+  
   into "${buildDir}/resources/META-INF/resources/bsf/css/${themeFolder}"
 }
 task copyJsResources(type: Copy) {
@@ -151,7 +176,7 @@ task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'co
 
 }
 
-task copyBootsFacesResources(dependsOn: ['copyCssResources', 'copyJsResources', 'copyImageResources', 'copyJqResources']) { ////, 'copyFonts']) {
+task copyBootsFacesResources(dependsOn: ['multiCopyCssResources', 'copyJsResources', 'copyImageResources', 'copyJqResources']) { ////, 'copyFonts']) {
 
 }
 task lesscss(type: GradleBuild) {
@@ -160,6 +185,21 @@ task lesscss(type: GradleBuild) {
     tasks = ['assetCompile']
 }
 
+task multiCopyAssetCss2Resources << {
+	description 'BootsFaces task: copies the CSS files generated from the bs-*.less files to the target folder.'
+	themeFolders.split(',').each { dest ->
+		if(!dest.equalsIgnoreCase('other')) {
+	    	copy {
+		    	from "${buildDir}/assets/less"
+			    into "${buildDir}/resources/META-INF/resources/bsf/css/${dest}"
+			    // Use a closure to map the file name
+			    rename { String fileName ->
+			        fileName.replace('bs-', '')
+			    }
+	    	}
+	    }
+    }
+}
 
 task copyAssetCss2Resources(type: Copy) {
     description 'BootsFaces task: copies the CSS files generated from the bs-*.less files to the target folder.'
@@ -180,6 +220,14 @@ task copyIconsCss2Resources(type: Copy) {
         fileName.replace('bs-', '')
     }   
 }
+task multiRemoveThemeIconCss << {
+    description 'BootsFaces task: removes the redundant Icons CSS file in Theme folder.'
+    themeFolders.split(',').each { dest ->
+    	if(!dest.equalsIgnoreCase('other')) {
+    		delete "${buildDir}/resources/META-INF/resources/bsf/css/${dest}/icons.css"
+    	}
+    }
+}
 task removeThemeIconCss(type: Delete) {
     description 'BootsFaces task: removes the redundant Icons CSS file in Theme folder.'
     delete "${buildDir}/resources/META-INF/resources/bsf/css/${themeFolder}/icons.css"
@@ -189,6 +237,17 @@ task copyAssetJs2Resources(type: Copy) {
     description 'BootsFaces task: copies the Bootstrap JS file to the target folder.'
     from "${buildDir}/assets/js"
     into "${buildDir}/resources/META-INF/resources/bsf/js"
+}
+task multiCopyBsfCss << {
+  description 'BootsFaces task: copies the bsf.css file, which contains special additions needed by BootsFaces.'
+  themeFolders.split(',').each { dest -> 
+  	if(!dest.equalsIgnoreCase('other')) {
+	  	copy {
+		  from "${buildDir}/assets/bsf.css"
+		  into "${buildDir}/resources/META-INF/resources/bsf/css/${dest}"
+		}
+	}
+  }
 }
 task copyBsfCss(type: Copy) {
   description 'BootsFaces task: copies the bsf.css file, which contains special additions needed by BootsFaces.'
@@ -201,10 +260,21 @@ task copyBsfJs(type: Copy) {
   into "${buildDir}/resources/META-INF/resources/bsf/js"
 }
 
-task copyAssetResources(dependsOn: ['copyAssetCss2Resources', 'copyIconsCss2Resources', 'removeThemeIconCss', 'copyAssetJs2Resources', 'copyBsfCss', 'copyBsfJs']) {
+task copyAssetResources(dependsOn: ['multiCopyAssetCss2Resources', 'copyIconsCss2Resources', 'multiRemoveThemeIconCss', 'copyAssetJs2Resources', 'multiCopyBsfCss', 'copyBsfJs']) {
 
 }
 
+task multiCleanMavenResources(type: Delete) {
+  description 'BootsFaces task: deletes every file in the mavenResource folder.'
+  delete fileTree(dir: "${projectDir}/../mavenResources/fonts")
+  themeFolders.split(',').each { dest ->
+  	if(!dest.equalsIgnoreCase('other')) {
+  		delete fileTree(dir: "${projectDir}/../mavenResources/bsf/css/${dest}")
+  	}
+  }
+  delete fileTree(dir: "${projectDir}/../mavenResources/bsf/jq")
+  delete fileTree(dir: "${projectDir}/../mavenResources/bsf/js")
+}
 task cleanMavenResources(type: Delete) {
   description 'BootsFaces task: deletes every file in the mavenResource folder.'
   delete fileTree(dir: "${projectDir}/../mavenResources/fonts")
@@ -247,10 +317,10 @@ addBootswatchTheme.mustRunAfter copyFiles2Process
 lesscss.mustRunAfter copyFiles2Process
 copyAssetResources.mustRunAfter lesscss
 updateGradleResources.mustRunAfter updateMavenResources
-removeThemeIconCss.mustRunAfter copyAssetCss2Resources
+multiRemoveThemeIconCss.mustRunAfter multiCopyAssetCss2Resources
 
 task buildResources(dependsOn: ['cleanBuildFolder', 'copyBootsFacesResources', 'getBootstrap', 'copyFiles2Process', 'addBootswatchTheme', 'lesscss', 'copyAssetResources',
-                                'cleanMavenResources', 'updateMavenResources', 'updateGradleResources']) {
+                                'multiCleanMavenResources', 'updateMavenResources', 'updateGradleResources']) {
    description 'BootsFaces task: downloads Bootstrap from the internet and generates both the mavenResource folder and the Gradle resource folder from scratch.'
 }
 
