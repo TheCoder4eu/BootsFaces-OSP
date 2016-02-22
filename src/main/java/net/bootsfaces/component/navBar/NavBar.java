@@ -25,6 +25,12 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIOutput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.AttributeMapWrapper;
@@ -36,7 +42,8 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "css/navbar.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent("net.bootsfaces.component.navBar.NavBar")
+@ListenerFor(systemEventClass = PostAddToViewEvent.class)
+@FacesComponent("net.bootsfaces.component.navBar.NavBar") 
 public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navBar.NavBar";
@@ -52,6 +59,29 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
+	
+	/**
+	 * Dario D'Urzo
+	 * Dynamically add custom css to manage non-sticky footer.
+	 * In this way, only if fixed attribute is "non-sticky" the system load 
+	 * the correct css that manages all style aspect of this functionlity.
+	 * 
+	 * This is also cross-theme.
+	 */
+	@Override
+    public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+        if(event instanceof PostAddToViewEvent) {
+        	if("non-sticky".equals(getFixed())) {
+	            UIOutput resource=new UIOutput();
+	            resource.getAttributes().put("name", "css/sticky-footer-navbar.css");
+	            resource.getAttributes().put("library", C.BSF_LIBRARY);
+	            resource.getAttributes().put("target", "head");
+	            resource.setRendererType("javax.faces.resource.Stylesheet");
+	            FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(), resource);
+        	}
+        }
+        super.processEvent(event);
+    }
 
 	@Override
 	public Map<String, Object> getAttributes() {
