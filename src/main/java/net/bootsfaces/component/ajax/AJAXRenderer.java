@@ -353,7 +353,7 @@ public class AJAXRenderer extends CoreRenderer {
 		return jsCallback;
 	}
 
-	private static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
+	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
 		StringBuilder cJS = new StringBuilder(150);
 		String update = component.getUpdate();

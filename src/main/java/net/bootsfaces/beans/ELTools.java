@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
+import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
@@ -69,6 +70,15 @@ public class ELTools {
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, expectedType);
 		return vex;
 	}
+	
+	public static MethodExpression createMethodExpression(String p_expression, Class<?> returnType, Class<?>... parameterTypes) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
+		ELContext elContext = context.getELContext();
+		
+		MethodExpression mex = expressionFactory.createMethodExpression(elContext, p_expression, returnType, parameterTypes);
+		return mex;
+    }
 
 	/**
 	 * Evaluates an EL expression into an object.
@@ -279,6 +289,7 @@ public class ELTools {
 	 * @param c the object
 	 * @return true if c is a de-facto-primitive
 	 */
+	@SuppressWarnings("unused")
 	private static boolean isPrimitive(Class<? extends Object> c) {
 		return (null == c) || (Class.class == c) || (String.class == c) || c.isPrimitive() || (Integer.class == c) || (Long.class == c)
 				|| (Short.class == c) || (Byte.class == c) || (Character.class == c) || (Float.class == c) || (Double.class == c)

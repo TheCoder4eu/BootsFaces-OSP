@@ -1,0 +1,35 @@
+.tree {
+    background-color: #fbfbfb;
+    border: 1px solid #999999;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    margin-bottom: 20px;
+    min-height: 20px;
+    padding: 19px;
+}
+.tree ul {
+     margin-bottom: 5px !important;
+}
+.tree li {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 5px 0;
+    position: relative;
+}
+.tree li i.sign {
+    margin-left: -20px;
+    margin-right: 5px;
+}
+.tree ul {
+    padding-left: 15px !important;
+}
+.tree li.parent_li > span {
+    cursor: pointer;
+}
+.tree > ul > li::before, .tree > ul > li::after {
+    border: 0 none;
+}
+.tree li:last-child::before {
+    height: 30px;
+}
+
