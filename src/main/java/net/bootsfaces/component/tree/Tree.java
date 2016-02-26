@@ -48,15 +48,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		expandIcon,
 		color,
 		update
-		
-		/*
-		disabled,
-		ajax,
-		immediate,
-		onclick,
-		oncomplete,
-		process,
-		update*/
 		;
 
 		String toString;
@@ -237,82 +228,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
-
-	/*
-	@Override
-	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
-		return (boolean) value;
-	}
-
-	public void setAjax(boolean _ajax) {
-		getStateHelper().put(PropertyKeys.ajax, _ajax);
-	}
-
-	@Override
-	public boolean isDisabled() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
-		return (boolean) value;
-	}
-
-	public void setDisabled(boolean _disabled) {
-		getStateHelper().put(PropertyKeys.disabled, _disabled);
-	}
-
-	@Override
-	public boolean isImmediate() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
-		return (boolean) value;
-	}
-
-	public void setImmediate(boolean _immediate) {
-		getStateHelper().put(PropertyKeys.immediate, _immediate);
-	}
-
-	@Override
-	public Map<String, String> getJQueryEvents() {
-		return null;
-	}
-
-	@Override
-	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
-	}
-	
-	@Override
-	public String getOnclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onclick);
-		return  value;
-	}
-
-	public void setOnclick(String _onclick) {
-		getStateHelper().put(PropertyKeys.onclick, _onclick);
-	}
-
-	public void setProcess(String _process) {
-		getStateHelper().put(PropertyKeys.process, _process);
-	}
-
-	public String getUpdate() {
-		String value = (String)getStateHelper().eval(PropertyKeys.update);
-		return  value;
-	}
-
-	public void setUpdate(String _update) {
-		getStateHelper().put(PropertyKeys.update, _update);
-	}
-
-	public String getOncomplete() {
-		String value = (String)getStateHelper().eval(PropertyKeys.oncomplete);
-		return  value;
-	}
-
-	public void setOncomplete(String _oncomplete) {
-		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
-	}
-	
-	*/
 
 	private void updateStateHelper(final String propertyName, final Object value) {
 		this.getStateHelper().put(propertyName, value);

@@ -41,6 +41,12 @@ public interface Node {
 	/**
 	 * @return the node is selectable
 	 */
+	boolean getUseFaIcons();
+	void setUseFaIcons(final boolean useFaIcons);
+	
+	/**
+	 * @return the node is selectable
+	 */
 	boolean isSelectable();
 	void setSelectable(final boolean selectable);
 	

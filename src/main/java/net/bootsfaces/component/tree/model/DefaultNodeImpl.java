@@ -21,6 +21,7 @@ implements Node {
     private boolean disabled = false;
     private boolean expanded = true;
     private boolean selected = false;
+    private boolean useFaIcons = false;
 
     public DefaultNodeImpl() {
     }
@@ -35,6 +36,13 @@ implements Node {
 		this.text = text;
 		this.icon = icon;
 	}
+	
+	public DefaultNodeImpl(String text, String icon, boolean useFaIcons) {
+		super();
+		this.text = text;
+		this.icon = icon;
+		this.useFaIcons = useFaIcons;
+	}
 
 	public DefaultNodeImpl(String text, String icon, String data) {
 		super();
@@ -42,6 +50,8 @@ implements Node {
 		this.text = text;
 		this.icon = icon;
 	}
+	
+	
 
 	public String getData() {
 		return data;
@@ -68,8 +78,11 @@ implements Node {
 	}
 
 	public String getIcon() {
-		if(icon != null && !icon.contains("glyphicon")) 
-			icon = "glyphicon glyphicon-" + icon; 
+		if(icon != null) {
+			if(icon.contains("glyphicon-") || icon.contains("fa-")) return icon;
+			else if(useFaIcons) return "fa fa-" + icon; 
+			else return "glyphicon glyphicon-" + icon; 
+		}
 		return icon;
 	}
 
@@ -78,8 +91,11 @@ implements Node {
 	}
 
 	public String getSelectedIcon() {
-		if(selectedIcon != null && !selectedIcon.contains("glyphicon")) 
-			selectedIcon = "glyphicon glyphicon-" + selectedIcon; 
+		if(selectedIcon != null) {
+			if(selectedIcon.contains("glyphicon-") || selectedIcon.contains("fa-")) return selectedIcon;
+			else if(useFaIcons) return "fa fa-" + selectedIcon; 
+			else return "glyphicon glyphicon-" + selectedIcon; 
+		}
 		return selectedIcon;
 	}
 
@@ -166,5 +182,15 @@ implements Node {
 	@Override
 	public boolean equals(Object obj) {
 		return this.getText().equals(((Node)obj).getText());
+	}
+
+	@Override
+	public boolean getUseFaIcons() {
+		return useFaIcons;
+	}
+
+	@Override
+	public void setUseFaIcons(boolean useFaIcons) {
+		this.useFaIcons = useFaIcons;
 	}
 }
