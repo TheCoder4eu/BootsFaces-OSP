@@ -29,43 +29,72 @@ import javax.faces.context.FacesContext;
  *
  */
 public class FacesMessages {
-	public static void fatal(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
-	public static void error(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
-	public static void warning(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
-	public static void info(String summary, String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
-	}
-
+	/**
+	 * Adds an FATAL message.
+	 *
+	 * @param message The message.
+	 */
 	public static void fatal(String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_FATAL, "", detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		info("", detail);
 	}
-
+	public static void fatal(String summary, String detail) {
+		info(null, summary, detail);
+	}
+	public static void fatal(String refItem, String summary, String detail) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_FATAL, summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(refItem, facesMsg);
+	}
+	
+	/**
+	 * Adds a ERROR message.
+	 *
+	 * @param message The message.
+	 */
 	public static void error(String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "", detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		error("", detail);
 	}
-
+	public static void error(String summary, String detail) {
+		error(null, summary, detail);
+	}
+	public static void error(String refItem, String summary, String detail) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(refItem, facesMsg);
+	}
+	
+	/**
+	 * Adds a WARNING message.
+	 *
+	 * @param message The message.
+	 */
 	public static void warning(String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_WARN, "", detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		warning("", detail);
 	}
-
+	public static void warning(String summary, String detail) {
+		warning(null, summary, detail);
+	}
+	public static void warning(String refItem, String summary, String detail) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(refItem, facesMsg);
+	}
+	
+	/**
+	 * Adds an INFO message.
+	 *
+	 * @param message The message.
+	 */
 	public static void info(String detail) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "", detail);
-		FacesContext.getCurrentInstance().addMessage(null, message);
+		info("", detail);
 	}
+	public static void info(String summary, String detail) {
+		info(null, summary, detail);
+	}
+	public static void info(String refItem, String summary, String detail) {
+		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(refItem, facesMsg);
+	}
+	
 }
