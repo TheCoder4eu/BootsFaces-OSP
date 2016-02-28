@@ -30,15 +30,15 @@ import javax.faces.context.FacesContext;
  */
 public class FacesMessages {
 	/**
-	 * Adds an FATAL message.
+	 * Adds a FATAL message.
 	 *
 	 * @param message The message.
 	 */
 	public static void fatal(String detail) {
-		info("", detail);
+		fatal("", detail);
 	}
 	public static void fatal(String summary, String detail) {
-		info(null, summary, detail);
+		fatal(null, summary, detail);
 	}
 	public static void fatal(String refItem, String summary, String detail) {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_FATAL, summary, detail);
