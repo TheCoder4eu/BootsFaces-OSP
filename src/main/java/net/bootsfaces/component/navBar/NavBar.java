@@ -43,7 +43,7 @@ import net.bootsfaces.render.Tooltip;
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @ListenerFor(systemEventClass = PostAddToViewEvent.class)
-@FacesComponent("net.bootsfaces.component.navBar.NavBar") 
+@FacesComponent("net.bootsfaces.component.navBar.NavBar")
 public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navBar.NavBar";
@@ -59,29 +59,30 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
-	
+
 	/**
-	 * Dario D'Urzo
-	 * Dynamically add custom css to manage non-sticky footer.
-	 * In this way, only if fixed attribute is "non-sticky" the system load 
-	 * the correct css that manages all style aspect of this functionlity.
+	 * Dario D'Urzo <br>
+	 * Dynamically add custom css to manage non-sticky footer. In this way, only
+	 * if fixed attribute is "non-sticky" the system load the correct css that
+	 * manages all style aspect of this functionlity.
 	 * 
 	 * This is also cross-theme.
 	 */
 	@Override
-    public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
-        if(event instanceof PostAddToViewEvent) {
-        	if("non-sticky".equals(getFixed())) {
-	            UIOutput resource=new UIOutput();
-	            resource.getAttributes().put("name", "css/sticky-footer-navbar.css");
-	            resource.getAttributes().put("library", C.BSF_LIBRARY);
-	            resource.getAttributes().put("target", "head");
-	            resource.setRendererType("javax.faces.resource.Stylesheet");
-	            FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(), resource);
-        	}
-        }
-        super.processEvent(event);
-    }
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (event instanceof PostAddToViewEvent) {
+			if ("non-sticky".equals(getFixed()) || ("bottom".equals(getPosition()) && (!isSticky()))) {
+				UIOutput resource = new UIOutput();
+				resource.getAttributes().put("name", "css/sticky-footer-navbar.css");
+				resource.getAttributes().put("library", C.BSF_LIBRARY);
+				resource.getAttributes().put("target", "head");
+				resource.setRendererType("javax.faces.resource.Stylesheet");
+				FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(),
+						resource);
+			}
+		}
+		super.processEvent(event);
+	}
 
 	@Override
 	public Map<String, Object> getAttributes() {
@@ -95,55 +96,22 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	}
 
 	protected enum PropertyKeys {
-alt,
-binding,
-brand,
-brandAlign,
-brandHref,
-brandImg,
-fixed,
-fluid,
-inverse,
-onclick,
-/* static, replaced by a String due to syntactical reasons */
-style,
-styleClass,
-tooltip,
-tooltipDelay,
-tooltipDelayHide,
-tooltipDelayShow,
-tooltipPosition, tooltipContainer
-;
+		alt, binding, brand, brandAlign, brandHref, brandImg, fixed, fluid, inverse, onclick, position, sticky, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
-        String toString;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
 	}
-	
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+
 	/**
 	 * alternative text
 	 * <P>
@@ -274,8 +242,9 @@ tooltipPosition, tooltipContainer
 	}
 
 	/**
-	 * If specified, the Fixed Bar will be rendered on top or bottom of the
-	 * page. Can be bottom or top.
+	 * Deprecated (use position and sticky instead). If specified, the Fixed Bar
+	 * will be rendered on top or bottom of the page. Can be "bottom", "top" or
+	 * "non-sticky". The latter is a footer that scrolls with the page.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -287,8 +256,9 @@ tooltipPosition, tooltipContainer
 	}
 
 	/**
-	 * If specified, the Fixed Bar will be rendered on top or bottom of the
-	 * page. Can be bottom or top.
+	 * Deprecated (use position and sticky instead). If specified, the Fixed Bar
+	 * will be rendered on top or bottom of the page. Can be "bottom", "top" or
+	 * "non-sticky". The latter is a footer that scrolls with the page.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -364,21 +334,75 @@ tooltipPosition, tooltipContainer
 	}
 
 	/**
-	 * If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Position of the navBar. Legal values: "top", "bottom" or "inline". The
+	 * default value is "top".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
-	public boolean isStatic() {
-		Boolean value = (Boolean)getStateHelper().eval("static", false);
+	public String getPosition() {
+		String value = (String) getStateHelper().eval(PropertyKeys.position);
+		return value;
+	}
+
+	/**
+	 * Position of the navBar. Legal values: "top", "bottom" or "inline". The
+	 * default value is "top".
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPosition(String _position) {
+		getStateHelper().put(PropertyKeys.position, _position);
+	}
+
+	/**
+	 * Determines whether the navBar is pinned at its default position (i.e.
+	 * sticky="true"), or if it scrolls with the page (sticky="false").
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isSticky() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.sticky, true);
 		return (boolean) value;
 	}
 
 	/**
-	 * If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
+	 * Determines whether the navBar is pinned at its default position (i.e.
+	 * sticky="true"), or if it scrolls with the page (sticky="false").
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSticky(boolean _sticky) {
+		getStateHelper().put(PropertyKeys.sticky, _sticky);
+	}
+
+	/**
+	 * Deprecated (use position and sticky instead). If true, a full-width
+	 * navbar that scrolls away with the page will be rendered. Can be true or
+	 * false, default false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isStatic() {
+		Boolean value = (Boolean) getStateHelper().eval("static", false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Deprecated (use position and sticky instead). If true, a full-width
+	 * navbar that scrolls away with the page will be rendered. Can be true or
+	 * false, default false.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStatic(boolean _static) {
-	    getStateHelper().put("static", _static);
-    }
+		getStateHelper().put("static", _static);
+	}
 
 	/**
 	 * Inline style of the navBar element.
@@ -441,6 +465,33 @@ tooltipPosition, tooltipContainer
 	 */
 	public void setTooltip(String _tooltip) {
 		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
 	}
 
 	/**
@@ -536,5 +587,4 @@ tooltipPosition, tooltipContainer
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
-
 }
