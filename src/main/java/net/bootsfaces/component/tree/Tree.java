@@ -59,52 +59,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	@Override
-	public void decode(FacesContext context) {
-		super.decode(context);
-
-		final TreeNodeEventListener nodeSelectionListener = this.getNodeSelectionListener();
-		String params = context.getExternalContext().getRequestParameterMap().get("params");
-		if (params != null) {
-			if (params != null) {
-				params = params.replace("BsFEvent=", "");
-				String[] pair = params.split(":", 2);
-				String key = pair[0];
-				String value = null;
-				if (pair.length == 2) {
-					value = pair[1];
-				}
-				if (value != null) {
-					Node n = new DefaultNodeImpl(value);
-
-					if ("nodeSelected".equals(key)) {
-						Node n2 = checkNodeIsSelected((List<Node>) this.getValue());
-						nodeSelectionListener.processValueChange(new TreeNodeSelectionEvent(n2, n));
-					} else if ("nodeChecked".equals(key)) {
-						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, true));
-					} else if ("nodeUnchecked".equals(key)) {
-						nodeSelectionListener.processValueUnchecked(new TreeNodeCheckedEvent(n, false));
-					} else {
-						throw new FacesException("Unexpected event when trying to decode the tree event: " + key);
-					}
-				}
-			}
-		}
-	}
-
-	private Node checkNodeIsSelected(List<Node> nodeList) {
-		for (Node n : nodeList) {
-			if (this.getNodeSelectionListener().isValueSelected(n) == true)
-				return n;
-			else if (n.getSubNodes() != null && n.getSubNodes().size() > 0) {
-				Node rt = checkNodeIsSelected(n.getSubNodes());
-				if (rt != null)
-					return rt;
-			}
-		}
-
-		return null;
-	}
 
 	@Override
 	public Map<String, Object> getAttributes() {
