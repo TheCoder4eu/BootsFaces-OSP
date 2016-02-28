@@ -143,7 +143,6 @@ public class CoreRenderer extends Renderer {
 
 		Map<String, String> params = context.getExternalContext().getRequestParameterMap();
 		String behaviorEvent = params.get("javax.faces.behavior.event");
-
 		if (null != behaviorEvent) {
 			List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
 

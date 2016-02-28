@@ -1,0 +1,10 @@
+/* Dario D'Urzo add to manage cross-theme non-sticky functionality */
+html {
+	position: relative !important;
+	min-height: 100% !important;
+}
+.navbar-nonsticky {
+	position: absolute !important;
+	bottom: 0 !important;
+	width: 100%;
+}

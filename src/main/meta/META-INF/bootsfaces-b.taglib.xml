@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
 	version="2.0">
 	<namespace>http://bootsfaces.net/ui</namespace>
-	<tag>
+	<tag> <!--  ALERT  -->
 		<tag-name>alert</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.alert.Alert</component-type>
@@ -90,7 +90,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  BADGE  -->
 		<tag-name>badge</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.badge.Badge</component-type>
@@ -134,7 +134,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  CAROUSEL  -->
 		<tag-name>carousel</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.carousel.Carousel</component-type>
@@ -322,7 +322,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  CAROUSEL OPTION -->
 		<tag-name>carouselCaption</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.carouselCaption.CarouselCaption</component-type>
@@ -468,7 +468,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  CAROUSEL CONTROL -->
 		<tag-name>carouselControl</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.carouselControl.CarouselControl</component-type>
@@ -626,7 +626,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  CAROUSEL ITEM -->
 		<tag-name>carouselItem</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.carouselItem.CarouselItem</component-type>
@@ -778,7 +778,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  DATA TABLE -->
 		<tag-name>dataTable</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
@@ -936,15 +936,14 @@
 		</attribute>
 	</tag>
 
-
-	<tag>
+	<tag> <!--  FETCH BEAN INFOS -->
 		<tag-name>fetchBeanInfos</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.FetchBeanInfos</component-type>
 		</component>
 	</tag>
 
-	<tag>
+	<tag> <!--  LABEL -->
 		<tag-name>label</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Label</component-type>
@@ -1011,7 +1010,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  FLY OUT MENU -->
 		<tag-name>flyOutMenu</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.flyOutMenu.FlyOutMenu</component-type>
@@ -1091,8 +1090,7 @@
 		</attribute>
 	</tag>
 
-
-	<tag>
+	<tag> <!--  ICON -->
 		<tag-name>icon</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.icon.Icon</component-type>
@@ -1262,7 +1260,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  ICON AWESOME -->
 		<tag-name>iconAwesome</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.iconAwesome.IconAwesome</component-type>
@@ -1432,7 +1430,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  LABEL -->
 		<tag-name>modal</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.modal.Modal</component-type>
@@ -1530,7 +1528,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  BUTTON -->
 		<tag-name>button</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Button</component-type>
@@ -1782,7 +1780,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  COMMAND BUTTON -->
 		<tag-name>commandButton</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.commandButton.CommandButton</component-type>
@@ -2060,9 +2058,7 @@
 		</attribute>
 	</tag>
 
-
-
-	<tag>
+	<tag> <!--  BUTTON GROUP -->
 		<tag-name>buttonGroup</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.ButtonGroup</component-type>
@@ -2130,7 +2126,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  BUTTON TOOLBAR -->
 		<tag-name>buttonToolbar</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.ButtonToolbar</component-type>
@@ -2186,7 +2183,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  NAV BAR -->
 		<tag-name>navBar</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.navBar.NavBar</component-type>
@@ -2314,8 +2312,7 @@
 		</attribute>
 	</tag>
 
-
-	<tag>
+	<tag> <!--  NAV BAR LINKS -->
 		<tag-name>navbarLinks</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.NavBarLinks</component-type>
@@ -2377,7 +2374,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  LIST LINKS -->
 		<tag-name>listLinks</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.ListLinks</component-type>
@@ -2434,10 +2432,7 @@
 
 	</tag>
 
-
-
-
-	<tag>
+	<tag> <!--  NAV COMMAND LINK -->
 		<tag-name>navCommandLink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.navLink.NavCommandLink</component-type>
@@ -2715,7 +2710,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  NAV LINK -->
 		<tag-name>navLink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.navLink.NavLink</component-type>
@@ -2993,7 +2988,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  DROP BUTTON -->
 		<tag-name>dropButton</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.dropButton.DropButton</component-type>
@@ -3074,7 +3069,7 @@
 
 	</tag>
 
-	<tag>
+	<tag> <!--  DROP MENU -->
 		<tag-name>dropMenu</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.dropMenu.DropMenu</component-type>
@@ -3166,7 +3161,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  THUMBNAIL -->
 		<tag-name>thumbnail</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Thumbnail</component-type>
@@ -3222,7 +3217,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  CONTAINER -->
 		<tag-name>container</tag-name>
 		<component>
 			<component-type>net.bootsfaces.layout.Container</component-type>
@@ -3296,7 +3292,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  ROW -->
 		<tag-name>row</tag-name>
 		<component>
 			<component-type>net.bootsfaces.layout.Row</component-type>
@@ -3364,7 +3361,7 @@
 		<!-- put more tooltip attributes here -->
 	</tag>
 
-	<tag>
+	<tag> <!--  COLUMN -->
 		<tag-name>column</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.column.Column</component-type>
@@ -3648,7 +3645,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  JUMBOTRON -->
 		<tag-name>jumbotron</tag-name>
 		<component>
 			<component-type>net.bootsfaces.layout.Jumbotron</component-type>
@@ -3698,7 +3695,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  WELL -->
 		<tag-name>well</tag-name>
 		<component>
 			<component-type>net.bootsfaces.layout.Well</component-type>
@@ -3766,7 +3764,8 @@
 		<!-- put more tooltip attributes here -->
 
 	</tag>
-	<tag>
+	
+	<tag> <!--  DATE PICKER -->
 		<tag-name>datepicker</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.DatePicker</component-type>
@@ -3919,7 +3918,8 @@
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	<tag>
+	 
+	<tag> <!--  INPUT TEXT -->
 		<tag-name>inputText</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InputText</component-type>
@@ -4241,8 +4241,7 @@
 	<!-- inputSecret added by Stephan Rauh, http://www.beyondjava.net, on Dec 
 		5, 2014. -->
 	<!-- inputSecret is mostly a copy of inputText. -->
-
-	<tag>
+	<tag> <!--  INPUT SECRET -->
 		<tag-name>inputSecret</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InputSecret</component-type>
@@ -4563,7 +4562,7 @@
 
 	<!-- Textarea added by Stephan Rauh, http://www.beyondjava.net, on Nov 07, 
 		2015. -->
-	<tag>
+	<tag> <!--  INPUT TEXT AREA -->
 		<tag-name>inputTextarea</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.inputTextarea.InputTextarea</component-type>
@@ -4909,7 +4908,7 @@
 
 	<!-- Checkbox added by Stephan Rauh, http://www.beyondjava.net, on Nov 08, 
 		2014. -->
-	<tag>
+	<tag> <!--  SELECT BOOLEAN CHECKBOX -->
 		<tag-name>selectBooleanCheckbox</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox</component-type>
@@ -5169,7 +5168,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  SWITCH -->
 		<tag-name>switch</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.switch.Switch</component-type>
@@ -5513,10 +5512,9 @@
 		</attribute>
 	</tag>
 
-
 	<!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on 
 		Nov 09, 2014. -->
-	<tag>
+	<tag> <!-- TAB VIEW -->
 		<tag-name>tabView</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.tabView.TabView</component-type>
@@ -5700,7 +5698,7 @@
 
 	<!-- TabView and Tab added by Stephan Rauh, http://www.beyondjava.net, on 
 		Nov 09, 2014. -->
-	<tag>
+	<tag> <!--  TAB -->
 		<tag-name>tab</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.tab.Tab</component-type>
@@ -5864,7 +5862,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  PANEL -->
 		<tag-name>panel</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.panel.Panel</component-type>
@@ -6090,7 +6088,7 @@
 
 	<!-- panelGrid added by Stephan Rauh, http://www.beyondjava.net, on Nov 
 		15, 2014. -->
-	<tag>
+	<tag> <!--  PANEL GRID -->
 		<tag-name>panelGrid</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.panelGrid.PanelGrid</component-type>
@@ -6189,7 +6187,7 @@
 	</tag>
 
 	<!-- SelectMultiMenu added by Stephan Rauh on June 12, 2015. -->
-	<tag>
+	<tag> <!--  SELECT MULTI MENU -->
 		<tag-name>selectMultiMenu</tag-name>
 		<component>
 			<description>Similar to a traditional combobox, but with the option to select multiple values.</description>
@@ -6474,10 +6472,9 @@
 		</attribute>
 	</tag>
 
-
 	<!-- SelectOneMenu (aka combobox or drop-down menu) added by Stephan Rauh 
 		on Dec 28, 2014. -->
-	<tag>
+	<tag> <!--  SELECT ONE MENU -->
 		<tag-name>selectOneMenu</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.selectOneMenu.SelectOneMenu</component-type>
@@ -6827,7 +6824,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  SLIDER -->
 		<tag-name>slider</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.slider.Slider</component-type>
@@ -6961,19 +6958,21 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  INTERNAL FA LINK -->
 		<tag-name>internalFALink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InternalFALink</component-type>
 		</component>
 	</tag>
-	<tag>
+	
+	<tag> <!--  INTERNAL IE8 COMPATIBILITY LINK -->
 		<tag-name>internalIE8CompatibilityLink</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.InternalIE8CompatibilityLink</component-type>
 		</component>
 	</tag>
-	<tag>
+	
+	<tag> <!--  POLL -->
 		<tag-name>poll</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.Poll</component-type>
@@ -7028,7 +7027,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  MESSAGE -->
 		<tag-name>message</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.message.Message</component-type>
@@ -7144,7 +7143,7 @@
 		</attribute>
 	</tag>
 
-	<tag>
+	<tag> <!--  MESSAGES -->
 		<description><![CDATA[Renders all or some FacesMessages depending on the "for" and
 "globalOnly" attributes.
 
@@ -7295,7 +7294,8 @@ component. The id is not necessarily unique across all components in the current
 		</attribute>
 		<!-- put more tooltip attributes here -->
 	</tag>
-	<tag>
+	
+	<tag> <!--  IMAGE -->
 		<tag-name>image</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.image.Image</component-type>
@@ -7470,8 +7470,9 @@ component. The id is not necessarily unique across all components in the current
 			<type>java.lang.String</type>
 		</attribute>
 	</tag>
-	<!-- Scroll added by Dario D'Urzo, on Feb 19, 2016 -->
-	<tag>
+	
+	<!-- ScrollUp added by Dario D'Urzo, on Feb 19, 2016 -->
+	<tag> <!--  SCROLL UP -->
 		<tag-name>scrollup</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.ScrollUp</component-type>
@@ -7561,5 +7562,456 @@ component. The id is not necessarily unique across all components in the current
 	  	<required>false</required>
 	  	<type>java.lang.String</type>
 	  </attribute>
+	</tag>
+	
+	<!-- Tree added by Dario D'Urzo, on Feb 25, 2016 
+		 it uses the https://github.com/jonmiles/bootstrap-treeview -->
+  	<tag> <!-- TREE -->
+		<tag-name>tree</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.tree.Tree</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+            <description><![CDATA[Tree model value. Requires a java.util.List<net.bootsfaces.component.tree.model.Node> to work.]]></description>
+            <name>value</name>
+            <required>true</required>
+            <type>java.util.List</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Selection listener called on selection changed.]]></description>
+            <name>nodeSelectionListener</name>
+            <type>net.bootsfaces.component.tree.event.TreeNodeEventListener</type>
+        </attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
+			<name>showTags</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
+			<name>showIcon</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
+			<name>showCheckbox</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify if enable href link.]]></description>
+			<name>enableLinks</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Glyphicons of collapse.]]></description>
+			<name>collapseIcon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Glyphicons of expand.]]></description>
+			<name>expandIcon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Text color.]]></description>
+			<name>color</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Component(s) to be updated with ajax.]]></description>
+			<name>update</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+
+	<!-- Default Command added by Dario D'Urzo, on Feb 26, 2016  -->
+  	<tag> <!-- DEFAULT COMMAND -->
+		<tag-name>defaultCommand</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.DefaultCommand</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Id of the default command for container div.]]></description>
+			<name>target</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<!-- Color Picker added by Dario D'Urzo, on Feb 26, 2016  
+	     based on jquery-minicolors: https://github.com/claviska/jquery-minicolors -->
+	<tag> <!--  COLOR PICKER -->
+		<tag-name>colorPicker</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.ColorPicker</component-type>
+			<renderer-type>net.bootsfaces.component.ColorPickerRenderer</renderer-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[An el expression referring to a server side UIComponent instance in a backing bean.]]></description>
+			<name>binding</name>
+			<required>false</required>
+			<type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The type of control to display. Valid values: hue, brightness, saturation, and wheel.]]></description>
+			<name>control</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Type of returned data. Valid values: hex and rgb.]]></description>
+			<name>format</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[True to enable opacity swatches.]]></description>
+			<name>opacity</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right.]]></description>
+			<name>position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+			<name>tooltip-position</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The text of the tooltip.]]></description>
+			<name>tooltip</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-show</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>tooltip-delay-hide</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<!-- put more tooltip attributes here -->
+		<attribute>
+			<description><![CDATA[Type of the input. The default is text.]]></description>
+			<name>type</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+			<name>span</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
+			<name>fieldSize</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+			<name>inline</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The maximum length of the input.]]></description>
+			<name>maxlength</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The label of the field.]]></description>
+			<name>label</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+			<name>renderLabel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
+			<name>placeholder</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Value.]]></description>
+			<name>value</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A method binding expression referring to a method for handling a valuchangeevent.]]></description>
+			<name>valueChangeListener</name>
+			<required>false</required>
+			<type>javax.faces.event.ValueChangeListener</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[An el expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. 
+    In case it's a static text, it must refer to a converter id.]]></description>
+			<name>converter</name>
+			<required>false</required>
+			<type>java.faces.convert.Converter</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Message to display when conversion fails.]]></description>
+			<name>converterMessage</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A method expression referring to a method validationg the input.]]></description>
+			<name>validator</name>
+			<required>false</required>
+			<type>javax.faces.validator.Validator</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Message to display when validation fails.]]></description>
+			<name>validatorMessage</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
+			<name>required</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+			<name>requiredMessage</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating that, if this component is activated by the user,
+                                              notifications should be delivered to interested listeners and actions
+                                              immediately (that is, during Apply Request Values phase) rather than
+                                              waiting until Invoke Application phase. Default is false.]]></description>
+			<name>immediate</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Controls browser autocomplete behavior.]]></description>
+			<name>autocomplete</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Access key to transfer focus to the input element.]]></description>
+			<name>accesskey</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Alternate textual description of the input element.]]></description>
+			<name>alt</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content).]]></description>
+			<name>dir</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Disables the input element, default is false.]]></description>
+			<name>disabled</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A localized user presentable name.]]></description>
+			<name>lang</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+			<name>readonly</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
+			<name>size</name>
+			<required>false</required>
+			<type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Inline style of the input element.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Style class of the input element.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Advisory tooltip information.]]></description>
+			<name>tabindex</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Advisory tooltip information.]]></description>
+			<name>title</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[OnClick DHTML event .]]></description>
+			<name>onclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+			<name>ondblclick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
+			<name>onblur</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+			<name>onchange</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when input element receives focus.]]></description>
+			<name>onfocus</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a key is pressed down over input element.]]></description>
+			<name>onkeydown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a key is pressed and released over input element.]]></description>
+			<name>onkeypress</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a key is released over input element.]]></description>
+			<name>onkeyup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+			<name>onmousedown</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+			<name>onmousemove</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+			<name>onmouseout</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+			<name>onmouseover</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+			<name>onmouseup</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
+			<name>onselect</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 </facelet-taglib>

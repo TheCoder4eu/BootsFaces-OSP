@@ -68,6 +68,7 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		BsF.onSuccessCallback[cid] = null;
 	}
 	opts.onevent = BsF.ajax.onevent;
+	
 	jsf.ajax.request(source, event, opts);
 	if ($.blockUI && $.blockUI != null) {
 		var message = $.blockUI.defaults.message;

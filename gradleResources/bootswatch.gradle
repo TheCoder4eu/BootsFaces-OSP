@@ -30,7 +30,13 @@ ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subvers
 ext.downloadURL = 'https://github.com/thomaspark/bootswatch/archive/v'+BootswatchFullVersion+'.zip'
 ext.zipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
 ext.zipFile = zipFolder+'.zip'
-ext.theme = props['bootswatch.theme']
+if(System.getProperty("BSF-THEME", "") != "") {
+   ext.theme = System.getProperty("BSF-THEME", "")
+} else {
+   ext.theme = props['bootswatch.theme']
+}
+
+def bootswatchZip = new File(buildDir, zipFile)
 
 /**
  * The following two tasks download a ZIP file and extract its
@@ -41,9 +47,11 @@ task downloadBootswatchZipFile(type: Download) {
     dest new File(buildDir, zipFile)
     //dest new File(buildDir, 'bootswatch'+BootswatchFullVersion+'.zip')
 }
+downloadBootswatchZipFile.onlyIf { !bootswatchZip.exists() }
 
 task downloadAndUnzipBootswatch(dependsOn: downloadBootswatchZipFile, type: Copy) {
-    from zipTree(downloadBootswatchZipFile.dest)
+    // from zipTree(downloadBootswatchZipFile.dest)
+    from zipTree(bootswatchZip)
     into 'Bootswatch'
     include zipFolder+"/"+theme+"/*.less"
 }
