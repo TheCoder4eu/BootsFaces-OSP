@@ -11,9 +11,12 @@ public class TreeModelUtils {
 	 * @param nodeList
 	 * @return
 	 */
-	public static String renderModelAsJson (List<Node> nodeList) {
-		if(nodeList != null && nodeList.size() > 0)
-			return renderSubnodes(nodeList);
+	public static String renderModelAsJson (Node rootNode, boolean renderRoot) {
+		if(renderRoot) 
+			return renderSubnodes(BsfUtils.AsList(rootNode));
+		else {
+			if(rootNode.hasChild()) return renderSubnodes(rootNode.getChilds());
+		}
 		
 		return "";
 	}
@@ -54,14 +57,14 @@ public class TreeModelUtils {
 		if(node.getTags() != null && node.getTags().size() > 0) {
 			sb.append("\"tags\": [");
 			for(String tag: node.getTags()) {
-				sb.append("'" + tag + "',");
+				sb.append("\"" + tag + "\",");
 			}
-			sb.append("''],");
+			sb.append("\"\"],");
 		}
 		// NODES:
-		if(node.getSubNodes() != null && node.getSubNodes().size() > 0) {
+		if(node.getChilds() != null && node.getChilds().size() > 0) {
 			sb.append("\"nodes\": ");
-			sb.append(renderSubnodes(node.getSubNodes()));
+			sb.append(renderSubnodes(node.getChilds()));
 			sb.append(",");
 		}
 		
@@ -92,6 +95,4 @@ public class TreeModelUtils {
 		
 		return sb.toString();
 	}
-	
-
 }

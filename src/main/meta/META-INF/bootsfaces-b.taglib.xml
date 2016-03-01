@@ -7687,12 +7687,31 @@ component. The id is not necessarily unique across all components in the current
             <description><![CDATA[Tree model value. Requires a java.util.List<net.bootsfaces.component.tree.model.Node> to work.]]></description>
             <name>value</name>
             <required>true</required>
-            <type>java.util.List</type>
+            <type>net.bootsfaces.component.tree.model.Node</type>
         </attribute>
         <attribute>
             <description><![CDATA[Selection listener called on selection changed.]]></description>
             <name>nodeSelectionListener</name>
+            <required>false</required>
             <type>net.bootsfaces.component.tree.event.TreeNodeEventListener</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Selection listener called on selection changed.]]></description>
+            <name>node-selection-listener</name>
+            <required>false</required>
+            <type>net.bootsfaces.component.tree.event.TreeNodeEventListener</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Determine if root node is rendered or not.]]></description>
+            <name>render-root</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description><![CDATA[Determine if root node is rendered or not.]]></description>
+            <name>renderRoot</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
         </attribute>
 		<attribute>
 			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
@@ -7771,6 +7790,33 @@ component. The id is not necessarily unique across all components in the current
 		</attribute>
 		<attribute>
 			<description><![CDATA[Id of the default command for container div.]]></description>
+			<name>target</name>
+			<required>true</required>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<!-- FOCUS added by Dario D'Urzo, on Feb 29, 2016  -->
+  	<!-- *************************************** -->
+	<tag> <!-- FOCUS -->
+		<tag-name>focus</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.Focus</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+			<name>id</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+			<name>rendered</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Id of the element to focus.]]></description>
 			<name>target</name>
 			<required>true</required>
 			<type>java.lang.String</type>
@@ -7884,12 +7930,6 @@ component. The id is not necessarily unique across all components in the current
 			<type>Boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[The maximum length of the input.]]></description>
-			<name>maxlength</name>
-			<required>false</required>
-			<type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 			<description><![CDATA[The label of the field.]]></description>
 			<name>label</name>
 			<required>false</required>
@@ -7949,6 +7989,12 @@ component. The id is not necessarily unique across all components in the current
 			<name>required</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+			<name>required-message</name>
+			<required>false</required>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
@@ -8016,6 +8062,12 @@ component. The id is not necessarily unique across all components in the current
 		<attribute>
 			<description><![CDATA[Inline style of the input element.]]></description>
 			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Style class of the input element.]]></description>
+			<name>style-class</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -8120,6 +8172,130 @@ component. The id is not necessarily unique across all components in the current
 			<name>onselect</name>
 			<required>false</required>
 			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<!-- GROWL added by Dario D'Urzo, on Feb 29, 2016  -->
+  	<!-- *************************************** -->
+	<tag> <!--  GROWL -->
+		<description><![CDATA[Renders all or some FacesMessages depending on the "for" and
+			"globalOnly" attributes. It can be used combined with messages tag
+			
+			<ul>
+			<li>If globalOnly = true, only global messages, that have no
+			associated clientId, will be displayed.</li>
+			<li>else if there is a "for" attribute, only messages that are
+			assigned to the component referenced by the "for" attribute
+			are displayed.</li>
+			<li>else all messages are displayed.</li>
+			</ul>]]>
+		</description>
+		<tag-name>growl</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.Growl</component-type>
+			<renderer-type>net.bootsfaces.component.GrowlRenderer</renderer-type>
+		</component>
+
+		<attribute>
+			<description><![CDATA[HTML: CSS styling instructions.]]></description>
+			<name>style</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+			<name>style-class</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+			<name>styleClass</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Global icon of the message.]]></description>
+			<name>icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
+			<name>placementFrom</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
+			<name>placementAlign</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+			<name>delay</name>
+			<required>false</required>
+			<type>Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[This is the amount of milliseconds removed from the notify at every timer milliseconds.]]></description>
+			<name>timer</name>
+			<required>false</required>
+			<type>Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
+			<name>newestOnTop</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the message can be dismissed.]]></description>
+			<name>allowDismiss</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+			<name>escape</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a
+specific component should be displayed, ie whether messages should be ignored
+if they are attached to a particular component. Defaults to false.]]></description>
+			<name>globalOnly</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the detailed information from the message should be shown. 
+Default to false.]]></description>
+			<name>showDetail</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the summary information from the message should be shown.
+Defaults to true.]]></description>
+			<name>showSummary</name>
+		</attribute>
+		<attribute>
+			<description><![CDATA[The ID of the component whose attached FacesMessage object (if present) 
+should be diplayed by this component. It takes precedence over globalOnly.]]></description>
+			<name>for</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer
+component. The id is not necessarily unique across all components in the current view.]]></description>
+			<name>id</name>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+			<name>rendered</name>
+			<type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
 </facelet-taglib>

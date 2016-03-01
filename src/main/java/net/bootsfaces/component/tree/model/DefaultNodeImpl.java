@@ -3,10 +3,21 @@ package net.bootsfaces.component.tree.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is a basic default implementation of Node interface.
+ * So, here we represent a single tree node with all it's attributes and a series of
+ * utility behaviour:
+ * - implementation of equals for searching
+ * - Fluent interface (with* methods) to provide fast node definition
+ * - A basic implementation of searchById on nodes and subnodes 
+ * 
+ * @author durzod
+ *
+ */
 public class DefaultNodeImpl 
 implements Node {
 
-    private final List<Node> subNodes = new ArrayList<Node>();
+    private final List<Node> childs = new ArrayList<Node>();
     private String data;
     private int nodeId;
     private String text;
@@ -23,8 +34,7 @@ implements Node {
     private boolean selected = false;
     private boolean useFaIcons = false;
 
-    public DefaultNodeImpl() {
-    }
+    public DefaultNodeImpl() { }
     
     public DefaultNodeImpl(String text) {
 		super();
@@ -52,7 +62,6 @@ implements Node {
 	}
 	
 	
-
 	public String getData() {
 		return data;
 	}
@@ -159,8 +168,12 @@ implements Node {
 		this.selected = selected;
 	}
 
-	public List<Node> getSubNodes() {
-		return subNodes;
+	public List<Node> getChilds() {
+		return childs;
+	}
+	
+	public boolean hasChild() {
+		return (childs != null && childs.size() > 0);
 	}
 
 	public String getHRef() {
@@ -192,5 +205,108 @@ implements Node {
 	@Override
 	public void setUseFaIcons(boolean useFaIcons) {
 		this.useFaIcons = useFaIcons;
+	}
+	
+	/** 
+	 * Fluent API implementation
+	 * These methods provide a different way to set property
+	 * in a fluent-style manner. 
+	 */
+	public DefaultNodeImpl withData(String data) {
+		this.data = data;
+		return this;
+	}
+
+	public DefaultNodeImpl withNodeId(int nodeId) {
+		this.nodeId = nodeId;
+		return this;
+	}
+
+	public DefaultNodeImpl withText(String text) {
+		this.text = text;
+		return this;
+	}
+
+	public DefaultNodeImpl withIcon(String icon) {
+		this.icon = icon;
+		return this;
+	}
+
+	public DefaultNodeImpl withSelectedIcon(String selectedIcon) {
+		this.selectedIcon = selectedIcon;
+		return this;
+	}
+
+	public DefaultNodeImpl withColor(String color) {
+		this.color = color;
+		return this;
+	}
+
+	public DefaultNodeImpl withBackColor(String backColor) {
+		this.backColor = backColor;
+		return this;
+	}
+
+	public DefaultNodeImpl withSelectable(boolean selectable) {
+		this.selectable = selectable;
+		return this;
+	}
+
+	public DefaultNodeImpl witchChecked(boolean checked) {
+		this.checked = checked;
+		return this;
+	}
+
+	public DefaultNodeImpl withDisabled(boolean disabled) {
+		this.disabled = disabled;
+		return this;
+	}
+
+	public DefaultNodeImpl withExpanded(boolean expanded) {
+		this.expanded = expanded;
+		return this;
+	}
+
+	public DefaultNodeImpl withSelected(boolean selected) {
+		this.selected = selected;
+		return this;
+	}
+
+	public DefaultNodeImpl withHRef(String hRef) {
+		this.HRef = hRef;
+		return this;
+	}
+
+	public DefaultNodeImpl withTags(List<String> tags) {
+		this.tags = tags;
+		return this;
+	}
+	
+	public DefaultNodeImpl withUseFaIcons(boolean useFaIcons) {
+		this.useFaIcons = useFaIcons;
+		return this;
+	}
+	
+	public DefaultNodeImpl withSubnode(Node subNode) {
+		this.getChilds().add(subNode);
+		return this;
+	}
+	
+	/**
+	 * Basic implementation of recursive node search by id
+	 * It works only on a DefaultNodeImpl
+	 * @param nodeId
+	 * @return
+	 */
+	public Node searchNodeById(int nodeId) {
+		if(this.nodeId == nodeId) return this;
+		for(Node n: this.getChilds()) {
+			if(n instanceof DefaultNodeImpl) {
+				Node foundNode = ((DefaultNodeImpl)n).searchNodeById(nodeId);
+				if(foundNode != null) return foundNode;
+			}
+		}
+		return null;
+		
 	}
 }

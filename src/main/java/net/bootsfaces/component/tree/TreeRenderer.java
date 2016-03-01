@@ -1,7 +1,6 @@
 package net.bootsfaces.component.tree;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -29,7 +28,7 @@ public class TreeRenderer extends CoreRenderer {
 
 		final TreeNodeEventListener nodeSelectionListener = tree.getNodeSelectionListener();
 		String params = context.getExternalContext().getRequestParameterMap().get("params");
-		if (params != null) {
+		if (params != null && nodeSelectionListener != null) {
 			if (params != null) {
 				params = params.replace("BsFEvent=", "");
 				String[] pair = params.split(":", 2);
@@ -42,7 +41,7 @@ public class TreeRenderer extends CoreRenderer {
 					Node n = new DefaultNodeImpl(value);
 
 					if ("nodeSelected".equals(key)) {
-						Node n2 = checkNodeIsSelected((List<Node>) tree.getValue(), tree);
+						Node n2 = checkNodeIsSelected(tree.getValue(), tree);
 						nodeSelectionListener.processValueChange(new TreeNodeSelectionEvent(n2, n));
 					} else if ("nodeChecked".equals(key)) {
 						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, true));
@@ -56,15 +55,17 @@ public class TreeRenderer extends CoreRenderer {
 		}
 	}
 
-	private Node checkNodeIsSelected(List<Node> nodeList, Tree tree) {
-		for (Node n : nodeList) {
-			if (tree.getNodeSelectionListener().isValueSelected(n) == true)
-				return n;
-			else if (n.getSubNodes() != null && n.getSubNodes().size() > 0) {
-				Node rt = checkNodeIsSelected(n.getSubNodes(), tree);
-				if (rt != null)
-					return rt;
-			}
+	/**
+	 * Check if node tree is selected using the listener callback
+	 * @param node
+	 * @param tree
+	 * @return
+	 */
+	private Node checkNodeIsSelected(Node node, Tree tree) {
+		if(tree.getNodeSelectionListener().isValueSelected(node) == true) return node;
+		for (Node n : node.getChilds()) {
+			Node rt = checkNodeIsSelected(n, tree);
+			if(rt != null) return rt;
 		}
 
 		return null;
@@ -102,36 +103,36 @@ public class TreeRenderer extends CoreRenderer {
 		rw.writeText("$(document).ready(function() {", null);
 		// build tree management javascript
 		rw.writeText("function getTreeData() { " +
-					 "   return '" + TreeModelUtils.renderModelAsJson((List<Node>) tree.getValue())  + "'; " +
+					 "   return '" + TreeModelUtils.renderModelAsJson(tree.getValue(), tree.isRenderRoot())  + "'; " +
 					 "} " +
 					 
 					 // build tree structure
 					 "$('#tree_" + clientId + "').treeview({ " +
 					 
-					 	(tree.getAttributes().get("showTag") != null ? "showTag: " + tree.getAttributes().get("showTag") + "," : "") +
-					 	(tree.getAttributes().get("showIcon") != null ? "showIcon: " + tree.getAttributes().get("showIcon") + "," : "") +
-					 	(tree.getAttributes().get("showCheckbox") != null ? "showCheckbox: " + tree.getAttributes().get("showCheckbox") + "," : "") +
-					 	(tree.getAttributes().get("enableLinks") != null ? "enableLinks: " + tree.getAttributes().get("enableLinks") + "," : "") +
-					 	(tree.getAttributes().get("collapseIcon") != null ? "collapseIcon: '" + tree.getAttributes().get("collapseIcon") + "'," : "") +
-					 	(tree.getAttributes().get("expandIcon") != null ? "expandIcon: '" + tree.getAttributes().get("expandIcon") + "'," : "") +
-					 	(tree.getAttributes().get("color") != null ? "color: '" + tree.getAttributes().get("color") + "'," : "") +
+					 	(tree.isShowTags()  ? "showTags: true," : "") +
+					 	(tree.isShowIcon()  ? "showIcon: true," : "") +
+					 	(tree.isShowCheckbox() ? "showCheckbox: true," : "") +
+					 	(tree.isEnableLinks() ? "enableLinks: true," : "") +
+					 	(BsfUtils.StringIsValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
+					 	(BsfUtils.StringIsValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
+					 	(BsfUtils.StringIsValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
 					 
 						"     data: getTreeData()   " + 
 					 "}); " +
 					
 					 // enable nodeSelected event callback
 					 "$('#tree_" + clientId + "').on('nodeSelected', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '@form', null, 'nodeSelected:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeSelected:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeChecked event callback
 					 "$('#tree_" + clientId + "').on('nodeChecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '@form', null, 'nodeChecked:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeChecked:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeUnchecked event callback
 					 "$('#tree_" + clientId + "').on('nodeUnchecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '@form', null, 'nodeUnchecked:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeUnchecked:' + data.text);" + // @all
 					 "});", null);
 		rw.writeText("});", null);
 		rw.endElement("script");

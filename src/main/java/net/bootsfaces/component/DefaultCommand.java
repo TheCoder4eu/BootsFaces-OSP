@@ -1,15 +1,12 @@
 package net.bootsfaces.component;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -54,7 +51,7 @@ public class DefaultCommand extends UIComponentBase {
 		}
 		Map<String, Object> attrs = getAttributes();
 
-		final UIForm form = getForm(this);
+		final UIForm form = BsfUtils.getForm(this);
 		if(form == null) {
 			throw new FacesException("The default command component must be inside a form", null);
 		} else {
@@ -62,7 +59,7 @@ public class DefaultCommand extends UIComponentBase {
 			if(BsfUtils.StringIsValued(target)) {
 				ResponseWriter rw = context.getResponseWriter();
 				String formId = form.getClientId();
-				String actionCommandId = getComponentClientId(target);
+				String actionCommandId = BsfUtils.getComponentClientId(target);
 			
 				rw.startElement("script", this);
 				
@@ -84,46 +81,5 @@ public class DefaultCommand extends UIComponentBase {
 		}
 	}
 
-	/**
-	 * Get the related form
-	 * @param component
-	 * @return
-	 */
-	private UIForm getForm(UIComponent component) {
-		while (component != null) {
-			if (component instanceof UIForm) {
-				break;
-			}
-			component = component.getParent();
-		}
-		return (UIForm) component;
-	}
 
-	/**
-	 * Returns the clientId for a component with id="foo"
-	 */
-	public String getComponentClientId(final String componentId) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		UIViewRoot root = context.getViewRoot();
-
-		UIComponent c = findComponent(root, componentId);
-		return c.getClientId(context);
-	}
-
-	/**
-	 * Finds component with the given id
-	 */
-	private UIComponent findComponent(UIComponent c, String id) {
-		if (id.equals(c.getId())) {
-			return c;
-		}
-		Iterator<UIComponent> kids = c.getFacetsAndChildren();
-		while (kids.hasNext()) {
-			UIComponent found = findComponent(kids.next(), id);
-			if (found != null) {
-				return found;
-			}
-		}
-		return null;
-	}
 }

@@ -130,3 +130,8 @@ if ($.datepicker) {
 		return ret;
 	};
 }
+
+/* JQuery escaping utility for id's */
+function jq( myid ) {
+    return "#" + myid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
+}

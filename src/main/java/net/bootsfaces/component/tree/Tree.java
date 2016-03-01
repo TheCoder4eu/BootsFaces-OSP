@@ -3,24 +3,18 @@ package net.bootsfaces.component.tree;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.FacesException;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.AttributeMapWrapper;
-import net.bootsfaces.component.tree.event.TreeNodeSelectionEvent;
-import net.bootsfaces.component.tree.event.TreeNodeCheckedEvent;
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
-import net.bootsfaces.component.tree.model.DefaultNodeImpl;
 import net.bootsfaces.component.tree.model.Node;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
@@ -39,7 +33,18 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click"));
 
 	protected enum PropertyKeys {
-		value, nodeSelectionListener, showTags, showIcon, showCheckbox, enableLinks, collapseIcon, expandIcon, color, update;
+		value, 
+		nodeSelectionListener, 
+		showTags, 
+		showIcon, 
+		showCheckbox, 
+		enableLinks, 
+		collapseIcon, 
+		expandIcon, 
+		color, 
+		update, 
+		renderRoot
+		;
 
 		String toString;
 
@@ -88,13 +93,21 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		return "click";
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Node> getValue() {
-		return (List<Node>) this.getStateHelper().eval(PropertyKeys.value);
+	public Node getValue() {
+		return (Node) this.getStateHelper().eval(PropertyKeys.value);
 	}
 
-	public void setValue(final List<Node> _value) {
+	public void setValue(final Node _value) {
 		this.updateStateHelper(PropertyKeys.value.toString(), _value);
+	}
+	
+	public boolean isRenderRoot() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderRoot, true);
+		return (boolean) value;
+	}
+
+	public void setRenderRoot(boolean _renderRoot) {
+		getStateHelper().put(PropertyKeys.renderRoot, _renderRoot);
 	}
 
 	public boolean isShowIcon() {

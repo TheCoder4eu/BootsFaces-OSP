@@ -23,7 +23,6 @@ import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
