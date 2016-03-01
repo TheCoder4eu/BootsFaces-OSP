@@ -87,5 +87,10 @@ public interface Node {
 	/**
      * @return a list of child nodes. An empty list if no sub nodes exits.
      */
-    List<Node> getSubNodes();
+    List<Node> getChilds();
+    
+    /**
+     * @return true if the node has child
+     */
+    boolean hasChild();
 }

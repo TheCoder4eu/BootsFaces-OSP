@@ -95,11 +95,16 @@ public class AttributeMapWrapper implements Map<String, Object> {
 		return null;
 	}
 	
+	/**
+	 * This converter works only for basic type mapper
+	 * @param key
+	 * @param value
+	 * @return
+	 */
 	public Object convertValueToType(String key, Object value) {
 //		Object type = types.get(key);
 //		if (type != null && type != Object.class) 
 //			System.out.println(type);
-		
 		return value;
 	}
 
@@ -111,7 +116,6 @@ public class AttributeMapWrapper implements Map<String, Object> {
 	@Override
 	public void putAll(Map<? extends String, ? extends Object> m) {
 		realMap.putAll(m);
-
 	}
 
 	@Override
