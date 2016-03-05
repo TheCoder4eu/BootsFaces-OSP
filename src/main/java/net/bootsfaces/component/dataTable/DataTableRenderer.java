@@ -88,6 +88,9 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.startElement( "tr", dataTable );
 			List<UIComponent> columns = dataTable.getChildren();
 			for ( UIComponent column : columns ) {
+			    if (!column.isRendered()) {
+			        continue;
+			    }
 				rw.startElement( "th", dataTable );
 				if ( column.getFacet( "header" ) != null ) {
 					UIComponent facet = column.getFacet( "header" );
@@ -110,6 +113,9 @@ public class DataTableRenderer extends CoreRenderer {
 				rw.startElement("tr", dataTable);
 				List<UIComponent> columns = dataTable.getChildren();
 				for (UIComponent column : columns) {
+				    if (!column.isRendered()) {
+				        continue;
+				    }
 					rw.startElement("td", dataTable);
 					column.encodeChildren(context);
 					rw.endElement("td");
@@ -127,6 +133,9 @@ public class DataTableRenderer extends CoreRenderer {
 		int index = 0;
 		List<UIComponent> columns = dataTable.getChildren();
 		for (UIComponent column : columns) {
+		    if (!column.isRendered()) {
+		        continue;
+		    }
 			rw.startElement("th", dataTable);
 			if (column.getFacet("header") != null) {
 				UIComponent facet = column.getFacet("header");
