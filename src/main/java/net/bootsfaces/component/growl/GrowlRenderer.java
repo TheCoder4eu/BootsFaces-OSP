@@ -76,11 +76,17 @@ public class GrowlRenderer extends CoreRenderer {
             }
             // Decode messageType to map bootstrap alert styles
             String messageType = "success";
-            switch(severity) {
-            case "info": messageType = "info"; break;
-            case "warn": messageType = "warning"; break;
-            case "error": messageType = "danger"; break;
-            case "fatal": messageType = "danger"; break;
+            if("info".equals(severity)) {
+            	messageType = "info";
+            }
+            else if("warn".equals(severity)) {
+            	messageType = "warning";
+            }
+            else if("error".equals(severity)) {
+            	messageType = "danger";
+            }
+            else if("fatal".equals(severity)) {
+            	messageType = "danger";
             }
             
             String icon = uiGrowl.getIcon() != null ? "glyphicon glyphicon-" + uiGrowl.getIcon() : "glyphicon glyphicon-warning-sign";
