@@ -201,6 +201,7 @@ public class AJAXRenderer extends CoreRenderer {
 					generateOnClickHandler(context, rw, (IAJAXComponent) component);
 				}
 			}
+			// TODO: what abount composite components?
 
 		}
 	}
