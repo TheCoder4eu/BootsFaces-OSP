@@ -1,3 +1,21 @@
+/**
+ *  Copyright 2014-2016 Dario D'Urzo
+ *  
+ *  This file is part of BootsFaces.
+ *  
+ *  BootsFaces is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  BootsFaces is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.bootsfaces.component;
 
 import java.io.IOException;
@@ -16,21 +34,12 @@ import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 
-/**
- * ScrollUp javascript element to scroll page
- * @author Dario D'Urzo
- */
+/** This class holds the attributes of &lt;b:scrollup /&gt;. */
 @ResourceDependencies({@ResourceDependency(library = "bsf", name = "css/scrollup.css", target = "head")})
 @FacesComponent(C.SCROLL_COMPONENT_TYPE)
 public class ScrollUp extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
+	// Static internal references
     public static final String COMPONENT_TYPE =C.SCROLL_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     private Map<String, Object> attributes;
 
@@ -92,18 +101,18 @@ public class ScrollUp extends UIComponentBase {
 		rw.append("		$.scrollUp({");
 		rw.append("\r\n");
 		if(scrollName != null) rw.append("			scrollName: '" + scrollName + "', \r\n");
-		if(scrollDistance != null) rw.append("			scrollDistance: " + scrollDistance + ", \r\n");
+		if(scrollDistance != null) rw.append("		scrollDistance: " + scrollDistance + ", \r\n");
 		if(scrollFrom != null) rw.append("			scrollFrom: '" + scrollFrom + "', \r\n");
 		if(scrollSpeed != null) rw.append("			scrollSpeed: " + scrollSpeed + ", \r\n");
 		if(easingType != null) rw.append("			easingType: '" + easingType + "', \r\n");
 		if(animation != null) rw.append("			animation: '" + animation + "', \r\n");
-		if(animationSpeed != null) rw.append("			animationSpeed: " + animationSpeed + ", \r\n");
+		if(animationSpeed != null) rw.append("		animationSpeed: " + animationSpeed + ", \r\n");
 		if(scrollText != null) rw.append("			scrollText: '" + scrollText + "', \r\n");
 		if(scrollTitle != null) rw.append("			scrollTitle: " + scrollTitle.toString() + ", \r\n");
 		if(scrollImg != null) rw.append("			scrollImg: " + scrollImg.toString() + ", \r\n");
-		if(scrollTrigger != null) rw.append("			scrollTrigger: " + scrollTrigger.toString() + ", \r\n");
-		if(scrollTarget != null) rw.append("			scrollTarget: " + scrollTarget.toString() + ", \r\n");
-		if(scrollOverlay != null) rw.append("			activeOverlay: " + scrollOverlay.toString() + ", \r\n");
+		if(scrollTrigger != null) rw.append("		scrollTrigger: " + scrollTrigger.toString() + ", \r\n");
+		if(scrollTarget != null) rw.append("		scrollTarget: " + scrollTarget.toString() + ", \r\n");
+		if(scrollOverlay != null) rw.append("		activeOverlay: " + scrollOverlay.toString() + ", \r\n");
 		rw.append("			zIndex: 2147483647");
 		rw.append("\r\n");
 		rw.append("		});");
@@ -117,5 +126,4 @@ public class ScrollUp extends UIComponentBase {
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-    
 }

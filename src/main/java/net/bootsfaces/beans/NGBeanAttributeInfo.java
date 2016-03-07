@@ -139,6 +139,10 @@ public class NGBeanAttributeInfo {
 	public boolean isRequired() {
 		return isRequired;
 	}
+	
+	public String toString() {
+		return "CLASS: " + clazz + " - CORE ESPRESSION: " + coreExpression;
+	}
 
 	/**
 	 * Read the JSR 303 annotations from a bean\"s attribute.

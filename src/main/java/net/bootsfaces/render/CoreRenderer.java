@@ -41,7 +41,7 @@ import javax.faces.render.Renderer;
 public class CoreRenderer extends Renderer {
 
 	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs)
-			throws IOException {
+	throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 
 		// pre-defined attributes

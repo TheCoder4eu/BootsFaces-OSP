@@ -197,9 +197,9 @@ public class DataTableRenderer extends CoreRenderer {
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Integer page = 0;
-		Integer pageLength = 10;
+		Integer pageLength = dataTable.getPageLength();
 		String searchTerm = "''";
-		if(dataTableProperties != null){
+		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
 			Object currentSearchTerm = dataTableProperties.get( DataTablePropertyType.searchTerm );
@@ -226,34 +226,45 @@ public class DataTableRenderer extends CoreRenderer {
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
 					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
 					 "wrapper.replaceWith(element);" +
-					 "var table = element.DataTable();" +
+					 "var table = element.DataTable({" + 
+					 "fixedHeader: " + dataTable.isFixedHeader() + "," +
+					 "responsive: " + dataTable.isResponsive() + ", " + 
+					 "paging: " + dataTable.isPaginated() + ", " +
+					 "pageLength: " + pageLength + ", " + 
+					 "lengthMenu: " + dataTable.getPageLengthMenu() +
+					 "});" +
+					 // "var table = element.DataTable({fixedHeader: true, responsive: true});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
 		//# Use DataTable API to set initial state of the table display
-		rw.writeText("table.page("+page+");" +
-					 "table.search("+searchTerm+");" +
-					 "table.page.len("+pageLength+").draw('page');", null);
+		if(dataTable.isPaginated()) {
+			rw.writeText("table.page("+page+");" +
+						 "table.search("+searchTerm+");" +
+						 "table.page.len("+pageLength+").draw('page');", null);
+		}
 
 		if(dataTableProperties != null) {
+			// NB. we need to define function signature with explicit parameter to have the
+			//     event defined and so, enable the mapping state saving.
 			//# Event setup: http://datatables.net/reference/event/page
-			rw.writeText("element.on('page.dt', function(){" +
+			rw.writeText("element.on('page.dt', function(event, settings, len){" +
 				"var info = table.page.info();" +
 				"try {" +
-				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, " +
 				"'" + DataTablePropertyType.currentPage + ":'+info.page);" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/length
-			rw.writeText("element.on('length.dt', function(e, settings, len) {" +
+			rw.writeText("element.on('length.dt', function(event, settings, len) {" +
 				"try {" +
-				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, " +
 				"'" + DataTablePropertyType.pageLength + ":'+len);" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/search
-			rw.writeText("element.on('search.dt', function() {" +
+			rw.writeText("element.on('search.dt', function(event, settings, len) {" +
 				"try {" +
-				"BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, " +
 				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);

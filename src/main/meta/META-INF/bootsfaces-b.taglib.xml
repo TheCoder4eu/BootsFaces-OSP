@@ -942,6 +942,40 @@
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute>
+			<description><![CDATA[If true, enable responsive plugin of datatable.]]></description>
+			<name>responsive</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[If true, enable the fixed header plugin, with only the header fixed.]]></description>
+			<name>fixedHeader</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[If true, enable the pagination. Default value is true]]></description>
+			<name>paginated</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Page lenght if pagination is active. Default value is 10]]></description>
+			<name>pageLength</name>
+			<required>false</required>
+			<type>Integer</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[
+				Page lenght menu. default is [ 10, 25, 50, 100 ]. 
+				To define different page lenght with custom rendered voice in menu, you can do this way:
+				[ [10, 25, 50, -1], ["ten", 25, 50, "All"] ]
+			]]></description>
+			<name>pageLengthMenu</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 
 	<!-- *************************************** -->
@@ -7695,7 +7729,7 @@ component. The id is not necessarily unique across all components in the current
             <required>false</required>
             <type>net.bootsfaces.component.tree.event.TreeNodeEventListener</type>
         </attribute>
-        <attribute>
+        <attribute> <!-- SNAKE-CASE VERSION -->
             <description><![CDATA[Selection listener called on selection changed.]]></description>
             <name>node-selection-listener</name>
             <required>false</required>
@@ -7703,13 +7737,13 @@ component. The id is not necessarily unique across all components in the current
         </attribute>
         <attribute>
             <description><![CDATA[Determine if root node is rendered or not.]]></description>
-            <name>render-root</name>
+            <name>renderRoot</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
-        <attribute>
+        <attribute> <!-- SNAKE-CASE VERSION -->
             <description><![CDATA[Determine if root node is rendered or not.]]></description>
-            <name>renderRoot</name>
+            <name>render-root</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
@@ -7725,9 +7759,21 @@ component. The id is not necessarily unique across all components in the current
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
+			<name>show-tags</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
 			<name>showIcon</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
+			<name>show-icon</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -7737,9 +7783,21 @@ component. The id is not necessarily unique across all components in the current
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
+			<name>show-checkbox</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Boolean value to specify if enable href link.]]></description>
 			<name>enableLinks</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Boolean value to specify if enable href link.]]></description>
+			<name>enable-links</name>
 			<required>false</required>
 			<type>java.lang.Boolean</type>
 		</attribute>
@@ -7749,9 +7807,21 @@ component. The id is not necessarily unique across all components in the current
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Glyphicons of collapse.]]></description>
+			<name>collapse-icon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 		<attribute>
 			<description><![CDATA[Glyphicons of expand.]]></description>
 			<name>expandIcon</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute> <!-- SNAKE-CASE VERSION -->
+			<description><![CDATA[Glyphicons of expand.]]></description>
+			<name>expand-icon</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>

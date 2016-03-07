@@ -29,8 +29,8 @@ if(project.hasProperty('custom-theme')) {
 apply plugin: 'java'
 
 //Configurations
-sourceCompatibility = '1.7'
-targetCompatibility = '1.7'
+sourceCompatibility = '1.6'
+targetCompatibility = '1.6'
 
 archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
 //if(theme.length() > 1) archivesBaseName = archivesBaseName+'-'+theme

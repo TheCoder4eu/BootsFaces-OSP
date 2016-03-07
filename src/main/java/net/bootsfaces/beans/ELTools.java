@@ -116,7 +116,6 @@ public class ELTools {
 		return result;
 	}
 
-
 	public static NGBeanAttributeInfo getBeanAttributeInfos(UIComponent c) {
 		String core = getCoreValueExpression(c);
 		synchronized (beanAttributeInfos) {

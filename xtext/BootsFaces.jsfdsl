@@ -1522,7 +1522,7 @@ widget tree
 {
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    value					java.util.List												"Tree model value. Requires a java.util.List<net.bootsfaces.component.tree.model.Node> to work."
+    value					List														"Tree model value. Requires a java.util.List<net.bootsfaces.component.tree.model.Node> to work."
     nodeSelectionListener 	TreeNodeEventListener	                                    "Selection listener called on selection changed."
     showTags				Boolean														"Boolean value to specify if tags was show or not."
     showIcon				Boolean														"Boolean value to specify if icons are rendered or not."

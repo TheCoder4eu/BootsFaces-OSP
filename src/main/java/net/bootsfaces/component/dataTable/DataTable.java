@@ -37,9 +37,11 @@ import java.util.Map;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/jquery.dataTables.min.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "js/dataTables.bootstrap.min.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/dataTables.bootstrap.min.css", target = "head"),
+		//@ResourceDependency(library = "bsf", name = "js/jquery.dataTables.min.js", target = "body"),
+		//@ResourceDependency(library = "bsf", name = "js/dataTables.bootstrap.min.js", target = "body"),
+		//@ResourceDependency(library = "bsf", name = "css/dataTables.bootstrap.min.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
 public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip {
@@ -166,7 +168,12 @@ onmouseup,
 process,
 update,
 dataTableProperties,
-multiColumSearch
+multiColumSearch,
+responsive,
+fixedHeader,
+paginated,
+pageLength,
+pageLengthMenu
 ;
 
         String toString;
@@ -596,5 +603,90 @@ multiColumSearch
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumSearch, _multiColumnSearch);
 	}
+	
+	/**
+	 * Activates the responsive plugin of the dataTable. <P>
+	 * @return Returns the value of the attribute.
+	 */
+	public boolean isResponsive() {
+		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.responsive, false );
+		return value;
+	}
+
+	/**
+	 * Activates the responsive plugin of the dataTable. The default value is false (no responsive). <P>
+	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 */
+	public void setResponsive(boolean _responsive) {
+		getStateHelper().put(PropertyKeys.responsive, _responsive);
+	}
+	
+	/**
+	 * Activates the fixed header plugin of the dataTable. <P>
+	 * @return Returns the value of the attribute.
+	 */
+	public boolean isFixedHeader() {
+		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.fixedHeader, false );
+		return value;
+	}
+
+	/**
+	 * Activates the fixed header plugin of the dataTable. The default value is false (no responsive). <P>
+	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 */
+	public void setFixedHeader(boolean _fixedHeader) {
+		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
+	}
+	
+	/**
+	 * Activates the pagination of the dataTable. <P>
+	 * @return Returns the value of the attribute.
+	 */
+	public boolean isPaginated() {
+		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.paginated, true );
+		return value;
+	}
+
+	/**
+	 * Activates pagination of the dataTable. The default value is true (pagination active). <P>
+	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 */
+	public void setPaginated(boolean _paginated) {
+		getStateHelper().put(PropertyKeys.paginated, _paginated);
+	}
+	
+	/**
+	 * Set the default page length for paginated dataTable. <P>
+	 * @return Returns the value of the attribute, or 10 if no attribute specified
+	 */
+	public int getPageLength() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.pageLength, 10);
+		return (int) value;
+	}
+	
+	/**
+	 * Set the default page length for paginated dataTable. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPageLength(int _pageLength) {
+	    getStateHelper().put(PropertyKeys.pageLength, _pageLength);
+    }
+	
+	/**
+	 * Set the default page length for paginated dataTable. <P>
+	 * @return Returns the value of the attribute, or 10 if no attribute specified
+	 */
+	public String getPageLengthMenu() {
+		String value = (String)getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
+		return value;
+	}
+	
+	/**
+	 * Set the default page length for paginated dataTable. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPageLengthMenu(String _pageLengthMenu) {
+	    getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
+    }
 }
 

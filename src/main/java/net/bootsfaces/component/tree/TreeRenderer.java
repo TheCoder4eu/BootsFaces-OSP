@@ -1,3 +1,21 @@
+/**
+ *  Copyright 2014-2016 Dario D'Urzo
+ *  
+ *  This file is part of BootsFaces.
+ *  
+ *  BootsFaces is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  BootsFaces is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.bootsfaces.component.tree;
 
 import java.io.IOException;
@@ -18,9 +36,13 @@ import net.bootsfaces.component.tree.model.TreeModelUtils;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.utils.BsfUtils;
 
+/** This class provide the rendering logic of the &lt;b:tree /&gt;. */
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.tree.Tree")
 public class TreeRenderer extends CoreRenderer {
 	
+	/**
+	 * Decode ajax behaviours specific to the components
+	 */
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		Tree tree = (Tree) component;
@@ -81,8 +103,6 @@ public class TreeRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = tree.getClientId();
 
-		// put custom code here
-		// Simple demo widget that simply renders every attribute value
 		rw.startElement("div", tree);
 		rw.writeAttribute("id", "tree_" + clientId, "id");
 		rw.endElement("div");

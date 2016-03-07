@@ -1,15 +1,59 @@
 package net.bootsfaces.utils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public class BsfUtils {
+	
+	/**
+	 * This is a trick method to provide navigation from an ajax request (credit by Ryan Lubke)
+	 * In fact, you can map an action to an UICommand that calls this method and return null.
+	 * Once the bean sends the redirect, the ajax client receives a message from the server telling the client to redirect to a new page.
+	 * 
+	 * Example:
+	 * <h:form id="form">
+	 * 	 <!-- with basic jsf components -->
+     *   <h:commandButton id="goToPageBtn" value="Go" action="#{exampleBean.goToNewPage}">
+     *        <f:ajax execute="@this" render="@none"/>
+     *   </h:commandButton>
+     *   
+     *   <!-- with bootsfaces components -->
+     *   <b:commandButton id="goToPageBtn" value="Go" onclick="ajax:exampleBean.goToNewPage();" />
+     * </h:form>
+     * 
+     * @ManagedBean
+	 * @RequestScoped
+	 * public class ExampleBean {
+     * 		public String goToNewPage() { BsfUtils.navigateInAjax("/pages/newPage.xhtml"); return null; }
+     * }
+	 * 
+	 * @param outcome
+	 * @throws FacesException
+	 */
+	public static String navigateInAjax(String outcome) 
+	throws FacesException {
+		FacesContext ctx = FacesContext.getCurrentInstance();
+	    ExternalContext extContext = ctx.getExternalContext();
+	    
+	    String url = extContext.encodeActionURL(
+	    					ctx.getApplication().getViewHandler().getActionURL(
+	    							ctx, outcome));
+	    try {
+	        extContext.redirect(url);
+	    } catch (IOException ioe) {
+	        throw new FacesException(ioe);
+	    }
+	    return null;
+	}
 
 	/**
 	 * Check if a string is valued
@@ -44,6 +88,31 @@ public class BsfUtils {
 			listOfObjects.add(obj);
 		
 		return listOfObjects;
+	}
+	
+	/**
+	 * Transform a snake-case string to a camel-case one.
+	 * @param snakeCaseStr
+	 * @return
+	 */
+	public static String snakeCaseToCamelCase(String snakeCaseStr) {
+		if(snakeCaseStr.contains("-")) {
+			StringBuilder camelCaseStr = new StringBuilder(snakeCaseStr.length());
+			boolean toUpperCase = false;
+			for (char c : snakeCaseStr.toCharArray()) {
+				if (c == '-')
+					toUpperCase = true;
+				else {
+					if (toUpperCase) {
+						toUpperCase = false;
+						c = Character.toUpperCase(c);
+					}
+					camelCaseStr.append(c);
+				}
+			}
+			snakeCaseStr = camelCaseStr.toString();
+		}
+		return snakeCaseStr;
 	}
 	
 	/**
