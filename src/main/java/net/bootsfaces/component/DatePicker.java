@@ -262,7 +262,7 @@ public class DatePicker extends HtmlInputText {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
 					rw.writeAttribute("class", "input-group-addon", "class");
-					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true);
+					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true, true, true);
 					rw.endElement("span");
 				}
 			}
@@ -298,7 +298,7 @@ public class DatePicker extends HtmlInputText {
 			rw.writeAttribute("id", clientId + "_" + ADDON, "id");
 			rw.writeAttribute("class", "input-group-addon", "class");
 			
-			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true);
+			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true, true, true);
 			rw.endElement("span");
 		}
 
