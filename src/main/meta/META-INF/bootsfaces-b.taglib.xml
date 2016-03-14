@@ -955,6 +955,20 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[This option allows you to localize the DataTable, specifying the language code (eg. it, fr, es, nl).
+                            The dataTable uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes.
+                            The dataTable is localized with the language specified by the ViewRoot Locale.]]></description>
+			<name>lang</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[This option allows you to define a custom lang file to translate the dataTable interface.]]></description>
+			<name>customLangUrl</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[If true, enable the pagination. Default value is true]]></description>
 			<name>paginated</name>
 			<required>false</required>
@@ -8297,8 +8311,20 @@ component. The id is not necessarily unique across all components in the current
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
+			<name>placement-from</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
 			<name>placementAlign</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
+			<name>placement-align</name>
 			<required>false</required>
 			<type>java.lang.String</type>
 		</attribute>
@@ -8321,8 +8347,20 @@ component. The id is not necessarily unique across all components in the current
 			<type>Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
+			<name>newest-on-top</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Specifies whether the message can be dismissed.]]></description>
 			<name>allowDismiss</name>
+			<required>false</required>
+			<type>Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the message can be dismissed.]]></description>
+			<name>allow-dismiss</name>
 			<required>false</required>
 			<type>Boolean</type>
 		</attribute>
@@ -8340,15 +8378,33 @@ if they are attached to a particular component. Defaults to false.]]></descripti
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a
+specific component should be displayed, ie whether messages should be ignored
+if they are attached to a particular component. Defaults to false.]]></description>
+			<name>global-only</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Specifies whether the detailed information from the message should be shown. 
 Default to false.]]></description>
 			<name>showDetail</name>
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Specifies whether the detailed information from the message should be shown. 
+Default to false.]]></description>
+			<name>show-detail</name>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Specifies whether the summary information from the message should be shown.
 Defaults to true.]]></description>
 			<name>showSummary</name>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Specifies whether the summary information from the message should be shown.
+Defaults to true.]]></description>
+			<name>show-summary</name>
 		</attribute>
 		<attribute>
 			<description><![CDATA[The ID of the component whose attached FacesMessage object (if present) 

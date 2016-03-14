@@ -19,17 +19,14 @@
 
 package net.bootsfaces.component.column;
 
-import javax.faces.FacesException;
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
+import javax.faces.FacesException;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -102,6 +99,9 @@ public class ColumnRenderer extends CoreRenderer {
 					}
 					sb.append("col-md-offset-" + offsmd);
 				}
+			}
+			if(colmd == 0) {
+				sb.append(" hidden-md");
 			}
 
 			if (colxs > 0) {

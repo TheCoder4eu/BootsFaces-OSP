@@ -19,17 +19,23 @@
 
 package net.bootsfaces.component.dataTable;
 
-import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
-import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Tooltip;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
+import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class generates the HTML code of &lt;b:dataTable /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
@@ -216,6 +222,7 @@ public class DataTableRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientIdRaw = dataTable.getClientId();
 		String clientId = clientIdRaw.replace(":", "");
+		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
@@ -227,11 +234,12 @@ public class DataTableRenderer extends CoreRenderer {
 					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
 					 "wrapper.replaceWith(element);" +
 					 "var table = element.DataTable({" + 
-					 "fixedHeader: " + dataTable.isFixedHeader() + "," +
-					 "responsive: " + dataTable.isResponsive() + ", " + 
-					 "paging: " + dataTable.isPaginated() + ", " +
-					 "pageLength: " + pageLength + ", " + 
-					 "lengthMenu: " + dataTable.getPageLengthMenu() +
+					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +
+					 "	responsive: " + dataTable.isResponsive() + ", " + 
+					 "	paging: " + dataTable.isPaginated() + ", " +
+					 "	pageLength: " + pageLength + ", " + 
+					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " + 
+					 (BsfUtils.StringIsValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 // "var table = element.DataTable({fixedHeader: true, responsive: true});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
@@ -289,6 +297,43 @@ public class DataTableRenderer extends CoreRenderer {
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
+	}
+	
+	/**
+	 * Determine if the user specify a lang
+	 * Otherwise return null to avoid language settings.
+	 * 
+	 * @param fc
+	 * @param dataTable
+	 * @return
+	 */
+	private String determineLanguage(FacesContext fc, DataTable dataTable) {
+		final Set<String> availableLanguages = new HashSet<String>(Arrays.asList(
+		     new String[] {"de", "en", "es", "fr", "hu", "it", "pl", "ru"}
+		));
+		if(BsfUtils.StringIsValued(dataTable.getCustomLangUrl())) {
+			return dataTable.getCustomLangUrl();
+		} else if(BsfUtils.StringIsValued(dataTable.getLang())) {
+			String lang = dataTable.getLang();
+			if(availableLanguages.contains(lang)) return determineLanguageUrl(fc, lang);
+		} 
+		return null; 
+	}
+	
+	/**
+	 * Determine the locale to set-up to dataTable component.
+	 * The locale is determined in this order:
+	 * - if customLangUrl is specified, it is the value set up
+	 * - otherwise, the system check if locale is explicit specified
+	 * - otherwise it takes from the ViewRoot
+	 * 
+	 * @param fc
+	 * @param dataTable
+	 * @return
+	 */
+	private String determineLanguageUrl(FacesContext fc, String lang) {
+		// Build resource url
+		return fc.getApplication().getResourceHandler().createResource("jq/ui/i18n/dt/datatable-" + lang + ".json", "bsf").getRequestPath();
 	}
 
 	@Override

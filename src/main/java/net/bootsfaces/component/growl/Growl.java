@@ -1,35 +1,27 @@
 package net.bootsfaces.component.growl;
 
-import java.util.Map;
-
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessages;
 
 import net.bootsfaces.C;
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.utils.BsfUtils;
 
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/animate.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.Growl")
 public class Growl extends UIMessages {
-	private Map<String, Object> attributes;
 
 	public Growl() {
 		super();
 		setRendererType("net.bootsfaces.component.GrowlRenderer");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-notify.min.js");
 	}
-	
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
-	}
+
 
 	protected enum PropertyKeys {
 		globalOnly, showDetail, showSummary, icon, placementFrom, placementAlign, escape, style, styleClass, delay, timer, newestOnTop, allowDismiss;
@@ -46,6 +38,15 @@ public class Growl extends UIMessages {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+	
+	/**
+	 * Provide support to snake-case attribute in EL-expression items
+	 */
+	@Override
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 	
 	/**

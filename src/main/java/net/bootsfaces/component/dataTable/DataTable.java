@@ -173,7 +173,9 @@ responsive,
 fixedHeader,
 paginated,
 pageLength,
-pageLengthMenu
+pageLengthMenu,
+lang,
+customLangUrl
 ;
 
         String toString;
@@ -687,6 +689,40 @@ pageLengthMenu
 	 */
 	public void setPageLengthMenu(String _pageLengthMenu) {
 	    getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
+    }
+	
+	/**
+	 * Configured lang for the dataTable. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLang() {
+		String value = (String)getStateHelper().eval(PropertyKeys.lang);
+		return  value;
+	}
+	
+	/**
+	 * Configured lang for the dataTable. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLang(String _lang) {
+	    getStateHelper().put(PropertyKeys.lang, _lang);
+    }
+	
+	/**
+	 * Here we can define a custom lang file url for non-integrated languages. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getCustomLangUrl() {
+		String value = (String)getStateHelper().eval(PropertyKeys.customLangUrl);
+		return  value;
+	}
+	
+	/**
+	 * Here we can define a custom lang file url for non-integrated languages. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCustomLangUrl(String _customLangUrl) {
+	    getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
     }
 }
 
