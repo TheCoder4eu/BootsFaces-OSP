@@ -152,8 +152,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 		Tooltip.activateTooltips(context, attrs, component);
 	}
 
-
-
 	private String getStyleClasses(CommandButton component) {
 		StringBuilder sb = new StringBuilder(40); // optimize int
 

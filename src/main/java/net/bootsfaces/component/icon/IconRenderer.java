@@ -87,7 +87,7 @@ public class IconRenderer extends AJAXRenderer {
 		boolean spin = icon.isSpin();
 
 		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
-			 styleClass, style, icon.isDisabled(), icon.isAddon());
+			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true);
 		Tooltip.activateTooltips(context, icon);
 	}
 
@@ -117,14 +117,16 @@ public class IconRenderer extends AJAXRenderer {
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,
 			String size, String rotate, String flip, boolean spin, String styleClass, String style,
-			boolean isGrayedOut, boolean isAddon) throws IOException {
+			boolean isGrayedOut, boolean isAddon, boolean generateIdAndTooltip, boolean generateAJAXHandler) throws IOException {
 		rw.startElement("span", c);
 		rw.startElement("i", c);
-		if (isAddon)
-			rw.writeAttribute("id", c.getClientId() + "_icon", null);
-		else
-			rw.writeAttribute("id", c.getClientId(), null);
-		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+		if (generateIdAndTooltip) {
+			if (isAddon)
+				rw.writeAttribute("id", c.getClientId() + "_icon", null);
+			else
+				rw.writeAttribute("id", c.getClientId(), null);
+			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+		}
 
 		StringBuilder sb = new StringBuilder(100); // optimize int
 		if (styleClass != null) {
@@ -173,16 +175,18 @@ public class IconRenderer extends AJAXRenderer {
 		}
 		if (style != null)
 			rw.writeAttribute("style", style, "style");
-		if (c instanceof IAJAXComponent && c instanceof ClientBehaviorHolder)
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(),
-					(ClientBehaviorHolder) c, rw);
+		if (generateAJAXHandler) {
+			if (c instanceof IAJAXComponent && c instanceof ClientBehaviorHolder)
+				AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(),
+						(ClientBehaviorHolder) c, rw);
+		}
 		rw.endElement("i");
 
 		rw.endElement("span");
 	}
 
 	/**
-	 * Renders an Icon - simple version without options
+	 * Renders an Icon - simple version without options and without features (no AJAX, no tooltip, no id etc.)
 	 * 
 	 * @param rw
 	 *            ResponseWriter
@@ -197,6 +201,6 @@ public class IconRenderer extends AJAXRenderer {
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
 			throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, null, null, false, false);
+		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, null, null, false, false, false, false);
 	}
 }

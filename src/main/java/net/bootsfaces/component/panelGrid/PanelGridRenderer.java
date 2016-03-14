@@ -116,7 +116,7 @@ public class PanelGridRenderer extends CoreRenderer {
 		{
 		    throw new FacesException("PanelGrid.colSpans attribute: Please provide a comma-separated list of integer values");
 		}
-		String[] columnList = columnsCSV.split(",");
+		String[] columnList = columnsCSV.replaceAll(" ", "").split(",");
 		int[] columns = new int[columnList.length];
 		int sum = 0;
 		for (int i = 0; i < columnList.length; i++) {
