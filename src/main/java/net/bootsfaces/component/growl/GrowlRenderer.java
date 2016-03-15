@@ -74,6 +74,8 @@ public class GrowlRenderer extends CoreRenderer {
             	summary = BsfUtils.escapeHtml(summary);
             	detail = BsfUtils.escapeHtml(detail);
             }
+            summary = summary.replace("'", "\\\'");
+            detail = detail.replace("'", "\\\'");
             // Decode messageType to map bootstrap alert styles
             String messageType = "success";
             if("info".equals(severity)) {
