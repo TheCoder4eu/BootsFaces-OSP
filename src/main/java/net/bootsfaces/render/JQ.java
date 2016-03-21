@@ -154,6 +154,7 @@ public final class JQ {
     public static final String CHNGYEAR = "changeYear"; //Bool
     public static final String SHOWWK = "showWeek"; //Bool
     public static final String DTFORMAT = "dateFormat";
+    public static final String DTDISABLED = "disabled"; //Bool
     /*
      * Default: "c-10:c+10" 
      * The range of years displayed in the year drop-down:

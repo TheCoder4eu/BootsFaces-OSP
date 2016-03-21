@@ -45,8 +45,6 @@ public class Badge extends UIOutput {
 	private Map<String, Object> attributes;
 	
 	public Badge() {
-		
-		
 		setRendererType(DEFAULT_RENDERER);
 	}
 	
@@ -62,10 +60,10 @@ public class Badge extends UIOutput {
 	}
 	
     protected enum PropertyKeys {
-binding,
-style,
-styleClass
-;
+		binding,
+		style,
+		styleClass
+		;
 
         String toString;
 

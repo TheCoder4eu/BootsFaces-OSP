@@ -338,15 +338,28 @@ public class CoreRenderer extends Renderer {
 
 			// format the value as string
 			if (val != null) {
+				/* OLD
 				Converter converter = getConverter(fc, vh);
+				*/
+				
+				/* NEW */
+                Converter converter = vh.getConverter();
+                if (converter == null) {
+                    Class<?> valueType = val.getClass();
+                    if(valueType == String.class) {                        
+                        return (String) val;
+                    }
 
-				if (converter != null)
+                    converter = fc.getApplication().createConverter(valueType);
+                }
+                /* END NEW */
+
+                if (converter != null)
 					return converter.getAsString(fc, c, val);
 				else
 					return val.toString(); // Use toString as a fallback if
 											// there is no explicit or implicit
 											// converter
-
 			} else {
 				// component is a value holder but has no value
 				return null;

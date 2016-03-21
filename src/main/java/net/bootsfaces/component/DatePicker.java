@@ -335,6 +335,9 @@ public class DatePicker extends HtmlInputText {
 		if (mode.equals("toggle-icon") || mode.equals("icon-toggle")) {
 			sb.append(JQ.SHOWON).append(":").append("'" + "button" + "'").append(",");
 		}
+		if(A.toBool(attrs.get(JQ.DTDISABLED))) {
+			sb.append(JQ.DTDISABLED).append(":").append("true").append(",");
+		}
 
 		/*
 		 * Attributes that need decoding the Date
