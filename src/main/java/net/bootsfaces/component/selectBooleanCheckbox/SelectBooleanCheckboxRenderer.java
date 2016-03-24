@@ -31,6 +31,7 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectBooleanCheckbox /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
@@ -62,10 +63,10 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (selectBooleanCheckbox.isDisabled() || selectBooleanCheckbox.isReadonly()) {
 			return;
 		}
-
+		
 		decodeBehaviors(context, selectBooleanCheckbox); // moved to
-															// AJAXRenderer
-
+																// AJAXRenderer
+	
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
@@ -74,8 +75,13 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		} else if (context.getExternalContext().getRequestParameterMap().containsKey(clientId + "_helper")) {
 			selectBooleanCheckbox.setSubmittedValue(false);
 		}
-		String id = component.getClientId(context);
-		new AJAXRenderer().decode(context, component, "input_" +id);
+		if (Boolean.FALSE.equals(selectBooleanCheckbox.getSubmittedValue()) && selectBooleanCheckbox.isRequired()) {
+			FacesMessages.error(component.getClientId(), "Validation error", "Please check this checkbox.");
+		} else {
+
+			String id = component.getClientId(context);
+			new AJAXRenderer().decode(context, component, "input_" +id);
+		}
 	}
 
 	/**
