@@ -19,8 +19,6 @@ public class Focus extends UIComponentBase {
 	public static final String COMPONENT_TYPE = C.FOCUS_COMPONENT_TYPE;
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	private Map<String, Object> attributes;
-
 	public Focus() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
