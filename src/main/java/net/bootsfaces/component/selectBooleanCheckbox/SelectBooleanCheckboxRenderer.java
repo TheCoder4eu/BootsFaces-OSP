@@ -20,13 +20,22 @@
 package net.bootsfaces.component.selectBooleanCheckbox;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
+import javax.faces.application.Application;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import javax.xml.soap.MessageFactory;
+
+import org.apache.commons.lang3.StringUtils;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.messages.Messages;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -63,10 +72,10 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		if (selectBooleanCheckbox.isDisabled() || selectBooleanCheckbox.isReadonly()) {
 			return;
 		}
-		
+
 		decodeBehaviors(context, selectBooleanCheckbox); // moved to
-																// AJAXRenderer
-	
+															// AJAXRenderer
+
 		String clientId = selectBooleanCheckbox.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
@@ -76,13 +85,22 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			selectBooleanCheckbox.setSubmittedValue(false);
 		}
 		if (Boolean.FALSE.equals(selectBooleanCheckbox.getSubmittedValue()) && selectBooleanCheckbox.isRequired()) {
-			FacesMessages.error(component.getClientId(), "Validation error", "Please check this checkbox.");
+			String userDefinedMessage = selectBooleanCheckbox.getRequiredMessage();
+			if (null != userDefinedMessage) {
+				FacesMessages.error(clientId, userDefinedMessage, userDefinedMessage);
+			} else {
+				String label = selectBooleanCheckbox.getLabel();
+				if (StringUtils.isEmpty(label)) {
+					label = clientId;
+				}
+				FacesMessages.createErrorMessageFromResourceBundle(clientId, "javax.faces.component.UIInput.REQUIRED", label);
+			}
+			selectBooleanCheckbox.setValid(false);
 		} else {
-
-			String id = component.getClientId(context);
-			new AJAXRenderer().decode(context, component, "input_" +id);
+			new AJAXRenderer().decode(context, component, "input_" + clientId);
 		}
 	}
+
 
 	/**
 	 * This methods generates the HTML code of the current
@@ -288,12 +306,15 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * The b:switch and the b:selectBooleanCheckbox share most of their code. This method allows to add extra attributes for the switch.
+	 * The b:switch and the b:selectBooleanCheckbox share most of their code.
+	 * This method allows to add extra attributes for the switch.
+	 * 
 	 * @param rw
 	 * @param selectBooleanCheckbox
 	 * @throws IOException
 	 */
-	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
+	protected void addAttributesForSwitch(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox)
+			throws IOException {
 	}
 
 	/**
@@ -387,5 +408,4 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		}
 		return hasAddon;
 	}
-
 }

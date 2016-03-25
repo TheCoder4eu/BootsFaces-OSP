@@ -18,6 +18,11 @@
  */
 package net.bootsfaces.utils;
 
+import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
+import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
@@ -96,5 +101,65 @@ public class FacesMessages {
 		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(refItem, facesMsg);
 	}
+	
+	/** copied from the JSF API (because the original method is not publicly visible) */
+	protected static ClassLoader getCurrentLoader(Class<?> fallbackClass) {
+		ClassLoader loader = Thread.currentThread().getContextClassLoader();
+		if (loader == null) {
+			loader = fallbackClass.getClassLoader();
+		}
+		return loader;
+	}
+	
+	/** slightly simplified version of the corresponding method of the JSF API (because the original method
+	 * is not publicly visible)
+	 * @param messageId The id of the error message in the message bundle
+	 * @param label The label of the input field
+	 */
+	public static void createErrorMessageFromResourceBundle(String clientId, String messageId, String label) {
+		String summary = null;
+		String detail = null;
+		ResourceBundle bundle;
+		String bundleName;
+
+		// see if we have a user-provided bundle
+		Application app = FacesContext.getCurrentInstance().getApplication();
+		Class<?> appClass = app.getClass();
+		Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
+		if (null != (bundleName = app.getMessageBundle())) {
+			if (null != (bundle = ResourceBundle.getBundle(bundleName, locale, getCurrentLoader(appClass)))) {
+				// see if we have a hit
+				try {
+					summary = bundle.getString(messageId);
+					detail = bundle.getString(messageId + "_detail");
+				} catch (MissingResourceException e) {
+					// ignore
+				}
+			}
+		}
+
+		// we couldn't find a summary in the user-provided bundle
+		if (null == summary) {
+			// see if we have a summary in the app provided bundle
+			bundle = ResourceBundle.getBundle(FacesMessage.FACES_MESSAGES, locale, getCurrentLoader(appClass));
+			if (null == bundle) {
+				throw new NullPointerException();
+			}
+			// see if we have a hit
+			try {
+				summary = bundle.getString(messageId);
+				detail = bundle.getString(messageId + "_detail");
+			} catch (MissingResourceException e) {
+				// ignore
+			}
+		}
+
+		summary = summary.replace("{0}", label);
+		detail = detail.replace("{0}", label);
+
+		// At this point, we have a summary and a bundle.
+		FacesMessages.error(clientId, summary, detail);
+	}
+
 	
 }
