@@ -73,6 +73,8 @@ public class Tooltip {
 
 	private static void generateTooltipInternal(FacesContext context, ResponseWriter rw, String tooltip,
 			String position, String container) throws IOException {
+		if (null == position)
+			position="bottom";
 		boolean ok = "top".equals(position);
 		ok |= "bottom".equals(position);
 		ok |= "right".equals(position);
