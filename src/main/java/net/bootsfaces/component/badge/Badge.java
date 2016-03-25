@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.badge;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -42,8 +40,6 @@ public class Badge extends UIOutput {
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.badge.Badge";
-
-	private Map<String, Object> attributes;
 	
 	public Badge() {
 		setRendererType(DEFAULT_RENDERER);
