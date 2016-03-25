@@ -24,15 +24,16 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
@@ -60,11 +61,9 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(

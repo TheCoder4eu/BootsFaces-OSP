@@ -21,13 +21,14 @@ package net.bootsfaces.component.iconAwesome;
 
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:iconAwesome /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/font-awesome.css", target = "head"),
@@ -51,11 +52,9 @@ public class IconAwesome extends Icon {
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	public String getFamily() {

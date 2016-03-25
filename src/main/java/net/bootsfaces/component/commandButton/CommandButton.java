@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -32,11 +33,11 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
  *
@@ -73,7 +74,6 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 	private static final Collection<String> EVENT_NAMES = Collections
 			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress",
 					"keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
-	private Map<String, Object> attributes;
 
 	public CommandButton() {
 		setRendererType(DEFAULT_RENDERER); // this component renders itself
@@ -81,11 +81,13 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 		Tooltip.addResourceFile();
 	}
 
+	/**
+	 * Provide support to snake-case attribute in EL-expression items
+	 */
 	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	/**

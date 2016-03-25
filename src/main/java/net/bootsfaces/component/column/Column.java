@@ -21,13 +21,14 @@ package net.bootsfaces.component.column;
 
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 
 /** This class holds the attributes of &lt;b:column /&gt;. */
@@ -56,11 +57,9 @@ public class Column extends UIOutput  implements net.bootsfaces.render.IHasToolt
 		return COMPONENT_FAMILY;
 	}
 	
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 	
 	

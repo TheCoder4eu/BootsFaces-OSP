@@ -138,13 +138,21 @@ public class Tooltip {
 
 	private static String getAndCheckDelayAttribute(String attributeName, Map<String, Object> attrs,
 			String htmlAttributeName) throws FacesException {
-		String value = (String) attrs.get(attributeName);
-		if (null != value && value.length() > 0) {
-			try {
-				Integer.parseInt(value);
+		Object value = attrs.get(attributeName);
+		if (null != value) {
+			if ((value instanceof String) && ((String)value).length() > 0) {
+				try {
+					Integer.parseInt((String)value);
+					return htmlAttributeName + ":" + value;
+				} catch (NumberFormatException ex) {
+					throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
+							+ value + "' is invalid.");
+				}
+			}
+			else if (value instanceof Integer) {
 				return htmlAttributeName + ":" + value;
-			} catch (NumberFormatException ex) {
-				throw new FacesException("The attribute " + attributeName + "has to be either numeric. The value '"
+			} else {
+				throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
 						+ value + "' is invalid.");
 			}
 		}

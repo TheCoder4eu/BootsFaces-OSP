@@ -18,16 +18,17 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
 import net.bootsfaces.C;
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
  *
@@ -103,11 +104,9 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 		Tooltip.addResourceFile();
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	@Override

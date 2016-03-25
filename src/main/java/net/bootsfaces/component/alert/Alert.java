@@ -21,13 +21,14 @@ package net.bootsfaces.component.alert;
 
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
@@ -59,11 +60,9 @@ public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHa
 		return COMPONENT_FAMILY;
 	}
 	
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 	
 	

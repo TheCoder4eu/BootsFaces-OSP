@@ -1,7 +1,22 @@
+/**
+ *  Copyright 2014-2016 Dario D'Urzo and Stephan Rauh
+ *  
+ *  This file is part of BootsFaces.
+ *  
+ *  BootsFaces is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  BootsFaces is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.bootsfaces.component.growl;
-
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
 
 import net.bootsfaces.beans.BsfBeanInfo;
 
@@ -12,26 +27,6 @@ import net.bootsfaces.beans.BsfBeanInfo;
  * @author durzod
  */
 public class GrowlBeanInfo extends BsfBeanInfo {
-
-	/**
-	 * Get the custom properties in hyphen configuration
-	 */
-	public PropertyDescriptor[] getCustomPropertyDescriptor() 
-	throws IntrospectionException {
-		PropertyDescriptor[] items = new PropertyDescriptor[] {
-			new PropertyDescriptor("style-class", Growl.class, "getStyleClass", "setStyleClass") {{ setBound(true); }},
-			new PropertyDescriptor("placement-from", Growl.class, "getPlacementFrom", "setPlacementFrom") {{ setBound(true); }},
-			new PropertyDescriptor("placement-align", Growl.class, "getPlacementAlign", "setPlacementAlign") {{ setBound(true); }},
-			new PropertyDescriptor("newest-on-top", Growl.class, "isNewestOnTop", "setNewestOnTop") {{ setBound(true); }},
-			new PropertyDescriptor("allow-dismiss", Growl.class, "isAllowDismiss", "setAllowDismiss") {{ setBound(true); }},
-			new PropertyDescriptor("global-only", Growl.class, "isGlobalOnly", "setGlobalOnly") {{ setBound(true); }},
-			new PropertyDescriptor("show-detail", Growl.class, "isShowDetail", "setShowDetail") {{ setBound(true); }},
-			new PropertyDescriptor("show-summary", Growl.class, "isShowSummary", "setShowSummary") {{ setBound(true); }}
-		};
-		
-		return items;
-	}
-
 	/**
 	 * Get the reference decorated class
 	 */

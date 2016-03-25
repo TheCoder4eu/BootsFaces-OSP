@@ -25,15 +25,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
@@ -60,11 +61,9 @@ public class Panel extends UIComponentBase
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	public String getFamily() {

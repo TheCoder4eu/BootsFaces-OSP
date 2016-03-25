@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2016 Dario D'Urzo
+ *  Copyright 2014-2016 Dario D'Urzo and Stephan Rauh
  *  
  *  This file is part of BootsFaces.
  *  
@@ -18,9 +18,6 @@
  */
 package net.bootsfaces.component.tree;
 
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-
 import net.bootsfaces.beans.BsfBeanInfo;
 
 /**
@@ -30,26 +27,6 @@ import net.bootsfaces.beans.BsfBeanInfo;
  * @author durzod
  */
 public class TreeBeanInfo extends BsfBeanInfo {
-
-	/**
-	 * Get the custom properties in hyphen configuration
-	 */
-	public PropertyDescriptor[] getCustomPropertyDescriptor() 
-	throws IntrospectionException {
-		PropertyDescriptor[] items = new PropertyDescriptor[] {
-			new PropertyDescriptor("render-root", Tree.class, "isRenderRoot", "setRenderRoot") {{ setBound(true); }},
-			new PropertyDescriptor("node-selection-listener", Tree.class, "getNodeSelectionListener", "setNodeSelectionListener") {{ setBound(true); }},
-			new PropertyDescriptor("show-tags", Tree.class, "isShowTags", "setShowTags") {{ setBound(true); }},
-			new PropertyDescriptor("show-icon", Tree.class, "isShowIcon", "setShowIcon") {{ setBound(true); }},
-			new PropertyDescriptor("show-checkbox", Tree.class, "isShowCheckbox", "setShowCheckbox") {{ setBound(true); }},
-			new PropertyDescriptor("enable-links", Tree.class, "isEnableLinks", "setEnableLinks") {{ setBound(true); }},
-			new PropertyDescriptor("collapse-icon", Tree.class, "getCollapseIcon", "setCollapseIcon") {{ setBound(true); }},
-			new PropertyDescriptor("expand-icon", Tree.class, "getExpandIcon", "setExpandIcon") {{ setBound(true); }}
-		};
-		
-		return items;
-	}
-
 	/**
 	 * Get the reference decorated class
 	 */

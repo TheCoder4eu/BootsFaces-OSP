@@ -92,14 +92,14 @@ public class BsfUtils {
 	
 	/**
 	 * Transform a snake-case string to a camel-case one.
-	 * @param snakeCaseStr
+	 * @param snakeCase
 	 * @return
 	 */
-	public static String snakeCaseToCamelCase(String snakeCaseStr) {
-		if(snakeCaseStr.contains("-")) {
-			StringBuilder camelCaseStr = new StringBuilder(snakeCaseStr.length());
+	public static String snakeCaseToCamelCase(String snakeCase) {
+		if(snakeCase.contains("-")) {
+			StringBuilder camelCaseStr = new StringBuilder(snakeCase.length());
 			boolean toUpperCase = false;
-			for (char c : snakeCaseStr.toCharArray()) {
+			for (char c : snakeCase.toCharArray()) {
 				if (c == '-')
 					toUpperCase = true;
 				else {
@@ -110,10 +110,37 @@ public class BsfUtils {
 					camelCaseStr.append(c);
 				}
 			}
-			snakeCaseStr = camelCaseStr.toString();
+			snakeCase = camelCaseStr.toString();
 		}
-		return snakeCaseStr;
+		return snakeCase;
 	}
+	
+	/**
+	 * Transform a snake-case string to a camelCase one.
+	 * @param snakeCaseStr
+	 * @return the original string if there is no camelCase character. Otherwise, a snake-case representation of the camelCase version.
+	 */
+	public static String camelCaseToSnakeCase(String camelCase) {
+		if (null == camelCase || camelCase.length()==0)
+			return camelCase;
+		StringBuilder snakeCase = new StringBuilder(camelCase.length()+3);
+		snakeCase.append(camelCase.charAt(0));
+		boolean hasCamelCase=false;
+		for (int i = 1; i < camelCase.length(); i++) {
+			char c = camelCase.charAt(i);
+			if (Character.isUpperCase(c)) {
+				snakeCase.append("-");
+				c = Character.toLowerCase(c);
+				hasCamelCase=true;
+			}
+			snakeCase.append(c);
+		}
+		if (!hasCamelCase)
+			return camelCase;
+		
+		return snakeCase.toString();
+	}
+
 	
 	/**
 	 * Escape html special chars from string

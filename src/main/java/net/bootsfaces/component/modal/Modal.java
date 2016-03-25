@@ -21,14 +21,15 @@ package net.bootsfaces.component.modal;
 
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.C;
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
@@ -51,11 +52,9 @@ public class Modal extends UIComponentBase {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	public String getFamily() {

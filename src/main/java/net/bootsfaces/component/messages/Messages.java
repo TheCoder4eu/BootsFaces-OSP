@@ -21,11 +21,12 @@ package net.bootsfaces.component.messages;
 
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.component.AttributeMapWrapper;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
  * 
@@ -49,11 +50,9 @@ public class Messages extends javax.faces.component.UIMessages {
 		setRendererType("net.bootsfaces.component.MessagesRenderer");
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	protected enum PropertyKeys {

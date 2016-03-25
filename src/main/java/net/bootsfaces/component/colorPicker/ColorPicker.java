@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
@@ -13,11 +14,11 @@ import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
@@ -99,11 +100,9 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 		}
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	@Override

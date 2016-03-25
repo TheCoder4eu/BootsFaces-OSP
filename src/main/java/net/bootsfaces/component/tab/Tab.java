@@ -24,13 +24,14 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
+import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
-import net.bootsfaces.component.AttributeMapWrapper;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
 @FacesComponent("net.bootsfaces.component.tab.Tab")
@@ -72,11 +73,9 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	@Override
-	public Map<String, Object> getAttributes() {
-		if (attributes == null)
-			attributes = new AttributeMapWrapper(this, super.getAttributes());
-		return attributes;
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
 	}
 
 	public String getFamily() {
