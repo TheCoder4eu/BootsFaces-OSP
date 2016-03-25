@@ -111,6 +111,21 @@ public class PanelGridRenderer extends CoreRenderer {
 		if (null == columnsCSV || columnsCSV.trim().length()==0)
 		{
 		    columnsCSV = panelGrid.getColumns();
+		    if ("1".equals(columnsCSV)) {
+		    	columnsCSV = "12";
+		    } else if ("2".equals(columnsCSV)) {
+		    	columnsCSV = "6,6";
+		    } else if ("3".equals(columnsCSV)) {
+		    	columnsCSV = "4,4,4";
+		    } else if ("4".equals(columnsCSV)) {
+		    	columnsCSV = "3,3,3,3";
+		    } else if ("6".equals(columnsCSV)) {
+		    	columnsCSV = "2,2,2,2,2,2";
+		    } else if ("12".equals(columnsCSV)) {
+		    	columnsCSV = "1,1,1,1,1,1,1,1,1,1,1,1";
+		    } else {
+		    	throw new FacesException("PanelGrid.columns attribute: Legal values are 1, 2, 3, 4, 6 and 12. If you need a different number of columns, please use the attribute 'col-spans'.");
+		    }
 		}
 		if (null == columnsCSV || columnsCSV.trim().length()==0)
 		{
