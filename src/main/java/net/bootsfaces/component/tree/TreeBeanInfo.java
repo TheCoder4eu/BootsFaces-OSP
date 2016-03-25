@@ -26,11 +26,14 @@ import net.bootsfaces.beans.BsfBeanInfo;
 /**
  * BeanInfo class to provide mapping
  * of snake-case attributes to camelCase ones
+ * 
  * @author durzod
- *
  */
 public class TreeBeanInfo extends BsfBeanInfo {
 
+	/**
+	 * Get the custom properties in hyphen configuration
+	 */
 	public PropertyDescriptor[] getCustomPropertyDescriptor() 
 	throws IntrospectionException {
 		PropertyDescriptor[] items = new PropertyDescriptor[] {
@@ -45,5 +48,13 @@ public class TreeBeanInfo extends BsfBeanInfo {
 		};
 		
 		return items;
+	}
+
+	/**
+	 * Get the reference decorated class
+	 */
+	@Override
+	public Class<?> getDecoratedClass() {
+		return Tree.class;
 	}
 }

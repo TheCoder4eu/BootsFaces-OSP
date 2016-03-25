@@ -69,7 +69,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 
 	protected enum PropertyKeys {
 
-		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer;
+		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer, swatches;
 
 		String toString;
 
@@ -429,5 +429,25 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
+	
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getSwatches() {
+		String value = (String) getStateHelper().eval(PropertyKeys.swatches);
+		return value;
+	}
 
+	/**
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSwatches(String _swatches) {
+		getStateHelper().put(PropertyKeys.swatches, _swatches);
+	}
 }

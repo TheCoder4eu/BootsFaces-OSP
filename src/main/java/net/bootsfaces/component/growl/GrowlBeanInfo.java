@@ -5,8 +5,17 @@ import java.beans.PropertyDescriptor;
 
 import net.bootsfaces.beans.BsfBeanInfo;
 
+/**
+ * BeanInfo class to provide mapping
+ * of snake-case attributes to camelCase ones
+ * 
+ * @author durzod
+ */
 public class GrowlBeanInfo extends BsfBeanInfo {
 
+	/**
+	 * Get the custom properties in hyphen configuration
+	 */
 	public PropertyDescriptor[] getCustomPropertyDescriptor() 
 	throws IntrospectionException {
 		PropertyDescriptor[] items = new PropertyDescriptor[] {
@@ -21,5 +30,13 @@ public class GrowlBeanInfo extends BsfBeanInfo {
 		};
 		
 		return items;
+	}
+
+	/**
+	 * Get the reference decorated class
+	 */
+	@Override
+	public Class<?> getDecoratedClass() {
+		return Growl.class;
 	}
 }

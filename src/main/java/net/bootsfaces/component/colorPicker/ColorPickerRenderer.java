@@ -223,16 +223,29 @@ public class ColorPickerRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, colorPicker);
+		// create swatches array
+		String swatches = colorPicker.getAttributes().get("swatches") == null ? "[]" : ((String)colorPicker.getAttributes().get("swatches"));
+		if(!"[]".equals(swatches)) {
+			String[] colors = swatches.split("\\|");
+			String swt = "[";
+			for(int i = 0; i < Math.min(colors.length, 7); i++) {
+				swt = swt + "'" + colors[i] + "',";
+			}
+			swt = swt + "]";
+			swt = swt.replace(",]", "]");
+			swatches = swt;
+		}
+		
 		
 		// build color picker init script
 		rw.startElement("script", colorPicker);
-		
 		rw.writeText("$(function() {" +
 					"$('#input_" + BsfUtils.EscapeJQuerySpecialCharsInSelector(clientId) + "').minicolors({" +
 					(colorPicker.getAttributes().get("control") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
 					(colorPicker.getAttributes().get("format") != null ? " format: '" + colorPicker.getAttributes().get("format")  + "'," : "")  +
 					(colorPicker.getAttributes().get("opacity") != null ? " opacity: " + colorPicker.getAttributes().get("opacity")  + "," : "")  +
 					(colorPicker.getAttributes().get("position") != null ? " position: '" + colorPicker.getAttributes().get("position")  + "'," : "")  +
+					" swatches: " + swatches  + "," +
 					" theme: 'bootstrap' " +
 					"});" +
 					"});", null);

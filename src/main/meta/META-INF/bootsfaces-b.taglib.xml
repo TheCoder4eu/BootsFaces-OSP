@@ -7959,6 +7959,12 @@ component. The id is not necessarily unique across all components in the current
 			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Sets a list of predefined colors. Can be defined up to seven colors as string list of hex or rgba values. Ex. #fff|#000|#f00|#0f0|#00f|#ff0|rgba(0,0,255,0.5)]]></description>
+			<name>swatches</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 			<name>tooltip-position</name>
 			<required>false</required>

@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import net.bootsfaces.component.tree.Tree;
-
 /**
  * Utility class that extends SimpleBeanInfo
  * to manage automatic mapping of all properties and 
@@ -27,6 +25,13 @@ extends java.beans.SimpleBeanInfo {
 	 */
 	public abstract PropertyDescriptor[] getCustomPropertyDescriptor() throws IntrospectionException;
 	
+	/**
+	 * Methods that provide the class to decorate.
+	 * It is an utility method to provide direct mapping inside this superclass
+	 * @return
+	 */
+	public abstract Class<?> getDecoratedClass();
+	
 	@Override
 	public PropertyDescriptor[] getPropertyDescriptors() {
 		// get properties from default property descriptors
@@ -39,7 +44,7 @@ extends java.beans.SimpleBeanInfo {
 		try {
 			// if i have found nothing, i'm trying to get manually
 			if(pdl.size() <= 0) {
-				BeanInfo bi = Introspector.getBeanInfo(Tree.class, Introspector.IGNORE_ALL_BEANINFO);
+				BeanInfo bi = Introspector.getBeanInfo(getDecoratedClass(), Introspector.IGNORE_ALL_BEANINFO);
 				PropertyDescriptor birv[] = bi.getPropertyDescriptors();
 				if(birv != null) {
 					pdl.addAll(Arrays.asList(birv));
