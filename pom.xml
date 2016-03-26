@@ -48,59 +48,9 @@
 		<!-- compiler plugin configuation -->
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
-		<maven.compiler.testSource>1.6</maven.compiler.testSource>
-		<maven.compiler.testTarget>1.6</maven.compiler.testTarget>
 		<maven.compiler.debug>true</maven.compiler.debug>
 		<maven.compiler.debuglevel>lines,vars,source</maven.compiler.debuglevel>
-
-		<!-- enable / disable Unit Tests -->
-		<ut.maven.test.skip>false</ut.maven.test.skip>
-
-		<!-- enable / disable Integration Tests -->
-		<it.maven.test.skip>false</it.maven.test.skip>
 	</properties>
-
-
-
-	<!-- DEPENDENCY MANAGEMENT SECTION -->
-	<dependencyManagement>
-		<dependencies>
-
-			<dependency>
-				<groupId>org.jboss.shrinkwrap.resolver</groupId>
-				<artifactId>shrinkwrap-resolver-bom</artifactId>
-				<version>2.1.1</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian</groupId>
-				<artifactId>arquillian-bom</artifactId>
-				<version>1.1.8.Final</version>
-				<scope>import</scope>
-				<type>pom</type>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.extension</groupId>
-				<artifactId>arquillian-drone-bom</artifactId>
-				<version>2.0.0.Alpha4</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.jboss.arquillian.extension</groupId>
-				<artifactId>arquillian-warp-bom</artifactId>
-				<version>1.0.0.Alpha7</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-
-		</dependencies>
-	</dependencyManagement>
-
 
 	<!-- DEPENDENCIES -->
 	<dependencies>
@@ -118,85 +68,6 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Test dependencies -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>2.0.17-beta</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.protocol</groupId>
-			<artifactId>arquillian-protocol-servlet</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-			<scope>test</scope>
-			<type>jar</type>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-			<artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-drone-webdriver-depchain</artifactId>
-			<type>pom</type>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.graphene</groupId>
-			<artifactId>graphene-webdriver-impl</artifactId>
-			<version>2.1.0.Alpha2</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-warp</artifactId>
-			<type>pom</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.arquillian.extension</groupId>
-			<artifactId>arquillian-warp-jsf</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 
 
@@ -206,30 +77,6 @@
 
 		<pluginManagement>
 			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.18.1</version>
-					<configuration>
-						<skip>${ut.maven.test.skip}</skip>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-failsafe-plugin</artifactId>
-					<version>2.18.1</version>
-					<executions>
-						<execution>
-							<goals>
-								<goal>integration-test</goal>
-								<goal>verify</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<skip>${it.maven.test.skip}</skip>
-					</configuration>
-				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -282,7 +129,6 @@
 
 		</plugins>
 
-
 		<!-- resources -->
 		<resources>
 			<resource>
@@ -293,11 +139,8 @@
 				<directory>src/main/meta/META-INF</directory>
 				<targetPath>META-INF</targetPath>
 			</resource>
-
 		</resources>
 	</build>
-
-
 
 	<!-- PROFILES SECTION -->
 	<profiles>
@@ -403,132 +246,7 @@
 				</plugins>
 			</build>
 		</profile>
-
-
-		<profile>
-			<id>wildfly-managed</id>
-			<properties>
-				<!-- Determines which browser instance is created for WebDriver testing. 
-					Following values are valid: chrome firefox htmlUnit internetExplorer opera 
-					phantomjs safari -->
-				<project.integration.tests.browser>htmlUnit</project.integration.tests.browser>
-				<bootsfaces.arquillian.jboss.version>8.2.0.Final</bootsfaces.arquillian.jboss.version>
-				<ut.maven.test.skip>true</ut.maven.test.skip>
-			</properties>
-
-			<dependencies>
-
-				<dependency>
-					<groupId>org.wildfly</groupId>
-					<artifactId>wildfly-arquillian-container-managed</artifactId>
-					<version>8.2.0.Final</version>
-					<scope>test</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>javax</groupId>
-					<artifactId>javaee-api</artifactId>
-					<version>7.0</version>
-					<scope>provided</scope>
-				</dependency>
-
-				<!-- required library to in using phantomjs -->
-				<dependency>
-					<groupId>com.google.guava</groupId>
-					<artifactId>guava</artifactId>
-					<version>18.0</version>
-					<scope>test</scope>
-				</dependency>
-
-				<dependency>
-					<groupId>org.apache.httpcomponents</groupId>
-					<artifactId>httpcore</artifactId>
-					<version>4.4.1</version>
-					<scope>test</scope>
-				</dependency>
-
-				<!-- use last version of htmlunit browser -->
-				<dependency>
-					<groupId>net.sourceforge.htmlunit</groupId>
-					<artifactId>htmlunit</artifactId>
-					<version>2.17</version>
-					<scope>test</scope>
-				</dependency>
-
-			</dependencies>
-
-
-			<build>
-				<finalName>bootsfaces-test</finalName>
-				<plugins>
-					<!-- You need the maven dependency plugin to download locally a zip 
-						with the server, unless you provide your own, it will download under the 
-						/target directory -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.8</version>
-						<executions>
-							<execution>
-								<id>unpack</id>
-								<phase>process-test-classes</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>org.wildfly</groupId>
-											<artifactId>wildfly-dist</artifactId>
-											<version>${bootsfaces.arquillian.jboss.version}</version>
-											<type>zip</type>
-											<overWrite>false</overWrite>
-											<outputDirectory>${project.build.directory}</outputDirectory>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-							<!-- Fork every test because it will launch a separate AS instance -->
-							<reuseForks>false</reuseForks>
-							<forkCount>1</forkCount>
-							<systemPropertyVariables>
-								<java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-								<!-- the maven dependency plugin will have already downloaded the 
-									server on /target -->
-								<jboss.home>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}</jboss.home>
-								<module.path>${project.build.directory}/wildfly-${bootsfaces.arquillian.jboss.version}/modules</module.path>
-							</systemPropertyVariables>
-							<redirectTestOutputToFile>false</redirectTestOutputToFile>
-						</configuration>
-					</plugin>
-				</plugins>
-
-
-				<testResources>
-					<testResource>
-						<directory>src/test/resources/webapp</directory>
-						<includes>
-							<include>**/*</include>
-						</includes>
-					</testResource>
-					<testResource>
-						<directory>src/test/resources-arquillian</directory>
-						<filtering>true</filtering>
-					</testResource>
-				</testResources>
-			</build>
-
-		</profile>
 	</profiles>
-
-
 
 	<distributionManagement>
 		<snapshotRepository>
