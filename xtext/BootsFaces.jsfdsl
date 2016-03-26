@@ -1024,6 +1024,58 @@ widget navBar
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
+widget navCommandLink
+       implemented_by net.bootsfaces.component.NavCommandLink
+       extends UICommand
+       has_tooltip
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    content-class                                                           "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
+    content-style                                                           "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
+    href                                                                   "URL to link directly to implement anchor behavior."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                              "Alignment can right or left."
+    icon-awesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    includeViewParams   Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    outcome                                                                "The outcome to navigate to."
+	process                                                                  "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                             "CSS style class"
+    tooltip                                                                "The text of the tooltip."
+    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "Navigation Link text."
+}
+
 widget navLink
        implemented_by net.bootsfaces.component.NavLink
        extends UICommand

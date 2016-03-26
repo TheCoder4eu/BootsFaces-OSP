@@ -38,6 +38,6 @@ import net.bootsfaces.component.inputText.InputText;
 	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
     @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
-@FacesComponent(C.INPUTSECRET_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.inputSecret.InputSecret")
 public class InputSecret extends InputText {
 }

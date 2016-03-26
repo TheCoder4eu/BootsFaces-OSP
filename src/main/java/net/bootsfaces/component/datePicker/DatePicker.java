@@ -71,7 +71,7 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 
 })
-@FacesComponent(C.DATEPICKER_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
 public class DatePicker extends HtmlInputText {
 
 	/**
@@ -79,7 +79,7 @@ public class DatePicker extends HtmlInputText {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.DATEPICKER_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.datepicker.Datepicker";
 	/**
 	 * <p>
 	 * The component family for this component.

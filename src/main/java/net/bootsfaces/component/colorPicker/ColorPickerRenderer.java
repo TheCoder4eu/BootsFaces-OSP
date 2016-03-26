@@ -19,7 +19,7 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.ColorPickerRenderer")
+@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPickerRenderer")
 public class ColorPickerRenderer extends CoreRenderer {
 
 	@Override

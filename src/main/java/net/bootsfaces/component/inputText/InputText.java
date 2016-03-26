@@ -41,7 +41,7 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent(C.INPUTTEXT_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.inputText.InputText")
 public class InputText extends HtmlInputText implements IHasTooltip, IAJAXComponent {
 	
 	private String renderLabel = null;
@@ -51,7 +51,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.INPUTTEXT_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.inputText.InputText";
 	/**
 	 * <p>
 	 * The component family for this component.

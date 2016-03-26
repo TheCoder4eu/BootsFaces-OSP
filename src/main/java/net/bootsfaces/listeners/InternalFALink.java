@@ -31,13 +31,13 @@ import net.bootsfaces.C;
  *
  * @author Stephan Rauh, http://www.beyondjava.net
  */
-@FacesComponent(C.INTERNAL_FA_LINK)
+@FacesComponent("net.bootsfaces.component.internalFALink.InternalFALink")
 public class InternalFALink extends UIComponentBase {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.ICON_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.internalFALink.InternalFALink";
     /**
      * <p>The component family for this component.</p>
      */

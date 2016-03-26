@@ -48,7 +48,7 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.INPUTTEXT_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.inputTextarea.InputTextarea";
 	/**
 	 * <p>
 	 * The component family for this component.

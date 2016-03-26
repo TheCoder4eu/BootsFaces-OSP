@@ -39,7 +39,7 @@ import net.bootsfaces.render.CoreRenderer;
  *
  * @author duncan
  */
-@FacesRenderer(componentFamily="javax.faces.Messages", rendererType="net.bootsfaces.component.MessagesRenderer")
+@FacesRenderer(componentFamily="javax.faces.Messages", rendererType="net.bootsfaces.component.messages.MessagesRenderer")
 public class MessagesRenderer extends CoreRenderer {
     
     @Override

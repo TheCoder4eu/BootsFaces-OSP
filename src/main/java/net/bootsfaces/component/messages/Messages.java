@@ -38,12 +38,12 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent("net.bootsfaces.component.Messages")
+@FacesComponent("net.bootsfaces.component.messages.Messages")
 public class Messages extends javax.faces.component.UIMessages {
 
 	public Messages() {
 		super();
-		setRendererType("net.bootsfaces.component.MessagesRenderer");
+		setRendererType("net.bootsfaces.component.messages.MessagesRenderer");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

@@ -42,7 +42,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 @ResourceDependencies({ @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
-@FacesComponent(C.POLL_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.poll.Poll")
 public class Poll extends HtmlCommandButton {
 
 	/**
@@ -50,7 +50,7 @@ public class Poll extends HtmlCommandButton {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.COMMANDBUTTON_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.poll.Poll";
 	/**
 	 * <p>
 	 * The component family for this component.

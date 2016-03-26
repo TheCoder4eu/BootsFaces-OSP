@@ -37,10 +37,10 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:scrollup /&gt;. */
 @ResourceDependencies({@ResourceDependency(library = "bsf", name = "css/scrollup.css", target = "head")})
-@FacesComponent(C.SCROLL_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.scrollUp.ScrollUp")
 public class ScrollUp extends UIComponentBase {
 	// Static internal references
-    public static final String COMPONENT_TYPE =C.SCROLL_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.scrollUp.ScrollUp";
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
     public ScrollUp() {

@@ -35,13 +35,13 @@ import net.bootsfaces.C;
  *
  * @author Stephan Rauh, http://www.beyondjava.net
  */
-@FacesComponent(C.INTERNAL_IE8_COMPATIBILITY_LINK)
+@FacesComponent("net.bootsfaces.component.internalIE8CompatibilityLink.InternalIE8CompatibilityLink")
 public class InternalIE8CompatiblityLinks extends UIComponentBase {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.ICON_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.internalIE8CompatibilityLink.InternalIE8CompatibilityLink";
     /**
      * <p>The component family for this component.</p>
      */

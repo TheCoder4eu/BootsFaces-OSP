@@ -38,7 +38,7 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 
-@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextRenderer")
+@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputTextRenderer")
 public class InputTextRenderer extends CoreRenderer {
 
 	@Override

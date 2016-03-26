@@ -40,13 +40,13 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ 
     @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent(C.NAVBARLINKS_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.navbarLinks.NavbarLinks")
 public class NavBarLinks extends LinksContainer {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.NAVBARLINKS_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.navbarLinks.NavbarLinks";
     /**
      * <p>The component family for this component.</p>
      */

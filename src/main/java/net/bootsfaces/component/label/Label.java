@@ -38,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/labels.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
-@FacesComponent(C.LABEL_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.label.Label")
 public class Label extends UIComponentBase {
 
 	/**
@@ -46,7 +46,7 @@ public class Label extends UIComponentBase {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.LABEL_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.label.Label";
 	/**
 	 * <p>
 	 * The component family for this component.

@@ -33,13 +33,13 @@ import net.bootsfaces.C;
  * @author thecoder4eu
  */
 
-@FacesComponent(C.FETCH_BEAN_INFOS_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos")
 public class FetchBeanInfos extends UIComponentBase {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.FETCH_BEAN_INFOS_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos";
     /**
      * <p>The component family for this component.</p>
      */

@@ -37,13 +37,13 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ 
     @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent(C.LISTLINKS_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.listLinks.ListLinks")
 public class ListLinks extends LinksContainer {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE =C.LISTLINKS_COMPONENT_TYPE;
+    public static final String COMPONENT_TYPE ="net.bootsfaces.component.listLinks.ListLinks";
     /**
      * <p>The component family for this component.</p>
      */

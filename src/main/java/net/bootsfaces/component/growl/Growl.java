@@ -30,7 +30,7 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/animate.css", target = "head") })
-@FacesComponent("net.bootsfaces.component.Growl")
+@FacesComponent("net.bootsfaces.component.growl.Growl")
 public class Growl extends UIMessages {
 
 	public Growl() {

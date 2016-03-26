@@ -20,7 +20,6 @@
 package net.bootsfaces.component.button;
 
 import static net.bootsfaces.C.BSFCOMPONENT;
-import static net.bootsfaces.C.BUTTON_COMPONENT_TYPE;
 import static net.bootsfaces.C.W_NONAVCASE_BUTTON;
 import static net.bootsfaces.render.A.asString;
 import static net.bootsfaces.render.A.toBool;
@@ -60,7 +59,7 @@ import net.bootsfaces.utils.BsfUtils;
  */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent(BUTTON_COMPONENT_TYPE)
+@FacesComponent("net.bootsfaces.component.button.Button")
 public class Button extends HtmlOutcomeTargetButton {
 
 	/**
@@ -68,7 +67,7 @@ public class Button extends HtmlOutcomeTargetButton {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = BUTTON_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.button.Button";
 	/**
 	 * <p>
 	 * The component family for this component.

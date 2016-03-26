@@ -26,7 +26,7 @@ import net.bootsfaces.utils.BsfUtils;
 	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/jquery.minicolors.css", target = "head") })
-@FacesComponent(C.COLORPICKER_COMPONENT_TYPE)
+@FacesComponent(("net.bootsfaces.component.colorPicker.ColorPicker"))
 public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComponent {
 	
 	private String renderLabel = null;
@@ -36,7 +36,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.COLORPICKER_COMPONENT_TYPE;
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT+".ColorPicker";
 	/**
 	 * <p>
 	 * The component family for this component.
