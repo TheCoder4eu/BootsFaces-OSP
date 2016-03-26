@@ -105,8 +105,8 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 									setter);
 							alternative.setBound(true);
 							alternatives.add(alternative);
-							
 						}
+						addAlternativeForScreenLayout(alternatives, camelCase, getter, setter);
 					}
 				}
 			
@@ -117,4 +117,48 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 		}
 	}
 
+	private void addAlternativeForScreenLayout(List<PropertyDescriptor> alternatives, String camelCase, String getter,
+			String setter) throws IntrospectionException {
+		PropertyDescriptor alternative;
+		if (camelCase.equals("colXs")) {
+			alternative = new PropertyDescriptor("tiny-screen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+			alternative = new PropertyDescriptor("tinyScreen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+		}
+		if (camelCase.equals("colSm")) {
+			alternative = new PropertyDescriptor("small-screen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+			alternative = new PropertyDescriptor("smallScreen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+		}
+		if (camelCase.equals("colMd")) {
+			alternative = new PropertyDescriptor("medium-screen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+			alternative = new PropertyDescriptor("mediumScreen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+		}
+		if (camelCase.equals("colLg")) {
+			alternative = new PropertyDescriptor("huge-screen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+			alternative = new PropertyDescriptor("hugeScreen", getDecoratedClass(), getter,
+					setter);
+			alternative.setBound(true);
+			alternatives.add(alternative);
+		}
+	}
 }
