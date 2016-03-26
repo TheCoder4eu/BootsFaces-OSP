@@ -20,22 +20,13 @@
 package net.bootsfaces.component.selectBooleanCheckbox;
 
 import java.io.IOException;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
 
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-import javax.xml.soap.MessageFactory;
-
-import org.apache.commons.lang3.StringUtils;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.messages.Messages;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -90,7 +81,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 				FacesMessages.error(clientId, userDefinedMessage, userDefinedMessage);
 			} else {
 				String label = selectBooleanCheckbox.getLabel();
-				if (StringUtils.isEmpty(label)) {
+				if (label==null || label.length()==0) {
 					label = clientId;
 				}
 				FacesMessages.createErrorMessageFromResourceBundle(clientId, "javax.faces.component.UIInput.REQUIRED", label);
