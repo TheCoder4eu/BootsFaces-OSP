@@ -17,41 +17,49 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.buttonGroup;
+package net.bootsfaces.component.row;
 
+import java.util.Map;
+
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIOutput;
 
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:buttonGroup /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+
+/** This class holds the attributes of &lt;b:row /&gt;. */
+@ResourceDependencies({ 
+    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent("net.bootsfaces.component.buttonGroup.ButtonGroup")
-public class ButtonGroup extends UIComponentBase implements net.bootsfaces.render.IHasTooltip  {
+@FacesComponent("net.bootsfaces.component.row.Row")
+public class Row extends UIOutput  implements net.bootsfaces.render.IHasTooltip  {
 	
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.buttonGroup.ButtonGroup";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.row.Row";
 	
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.buttonGroup.ButtonGroup";
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.row.Row";
 	
-	public ButtonGroup() {
+	public Row() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	
 	public String getFamily() {
 		return COMPONENT_FAMILY;
-	}	
+	}
+	
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
+	}
 	
     protected enum PropertyKeys {
-binding,
-orientation,
-pull,
-size,
+dir,
 style,
 styleClass,
 tooltip,
@@ -77,74 +85,20 @@ tooltipPosition
 	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
+	public String getDir() {
+		String value = (String)getStateHelper().eval(PropertyKeys.dir);
 		return  value;
 	}
 	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
-	    getStateHelper().put(PropertyKeys.binding, _binding);
-    }
-	
-
-	/**
-	 * Orientation can be horizontal(default) or vertical. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOrientation() {
-		String value = (String)getStateHelper().eval(PropertyKeys.orientation);
-		return  value;
-	}
-	
-	/**
-	 * Orientation can be horizontal(default) or vertical. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOrientation(String _orientation) {
-	    getStateHelper().put(PropertyKeys.orientation, _orientation);
-    }
-	
-
-	/**
-	 * Can be right or left. Pulls the element right or left. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getPull() {
-		String value = (String)getStateHelper().eval(PropertyKeys.pull);
-		return  value;
-	}
-	
-	/**
-	 * Can be right or left. Pulls the element right or left. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPull(String _pull) {
-	    getStateHelper().put(PropertyKeys.pull, _pull);
-    }
-	
-
-	/**
-	 * Size of the grouped Buttons, can be lg, sm or xs. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getSize() {
-		String value = (String)getStateHelper().eval(PropertyKeys.size);
-		return  value;
-	}
-	
-	/**
-	 * Size of the grouped Buttons, can be lg, sm or xs. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSize(String _size) {
-	    getStateHelper().put(PropertyKeys.size, _size);
+	public void setDir(String _dir) {
+	    getStateHelper().put(PropertyKeys.dir, _dir);
     }
 	
 

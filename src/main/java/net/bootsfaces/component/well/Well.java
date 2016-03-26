@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -19,89 +19,263 @@
 
 package net.bootsfaces.component.well;
 
-import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
+import javax.faces.component.UIOutput;
 
-import net.bootsfaces.C;
-import net.bootsfaces.render.RWell;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-    @ResourceDependency(library="bsf", name="css/wells.css")
-})
-@FacesComponent(C.WELL_COMPONENT_TYPE)
-public class Well extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.WELL_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFLAYOUT;
-	private Map<String, Object> attributes;
+/** This class holds the attributes of &lt;b:well /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
+		@ResourceDependency(library = "bsf", name = "css/wells.css") })
+@FacesComponent("net.bootsfaces.component.well.Well")
+public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
-    public Well() {
-        setRendererType(null); // this component renders itself
-        Tooltip.addResourceFile();
-    }
-    
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.well.Well";
+
+	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.well.Well";
+
+	public Well() {
+		Tooltip.addResourceFile();
+		setRendererType(DEFAULT_RENDERER);
+	}
+
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
 
+	protected enum PropertyKeys {
+		size, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 
-    @Override
-    public void encodeBegin(FacesContext context) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
-        /*
-         * <div class="well"> || <div class="well well-large">
-         * ...
-         * </div>
-         * Size: large/small
-         */
-        
-        RWell.encBegin(this, context);
-        
-//        ResponseWriter rw = context.getResponseWriter();
-//        
-//        Map<String, Object> attrs = getAttributes();
-//        
-//        String size = A.asString(attrs.get(A.SIZE));
-//        
-//        rw.startElement(H.DIV, this);
-//        rw.writeAttribute(H.ID,getClientId(context),H.ID);
-//        if(size!=null) { rw.writeAttribute(H.CLASS,S.WELL+S.SP+S.WELL+S.HYP+size,H.CLASS); }
-//        rw.writeAttribute(H.CLASS, S.WELL,H.CLASS);
-        
-    }
-    
-    @Override
-    public void encodeEnd(FacesContext context) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
-        context.getResponseWriter().endElement("div");
-        Tooltip.activateTooltips(context, getAttributes(), this);
-    }
+		String toString;
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
+	/**
+	 * Size can be large or small and controls padding and rounded corners.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getSize() {
+		String value = (String) getStateHelper().eval(PropertyKeys.size);
+		return value;
+	}
+
+	/**
+	 * Size can be large or small and controls padding and rounded corners.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSize(String _size) {
+		getStateHelper().put(PropertyKeys.size, _size);
+	}
+
+	/**
+	 * Inline CSS of the tab.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getStyle() {
+		String value = (String) getStateHelper().eval(PropertyKeys.style);
+		return value;
+	}
+
+	/**
+	 * Inline CSS of the tab.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of the div surrounding the tab pane.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getStyleClass() {
+		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
+		return value;
+	}
+
+	/**
+	 * Style class of the div surrounding the tab pane.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * The text of the tooltip.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltip() {
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
+		return value;
+	}
+
+	/**
+	 * The text of the tooltip.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltip(String _tooltip) {
+		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelay() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelay(int _tooltipDelay) {
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelayHide() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayHide(int _tooltipDelayHide) {
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelayShow() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		return (int) value;
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayShow(int _tooltipDelayShow) {
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
+
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
+	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
+	 * "auto left". Default to "bottom".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipPosition() {
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return value;
+	}
+
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
+	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
+	 * "auto left". Default to "bottom".
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipPosition(String _tooltipPosition) {
+		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
 }

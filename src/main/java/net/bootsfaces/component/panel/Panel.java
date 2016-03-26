@@ -53,10 +53,7 @@ public class Panel extends UIComponentBase
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panel.Panel";
 
-	private Map<String, Object> attributes;
-
 	public Panel() {
-
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}

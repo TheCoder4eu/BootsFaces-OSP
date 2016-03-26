@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.tabLinks;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -46,8 +44,6 @@ public class TabLinks extends LinksContainer {
     
     private static final String STYLE="nav nav-tabs";
 
-	private Map<String, Object> attributes;
-    
     public TabLinks() {
         setRendererType(null); // this component renders itself
     }

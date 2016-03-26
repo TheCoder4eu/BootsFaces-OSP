@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.selectMultiMenu;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -50,12 +48,8 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
 
-	private Map<String, Object> attributes;
-	
 	public SelectMultiMenu() {
-		
-		
-	Tooltip.addResourceFile();
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

@@ -58,8 +58,6 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
-	private Map<String, Object> attributes;
-
     public enum DataTablePropertyType
     {
         pageLength, searchTerm, currentPage

@@ -94,13 +94,12 @@ public class DatePicker extends HtmlInputText {
 	 * Selected Locale
 	 */
 	private Locale sloc;
-	// private TimeZone stz;
+
 	/**
 	 * selected Date Format
 	 */
 	private String sdf;
 	private String mode;
-	private Map<String, Object> attributes;
 
 	public DatePicker() {
 		setRendererType(null); // this component renders itself

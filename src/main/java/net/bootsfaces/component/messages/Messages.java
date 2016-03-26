@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.messages;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -42,8 +40,6 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.Messages")
 public class Messages extends javax.faces.component.UIMessages {
-
-	private Map<String, Object> attributes;
 
 	public Messages() {
 		super();

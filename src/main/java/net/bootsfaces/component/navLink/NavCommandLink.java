@@ -51,8 +51,6 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navLink.NavLink";
 
-	private Map<String, Object> attributes;
-
 	public NavCommandLink() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");

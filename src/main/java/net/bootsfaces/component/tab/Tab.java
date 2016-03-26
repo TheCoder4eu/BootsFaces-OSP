@@ -47,8 +47,6 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
-	private Map<String, Object> attributes;
-
     /**
      * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
      * (such as the onclick event of b:tabView, which has to be implemented manually).

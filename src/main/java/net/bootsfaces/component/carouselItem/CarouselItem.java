@@ -44,8 +44,6 @@ public class CarouselItem extends UICommand
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselItem.CarouselItem";
 
-	private Map<String, Object> attributes;
-
 	public CarouselItem() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);

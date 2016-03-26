@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.alert;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -47,12 +45,8 @@ public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHa
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.alert.Alert";
 	
-	private Map<String, Object> attributes = null;
-	
 	public Alert() {
-		
-		
-	Tooltip.addResourceFile();
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

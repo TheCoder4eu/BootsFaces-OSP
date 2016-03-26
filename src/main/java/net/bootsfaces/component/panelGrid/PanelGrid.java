@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.panelGrid;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -74,8 +72,6 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panelGrid.PanelGrid";
-
-	private Map<String, Object> attributes;
 
 	public PanelGrid() {
 		Tooltip.addResourceFile();

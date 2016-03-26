@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.column;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -44,12 +42,8 @@ public class Column extends UIOutput  implements net.bootsfaces.render.IHasToolt
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.column.Column";
 	
-	private Map<String, Object> attributes = null;
-	
 	public Column() {
-		
-		
-	Tooltip.addResourceFile();
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

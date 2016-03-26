@@ -45,10 +45,8 @@ IAJAXComponent, ClientBehaviorHolder{
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselCaption.CarouselCaption";
 
-	private Map<String, Object> attributes;
-	
-	public CarouselCaption() {		
-	Tooltip.addResourceFile();
+	public CarouselCaption() {
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.pillLinks;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -46,8 +44,6 @@ public class PillLinks extends LinksContainer {
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".PillLinks";
 
 	private static final String STYLE = "nav nav-pills";
-
-	private Map<String, Object> attributes;
 
 	public PillLinks() {
 		setRendererType(null); // this component renders itself

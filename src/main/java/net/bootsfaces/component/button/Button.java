@@ -75,13 +75,11 @@ public class Button extends HtmlOutcomeTargetButton {
 	 * </p>
 	 */
 	public static final String COMPONENT_FAMILY = BSFCOMPONENT;
-	private Map<String, Object> attributes;
 
 	public Button() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
-
 	}
 	
 	public void setValueExpression(String name, ValueExpression binding) {

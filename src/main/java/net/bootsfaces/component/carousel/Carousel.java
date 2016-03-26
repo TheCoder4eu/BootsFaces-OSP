@@ -55,8 +55,6 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carousel.Carousel";
 
-	private Map<String, Object> attributes;
-
 	public Carousel() {
 		Tooltip.addResourceFile();
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");

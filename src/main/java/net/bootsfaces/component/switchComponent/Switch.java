@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.switchComponent;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -47,10 +45,7 @@ public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.Selec
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.switch.Switch";
 
-	private Map<String, Object> attributes;
-
 	public Switch() {
-
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}

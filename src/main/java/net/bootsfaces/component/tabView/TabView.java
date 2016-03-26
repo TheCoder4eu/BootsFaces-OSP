@@ -39,8 +39,6 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-//
-
 /** This class holds the attributes of &lt;b:tabView /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
@@ -58,13 +56,10 @@ public class TabView extends UIOutput
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
-	private Map<String, Object> attributes;
-
 	public TabView() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
-		
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

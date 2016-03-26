@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.dropButton;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -47,8 +45,6 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropButton.DropButton";
-
-	private Map<String, Object> attributes;
 
 	public DropButton() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");

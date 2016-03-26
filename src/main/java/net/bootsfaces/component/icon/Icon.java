@@ -50,8 +50,6 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.icon.Icon";
 
-	private Map<String, Object> attributes;
-
 	public Icon() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);

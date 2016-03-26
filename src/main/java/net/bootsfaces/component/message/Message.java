@@ -44,10 +44,7 @@ public class Message extends UIMessage {
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.message.Message";
 
-	private Map<String, Object> attributes;
-
 	public Message() {
-
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.listLinks;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -52,7 +50,6 @@ public class ListLinks extends LinksContainer {
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     
     private static final String STYLE="nav nav-list";//S.NAV+S.SP+S.NAVLIST;
-	private Map<String, Object> attributes;
     
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);

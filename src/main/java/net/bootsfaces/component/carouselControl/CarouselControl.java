@@ -44,8 +44,6 @@ public class CarouselControl extends UICommand
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselControl.CarouselControl";
 
-	private Map<String, Object> attributes;
-
 	public CarouselControl() {
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);

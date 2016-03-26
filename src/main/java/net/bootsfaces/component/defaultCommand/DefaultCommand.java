@@ -21,8 +21,6 @@ public class DefaultCommand extends UIComponentBase {
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	private Map<String, Object> attributes;
-
 	public DefaultCommand() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");

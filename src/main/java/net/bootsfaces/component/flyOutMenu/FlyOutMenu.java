@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.flyOutMenu;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -44,12 +42,8 @@ public class FlyOutMenu extends UIOutput  implements net.bootsfaces.render.IHasT
 	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.flyOutMenu.FlyOutMenu";
 
-	private Map<String, Object> attributes;
-	
 	public FlyOutMenu() {
-		
-		
-	Tooltip.addResourceFile();
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

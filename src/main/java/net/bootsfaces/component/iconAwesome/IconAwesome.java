@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.iconAwesome;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -44,8 +42,6 @@ public class IconAwesome extends Icon {
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.iconAwesome.IconAwesome";
-
-	private Map<String, Object> attributes;
 
 	public IconAwesome() {
 		Tooltip.addResourceFile();

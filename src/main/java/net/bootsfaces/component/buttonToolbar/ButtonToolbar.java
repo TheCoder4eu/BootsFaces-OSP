@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *  
  *  This file is part of BootsFaces.
  *  
@@ -19,65 +19,248 @@
 
 package net.bootsfaces.component.buttonToolbar;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponentBase;
 
-import net.bootsfaces.C;
-import net.bootsfaces.component.GenContainerDiv;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/**
- *
- * @author thecoder4.eu
- */
 
-
+/** This class holds the attributes of &lt;b:buttonToolbar /&gt;. */
 @ResourceDependencies({ 
     @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
-@FacesComponent(C.BUTTONTOOLBAR_COMPONENT_TYPE)
-public class ButtonToolbar extends GenContainerDiv {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.BUTTONTOOLBAR_COMPONENT_TYPE;
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-	private Map<String, Object> attributes;
-    
-    
-    public ButtonToolbar() {
-        setRendererType(null); // this component renders itself
+@FacesComponent("net.bootsfaces.component.buttonToolbar.ButtonToolbar")
+public class ButtonToolbar extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
+	
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.buttonToolbar.ButtonToolbar";
+	
+	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.buttonToolbar.ButtonToolbar";
+	
+	public ButtonToolbar() {
 		Tooltip.addResourceFile();
-    }
-
+		setRendererType(DEFAULT_RENDERER);
+	}
+	
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+	
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
+	
+    protected enum PropertyKeys {
+binding,
+pull,
+style,
+styleClass,
+tooltip,
+tooltipContainer,
+tooltipDelay,
+tooltipDelayHide,
+tooltipDelayShow,
+tooltipPosition
+;
 
-    
-    /*
-     * <div class="btn-toolbar">
-     * ...
-     * </div>
-     */
-    @Override
-    public String getContainerStyles() {
-        return "btn-toolbar";
-    }
+        String toString;
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
+
+        PropertyKeys() {}
+
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
     }
-    
+	
+
+	/**
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
+		return  value;
+	}
+	
+	/**
+	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+	    getStateHelper().put(PropertyKeys.binding, _binding);
+    }
+	
+
+	/**
+	 * Can be right or left. Pulls the element right or left. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getPull() {
+		String value = (String)getStateHelper().eval(PropertyKeys.pull);
+		return  value;
+	}
+	
+	/**
+	 * Can be right or left. Pulls the element right or left. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPull(String _pull) {
+	    getStateHelper().put(PropertyKeys.pull, _pull);
+    }
+	
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		String value = (String)getStateHelper().eval(PropertyKeys.style);
+		return  value;
+	}
+	
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+	    getStateHelper().put(PropertyKeys.style, _style);
+    }
+	
+
+	/**
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return  value;
+	}
+	
+	/**
+	 * Style class of this element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+    }
+	
+
+	/**
+	 * The text of the tooltip. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltip() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltip);
+		return  value;
+	}
+	
+	/**
+	 * The text of the tooltip. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltip(String _tooltip) {
+	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+    }
+	
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+    }
+	
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelay() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelay(int _tooltipDelay) {
+	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+    }
+	
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelayHide() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayHide(int _tooltipDelayHide) {
+	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+    }
+	
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelayShow() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		return (int) value;
+	}
+	
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayShow(int _tooltipDelayShow) {
+	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+    }
+	
+
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipPosition() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return  value;
+	}
+	
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipPosition(String _tooltipPosition) {
+	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+    }
+	
 }
+

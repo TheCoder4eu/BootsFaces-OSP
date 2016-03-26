@@ -32,8 +32,6 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
 
     public static final String DEFAULT_RENDERER = "net.bootsfaces.component.image.Image";
 
-	private Map<String, Object> attributes;
-
     public Image() {
         Tooltip.addResourceFile();
         setRendererType(DEFAULT_RENDERER);

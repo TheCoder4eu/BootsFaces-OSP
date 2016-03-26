@@ -42,7 +42,6 @@ public class ScrollUp extends UIComponentBase {
 	// Static internal references
     public static final String COMPONENT_TYPE =C.SCROLL_COMPONENT_TYPE;
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    private Map<String, Object> attributes;
 
     public ScrollUp() {
         setRendererType(null); // this component renders itself

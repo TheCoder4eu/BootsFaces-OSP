@@ -47,7 +47,6 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
-	private Map<String, Object> attributes;
 
 	/**
 	 * returns the subset of AJAX requests that are implemented by jQuery

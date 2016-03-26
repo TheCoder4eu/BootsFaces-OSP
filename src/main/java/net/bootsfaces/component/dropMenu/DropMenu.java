@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.dropMenu;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -46,8 +44,6 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropMenu.DropMenu";
-
-	private Map<String, Object> attributes;
 
 	public DropMenu() {
 		Tooltip.addResourceFile();
