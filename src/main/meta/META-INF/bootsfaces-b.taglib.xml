@@ -8074,7 +8074,7 @@
   <!-- *********** ScrollUp.taglib.xml ************************* -->
 
   <tag>
-    <tag-name>scrollup</tag-name>
+    <tag-name>scrollUp</tag-name>
     <component>
       <component-type>net.bootsfaces.component.scrollUp.ScrollUp</component-type>
     </component>
