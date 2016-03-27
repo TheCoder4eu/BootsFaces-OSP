@@ -167,7 +167,7 @@ onmouseup,
 process,
 update,
 dataTableProperties,
-multiColumSearch,
+multiColumnSearch,
 responsive,
 fixedHeader,
 paginated,
@@ -593,7 +593,7 @@ customLangUrl
 	 * @return Returns the value of the attribute.
 	 */
 	public boolean isMultiColumnSearch() {
-		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.multiColumSearch, false );
+		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.multiColumnSearch, false );
 		return value;
 	}
 
@@ -602,7 +602,7 @@ customLangUrl
 	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
-		getStateHelper().put(PropertyKeys.multiColumSearch, _multiColumnSearch);
+		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
 	}
 	
 	/**
