@@ -470,16 +470,16 @@ widget dataTable
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     update                                                                 "Component(s) to be updated with ajax."
-    dataTable-properties Map                                               "A java.util.Map<net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object> map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
+    dataTable-properties Map<DataTablePropertyType, Object>                "Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map<net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object> map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
     multi-column-search  Boolean                                           "If true, <b:inputText /> fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     page-length          Integer default "10"                              "Sets the default page length for paginated dataTable. The default value is 10."
     page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
-	multiColumSearch     Boolean                                           "Activates Multi-column search inputs. The default value is false (no multi-column searching)"
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
-	fixedHeader          Boolean                                           "Activates the fixed header plugin of the dataTable."
+	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
 	paginated            Boolean                                           "Activates the pagination of the dataTable. Default value is 'true'."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
-	customLangUrl        String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
+	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
+    widgetVar           String                                            "optional widget variable to access the datatable widget in JavaScript code."
 }
 
 

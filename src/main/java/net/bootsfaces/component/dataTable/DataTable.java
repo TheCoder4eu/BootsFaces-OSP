@@ -30,7 +30,6 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
@@ -99,7 +98,7 @@ public class DataTable extends UIData
 	}
 
 	protected enum PropertyKeys {
-		disabled, immediate, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, ajax, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, update, dataTableProperties, multiColumnSearch, responsive, fixedHeader, paginated, pageLength, pageLengthMenu, lang, customLangUrl;
+		disabled, immediate, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, ajax, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, update, dataTableProperties, multiColumnSearch, pageLength, pageLengthMenu, responsive, fixedHeader, paginated, lang, customLangUrl, widgetVar;
 
 		String toString;
 
@@ -591,11 +590,15 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * Get the property map for the DataTable state.
-	 * <p>
+	 * Activates Multi-column search inputs. The default value is false (no
+	 * multi-column searching). A
+	 * java.util.Map<net.bootsfaces.component.dataTable.DataTable.
+	 * DataTablePropertyType, Object> map on the backing bean where the state of
+	 * the DataTable can be saved, and retrieved after re-rendering.
+	 * <P>
 	 * 
-	 * @return The property map for the DataTable state managed by a backing
-	 *         bean.
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public Map<DataTablePropertyType, Object> getDataTableProperties() {
 		Map<DataTablePropertyType, Object> value = (Map<DataTablePropertyType, Object>) getStateHelper()
@@ -604,59 +607,107 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * Set the map containing the DataTable properties for this instance.
-	 * <p>
-	 * EXPERIMENTAL: Does not support multiple DataTables on the same page.
-	 * 
-	 * @param _dataTableProperties
-	 *            The map
+	 * Activates Multi-column search inputs. The default value is false (no
+	 * multi-column searching). A
+	 * java.util.Map<net.bootsfaces.component.dataTable.DataTable.
+	 * DataTablePropertyType, Object> map on the backing bean where the state of
+	 * the DataTable can be saved, and retrieved after re-rendering.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
 		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no
-	 * multi-column searching).
+	 * If true, <b:inputText /> fields will be generated at the bottom of each
+	 * column which allow you to perform per-column filtering.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute.
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isMultiColumnSearch() {
 		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.multiColumnSearch, false);
-		return value;
+		return (boolean) value;
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no
-	 * multi-column searching).
+	 * If true, <b:inputText /> fields will be generated at the bottom of each
+	 * column which allow you to perform per-column filtering.
 	 * <P>
-	 * 
-	 * @param _multiColumnSearch
-	 *            Whether or not to enable search inputs per-column
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable.
+	 * Sets the default page length for paginated dataTable. The default value
+	 * is 10.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute.
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
-	public boolean isResponsive() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
+	public int getPageLength() {
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
+		return (int) value;
+	}
+
+	/**
+	 * Sets the default page length for paginated dataTable. The default value
+	 * is 10.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPageLength(int _pageLength) {
+		getStateHelper().put(PropertyKeys.pageLength, _pageLength);
+	}
+
+	/**
+	 * Sets the default page length for paginated dataTable. The default value
+	 * is [10, 25, 50, 100]. Read
+	 * https://www.datatables.net/examples/advanced_init/length_menu.html for
+	 * details.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getPageLengthMenu() {
+		String value = (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
 		return value;
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable. The default value is
-	 * false (no responsive).
+	 * Sets the default page length for paginated dataTable. The default value
+	 * is [10, 25, 50, 100]. Read
+	 * https://www.datatables.net/examples/advanced_init/length_menu.html for
+	 * details.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPageLengthMenu(String _pageLengthMenu) {
+		getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
+	}
+
+	/**
+	 * Activates the responsive plugin of the dataTable
 	 * <P>
 	 * 
-	 * @param _multiColumnSearch
-	 *            Whether or not to enable search inputs per-column
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isResponsive() {
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
+		return (boolean) value;
+	}
+
+	/**
+	 * Activates the responsive plugin of the dataTable
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setResponsive(boolean _responsive) {
 		getStateHelper().put(PropertyKeys.responsive, _responsive);
@@ -666,92 +717,47 @@ public class DataTable extends UIData
 	 * Activates the fixed header plugin of the dataTable.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute.
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isFixedHeader() {
 		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.fixedHeader, false);
-		return value;
+		return (boolean) value;
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. The default value is
-	 * false (no responsive).
+	 * Activates the fixed header plugin of the dataTable.
 	 * <P>
-	 * 
-	 * @param _multiColumnSearch
-	 *            Whether or not to enable search inputs per-column
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFixedHeader(boolean _fixedHeader) {
 		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
 	}
 
 	/**
-	 * Activates the pagination of the dataTable.
+	 * Activates the pagination of the dataTable. Default value is 'true'.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute.
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isPaginated() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
-		return value;
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.paginated, false);
+		return (boolean) value;
 	}
 
 	/**
-	 * Activates pagination of the dataTable. The default value is true
-	 * (pagination active).
+	 * Activates the pagination of the dataTable. Default value is 'true'.
 	 * <P>
-	 * 
-	 * @param _multiColumnSearch
-	 *            Whether or not to enable search inputs per-column
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPaginated(boolean _paginated) {
 		getStateHelper().put(PropertyKeys.paginated, _paginated);
 	}
 
 	/**
-	 * Set the default page length for paginated dataTable.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or 10 if no attribute
-	 *         specified
-	 */
-	public int getPageLength() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
-		return (int) value;
-	}
-
-	/**
-	 * Set the default page length for paginated dataTable.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPageLength(int _pageLength) {
-		getStateHelper().put(PropertyKeys.pageLength, _pageLength);
-	}
-
-	/**
-	 * Set the default page length for paginated dataTable.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or 10 if no attribute
-	 *         specified
-	 */
-	public String getPageLengthMenu() {
-		String value = (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
-		return value;
-	}
-
-	/**
-	 * Set the default page length for paginated dataTable.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPageLengthMenu(String _pageLengthMenu) {
-		getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
-	}
-
-	/**
-	 * Configured lang for the dataTable.
+	 * Configured lang for the dataTable. If no default language is configured,
+	 * the language configured in the browser is used.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -763,7 +769,8 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * Configured lang for the dataTable.
+	 * Configured lang for the dataTable. If no default language is configured,
+	 * the language configured in the browser is used.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -772,7 +779,8 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * Here we can define a custom lang file url for non-integrated languages.
+	 * Defines a custom lang file url for languages BootsFaces doesn't support
+	 * out-of-the-box.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -784,11 +792,36 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * Here we can define a custom lang file url for non-integrated languages.
+	 * Defines a custom lang file url for languages BootsFaces doesn't support
+	 * out-of-the-box.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCustomLangUrl(String _customLangUrl) {
 		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
 	}
+
+	/**
+	 * optional widget variable to access the datatable widget in JavaScript
+	 * code.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getWidgetVar() {
+		String value = (String) getStateHelper().eval(PropertyKeys.widgetVar);
+		return value;
+	}
+
+	/**
+	 * optional widget variable to access the datatable widget in JavaScript
+	 * code.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidgetVar(String _widgetVar) {
+		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
+	}
+
 }
