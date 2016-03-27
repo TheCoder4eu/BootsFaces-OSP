@@ -40,14 +40,12 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
 		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		//@ResourceDependency(library = "bsf", name = "js/jquery.dataTables.min.js", target = "body"),
-		//@ResourceDependency(library = "bsf", name = "js/dataTables.bootstrap.min.js", target = "body"),
-		//@ResourceDependency(library = "bsf", name = "css/dataTables.bootstrap.min.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
-public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip {
+public class DataTable extends UIData
+		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dataTable.DataTable";
 
@@ -58,52 +56,9 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
-    public enum DataTablePropertyType
-    {
-        pageLength, searchTerm, currentPage
-    }
-
-    @Override
-    public void decode( FacesContext context )
-    {
-        super.decode( context );
-        Map<DataTablePropertyType, Object> dataTableProperties = getDataTableProperties();
-        if ( dataTableProperties != null )
-        {
-            String params = context.getExternalContext().getRequestParameterMap().get( "params" );
-            if ( params != null )
-            {
-                params = params.replace( "BsFEvent=", "" );
-                String[] paramArray = params.split( "," );
-                for ( String keyValuePair : paramArray )
-                {
-                    String[] pair = keyValuePair.split( ":", 2 );
-                    String key = pair[ 0 ];
-                    Object value = null;
-                    if ( pair.length == 2 )
-                    {
-                        value = pair[ 1 ];
-                    }
-                    if ( value != null )
-                    {
-                        switch ( DataTablePropertyType.valueOf( key ) )
-                        {
-                            case pageLength:
-                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
-                            case currentPage:
-                                value = Integer.parseInt( value.toString() );
-                                break;
-                            case searchTerm:
-                                dataTableProperties.put( DataTablePropertyType.currentPage, 0 );
-                                value = value.toString();
-                                break;
-                        }
-                    }
-                    dataTableProperties.put( DataTablePropertyType.valueOf( key ), value );
-                }
-            }
-        }
-    }
+	public enum DataTablePropertyType {
+		pageLength, searchTerm, currentPage
+	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
@@ -112,7 +67,6 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 
 	@Override
 	public boolean getRendersChildren() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -144,584 +98,697 @@ public class DataTable extends UIData implements IAJAXComponent, ClientBehaviorH
 		return COMPONENT_FAMILY;
 	}
 
-    protected enum PropertyKeys {
-disabled,
-immediate,
-style,
-styleClass,
-tooltip,
-tooltipContainer,
-tooltipDelay,
-tooltipDelayHide,
-tooltipDelayShow,
-tooltipPosition,
-ajax,
-onclick,
-oncomplete,
-ondblclick,
-onmousedown,
-onmousemove,
-onmouseout,
-onmouseover,
-onmouseup,
-process,
-update,
-dataTableProperties,
-multiColumnSearch,
-responsive,
-fixedHeader,
-paginated,
-pageLength,
-pageLengthMenu,
-lang,
-customLangUrl
-;
+	protected enum PropertyKeys {
+		disabled, immediate, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, ajax, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, update, dataTableProperties, multiColumnSearch, responsive, fixedHeader, paginated, pageLength, pageLengthMenu, lang, customLangUrl;
 
-        String toString;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isDisabled() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
-	    getStateHelper().put(PropertyKeys.disabled, _disabled);
-    }
-	
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
+	}
 
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isImmediate() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * Flag indicating that, if this component is activated by the user,
+	 * notifications should be delivered to interested listeners and actions
+	 * immediately (that is, during Apply Request Values phase) rather than
+	 * waiting until Invoke Application phase. Default is false.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImmediate(boolean _immediate) {
-	    getStateHelper().put(PropertyKeys.immediate, _immediate);
-    }
-	
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
 
 	/**
-	 * Inline style of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Inline style of the input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String)getStateHelper().eval(PropertyKeys.style);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.style);
+		return value;
 	}
-	
+
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
 
 	/**
-	 * Style class of this element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Style class of this element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
+		return value;
 	}
-	
+
 	/**
-	 * Style class of this element. <P>
+	 * Style class of this element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
 
 	/**
-	 * The text of the tooltip. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The text of the tooltip.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltip);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
+		return value;
 	}
-	
+
 	/**
-	 * The text of the tooltip. <P>
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
-	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
 
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 		return (int) value;
 	}
-	
+
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
-	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
 
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 		return (int) value;
 	}
-	
+
 	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
 
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 		return (int) value;
 	}
-	
+
 	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * The tooltip is shown with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
 
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
+	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
+	 * "auto left". Default to "bottom".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
+	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
-	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-    }
-	
-
-	
+		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
-	    getStateHelper().put(PropertyKeys.ajax, _ajax);
-    }
-	
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
 
 	/**
-	 * The onclick attribute. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The onclick attribute.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onclick);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
+		return value;
 	}
-	
+
 	/**
-	 * The onclick attribute. <P>
+	 * The onclick attribute.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
-	    getStateHelper().put(PropertyKeys.onclick, _onclick);
-    }
-	
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOncomplete() {
-		String value = (String)getStateHelper().eval(PropertyKeys.oncomplete);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
+		return value;
 	}
-	
+
 	/**
-	 * Javascript to be executed when ajax completes with success. <P>
+	 * Javascript to be executed when ajax completes with success.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
-	    getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
-    }
-	
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
 
 	/**
-	 * Client side callback to execute when input element is double clicked. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when input element is double clicked.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOndblclick() {
-		String value = (String)getStateHelper().eval(PropertyKeys.ondblclick);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.ondblclick);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when input element is double clicked. <P>
+	 * Client side callback to execute when input element is double clicked.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndblclick(String _ondblclick) {
-	    getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
-    }
-	
+		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
 
 	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when a pointer input element is pressed
+	 * down over input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnmousedown() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmousedown);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onmousedown);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
+	 * Client side callback to execute when a pointer input element is pressed
+	 * down over input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousedown(String _onmousedown) {
-	    getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
-    }
-	
+		getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
+	}
 
 	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when a pointer input element is moved
+	 * within input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnmousemove() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmousemove);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onmousemove);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <P>
+	 * Client side callback to execute when a pointer input element is moved
+	 * within input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmousemove(String _onmousemove) {
-	    getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
-    }
-	
+		getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
+	}
 
 	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when a pointer input element is moved
+	 * away from input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnmouseout() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseout);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseout);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
+	 * Client side callback to execute when a pointer input element is moved
+	 * away from input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseout(String _onmouseout) {
-	    getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
-    }
-	
+		getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
+	}
 
 	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when a pointer input element is moved
+	 * onto input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnmouseover() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseover);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseover);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
+	 * Client side callback to execute when a pointer input element is moved
+	 * onto input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseover(String _onmouseover) {
-	    getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
-    }
-	
+		getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
+	}
 
 	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Client side callback to execute when a pointer input element is released
+	 * over input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getOnmouseup() {
-		String value = (String)getStateHelper().eval(PropertyKeys.onmouseup);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.onmouseup);
+		return value;
 	}
-	
+
 	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <P>
+	 * Client side callback to execute when a pointer input element is released
+	 * over input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnmouseup(String _onmouseup) {
-	    getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
-    }
-	
+		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
 
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
-	
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
 
 	/**
-	 * Component(s) to be updated with ajax. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Component(s) to be updated with ajax.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getUpdate() {
-		String value = (String)getStateHelper().eval(PropertyKeys.update);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		return value;
 	}
-	
+
 	/**
-	 * Component(s) to be updated with ajax. <P>
+	 * Component(s) to be updated with ajax.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUpdate(String _update) {
-	    getStateHelper().put(PropertyKeys.update, _update);
-    }
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
 
 	/**
-	 * Get the property map for the DataTable state. <p>
-	 * @return The property map for the DataTable state managed by a backing bean.
-     */
+	 * Get the property map for the DataTable state.
+	 * <p>
+	 * 
+	 * @return The property map for the DataTable state managed by a backing
+	 *         bean.
+	 */
 	public Map<DataTablePropertyType, Object> getDataTableProperties() {
-		Map<DataTablePropertyType, Object> value = (Map<DataTablePropertyType, Object>)getStateHelper().eval( PropertyKeys.dataTableProperties );
+		Map<DataTablePropertyType, Object> value = (Map<DataTablePropertyType, Object>) getStateHelper()
+				.eval(PropertyKeys.dataTableProperties);
 		return value;
 	}
 
 	/**
-	 * Set the map containing the DataTable properties for this instance. <p>
+	 * Set the map containing the DataTable properties for this instance.
+	 * <p>
 	 * EXPERIMENTAL: Does not support multiple DataTables on the same page.
-	 * @param _dataTableProperties The map
-     */
-	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties){
-		getStateHelper().put( PropertyKeys.dataTableProperties, _dataTableProperties );
+	 * 
+	 * @param _dataTableProperties
+	 *            The map
+	 */
+	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
+		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). <P>
+	 * Activates Multi-column search inputs. The default value is false (no
+	 * multi-column searching).
+	 * <P>
+	 * 
 	 * @return Returns the value of the attribute.
 	 */
 	public boolean isMultiColumnSearch() {
-		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.multiColumnSearch, false );
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.multiColumnSearch, false);
 		return value;
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). <P>
-	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 * Activates Multi-column search inputs. The default value is false (no
+	 * multi-column searching).
+	 * <P>
+	 * 
+	 * @param _multiColumnSearch
+	 *            Whether or not to enable search inputs per-column
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
 	}
-	
+
 	/**
-	 * Activates the responsive plugin of the dataTable. <P>
+	 * Activates the responsive plugin of the dataTable.
+	 * <P>
+	 * 
 	 * @return Returns the value of the attribute.
 	 */
 	public boolean isResponsive() {
-		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.responsive, false );
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
 		return value;
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable. The default value is false (no responsive). <P>
-	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 * Activates the responsive plugin of the dataTable. The default value is
+	 * false (no responsive).
+	 * <P>
+	 * 
+	 * @param _multiColumnSearch
+	 *            Whether or not to enable search inputs per-column
 	 */
 	public void setResponsive(boolean _responsive) {
 		getStateHelper().put(PropertyKeys.responsive, _responsive);
 	}
-	
+
 	/**
-	 * Activates the fixed header plugin of the dataTable. <P>
+	 * Activates the fixed header plugin of the dataTable.
+	 * <P>
+	 * 
 	 * @return Returns the value of the attribute.
 	 */
 	public boolean isFixedHeader() {
-		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.fixedHeader, false );
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.fixedHeader, false);
 		return value;
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. The default value is false (no responsive). <P>
-	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 * Activates the fixed header plugin of the dataTable. The default value is
+	 * false (no responsive).
+	 * <P>
+	 * 
+	 * @param _multiColumnSearch
+	 *            Whether or not to enable search inputs per-column
 	 */
 	public void setFixedHeader(boolean _fixedHeader) {
 		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
 	}
-	
+
 	/**
-	 * Activates the pagination of the dataTable. <P>
+	 * Activates the pagination of the dataTable.
+	 * <P>
+	 * 
 	 * @return Returns the value of the attribute.
 	 */
 	public boolean isPaginated() {
-		Boolean value = (Boolean) getStateHelper().eval( PropertyKeys.paginated, true );
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
 		return value;
 	}
 
 	/**
-	 * Activates pagination of the dataTable. The default value is true (pagination active). <P>
-	 * @param _multiColumnSearch Whether or not to enable search inputs per-column
+	 * Activates pagination of the dataTable. The default value is true
+	 * (pagination active).
+	 * <P>
+	 * 
+	 * @param _multiColumnSearch
+	 *            Whether or not to enable search inputs per-column
 	 */
 	public void setPaginated(boolean _paginated) {
 		getStateHelper().put(PropertyKeys.paginated, _paginated);
 	}
-	
+
 	/**
-	 * Set the default page length for paginated dataTable. <P>
-	 * @return Returns the value of the attribute, or 10 if no attribute specified
+	 * Set the default page length for paginated dataTable.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or 10 if no attribute
+	 *         specified
 	 */
 	public int getPageLength() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.pageLength, 10);
+		Integer value = (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
 		return (int) value;
 	}
-	
+
 	/**
-	 * Set the default page length for paginated dataTable. <P>
+	 * Set the default page length for paginated dataTable.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPageLength(int _pageLength) {
-	    getStateHelper().put(PropertyKeys.pageLength, _pageLength);
-    }
-	
+		getStateHelper().put(PropertyKeys.pageLength, _pageLength);
+	}
+
 	/**
-	 * Set the default page length for paginated dataTable. <P>
-	 * @return Returns the value of the attribute, or 10 if no attribute specified
+	 * Set the default page length for paginated dataTable.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or 10 if no attribute
+	 *         specified
 	 */
 	public String getPageLengthMenu() {
-		String value = (String)getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
+		String value = (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
 		return value;
 	}
-	
+
 	/**
-	 * Set the default page length for paginated dataTable. <P>
+	 * Set the default page length for paginated dataTable.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPageLengthMenu(String _pageLengthMenu) {
-	    getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
-    }
-	
+		getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
+	}
+
 	/**
-	 * Configured lang for the dataTable. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Configured lang for the dataTable.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getLang() {
-		String value = (String)getStateHelper().eval(PropertyKeys.lang);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.lang);
+		return value;
 	}
-	
+
 	/**
-	 * Configured lang for the dataTable. <P>
+	 * Configured lang for the dataTable.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLang(String _lang) {
-	    getStateHelper().put(PropertyKeys.lang, _lang);
-    }
-	
+		getStateHelper().put(PropertyKeys.lang, _lang);
+	}
+
 	/**
-	 * Here we can define a custom lang file url for non-integrated languages. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Here we can define a custom lang file url for non-integrated languages.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getCustomLangUrl() {
-		String value = (String)getStateHelper().eval(PropertyKeys.customLangUrl);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.customLangUrl);
+		return value;
 	}
-	
+
 	/**
-	 * Here we can define a custom lang file url for non-integrated languages. <P>
+	 * Here we can define a custom lang file url for non-integrated languages.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCustomLangUrl(String _customLangUrl) {
-	    getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
-    }
+		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
+	}
 }
-

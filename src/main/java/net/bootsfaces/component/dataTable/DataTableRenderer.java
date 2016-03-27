@@ -40,6 +40,43 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class generates the HTML code of &lt;b:dataTable /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
 public class DataTableRenderer extends CoreRenderer {
+	
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		super.decode(context, component);
+		DataTable dataTable = (DataTable) component;
+		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+		if (dataTableProperties != null) {
+			String params = context.getExternalContext().getRequestParameterMap().get("params");
+			if (params != null) {
+				params = params.replace("BsFEvent=", "");
+				String[] paramArray = params.split(",");
+				for (String keyValuePair : paramArray) {
+					String[] pair = keyValuePair.split(":", 2);
+					String key = pair[0];
+					Object value = null;
+					if (pair.length == 2) {
+						value = pair[1];
+					}
+					if (value != null) {
+						switch (DataTablePropertyType.valueOf(key)) {
+						case pageLength:
+							dataTableProperties.put(DataTablePropertyType.currentPage, 0);
+						case currentPage:
+							value = Integer.parseInt(value.toString());
+							break;
+						case searchTerm:
+							dataTableProperties.put(DataTablePropertyType.currentPage, 0);
+							value = value.toString();
+							break;
+						}
+					}
+					dataTableProperties.put(DataTablePropertyType.valueOf(key), value);
+				}
+			}
+		}
+	}
+
 
 	/**
 	 * This methods generates the HTML code of the current b:dataTable.
