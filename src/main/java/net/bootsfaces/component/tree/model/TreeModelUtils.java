@@ -34,7 +34,6 @@ public class TreeModelUtils {
 	
 	/**
 	 * Render the node model as JSON
-	 * @param nodeList
 	 * @return
 	 */
 	public static String renderModelAsJson (Node rootNode, boolean renderRoot) {

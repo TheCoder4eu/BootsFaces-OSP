@@ -19,26 +19,30 @@ public class BsfUtils {
 	 * In fact, you can map an action to an UICommand that calls this method and return null.
 	 * Once the bean sends the redirect, the ajax client receives a message from the server telling the client to redirect to a new page.
 	 * 
-	 * Example:
-	 * <h:form id="form">
-	 * 	 <!-- with basic jsf components -->
-     *   <h:commandButton id="goToPageBtn" value="Go" action="#{exampleBean.goToNewPage}">
-     *        <f:ajax execute="@this" render="@none"/>
-     *   </h:commandButton>
-     *   
-     *   <!-- with bootsfaces components -->
-     *   <b:commandButton id="goToPageBtn" value="Go" onclick="ajax:exampleBean.goToNewPage();" />
-     * </h:form>
-     * 
-     * @ManagedBean
-	 * @RequestScoped
-	 * public class ExampleBean {
-     * 		public String goToNewPage() { BsfUtils.navigateInAjax("/pages/newPage.xhtml"); return null; }
-     * }
 	 * 
 	 * @param outcome
 	 * @throws FacesException
 	 */
+	// Example:
+	// <h:form id="form">
+	// <!-- with basic jsf components -->
+	// <h:commandButton id="goToPageBtn" value="Go"
+	// action="#{exampleBean.goToNewPage}">
+	// <f:ajax execute="@this" render="@none"/>
+	// </h:commandButton>
+	//
+	// <!-- with bootsfaces components -->
+	// <b:commandButton id="goToPageBtn" value="Go"
+	// onclick="ajax:exampleBean.goToNewPage();" />
+	// </h:form>
+	//
+	// @ManagedBean
+	// @RequestScoped
+	// public class ExampleBean {
+	// public String goToNewPage() {
+	// BsfUtils.navigateInAjax("/pages/newPage.xhtml"); return null; }
+	// }
+
 	public static String navigateInAjax(String outcome) 
 	throws FacesException {
 		FacesContext ctx = FacesContext.getCurrentInstance();
@@ -117,7 +121,7 @@ public class BsfUtils {
 	
 	/**
 	 * Transform a snake-case string to a camelCase one.
-	 * @param snakeCaseStr
+	 * @param camelCase
 	 * @return the original string if there is no camelCase character. Otherwise, a snake-case representation of the camelCase version.
 	 */
 	public static String camelCaseToSnakeCase(String camelCase) {
@@ -237,7 +241,7 @@ public class BsfUtils {
 	/**
 	 * Check if a class is primitive, wrapper or String type.
 	 * So, it returns true if is a basic java type class
-	 * @param type
+	 * @param obj
 	 * @return
 	 */
 	public static boolean isPrimitiveOrPrimitiveWrapperOrString(Object obj) {

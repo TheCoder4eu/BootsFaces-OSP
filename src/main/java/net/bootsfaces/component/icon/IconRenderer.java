@@ -111,8 +111,6 @@ public class IconRenderer extends AJAXRenderer {
 	 *            Can be H,V
 	 * @param spin
 	 *            true or false
-	 * @param addon
-	 *            If true it is an addon for inputs.
 	 * @throws IOException
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,

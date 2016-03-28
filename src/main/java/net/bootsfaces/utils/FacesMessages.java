@@ -37,7 +37,7 @@ public class FacesMessages {
 	/**
 	 * Adds a FATAL message.
 	 *
-	 * @param message The message.
+	 * @param detail The message.
 	 */
 	public static void fatal(String detail) {
 		fatal("", detail);
@@ -54,7 +54,7 @@ public class FacesMessages {
 	/**
 	 * Adds a ERROR message.
 	 *
-	 * @param message The message.
+	 * @param detail The message.
 	 */
 	public static void error(String detail) {
 		error("", detail);
@@ -71,7 +71,7 @@ public class FacesMessages {
 	/**
 	 * Adds a WARNING message.
 	 *
-	 * @param message The message.
+	 * @param detail The message.
 	 */
 	public static void warning(String detail) {
 		warning("", detail);
@@ -88,7 +88,7 @@ public class FacesMessages {
 	/**
 	 * Adds an INFO message.
 	 *
-	 * @param message The message.
+	 * @param detail The message.
 	 */
 	public static void info(String detail) {
 		info("", detail);

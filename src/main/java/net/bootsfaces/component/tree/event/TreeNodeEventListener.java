@@ -20,9 +20,6 @@ package net.bootsfaces.component.tree.event;
 
 import net.bootsfaces.component.tree.model.Node;
 
-/**
- * Handle single tree node selection on {@link de.larmic.butterfaces.component.html.tree.HtmlTree} component if registered.
- */
 public interface TreeNodeEventListener {
 
     /**

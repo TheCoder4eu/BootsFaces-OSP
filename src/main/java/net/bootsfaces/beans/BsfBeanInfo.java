@@ -26,6 +26,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 	 * Optional method to add custom property descriptors
 	 * 
 	 * @return null, if there's nothing to add
+	 * @throws IntrospectionException thrown if something goes wrong
 	 */
 	public PropertyDescriptor[] getCustomPropertyDescriptor() throws IntrospectionException {
 		return null;

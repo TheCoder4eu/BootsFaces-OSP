@@ -592,9 +592,9 @@ public class DataTable extends UIData
 	/**
 	 * Activates Multi-column search inputs. The default value is false (no
 	 * multi-column searching). A
-	 * java.util.Map<net.bootsfaces.component.dataTable.DataTable.
-	 * DataTablePropertyType, Object> map on the backing bean where the state of
-	 * the DataTable can be saved, and retrieved after re-rendering.
+	 * java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.
+	 * DataTablePropertyType, Object&gt; map on the backing bean where the state
+	 * of the DataTable can be saved, and retrieved after re-rendering.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -609,9 +609,9 @@ public class DataTable extends UIData
 	/**
 	 * Activates Multi-column search inputs. The default value is false (no
 	 * multi-column searching). A
-	 * java.util.Map<net.bootsfaces.component.dataTable.DataTable.
-	 * DataTablePropertyType, Object> map on the backing bean where the state of
-	 * the DataTable can be saved, and retrieved after re-rendering.
+	 * java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.
+	 * DataTablePropertyType, Object&gt; map on the backing bean where the state
+	 * of the DataTable can be saved, and retrieved after re-rendering.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -620,8 +620,8 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * If true, <b:inputText /> fields will be generated at the bottom of each
-	 * column which allow you to perform per-column filtering.
+	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of
+	 * each column which allow you to perform per-column filtering.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
@@ -633,8 +633,8 @@ public class DataTable extends UIData
 	}
 
 	/**
-	 * If true, <b:inputText /> fields will be generated at the bottom of each
-	 * column which allow you to perform per-column filtering.
+	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of
+	 * each column which allow you to perform per-column filtering.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
