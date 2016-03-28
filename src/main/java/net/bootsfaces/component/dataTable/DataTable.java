@@ -742,7 +742,7 @@ public class DataTable extends UIData
 	 *         set by the JSF file.
 	 */
 	public boolean isPaginated() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.paginated, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
 		return (boolean) value;
 	}
 
