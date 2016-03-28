@@ -102,7 +102,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	public InputText() {
-		setRendererType("net.bootsfaces.component.InputTextRenderer");
+		setRendererType("net.bootsfaces.component.inputText.InputText");
 		Tooltip.addResourceFile();
 		renderLabel= FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.defaults.renderLabel");
