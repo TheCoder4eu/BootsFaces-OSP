@@ -19,23 +19,16 @@
 
 package net.bootsfaces.component.thumbnail;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:thumbnail /&gt;. */
-@ResourceDependencies({
-    @ResourceDependency(library="bsf", name="css/core.css", target="head"),
-    @ResourceDependency(library="bsf", name="css/thumbnails.css", target="head"),
-    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-})
+
 @FacesComponent("net.bootsfaces.component.thumbnail.Thumbnail")
 public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
@@ -48,6 +41,9 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	public Thumbnail() {
 
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("thumbnails.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

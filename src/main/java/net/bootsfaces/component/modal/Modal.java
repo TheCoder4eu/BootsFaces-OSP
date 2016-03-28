@@ -30,10 +30,9 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/modals.css", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/modal.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+		})
 @FacesComponent("net.bootsfaces.component.modal.Modal")
 public class Modal extends UIComponentBase {
 
@@ -45,6 +44,9 @@ public class Modal extends UIComponentBase {
 
 	public Modal() {
 		setRendererType(DEFAULT_RENDERER);
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("modals.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 	}
 

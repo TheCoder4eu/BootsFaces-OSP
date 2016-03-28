@@ -20,18 +20,14 @@
 package net.bootsfaces.component.jumbotron;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:jumbotron /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/jumbotron.css"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.jumbotron.Jumbotron")
 public class Jumbotron extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
@@ -44,6 +40,9 @@ public class Jumbotron extends UIOutput implements net.bootsfaces.render.IHasToo
 	public Jumbotron() {
 
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("jumbotron.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

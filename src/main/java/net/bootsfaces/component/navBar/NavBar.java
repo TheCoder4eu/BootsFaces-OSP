@@ -37,10 +37,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:navBar /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/navbar.css", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+		})
 @ListenerFor(systemEventClass = PostAddToViewEvent.class)
 @FacesComponent("net.bootsfaces.component.navBar.NavBar")
 public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
@@ -54,6 +53,10 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	public NavBar() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("navbar.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

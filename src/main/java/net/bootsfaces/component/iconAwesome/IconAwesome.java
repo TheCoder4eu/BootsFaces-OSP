@@ -20,20 +20,14 @@
 package net.bootsfaces.component.iconAwesome;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.component.icon.Icon;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:iconAwesome /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/font-awesome.css", target = "head"),
-		                @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		        		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		        		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head")
-})
 @FacesComponent("net.bootsfaces.component.iconAwesome.IconAwesome")
 public class IconAwesome extends Icon {
 
@@ -45,6 +39,11 @@ public class IconAwesome extends Icon {
 
 	public IconAwesome() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+//		AddResourcesListener.addThemedCSSResource("font-awesome.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

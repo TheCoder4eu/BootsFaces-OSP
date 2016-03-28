@@ -19,22 +19,19 @@
 
 package net.bootsfaces.component.message;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessage;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head") })
+})
 @FacesComponent("net.bootsfaces.component.message.Message")
 public class Message extends UIMessage {
 
@@ -46,6 +43,10 @@ public class Message extends UIMessage {
 
 	public Message() {
 		setRendererType(DEFAULT_RENDERER);
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("alerts.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

@@ -35,8 +35,6 @@ import javax.faces.FacesException;
 import javax.faces.application.ConfigurableNavigationHandler;
 import javax.faces.application.NavigationCase;
 import javax.faces.application.ProjectStage;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIParameter;
@@ -57,8 +55,6 @@ import net.bootsfaces.utils.BsfUtils;
  * 
  * @author thecoder4.eu
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.button.Button")
 public class Button extends HtmlOutcomeTargetButton {
 
@@ -77,6 +73,8 @@ public class Button extends HtmlOutcomeTargetButton {
 
 	public Button() {
 		setRendererType(null); // this component renders itself
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 	}

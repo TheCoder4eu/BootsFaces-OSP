@@ -25,18 +25,15 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:selectMultiMenu /&gt;. */
 @ResourceDependencies({ 
 	    @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
-	    @ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bootstrap-multiselect.css", target = "head"),
-		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
+	    })
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
@@ -50,6 +47,12 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 
 	public SelectMultiMenu() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("dropdowns.css");
+		AddResourcesListener.addThemedCSSResource("bootstrap-multiselect.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

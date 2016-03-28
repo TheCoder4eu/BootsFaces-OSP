@@ -24,17 +24,14 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils; 
 
 /** This class holds the attributes of &lt;b:switch /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target="head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/bootstrap-switch.css"),
-	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
+@ResourceDependencies({ 
+	@ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head")
+})
 @FacesComponent("net.bootsfaces.component.switch.Switch")
 public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox
 		implements net.bootsfaces.render.IHasTooltip {
@@ -47,6 +44,12 @@ public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.Selec
 
 	public Switch() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("bootstrap-switch.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

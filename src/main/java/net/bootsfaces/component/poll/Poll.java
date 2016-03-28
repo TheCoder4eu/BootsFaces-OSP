@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
@@ -33,6 +31,7 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.PreRenderComponentEvent;
 
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -40,8 +39,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @author Stephan Rauh
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "javax.faces", name = "jsf.js", target = "body"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.poll.Poll")
 public class Poll extends HtmlCommandButton {
 
@@ -60,6 +57,8 @@ public class Poll extends HtmlCommandButton {
 
 	public Poll() {
 		setRendererType(null); // this component renders itself
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

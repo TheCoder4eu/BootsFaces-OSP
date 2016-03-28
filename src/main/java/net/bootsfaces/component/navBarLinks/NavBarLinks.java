@@ -24,12 +24,11 @@
 package net.bootsfaces.component.navBarLinks;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -37,9 +36,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 
-@ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.navbarLinks.NavbarLinks")
 public class NavBarLinks extends LinksContainer {
     
@@ -57,6 +53,8 @@ public class NavBarLinks extends LinksContainer {
 
     public NavBarLinks() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
     }
     
 	public void setValueExpression(String name, ValueExpression binding) {

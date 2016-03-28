@@ -32,16 +32,16 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import net.bootsfaces.C;
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
 import net.bootsfaces.component.tree.model.Node;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tree /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/bootstrap-treeview.min.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/bootstrap-treeview.min.css", target = "head") })
+		})
 @FacesComponent("net.bootsfaces.component.tree.Tree")
 public class Tree extends UIComponentBase implements ClientBehaviorHolder {
+	
 	// Static internal references
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tree.Tree";
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
@@ -84,6 +84,11 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	 */
 	public Tree() {
 		setRendererType(DEFAULT_RENDERER);
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 	
 	@Override

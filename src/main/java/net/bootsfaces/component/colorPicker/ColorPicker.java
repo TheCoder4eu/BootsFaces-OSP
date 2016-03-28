@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
@@ -20,12 +18,6 @@ import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/jquery.minicolors.css", target = "head") })
 @FacesComponent(("net.bootsfaces.component.colorPicker.ColorPicker"))
 public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComponent {
 	
@@ -89,6 +81,12 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	public ColorPicker() {
 		setRendererType("net.bootsfaces.component.ColorPickerRenderer");
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("jquery.minicolors.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");
 

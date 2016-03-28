@@ -148,6 +148,7 @@ public class DataTableRenderer extends CoreRenderer {
 
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
 		rw.startElement("tbody", dataTable);
+		System.out.println(dataTable.getId());
 		int rows = dataTable.getRowCount();
 		dataTable.setRowIndex(-1);
 		for (int row = 0; row < rows; row++) {

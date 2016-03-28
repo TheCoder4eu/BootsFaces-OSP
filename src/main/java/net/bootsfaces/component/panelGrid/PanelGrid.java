@@ -20,11 +20,10 @@
 package net.bootsfaces.component.panelGrid;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -62,8 +61,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @since 22.11.2014
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.panelGrid.PanelGrid")
 public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
@@ -75,6 +72,8 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	public PanelGrid() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -19,21 +19,15 @@
 
 package net.bootsfaces.component.well;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:well /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/wells.css") })
 @FacesComponent("net.bootsfaces.component.well.Well")
 public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
@@ -45,6 +39,9 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 
 	public Well() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("wells.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

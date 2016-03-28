@@ -39,13 +39,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:carousel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/carousel.css", target = "head"),
-		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
-		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"), */
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+		})
 @FacesComponent("net.bootsfaces.component.carousel.Carousel")
 public class Carousel extends UICommand implements net.bootsfaces.render.IHasTooltip,IAJAXComponent, ClientBehaviorHolder {
 
@@ -57,6 +53,12 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 
 	public Carousel() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("carousel.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		setRendererType(DEFAULT_RENDERER);

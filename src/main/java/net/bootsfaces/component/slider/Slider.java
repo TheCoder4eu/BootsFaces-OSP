@@ -55,6 +55,15 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider.Slider";
 
 	public Slider() {
+//		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+//		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+//		AddResourcesListener.addThemedCSSResource("badges.css");
+//		AddResourcesListener.addThemedCSSResource("jq.ui.core.css");
+//		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
+//		AddResourcesListener.addThemedCSSResource("jq.ui.slider.css");
+//		AddResourcesListener.addThemedCSSResource("bsf.css");
+//		AddResourcesListener.addThemedCSSResource("core.css");
+//		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/widget.js");

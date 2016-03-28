@@ -20,12 +20,11 @@
 package net.bootsfaces.component.listLinks;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -34,9 +33,6 @@ import net.bootsfaces.utils.BsfUtils;
  */
 
 
-@ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.listLinks.ListLinks")
 public class ListLinks extends LinksContainer {
     
@@ -59,7 +55,9 @@ public class ListLinks extends LinksContainer {
     
     public ListLinks() {
         setRendererType(null); // this component renders itself
-    }
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+   }
     
     /*
      * <ul class="nav nav-list">

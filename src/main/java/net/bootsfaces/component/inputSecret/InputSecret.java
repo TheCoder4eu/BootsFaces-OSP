@@ -23,7 +23,6 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.inputText.InputText;
 
 /**

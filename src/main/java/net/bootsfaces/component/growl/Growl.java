@@ -18,8 +18,6 @@
  */package net.bootsfaces.component.growl;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessages;
 
@@ -27,9 +25,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/animate.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.growl.Growl")
 public class Growl extends UIMessages {
 
@@ -37,6 +32,9 @@ public class Growl extends UIMessages {
 		super();
 		setRendererType("net.bootsfaces.component.GrowlRenderer");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-notify.min.js");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("alerts.css");
+		AddResourcesListener.addThemedCSSResource("animate.css");
 	}
 
 

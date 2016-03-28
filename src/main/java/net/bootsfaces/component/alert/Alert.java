@@ -25,16 +25,14 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
 @ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/alerts.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/alert.js", target="body"),
-        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
+        @ResourceDependency(library="bsf", name="js/alert.js", target="body")
 })
 @FacesComponent("net.bootsfaces.component.alert.Alert")
 public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHasTooltip  {
@@ -47,6 +45,10 @@ public class Alert extends UIComponentBase  implements net.bootsfaces.render.IHa
 	
 	public Alert() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("alerts.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

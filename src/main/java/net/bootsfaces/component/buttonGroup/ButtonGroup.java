@@ -19,16 +19,13 @@
 
 package net.bootsfaces.component.buttonGroup;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:buttonGroup /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.buttonGroup.ButtonGroup")
 public class ButtonGroup extends UIComponentBase implements net.bootsfaces.render.IHasTooltip  {
 	
@@ -39,6 +36,8 @@ public class ButtonGroup extends UIComponentBase implements net.bootsfaces.rende
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.buttonGroup.ButtonGroup";
 	
 	public ButtonGroup() {
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}

@@ -25,16 +25,14 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/dropdowns.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/dropdown-submenu.css", target = "head"),
+@ResourceDependencies({ 
 	@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 	 })
 @FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
 public class DropMenu extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
@@ -47,7 +45,11 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	public DropMenu() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "jq/jquery.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addThemedCSSResource("dropdowns.css");
+		AddResourcesListener.addThemedCSSResource("dropdown-submenu.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

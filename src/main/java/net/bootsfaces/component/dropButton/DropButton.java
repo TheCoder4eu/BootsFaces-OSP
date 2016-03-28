@@ -20,8 +20,6 @@
 package net.bootsfaces.component.dropButton;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
@@ -31,12 +29,6 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropButton /&gt;. */
-@ResourceDependencies({
-	@ResourceDependency(library="bsf", name="css/core.css", target="head"),
-        @ResourceDependency(library="bsf", name="css/dropdowns.css", target="head"),
-        @ResourceDependency(library="bsf", name="js/dropdown.js", target="body"),
-        @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-})
 @FacesComponent("net.bootsfaces.component.dropButton.DropButton")
 public class DropButton extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
@@ -48,7 +40,11 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 
 	public DropButton() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addThemedCSSResource("dropdowns.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		Tooltip.addResourceFile();
+		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "js/dropdown.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

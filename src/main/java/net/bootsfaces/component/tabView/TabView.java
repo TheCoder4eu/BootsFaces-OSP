@@ -40,12 +40,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tabView /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+		})
 @FacesComponent("net.bootsfaces.component.tabView.TabView")
 public class TabView extends UIOutput
 		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
@@ -59,6 +56,12 @@ public class TabView extends UIOutput
 	public TabView() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
+		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
+		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -23,13 +23,12 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -39,9 +38,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4eu
  */
 
-@ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 public class LinksContainer extends UIComponentBase {
     
     /**
@@ -55,7 +51,10 @@ public class LinksContainer extends UIComponentBase {
     public LinksContainer() {
         setRendererType(null); // this component renders itself
         Tooltip.addResourceFile();
-    }
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+   }
     
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);

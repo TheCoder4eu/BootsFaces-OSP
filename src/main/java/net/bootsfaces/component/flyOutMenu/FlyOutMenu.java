@@ -20,19 +20,15 @@
 package net.bootsfaces.component.flyOutMenu;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 
 /** This class holds the attributes of &lt;b:flyOutMenu /&gt;. */
-@ResourceDependencies({ 
-    @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.flyOutMenu.FlyOutMenu")
 public class FlyOutMenu extends UIOutput  implements net.bootsfaces.render.IHasTooltip  {
 	
@@ -44,6 +40,8 @@ public class FlyOutMenu extends UIOutput  implements net.bootsfaces.render.IHasT
 
 	public FlyOutMenu() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

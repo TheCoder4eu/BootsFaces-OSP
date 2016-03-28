@@ -20,11 +20,10 @@
 package net.bootsfaces.component.pillLinks;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -32,8 +31,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4eu
  */
 
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 public class PillLinks extends LinksContainer {
 
 	/**
@@ -47,6 +44,8 @@ public class PillLinks extends LinksContainer {
 
 	public PillLinks() {
 		setRendererType(null); // this component renders itself
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

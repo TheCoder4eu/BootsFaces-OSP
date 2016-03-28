@@ -24,6 +24,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -34,15 +35,18 @@ import net.bootsfaces.utils.BsfUtils;
  * <code>setRendererType()</code> method.
  * </p>
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/alerts.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+@ResourceDependencies({ 
+		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body")
+})
 @FacesComponent("net.bootsfaces.component.messages.Messages")
 public class Messages extends javax.faces.component.UIMessages {
 
 	public Messages() {
 		super();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("alerts.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType("net.bootsfaces.component.messages.MessagesRenderer");
 	}
 

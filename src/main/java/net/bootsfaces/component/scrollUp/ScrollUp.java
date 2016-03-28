@@ -22,8 +22,6 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -36,7 +34,6 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:scrollup /&gt;. */
-@ResourceDependencies({@ResourceDependency(library = "bsf", name = "css/scrollup.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.scrollUp.ScrollUp")
 public class ScrollUp extends UIComponentBase {
 	// Static internal references
@@ -45,6 +42,7 @@ public class ScrollUp extends UIComponentBase {
 
     public ScrollUp() {
         setRendererType(null); // this component renders itself
+		AddResourcesListener.addThemedCSSResource("scrollup.css");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.scrollUp.min.js");
     }

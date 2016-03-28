@@ -33,16 +33,14 @@ import javax.faces.component.UIComponentBase;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/panels.css"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+})
 @FacesComponent("net.bootsfaces.component.panel.Panel")
 public class Panel extends UIComponentBase
 		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
@@ -55,6 +53,10 @@ public class Panel extends UIComponentBase
 
 	public Panel() {
 		Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
