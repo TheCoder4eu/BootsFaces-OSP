@@ -270,11 +270,11 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
 		//# Enclosure-scoped variable initialization
-		rw.writeText("Window." + widgetVar + " = $('." + clientId + "Table" + "');" +
+		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
 					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
-					 "wrapper.replaceWith(Window." + widgetVar +");" +
-					 "var table = Window." + widgetVar +".DataTable({" + 
+					 "wrapper.replaceWith(" + widgetVar +");" +
+					 "var table = " + widgetVar +".DataTable({" + 
 					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +
 					 "	responsive: " + dataTable.isResponsive() + ", " + 
 					 "	paging: " + dataTable.isPaginated() + ", " +
@@ -282,7 +282,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " + 
 					 (BsfUtils.StringIsValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
-					 // "var table = Window." + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
+					 // "var table = " + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
 		//# Use DataTable API to set initial state of the table display
@@ -296,7 +296,7 @@ public class DataTableRenderer extends CoreRenderer {
 			// NB. we need to define function signature with explicit parameter to have the
 			//     event defined and so, enable the mapping state saving.
 			//# Event setup: http://datatables.net/reference/event/page
-			rw.writeText("Window." + widgetVar +".on('page.dt', function(event, settings, len){" +
+			rw.writeText(widgetVar +".on('page.dt', function(event, settings, len){" +
 				"var info = table.page.info();" +
 				"try {" +
 				"	BsF.ajax.callAjax(this, event, null, null, null, " +
@@ -304,14 +304,14 @@ public class DataTableRenderer extends CoreRenderer {
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/length
-			rw.writeText("Window." + widgetVar +".on('length.dt', function(event, settings, len) {" +
+			rw.writeText(widgetVar +".on('length.dt', function(event, settings, len) {" +
 				"try {" +
 				"	BsF.ajax.callAjax(this, event, null, null, null, " +
 				"'" + DataTablePropertyType.pageLength + ":'+len);" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/search
-			rw.writeText("Window." + widgetVar +".on('search.dt', function(event, settings, len) {" +
+			rw.writeText(widgetVar +".on('search.dt', function(event, settings, len) {" +
 				"try {" +
 				"	BsF.ajax.callAjax(this, event, null, null, null, " +
 				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
