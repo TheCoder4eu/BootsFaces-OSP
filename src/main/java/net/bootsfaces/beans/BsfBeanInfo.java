@@ -97,7 +97,6 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 								setter);
 						alternative.setBound(true);
 						alternatives.add(alternative);
-						System.out.println(getter + " from " + descriptor.getReadMethod().getDeclaringClass().getName());
 						
 						// more alternatives
 						if (camelCase.equals("styleClass")) {
