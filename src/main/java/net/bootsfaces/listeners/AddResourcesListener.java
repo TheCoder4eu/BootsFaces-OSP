@@ -438,7 +438,7 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 			String name = (String) c.getAttributes().get("name");
 			String library = (String) c.getAttributes().get("library");
-			System.out.println("-1" + c.getClientId() + " " + name + " " + library + " " + c.getClass().getSimpleName() );
+			//System.out.println("-1" + c.getClientId() + " " + name + " " + library + " " + c.getClass().getSimpleName() );
 		}
 	}
 
@@ -463,7 +463,7 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : resourcesToRemove) {
 			c.setInView(false);
 			root.removeComponentResource(context, c);
-			System.out.println("-2" + c.getClientId());
+			//System.out.println("-2" + c.getClientId());
 		}
 	}
 
@@ -613,7 +613,7 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null != fontAwesomeResource) {
 			fontAwesomeResource.setInView(false);
 			viewRoot.removeComponentResource(fc, fontAwesomeResource);
-			System.out.println("-3" + fontAwesomeResource.getClientId());
+			//System.out.println("-3" + fontAwesomeResource.getClientId());
 			return true;
 		}
 		return false;

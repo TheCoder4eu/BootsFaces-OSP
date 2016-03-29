@@ -10,7 +10,6 @@ import java.util.List;
 
 import javax.faces.component.UIComponent;
 
-import net.bootsfaces.component.tree.Tree;
 import net.bootsfaces.utils.BsfUtils;
 
 /**

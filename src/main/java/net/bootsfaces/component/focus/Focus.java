@@ -47,12 +47,17 @@ public class Focus extends UIComponentBase {
 		Map<String, Object> attrs = getAttributes();
 
 		String target = (String)attrs.get("target");
+		if(!BsfUtils.StringIsValued(target)) {
+			if(this.getParent() != null)
+				target = this.getParent().getId();
+		}
+		
+		// 
 		if(BsfUtils.StringIsValued(target)) {
 			ResponseWriter rw = context.getResponseWriter();
 			String itemToFocusID = BsfUtils.getComponentClientId(target);
 		
 			rw.startElement("script", this);
-			
 			rw.writeText("" +
 						"$(document).ready(function() { " +
 						"   var item = $(jq('" + itemToFocusID + "')); " +
@@ -65,5 +70,4 @@ public class Focus extends UIComponentBase {
 			throw new FacesException("The focus component needs a defined target ID", null);
 		}
 	}
-
 }
