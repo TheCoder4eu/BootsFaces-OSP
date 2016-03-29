@@ -19,7 +19,7 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPickerRenderer")
+@FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPicker")
 public class ColorPickerRenderer extends CoreRenderer {
 
 	@Override
@@ -223,9 +223,10 @@ public class ColorPickerRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, colorPicker);
+		
 		// create swatches array
-		String swatches = colorPicker.getAttributes().get("swatches") == null ? "[]" : ((String)colorPicker.getAttributes().get("swatches"));
-		if(!"[]".equals(swatches)) {
+		String swatches = colorPicker.getAttributes().get("swatches") == null ? "" : ((String)colorPicker.getAttributes().get("swatches"));
+		if(!"".equals(swatches)) {
 			String[] colors = swatches.split("\\|");
 			String swt = "[";
 			for(int i = 0; i < Math.min(colors.length, 7); i++) {
@@ -245,7 +246,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 					(colorPicker.getAttributes().get("format") != null ? " format: '" + colorPicker.getAttributes().get("format")  + "'," : "")  +
 					(colorPicker.getAttributes().get("opacity") != null ? " opacity: " + colorPicker.getAttributes().get("opacity")  + "," : "")  +
 					(colorPicker.getAttributes().get("position") != null ? " position: '" + colorPicker.getAttributes().get("position")  + "'," : "")  +
-					" swatches: " + swatches  + "," +
+					(!"".equals(swatches) ? " swatches: " + swatches  + "," : "" ) +
 					" theme: 'bootstrap' " +
 					"});" +
 					"});", null);

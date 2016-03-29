@@ -18,7 +18,7 @@ import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent(("net.bootsfaces.component.colorPicker.ColorPicker"))
+@FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
 public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComponent {
 	
 	private String renderLabel = null;
@@ -79,7 +79,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	}
 
 	public ColorPicker() {
-		setRendererType("net.bootsfaces.component.ColorPickerRenderer");
+		setRendererType("net.bootsfaces.component.colorPicker.ColorPicker");
 		Tooltip.addResourceFile();
 		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
