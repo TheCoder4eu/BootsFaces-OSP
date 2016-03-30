@@ -98,7 +98,7 @@ public class Panel extends UIComponentBase
 	}
 
 	protected enum PropertyKeys {
-		ajax, binding, collapsed, collapsible, contentClass, contentStyle, dir, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
+		ajax, binding, collapsed, collapsible, accordionParent, contentClass, contentStyle, dir, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
 
 		String toString;
 
@@ -217,6 +217,29 @@ public class Panel extends UIComponentBase
 	 */
 	public void setCollapsible(boolean _collapsible) {
 		getStateHelper().put(PropertyKeys.collapsible, _collapsible);
+	}
+	
+	/**
+	 * This attribute specify the accordion parent if exist.
+	 * This property is not exposed as component TAG because is driven by the
+	 * Accordion component
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getAccordionParent() {
+		String value = (String) getStateHelper().eval(PropertyKeys.accordionParent, null);
+		return value;
+	}
+
+	/**
+	 * This attribute specify the accordion parent if exist.
+	 * This property is not exposed as component TAG because is driven by the
+	 * Accordion component
+	 */
+	public void setAccordionParent(String _accordionParent) {
+		getStateHelper().put(PropertyKeys.accordionParent, _accordionParent);
 	}
 
 	/**

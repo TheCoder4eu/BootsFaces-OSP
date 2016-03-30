@@ -95,8 +95,9 @@ public class PanelRenderer extends CoreRenderer {
 		String jQueryClientID = clientId.replace(":", "_");
 
 		boolean isCollapsible = panel.isCollapsible();
+		String accordionParent = panel.getAccordionParent();
 
-		if (isCollapsible) {
+		if (isCollapsible && null == accordionParent) {
 			rw.startElement("div", panel);
 			rw.writeAttribute("class", "panel-group", null);
 		}
@@ -150,6 +151,9 @@ public class PanelRenderer extends CoreRenderer {
 					if (panel.isCollapsed()) {
 						rw.writeAttribute("class", "collapsed", null);
 					}
+					if(null != accordionParent) {
+						rw.writeAttribute("data-parent", "#" + accordionParent, null);
+					}
 				}
 
 				rw.writeText(_title, null);
@@ -164,6 +168,9 @@ public class PanelRenderer extends CoreRenderer {
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
 					if (panel.isCollapsed()) {
 						rw.writeAttribute("class", "collapsed", null);
+					}
+					if(null != accordionParent) {
+						rw.writeAttribute("data-parent", "#" + accordionParent, null);
 					}
 				}
 				head.encodeAll(context);
@@ -186,7 +193,7 @@ public class PanelRenderer extends CoreRenderer {
 			if (!panel.isCollapsed())
 				_contentClass += " in";
 		}
-		_contentClass = "panel-body" + " " + _contentClass;
+		// _contentClass = "panel-body" + " " + _contentClass;
 		_contentClass = _contentClass.trim();
 		if (_contentClass.length() > 0)
 			rw.writeAttribute("class", _contentClass, "class");
@@ -194,7 +201,9 @@ public class PanelRenderer extends CoreRenderer {
 		if (null != _contentStyle && _contentStyle.length() > 0) {
 			rw.writeAttribute("style", _contentStyle, "style");
 		}
-
+		// create the body
+		rw.startElement("div", panel);
+		rw.writeAttribute("class", "panel-body", "class");
 	}
 
 	/**
@@ -222,6 +231,7 @@ public class PanelRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = panel.getClientId();
 		rw.endElement("div"); // panel-body
+		rw.endElement("div"); // panel-body
 		UIComponent foot = panel.getFacet("footer");
 		if (foot != null) {
 			rw.startElement("div", panel); // modal-footer
@@ -233,7 +243,9 @@ public class PanelRenderer extends CoreRenderer {
 
 		rw.endElement("div");
 		boolean isCollapsible = panel.isCollapsible();
-		if (isCollapsible) {
+		String accordionParent = panel.getAccordionParent();
+
+		if (isCollapsible && null == accordionParent) {
 			String jQueryClientID = clientId.replace(":", "_");
 			rw.endElement("div");
 			rw.startElement("input", panel);
@@ -249,7 +261,7 @@ public class PanelRenderer extends CoreRenderer {
 			eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
 					+ "').value='true';");
 			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryClientID+"content", eventHandlers);
-		}
+		} 
 		Tooltip.activateTooltips(context, panel.getAttributes(), panel);
 	}
 	//  $('#j_idt40_j_idt43content').on('show.bs.collapse', function(){ document.getElementById('j_idt40_j_idt43_collapsed').value='false'; });

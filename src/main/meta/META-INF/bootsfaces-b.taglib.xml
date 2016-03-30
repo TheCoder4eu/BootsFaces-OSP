@@ -4,7 +4,33 @@
   version="2.0">
   <namespace>http://bootsfaces.net/ui</namespace>
 
+  <!-- *********** Accordion.taglib.xml ************************* -->
 
+  <tag>
+    <tag-name>accordion</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.accordion.Accordion</component-type>
+    </component>
+    
+    <attribute>
+      <description><![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]></description>
+      <name>rendered</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Comma separated list of child panel id that need to render expanded.]]></description>
+      <name>expandedPanels</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Comma separated list of child panel id that need to render expanded.]]></description>
+      <name>expanded-panels</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+  </tag>
 
   <!-- *********** Alert.taglib.xml ************************* -->
 
