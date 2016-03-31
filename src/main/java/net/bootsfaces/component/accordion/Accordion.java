@@ -1,140 +1,96 @@
+/**
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu), Stephan Rauh (http://www.beyondjava.net) and Dario D'Urzo.
+ *  
+ *  This file is part of BootsFaces.
+ *  
+ *  BootsFaces is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  BootsFaces is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package net.bootsfaces.component.accordion;
 
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-
 import javax.el.ValueExpression;
-import javax.faces.FacesException;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
 
-import net.bootsfaces.component.panel.Panel;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:panel /&gt;. */
+
+/** This class holds the attributes of &lt;b:accordion /&gt;. */
 @ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
+	@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
 })
 @FacesComponent("net.bootsfaces.component.accordion.Accordion")
-public class Accordion extends UIComponentBase {
-
+public class Accordion extends UIComponentBase  {
+	
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.accordion.Accordion";
-
+	
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
-
+	
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.accordion.Accordion";
+	
 	public Accordion() {
-		Tooltip.addResourceFile();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("panels.css");
-		setRendererType(null);
+		setRendererType(DEFAULT_RENDERER);
 	}
 	
-	protected enum PropertyKeys {
-		collapsedPanels, expandedPanels;
-		
-		String toString;
-
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
-
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 	
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
-	}
+	}		
 	
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+    protected enum PropertyKeys {
+		expandedPanels
+		;
 
-	@Override
-	public void encodeChildren(FacesContext context) throws IOException {
-		// Children are already rendered in encodeBegin()
-	}
+        String toString;
 
-	@Override
-	public void encodeBegin(FacesContext context) throws IOException {
-		if (!isRendered()) {
-			return;
-		}
-		
-		ResponseWriter rw = context.getResponseWriter();
-		String accordionClientId = this.getClientId().replace(":", "_");
-		
-		List<String> expandedIds = (null != this.getExpandedPanels()) ? Arrays.asList(this.getExpandedPanels().split(",")) : null;
-		
-		rw.startElement("div", this);
-		rw.writeAttribute("class", "panel-group", null);
-		rw.writeAttribute("id", accordionClientId, "id");
-		
-		if(this.getChildren() != null && this.getChildren().size() > 0) {
-			for(UIComponent _child: this.getChildren()) {
-				if(_child instanceof Panel && ((Panel) _child).isCollapsible()) {
-					Panel _childPane = (Panel) _child;
-					_childPane.setAccordionParent(accordionClientId);
-					if(null != expandedIds && expandedIds.contains(_childPane.getClientId()))
-						_childPane.setCollapsed(false);
-					else _childPane.setCollapsed(true);
-					_childPane.encodeAll(context);
-				} else {
-					throw new FacesException("Accordion must contains only collapsible panel components", null);
-				}
-			}
-		}
-	}
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
+
+        PropertyKeys() {}
+
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
 	
-	@Override
-	public void encodeEnd(FacesContext context) throws IOException {
-		if (!isRendered()) {
-			return;
-		}
-		ResponseWriter rw = context.getResponseWriter();
-		rw.endElement("div");
-	}
-	
-	@Override
-	public boolean getRendersChildren() {
-		return true;
-	}
-	
+
 	/**
-	 * This attribute specify a list of comma separated child panels id to display 
-	 * initially expanded. 
-	 * Collapsed is the default state for child panel.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Comma separated list of child panel id that need to render expanded. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getExpandedPanels() {
-		String value = (String) getStateHelper().eval(PropertyKeys.expandedPanels, null);
-		return value;
+		String value = (String)getStateHelper().eval(PropertyKeys.expandedPanels);
+		return  value;
 	}
-
+	
 	/**
-	 * This attribute specify a list of comma separated child panels id to display 
-	 * initially expanded. 
+	 * Comma separated list of child panel id that need to render expanded. <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setExpandedPanels(String _expandedPanels) {
-		getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
-	}
+	    getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
+    }	
 }

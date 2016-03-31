@@ -28,7 +28,7 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.PreRenderComponentEvent;
+import javax.faces.event.PhaseId;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -38,7 +38,6 @@ import net.bootsfaces.utils.BsfUtils;
  * The poll component refreshes a portion of the JSF view periodically via AJAX.
  * @author Stephan Rauh
  */
-
 @FacesComponent("net.bootsfaces.component.poll.Poll")
 public class Poll extends HtmlCommandButton {
 
@@ -56,9 +55,10 @@ public class Poll extends HtmlCommandButton {
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Poll() {
-		setRendererType(null); // this component renders itself
 		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		
+		setRendererType(null); // this component renders itself
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -90,10 +90,10 @@ public class Poll extends HtmlCommandButton {
 		Map<String, Object> attrs = getAttributes();
 		ResponseWriter rw = context.getResponseWriter();
 
-
+		/*
         context.getApplication().publishEvent(context,
                                               PreRenderComponentEvent.class,
-                                              this);
+                                              this);*/
 
 		String id = getClientId();
 		String update = (String) attrs.get("update");
@@ -129,12 +129,11 @@ public class Poll extends HtmlCommandButton {
 
 		
 		rw.append("</script>");
-//		popComponentFromEL(context);
+		// popComponentFromEL(context);
 	}
 
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-
 }
