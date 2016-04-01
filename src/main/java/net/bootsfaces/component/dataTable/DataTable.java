@@ -829,7 +829,7 @@ public class DataTable extends UIData
 	/**
 	 * This map contains all of the default sorting for each column
 	 * @return The map containing the column / sort type pairs
-     */
+	 */
 	public Map<Integer, String> getColumnSortOrderMap() {
 		return columnSortOrder;
 	}
