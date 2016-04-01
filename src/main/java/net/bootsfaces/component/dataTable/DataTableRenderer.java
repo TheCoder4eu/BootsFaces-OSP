@@ -288,7 +288,7 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 			orderString = sb.toString();
 		}
-        ResponseWriter rw = context.getResponseWriter();
+		ResponseWriter rw = context.getResponseWriter();
 		String clientIdRaw = dataTable.getClientId();
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
@@ -368,7 +368,7 @@ public class DataTableRenderer extends CoreRenderer {
 						  "} );" +
 						  "} );", null );
 		}
-        //# End enclosure
+		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
