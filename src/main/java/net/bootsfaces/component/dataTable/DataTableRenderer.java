@@ -130,7 +130,6 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.startElement( "tfoot", dataTable );
 			rw.startElement( "tr", dataTable );
 			List<UIComponent> columns = dataTable.getChildren();
-			int i = 0;
 			for ( UIComponent column : columns ) {
 				if (!column.isRendered()) {
 					continue;
@@ -140,18 +139,7 @@ public class DataTableRenderer extends CoreRenderer {
 					UIComponent facet = column.getFacet( "header" );
 					facet.encodeAll( context );
 				}
-				if(column.getFacet( "order" ) != null){
-					Map<Integer, String> columnSortOrder;
-					if( dataTable.getColumnSortOrderMap() == null){
-						dataTable.initColumnSortOrderMap();
-					}
-					columnSortOrder = dataTable.getColumnSortOrderMap();
-					UIComponent facet = column.getFacet( "order" );
-					String order = facet.toString();
-					columnSortOrder.put( i,order );
-				}
 				rw.endElement( "th" );
-				i++;
 			}
 			rw.endElement( "tr" );
 			rw.endElement( "tfoot" );
@@ -221,7 +209,16 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.writeText("Column #" + index, null);
 				}
 			}
-
+			if (column.getFacet("order") != null) {
+				Map<Integer, String> columnSortOrder;
+				if (dataTable.getColumnSortOrderMap() == null) {
+					dataTable.initColumnSortOrderMap();
+				}
+				columnSortOrder = dataTable.getColumnSortOrderMap();
+				UIComponent facet = column.getFacet("order");
+				String order = facet.toString();
+				columnSortOrder.put(index, order);
+			}
 			rw.endElement("th");
 			index++;
 		}
