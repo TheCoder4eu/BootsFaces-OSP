@@ -22,6 +22,7 @@ package net.bootsfaces.component.dataTable;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.el.ValueExpression;
@@ -54,6 +55,7 @@ public class DataTable extends UIData
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+	private Map<Integer, String> columnSortOrder;
 
 	public enum DataTablePropertyType {
 		pageLength, searchTerm, currentPage
@@ -824,4 +826,18 @@ public class DataTable extends UIData
 		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
 	}
 
+	/**
+	 * This map contains all of the default sorting for each column
+	 * @return The map containing the column / sort type pairs
+	 */
+	public Map<Integer, String> getColumnSortOrderMap() {
+		return columnSortOrder;
+	}
+
+	/**
+	 * Called in order to lazily initialize the map.
+	 */
+	public void initColumnSortOrderMap() {
+		this.columnSortOrder = new HashMap<Integer, String>(  );
+	}
 }
