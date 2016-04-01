@@ -322,7 +322,7 @@ public class DataTableRenderer extends CoreRenderer {
 		if(dataTable.isMultiColumnSearch())	{
 			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
 			//# Convert footer column text to input textfields
-			rw.writeText( "$('#" + clientId + " tfoot th').each(function() {" +
+			rw.writeText( widgetVar + ".find('tfoot th').each(function() {" +
 						  "var title = $(this).text();" +
 						  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
 						  "});", null );
