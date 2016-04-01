@@ -130,6 +130,7 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.startElement( "tfoot", dataTable );
 			rw.startElement( "tr", dataTable );
 			List<UIComponent> columns = dataTable.getChildren();
+            int i = 0;
 			for ( UIComponent column : columns ) {
 			    if (!column.isRendered()) {
 			        continue;
@@ -139,7 +140,18 @@ public class DataTableRenderer extends CoreRenderer {
 					UIComponent facet = column.getFacet( "header" );
 					facet.encodeAll( context );
 				}
+                if(column.getFacet( "order" ) != null){
+                    Map<Integer, String> columnSortOrder;
+                    if( dataTable.getColumnSortOrderMap() == null){
+                        dataTable.initColumnSortOrderMap();
+                    }
+                    columnSortOrder = dataTable.getColumnSortOrderMap();
+                    UIComponent facet = column.getFacet( "order" );
+                    String order = facet.toString();
+                    columnSortOrder.put( i,order );
+                }
 				rw.endElement( "th" );
+                i++;
 			}
 			rw.endElement( "tr" );
 			rw.endElement( "tfoot" );
@@ -240,9 +252,11 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+        Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
 		Integer page = 0;
 		Integer pageLength = dataTable.getPageLength();
 		String searchTerm = "''";
+        String orderString = "[]";
 		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
@@ -257,7 +271,24 @@ public class DataTableRenderer extends CoreRenderer {
 				searchTerm = String.format("'%s'", (String)currentSearchTerm);
 			}
 		}
-		ResponseWriter rw = context.getResponseWriter();
+        if ( columnSortOrder != null ) {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            for ( Map.Entry<Integer, String> entry : columnSortOrder.entrySet() ) {
+                String separator = ( i > 0 ) ? "," : "";
+                sb.append( separator )
+                  .append( "[" )
+                  .append( entry.getKey() )
+                  .append( "," )
+                  .append( "'" )
+                  .append( entry.getValue() )
+                  .append( "'" )
+                  .append( "]" );
+                i++;
+            }
+            orderString = sb.toString();
+        }
+        ResponseWriter rw = context.getResponseWriter();
 		String clientIdRaw = dataTable.getClientId();
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
@@ -281,6 +312,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	paging: " + dataTable.isPaginated() + ", " +
 					 "	pageLength: " + pageLength + ", " + 
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " + 
+					 "	order: " + orderString + ", " +
 					 (BsfUtils.StringIsValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 // "var table = " + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
@@ -336,7 +368,7 @@ public class DataTableRenderer extends CoreRenderer {
 						  "} );" +
 						  "} );", null );
 		}
-		//# End enclosure
+        //# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
