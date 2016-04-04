@@ -131,9 +131,9 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.startElement( "tr", dataTable );
 			List<UIComponent> columns = dataTable.getChildren();
 			for ( UIComponent column : columns ) {
-			    if (!column.isRendered()) {
-			        continue;
-			    }
+				if (!column.isRendered()) {
+					continue;
+				}
 				rw.startElement( "th", dataTable );
 				if ( column.getFacet( "header" ) != null ) {
 					UIComponent facet = column.getFacet( "header" );
@@ -209,7 +209,16 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.writeText("Column #" + index, null);
 				}
 			}
-
+			if (column.getFacet("order") != null) {
+				Map<Integer, String> columnSortOrder;
+				if (dataTable.getColumnSortOrderMap() == null) {
+					dataTable.initColumnSortOrderMap();
+				}
+				columnSortOrder = dataTable.getColumnSortOrderMap();
+				UIComponent facet = column.getFacet("order");
+				String order = facet.toString();
+				columnSortOrder.put(index, order);
+			}
 			rw.endElement("th");
 			index++;
 		}
@@ -240,9 +249,11 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
 		Integer page = 0;
 		Integer pageLength = dataTable.getPageLength();
 		String searchTerm = "''";
+		String orderString = "[]";
 		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
@@ -256,6 +267,23 @@ public class DataTableRenderer extends CoreRenderer {
 			if(currentSearchTerm != null){
 				searchTerm = String.format("'%s'", (String)currentSearchTerm);
 			}
+		}
+		if ( columnSortOrder != null ) {
+			StringBuilder sb = new StringBuilder();
+			int i = 0;
+			for ( Map.Entry<Integer, String> entry : columnSortOrder.entrySet() ) {
+				String separator = ( i > 0 ) ? "," : "";
+				sb.append( separator )
+				  .append( "[" )
+				  .append( entry.getKey() )
+				  .append( "," )
+				  .append( "'" )
+				  .append( entry.getValue() )
+				  .append( "'" )
+				  .append( "]" );
+				i++;
+			}
+			orderString = sb.toString();
 		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientIdRaw = dataTable.getClientId();
@@ -281,6 +309,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	paging: " + dataTable.isPaginated() + ", " +
 					 "	pageLength: " + pageLength + ", " + 
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " + 
+					 "	order: " + orderString + ", " +
 					 (BsfUtils.StringIsValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 // "var table = " + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
@@ -322,7 +351,7 @@ public class DataTableRenderer extends CoreRenderer {
 		if(dataTable.isMultiColumnSearch())	{
 			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
 			//# Convert footer column text to input textfields
-			rw.writeText( "$('#" + clientId + " tfoot th').each(function() {" +
+			rw.writeText( widgetVar + ".find('tfoot th').each(function() {" +
 						  "var title = $(this).text();" +
 						  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
 						  "});", null );

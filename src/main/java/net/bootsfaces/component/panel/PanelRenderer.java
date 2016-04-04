@@ -148,6 +148,7 @@ public class PanelRenderer extends CoreRenderer {
 					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+					rw.writeAttribute("href", "javascript:;", "null");
 					if (panel.isCollapsed()) {
 						rw.writeAttribute("class", "collapsed", null);
 					}
@@ -166,6 +167,7 @@ public class PanelRenderer extends CoreRenderer {
 					rw.startElement("a", panel);
 					rw.writeAttribute("data-toggle", "collapse", "null");
 					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+					rw.writeAttribute("href", "javascript:;", "null");
 					if (panel.isCollapsed()) {
 						rw.writeAttribute("class", "collapsed", null);
 					}
