@@ -9,11 +9,14 @@ import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
+import javax.faces.component.visit.VisitCallback;
+import javax.faces.component.visit.VisitContext;
+import javax.faces.component.visit.VisitResult;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public class BsfUtils {
-	
+
 	/**
 	 * This is a trick method to provide navigation from an ajax request (credit by Ryan Lubke)
 	 * In fact, you can map an action to an UICommand that calls this method and return null.
@@ -44,19 +47,19 @@ public class BsfUtils {
 	// }
 
 	public static String navigateInAjax(String outcome) 
-	throws FacesException {
+			throws FacesException {
 		FacesContext ctx = FacesContext.getCurrentInstance();
-	    ExternalContext extContext = ctx.getExternalContext();
-	    
-	    String url = extContext.encodeActionURL(
-	    					ctx.getApplication().getViewHandler().getActionURL(
-	    							ctx, outcome));
-	    try {
-	        extContext.redirect(url);
-	    } catch (IOException ioe) {
-	        throw new FacesException(ioe);
-	    }
-	    return null;
+		ExternalContext extContext = ctx.getExternalContext();
+
+		String url = extContext.encodeActionURL(
+				ctx.getApplication().getViewHandler().getActionURL(
+						ctx, outcome));
+		try {
+			extContext.redirect(url);
+		} catch (IOException ioe) {
+			throw new FacesException(ioe);
+		}
+		return null;
 	}
 
 	/**
@@ -68,7 +71,7 @@ public class BsfUtils {
 		if(str != null && !"".equals(str.trim())) return true;
 		return false;
 	}
-	
+
 	/**
 	 * Get the string if is valued, otherwise return default Value
 	 * @param str
@@ -79,7 +82,7 @@ public class BsfUtils {
 		if(StringIsValued(str)) return str;
 		return defaultValue;
 	}
-	
+
 	/**
 	 * Return a var-args list of items as List
 	 * @param objects
@@ -90,10 +93,10 @@ public class BsfUtils {
 		List<T> listOfObjects = new ArrayList<T>();
 		for(T obj: objects)
 			listOfObjects.add(obj);
-		
+
 		return listOfObjects;
 	}
-	
+
 	/**
 	 * Transform a snake-case string to a camel-case one.
 	 * @param snakeCase
@@ -118,7 +121,7 @@ public class BsfUtils {
 		}
 		return snakeCase;
 	}
-	
+
 	/**
 	 * Transform a snake-case string to a camelCase one.
 	 * @param camelCase
@@ -141,76 +144,76 @@ public class BsfUtils {
 		}
 		if (!hasCamelCase)
 			return camelCase;
-		
+
 		return snakeCase.toString();
 	}
 
-	
+
 	/**
 	 * Escape html special chars from string
 	 * @param htmlString
 	 * @return
 	 */
 	public static String escapeHtml(String htmlString) {
-	    StringBuffer sb = new StringBuffer(htmlString.length());
-	    // true if last char was blank
-	    boolean lastWasBlankChar = false;
-	    int len = htmlString.length();
-	    char c;
+		StringBuffer sb = new StringBuffer(htmlString.length());
+		// true if last char was blank
+		boolean lastWasBlankChar = false;
+		int len = htmlString.length();
+		char c;
 
-	    for (int i = 0; i < len; i++)
-	        {
-	        c = htmlString.charAt(i);
-	        if (c == ' ') {
-	            // blank gets extra work,
-	            // this solves the problem you get if you replace all
-	            // blanks with &nbsp;, if you do that you loss 
-	            // word breaking
-	            if (lastWasBlankChar) {
-	                lastWasBlankChar = false;
-	                sb.append("&nbsp;");
-	                }
-	            else {
-	                lastWasBlankChar = true;
-	                sb.append(' ');
-	                }
-	            }
-	        else {
-	            lastWasBlankChar = false;
-	            //
-	            // HTML Special Chars
-	            if (c == '"')
-	                sb.append("&quot;");
-	            else if (c == '&')
-	                sb.append("&amp;");
-	            else if (c == '<')
-	                sb.append("&lt;");
-	            else if (c == '>')
-	                sb.append("&gt;");
-	            else if (c == '/') 
-	            	sb.append("-");
-	            else if (c == '\\')
-	            	sb.append("-");
-	            else if (c == '\n')
-	                // Handle Newline
-	                sb.append("&lt;br/&gt;");
-	            else {
-	                int ci = 0xffff & c;
-	                if (ci < 160 )
-	                    // nothing special only 7 Bit
-	                    sb.append(c);
-	                else {
-	                    // Not 7 Bit use the unicode system
-	                    sb.append("&#");
-	                    sb.append(new Integer(ci).toString());
-	                    sb.append(';');
-	                    }
-	                }
-	            }
-	        }
-	    return sb.toString();
+		for (int i = 0; i < len; i++)
+		{
+			c = htmlString.charAt(i);
+			if (c == ' ') {
+				// blank gets extra work,
+				// this solves the problem you get if you replace all
+				// blanks with &nbsp;, if you do that you loss 
+				// word breaking
+				if (lastWasBlankChar) {
+					lastWasBlankChar = false;
+					sb.append("&nbsp;");
+				}
+				else {
+					lastWasBlankChar = true;
+					sb.append(' ');
+				}
+			}
+			else {
+				lastWasBlankChar = false;
+				//
+				// HTML Special Chars
+				if (c == '"')
+					sb.append("&quot;");
+				else if (c == '&')
+					sb.append("&amp;");
+				else if (c == '<')
+					sb.append("&lt;");
+				else if (c == '>')
+					sb.append("&gt;");
+				else if (c == '/') 
+					sb.append("-");
+				else if (c == '\\')
+					sb.append("-");
+				else if (c == '\n')
+					// Handle Newline
+					sb.append("&lt;br/&gt;");
+				else {
+					int ci = 0xffff & c;
+					if (ci < 160 )
+						// nothing special only 7 Bit
+						sb.append(c);
+					else {
+						// Not 7 Bit use the unicode system
+						sb.append("&#");
+						sb.append(new Integer(ci).toString());
+						sb.append(';');
+					}
+				}
+			}
+		}
+		return sb.toString();
 	}
-	
+
 	/**
 	 * Get the string if is not null or empty,
 	 * otherwise return the default value
@@ -223,7 +226,7 @@ public class BsfUtils {
 		if(StringIsValued(inputValue)) return inputValue;
 		else return defaultReturnValue;
 	}
-	
+
 	/**
 	 * Escape special jQuery chars in selector query
 	 * @param selector
@@ -237,7 +240,7 @@ public class BsfUtils {
 		}
 		return selector;
 	}
-	
+
 	/**
 	 * Check if a class is primitive, wrapper or String type.
 	 * So, it returns true if is a basic java type class
@@ -249,12 +252,12 @@ public class BsfUtils {
 		return isPrimitiveOrPrimitiveWrapperOrString(obj.getClass());
 	}
 	public static boolean isPrimitiveOrPrimitiveWrapperOrString(Class<?> type) {
-	    return (type.isPrimitive() && type != void.class) ||
-	        type == Double.class || type == Float.class || type == Long.class ||
-	        type == Integer.class || type == Short.class || type == Character.class ||
-	        type == Byte.class || type == Boolean.class || type == String.class;
+		return (type.isPrimitive() && type != void.class) ||
+				type == Double.class || type == Float.class || type == Long.class ||
+				type == Integer.class || type == Short.class || type == Character.class ||
+				type == Byte.class || type == Boolean.class || type == String.class;
 	}
-	
+
 	/**
 	 * Get the related form
 	 * @param component

@@ -29,6 +29,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.scrollSpy.event.ScrollSpyEventListener;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -91,12 +92,12 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		String container = scrollSpy.getContainer();
 		if(!BsfUtils.StringIsValued(container)) {
 			container = "body";
-		} else container = "#" + BsfUtils.EscapeJQuerySpecialCharsInSelector(container);
+		} else container = "#" + decodeAndEscapeSelectors(context, component, container);
 		
 		String target = scrollSpy.getTarget();
 		if(!BsfUtils.StringIsValued(target)) {
 			target = ".navbar";
-		} else target = "#" + BsfUtils.EscapeJQuerySpecialCharsInSelector(target);
+		} else target = "#" + decodeAndEscapeSelectors(context, component, target);
 		
 		int offset = scrollSpy.getOffset();
 		if(!BsfUtils.StringIsValued(target)) {
@@ -104,7 +105,10 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		} 
 		boolean smooth = scrollSpy.isSmooth();
 		boolean hasListeners = (scrollSpy.getSelectionListener() != null);
-		String updateItems = BsfUtils.GetOrDefault("'" + scrollSpy.getUpdate() + "'", "null");
+		// String updateItems = BsfUtils.GetOrDefault("'" + scrollSpy.getUpdate() + "'", "null");
+		String updateItems = scrollSpy.getUpdate();
+		if(updateItems != null)
+			updateItems = ExpressionResolver.getComponentIDs(context, component, updateItems);
 		if(hasListeners) {
 			// check is inside form (MyFaces requires to be)
 			final UIForm form = BsfUtils.getClosestForm(scrollSpy);
@@ -134,11 +138,25 @@ public class ScrollSpyRenderer extends CoreRenderer {
 			rw.writeText("" + 
 					"$('" + target + "').on('activate.bs.scrollspy', function() { " + 
 					"	var x = $('" + target + " li.active > a').text(); " +
-					"   BsF.ajax.callAjax(this, 'action', " + updateItems + ", '" + clientId + "', null, 'itemSelected:' + x); " +    
+					"   BsF.ajax.callAjax(this, 'action', '" + updateItems + "', '" + clientId + "', null, 'itemSelected:' + x); " +    
 		    		"}); ", null);
 		}
 					
 		rw.writeText("});", null);
 		rw.endElement("script");
+	}
+	
+	/**
+	 * Decode and escape selectors if necessary
+	 * @param context
+	 * @param component
+	 * @param selector
+	 * @return
+	 */
+	private String decodeAndEscapeSelectors(FacesContext context, UIComponent component, String selector) {
+		selector = ExpressionResolver.getComponentIDs(context, component, selector);
+		selector = BsfUtils.EscapeJQuerySpecialCharsInSelector(selector);
+		
+		return selector;
 	}
 }

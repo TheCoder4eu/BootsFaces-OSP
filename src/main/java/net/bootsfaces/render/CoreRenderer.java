@@ -40,13 +40,48 @@ import javax.faces.render.Renderer;
 
 public class CoreRenderer extends Renderer {
 
+	/**
+	 * Method that provide ability to render pass through attributes.
+	 * @param context
+	 * @param component
+	 * @param attrs
+	 * @throws IOException
+	 */
+	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs, boolean shouldRenderDataAttributes)
+	throws IOException {
+		ResponseWriter writer = context.getResponseWriter();
+
+		if((attrs == null || attrs.length <= 0) && shouldRenderDataAttributes == false) return;
+		
+		// pre-defined attributes
+		for(String attribute: component.getAttributes().keySet()) {
+			boolean attributeToRender = false;
+			if(shouldRenderDataAttributes && attribute.startsWith("data-")) {
+				attributeToRender = true;
+			}
+			if(!attributeToRender) {
+				for(String ca: attrs) {
+					if(attribute.equals(ca)) {
+						attributeToRender = true;
+						break;
+					} 
+				}
+			}
+			if(attributeToRender) {
+				Object value = component.getAttributes().get(attribute);
+				
+				if (shouldRenderAttribute(value))
+					writer.writeAttribute(attribute, value.toString(), attribute);
+			}
+		}
+	}
 	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs)
 	throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 
 		// pre-defined attributes
 		if (attrs != null && attrs.length > 0) {
-			for (String attribute : attrs) {
+			for (String attribute: attrs) {
 				Object value = component.getAttributes().get(attribute);
 
 				if (shouldRenderAttribute(value))

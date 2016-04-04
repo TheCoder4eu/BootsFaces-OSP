@@ -43,6 +43,8 @@ public final class H {
 	public static final String[] ALLBUTTON = { "accesskey", "dir", "lang", "style", "tabindex", "title" };
 
 	public static final String[] IMAGE = { "alt", "height", "lang", "style", "title", "width", };
+	
+	public static final String[] HTML5_DATA_ATTRIBUTES = { "placeholder", "tabindex", "lang", "accesskey"};
 
 	// Suppress default constructor for noninstantiability
 	private H() {

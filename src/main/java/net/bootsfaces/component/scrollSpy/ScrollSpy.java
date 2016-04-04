@@ -101,7 +101,7 @@ public class ScrollSpy extends UIComponentBase  {
 	 * @return
 	 */
 	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		String value = (String) getStateHelper().eval(PropertyKeys.update, null);
 		return value;
 	}
 	public void setUpdate(String _update) {

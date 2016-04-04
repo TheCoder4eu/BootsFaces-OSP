@@ -7,8 +7,9 @@ import javax.faces.component.UIViewRoot;
 public class ExpressionResolverUtilities {
 	public static String determineQualifiedId(UIComponent component) {
 		String qualifiedId = "";
-		if (component instanceof NamingContainer)
+		if (component instanceof NamingContainer) 
 			return "";
+		
 		while (component != null && (!(component instanceof UIViewRoot)) && (!(component instanceof NamingContainer))) {
 			component = component.getParent();
 			if (component instanceof NamingContainer)

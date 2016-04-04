@@ -36,6 +36,7 @@ import net.bootsfaces.component.tree.model.Node;
 import net.bootsfaces.component.tree.model.TreeModelUtils;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.H;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class provide the rendering logic of the &lt;b:tree /&gt;. */
@@ -113,6 +114,7 @@ public class TreeRenderer extends CoreRenderer {
 
 		rw.startElement("div", tree);
 		rw.writeAttribute("id", "tree_" + clientId, "id");
+		renderPassThruAttributes(context, component, H.HTML5_DATA_ATTRIBUTES, true);
 		rw.endElement("div");
 	}
 
@@ -130,7 +132,10 @@ public class TreeRenderer extends CoreRenderer {
 		if(form == null) {
 			throw new FacesException("The tree component must be inside a form", null);
 		}
-		String updateItems = BsfUtils.GetOrDefault("'" + tree.getUpdate() + "'", "null");
+		// String updateItems = BsfUtils.GetOrDefault("'" + tree.getUpdate() + "'", "null");
+		String updateItems = tree.getUpdate();
+		if(updateItems != null)
+			updateItems = ExpressionResolver.getComponentIDs(context, component, updateItems);
 
 		rw.startElement("script", tree);
 		//# Start enclosure
@@ -155,17 +160,17 @@ public class TreeRenderer extends CoreRenderer {
 					
 					 // enable nodeSelected event callback
 					 "$('#tree_" + jqClientId + "').on('nodeSelected', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeSelected:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeSelected:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeChecked event callback
 					 "$('#tree_" + jqClientId + "').on('nodeChecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeChecked:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeChecked:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeUnchecked event callback
 					 "$('#tree_" + jqClientId + "').on('nodeUnchecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeUnchecked:' + data.text);" + // @all
+					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeUnchecked:' + data.text);" + // @all
 					 "});", null);
 		rw.writeText("});", null);
 		rw.endElement("script");
