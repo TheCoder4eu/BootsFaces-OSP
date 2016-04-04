@@ -8,7 +8,7 @@ widget accordion
 	expandedPanels														  "Comma separated list of child panel id that need to render expanded."
 }
 
-
+ 
 widget alert
        implemented_by net.bootsfaces.component.Alert
        extends UIComponentBase
@@ -601,6 +601,38 @@ widget flyOutMenu
 	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."         
 }
 
+widget focus
+       implemented_by net.bootsfaces.component.Focus
+       extends UIComponentBase
+{
+ 	id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    target																   "Id of the element to focus."
+}
+
+widget growl
+	implemented_by net.bootsfaces.component.Growl
+	rendered_by net.bootsfaces.component.GrowlRenderer
+    extends UIMessages
+ {
+    for                                                                    "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
+    globalOnly          Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
+    id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
+    rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
+    showDetail          Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to false."
+    showSummary         Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
+    style                                                                  "HTML: CSS styling instructions."
+    styleClass                                                             "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
+    icon																   "The glyphicon to display on message"
+    placementFor		default "top"									   "Vertical position of the growl message. Valid values are 'top' or 'bottom'."
+    placementAlign		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
+    delay				Integer	default "5000"							   "The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    timer				Integer	default "1000"                 			   "This is the amount of milliseconds removed from the notify at every timer milliseconds."
+    newestOnTop			Boolean											   "Specifies if newest messages must be displayed on top of the others."
+    allowDismiss		Boolean											   "Specifies whether the message can be dismissed."
+    escape                     											   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
+}
+
 widget icon
        implemented_by net.bootsfaces.component.Icon
        extends UIComponentBase
@@ -639,8 +671,6 @@ widget icon
 }
 
 
-
-
 widget iconAwesome
        implemented_by net.bootsfaces.component.iconAwesome
        extends Icon
@@ -677,6 +707,46 @@ widget iconAwesome
     update                                                  inherited      "Component(s) to be updated with ajax."
 }
 
+widget image
+       implemented_by net.bootsfaces.component.Image
+       extends UIComponentBase
+       has_tooltip
+ {
+    ajax                Boolean   inherited                                "Activates AJAX. The default value is false (no AJAX)."
+	alt																   	   "Alternate textual description of the element rendered by this component."
+    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    height																   "Override for the height of this image."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    lang                                                                   "Code describing the language used in the generated markup for this component."
+    name                mandatory                                          "Icon name, mandatory."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "Javascript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+	ondragstart                                                            "Client side callback when a drag-and-drop action starts. May also call an AJAX function."
+	ondragover                                                             "Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function."
+	ondrop                                                                 "Client side callback when a drag-and-drop action ends. May also call an AJAX function."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                             "CSS style class"
+    title																	"Advisory title information about markup elements generated for this component."
+    tooltip                                                                "The text of the tooltip."
+    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    update                                                                 "Component(s) to be updated with ajax."
+    value				inherited											"The local value of this component"
+    width																	"Override for the width of this image."
+}
 
 widget inputSecret
        implemented_by net.bootsfaces.component.InputSecret
@@ -1268,6 +1338,40 @@ widget row
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
+widget scrollUp
+		implemented_by net.bootsfaces.component.ScrollUp
+		extends UIComponentBase
+{
+	name																	"Element ID"
+	rendered            Boolean inherited                                   "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    distance			Integer												"Distance from top/bottom before showing element (px)"
+	from																	"scroll direction: 'top' or 'bottom'"
+	speed				Integer												"Speed back to top (ms)."
+	animation																"Animation type: Fade, slide, none."
+	animationSpeed		Integer												"Animation speed (ms)."
+	text																	"Text for element, can contain HTML."
+	title																	"Set a custom &lt;a&gt; title if required."
+	image 																	"Set true to use image. (Must be set in related css)."
+	easing																	"Scroll easing (see http://easings.net/)."
+	trigger																	"Set a custom triggering element. Can be an HTML string or jQuery object"
+	target																	"Set a custom target element for scrolling to. Can be element or number."
+	overlay																	"Set CSS color to display scrollUp active point, e.g '#00FFFF'"
+}
+
+widget scrollSpy 
+       implemented_by net.bootsfaces.component.scrollspy.ScrollSpy
+       extends UIComponentBase
+{
+ 	id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
+    container															   "Id of the element that is the scrollable container. If not specified, body is set by default."
+	target																   "Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set."
+	offset				Integer											   "Scroll offset"
+	smooth				Boolean											   "Enable smooth scroll"
+	selectionListener 	ScrollSpyEventListener	                           "Selection listener called on selection changed."
+    update																   "Component(s) to be updated with ajax."	
+}
+
 
 widget selectBooleanCheckbox
        implemented_by net.bootsfaces.component.SelectBooleanCheckbox
@@ -1640,194 +1744,7 @@ widget well
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
-widget image
-       implemented_by net.bootsfaces.component.Image
-       extends UIComponentBase
-       has_tooltip
- {
-    ajax                Boolean   inherited                                "Activates AJAX. The default value is false (no AJAX)."
-	alt																   	   "Alternate textual description of the element rendered by this component."
-    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
-    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
-    height																   "Override for the height of this image."
-    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    lang                                                                   "Code describing the language used in the generated markup for this component."
-    name                mandatory                                          "Icon name, mandatory."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "Javascript to be executed when ajax completes with success."
-    ondblclick                                                             "Client side callback to execute when input element is double clicked."
-	ondragstart                                                            "Client side callback when a drag-and-drop action starts. May also call an AJAX function."
-	ondragover                                                             "Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function."
-	ondrop                                                                 "Client side callback when a drag-and-drop action ends. May also call an AJAX function."
-    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
-    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
-    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
-    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
-    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-    readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    style                                                                  "Inline style"
-    style-class                                                             "CSS style class"
-    title																	"Advisory title information about markup elements generated for this component."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-    update                                                                 "Component(s) to be updated with ajax."
-    value				inherited											"The local value of this component"
-    width																	"Override for the width of this image."
-}
 
-widget scrollUp
-		implemented_by net.bootsfaces.component.ScrollUp
-		extends UIComponentBase
-{
-	name																	"Element ID"
-	rendered            Boolean inherited                                   "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    distance			Integer												"Distance from top/bottom before showing element (px)"
-	from																	"scroll direction: 'top' or 'bottom'"
-	speed				Integer												"Speed back to top (ms)."
-	animation																"Animation type: Fade, slide, none."
-	animationSpeed		Integer												"Animation speed (ms)."
-	text																	"Text for element, can contain HTML."
-	title																	"Set a custom &lt;a&gt; title if required."
-	image 																	"Set true to use image. (Must be set in related css)."
-	easing																	"Scroll easing (see http://easings.net/)."
-	trigger																	"Set a custom triggering element. Can be an HTML string or jQuery object"
-	target																	"Set a custom target element for scrolling to. Can be element or number."
-	overlay																	"Set CSS color to display scrollUp active point, e.g '#00FFFF'"
-}
-
-widget colorPicker
-       implemented_by net.bootsfaces.component.ColorPicker
-       rendered_by net.bootsfaces.component.ColorPickerRenderer
-       processes_input
-       extends HtmlInputText
-       has_tooltip
- {
-    accesskey                                                              "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
-    alt                                                                    "Alternate textual description of the input element."
-    autocomplete                                                           "Controls browser autocomplete behavior."
-    binding             javax.faces.component.UIComponent                  "An el expression referring to a server side UIComponent instance in a backing bean."
-    converter           java.faces.convert.Converter inherited             "An el expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
-    converterMessage                                                       "Message to display when conversion fails."
-    control																   "The type of control to display. Valid values: hue, brightness, saturation, and wheel."
-    format 																   "Type of returned data. Valid values: hex and rgb."
-    opacity				Boolean											   "True to enable opacity swatches."
-    position															   "Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right."
-    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content)."
-    disabled            Boolean                                            "Disables the input element, default is false."
-    fieldSize                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
-    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
- 	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
-    label                                                                  "The label of the field."
-    lang                                                                  "Code describing the language used in the generated markup for this component."
-    onblur                                                                 "Client side callback to execute when input element loses focus."
-    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "Javascript to be executed when ajax completes with success."
-    ondblclick                                                             "Client side callback to execute when input element is double clicked."
-    onfocus                                                                "Client side callback to execute when input element receives focus."
-    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
-    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
-    onkeyup                                                                "Client side callback to execute when a key is released over input element."
-    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
-    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
-    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
-    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
-    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-    onselect                                                               "Client side callback to execute when text within input element is selected by user."
-    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-	process                                                                  "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
-    readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
-    requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
-    size                Integer                                            "Number of characters used to determine the width of the input element."
-    span                Integer                                            "The size of the input specified as number of grid columns."
-    style                                                                  "Inline style of the input element."
-    styleClass                                                             "Style class of the input element."
-    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
-    title                                                                  "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-    type                                                                   "Type of the input. The default is text."
-    update                                                                 "Component(s) to be updated with ajax."
-    validator           javax.faces.validator.Validator                    "A method expression referring to a method validationg the input."
-    validatorMessage                                                       "Message to display when validation fails."
-    value               inherited                                          "Value."
-    valueChangeListener javax.faces.event.ValueChangeListener              "A method binding expression referring to a method for handling a valuchangeevent."
-}
-
-widget defaultCommand
-       implemented_by net.bootsfaces.component.DefaultCommand
-       extends UIComponentBase
-{
- 	id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    target																   "Id of the default command for container div."
-}
-
-widget tree
-       implemented_by net.bootsfaces.component.tree.Tree
-       extends UIComponentBase
-{
- 	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
-    rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    value					Node														"Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work."
-    nodeSelectionListener 	TreeNodeEventListener										"Selection listener called on selection changed."
-    renderRoot				Boolean default "true"										"Render root node or not"
-    showTags				Boolean														"Boolean value to specify if tags was show or not."
-    showIcon				Boolean	default "true"										"Boolean value to specify if icons are rendered or not."
-    showCheckbox			Boolean														"Boolean value to specify if checkbox is rendered or not."
-    enableLinks				Boolean														"Boolean value to specify if enable href link."
-    collapseIcon																		"Glyphicons of collapse."
-    expandIcon																			"Glyphicons of expand."
-    color																				"Text color."
-    update																   				"Component(s) to be updated with ajax."	
-}
-
-widget focus
-       implemented_by net.bootsfaces.component.Focus
-       extends UIComponentBase
-{
- 	id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false component will not be rendered."
-    target																   "Id of the element to focus."
-}
-
-widget growl
-	implemented_by net.bootsfaces.component.Growl
-	rendered_by net.bootsfaces.component.GrowlRenderer
-    extends UIMessages
- {
-    for                                                                    "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
-    globalOnly          Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
-    id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
-    rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
-    showDetail          Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to false."
-    showSummary         Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
-    style                                                                  "HTML: CSS styling instructions."
-    styleClass                                                             "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
-    icon																   "The glyphicon to display on message"
-    placementFor		default "top"									   "Vertical position of the growl message. Valid values are 'top' or 'bottom'."
-    placementAlign		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
-    delay				Integer	default "5000"							   "The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    timer				Integer	default "1000"                 			   "This is the amount of milliseconds removed from the notify at every timer milliseconds."
-    newestOnTop			Boolean											   "Specifies if newest messages must be displayed on top of the others."
-    allowDismiss		Boolean											   "Specifies whether the message can be dismissed."
-    escape                     											   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
-}
 
 
 

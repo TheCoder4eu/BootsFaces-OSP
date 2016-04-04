@@ -260,14 +260,14 @@ public class BsfUtils {
 	 * @param component
 	 * @return
 	 */
-	public static UIForm getForm(UIComponent component) {
+	public static UIForm getClosestForm(UIComponent component) {
 		while (component != null) {
 			if (component instanceof UIForm) {
-				break;
+				return (UIForm) component;
 			}
 			component = component.getParent();
 		}
-		return (UIForm) component;
+		return null;
 	}
 
 	/**

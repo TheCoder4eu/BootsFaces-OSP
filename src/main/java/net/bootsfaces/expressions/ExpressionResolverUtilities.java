@@ -2,7 +2,6 @@ package net.bootsfaces.expressions;
 
 import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
 
 public class ExpressionResolverUtilities {

@@ -43,6 +43,10 @@ public final class C {
     public static final String FA_VERSION="4.5.0";
     public static final String FONTAWESOME_CDN_URL="//maxcdn.bootstrapcdn.com/font-awesome/"+FA_VERSION+"/css/font-awesome.min.css";
     
+    //Meta tags
+    // default yes. to disable set to 'no' or 'false'. if you want to change, set to the value you want to use 
+    public static final String P_VIEWPORT = "BootsFaces_USE_VIEWPORT"; 
+    
     /**
      * Component Types
      */

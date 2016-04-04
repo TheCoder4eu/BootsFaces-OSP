@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -33,6 +34,7 @@ import net.bootsfaces.component.tree.event.TreeNodeSelectionEvent;
 import net.bootsfaces.component.tree.model.DefaultNodeImpl;
 import net.bootsfaces.component.tree.model.Node;
 import net.bootsfaces.component.tree.model.TreeModelUtils;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -102,6 +104,12 @@ public class TreeRenderer extends CoreRenderer {
 		Tree tree = (Tree) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = tree.getClientId();
+		
+		// check is inside form (MyFaces requires to be)
+		final UIForm form = BsfUtils.getClosestForm(tree);
+		if(form == null) {
+			throw new FacesException("The tree component must be inside a form", null);
+		}
 
 		rw.startElement("div", tree);
 		rw.writeAttribute("id", "tree_" + clientId, "id");
@@ -115,9 +123,15 @@ public class TreeRenderer extends CoreRenderer {
 		}
 		Tree tree = (Tree) component;
 		String clientId = tree.getClientId();
+		String jqClientId = BsfUtils.EscapeJQuerySpecialCharsInSelector(clientId);
 		ResponseWriter rw = context.getResponseWriter();
-		String updateItems = BsfUtils.GetOrDefault("'" + tree.getUpdate() + "'", "null");
 		
+		final UIForm form = BsfUtils.getClosestForm(tree);
+		if(form == null) {
+			throw new FacesException("The tree component must be inside a form", null);
+		}
+		String updateItems = BsfUtils.GetOrDefault("'" + tree.getUpdate() + "'", "null");
+
 		rw.startElement("script", tree);
 		//# Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
@@ -127,7 +141,7 @@ public class TreeRenderer extends CoreRenderer {
 					 "} " +
 					 
 					 // build tree structure
-					 "$('#tree_" + clientId + "').treeview({ " +
+					 "$('#tree_" + jqClientId + "').treeview({ " +
 					 
 					 	(tree.isShowTags()  ? "showTags: true," : "") +
 					 	(tree.isShowIcon()  ? "showIcon: true," : "") +
@@ -136,22 +150,21 @@ public class TreeRenderer extends CoreRenderer {
 					 	(BsfUtils.StringIsValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
 					 	(BsfUtils.StringIsValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
 					 	(BsfUtils.StringIsValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
-					 
 						"     data: getTreeData()   " + 
 					 "}); " +
 					
 					 // enable nodeSelected event callback
-					 "$('#tree_" + clientId + "').on('nodeSelected', function(event, data) { " +
+					 "$('#tree_" + jqClientId + "').on('nodeSelected', function(event, data) { " +
 					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeSelected:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeChecked event callback
-					 "$('#tree_" + clientId + "').on('nodeChecked', function(event, data) { " +
+					 "$('#tree_" + jqClientId + "').on('nodeChecked', function(event, data) { " +
 					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeChecked:' + data.text);" + // @all
 					 "});" +
 					 
 					 //enable nodeUnchecked event callback
-					 "$('#tree_" + clientId + "').on('nodeUnchecked', function(event, data) { " +
+					 "$('#tree_" + jqClientId + "').on('nodeUnchecked', function(event, data) { " +
 					 "   BsF.ajax.callAjax(this, event, " + updateItems + ", '" + clientId + "', null, 'nodeUnchecked:' + data.text);" + // @all
 					 "});", null);
 		rw.writeText("});", null);

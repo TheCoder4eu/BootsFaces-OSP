@@ -87,8 +87,50 @@ public class AddResourcesListener implements SystemEventListener {
 		if (source instanceof UIViewRoot) {
 			final FacesContext context = FacesContext.getCurrentInstance();
 			boolean isProduction = context.isProjectStage(ProjectStage.Production);
+			
+			UIViewRoot root = (UIViewRoot) source;
+			addJavascript(root, context, isProduction);
+			addMetaTags(root, context);
+		}
+	}
 
-			addJavascript((UIViewRoot) source, context, isProduction);
+	/**
+	 * Add the viewport meta tag if not disabled from context-param
+	 * 
+	 * @param root
+	 * @param context
+	 * @param isProduction
+	 */
+	private void addMetaTags(UIViewRoot root, FacesContext context) {
+		// Check context-param
+		String viewportParam = null;
+		viewportParam = context.getExternalContext().getInitParameter(C.P_VIEWPORT);
+		if (viewportParam != null) {
+			viewportParam = ELTools.evalAsString(viewportParam);
+		} else {
+			viewportParam = "";
+		}
+		viewportParam = viewportParam.trim();
+		String content = "width=device-width, initial-scale=1";
+		if (viewportParam.length() > 0) {
+			if (viewportParam.equalsIgnoreCase("no") || viewportParam.equalsIgnoreCase("false")) {
+				return;
+			}
+			if (!viewportParam.equalsIgnoreCase("yes") && !viewportParam.equalsIgnoreCase("true")) {
+				content = viewportParam;
+			}
+		}
+
+		// Otherwise
+		String viewportMeta = "<meta name=\"viewport\" content=\"" + content + "\"/>";
+		UIOutput viewport = new UIOutput();
+		viewport.setRendererType("javax.faces.Text");
+		viewport.getAttributes().put("escape", false);
+		viewport.setValue(viewportMeta);
+
+		UIComponent header = findHeader(root);
+		if(header != null) {
+			header.getChildren().add(0, viewport);
 		}
 	}
 
@@ -106,14 +148,14 @@ public class AddResourcesListener implements SystemEventListener {
 	private void addJavascript(UIViewRoot root, FacesContext context, boolean isProduction) {
 		Application app = context.getApplication();
 		ResourceHandler rh = app.getResourceHandler();
-		
-//		List<UIComponent> r = root.getComponentResources(context, "head");
-//		System.out.println("**************");
-//		for (UIComponent ava : r) {
-//			String name = (String) ava.getAttributes().get("name");
-//			System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
-//		}
-//		System.out.println("**************");
+
+		//		List<UIComponent> r = root.getComponentResources(context, "head");
+		//		System.out.println("**************");
+		//		for (UIComponent ava : r) {
+		//			String name = (String) ava.getAttributes().get("name");
+		//			System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
+		//		}
+		//		System.out.println("**************");
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
 
@@ -136,11 +178,11 @@ public class AddResourcesListener implements SystemEventListener {
 		} else {
 			theme = "";
 		}
-		if (theme.trim().length() > 0) {
+		theme = theme.trim();
+		if (theme.length() > 0) {
 			if (theme.equalsIgnoreCase("custom")) {
 				theme = "other";
 			}
-
 		} else
 			theme = "default";
 
@@ -167,7 +209,8 @@ public class AddResourcesListener implements SystemEventListener {
 		} else {
 			usetheme = "";
 		}
-		if (usetheme.trim().length() > 0) {
+		usetheme = usetheme.trim();
+		if (usetheme.length() > 0) {
 			if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Stylesheet");
@@ -241,7 +284,7 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
-                
+
 		// Font Awesome
 		if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
 			InternalFALink output = new InternalFALink();
@@ -250,7 +293,7 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		Map<String, Object> viewMap = root.getViewMap();
-		
+
 		@SuppressWarnings("unchecked")
 		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
 		if (basicResourceMap.containsValue("jsf.js")) {
@@ -269,8 +312,7 @@ public class AddResourcesListener implements SystemEventListener {
 			output.getAttributes().put("target", "head");
 			addResourceIfNecessary(root, context, output);
 		}
-		
-		
+
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
 
@@ -353,26 +395,26 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
-		
+
 		List<String> themedCSSMap = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
 		for (String file: themedCSSMap) {
-		    UIOutput themedCSS = new UIOutput();
-		    themedCSS.setRendererType("javax.faces.resource.Stylesheet");
-		    themedCSS.getAttributes().put("name", "css/" + theme + "/" + file);
-		    themedCSS.getAttributes().put("library", C.BSF_LIBRARY);
-		    themedCSS.getAttributes().put("target", "head");
-		    addResourceIfNecessary(root, context, themedCSS);
+			UIOutput themedCSS = new UIOutput();
+			themedCSS.setRendererType("javax.faces.resource.Stylesheet");
+			themedCSS.getAttributes().put("name", "css/" + theme + "/" + file);
+			themedCSS.getAttributes().put("library", C.BSF_LIBRARY);
+			themedCSS.getAttributes().put("target", "head");
+			addResourceIfNecessary(root, context, themedCSS);
 		}
-		
-		
-	    // Glyphicons
-	    UIOutput goutput = new UIOutput();
-	    goutput.setRendererType("javax.faces.resource.Stylesheet");
-	    goutput.getAttributes().put("name", "css/icons.css");
-	    //goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
-	    goutput.getAttributes().put("library", C.BSF_LIBRARY);
-	    goutput.getAttributes().put("target", "head");
-	    addResourceIfNecessary(root, context, goutput);
+
+
+		// Glyphicons
+		UIOutput goutput = new UIOutput();
+		goutput.setRendererType("javax.faces.resource.Stylesheet");
+		goutput.getAttributes().put("name", "css/icons.css");
+		//goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
+		goutput.getAttributes().put("library", C.BSF_LIBRARY);
+		goutput.getAttributes().put("target", "head");
+		addResourceIfNecessary(root, context, goutput);
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalIE8CompatiblityLinks output) {
@@ -404,7 +446,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 		root.addComponentResource(context, output, "head");
-//        System.out.println("++" + output.getClientId() + " " + nameToAdd + " " + libToAdd);
+		//        System.out.println("++" + output.getClientId() + " " + nameToAdd + " " + libToAdd);
 	}
 
 	/**
@@ -434,10 +476,10 @@ public class AddResourcesListener implements SystemEventListener {
 			alreadyThere.put(key, resource);
 		}
 		for (UIComponent c : resourcesToRemove) {
-//			c.setInView(false);
+			//			c.setInView(false);
 			root.removeComponentResource(context, c);
-			String name = (String) c.getAttributes().get("name");
-			String library = (String) c.getAttributes().get("library");
+			//String name = (String) c.getAttributes().get("name");
+			//String library = (String) c.getAttributes().get("library");
 			//System.out.println("-1" + c.getClientId() + " " + name + " " + library + " " + c.getClass().getSimpleName() );
 		}
 	}
@@ -574,11 +616,11 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 		for (UIComponent c : first) {
 			root.addComponentResource(context, c, "head");
-//			root.getComponentResources(context, "head").add(c);
+			//			root.getComponentResources(context, "head").add(c);
 		}
 		for (UIComponent c : middle) {
 			root.addComponentResource(context, c, "head");
-//			root.addComponentResource(context, c, "head");
+			//			root.addComponentResource(context, c, "head");
 		}
 		for (UIComponent c : resources) {
 			root.addComponentResource(context, c, "head");
@@ -677,7 +719,7 @@ public class AddResourcesListener implements SystemEventListener {
 			resourceMap.put(key, resource);
 		}
 	}
-	
+
 	/**
 	 * Registers a core JS file that needs to be include in the header of the HTML
 	 * file, but after jQuery and AngularJS.
@@ -702,7 +744,7 @@ public class AddResourcesListener implements SystemEventListener {
 			resourceMap.put(key, resource);
 		}
 	}
-	
+
 	/**
 	 * Registers a themed CSS file that needs to be includes in the header of the HTML
 	 * file.

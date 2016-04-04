@@ -87,7 +87,8 @@ task copyBootstrapJs(type: Copy) {
   	description 'BootsFaces task: copies the Bootstrap JavaScript files to the process folder.'
   	from 'Bootstrap/bootstrap-'+BootstrapVersion+'/js'
   	include '*.js'
-  	exclude 'affix.js', 'popover.js', 'scrollspy.js'
+  	exclude 'affix.js', 'popover.js'
+  	//, 'scrollspy.js'
   	filter{String line -> line.startsWith('/* ') ? line.replace('/* ', '/** @license ') : line }
   	into "${buildDir}/process/js"
 }

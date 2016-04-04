@@ -16,7 +16,7 @@ public class IDExpressionResolver implements AbstractExpressionResolver {
 				while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
 					parent = parent.getParent();
 				}
-	
+				
 				String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
 				String childId;
 				if (parentId.length()==0)
@@ -25,6 +25,7 @@ public class IDExpressionResolver implements AbstractExpressionResolver {
 					childId = parentId + currentId;
 				else
 					childId = parentId + ":" + currentId;
+				
 				UIComponent c = component.findComponent(childId);
 				if (null == c) {
 					c = component.findComponent(":"+childId);

@@ -48,7 +48,7 @@ public class DefaultCommand extends UIComponentBase {
 		}
 		Map<String, Object> attrs = getAttributes();
 
-		final UIForm form = BsfUtils.getForm(this);
+		final UIForm form = BsfUtils.getClosestForm(this);
 		if(form == null) {
 			throw new FacesException("The default command component must be inside a form", null);
 		} else {

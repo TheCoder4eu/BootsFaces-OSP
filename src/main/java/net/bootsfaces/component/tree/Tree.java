@@ -241,7 +241,7 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	 * @return
 	 */
 	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update);
+		String value = (String) getStateHelper().eval(PropertyKeys.update, null);
 		return value;
 	}
 	public void setUpdate(String _update) {
