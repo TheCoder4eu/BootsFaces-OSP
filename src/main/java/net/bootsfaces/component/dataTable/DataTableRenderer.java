@@ -353,7 +353,7 @@ public class DataTableRenderer extends CoreRenderer {
 			//# Convert footer column text to input textfields
 			rw.writeText( widgetVar + ".find('tfoot th').each(function() {" +
 						  "var title = $(this).text();" +
-						  "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
+						  "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
 						  "});", null );
 			//# Add event listeners for each input
 			rw.writeText( "table.columns().every( function () {" +
