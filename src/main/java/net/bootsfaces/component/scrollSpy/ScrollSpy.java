@@ -63,6 +63,7 @@ public class ScrollSpy extends UIComponentBase  {
 		target,
 		offset,
 		smooth,
+		smoothSpeed,
 		selectionListener, 
 		update
 		;
@@ -176,6 +177,23 @@ public class ScrollSpy extends UIComponentBase  {
 	 */
 	public void setSmooth(boolean _smooth) {
 	    getStateHelper().put(PropertyKeys.smooth, _smooth);
+    }
+	
+	/**
+	 * Speed of the smooth scroll (default 800) <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getSmoothSpeed() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.smoothSpeed, 800);
+		return (int) value;
+	}
+	
+	/**
+	 * Speed of the smooth scroll (default 800) <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSmoothSpeed(int _smoothSpeed) {
+	    getStateHelper().put(PropertyKeys.smoothSpeed, _smoothSpeed);
     }
 	
 	/**

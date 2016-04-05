@@ -135,3 +135,18 @@ if ($.datepicker) {
 function jq( myid ) {
     return "#" + myid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
 }
+
+/* tree support method to convert data object to state string */
+function treeDataMapper(data) {
+	console.log(data);
+	var sep = "|#*#|";
+	if(data && data !== "undefined") {
+		return data.nodeInternalId + sep + 
+			   data.text + sep + 
+			   data.state.checked + sep + 
+			   data.state.disabled + sep + 
+			   data.state.expanded + sep + 
+			   data.state.selected;
+	}
+	return "";
+}

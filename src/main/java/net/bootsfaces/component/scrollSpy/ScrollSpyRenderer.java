@@ -104,6 +104,7 @@ public class ScrollSpyRenderer extends CoreRenderer {
 			offset = 20;
 		} 
 		boolean smooth = scrollSpy.isSmooth();
+		int smoothSpeed = scrollSpy.getSmoothSpeed();
 		boolean hasListeners = (scrollSpy.getSelectionListener() != null);
 		// String updateItems = BsfUtils.GetOrDefault("'" + scrollSpy.getUpdate() + "'", "null");
 		String updateItems = scrollSpy.getUpdate();
@@ -124,13 +125,17 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		if(smooth) {
 			rw.writeText("" +
 					"$('" + target + " a').on('click', function(event) { " +
-					"	event.preventDefault(); " +
 					"	var hash = this.hash; " +
-					"	$('html, body').animate({ " +
-					"		scrollTop: $(hash).offset().top " +
-					"	}, 800, function() { " +
-					"		window.location.hash = hash; " +
+					"	$('" + ("body".equals(container) ? "html, body": container) + "').animate({ " +
+					"		scrollTop: $(hash).parent().scrollTop() + $(hash).offset().top - $(hash).parent().offset().top " +
+					"	}, { " + 
+					"       duration: " + smoothSpeed + ", " + 
+					"		specialEasing: { " + 
+			        "        	width: 'linear', " + 
+			        "        	height: 'easeOutBounce' " + 
+			        "	    } "+
 					"	}); " +
+			        "   event.preventDefault(); " +
 					"}); ", null);
 		}
 		

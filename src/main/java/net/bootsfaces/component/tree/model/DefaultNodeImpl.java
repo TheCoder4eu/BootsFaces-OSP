@@ -20,6 +20,7 @@
 package net.bootsfaces.component.tree.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +83,6 @@ implements Node, Serializable {
 		this.icon = icon;
 	}
 	
-	
 	public String getData() {
 		return data;
 	}
@@ -92,6 +92,7 @@ implements Node, Serializable {
 	}
 
 	public int getNodeId() {
+		if(nodeId <= 0) nodeId = new BigInteger(text.getBytes()).intValue();
 		return nodeId;
 	}
 
@@ -311,23 +312,5 @@ implements Node, Serializable {
 	public DefaultNodeImpl withSubnode(Node subNode) {
 		this.getChilds().add(subNode);
 		return this;
-	}
-	
-	/**
-	 * Basic implementation of recursive node search by id
-	 * It works only on a DefaultNodeImpl
-	 * @param nodeId
-	 * @return
-	 */
-	public Node searchNodeById(int nodeId) {
-		if(this.nodeId == nodeId) return this;
-		for(Node n: this.getChilds()) {
-			if(n instanceof DefaultNodeImpl) {
-				Node foundNode = ((DefaultNodeImpl)n).searchNodeById(nodeId);
-				if(foundNode != null) return foundNode;
-			}
-		}
-		return null;
-		
 	}
 }

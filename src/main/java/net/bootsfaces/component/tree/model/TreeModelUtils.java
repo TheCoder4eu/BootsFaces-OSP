@@ -20,6 +20,7 @@
 package net.bootsfaces.component.tree.model;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import net.bootsfaces.utils.BsfUtils;
 
@@ -31,6 +32,88 @@ import net.bootsfaces.utils.BsfUtils;
  *
  */
 public class TreeModelUtils {
+	
+	/**
+	 * Debug method to print tree node structure
+	 * @param rootNode
+	 * @param tab
+	 */
+	public static void printNodeData(Node rootNode, String tab) {
+		if(tab == null) tab = "";
+		else tab = tab + "  ";
+		
+		System.out.println(tab + "NODE: " + rootNode.getNodeId() + " CHECKED: " + rootNode.isChecked());
+		for(Node n: rootNode.getChilds()) {
+			printNodeData(n, tab);
+		}
+	}
+	
+	/**
+	 * Update the node with the new state, if node is found 
+	 * 
+	 * @param rootNode
+	 * @param nodeId
+	 * @param nodeState
+	 */
+	public static void updateNodeById(Node rootNode, int nodeId, Node nodeState) {
+		Node refNode = searchNodeById(rootNode, nodeId);
+		if(refNode != null) {
+			refNode.setChecked(nodeState.isChecked());
+			refNode.setDisabled(nodeState.isDisabled());
+			refNode.setSelected(nodeState.isSelected());
+			refNode.setSelectable(nodeState.isSelectable());
+			refNode.setExpanded(nodeState.isExpanded());
+		}
+	}
+	
+	/**
+	 * Basic implementation of recursive node search by id
+	 * It works only on a DefaultNodeImpl
+	 * @param nodeId
+	 * @return
+	 */
+	private static Node searchNodeById(Node rootNode, int nodeId) {
+		if(rootNode.getNodeId() == nodeId) return rootNode;
+		Node foundNode = null;
+		for(Node n: rootNode.getChilds()) {
+			foundNode = searchNodeById(n, nodeId);
+			if(foundNode != null) break;
+		}
+		return foundNode;
+	}
+	
+	/**
+	 * dataString structure is the following
+	 * 
+	 * (0) nodeId
+	 * (1) text
+	 * (2) checked
+	 * (3) disabled
+	 * (4) expanded
+	 * (5) selected
+	 * 
+	 * the separator is |#*#|
+	 * 
+	 * @param jsonString
+	 * @return
+	 */
+	public static Node mapDataToModel(String dataString) {
+		String[] dataMap = dataString.split(Pattern.quote("|#*#|"));
+		
+		DefaultNodeImpl n = new DefaultNodeImpl();
+		try {
+			n.setNodeId(Integer.parseInt(dataMap[0]));
+			n.setText(dataMap[1]);
+			n.setChecked(("true".equalsIgnoreCase(dataMap[2]) ? true: false));
+			n.setDisabled(("true".equalsIgnoreCase(dataMap[3]) ? true: false));
+			n.setExpanded(("true".equalsIgnoreCase(dataMap[4]) ? true: false));
+			n.setSelected(("true".equalsIgnoreCase(dataMap[5]) ? true: false));
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return n;
+	}
 	
 	/**
 	 * Render the node model as JSON
@@ -52,7 +135,8 @@ public class TreeModelUtils {
 		sb.append("{");
 		// NODE ID
 		if(node.getNodeId() != -1) {
-			sb.append("\"nodeId\": " + node.getNodeId() + ", ");
+			// i have to map the generated node id to an internal value that is not related to the original structure
+			sb.append("\"nodeInternalId\": " + node.getNodeId() + ", "); 
 		}
 		// TEXT
 		if(BsfUtils.StringIsValued(node.getText())) {

@@ -31,7 +31,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.tree.event.TreeNodeCheckedEvent;
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
 import net.bootsfaces.component.tree.event.TreeNodeSelectionEvent;
-import net.bootsfaces.component.tree.model.DefaultNodeImpl;
 import net.bootsfaces.component.tree.model.Node;
 import net.bootsfaces.component.tree.model.TreeModelUtils;
 import net.bootsfaces.expressions.ExpressionResolver;
@@ -62,9 +61,12 @@ public class TreeRenderer extends CoreRenderer {
 				if (pair.length == 2) {
 					value = pair[1];
 				}
-				if (value != null) {
-					Node n = new DefaultNodeImpl(value);
-
+				if (value != null && !"".equals(value.trim())) {
+					Node n = TreeModelUtils.mapDataToModel(value);
+					TreeModelUtils.updateNodeById(tree.getValue(), n.getNodeId(), n);
+					// tree.setSubmittedValue(tree.getValue());
+					
+					// execute listener only for listened events
 					if ("nodeSelected".equals(key)) {
 						Node n2 = checkNodeIsSelected(tree.getValue(), tree);
 						nodeSelectionListener.processValueChange(new TreeNodeSelectionEvent(n2, n));
@@ -72,9 +74,12 @@ public class TreeRenderer extends CoreRenderer {
 						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, true));
 					} else if ("nodeUnchecked".equals(key)) {
 						nodeSelectionListener.processValueUnchecked(new TreeNodeCheckedEvent(n, false));
-					} else {
+					}
+					/*
+					else {
 						throw new FacesException("Unexpected event when trying to decode the tree event: " + key);
 					}
+					*/
 				}
 			}
 		}
@@ -147,7 +152,6 @@ public class TreeRenderer extends CoreRenderer {
 					 
 					 // build tree structure
 					 "$('#tree_" + jqClientId + "').treeview({ " +
-					 
 					 	(tree.isShowTags()  ? "showTags: true," : "") +
 					 	(tree.isShowIcon()  ? "showIcon: true," : "") +
 					 	(tree.isShowCheckbox() ? "showCheckbox: true," : "") +
@@ -155,23 +159,32 @@ public class TreeRenderer extends CoreRenderer {
 					 	(BsfUtils.StringIsValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
 					 	(BsfUtils.StringIsValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
 					 	(BsfUtils.StringIsValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
-						"     data: getTreeData()   " + 
-					 "}); " +
-					
-					 // enable nodeSelected event callback
-					 "$('#tree_" + jqClientId + "').on('nodeSelected', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeSelected:' + data.text);" + // @all
-					 "});" +
-					 
-					 //enable nodeChecked event callback
-					 "$('#tree_" + jqClientId + "').on('nodeChecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeChecked:' + data.text);" + // @all
-					 "});" +
-					 
-					 //enable nodeUnchecked event callback
-					 "$('#tree_" + jqClientId + "').on('nodeUnchecked', function(event, data) { " +
-					 "   BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeUnchecked:' + data.text);" + // @all
-					 "});", null);
+						"   data: getTreeData(),   " + 
+						// enable nodeSelected event callback
+						"	onNodeSelected: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeSelected:' + treeDataMapper(data));" + // @all
+						"	}," +
+						// enable nodeUnselected event callback
+						"	onNodeUnselected: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeUnselected:' + treeDataMapper(data));" + // @all
+						"	}," +
+						//enable nodeChecked event callback
+						"	onNodeChecked: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeChecked:' + treeDataMapper(data));" + // @all
+						"	}," +
+						//enable nodeUnchecked event callback
+						"	onNodeUnchecked: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeUnchecked:' + treeDataMapper(data));" + // @all
+						"	}," +
+						// enable nodeCollapsed event callback
+						"	onNodeCollapsed: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeCollapsed:' + treeDataMapper(data));" + // @all
+						"	}," +
+						// enable nodeExpanded event callback
+						"	onNodeExpanded: function(event, data) { " +
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, 'nodeExpanded:' + treeDataMapper(data));" + // @all
+						"	}" +
+					 "}); ", null);
 		rw.writeText("});", null);
 		rw.endElement("script");
 	}
