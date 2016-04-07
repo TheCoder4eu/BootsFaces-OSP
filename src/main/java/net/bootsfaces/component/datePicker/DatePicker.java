@@ -26,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Locale;
@@ -161,22 +162,20 @@ public class DatePicker extends HtmlInputText {
 		// Else we use our own converter
 		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(getAttributes().get(JQ.LOCALE)));
 		sdf = selectDateFormat(sloc, A.asString(getAttributes().get(JQ.DTFORMAT)));
-		SimpleDateFormat format = null;
-		Object date = null;
+
+		Calendar cal = Calendar.getInstance(sloc);
+		SimpleDateFormat format = new SimpleDateFormat(sdf, sloc);
+		format.setTimeZone(cal.getTimeZone());
+
 		try {
-			format = new SimpleDateFormat(sdf, sloc);
+			cal.setTime(format.parse(val));
+			cal.set(Calendar.HOUR_OF_DAY, 12);
 
-			format.setTimeZone(java.util.TimeZone.getDefault());
-
-			date = format.parse(val);
-			((Date) date).setHours(12);
-
+			return cal.getTime();
 		} catch (ParseException e) {
 			this.setValid(false);
 			throw new ConverterException(getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, getLabel(fc)));
 		}
-
-		return date;
 	}
 
 	@Override
