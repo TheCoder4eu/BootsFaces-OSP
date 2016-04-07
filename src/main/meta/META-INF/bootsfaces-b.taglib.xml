@@ -10390,6 +10390,12 @@
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
+	<attribute>
+	  <description><![CDATA[Change the rendering of tab to pills mode. Default false]]></description>
+	  <name>pills</name>
+	  <required>false</required>
+	  <type>java.lang.Boolean</type>
+	</attribute>
     <attribute>
       <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
       <name>process</name>
@@ -10414,6 +10420,12 @@
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
+    <attribute>
+	  <description><![CDATA[Position of tabs. Legal values are: left, right, top, bottom. Default is top]]></description>
+	  <name>tabPosition</name>
+	  <required>false</required>
+	  <type>java.lang.String</type>
+	</attribute>
     <attribute>
       <description><![CDATA[The text of the tooltip.]]></description>
       <name>tooltip</name>

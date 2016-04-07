@@ -110,7 +110,27 @@ public class TabView extends UIOutput
 	}
 
 	protected enum PropertyKeys {
-		tooltipContainer,activeIndex, ajax, contentClass, contentStyle, dir, disabled, immediate, onclick, oncomplete, process, role, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		tooltipContainer, 
+		activeIndex, 
+		ajax, 
+		contentClass, 
+		contentStyle, 
+		dir, 
+		tabPosition,
+		pills,
+		disabled, 
+		immediate, 
+		onclick, 
+		oncomplete, 
+		process, 
+		role, 
+		styleClass, 
+		tooltip, 
+		tooltipDelay, 
+		tooltipDelayHide, 
+		tooltipDelayShow, 
+		tooltipPosition, 
+		update;
 
 		String toString;
 
@@ -349,6 +369,23 @@ public class TabView extends UIOutput
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
 	}
+	
+	/**
+	 * Change the rendering of tab to pills mode. Default false <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isPills() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.pills, false);
+		return (boolean) value;
+	}
+	
+	/**
+	 * Change the rendering of tab to pills mode. Default false <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPills(boolean _pills) {
+	    getStateHelper().put(PropertyKeys.pills, _pills);
+    }
 
 	/**
 	 * The role can be used to provide information to screenreaders.
@@ -391,6 +428,23 @@ public class TabView extends UIOutput
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
+	
+	/**
+	 * Position of tabs. Legal values are: left, right, top, bottom. Default is top <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTabPosition() {
+		String value = (String)getStateHelper().eval(PropertyKeys.tabPosition, "top");
+		return  value;
+	}
+	
+	/**
+	 * Position of tabs. Legal values are: left, right, top, bottom. Default is top <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabPosition(String _tabPosition) {
+	    getStateHelper().put(PropertyKeys.tabPosition, _tabPosition);
+    }
 
 	/**
 	 * The text of the tooltip.

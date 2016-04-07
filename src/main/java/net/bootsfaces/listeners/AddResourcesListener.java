@@ -296,21 +296,23 @@ public class AddResourcesListener implements SystemEventListener {
 
 		@SuppressWarnings("unchecked")
 		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
-		if (basicResourceMap.containsValue("jsf.js")) {
-			UIOutput output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Script");
-			output.getAttributes().put("name", "jsf.js");
-			output.getAttributes().put("library", "javax.faces");
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
-		}
-		if (basicResourceMap.containsValue("bsf.js") || basicResourceMap.containsValue("js/bsf.js")) {
-			UIOutput output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Script");
-			output.getAttributes().put("name", "js/bsf.js");
-			output.getAttributes().put("library", "bsf");
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
+		if(basicResourceMap != null) {
+			if (basicResourceMap.containsValue("jsf.js")) {
+				UIOutput output = new UIOutput();
+				output.setRendererType("javax.faces.resource.Script");
+				output.getAttributes().put("name", "jsf.js");
+				output.getAttributes().put("library", "javax.faces");
+				output.getAttributes().put("target", "head");
+				addResourceIfNecessary(root, context, output);
+			}
+			if (basicResourceMap.containsValue("bsf.js") || basicResourceMap.containsValue("js/bsf.js")) {
+				UIOutput output = new UIOutput();
+				output.setRendererType("javax.faces.resource.Script");
+				output.getAttributes().put("name", "js/bsf.js");
+				output.getAttributes().put("library", "bsf");
+				output.getAttributes().put("target", "head");
+				addResourceIfNecessary(root, context, output);
+			}
 		}
 
 		@SuppressWarnings("unchecked")
@@ -333,7 +335,6 @@ public class AddResourcesListener implements SystemEventListener {
 					output.getAttributes().put("target", "head");
 					addResourceIfNecessary(root, context, output);
 				}
-
 			}
 
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
@@ -349,16 +350,15 @@ public class AddResourcesListener implements SystemEventListener {
 						addResourceIfNecessary(root, context, output);
 					}
 				}
-
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
-		String blockUI = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.blockUI");
+		String blockUI = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("net.bootsfaces.blockUI");
 		if (null != blockUI)
 			blockUI = ELTools.evalAsString(blockUI);
 		if (null != blockUI && (blockUI.equalsIgnoreCase("yes") || blockUI.equalsIgnoreCase("true")))
 		{
+			addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 			UIOutput output = new UIOutput();
 			output.setRendererType("javax.faces.resource.Script");
 			output.getAttributes().put("name", "js/jquery.blockUI.js");
@@ -397,15 +397,16 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		List<String> themedCSSMap = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
-		for (String file: themedCSSMap) {
-			UIOutput themedCSS = new UIOutput();
-			themedCSS.setRendererType("javax.faces.resource.Stylesheet");
-			themedCSS.getAttributes().put("name", "css/" + theme + "/" + file);
-			themedCSS.getAttributes().put("library", C.BSF_LIBRARY);
-			themedCSS.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, themedCSS);
+		if(themedCSSMap != null) {
+			for (String file: themedCSSMap) {
+				UIOutput themedCSS = new UIOutput();
+				themedCSS.setRendererType("javax.faces.resource.Stylesheet");
+				themedCSS.getAttributes().put("name", "css/" + theme + "/" + file);
+				themedCSS.getAttributes().put("library", C.BSF_LIBRARY);
+				themedCSS.getAttributes().put("target", "head");
+				addResourceIfNecessary(root, context, themedCSS);
+			}
 		}
-
 
 		// Glyphicons
 		UIOutput goutput = new UIOutput();
@@ -714,6 +715,10 @@ public class AddResourcesListener implements SystemEventListener {
 			resourceMap = new HashMap<String, String>();
 			viewMap.put(RESOURCE_KEY, resourceMap);
 		}
+		// first step: add jquery if not exist
+		if(!resourceMap.containsKey("bsf#jq/jquery.js")) {
+			resourceMap.put("bsf#jq/jquery.js", "jq/jquery.js");
+		}
 		String key = library + "#" + resource;
 		if (!resourceMap.containsKey(key)) {
 			resourceMap.put(key, resource);
@@ -769,5 +774,4 @@ public class AddResourcesListener implements SystemEventListener {
 			resourceMap.add(key);
 		}
 	}
-
 }

@@ -8,7 +8,7 @@ widget accordion
 	expandedPanels														  "Comma separated list of child panel id that need to render expanded."
 }
 
- 
+
 widget alert
        implemented_by net.bootsfaces.component.Alert
        extends UIComponentBase
@@ -1695,6 +1695,8 @@ widget tabView
     content-class                                                           "Style class of the div surrounding the panes."
     content-style                                                           "Inline CSS style of the div surrounding the panes."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    tabPosition															   "Position of tabs. Legal values are: left, right, top, bottom. Default is top"
+    pills				Boolean											   "Change the rendering of tab to pills mode. Default false"
     disabled            Boolean                                            "Disables the input element, default is false."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."

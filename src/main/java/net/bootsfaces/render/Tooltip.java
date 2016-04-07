@@ -199,6 +199,5 @@ public class Tooltip {
 			String js = "$(function () {\n" + "$('#" + id + "').tooltip(" + options + ")\n" + "});\n";
 			context.getResponseWriter().write("<script type='text/javascript'>" + js + "</script>");
 		}
-
 	}
 }

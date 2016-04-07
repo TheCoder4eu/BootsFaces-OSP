@@ -61,11 +61,8 @@ public class TabLinks extends LinksContainer {
         return STYLE;
     }
 
-    
-
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-    
 }

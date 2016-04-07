@@ -228,3 +228,60 @@ label.bf-fatal { color: red; }
     font-family: "Glyphicons Halflings";
     src: url("../../../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../../../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../../../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../../../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../../../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg");
 }*/
+
+/* tab position */
+.tabs-below > .nav-tabs,
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs,
+.tabs-below > .nav-pills,
+.tabs-right > .nav-pills,
+.tabs-left > .nav-pills {
+  border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+/** BELOW TAB **/
+.tabs-below > .nav-tabs {
+  border-top: 1px solid #ddd;
+}
+
+.tabs-below > .nav-tabs > li,
+.tabs-below > .nav-pills > li  {
+  margin-top: -1px;
+  margin-bottom: 0;
+}
+
+.tabs-below > .nav-tabs > li > a {
+  -webkit-border-radius: 0 0 4px 4px;
+     -moz-border-radius: 0 0 4px 4px;
+          border-radius: 0 0 4px 4px;
+}
+
+.tabs-below > .nav-tabs > li > a:hover,
+.tabs-below > .nav-tabs > li > a:focus,
+.tabs-below > .nav-pills > li > a:hover,
+.tabs-below > .nav-pills > li > a:focus  {
+  border-top-color: #ddd;
+  border-bottom-color: transparent;
+}
+
+.tabs-below > .nav-tabs > .active > a,
+.tabs-below > .nav-tabs > .active > a:hover,
+.tabs-below > .nav-tabs > .active > a:focus,
+.tabs-below > .nav-pills > .active > a,
+.tabs-below > .nav-pills > .active > a:hover,
+.tabs-below > .nav-pills > .active > a:focus {
+  border-color: transparent #ddd #ddd #ddd;
+}
+
+
+

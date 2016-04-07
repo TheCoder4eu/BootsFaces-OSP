@@ -77,9 +77,7 @@ public class TabViewRenderer extends CoreRenderer {
 			} catch (NumberFormatException e) {
 
 			}
-
 		}
-
 	}
 
 	/**
@@ -110,14 +108,88 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("value", "", "value");
 		writer.endElement("input");
 
+		// set tab directions
+		final String tabPosition = tabView.getTabPosition();
+		String wrapperClass = "tab-panel";
+		if("bottom".equalsIgnoreCase(tabPosition)) wrapperClass += " tabs-below";
+		
 		writer.startElement("div", tabView);
-		writer.writeAttribute("class", "tab-panel", "class");
+		writer.writeAttribute("class", wrapperClass, "class");
 		writer.writeAttribute("role", "tabpanel", "class");
 		writer.writeAttribute("dir", tabView.getDir(), "dir");
+		
+		final List<UIComponent> tabs = getTabs(tabView);
+		
+		if("bottom".equalsIgnoreCase(tabPosition)) {
+			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+		} else if("left".equalsIgnoreCase(tabPosition)) {
+			writer.startElement("div", component);
+			writer.writeAttribute("class", "col-md-2", "class");
+			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			writer.endElement("div");
+			writer.startElement("div", component);
+			writer.writeAttribute("class", "col-md-10", "class");
+			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			writer.endElement("div");
+			drawClearDiv(writer, tabView);
+		} else if("right".equalsIgnoreCase(tabPosition)) {
+			writer.startElement("div", component);
+			writer.writeAttribute("class", "col-md-10", "class");
+			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			writer.endElement("div");
+			writer.startElement("div", component);
+			writer.writeAttribute("class", "col-md-2", "class");
+			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			writer.endElement("div");
+			drawClearDiv(writer, tabView);
+		} else {
+			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+		}
+		
+		writer.endElement("div");
+		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
+	}
+	
+	/**
+	 * Draw a clear div
+	 * @param writer
+	 * @param tabView
+	 * @throws IOException
+	 */
+	private static void drawClearDiv(ResponseWriter writer, UIComponent tabView) 
+	throws IOException {
+		writer.startElement("div", tabView);
+		writer.writeAttribute("style", "clear:both;", "style");
+		writer.endElement("div");
+	}
+	
+	/**
+	 * Encode the list of links that render the tabs
+	 * 
+	 * @param context
+	 * @param writer
+	 * @param tabView
+	 * @param currentlyActiveIndex
+	 * @param tabs
+	 * @param clientId
+	 * @param hiddenInputFieldID
+	 * @throws IOException
+	 */
+	private static void encodeTabLinks(FacesContext context, ResponseWriter writer, TabView tabView,
+			int currentlyActiveIndex, List<UIComponent> tabs, String clientId, String hiddenInputFieldID) 
+	throws IOException {
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
-		String classes = "nav nav-tabs";
+		String classes = "nav ";
+		if("left".equalsIgnoreCase(tabView.getTabPosition()) || "right".equalsIgnoreCase(tabView.getTabPosition())) {
+			classes += " nav-pills nav-stacked";
+		} else {
+			classes = classes + (tabView.isPills() ? " nav-pills" : " nav-tabs");
+		}
+		
 		if (tabView.getStyleClass() != null) {
 			classes += " ";
 			classes += tabView.getStyleClass();
@@ -134,14 +206,9 @@ public class TabViewRenderer extends CoreRenderer {
 
 		writer.writeAttribute("role", role, "role");
 
-		final List<UIComponent> tabs = getTabs(tabView);
 		encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
 		writer.endElement("ul");
-		encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
-		writer.endElement("div");
-		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
 	}
-
 
 	/**
 	 * Essentially, getTabs() does the same as getChildren(), but it filters
