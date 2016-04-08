@@ -1343,6 +1343,27 @@ widget poll
     update                                                                 "Which region of the screen is to be updated? Default value: @form"
 }
 
+widget progressBar
+       implemented_by net.bootsfaces.component.ProgressBar
+       has_tooltip
+ {
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    label                                                                  "Optional label, which is shown above the progress bar. Can be used for indicating the current value."
+    look                                                                   "Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered."
+    value                                                                  "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
+    max                 Integer default "100"                              "The maximum value of the ProgressBar. (default 100)"
+    min                 Integer default "0"                                "The minimum value of the ProgressBar. (default 0)"
+    striped             Boolean default "false"                            "If true, stripes will be added to the ProgressBar's look. Default value: false."
+    animated            Boolean default "false"                            "If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false."
+    tooltip                                                                "The text of the tooltip."
+    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+}
+
 
 widget row
        implemented_by net.bootsfaces.layout.Row
