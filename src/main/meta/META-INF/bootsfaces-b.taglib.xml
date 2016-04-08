@@ -4561,7 +4561,7 @@
     <tag-name>inputSecret</tag-name>
     <component>
       <component-type>net.bootsfaces.component.inputSecret.InputSecret</component-type>
-      <renderer-type>net.bootsfaces.component.inputText.InputTextRenderer</renderer-type>
+      <renderer-type>net.bootsfaces.component.inputText.InputText</renderer-type>
     </component>
 
     <attribute>

@@ -35,7 +35,6 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-
 @FacesComponent("net.bootsfaces.component.navbarLinks.NavbarLinks")
 public class NavBarLinks extends LinksContainer {
     

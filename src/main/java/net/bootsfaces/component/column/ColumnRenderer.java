@@ -58,7 +58,7 @@ public class ColumnRenderer extends CoreRenderer {
 			ResponseWriter rw = context.getResponseWriter();
 
 			int colxs = columnToInt(column.getColXs());
-			int colsm = columnToInt(column.getColSm()); 
+			int colsm = columnToInt(column.getColSm());
 			int collg = columnToInt(column.getColLg());
 
 			int span = columnToInt(column.getSpan()); 

@@ -2,9 +2,6 @@ package net.bootsfaces.component.image;
 
 import java.io.IOException;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.application.ProjectStage;
-import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -15,7 +12,6 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
-
 
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.image.Image")
 public class ImageRenderer extends CoreRenderer {
@@ -52,7 +48,7 @@ public class ImageRenderer extends CoreRenderer {
         rw.startElement("img", image);
         Tooltip.generateTooltip(context, image, rw);
         rw.writeAttribute("id", clientId, "id");
-        rw.writeURIAttribute("src", this.getImageSource(context, component, "value"), "value");
+        rw.writeURIAttribute("src", getImageSource(context, component, "value"), "value");
 
         renderPassThruAttributes(context, image, H.IMAGE);
 

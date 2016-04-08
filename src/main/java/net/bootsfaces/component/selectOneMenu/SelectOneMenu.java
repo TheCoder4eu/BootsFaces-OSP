@@ -25,8 +25,6 @@ import java.util.Collections;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
@@ -49,8 +47,8 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 
 	public SelectOneMenu() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");

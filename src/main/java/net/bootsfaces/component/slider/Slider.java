@@ -38,8 +38,8 @@ import net.bootsfaces.utils.BsfUtils;
 	@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/jq.ui.slider.css", target = "head"),
 	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+	//@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	//@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
 	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"), */
 	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/widget.js", target = "body"), */
 	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/mouse.js", target = "body"),*/ 
@@ -64,7 +64,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 //		AddResourcesListener.addThemedCSSResource("bsf.css");
 //		AddResourcesListener.addThemedCSSResource("core.css");
 //		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/widget.js");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/mouse.js");

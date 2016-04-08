@@ -27,7 +27,6 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-
 /** This class holds the attributes of &lt;b:column /&gt;. */
 @FacesComponent("net.bootsfaces.component.column.Column")
 public class Column extends UIOutput  implements net.bootsfaces.render.IHasTooltip  {
@@ -53,7 +52,6 @@ public class Column extends UIOutput  implements net.bootsfaces.render.IHasToolt
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	
 	
     protected enum PropertyKeys {
 colLg,
@@ -103,7 +101,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
-		String value = (String)getStateHelper().eval(PropertyKeys.colLg, "-1");
+		String value = (String)getStateHelper().eval(PropertyKeys.colLg, getLargeScreen());
 		return  value;
 	}
 	
@@ -121,7 +119,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
-		String value = (String)getStateHelper().eval(PropertyKeys.colMd, "-1");
+		String value = (String)getStateHelper().eval(PropertyKeys.colMd, getMediumScreen());
 		return  value;
 	}
 	
@@ -139,7 +137,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
-		String value = (String)getStateHelper().eval(PropertyKeys.colSm, "-1");
+		String value = (String)getStateHelper().eval(PropertyKeys.colSm, getSmallScreen());
 		return  value;
 	}
 	
@@ -157,7 +155,7 @@ visible
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
-		String value = (String)getStateHelper().eval(PropertyKeys.colXs, "-1");
+		String value = (String)getStateHelper().eval(PropertyKeys.colXs, getTinyScreen());
 		return  value;
 	}
 	

@@ -29,7 +29,6 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlOutcomeTargetLink;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -47,11 +46,11 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 
 	public NavLink() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

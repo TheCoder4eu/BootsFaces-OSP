@@ -20,9 +20,7 @@
 package net.bootsfaces.component.inputTextarea;
 
 import java.io.IOException;
-import java.util.Iterator;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -34,7 +32,6 @@ import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
-import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextareaRenderer")

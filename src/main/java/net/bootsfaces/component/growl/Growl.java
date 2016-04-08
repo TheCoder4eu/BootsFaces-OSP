@@ -37,7 +37,6 @@ public class Growl extends UIMessages {
 		AddResourcesListener.addThemedCSSResource("animate.css");
 	}
 
-
 	protected enum PropertyKeys {
 		globalOnly, showDetail, showSummary, icon, placementFrom, placementAlign, escape, style, styleClass, delay, timer, newestOnTop, allowDismiss;
 

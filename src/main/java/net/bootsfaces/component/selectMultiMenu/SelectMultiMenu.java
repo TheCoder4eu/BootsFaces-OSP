@@ -47,8 +47,8 @@ public class SelectMultiMenu extends HtmlInputText implements net.bootsfaces.ren
 
 	public SelectMultiMenu() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("bootstrap-multiselect.css");
 		AddResourcesListener.addThemedCSSResource("core.css");

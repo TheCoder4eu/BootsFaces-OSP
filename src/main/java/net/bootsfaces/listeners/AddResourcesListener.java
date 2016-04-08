@@ -294,6 +294,10 @@ public class AddResourcesListener implements SystemEventListener {
 
 		Map<String, Object> viewMap = root.getViewMap();
 
+		/* In the old way, we check if the single component needs the bsf.js
+		 * library. This can be an error prone approach so we start to force
+		 * the bsf addition (if not different specified) 
+		 * 
 		@SuppressWarnings("unchecked")
 		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
 		if(basicResourceMap != null) {
@@ -305,6 +309,7 @@ public class AddResourcesListener implements SystemEventListener {
 				output.getAttributes().put("target", "head");
 				addResourceIfNecessary(root, context, output);
 			}
+			
 			if (basicResourceMap.containsValue("bsf.js") || basicResourceMap.containsValue("js/bsf.js")) {
 				UIOutput output = new UIOutput();
 				output.setRendererType("javax.faces.resource.Script");
@@ -314,12 +319,32 @@ public class AddResourcesListener implements SystemEventListener {
 				addResourceIfNecessary(root, context, output);
 			}
 		}
+		 */
+		
+		// add JSF by default
+		UIOutput jsfOutput = new UIOutput();
+		jsfOutput.setRendererType("javax.faces.resource.Script");
+		jsfOutput.getAttributes().put("name", "jsf.js");
+		jsfOutput.getAttributes().put("library", "javax.faces");
+		jsfOutput.getAttributes().put("target", "head");
+		addResourceIfNecessary(root, context, jsfOutput);
+		
+		// add BSF by default
+		UIOutput bsfOutput = new UIOutput();
+		bsfOutput.setRendererType("javax.faces.resource.Script");
+		bsfOutput.getAttributes().put("name", "js/bsf.js");
+		bsfOutput.getAttributes().put("library", "bsf");
+		bsfOutput.getAttributes().put("target", "head");
+		addResourceIfNecessary(root, context, bsfOutput);
 
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
 
 		if (null != resourceMap) {
 			if (loadJQuery) {
+				/* In the old way, we check if the single component needs the jquery
+				 * library. This can be an error prone approach so we start to force
+				 * the jquery addition (if not different specified)
 				boolean needsJQuery = false;
 				for (Entry<String, String> entry : resourceMap.entrySet()) {
 					String file = entry.getValue();
@@ -334,7 +359,13 @@ public class AddResourcesListener implements SystemEventListener {
 					output.getAttributes().put("library", C.BSF_LIBRARY);
 					output.getAttributes().put("target", "head");
 					addResourceIfNecessary(root, context, output);
-				}
+				}*/
+				UIOutput output = new UIOutput();
+				output.setRendererType("javax.faces.resource.Script");
+				output.getAttributes().put("name", "jq/jquery.js");
+				output.getAttributes().put("library", C.BSF_LIBRARY);
+				output.getAttributes().put("target", "head");
+				addResourceIfNecessary(root, context, output);
 			}
 
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
@@ -358,7 +389,7 @@ public class AddResourcesListener implements SystemEventListener {
 			blockUI = ELTools.evalAsString(blockUI);
 		if (null != blockUI && (blockUI.equalsIgnoreCase("yes") || blockUI.equalsIgnoreCase("true")))
 		{
-			addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+			// addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 			UIOutput output = new UIOutput();
 			output.setRendererType("javax.faces.resource.Script");
 			output.getAttributes().put("name", "js/jquery.blockUI.js");
@@ -714,10 +745,6 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null == resourceMap) {
 			resourceMap = new HashMap<String, String>();
 			viewMap.put(RESOURCE_KEY, resourceMap);
-		}
-		// first step: add jquery if not exist
-		if(!resourceMap.containsKey("bsf#jq/jquery.js")) {
-			resourceMap.put("bsf#jq/jquery.js", "jq/jquery.js");
 		}
 		String key = library + "#" + resource;
 		if (!resourceMap.containsKey(key)) {

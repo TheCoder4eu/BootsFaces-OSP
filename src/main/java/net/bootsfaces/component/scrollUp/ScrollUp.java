@@ -43,7 +43,7 @@ public class ScrollUp extends UIComponentBase {
     public ScrollUp() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("scrollup.css");
-        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+        //AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.scrollUp.min.js");
     }
     

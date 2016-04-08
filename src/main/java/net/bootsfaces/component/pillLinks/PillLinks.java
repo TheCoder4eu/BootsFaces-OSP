@@ -30,7 +30,6 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4eu
  */
-
 public class PillLinks extends LinksContainer {
 
 	/**

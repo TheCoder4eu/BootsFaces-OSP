@@ -44,8 +44,8 @@ public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.Selec
 
 	public Switch() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("bootstrap-switch.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");

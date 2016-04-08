@@ -33,7 +33,6 @@ import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -54,10 +53,10 @@ public class TabView extends UIOutput
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
 	public TabView() {
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");

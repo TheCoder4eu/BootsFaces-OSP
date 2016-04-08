@@ -33,8 +33,8 @@ import net.bootsfaces.component.inputText.InputText;
 @ResourceDependencies({
     @ResourceDependency(library="bsf", name="css/core.css", target="head"),
     @ResourceDependency(library="bsf", name="css/bsf.css", target="head"),
-	@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
+	//@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+	//@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
     @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
 })
 @FacesComponent("net.bootsfaces.component.inputSecret.InputSecret")

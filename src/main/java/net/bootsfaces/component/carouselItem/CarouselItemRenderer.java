@@ -19,10 +19,9 @@
 
 package net.bootsfaces.component.carouselItem;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -46,7 +45,7 @@ public class CarouselItemRenderer extends CoreRenderer {
 	 */  
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-	    CarouselItem carouselItem = (CarouselItem) component;
+	    // CarouselItem carouselItem = (CarouselItem) component;
 	
 		new AJAXRenderer().decode(context, component);	
 	}
@@ -68,7 +67,7 @@ public class CarouselItemRenderer extends CoreRenderer {
 	    }
 		CarouselItem carouselItem = (CarouselItem) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = carouselItem.getClientId();
+		// String clientId = carouselItem.getClientId();
 		
 		// put custom code here
 		// Simple demo widget that simply renders every attribute value

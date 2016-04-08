@@ -20,12 +20,11 @@
 package net.bootsfaces.component.canvas;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.*;
+import javax.faces.component.FacesComponent;
+import javax.faces.component.UIOutput;
+
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
-
 
 /** This class holds the attributes of &lt;b:canvas /&gt;. */
 @FacesComponent("net.bootsfaces.component.canvas.Canvas")

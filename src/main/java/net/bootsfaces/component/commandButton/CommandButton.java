@@ -30,7 +30,6 @@ import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
@@ -41,7 +40,6 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-
 @FacesComponent(CommandButton.COMPONENT_TYPE)
 public class CommandButton extends UICommand implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent {
 
@@ -71,11 +69,11 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	public CommandButton() {
 		setRendererType(DEFAULT_RENDERER); // this component renders itself
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		Tooltip.addResourceFile();
 	}
 

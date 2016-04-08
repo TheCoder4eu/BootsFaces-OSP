@@ -23,7 +23,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.icon.IconRenderer;
 
-
 /** This class generates the HTML code of &lt;b:iconAwesome /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.iconAwesome.IconAwesome")
 public class IconAwesomeRenderer extends IconRenderer {

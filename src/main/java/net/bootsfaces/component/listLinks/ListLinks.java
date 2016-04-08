@@ -31,8 +31,6 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-
-
 @FacesComponent("net.bootsfaces.component.listLinks.ListLinks")
 public class ListLinks extends LinksContainer {
     
@@ -52,7 +50,6 @@ public class ListLinks extends LinksContainer {
 		super.setValueExpression(name, binding);
 	}
 
-    
     public ListLinks() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");

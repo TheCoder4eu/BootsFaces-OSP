@@ -1,10 +1,8 @@
 package net.bootsfaces.component.ajax;
 
 import javax.faces.component.UIComponent;
-import javax.faces.component.behavior.BehaviorBase;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
-import javax.faces.event.FacesEvent;
 import javax.faces.event.FacesListener;
 
 public class BootsFacesAJAXActionListenerEvent extends ActionEvent {

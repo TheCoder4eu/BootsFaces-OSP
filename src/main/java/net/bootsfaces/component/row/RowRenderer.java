@@ -19,15 +19,13 @@
 
 package net.bootsfaces.component.row;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -60,10 +58,8 @@ public class RowRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = row.getClientId();
 
-		rw.startElement("row", row);
-		Tooltip.generateTooltip(context, row, rw);
-
 		rw.startElement("div", row);
+		Tooltip.generateTooltip(context, row.getAttributes(), rw);
 		String dir = row.getDir();
 		if (null != dir)
 			rw.writeAttribute("dir", dir, "dir");
@@ -78,6 +74,8 @@ public class RowRenderer extends CoreRenderer {
 			rw.writeAttribute("style", style, "style");
 		}
 		rw.writeAttribute("class", s, "class");
+
+		Tooltip.activateTooltips(context, row.getAttributes(), row);
 	}
 
 	/**
@@ -101,8 +99,7 @@ public class RowRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
-		Row row = (Row) component;
+		// Row row = (Row) component;
 		context.getResponseWriter().endElement("div");
-		Tooltip.activateTooltips(FacesContext.getCurrentInstance(), row);
 	}
 }

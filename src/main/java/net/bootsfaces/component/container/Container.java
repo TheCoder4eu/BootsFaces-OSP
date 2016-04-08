@@ -25,8 +25,6 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
-import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -44,7 +42,7 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	public Container() {
 		Tooltip.addResourceFile();
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

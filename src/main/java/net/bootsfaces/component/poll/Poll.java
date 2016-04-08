@@ -28,7 +28,6 @@ import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
-import javax.faces.event.PhaseId;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -55,7 +54,7 @@ public class Poll extends HtmlCommandButton {
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Poll() {
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		
 		setRendererType(null); // this component renders itself

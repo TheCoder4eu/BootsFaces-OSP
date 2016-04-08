@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.defaultCommand.DefaultCommand")
@@ -23,7 +22,7 @@ public class DefaultCommand extends UIComponentBase {
 
 	public DefaultCommand() {
 		setRendererType(null); // this component renders itself
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

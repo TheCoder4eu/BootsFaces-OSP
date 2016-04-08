@@ -36,6 +36,7 @@ import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
@@ -168,7 +169,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
 		}
-
+		
 		if (prepend) {
 			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0
 					&& prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
