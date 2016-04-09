@@ -53,7 +53,7 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String name = clientId;
+		String name = "input_" + clientId;
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 
 		if (submittedValue != null) {
