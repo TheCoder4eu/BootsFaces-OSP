@@ -129,7 +129,7 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "navbar-header", "class"); // navbar-header
 		rw.startElement("button", navBar);
 		rw.writeAttribute("type", "button", "type");
-		rw.writeAttribute("class", "navbar-toggle", "class"); // navbar-toggle
+		rw.writeAttribute("class", "navbar-toggle", "class");
 		rw.writeAttribute("data-toggle", "collapse", "type");
 		rw.writeAttribute("data-target", "#" + escapeClientId(clientId) + "_inner", "data-target");
 
@@ -149,14 +149,20 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.endElement("button");
 		String brand = navBar.getBrand();
 		String brandImg = navBar.getBrandImg();
-		// <a class="navbar-brand" href="#">Brand</a>
 		if (brand != null || brandImg != null) {
 			rw.startElement("a", navBar);
 			String onClick = navBar.getOnclick();
 			if (null != onClick) {
 				rw.writeAttribute("onclick", onClick, "onclick");
 			}
-			rw.writeAttribute("class", "navbar-brand", "class"); // navbar-brand
+			String styleClass = navBar.getBrandStyleClass();
+			if (null == styleClass) {
+				rw.writeAttribute("class", "navbar-brand", "class");
+			} else {
+				rw.writeAttribute("class", "navbar-brand " + navBar.getBrandStyleClass(), "class");
+			}
+
+			writeAttribute(rw, "style", navBar.getBrandStyle());
 			String href = navBar.getBrandHref();
 			if (href == null) {
 				rw.writeAttribute("href", "#", "href");
@@ -171,6 +177,8 @@ public class NavBarRenderer extends CoreRenderer {
 				rw.startElement("img", navBar);
 				rw.writeAttribute("alt", altText, "alt");
 				rw.writeAttribute("src", brandImg, "src");
+				writeAttribute(rw, "style", navBar.getBrandImgStyle());
+				writeAttribute(rw, "class", navBar.getBrandImgStyleClass());
 				rw.endElement("img");
 			}
 			if (brand != null)

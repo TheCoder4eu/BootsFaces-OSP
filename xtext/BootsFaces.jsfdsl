@@ -1108,12 +1108,16 @@ widget navBar
        has_children
        has_tooltip
  {
- 	alt                 String                                             "alternative text"
+ 	alt                 String default "Brand"                             "alternative text"
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     brand                                                                  "Brand for the Navbar."
-    brandAlign                                                             "Brand alignment, can be right or left."
-    brandHref                                                              "Link URL for the Navbar Brand."
-    brandImg                                                               "Brand image."
+    brand-align                                                            "Brand alignment, can be right or left."
+    brand-href                                                             "Link URL for the Navbar Brand."
+    brand-img                                                              "Optional brand image."
+    brand-img-style                                                        "CSS inline style of the brand image."
+    brand-img-style-class                                                  "CSS style class of the brand image."
+    brand-style                                                            "Inline style of the optional navBar brand."
+    brand-style-class                                                      "CSS style class of the optional navBar brand."
     fixed                                                                  "Deprecated (use position and sticky instead). If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be \"bottom\", \"top\" or \"non-sticky\". The latter is a footer that scrolls with the page."
     fluid               Boolean  default "false"                           "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1126,10 +1130,10 @@ widget navBar
     style                                                                  "Inline style of the navBar element."
     style-class                                                            "Style class of the navBar element."
     tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                    "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                           "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                          "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
