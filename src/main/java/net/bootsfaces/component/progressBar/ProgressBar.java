@@ -55,6 +55,8 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	}
 
     protected enum PropertyKeys {
+		style,
+		styleClass,
 		label,
 		look,
 		value,
@@ -80,6 +82,42 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
         public String toString() {
             return ((this.toString != null) ? this.toString : super.toString());
         }
+    }
+
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		String value = (String)getStateHelper().eval(PropertyKeys.style);
+		return  value;
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+	    getStateHelper().put(PropertyKeys.style, _style);
+    }
+
+
+	/**
+	 * Style class of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return  value;
+	}
+
+	/**
+	 * Style class of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
     }
 
 

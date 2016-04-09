@@ -55,36 +55,34 @@ public class ProgressBarRenderer extends CoreRenderer {
 
 	    rw.startElement("div", progressBar);
 		rw.writeAttribute("id", clientId, "id");
-		rw.writeAttribute("class", "progress-bar", "class");
 
-//		String style = progressBar.getStyle();
-//		if (null != style) {
-//			rw.writeAttribute("style", style, null);
-//		}
-//
-//		String styleClass = progressBar.getStyleClass();
-//		if (null == styleClass)
-//			styleClass = "";
-//		else
-//			styleClass = " " + styleClass;
+		int max = progressBar.getMax() != 0 ? progressBar.getMax() : 100;
+		int min = progressBar.getMin();
 
-		rw.writeAttribute("aria-valuemax", progressBar.getMax() != 0 ? progressBar.getMax() : 100, "aria-valuemax");
-		rw.writeAttribute("aria-valuemin", progressBar.getMin(), "aria-valuemin");
+		String style = "width: " + progressBar.getValue() + "%; text-align: center;";
+		//append inline style, if set
+		style += progressBar.getStyle() != null ? progressBar.getStyle() : "";
+
+		rw.writeAttribute("style", style, null);
+
+		rw.writeAttribute("aria-valuemax", max , "aria-valuemax");
+		rw.writeAttribute("aria-valuemin", min, "aria-valuemin");
 		rw.writeAttribute("aria-valuenow", progressBar.getValue(), "aria-valuenow");
 		rw.writeAttribute("role", "progressbar", "role");
 
-	    rw.writeAttribute("label", progressBar.getLabel(), "label");
-	    rw.writeAttribute("look", progressBar.getLook(), "look");
+	    String classes = "progress-bar";
+	    if(progressBar.getLook() != null)
+	    	classes += " progress-bar-" + progressBar.getLook();
 
-	    rw.writeAttribute("striped", String.valueOf(progressBar.isStriped()), "striped");
-	    rw.writeAttribute("animated", String.valueOf(progressBar.isAnimated()), "animated");
+	    if(progressBar.isAnimated())
+	    	classes += " active";
+	    if(progressBar.isStriped() || progressBar.isAnimated())
+	    	classes += " progress-bar-striped";
 
-	    /*rw.writeAttribute("tooltip", progressBar.getTooltip(), "tooltip");
-	    rw.writeAttribute("tooltip-container", progressBar.getTooltipContainer(), "tooltip-container");
-	    rw.writeAttribute("tooltip-delay", progressBar.getTooltipDelay(), "tooltip-delay");
-	    rw.writeAttribute("tooltip-delay-hide", progressBar.getTooltipDelayHide(), "tooltip-delay-hide");
-	    rw.writeAttribute("tooltip-delay-show", progressBar.getTooltipDelayShow(), "tooltip-delay-show");
-	    rw.writeAttribute("tooltip-position", progressBar.getTooltipPosition(), "tooltip-position");*/
+	    //append set styleClass to classes, if set
+	    classes += progressBar.getStyleClass() != null ? progressBar.getStyleClass() : "";
+
+	    rw.writeAttribute("class", classes, "class");
 
 		rw.writeText(progressBar.getLabel(), null);
 		rw.endElement("div");
