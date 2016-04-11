@@ -16,6 +16,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -146,20 +147,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		}
 
 		if (prepend) {
-			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0
-					&& prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement("div", colorPicker);
-				rw.writeAttribute("class", "input-group-btn", "class");
-				prep.encodeAll(context);
-				rw.endElement("div");
-			} else {
-				if (prep instanceof Icon)
-					((Icon) prep).setAddon(true); // modifies the id of the icon
-				rw.startElement("span", colorPicker);
-				rw.writeAttribute("class", "input-group-addon", "class");
-				prep.encodeAll(context);
-				rw.endElement("span");
-			}
+			R.decorateFacetComponent(colorPicker, prep, context, rw);
 		}
 
 		// Input
@@ -198,20 +186,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 
 		rw.endElement("input");
 		if (append) {
-			if (app.getClass().getName().endsWith("Button")
-					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement("div", colorPicker);
-				rw.writeAttribute("class", "input-group-btn", "class");
-				app.encodeAll(context);
-				rw.endElement("div");
-			} else {
-				if (app instanceof Icon)
-					((Icon) app).setAddon(true);
-				rw.startElement("span", colorPicker);
-				rw.writeAttribute("class", "input-group-addon", "class");
-				app.encodeAll(context);
-				rw.endElement("span");
-			}
+			R.decorateFacetComponent(colorPicker, app, context, rw);
 		}
 
 		if (append || prepend) {

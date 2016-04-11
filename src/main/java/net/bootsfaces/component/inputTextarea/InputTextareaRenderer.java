@@ -32,6 +32,7 @@ import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextareaRenderer")
@@ -127,20 +128,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 
 
 		if (prepend) {
-			if (prep.getClass().getName().endsWith("Button") || (prep.getChildCount() > 0
-					&& prep.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement("div", inputText);
-				rw.writeAttribute("class", "input-group-btn", "class");
-				prep.encodeAll(context);
-				rw.endElement("div");
-			} else {
-				if (prep instanceof Icon)
-					((Icon) prep).setAddon(true);
-				rw.startElement("span", inputText);
-				rw.writeAttribute("class", "input-group-addon", "class");
-				prep.encodeAll(context);
-				rw.endElement("span");
-			}
+			R.decorateFacetComponent(inputText, prep, context, rw);
 		}
 
 		rw.startElement("textarea", inputText);
@@ -182,20 +170,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 		rw.endElement("textarea");
 
 		if (append) {
-			if (app.getClass().getName().endsWith("Button")
-					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement("div", inputText);
-				rw.writeAttribute("class", "input-group-btn", "class");
-				app.encodeAll(context);
-				rw.endElement("div");
-			} else {
-				if (app instanceof Icon)
-					((Icon) app).setAddon(true);
-				rw.startElement("span", inputText);
-				rw.writeAttribute("class", "input-group-addon", "class");
-				app.encodeAll(context);
-				rw.endElement("span");
-			}
+			R.decorateFacetComponent(inputText, app, context, rw);
 		}
 
 		if (append || prepend) {

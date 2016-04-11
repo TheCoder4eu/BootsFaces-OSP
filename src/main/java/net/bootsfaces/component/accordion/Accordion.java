@@ -16,7 +16,6 @@
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package net.bootsfaces.component.accordion;
 
 import javax.el.ValueExpression;
@@ -75,7 +74,6 @@ public class Accordion extends UIComponentBase  {
             return ((this.toString != null) ? this.toString : super.toString());
         }
     }
-	
 
 	/**
 	 * Comma separated list of child panel id that need to render expanded. <P>

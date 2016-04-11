@@ -30,6 +30,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.component.GenContainerDiv;
+import net.bootsfaces.component.icon.Icon;
 
 /**
  * Rendering functions for the core or common to more than one component
@@ -199,6 +200,71 @@ public final class R {
 		} else {
 			a.put("styleClass", aclass);
 		}
+	}
+	
+	/**
+	 * Decorate the facet children with a class to render
+	 * bootstrap like "prepend" and "append" sections
+	 * @param parent
+	 * @param comp
+	 * @param ctx
+	 * @param rw
+	 * @throws IOException
+	 */
+	public static void decorateFacetComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw) 
+	throws IOException {
+		/*
+		System.out.println("COMPONENT CLASS = " + comp.getClass().getName());
+		System.out.println("FAMILY = " + comp.getFamily());
+		System.out.println("CHILD COUNT = " + comp.getChildCount());
+		System.out.println("PARENT CLASS = " + comp.getParent().getClass());
+		
+			
+			if (app.getClass().getName().endsWith("Button")
+					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
+				rw.startElement("div", inputText);
+				rw.writeAttribute("class", "input-group-btn", "class");
+				app.encodeAll(context);
+				rw.endElement("div");
+			} else {
+				if (app instanceof Icon)
+					((Icon) app).setAddon(true);
+				rw.startElement("span", inputText);
+				rw.writeAttribute("class", "input-group-addon", "class");
+				app.encodeAll(context);
+				rw.endElement("span");
+			}
+		*/
+		if(comp.getChildCount() >= 1 && comp.getClass().getName().endsWith("Panel")) {
+			for(UIComponent child: comp.getChildren()) {
+				decorateComponent(parent, child, ctx, rw);
+			}
+		} else {
+			decorateComponent(parent, comp, ctx, rw);
+		}
+	}
+	
+	/**
+	 * Add the correct class
+	 * @param parent
+	 * @param comp
+	 * @param ctx
+	 * @param rw
+	 * @throws IOException
+	 */
+	private static void decorateComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw) 
+	throws IOException {
+		if (comp instanceof Icon)
+			((Icon) comp).setAddon(true); // modifies the id of the icon
+		
+		String classToApply = "input-group-addon";
+		if(comp.getClass().getName().endsWith("Button") || comp.getChildCount() > 0)
+			classToApply = "input-group-btn";
+		
+		rw.startElement("span", parent);
+		rw.writeAttribute("class", classToApply, "class");
+		comp.encodeAll(ctx);
+		rw.endElement("span");
 	}
 
 	/**
