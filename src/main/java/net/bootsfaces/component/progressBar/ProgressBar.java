@@ -23,6 +23,7 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -38,7 +39,8 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.progressBar.ProgressBar";
 
 	public ProgressBar() {
-	Tooltip.addResourceFile();
+		AddResourcesListener.addThemedCSSResource("progressbars.css");
+		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -57,11 +59,12 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
     protected enum PropertyKeys {
 		style,
 		styleClass,
-		label,
-		look,
 		value,
 		max,
 		min,
+		caption,
+		renderCaption,
+		look,
 		striped,
 		animated,
 		tooltip,
@@ -122,42 +125,6 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 
 
 	/**
-	 * Optional label, which is shown above the progress bar. Can be used for indicating the current value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLabel() {
-		String value = (String)getStateHelper().eval(PropertyKeys.label);
-		return  value;
-	}
-
-	/**
-	 * Optional label, which is shown above the progress bar. Can be used for indicating the current value. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLabel(String _label) {
-	    getStateHelper().put(PropertyKeys.label, _label);
-    }
-
-
-	/**
-	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLook() {
-		String value = (String)getStateHelper().eval(PropertyKeys.look);
-		return  value;
-	}
-
-	/**
-	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLook(String _look) {
-	    getStateHelper().put(PropertyKeys.look, _look);
-    }
-
-
-	/**
 	 * The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -208,6 +175,60 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	 */
 	public void setMin(int _min) {
 	    getStateHelper().put(PropertyKeys.min, _min);
+    }
+
+
+	/**
+	 * Optional caption to change the text, which is shown on the progress bar. Default is {value}% <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getCaption() {
+		String value = (String)getStateHelper().eval(PropertyKeys.caption);
+		return  value;
+	}
+
+	/**
+	 * Optional caption to change the text, which is shown on the progress bar. Default is {value}% <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCaption(String _caption) {
+	    getStateHelper().put(PropertyKeys.caption, _caption);
+    }
+
+
+	/**
+	 * If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderCaption() {
+		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.renderCaption, true);
+		return value;
+	}
+
+	/**
+	 * If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderCaption(boolean _renderCaption) {
+	    getStateHelper().put(PropertyKeys.renderCaption, _renderCaption);
+    }
+
+
+	/**
+	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLook() {
+		String value = (String)getStateHelper().eval(PropertyKeys.look);
+		return  value;
+	}
+
+	/**
+	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLook(String _look) {
+	    getStateHelper().put(PropertyKeys.look, _look);
     }
 
 

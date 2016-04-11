@@ -42,24 +42,32 @@ public class ProgressBarRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	    if (!component.isRendered()) {
+	    if (!component.isRendered())
 	        return;
-	    }
+
 		ProgressBar progressBar = (ProgressBar) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = progressBar.getClientId();
 
-		rw.startElement("div", progressBar);
+		rw.startElement("div", progressBar); //outer div
 		rw.writeAttribute("class", "progress", "class");
 		Tooltip.generateTooltip(context, progressBar, rw);
 
-	    rw.startElement("div", progressBar);
+	    rw.startElement("div", progressBar); //inner div, responsible for the actual bar
 		rw.writeAttribute("id", clientId, "id");
 
-		int max = progressBar.getMax() != 0 ? progressBar.getMax() : 100;
-		int min = progressBar.getMin();
+		double max = progressBar.getMax() != 0 ? progressBar.getMax() : 100;
+		double min = progressBar.getMin();
+		double value = Double.parseDouble(progressBar.getValue());
+		double widthFactor;
+		if(min == 0)
+			widthFactor = max/100;
+		else if (max == 0)
+			widthFactor = (min-value)/100;
+		else
+			widthFactor = min/max;
 
-		String style = "width: " + progressBar.getValue() + "%; text-align: center;";
+		String style = "width: " + widthFactor*value + "%;";
 		//append inline style, if set
 		style += progressBar.getStyle() != null ? progressBar.getStyle() : "";
 
@@ -70,7 +78,18 @@ public class ProgressBarRenderer extends CoreRenderer {
 		rw.writeAttribute("aria-valuenow", progressBar.getValue(), "aria-valuenow");
 		rw.writeAttribute("role", "progressbar", "role");
 
-	    String classes = "progress-bar";
+	    writeStyleClass(progressBar, rw);
+
+	    String labelText = progressBar.getCaption() != null ? progressBar.getCaption() : (int)(widthFactor*value) + "%";
+	    writeCaption(progressBar, rw, labelText);
+
+		rw.endElement("div");
+		rw.endElement("div");
+		Tooltip.activateTooltips(context, progressBar);
+	}
+
+	private void writeStyleClass(ProgressBar progressBar, ResponseWriter rw) throws IOException {
+		String classes = "progress-bar";
 	    if(progressBar.getLook() != null)
 	    	classes += " progress-bar-" + progressBar.getLook();
 
@@ -79,17 +98,18 @@ public class ProgressBarRenderer extends CoreRenderer {
 	    if(progressBar.isStriped() || progressBar.isAnimated())
 	    	classes += " progress-bar-striped";
 
-	    //append set styleClass to classes, if set
+	    //append user-defined styleClass to classes, if set
 	    classes += progressBar.getStyleClass() != null ? progressBar.getStyleClass() : "";
-
 	    rw.writeAttribute("class", classes, "class");
-
-		rw.writeText(progressBar.getLabel(), null);
-		rw.endElement("div");
-		rw.endElement("div");
-		Tooltip.activateTooltips(context, progressBar);
-
 	}
 
-
+	private void writeCaption(ProgressBar progressBar, ResponseWriter rw, String labelText) throws IOException {
+		//check if a caption was set explicitly and use that, if not show the percentage
+	    rw.startElement("span", progressBar);
+	    //if the caption shouldn't be shown, we set the sr-only styleclass, which hides the text
+	    if(!progressBar.isRenderCaption())
+	    	rw.writeAttribute("class", "sr-only", "class");
+	    rw.writeText(labelText, null);
+	    rw.endElement("span");
+	}
 }
