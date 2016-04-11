@@ -4361,9 +4361,15 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Icon name, mandatory.]]></description>
+      <description><![CDATA[Icon name. If available, indicates the image inside the JSF resource folder]]></description>
       <name>name</name>
-      <required>true</required>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Library name. If available, in combination with name attribute, define the resource library where search for icon name.]]></description>
+      <name>library</name>
+      <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
@@ -5834,6 +5840,24 @@
       <name>rendered</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
+    </attribute>
+	<attribute>
+      <description><![CDATA[Inline style of the input element.]]></description>
+      <name>style</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of this element.]]></description>
+      <name>style-class</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Style class of this element.]]></description>
+      <name>styleClass</name>
+      <required>false</required>
+      <type>java.lang.String</type>
     </attribute>
     <attribute>
       <description><![CDATA[The text of the tooltip.]]></description>

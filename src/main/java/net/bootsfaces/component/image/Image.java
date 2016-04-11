@@ -71,6 +71,7 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         height,
         lang,
         name,
+        library,
         onclick,
         oncomplete,
         ondblclick,
@@ -93,7 +94,8 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
         tooltipDelayShow,
         tooltipPosition,
         update,
-        width, tooltipContainer
+        width, 
+        tooltipContainer
         ;
 
         String toString;
@@ -247,6 +249,23 @@ public class Image extends UICommand implements net.bootsfaces.render.IHasToolti
      */
     public void setName(String _name) {
         getStateHelper().put(PropertyKeys.name, _name);
+    }
+    
+    /**
+     * Icon library. <P>
+     * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+     */
+    public String getLibrary() {
+        String value = (String)getStateHelper().eval(PropertyKeys.library);
+        return  value;
+    }
+
+    /**
+     * Icon library. <P>
+     * Usually this method is called internally by the JSF engine.
+     */
+    public void setLibrary(String _library) {
+        getStateHelper().put(PropertyKeys.library, _library);
     }
 
 

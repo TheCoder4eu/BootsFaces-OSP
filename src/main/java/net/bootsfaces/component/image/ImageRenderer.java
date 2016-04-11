@@ -2,6 +2,8 @@ package net.bootsfaces.component.image;
 
 import java.io.IOException;
 
+import javax.faces.application.ProjectStage;
+import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -12,6 +14,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.FacesMessages;
 
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.image.Image")
 public class ImageRenderer extends CoreRenderer {
@@ -73,20 +76,33 @@ public class ImageRenderer extends CoreRenderer {
      * @return the encoded path to the image source
      */
     public static String getImageSource(FacesContext context, UIComponent component, String attrName) {
-
-
-        String value = (String) component.getAttributes().get(attrName);
-        if (value == null || value.length() == 0) {
-            return "";
-        }
-
-        ResourceHandler handler = context.getApplication().getResourceHandler();
-        if (handler.isResourceURL(value)) {
-            return value;
-        } else {
-            value = context.getApplication().getViewHandler().
-                    getResourceURL(context, value);
-            return (context.getExternalContext().encodeResourceURL(value));
-        }
+    	String resourceName = (String) component.getAttributes().get("name");
+    	ResourceHandler handler = context.getApplication().getResourceHandler();
+    	if(resourceName != null) {
+    		String library = (String) component.getAttributes().get("library");
+    		Resource res = handler.createResource(resourceName, library);
+    		if(res == null) {
+    			if (context.isProjectStage(ProjectStage.Development)) {
+                    String msg = "Unable to find resource " + resourceName;
+                    FacesMessages.error(component.getClientId(context), msg, msg);
+                }
+                return "RES_NOT_FOUND";
+    		} else {
+    			return (context.getExternalContext().encodeResourceURL(res.getRequestPath()));
+    		}
+    	} else {
+	        String value = (String) component.getAttributes().get(attrName);
+	        if (value == null || value.length() == 0) {
+	            return "";
+	        }
+	        
+	        if (handler.isResourceURL(value)) {
+	            return value;
+	        } else {
+	            value = context.getApplication().getViewHandler().
+	                    getResourceURL(context, value);
+	            return (context.getExternalContext().encodeResourceURL(value));
+	        }
+    	}
     }
 }

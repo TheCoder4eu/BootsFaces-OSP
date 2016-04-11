@@ -160,6 +160,5 @@ public class FacesMessages {
 		// At this point, we have a summary and a bundle.
 		FacesMessages.error(clientId, summary, detail);
 	}
-
 	
 }

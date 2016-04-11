@@ -28,6 +28,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 
 /** This class generates the HTML code of &lt;b:jumbotron /&gt;. */
@@ -55,10 +56,16 @@ public class JumbotronRenderer extends CoreRenderer {
 		
 		rw.startElement("div", jumbotron);
 		rw.writeAttribute("id",clientId,"id");
-		writeAttribute(rw, "styleClass", jumbotron.getStyleClass());
-		writeAttribute(rw, "style", jumbotron.getStyle());
+		
+		if(BsfUtils.StringIsValued(jumbotron.getStyle()))
+			rw.writeAttribute("style", jumbotron.getStyle(), "style");
+		
 		Tooltip.generateTooltip(context, jumbotron, rw);
-		rw.writeAttribute("class", "jumbotron", "class");
+		
+		String styleClass = "jumbotron";
+		if(BsfUtils.StringIsValued(jumbotron.getStyleClass()))
+			styleClass = styleClass + " " + jumbotron.getStyleClass();
+		rw.writeAttribute("class", styleClass, "class");
 	}
 	
 	/**
