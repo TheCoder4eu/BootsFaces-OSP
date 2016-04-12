@@ -7,16 +7,15 @@ import javax.faces.event.FacesListener;
 
 public class BootsFacesAJAXEvent extends AjaxBehaviorEvent {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String jsCallback;
-	
+
 	private String event;
-	
 
 	public BootsFacesAJAXEvent(UIComponent source, String event, String jsCallback) {
 		super(source, new BehaviorBase());
-		this.jsCallback=jsCallback;
-		this.event=event;
+		this.jsCallback = jsCallback;
+		this.event = event;
 	}
 
 	@Override
@@ -28,7 +27,8 @@ public class BootsFacesAJAXEvent extends AjaxBehaviorEvent {
 	@Override
 	public void processListener(FacesListener faceslistener) {
 		System.out.println("BootsFacesAJAXListener - process");
-//		((BootsFacesAJAXListener) faceslistener).processAjaxBehavior(getComponent());
+		// ((BootsFacesAJAXListener)
+		// faceslistener).processAjaxBehavior(getComponent());
 	}
 
 	public String getJsCallback() {

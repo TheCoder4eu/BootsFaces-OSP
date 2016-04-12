@@ -27,68 +27,67 @@ import javax.faces.component.UIComponentBase;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
-
 /** This class holds the attributes of &lt;b:accordion /&gt;. */
-@ResourceDependencies({ 
-	@ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
-	@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
-})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.accordion.Accordion")
-public class Accordion extends UIComponentBase  {
-	
+public class Accordion extends UIComponentBase {
+
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.accordion.Accordion";
-	
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
-	
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.accordion.Accordion";
-	
+
 	public Accordion() {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
-	
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
+
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
-	}		
-	
-    protected enum PropertyKeys {
-		expandedPanels
-		;
+	}
 
-        String toString;
+	protected enum PropertyKeys {
+		expandedPanels;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		String toString;
 
-        PropertyKeys() {}
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
-	 * Comma separated list of child panel id that need to render expanded. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma separated list of child panel id that need to render expanded.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getExpandedPanels() {
-		String value = (String)getStateHelper().eval(PropertyKeys.expandedPanels);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.expandedPanels);
+		return value;
 	}
-	
+
 	/**
-	 * Comma separated list of child panel id that need to render expanded. <P>
+	 * Comma separated list of child panel id that need to render expanded.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setExpandedPanels(String _expandedPanels) {
-	    getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
-    }	
+		getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
+	}
 }

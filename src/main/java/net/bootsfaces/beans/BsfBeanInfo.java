@@ -1,3 +1,21 @@
+/**
+ *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu), Stephan Rauh (http://www.beyondjava.net) and Dario D'Urzo.
+ *  
+ *  This file is part of BootsFaces.
+ *  
+ *  BootsFaces is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Lesser General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  BootsFaces is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Lesser General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Lesser General Public License
+ *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
+ */
 package net.bootsfaces.beans;
 
 import java.beans.BeanInfo;
@@ -25,7 +43,8 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 	 * Optional method to add custom property descriptors
 	 * 
 	 * @return null, if there's nothing to add
-	 * @throws IntrospectionException thrown if something goes wrong
+	 * @throws IntrospectionException
+	 *             thrown if something goes wrong
 	 */
 	public PropertyDescriptor[] getCustomPropertyDescriptor() throws IntrospectionException {
 		return null;
@@ -73,6 +92,12 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 		return pdl.toArray(array);
 	}
 
+	/**
+	 * Method that generates dynamically the snake-case methods from
+	 * the available camelcase properties found inside the bean list.
+	 * @param pdl
+	 * @throws IntrospectionException
+	 */
 	private void add_snake_case_properties(List<PropertyDescriptor> pdl) throws IntrospectionException {
 		List<PropertyDescriptor> alternatives = new ArrayList<PropertyDescriptor>();
 		for (PropertyDescriptor descriptor : pdl) {
@@ -97,18 +122,17 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 								setter);
 						alternative.setBound(true);
 						alternatives.add(alternative);
-						
+
 						// more alternatives
 						if (camelCase.equals("styleClass")) {
-							alternative = new PropertyDescriptor("class", getDecoratedClass(), getter,
-									setter);
+							alternative = new PropertyDescriptor("class", getDecoratedClass(), getter, setter);
 							alternative.setBound(true);
 							alternatives.add(alternative);
 						}
 						addAlternativeForScreenLayout(alternatives, camelCase, getter, setter);
 					}
 				}
-			
+
 			}
 		}
 		if (alternatives.size() > 0) {
@@ -116,46 +140,47 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 		}
 	}
 
+	/**
+	 * Utility method to add alternative getter and setter 
+	 * for grid layout settings. 
+	 * @param alternatives
+	 * @param camelCase
+	 * @param getter
+	 * @param setter
+	 * @throws IntrospectionException
+	 */
 	private void addAlternativeForScreenLayout(List<PropertyDescriptor> alternatives, String camelCase, String getter,
 			String setter) throws IntrospectionException {
 		PropertyDescriptor alternative;
 		if (camelCase.equals("colXs")) {
-			alternative = new PropertyDescriptor("tiny-screen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("tiny-screen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("tinyScreen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("tinyScreen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
 		}
 		if (camelCase.equals("colSm")) {
-			alternative = new PropertyDescriptor("small-screen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("small-screen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("smallScreen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("smallScreen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
 		}
 		if (camelCase.equals("colMd")) {
-			alternative = new PropertyDescriptor("medium-screen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("medium-screen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("mediumScreen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("mediumScreen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
 		}
 		if (camelCase.equals("colLg")) {
-			alternative = new PropertyDescriptor("huge-screen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("huge-screen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("hugeScreen", getDecoratedClass(), getter,
-					setter);
+			alternative = new PropertyDescriptor("hugeScreen", getDecoratedClass(), getter, setter);
 			alternative.setBound(true);
 			alternatives.add(alternative);
 		}

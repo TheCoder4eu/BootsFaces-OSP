@@ -15,11 +15,11 @@ import javax.faces.event.FacesEvent;
 
 public class AJAXBroadcastComponent extends UIComponentBase {
 	private UIComponent source;
-	
+
 	public AJAXBroadcastComponent(UIComponent source) {
-		this.source=source;
+		this.source = source;
 	}
-	
+
 	/**
 	 * <p>
 	 * In addition to to the default {@link UIComponent#broadcast} processing,
@@ -44,15 +44,14 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 	@SuppressWarnings("deprecation")
 	public void broadcast(FacesEvent event) throws AbortProcessingException {
 
-//		 Perform standard superclass processing 
+		// Perform standard superclass processing
 		source.broadcast(event);
 		if (event instanceof BootsFacesAJAXEvent) {
 			Object result = executeAjaxCalls(FacesContext.getCurrentInstance(),
 					((BootsFacesAJAXEvent) event).getJsCallback());
-//			if (result != null) {
-//				System.out.println("Redirection has not yet been implemented.");
-//			}
-
+			// if (result != null) {
+			// System.out.println("Redirection has not yet been implemented.");
+			// }
 		}
 	}
 
@@ -74,6 +73,13 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		return vex;
 	}
 
+	/**
+	 * Execute the ajax call when ajax syntax was found 
+	 * ajax:<command>
+	 * @param context
+	 * @param command
+	 * @return
+	 */
 	private Object executeAjaxCalls(FacesContext context, String command) {
 		Object result = null;
 		int pos = command.indexOf("ajax:");
@@ -89,9 +95,9 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 			while (el.endsWith(";")) {
 				el = el.substring(0, el.length() - 1).trim();
 			}
-			
+
 			if (context.isProjectStage(ProjectStage.Development)) {
-				evaluateThouroughly(el,context.getELContext());
+				evaluateThouroughly(el, context.getELContext());
 			}
 			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
 			result = vex.getValue(context.getELContext());
@@ -102,24 +108,31 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		return result;
 	}
 
+	/**
+	 * Evaluate the expression syntax
+	 * @param el
+	 * @param context
+	 */
 	private void evaluateThouroughly(String el, ELContext context) {
 		int pos = el.indexOf('.');
-		int end = 
-				el.indexOf('(');
-		if (end < 0) end = el.length();
-		if (el.indexOf('[')>=0) end=Math.min(end,  el.indexOf('['));
+		int end = el.indexOf('(');
+		if (end < 0)
+			end = el.length();
+		if (el.indexOf('[') >= 0)
+			end = Math.min(end, el.indexOf('['));
 		while (pos < end) {
 			String object = el.substring(0, pos);
 			ValueExpression vex = evalAsValueExpression("#{" + object + "}");
 			vex.getValue(context);
 			Object result = vex.getValue(context);
-			if (result==null) {
+			if (result == null) {
 				System.out.println("Please check your EL expression - intermediate term " + object + " is null");
 			}
-			pos = el.indexOf('.', pos+1);
-			if (pos<0) break;
+			pos = el.indexOf('.', pos + 1);
+			if (pos < 0)
+				break;
 		}
-		
+
 	}
 
 	@Override
@@ -127,5 +140,4 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

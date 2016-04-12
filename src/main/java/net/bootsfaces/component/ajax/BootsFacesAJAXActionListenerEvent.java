@@ -11,7 +11,7 @@ public class BootsFacesAJAXActionListenerEvent extends ActionEvent {
 
 	public BootsFacesAJAXActionListenerEvent(UIComponent component, String event, ActionListener l) {
 		super(component);
-		listener=l;
+		listener = l;
 	}
 
 	@Override
@@ -22,7 +22,5 @@ public class BootsFacesAJAXActionListenerEvent extends ActionEvent {
 	@Override
 	public void processListener(FacesListener listener) {
 		this.listener.processAction(this);
-
 	}
-
 }

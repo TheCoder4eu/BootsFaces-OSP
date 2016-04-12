@@ -108,7 +108,7 @@ public class AJAXRenderer extends CoreRenderer {
 						List<ClientBehavior> value = entry.getValue();
 						for (ClientBehavior bh : value) {
 							if (bh instanceof AjaxBehavior) {
-								String delay = ((AjaxBehavior) bh).getDelay();
+								// String delay = ((AjaxBehavior) bh).getDelay();
 								bh.decode(context, component);
 							}
 						}
@@ -117,18 +117,18 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 
-			boolean addEventToQueue=false;
+			boolean addEventToQueue = false;
 			if (component instanceof ActionSource) {
 				ActionSource b = (ActionSource) component;
 				ActionListener[] actionListeners = b.getActionListeners();
 				if (null != actionListeners && actionListeners.length > 0) {
-					addEventToQueue=true;
+					addEventToQueue = true;
 				}
 			}
 			if (component instanceof ActionSource2) {
 				MethodExpression actionExpression = ((ActionSource2) component).getActionExpression();
 				if (null != actionExpression) {
-					addEventToQueue=true;
+					addEventToQueue = true;
 				}
 			}
 			if (addEventToQueue) {
@@ -154,7 +154,7 @@ public class AJAXRenderer extends CoreRenderer {
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback)
-					throws IOException {
+			throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -179,9 +179,9 @@ public class AJAXRenderer extends CoreRenderer {
 					if (script.length() > 0 && "click".equals(defaultEvent))
 						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
-			}
-			else if (!(component instanceof CommandButton)) {
-				// b:navCommandLink doesn't submit the form, so we need to use AJAX
+			} else if (!(component instanceof CommandButton)) {
+				// b:navCommandLink doesn't submit the form, so we need to use
+				// AJAX
 				boolean generateNonAJAXCommand = false;
 				if (component instanceof ActionSource) {
 					ActionSource b = (ActionSource) component;
@@ -402,7 +402,7 @@ public class AJAXRenderer extends CoreRenderer {
 			if (ajaxBehavior instanceof AjaxBehavior) {
 				boolean disabled = ((AjaxBehavior) ajaxBehavior).isDisabled();
 				if (!disabled) {
-					String onerror = ((AjaxBehavior) ajaxBehavior).getOnerror(); // todo
+					// String onerror = ((AjaxBehavior) ajaxBehavior).getOnerror(); // todo
 					onevent = ((AjaxBehavior) ajaxBehavior).getOnevent();
 					if (onevent == null)
 						onevent = "";

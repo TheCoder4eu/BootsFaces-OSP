@@ -1,4 +1,3 @@
-package net.bootsfaces.beans;
 /**
  *  (C) 2013-2016 Stephan Rauh http://www.beyondjava.net
  *
@@ -14,7 +13,7 @@ package net.bootsfaces.beans;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package net.bootsfaces.beans;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -38,19 +37,24 @@ import javax.faces.context.FacesContext;
 public class ELTools {
 	private final static Pattern EL_EXPRESSION = Pattern.compile("#\\{\\{([A-Z_$€]|[a-z_0-9$€]|\\.)+\\}");
 
-	
 	private static Map<String, NGBeanAttributeInfo> beanAttributeInfos = new HashMap<String, NGBeanAttributeInfo>();
 
 	/** Caching */
-//	private static Map<String, Field> fields = new HashMap<String, Field>();
+	// private static Map<String, Field> fields = new HashMap<String, Field>();
 
 	/** Caching */
-//	private static Map<String, Method> getters = new HashMap<String, Method>();
+	// private static Map<String, Method> getters = new HashMap<String, Method>();
 
 	private static final Logger LOGGER = Logger.getLogger("de.beyondjava.angularFaces.common.ELTools");
-	/** Caching */
-//	private static Map<String, List<String>> propertyLists = new HashMap<String, List<String>>();
 
+	/** Caching */
+	// private static Map<String, List<String>> propertyLists = new HashMap<String, List<String>>();
+
+	/**
+	 * Utility method to create a JSF Value expression from the p_expression string
+	 * @param p_expression
+	 * @return
+	 */
 	public static ValueExpression createValueExpression(String p_expression) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
@@ -59,6 +63,12 @@ public class ELTools {
 		return vex;
 	}
 
+	/**
+	 * Utility method to create a JSF Value expression from p_expression with exprectedType class as return
+	 * @param p_expression
+	 * @param expectedType
+	 * @return
+	 */
 	public static ValueExpression createValueExpression(String p_expression, Class<?> expectedType) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
@@ -70,22 +80,33 @@ public class ELTools {
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, expectedType);
 		return vex;
 	}
-	
-	public static MethodExpression createMethodExpression(String p_expression, Class<?> returnType, Class<?>... parameterTypes) {
+
+	/**
+	 * Utility method to create a JSF Method expression
+	 * @param p_expression
+	 * @param returnType
+	 * @param parameterTypes
+	 * @return
+	 */
+	public static MethodExpression createMethodExpression(String p_expression, Class<?> returnType,
+			Class<?>... parameterTypes) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
 		ELContext elContext = context.getELContext();
-		
-		MethodExpression mex = expressionFactory.createMethodExpression(elContext, p_expression, returnType, parameterTypes);
+
+		MethodExpression mex = expressionFactory.createMethodExpression(elContext, p_expression, returnType,
+				parameterTypes);
 		return mex;
-    }
+	}
 
 	/**
 	 * Evaluates an EL expression into an object.
 	 *
-	 * @param p_expression the expression
+	 * @param p_expression
+	 *            the expression
 	 * @throws PropertyNotFoundException
-	 *             if the attribute doesn't exist at all (as opposed to being null)
+	 *             if the attribute doesn't exist at all (as opposed to being
+	 *             null)
 	 * @return the object
 	 */
 	public static Object evalAsObject(String p_expression) throws PropertyNotFoundException {
@@ -104,7 +125,8 @@ public class ELTools {
 	/**
 	 * Evaluates an EL expression into a string.
 	 *
-	 * @param p_expression the el expression
+	 * @param p_expression
+	 *            the el expression
 	 * @return the value
 	 */
 	public static String evalAsString(String p_expression) {
@@ -116,6 +138,11 @@ public class ELTools {
 		return result;
 	}
 
+	/**
+	 * Get the bean attributes info 
+	 * @param c
+	 * @return
+	 */
 	public static NGBeanAttributeInfo getBeanAttributeInfos(UIComponent c) {
 		String core = getCoreValueExpression(c);
 		synchronized (beanAttributeInfos) {
@@ -129,7 +156,12 @@ public class ELTools {
 		}
 		return info;
 	}
-	
+
+	/**
+	 * Return the core value expression of a specified component
+	 * @param component
+	 * @return
+	 */
 	public static String getCoreValueExpression(UIComponent component) {
 		ValueExpression valueExpression = component.getValueExpression("value");
 		if (null != valueExpression) {
@@ -146,9 +178,7 @@ public class ELTools {
 		return null;
 	}
 
-
 	private static Field getField(String p_expression) {
-
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
 			int delimiterPos = p_expression.lastIndexOf('.');
 			if (delimiterPos < 0) {
@@ -169,9 +199,9 @@ public class ELTools {
 				Field declaredField;
 				try {
 					declaredField = c.getDeclaredField(fieldName);
-//					synchronized (fields) {
-//						fields.put(p_expression, declaredField);
-//					}
+					// synchronized (fields) {
+					// fields.put(p_expression, declaredField);
+					// }
 					return declaredField;
 				} catch (NoSuchFieldException e) {
 					// let\"s try with the super class
@@ -187,11 +217,11 @@ public class ELTools {
 	}
 
 	private static Method getGetter(String p_expression) {
-//		synchronized (getters) {
-//			if (getters.containsKey(p_expression)) {
-//				return getters.get(p_expression);
-//			}
-//		}
+		// synchronized (getters) {
+		// if (getters.containsKey(p_expression)) {
+		// return getters.get(p_expression);
+		// }
+		// }
 
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
 			int delimiterPos = p_expression.lastIndexOf('.');
@@ -212,9 +242,9 @@ public class ELTools {
 			Method declaredMethod = findMethod(container, getterName);
 			if (null == declaredMethod)
 				declaredMethod = findMethod(container, booleanGetterName);
-//			synchronized (getters) {
-//				getters.put(p_expression, declaredMethod);
-//			}
+			// synchronized (getters) {
+			// getters.put(p_expression, declaredMethod);
+			// }
 			return declaredMethod;
 
 		}
@@ -250,7 +280,8 @@ public class ELTools {
 	/**
 	 * Yields the type of the variable given by an expression.
 	 *
-	 * @param p_expression the expression
+	 * @param p_expression
+	 *            the expression
 	 * @return the type (as class)
 	 */
 	public static Class<?> getType(String p_expression) {
@@ -282,17 +313,18 @@ public class ELTools {
 	}
 
 	/**
-	 * Is the parameter passed a primitive type (such as int, long, etc) or a type considered primitive by most programmers (such as
-	 * String)?
+	 * Is the parameter passed a primitive type (such as int, long, etc) or a
+	 * type considered primitive by most programmers (such as String)?
 	 *
-	 * @param c the object
+	 * @param c
+	 *            the object
 	 * @return true if c is a de-facto-primitive
 	 */
 	@SuppressWarnings("unused")
 	private static boolean isPrimitive(Class<? extends Object> c) {
-		return (null == c) || (Class.class == c) || (String.class == c) || c.isPrimitive() || (Integer.class == c) || (Long.class == c)
-				|| (Short.class == c) || (Byte.class == c) || (Character.class == c) || (Float.class == c) || (Double.class == c)
-				|| (Void.class == c) || (Boolean.class == c);
+		return (null == c) || (Class.class == c) || (String.class == c) || c.isPrimitive() || (Integer.class == c)
+				|| (Long.class == c) || (Short.class == c) || (Byte.class == c) || (Character.class == c)
+				|| (Float.class == c) || (Double.class == c) || (Void.class == c) || (Boolean.class == c);
 	}
 
 	/**
@@ -318,7 +350,8 @@ public class ELTools {
 	/**
 	 * Which annotations are given to an object displayed by a JSF component?
 	 *
-	 * @param p_component the component
+	 * @param p_component
+	 *            the component
 	 * @return null if there are no annotations, or if they cannot be accessed
 	 */
 	public static Annotation[] readAnnotations(UIComponent p_component) {
@@ -328,5 +361,4 @@ public class ELTools {
 		}
 		return null;
 	}
-
 }

@@ -1,4 +1,3 @@
-package net.bootsfaces.beans;
 /**
  *  (C) 2013-2016 Stephan Rauh http://www.beyondjava.net
  *
@@ -14,7 +13,7 @@ package net.bootsfaces.beans;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+package net.bootsfaces.beans;
 
 import java.sql.Date;
 
