@@ -1,27 +1,30 @@
-* Install Gradle Eclipse plugin
-* git clone https://github.com/TheCoder4eu/BootsFaces-OSP.git
+###How to build
+
+* Install the [Gradle Eclipse plugin](http://projects.eclipse.org/projects/tools.buildship)
+* `git clone https://github.com/TheCoder4eu/BootsFaces-OSP.git`
 * Import the Gradle project into Eclipse (don't forget to click "build model"). You may or may not include the subproject.
 * refresh dependencies
 * ignore the errors in the test folders
-* run the gradle task buildResources (inherited from the subproject GradleResources)
-* run assemble
-* now the lib folder contains a BootsFaces-OSP-0.8.0.jar file.
+* run the gradle task `buildResources` (inherited from the subproject `gradleResources`)
+* run `assemble`
+* now the lib folder contains a `BootsFaces-OSP-0.8.0.jar` file.
 
-
-* To add a standard Bootstrap component:
-  * examine the gradle.build file in the GradleResources folder
-  * if the JS file you need is excluded (line 36), remove it from the exclude list to activate it
-  * add a bs-(component).less file to the gradleResources/less folder. Only bs*.less files are processed!
-  * put custom additions to the CSS file here: /gradleResources/less/bs-(component).less
-  * put custom JS files here: ??? and add them to the gradle.build file
-  * put custom CSS files here: ??? and add them to the gradle.build file
-  * run gradle clean
-  * run gradle buildResources
-  * run gradle assemble
+###Adding a standard Bootstrap component
+* examine the `build.gradle` file in the `gradleResources` folder
+* if the JS file you need is excluded (line 36), remove it from the exclude list to activate it
+* add a `bs-(component).less` file to the `gradleResources/less` folder. Only `bs*.less` files are processed!
+* put custom additions to the CSS file in `/gradleResources/less/bs-(component).less`
+* put custom JS files into `gradleResources/js` and add them to the `build.gradle` file
+* put custom CSS files into `gradleResources/css` and add them to the `build.gradle` file
+* run gradle clean
+* run gradle buildResources
+* run gradle assemble
 
 * To add an arbitrary component:
   * install the eclipse plugin from https://github.com/stephanrauh/JSFLibraryGenerator/tree/master/plugins
   * add the description of the component:
+  
+		  ```
 		  widget carouselItem implemented_by net.bootsfaces.component.Carousel
 		       processes_input
 		       extends UICommand
@@ -53,24 +56,24 @@
 		    tooltipDelayShow    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
 		    tooltipPosition                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
 		}
-  * copy the generated folder to the net.bootsfaces.component source folder
-  * copy the tag from the generated taglib file into the common taglib (src/main/meta/META-INF/bootsfaces-b.taglib.xml).
+
+  * copy the generated folder to the `net.bootsfaces.component` source folder
+  * copy the tag from the generated taglib file into the common taglib (`src/main/meta/META-INF/bootsfaces-b.taglib.xml`).
     After that, you can delete the taglib file from the component folder.
   * Move the two *.xhtml files into the BootsFaces web project. They are part of the documentation.
   * Correct the component file:
-    * add the @ResourceDependencies to the component
-    * add toolips and AJAX (see below)
+    * add the `@ResourceDependencies` annotation to the component
+    * add tooltips and AJAX (see below)
     * run organize imports
   * delete the line that renders the 'rendered' attribute in the renderer class
-  * start implementing the renderer. The generators generate a default implementation which simply renders the
-    tag and every attribute (as if it were valid HTML).
+  * start implementing the renderer. The generators generate a default implementation which simply renders the tag and every attribute (as if it were valid HTML).
     
-
-  * To activate AJAX,
-    * add an on(event) attribute for every JS event you want to deal with
-    * the component should implement ClientBehaviorHolder and IAJAXComponent
-    * add these the list of JavaScript AJAX events (without the prefix "on") and two methods to the component above the properties attribute:
-    	   private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+#### Activating AJAX
+  * add an on(event) attribute for every JS event you want to deal with
+  * the component should implement ClientBehaviorHolder and IAJAXComponent
+  * add these the list of JavaScript AJAX events (without the prefix "on") and two methods to the component above the properties attribute:
+    	   
+    	  	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			 Arrays.asList("blur", "change", "valueChange", "click", "dblclick", ...,
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
@@ -82,18 +85,18 @@
 				return "click";
 			}
     
-    * add AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer); to the encode method to generate the JS handlers
-    * remove the generation of the on(event) attributes - they are already covered by generateBootsFacesAJAXAndJavaScript().
-    * also remove the generation of 'action', 'actionListener' and 'ajax'.
-    * add new AJAXRenderer().decode(context, component); to the renderer's decode method.
+  * add `AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer);` to the encode method to generate the JS handlers
+  * remove the generation of the on(event) attributes - they are already covered by `generateBootsFacesAJAXAndJavaScript()`.
+  * also remove the generation of `action`, `actionListener` and `ajax`.
+  * add `new AJAXRenderer().decode(context, component);` to the renderer's decode method.
 
-  * To activate tooltips,
-    * add the property has_tooltip to the component description
-    * add the resource dependency @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") to the component
-    * add Tooltip.addResourceFile(); to the component constructor
-    * correct Tooltip.activateTooltips(context, tabView.getAttributes(), tabView); as last line of the renderer encode method
+####Activating tooltips
+* add the property `has_tooltip` to the component description
+* add the resource dependency `@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")` to the component
+* add `Tooltip.addResourceFile();` to the component constructor
+* correct `Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);` as last line of the renderer encode method
       (it's already there, but uses a deprecated API)
-    * insert Tooltip.generateTooltip(context, carousel, rw); after the line which renders the ID
-    * delete the generation of the tooltip attributes - they are already covered by Tooltip.generateTooltip(context, carousel, rw);
+* insert `Tooltip.generateTooltip(context, carousel, rw);` after the line which renders the ID
+* delete the generation of the tooltip attributes - they are already covered by `Tooltip.generateTooltip(context, carousel, rw);`
   
   
