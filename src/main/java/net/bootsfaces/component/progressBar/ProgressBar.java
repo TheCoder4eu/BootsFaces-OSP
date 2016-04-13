@@ -39,7 +39,7 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.progressBar.ProgressBar";
 
 	public ProgressBar() {
-		AddResourcesListener.addThemedCSSResource("progressbars.css");
+		AddResourcesListener.addThemedCSSResource("progress-bars.css");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
 	}

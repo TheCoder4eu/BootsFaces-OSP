@@ -21,6 +21,7 @@ package net.bootsfaces.component.progressBar;
 
 import java.io.IOException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -42,46 +43,48 @@ public class ProgressBarRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-	    if (!component.isRendered())
-	        return;
+		if (!component.isRendered())
+			return;
 
 		ProgressBar progressBar = (ProgressBar) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = progressBar.getClientId();
 
-		rw.startElement("div", progressBar); //outer div
+		rw.startElement("div", progressBar); // outer div
 		rw.writeAttribute("class", "progress", "class");
 		Tooltip.generateTooltip(context, progressBar, rw);
 
-	    rw.startElement("div", progressBar); //inner div, responsible for the actual bar
+		rw.startElement("div", progressBar); // inner div, responsible for the actual bar
 		rw.writeAttribute("id", clientId, "id");
 
-		double max = progressBar.getMax() != 0 ? progressBar.getMax() : 100;
-		double min = progressBar.getMin();
-		double value = Double.parseDouble(progressBar.getValue());
-		double widthFactor;
-		if(min == 0)
-			widthFactor = max/100;
-		else if (max == 0)
-			widthFactor = (min-value)/100;
-		else
-			widthFactor = min/max;
+		int max = progressBar.getMax();
+		int min = progressBar.getMin();
 
-		String style = "width: " + widthFactor*value + "%;";
-		//append inline style, if set
-		style += progressBar.getStyle() != null ? progressBar.getStyle() : "";
+		if (max == min)
+			throw new FacesException("ProgressBar: max and min values must not match.");
+
+		double value = Double.parseDouble(progressBar.getValue());
+		double width = (value - min) / (max - min) * 100;
+
+		String style = "width: " + width + "%;";
+		style += progressBar.getStyle();
 
 		rw.writeAttribute("style", style, null);
 
-		rw.writeAttribute("aria-valuemax", max , "aria-valuemax");
+		rw.writeAttribute("role", "progressbar", "role");
+		rw.writeAttribute("aria-valuemax", max, "aria-valuemax");
 		rw.writeAttribute("aria-valuemin", min, "aria-valuemin");
 		rw.writeAttribute("aria-valuenow", progressBar.getValue(), "aria-valuenow");
-		rw.writeAttribute("role", "progressbar", "role");
 
-	    writeStyleClass(progressBar, rw);
+		String caption = progressBar.getCaption();
 
-	    String labelText = progressBar.getCaption() != null ? progressBar.getCaption() : (int)(widthFactor*value) + "%";
-	    writeCaption(progressBar, rw, labelText);
+		if (caption != null && !caption.isEmpty())
+			rw.writeAttribute("aria-valuetext", caption, "aria-valuetext");
+
+		writeStyleClass(progressBar, rw);
+
+		String labelText = caption != null ? caption : progressBar.getValue() + "%";
+		writeCaption(progressBar, rw, labelText);
 
 		rw.endElement("div");
 		rw.endElement("div");
@@ -90,26 +93,25 @@ public class ProgressBarRenderer extends CoreRenderer {
 
 	private void writeStyleClass(ProgressBar progressBar, ResponseWriter rw) throws IOException {
 		String classes = "progress-bar";
-	    if(progressBar.getLook() != null)
-	    	classes += " progress-bar-" + progressBar.getLook();
+		if (progressBar.getLook() != null)
+			classes += " progress-bar-" + progressBar.getLook();
 
-	    if(progressBar.isAnimated())
-	    	classes += " active";
-	    if(progressBar.isStriped() || progressBar.isAnimated())
-	    	classes += " progress-bar-striped";
+		if (progressBar.isAnimated())
+			classes += " active";
+		if (progressBar.isStriped() || progressBar.isAnimated())
+			classes += " progress-bar-striped";
 
-	    //append user-defined styleClass to classes, if set
-	    classes += progressBar.getStyleClass() != null ? progressBar.getStyleClass() : "";
-	    rw.writeAttribute("class", classes, "class");
+		classes += " " + progressBar.getStyleClass();
+		rw.writeAttribute("class", classes, "class");
 	}
 
 	private void writeCaption(ProgressBar progressBar, ResponseWriter rw, String labelText) throws IOException {
-		//check if a caption was set explicitly and use that, if not show the percentage
-	    rw.startElement("span", progressBar);
-	    //if the caption shouldn't be shown, we set the sr-only styleclass, which hides the text
-	    if(!progressBar.isRenderCaption())
-	    	rw.writeAttribute("class", "sr-only", "class");
-	    rw.writeText(labelText, null);
-	    rw.endElement("span");
+		// check if a caption was set explicitly and use that, if not show the percentage
+		rw.startElement("span", progressBar);
+		// if the caption shouldn't be shown, we set the sr-only styleclass, which hides the text
+		if (!progressBar.isRenderCaption())
+			rw.writeAttribute("class", "sr-only", "class");
+		rw.writeText(labelText, null);
+		rw.endElement("span");
 	}
 }
