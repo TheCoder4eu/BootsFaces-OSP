@@ -8066,14 +8066,20 @@
 	    <type>java.lang.Boolean</type>
 	  </attribute>
 	  <attribute>
-	    <description><![CDATA[Optional label, which is shown above the progress bar. Can be used for indicating the current value.]]></description>
-	    <name>label</name>
+	    <description><![CDATA[Inline style of the input element.]]></description>
+	    <name>style</name>
 	    <required>false</required>
 	    <type>java.lang.String</type>
 	  </attribute>
 	  <attribute>
-	    <description><![CDATA[Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered.]]></description>
-	    <name>look</name>
+	    <description><![CDATA[Style class of the input element.]]></description>
+	    <name>style-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Style class of the input element.]]></description>
+	    <name>styleClass</name>
 	    <required>false</required>
 	    <type>java.lang.String</type>
 	  </attribute>
@@ -8081,7 +8087,7 @@
 	    <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
 	    <name>value</name>
 	    <required>false</required>
-	    <type>java.lang.Integer</type>
+	    <type>java.lang.String</type>
 	  </attribute>
 	  <attribute>
 	    <description><![CDATA[The maximum value of the ProgressBar. (default 100)]]></description>
@@ -8094,6 +8100,42 @@
 	    <name>min</name>
 	    <required>false</required>
 	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent.]]></description>
+	    <name>caption</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+	    <name>render-caption</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+	    <name>renderCaption</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+	    <name>max-decimal-places</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+	    <name>maxDecimalPlaces</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered.]]></description>
+	    <name>look</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
 	  </attribute>
 	  <attribute>
 	    <description><![CDATA[If true, stripes will be added to the ProgressBar's look. Default value: false.]]></description>

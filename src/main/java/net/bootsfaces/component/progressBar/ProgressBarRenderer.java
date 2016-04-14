@@ -20,6 +20,7 @@
 package net.bootsfaces.component.progressBar;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -64,9 +65,9 @@ public class ProgressBarRenderer extends CoreRenderer {
 			throw new FacesException("ProgressBar: max and min values must not match.");
 
 		double value = Double.parseDouble(progressBar.getValue());
-		double width = (value - min) / (max - min) * 100;
+		double progressCompletion = (value - min) / (max - min) * 100;
 
-		String style = "width: " + width + "%;";
+		String style = "width: " + progressCompletion + "%;";
 		style += progressBar.getStyle();
 
 		rw.writeAttribute("style", style, null);
@@ -74,7 +75,10 @@ public class ProgressBarRenderer extends CoreRenderer {
 		rw.writeAttribute("role", "progressbar", "role");
 		rw.writeAttribute("aria-valuemax", max, "aria-valuemax");
 		rw.writeAttribute("aria-valuemin", min, "aria-valuemin");
-		rw.writeAttribute("aria-valuenow", progressBar.getValue(), "aria-valuenow");
+		rw.writeAttribute("aria-valuenow", progressCompletion, "aria-valuenow");
+
+		NumberFormat nf = NumberFormat.getInstance();
+		nf.setMaximumFractionDigits(progressBar.getMaxDecimalPlaces());
 
 		String caption = progressBar.getCaption();
 
@@ -83,7 +87,7 @@ public class ProgressBarRenderer extends CoreRenderer {
 
 		writeStyleClass(progressBar, rw);
 
-		String labelText = caption != null ? caption : progressBar.getValue() + "%";
+		String labelText = caption != null ? caption : nf.format(progressCompletion) + "%";
 		writeCaption(progressBar, rw, labelText);
 
 		rw.endElement("div");

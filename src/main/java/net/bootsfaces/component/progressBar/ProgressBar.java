@@ -56,7 +56,7 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 		super.setValueExpression(name, binding);
 	}
 
-    protected enum PropertyKeys {
+	protected enum PropertyKeys {
 		style,
 		styleClass,
 		value,
@@ -64,6 +64,7 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 		min,
 		caption,
 		renderCaption,
+		maxDecimalPlaces,
 		look,
 		striped,
 		animated,
@@ -74,18 +75,18 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 		tooltipDelayShow,
 		tooltipPosition
 		;
-        String toString;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 
 	/**
@@ -179,7 +180,7 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 
 
 	/**
-	 * Optional caption to change the text, which is shown on the progress bar. Default is {value}% <P>
+	 * Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getCaption() {
@@ -188,7 +189,7 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Optional caption to change the text, which is shown on the progress bar. Default is {value}% <P>
+	 * Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCaption(String _caption) {
@@ -211,6 +212,24 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
 	 */
 	public void setRenderCaption(boolean _renderCaption) {
 	    getStateHelper().put(PropertyKeys.renderCaption, _renderCaption);
+    }
+
+
+	/**
+	 * The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getMaxDecimalPlaces() {
+		Integer value = (Integer)getStateHelper().eval(PropertyKeys.maxDecimalPlaces, 2);
+		return value;
+	}
+
+	/**
+	 * The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMaxDecimalPlaces(int _maxDecimalPlaces) {
+	    getStateHelper().put(PropertyKeys.maxDecimalPlaces, _maxDecimalPlaces);
     }
 
 
@@ -376,4 +395,3 @@ public class ProgressBar extends UIOutput  implements net.bootsfaces.render.IHas
     }
 
 }
-
