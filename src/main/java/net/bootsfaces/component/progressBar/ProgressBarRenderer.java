@@ -68,7 +68,8 @@ public class ProgressBarRenderer extends CoreRenderer {
 		double progressCompletion = (value - min) / (max - min) * 100;
 
 		String style = "width: " + progressCompletion + "%;";
-		style += progressBar.getStyle();
+		//append inline style, if set
+		style += progressBar.getStyle() != null ? progressBar.getStyle() : "";
 
 		rw.writeAttribute("style", style, null);
 
@@ -105,7 +106,8 @@ public class ProgressBarRenderer extends CoreRenderer {
 		if (progressBar.isStriped() || progressBar.isAnimated())
 			classes += " progress-bar-striped";
 
-		classes += " " + progressBar.getStyleClass();
+		//append style class, if set
+		classes += progressBar.getStyleClass() != null ? " " + progressBar.getStyleClass() : "";
 		rw.writeAttribute("class", classes, "class");
 	}
 
