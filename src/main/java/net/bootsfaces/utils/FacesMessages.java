@@ -154,8 +154,8 @@ public class FacesMessages {
 			}
 		}
 
-		summary = summary.replace("{0}", label);
-		detail = detail.replace("{0}", label);
+		summary = summary != null ? summary.replace("{0}", label) : "";
+		detail = detail != null ? detail.replace("{0}", label) : "";
 
 		// At this point, we have a summary and a bundle.
 		FacesMessages.error(clientId, summary, detail);

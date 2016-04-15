@@ -216,7 +216,10 @@ implements Node, Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		return this.getText().equals(((Node)obj).getText());
+		if(obj == null) return false;
+		if(obj instanceof DefaultNodeImpl)
+			return this.getText().equals(((Node)obj).getText());
+		return false;
 	}
 
 	@Override

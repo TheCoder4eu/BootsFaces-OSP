@@ -64,5 +64,4 @@ public class PillLinks extends LinksContainer {
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-
 }

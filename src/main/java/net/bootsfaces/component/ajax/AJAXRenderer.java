@@ -42,7 +42,6 @@ public class AJAXRenderer extends CoreRenderer {
 			return;
 		}
 		String source = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
-
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
 				String tabId = tab.getClientId().replace(":", "_") + "_tab";
@@ -53,13 +52,14 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		}
+		
 		if (source == null) {
 			// check for non-ajax call
 			if (context.getExternalContext().getRequestParameterMap().containsKey(componentId)) {
 				source = componentId;
 			}
 		}
-
+		
 		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");

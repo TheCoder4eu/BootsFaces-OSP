@@ -184,7 +184,6 @@ public class CoreRenderer extends Renderer {
 			if (behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
 				String behaviorSource = params.get("javax.faces.source");
 				String clientId = component.getClientId();
-
 				if (behaviorSource != null && clientId.equals(behaviorSource)) {
 					for (ClientBehavior behavior : behaviorsForEvent) {
 						behavior.decode(context, component);
@@ -324,7 +323,7 @@ public class CoreRenderer extends Renderer {
 	 *             if <code>text</code> is <code>null</code>
 	 */
 	public void writeText(ResponseWriter rw, char text[], int off, int len) throws IOException {
-		if (text == null || text.equals("")) {
+		if (text == null || text.length <= 0 || "".equals(String.valueOf(text))) {
 			return;
 		}
 		rw.writeText(text, off, len);

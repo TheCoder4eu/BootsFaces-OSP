@@ -31,7 +31,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -52,9 +51,9 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String name = "input_" + clientId;
+		String name = "input_" + clientId; // clientId; // 
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
-
+		
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
 		}
@@ -147,7 +146,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		Tooltip.generateTooltip(context, inputText, rw);
-		rw.writeAttribute("id", clientId, "id");
+		rw.writeAttribute("id", clientId, "id"); // clientId
 		if (inputText.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 
@@ -157,7 +156,7 @@ public class InputTextRenderer extends CoreRenderer {
 
 		if (label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for", "input_" + clientId, "for");
+			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
 			generateErrorAndRequiredClass(inputText, rw, clientId);
 
 			rw.writeText(label, null);
@@ -175,7 +174,7 @@ public class InputTextRenderer extends CoreRenderer {
 
 		// Input
 		rw.startElement("input", inputText);
-		rw.writeAttribute("id", "input_" + clientId, null);
+		rw.writeAttribute("id", "input_" + clientId, null); // "input_" + clientId
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", t, null);
 

@@ -71,11 +71,8 @@ public class NavBarLinks extends LinksContainer {
         return NAV+" "+NAVBAR+"-"+NAV;
     }
 
-    
-
     @Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }
-    
 }
