@@ -175,7 +175,7 @@ public class InputTextRenderer extends CoreRenderer {
 		// Input
 		rw.startElement("input", inputText);
 		rw.writeAttribute("id", "input_" + clientId, null); // "input_" + clientId
-		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("name", "input_" + clientId, null);
 		rw.writeAttribute("type", t, null);
 
 		generateStyleClass(inputText, rw);
