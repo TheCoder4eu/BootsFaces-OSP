@@ -47,7 +47,7 @@ assetCompile.dependsOn assetClean
 
 task cleanAssetDir(type: Delete) {
      delete fileTree(dir: "${buildDir}/assets/js", includes: ['*.gz', '*-*.js'])
-     delete fileTree(dir: "${buildDir}/assets/less", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'])
+     delete fileTree(dir: "${buildDir}/assets/less", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'], excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
      delete fileTree(dir: "${buildDir}/assets/", includes: ['*.gz', 'bsf-*.*'])
 }
 

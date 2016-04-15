@@ -8046,6 +8046,176 @@
     </attribute>
   </tag>
 
+  <!-- *********** ProgressBar.taglib.xml ************************* -->
+
+  <tag>
+    <tag-name>progressBar</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.progressBar.ProgressBar</component-type>
+    </component>
+	  <attribute>
+	    <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	    <name>id</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+	    <name>rendered</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Inline style of the input element.]]></description>
+	    <name>style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Style class of the input element.]]></description>
+	    <name>style-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Style class of the input element.]]></description>
+	    <name>styleClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
+	    <name>value</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The maximum value of the ProgressBar. (default 100)]]></description>
+	    <name>max</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The minimum value of the ProgressBar. (default 0)]]></description>
+	    <name>min</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent.]]></description>
+	    <name>caption</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+	    <name>render-caption</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+	    <name>renderCaption</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+	    <name>max-decimal-places</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+	    <name>maxDecimalPlaces</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered.]]></description>
+	    <name>look</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, stripes will be added to the ProgressBar's look. Default value: false.]]></description>
+	    <name>striped</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false.]]></description>
+	    <name>animated</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The text of the tooltip.]]></description>
+	    <name>tooltip</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+	    <name>tooltip-container</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+	    <name>tooltipContainer</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelay</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay-hide</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelayHide</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay-show</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelayShow</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	    <name>tooltip-position</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	    <name>tooltipPosition</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+  </tag>
 
   <!-- *********** Poll.taglib.xml ************************* -->
 
