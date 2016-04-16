@@ -78,7 +78,9 @@ public class BadgeRenderer extends CoreRenderer {
 		rw.writeAttribute("class", styleClass, "class");
 		if (null != style)
 			rw.writeAttribute("style", style, "style");
-		rw.writeText(val, null);
+		if (val!=null) {
+			rw.writeText(val, null);
+		}
 		rw.endElement("span");
 		Tooltip.activateTooltips(context, component.getAttributes(), component);
 	}
