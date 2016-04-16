@@ -69,8 +69,6 @@ public class ButtonRenderer extends CoreRenderer {
 	 * 
 	 * @param context
 	 *            the current FacesContext
-	 * @param attrs
-	 *            the attribute list
 	 * @throws IOException
 	 *             thrown if something's wrong with the ResponseWriter
 	 */
