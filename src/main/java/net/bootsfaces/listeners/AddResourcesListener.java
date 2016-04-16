@@ -74,7 +74,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String THEME_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ThemedResourceFiles";
 
 	static {
-		LOGGER.info("This application is running on BootsFaces 0.9.0.");
+		LOGGER.info("This application is running on BootsFaces 0.8.2 (developer preview).");
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
 	}
 
@@ -149,13 +149,15 @@ public class AddResourcesListener implements SystemEventListener {
 		Application app = context.getApplication();
 		ResourceHandler rh = app.getResourceHandler();
 
-		//		List<UIComponent> r = root.getComponentResources(context, "head");
-		//		System.out.println("**************");
-		//		for (UIComponent ava : r) {
-		//			String name = (String) ava.getAttributes().get("name");
-		//			System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
-		//		}
-		//		System.out.println("**************");
+// The following code is needed to diagnose the warning "Unable to save dynamic action with clientId 'j_id...'"
+//				List<UIComponent> r = root.getComponentResources(context, "head");
+//				System.out.println("**************");
+//				for (UIComponent ava : r) {
+//					String name = (String) ava.getAttributes().get("name");
+//					System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
+//				}
+//				System.out.println("**************");
+// end of the diagnostic code
 
 		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
 
