@@ -29,9 +29,7 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
-@ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"),
-})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.message.Message")
 public class Message extends UIMessage {
 
@@ -59,8 +57,24 @@ public class Message extends UIMessage {
 	}
 
 	protected enum PropertyKeys {
-		dir, errorClass, errorStyle, escape, fatalClass, fatalStyle, infoClass, infoStyle, showDetail, showIcon, showSummary, redisplay, style, styleClass, warnClass, warnStyle;
-
+		dir,
+		errorClass,
+		errorStyle,
+		escape,
+		fatalClass,
+		fatalStyle,
+		infoClass,
+		infoStyle,
+		lineBreak,
+		lineBreakTag,
+		showDetail,
+		showIcon,
+		showSummary,
+		redisplay,
+		style,
+		styleClass,
+		warnClass,
+		warnStyle;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -84,8 +98,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getDir() {
-		String value = (String) getStateHelper().eval(PropertyKeys.dir);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.dir);
 	}
 
 	/**
@@ -106,8 +119,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getErrorClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.errorClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.errorClass);
 	}
 
 	/**
@@ -127,8 +139,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getErrorStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.errorStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.errorStyle);
 	}
 
 	/**
@@ -142,7 +153,7 @@ public class Message extends UIMessage {
 
 	/**
 	 * By default, error messages encode HTML and JavaScript code. Instead of
-	 * being execute, the source code is displayed. This protects you against
+	 * being executed, the source code is displayed. This protects you against
 	 * hacker attacks. By setting escape=false, you deactivate the protection,
 	 * and allow HTML and JavaScript code to be rendered.
 	 * <P>
@@ -151,8 +162,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public boolean isEscape() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
 	}
 
 	/**
@@ -175,8 +185,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getFatalClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fatalClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.fatalClass);
 	}
 
 	/**
@@ -196,8 +205,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getFatalStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fatalStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.fatalStyle);
 	}
 
 	/**
@@ -217,8 +225,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getInfoClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.infoClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.infoClass);
 	}
 
 	/**
@@ -238,8 +245,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getInfoStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.infoStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.infoStyle);
 	}
 
 	/**
@@ -252,6 +258,52 @@ public class Message extends UIMessage {
 	}
 
 	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isLineBreak() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.lineBreak, true);
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLineBreak(boolean _lineBreak) {
+		getStateHelper().put(PropertyKeys.lineBreak, _lineBreak);
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getLineBreakTag() {
+		return (String) getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLineBreakTag(String _lineBreakTag) {
+		getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
+	}
+
+	/**
 	 * Specifies whether the detailed information from the message should be
 	 * shown. Default to false.
 	 * <P>
@@ -260,8 +312,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public boolean isShowDetail() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
 	}
 
 	/**
@@ -282,8 +333,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public boolean isShowIcon() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
 	}
 
 	/**
@@ -304,8 +354,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public boolean isShowSummary() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
 	}
 
 	/**
@@ -327,8 +376,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public boolean isRedisplay() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.redisplay, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.redisplay, true);
 	}
 
 	/**
@@ -349,8 +397,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
@@ -371,8 +418,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
@@ -393,8 +439,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getWarnClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.warnClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.warnClass);
 	}
 
 	/**
@@ -414,8 +459,7 @@ public class Message extends UIMessage {
 	 *         set by the JSF file.
 	 */
 	public String getWarnStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.warnStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.warnStyle);
 	}
 
 	/**

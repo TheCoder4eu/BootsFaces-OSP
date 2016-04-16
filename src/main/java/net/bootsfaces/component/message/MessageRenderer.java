@@ -88,11 +88,20 @@ public class MessageRenderer extends CoreRenderer {
 			styleClass += "alert " + severityClass + " bf-message";
 			writeAttribute(rw, "class", styleClass);
 			writeAttribute(rw, "role", "alert");
+			
+			boolean firstMessage=true;
 
 			for (FacesMessage msg : messageList) {
+				if (!firstMessage) {
+					if (message.isLineBreak()) {
+						rw.append(message.getLineBreakTag());
+					}
+				}
+				firstMessage=false;
+
 				if (message.isShowIcon()) {
 					rw.startElement("span", component);
-					writeAttribute(rw, "class", "glyphicon glyphicon-exclamation-sign");
+					writeAttribute(rw, "class", "glyphicon glyphicon-exclamation-sign bf-message-icon");
 					writeAttribute(rw, "aria-hidden", "true");
 					rw.endElement("span");
 				}
