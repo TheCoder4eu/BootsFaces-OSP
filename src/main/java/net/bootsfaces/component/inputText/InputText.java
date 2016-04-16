@@ -54,7 +54,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "input", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
@@ -73,7 +73,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "input";
 	}
 
 	protected enum PropertyKeys {
