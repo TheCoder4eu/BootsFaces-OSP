@@ -86,7 +86,9 @@ public class MessageRenderer extends CoreRenderer {
 			String severityClass = findHighestSeverityClass(messageList, message);
 			// alert-danger
 			styleClass += "alert " + severityClass + " bf-message";
+			
 			writeAttribute(rw, "class", styleClass);
+			writeAttribute(rw, "style", findHighestSeverityStyle(messageList, message));
 			writeAttribute(rw, "role", "alert");
 			
 			boolean firstMessage=true;
@@ -101,7 +103,7 @@ public class MessageRenderer extends CoreRenderer {
 
 				if (message.isShowIcon()) {
 					rw.startElement("span", component);
-					writeAttribute(rw, "class", "glyphicon glyphicon-exclamation-sign bf-message-icon");
+					writeAttribute(rw, "class", findHighestSeverityIcon(messageList, message) + " bf-message-icon");
 					writeAttribute(rw, "aria-hidden", "true");
 					rw.endElement("span");
 				}
@@ -160,12 +162,64 @@ public class MessageRenderer extends CoreRenderer {
 				hasFatal = true;
 		}
 		if (hasFatal)
-			return "alert-danger";
+			return ("alert-danger " + message.getFatalClass());
 		if (hasError)
-			return "alert-danger";
+			return ("alert-danger " + message.getErrorClass());
 		if (hasWarning)
-			return "alert-warning";
+			return ("alert-warning " + message.getWarnClass());
 
-		return "alert-info";
+		return ("alert-info " + message.getInfoClass());
+	}
+	
+	private String findHighestSeverityStyle(List<FacesMessage> messageList, Message message) {
+		boolean hasFatal = false;
+		boolean hasError = false;
+		boolean hasWarning = false;
+		for (FacesMessage msg : messageList) {
+			Severity severity = msg.getSeverity();
+			if (msg.isRendered() && !message.isRedisplay()) {
+				continue;
+			}
+
+			if (severity.equals(FacesMessage.SEVERITY_WARN))
+				hasWarning = true;
+			else if (severity.equals(FacesMessage.SEVERITY_ERROR))
+				hasError = true;
+			else if (severity.equals(FacesMessage.SEVERITY_FATAL))
+				hasFatal = true;
+		}
+		if (hasFatal)
+			return message.getFatalStyle();
+		if (hasError)
+			return message.getErrorStyle();
+		if (hasWarning)
+			return message.getWarnStyle();
+		return message.getInfoStyle();
+	}
+	
+	private String findHighestSeverityIcon(List<FacesMessage> messageList, Message message) {
+		boolean hasFatal = false;
+		boolean hasError = false;
+		boolean hasWarning = false;
+		for (FacesMessage msg : messageList) {
+			Severity severity = msg.getSeverity();
+			if (msg.isRendered() && !message.isRedisplay()) {
+				continue;
+			}
+
+			if (severity.equals(FacesMessage.SEVERITY_WARN))
+				hasWarning = true;
+			else if (severity.equals(FacesMessage.SEVERITY_ERROR))
+				hasError = true;
+			else if (severity.equals(FacesMessage.SEVERITY_FATAL))
+				hasFatal = true;
+		}
+		if (hasFatal)
+			return "fa fa-exclamation-circle";
+		if (hasError)
+			return "fa fa-exclamation-circle";
+		if (hasWarning)
+			return "fa fa-exclamation-triangle";
+		return "fa fa-info-circle";
 	}
 }

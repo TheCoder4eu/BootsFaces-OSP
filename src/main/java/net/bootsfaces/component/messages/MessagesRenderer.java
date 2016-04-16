@@ -36,7 +36,6 @@ import net.bootsfaces.component.message.MessageRenderer;
 import net.bootsfaces.render.CoreRenderer;
 
 /**
- *
  * @author duncan
  */
 @FacesRenderer(componentFamily="javax.faces.Messages", rendererType="net.bootsfaces.component.messages.MessagesRenderer")
@@ -76,6 +75,8 @@ public class MessagesRenderer extends CoreRenderer {
 		if (null != uiMessages.getDir()) {
 			writer.writeAttribute("dir", uiMessages.getDir(), "dir");
 		}
+		writeAttribute(writer, "class", "bf-messages");
+		writeAttribute(writer, "role", "alert");
 
         writer.writeAttribute("id", clientId, "id");
 
@@ -92,23 +93,31 @@ public class MessagesRenderer extends CoreRenderer {
     private void encodeSeverityMessages(FacesContext facesContext, Messages uiMessages, String severity, List<FacesMessage> messages) throws IOException {
         ResponseWriter writer = facesContext.getResponseWriter();
         String styleClassPrefix = "";
+        String stylePrefix = "";
+        String iconStyleClass="";
         if ("warn".equals(severity)){
-        	styleClassPrefix="alert-warning";
+        	styleClassPrefix="alert-warning " + uiMessages.getWarnClass();
+        	iconStyleClass="fa fa-exclamation-triangle";
+        	stylePrefix=uiMessages.getWarnStyle();
         }
-        else {
-            if ("fatal".equals(severity)){
-                styleClassPrefix = "alert-danger";
-            } else if ("error".equals(severity)) {
-            	styleClassPrefix="alert-danger";
-            } else {
-                styleClassPrefix = "alert-"+severity;
-            }
-        }
+		else if ("fatal".equals(severity)) {
+			styleClassPrefix = "alert-danger " + uiMessages.getFatalClass();
+        	stylePrefix=uiMessages.getFatalStyle();
+        	iconStyleClass="fa fa-exclamation-circle";
+		} else if ("error".equals(severity)) {
+			styleClassPrefix = "alert-danger " + uiMessages.getErrorClass();
+        	stylePrefix=uiMessages.getErrorStyle();
+        	iconStyleClass="fa fa-exclamation-circle";
+		} else if ("info".equals(severity)) {
+			styleClassPrefix = "alert-info " + uiMessages.getInfoClass();
+        	stylePrefix=uiMessages.getInfoStyle();
+        	iconStyleClass="fa fa-info-circle";
+		}        
         
         writer.startElement("div", null);
         
         writer.writeAttribute("class", "alert fadein "+styleClassPrefix, null);
-        writer.writeAttribute("style", "padding:15px;margin-top:10px", null);
+        writer.writeAttribute("style", "padding:15px;margin-top:10px;"+stylePrefix, null);
         
         writer.startElement("a", null);
         writer.writeAttribute("class", "close", null);
@@ -117,33 +126,55 @@ public class MessagesRenderer extends CoreRenderer {
         writer.write("&times;");
         writer.endElement("a");
         
+        boolean firstMessage=true;
         for (FacesMessage msg : messages){
+        	if (!firstMessage) {
+				if (uiMessages.isLineBreak()) {
+					writer.append(uiMessages.getLineBreakTag());
+				}
+			}
+			firstMessage=false;
+			
             String summary = msg.getSummary() != null ? msg.getSummary() : "";
             String detail = msg.getDetail() != null ? msg.getDetail() : summary;
             
-            writer.startElement("div", null);
+            writer.startElement("span", null);
+            writer.writeAttribute("class", "bf-message", null);
+            
+			if (uiMessages.isShowIcon()) {
+				writer.startElement("span", null);
+				writeAttribute(writer, "class", iconStyleClass +" bf-message-icon");
+				writeAttribute(writer, "aria-hidden", "true");
+				writer.endElement("span");
+			}
 
             if (uiMessages.isShowSummary()){
-                writer.startElement("strong", null);
-                if (uiMessages.isEscape()) {
+ 				writer.startElement("strong", null);
+ 	           	writer.startElement("span", null);
+ 				writeAttribute(writer, "class", "bf-message-summary");
+               if (uiMessages.isEscape()) {
 					writer.writeText(summary, null);
 				} else {
 					MessageRenderer.warnOnFirstUse();
 					writer.write(summary);
 				}
+                writer.endElement("span");
                 writer.endElement("strong");
             }
             
             if (uiMessages.isShowDetail()){
+ 	           	writer.startElement("span", null);
+ 				writeAttribute(writer, "class", "bf-message-detail");
                 if (uiMessages.isEscape()) {
 					writer.writeText(" "+detail, null);
 				} else {
 					MessageRenderer.warnOnFirstUse();
 					writer.write(" "+detail);
 				}
+                writer.endElement("span");
             }
             
-            writer.endElement("div");
+            writer.endElement("span");
             msg.rendered();
         }
         writer.endElement("div");

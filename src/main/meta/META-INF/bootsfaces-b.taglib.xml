@@ -6137,7 +6137,6 @@
     <component>
       <component-type>net.bootsfaces.component.message.Message</component-type>
     </component>
-
     <attribute>
       <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
       <name>dir</name>
@@ -6151,14 +6150,14 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
-      <name>error-style</name>
+      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+      <name>errorClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
-      <name>errorClass</name>
+      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+      <name>error-style</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -6181,14 +6180,14 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
-      <name>fatal-style</name>
+      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+      <name>fatalClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
-      <name>fatalClass</name>
+      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+      <name>fatal-style</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -6217,14 +6216,14 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
-      <name>info-style</name>
+      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+      <name>infoClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
-      <name>infoClass</name>
+      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+      <name>info-style</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -6235,10 +6234,28 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
-      <name>redisplay</name>
+      <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag.]]></description>
+      <name>line-break</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag.]]></description>
+      <name>lineBreak</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet.]]></description>
+      <name>line-break-tag</name>
+      <required>false</required>
+      <type>String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet.]]></description>
+      <name>lineBreakTag</name>
+      <required>false</required>
+      <type>String</type>
     </attribute>
     <attribute>
       <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
@@ -6253,20 +6270,14 @@
       <type>java.lang.Boolean</type>
     </attribute>
     <attribute>
-      <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
-      <name>show-icon</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
-      <name>show-summary</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
       <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
       <name>showDetail</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
+      <name>show-icon</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
     </attribute>
@@ -6278,7 +6289,19 @@
     </attribute>
     <attribute>
       <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+      <name>show-summary</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
       <name>showSummary</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
+      <name>redisplay</name>
       <required>false</required>
       <type>java.lang.Boolean</type>
     </attribute>
@@ -6307,14 +6330,14 @@
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
-      <name>warn-style</name>
+      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+      <name>warnClass</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
     <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
-      <name>warnClass</name>
+      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+      <name>warn-style</name>
       <required>false</required>
       <type>java.lang.String</type>
     </attribute>
@@ -6334,247 +6357,282 @@
     <component>
       <component-type>net.bootsfaces.component.messages.Messages</component-type>
     </component>
-
-    <attribute>
-      <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
-      <name>dir</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
-      <name>error-class</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
-      <name>error-style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
-      <name>errorClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
-      <name>errorStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
-      <name>escape</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
-      <name>fatal-class</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
-      <name>fatal-style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
-      <name>fatalClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
-      <name>fatalStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false.]]></description>
-      <name>global-only</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false.]]></description>
-      <name>globalOnly</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view.]]></description>
-      <name>id</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
-      <name>info-class</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
-      <name>info-style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
-      <name>infoClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
-      <name>infoStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
-      <name>rendered</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
-      <name>show-detail</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
-      <name>show-summary</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
-      <name>showDetail</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
-      <name>showSummary</name>
-      <required>false</required>
-      <type>java.lang.Boolean</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[HTML: CSS styling instructions.]]></description>
-      <name>style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
-      <name>style-class</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
-      <name>styleClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[If true, the message summary will be rendered as a tooltip (i.e. HTML title attribute).]]></description>
-      <name>tooltip</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
-      <name>tooltip-container</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-hide</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltip-delay-show</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltip-position</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
-      <name>tooltipContainer</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelay</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayHide</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-      <name>tooltipDelayShow</name>
-      <required>false</required>
-      <type>java.lang.Integer</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-      <name>tooltipPosition</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
-      <name>warn-class</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
-      <name>warn-style</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
-      <name>warnClass</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
-    <attribute>
-      <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
-      <name>warnStyle</name>
-      <required>false</required>
-      <type>java.lang.String</type>
-    </attribute>
+	  <attribute>
+	    <description><![CDATA[HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left).]]></description>
+	    <name>dir</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+	    <name>error-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "ERROR".]]></description>
+	    <name>errorClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+	    <name>error-style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "ERROR".]]></description>
+	    <name>errorStyle</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+	    <name>escape</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+	    <name>fatal-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "FATAL".]]></description>
+	    <name>fatalClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+	    <name>fatal-style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "FATAL".]]></description>
+	    <name>fatalStyle</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false.]]></description>
+	    <name>global-only</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false.]]></description>
+	    <name>globalOnly</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view.]]></description>
+	    <name>id</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+	    <name>info-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "INFO".]]></description>
+	    <name>infoClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+	    <name>info-style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "INFO".]]></description>
+	    <name>infoStyle</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag.]]></description>
+	    <name>line-break</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag.]]></description>
+	    <name>lineBreak</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet.]]></description>
+	    <name>line-break-tag</name>
+	    <required>false</required>
+	    <type>String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet.]]></description>
+	    <name>lineBreakTag</name>
+	    <required>false</required>
+	    <type>String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
+	    <name>rendered</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
+	    <name>show-detail</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether the detailed information from the message should be shown. Default to false.]]></description>
+	    <name>showDetail</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+	    <name>show-summary</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+	    <name>showSummary</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
+	    <name>show-icon</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
+	    <name>showIcon</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[HTML: CSS styling instructions.]]></description>
+	    <name>style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+	    <name>style-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The CSS class for this element.  Corresponds to the HTML 'class' attribute.]]></description>
+	    <name>styleClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[If true, the message summary will be rendered as a tooltip (i.e. HTML title attribute).]]></description>
+	    <name>tooltip</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+	    <name>tooltip-container</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+	    <name>tooltipContainer</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelay</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay-hide</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelayHide</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltip-delay-show</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+	    <name>tooltipDelayShow</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	    <name>tooltip-position</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+	    <name>tooltipPosition</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+	    <name>warn-class</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS class to be used for messages with severity "WARN".]]></description>
+	    <name>warnClass</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+	    <name>warn-style</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[CSS style to be used for messages with severity "WARN".]]></description>
+	    <name>warnStyle</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
   </tag>
 
 

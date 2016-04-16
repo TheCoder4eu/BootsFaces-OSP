@@ -35,9 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
  * <code>setRendererType()</code> method.
  * </p>
  */
-@ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/alert.js", target = "body")
-})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.messages.Messages")
 public class Messages extends javax.faces.component.UIMessages {
 
@@ -56,8 +54,30 @@ public class Messages extends javax.faces.component.UIMessages {
 	}
 
 	protected enum PropertyKeys {
-		dir, errorClass, errorStyle, escape, fatalClass, fatalStyle, globalOnly, infoClass, infoStyle, showDetail, showSummary, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, warnClass, warnStyle;
-
+		dir,
+		errorClass,
+		errorStyle,
+		escape,
+		fatalClass,
+		fatalStyle,
+		globalOnly,
+		infoClass,
+		infoStyle,
+		lineBreak,
+		lineBreakTag,
+		showDetail,
+		showSummary,
+		showIcon,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		warnClass,
+		warnStyle;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -81,8 +101,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getDir() {
-		String value = (String) getStateHelper().eval(PropertyKeys.dir);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.dir);
 	}
 
 	/**
@@ -103,8 +122,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getErrorClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.errorClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.errorClass);
 	}
 
 	/**
@@ -124,8 +142,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getErrorStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.errorStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.errorStyle);
 	}
 
 	/**
@@ -148,13 +165,12 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public boolean isEscape() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
 	}
 
 	/**
 	 * By default, error messages encode HTML and JavaScript code. Instead of
-	 * being execute, the source code is displayed. This protects you against
+	 * being executed, the source code is displayed. This protects you against
 	 * hacker attacks. By setting escape=false, you deactivate the protection,
 	 * and allow HTML and JavaScript code to be rendered.
 	 * <P>
@@ -172,8 +188,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getFatalClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fatalClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.fatalClass);
 	}
 
 	/**
@@ -193,8 +208,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getFatalStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fatalStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.fatalStyle);
 	}
 
 	/**
@@ -217,8 +231,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public boolean isGlobalOnly() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.globalOnly, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.globalOnly, false);
 	}
 
 	/**
@@ -241,8 +254,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getInfoClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.infoClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.infoClass);
 	}
 
 	/**
@@ -262,8 +274,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getInfoStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.infoStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.infoStyle);
 	}
 
 	/**
@@ -276,6 +287,52 @@ public class Messages extends javax.faces.component.UIMessages {
 	}
 
 	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isLineBreak() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.lineBreak, true);
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLineBreak(boolean _lineBreak) {
+		getStateHelper().put(PropertyKeys.lineBreak, _lineBreak);
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getLineBreakTag() {
+		return (String) getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
+	}
+
+	/**
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLineBreakTag(String _lineBreakTag) {
+		getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
+	}
+
+	/**
 	 * Specifies whether the detailed information from the message should be
 	 * shown. Default to false.
 	 * <P>
@@ -284,8 +341,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public boolean isShowDetail() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
 	}
 
 	/**
@@ -307,8 +363,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public boolean isShowSummary() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
 	}
 
 	/**
@@ -322,6 +377,26 @@ public class Messages extends javax.faces.component.UIMessages {
 	}
 
 	/**
+	 * If false, the icon of the message is not show. Default = true.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isShowIcon() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
+	}
+
+	/**
+	 * If false, the icon of the message is not show. Default = true.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowIcon(boolean _showIcon) {
+		getStateHelper().put(PropertyKeys.showIcon, _showIcon);
+	}
+
+	/**
 	 * HTML: CSS styling instructions.
 	 * <P>
 	 * 
@@ -329,8 +404,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
@@ -351,8 +425,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
@@ -374,8 +447,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -390,7 +462,7 @@ public class Messages extends javax.faces.component.UIMessages {
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
@@ -399,13 +471,12 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
@@ -424,8 +495,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -447,8 +517,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -470,8 +539,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -494,8 +562,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
@@ -517,8 +584,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getWarnClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.warnClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.warnClass);
 	}
 
 	/**
@@ -538,8 +604,7 @@ public class Messages extends javax.faces.component.UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getWarnStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.warnStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.warnStyle);
 	}
 
 	/**
