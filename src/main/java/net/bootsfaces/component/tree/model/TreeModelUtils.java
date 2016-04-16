@@ -94,7 +94,7 @@ public class TreeModelUtils {
 	 * 
 	 * the separator is |#*#|
 	 * 
-	 * @param jsonString
+	 * @param dataString see above
 	 * @return
 	 */
 	public static Node mapDataToModel(String dataString) {

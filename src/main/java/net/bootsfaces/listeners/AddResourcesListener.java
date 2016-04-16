@@ -781,8 +781,6 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Registers a themed CSS file that needs to be includes in the header of the HTML
 	 * file.
 	 * 
-	 * @param library
-	 *            The name of the sub-folder of the resources folder.
 	 * @param resource
 	 *            The name of the resource file within the library folder.
 	 */
