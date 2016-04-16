@@ -38,8 +38,6 @@ import javax.el.ValueExpression;
 import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.Resource;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
@@ -60,17 +58,6 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/jq.ui.core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/jq.ui.datepicker.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/datepicker.js", target = "head") */
-		// @ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
-		/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"), */
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-
-})
 @FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
 public class DatePicker extends HtmlInputText {
 
@@ -104,7 +91,13 @@ public class DatePicker extends HtmlInputText {
 	public DatePicker() {
 		setRendererType(null); // this component renders itself
 
-        // AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.core.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.datepicker.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -113,7 +106,11 @@ public class DatePicker extends HtmlInputText {
 		Resource rdp;
 		Iterator<Locale> preferredLanguages = context.getExternalContext().getRequestLocales();
 		while (preferredLanguages.hasNext()) {
-			final String jsl = "jq/ui/i18n/datepicker-" + preferredLanguages.next().getLanguage() + ".js";
+			String language = preferredLanguages.next().getLanguage();
+			if ("en".equals(language)) {
+				break;
+			}
+			final String jsl = "jq/ui/i18n/datepicker-" + language + ".js";
 			rdp = rh.createResource(jsl, C.BSF_LIBRARY);
 			if (rdp != null) { //rdp is null if the language .js is not present in jar
 				AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, jsl);

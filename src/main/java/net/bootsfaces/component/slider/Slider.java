@@ -20,8 +20,6 @@
 package net.bootsfaces.component.slider;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
 
@@ -32,19 +30,6 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:slider /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/badges.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/jq.ui.core.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/jq.ui.theme.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/jq.ui.slider.css", target = "head"),
-	@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-	//@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	//@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
-	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/core.js", target = "body"), */
-	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/widget.js", target = "body"), */
-	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/mouse.js", target = "body"),*/ 
-	/* moved to constructor @ResourceDependency(library = "bsf", name = "jq/ui/slider.js", target = "body") , */
-	@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")})
 @FacesComponent("net.bootsfaces.component.slider.Slider")
 public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
@@ -55,16 +40,13 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider.Slider";
 
 	public Slider() {
-//		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-//		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
-//		AddResourcesListener.addThemedCSSResource("badges.css");
-//		AddResourcesListener.addThemedCSSResource("jq.ui.core.css");
-//		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
-//		AddResourcesListener.addThemedCSSResource("jq.ui.slider.css");
-//		AddResourcesListener.addThemedCSSResource("bsf.css");
-//		AddResourcesListener.addThemedCSSResource("core.css");
-//		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addThemedCSSResource("badges.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.core.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
+		AddResourcesListener.addThemedCSSResource("jq.ui.slider.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/widget.js");
         AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/mouse.js");

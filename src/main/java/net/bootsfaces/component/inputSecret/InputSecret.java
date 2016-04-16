@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.inputSecret;
 
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.component.inputText.InputText;
@@ -30,13 +28,6 @@ import net.bootsfaces.component.inputText.InputText;
  * @author Stephan Rauh, http://www.beyondjava.net
  */
 
-@ResourceDependencies({
-    @ResourceDependency(library="bsf", name="css/core.css", target="head"),
-    @ResourceDependency(library="bsf", name="css/bsf.css", target="head"),
-	//@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
-	//@ResourceDependency(library = "bsf", name = "js/bsf.js", target = "head"),
-    @ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")
-})
 @FacesComponent("net.bootsfaces.component.inputSecret.InputSecret")
 public class InputSecret extends InputText {
 }

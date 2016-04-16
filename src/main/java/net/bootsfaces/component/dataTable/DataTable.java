@@ -33,16 +33,15 @@ import javax.faces.component.UIData;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/bsf.css", target = "head"),
-		//@ResourceDependency(library = "javax.faces", name = "jsf.js", target = "head"),
+@ResourceDependencies({ 
 		@ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
+		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head")
+		 })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
 public class DataTable extends UIData
 		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip {
@@ -60,6 +59,15 @@ public class DataTable extends UIData
 	public enum DataTablePropertyType {
 		pageLength, searchTerm, currentPage
 	}
+	
+	public DataTable() {
+		Tooltip.addResourceFile();
+		setRendererType(DEFAULT_RENDERER);
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
+	}
+
 
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
@@ -88,11 +96,6 @@ public class DataTable extends UIData
 
 	public String getDefaultEventName() {
 		return "click";
-	}
-
-	public DataTable() {
-		Tooltip.addResourceFile();
-		setRendererType(DEFAULT_RENDERER);
 	}
 
 	public String getFamily() {
