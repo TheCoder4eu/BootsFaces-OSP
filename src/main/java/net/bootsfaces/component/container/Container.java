@@ -25,12 +25,11 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:container /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "css/core.css", target = "head"),
-		@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.container.Container")
 public class Container extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
@@ -43,6 +42,8 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 	public Container() {
 		Tooltip.addResourceFile();
 		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
