@@ -3854,7 +3854,75 @@
       <type>java.lang.Integer</type>
     </attribute>
   </tag>
+  
+  <!-- *********** Gyroscope.taglib.xml ************************* -->
 
+  <tag>
+    <tag-name>gyroscope</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.gyroscope.Gyroscope</component-type>
+    </component>
+    <attribute>
+      <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
+      <name>action</name>
+      <required>false</required>
+      <type>javax.el.MethodExpression</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
+      <name>action-listener</name>
+      <required>false</required>
+      <type>javax.faces.event.ActionListener</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
+      <name>actionListener</name>
+      <required>false</required>
+      <type>javax.faces.event.ActionListener</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
+      <name>ajax</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Disables the input element, default is false.]]></description>
+      <name>disabled</name>
+      <required>false</required>
+      <type>java.lang.Boolean</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+      <name>id</name>
+      <required>false</required>
+      <type>java.lang.String</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies the delay (in milliseconds) between each slide.]]></description>
+      <name>interval</name>
+      <required>false</required>
+      <type>java.lang.Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
+      <name>onrotation</name>
+      <required>false</required>
+      <type>javax.faces.event.ValueChangeListener</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[Specifies the sensitivity of the skae detector.]]></description>
+      <name>threshold</name>
+      <required>false</required>
+      <type>java.lang.Integer</type>
+    </attribute>
+    <attribute>
+      <description><![CDATA[optional widget variable to access the datatable widget in JavaScript code.]]></description>
+      <name>widgetVar</name>
+      <required>false</required>
+      <type>String</type>
+    </attribute>
+  </tag>
 
   <!-- *********** Icon.taglib.xml ************************* -->
 
@@ -9939,6 +10007,50 @@
     </attribute>
   </tag>
 
+ <!-- *********** Shake.taglib.xml ************************* -->
+
+  <tag>
+    <tag-name>shake</tag-name>
+    <component>
+      <component-type>net.bootsfaces.component.shake.Shake</component-type>
+    </component>
+	  <attribute>
+	    <description><![CDATA[Disables the input element, default is false.]]></description>
+	    <name>disabled</name>
+	    <required>false</required>
+	    <type>java.lang.Boolean</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+	    <name>id</name>
+	    <required>false</required>
+	    <type>java.lang.String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies the delay (in milliseconds) between each slide.]]></description>
+	    <name>interval</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
+	    <name>onshake</name>
+	    <required>false</required>
+	    <type>String</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[Specifies the sensitivity of the skae detector.]]></description>
+	    <name>threshold</name>
+	    <required>false</required>
+	    <type>java.lang.Integer</type>
+	  </attribute>
+	  <attribute>
+	    <description><![CDATA[optional widget variable to access the datatable widget in JavaScript code.]]></description>
+	    <name>widgetVar</name>
+	    <required>false</required>
+	    <type>String</type>
+	  </attribute>
+  </tag>
 
   <!-- *********** Switch.taglib.xml ************************* -->
 

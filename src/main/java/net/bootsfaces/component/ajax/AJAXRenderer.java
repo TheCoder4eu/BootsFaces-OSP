@@ -489,4 +489,15 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 	}
+	
+	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context, ClientBehaviorHolder component,
+			ResponseWriter rw, String clientId, String event) throws IOException {
+		StringBuilder code = new StringBuilder();
+		String additionalEventHandler = null;
+
+		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler,
+				true, event, code);
+		return code.toString();
+	}
+
 }
