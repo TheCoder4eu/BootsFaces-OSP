@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  * BootsFaces is free software: you can redistribute it and/or modify it under the terms of
@@ -17,12 +17,6 @@ Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
 ext.BootstrapVersion = props['bootstrap.version']
-if(project.hasProperty('custom-theme')) {
-   ext.theme = property('custom-theme')
-   System.properties["BSF-THEME"] = theme
-} else {
-   ext.theme = props['bootswatch.theme']
-}
 
 
 // Apply the java plugin to add support for Java
@@ -33,7 +27,6 @@ sourceCompatibility = '1.6'
 targetCompatibility = '1.6'
 
 archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
-//if(theme.length() > 1) archivesBaseName = archivesBaseName+'-'+theme
 
 repositories {
 mavenCentral()

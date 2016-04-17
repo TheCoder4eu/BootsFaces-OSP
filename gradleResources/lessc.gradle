@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  * BootsFaces is free software: you can redistribute it and/or modify it under the terms of 
@@ -18,7 +18,6 @@
 buildscript {
     dependencies {
         classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.5.4'
-//        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.3.0'
     }
 }
 
@@ -29,6 +28,8 @@ plugins {
 Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/../build.properties"))
 ext.BootstrapVersion = props['bootstrap.version']
+ext.themes=props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
+println 'Themes('+themes.size+'):'+props['bootswatch.theme']
 
 assets {
   minifyJs = true
@@ -36,45 +37,32 @@ assets {
   enableSourceMaps = false
   configOptions = [:]
 
-  includes = ['less/bs-*.less']
-  excludes = ['less/*.less','less/mixins/*.less'] //Exclude mixins
+  includes = ['default/bs-*.less']
+  themes.each() { name -> includes.add(name+'/bs-*.less') }
+  
+  excludes = ['**/*.less','**/mixins/*.less'] //Exclude mixins
 
   // Can add custom asset locations (directories or individual jar files)
-  from "${buildDir}/process"
+  from "${buildDir}/process/less"
+  from "${buildDir}/process/bootstrap"
+  from "${buildDir}/process/bsf"
 }
 
 assetCompile.dependsOn assetClean
 
 task cleanAssetDir(type: Delete) {
-     delete fileTree(dir: "${buildDir}/assets/js", includes: ['*.gz', '*-*.js'])
-     delete fileTree(dir: "${buildDir}/assets/less", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'], excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
-     delete fileTree(dir: "${buildDir}/assets/", includes: ['*.gz', 'bsf-*.*'])
+     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', '*-*.js'])
+     //delete fileTree(dir: "${buildDir}/assets/less", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'])
+     delete fileTree(dir: "${buildDir}/assets/default", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'], excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
+     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', 'bsf-*.*'])
 }
-
-/*
-task addLicense2AssetCss {
-    
-     
-     // Iterate over the contents of the tree
-     tree.each {
-     File css -> println 'Adding license to '+css
-     String file = css
-     String contents = css.getText( 'UTF-8' )
-     contents = license+contents
-     new File( file ).write( contents, 'UTF-8' )
-     }
-}
-
-addLicense2AssetCss.mustRunAfter assetCompile
-*/
 
 assetCompile.doLast {
    cleanAssetDir.execute()
-   //addLicense2AssetCss.execute()
-   String license = "/*! Bootstrap v"+BootstrapVersion+" (http://getbootstrap.com) | Copyright 2011-2015 Twitter, Inc. | Licensed under MIT */\n"
+   String license = "/*! Bootstrap v"+BootstrapVersion+" (http://getbootstrap.com) | Copyright 2011-2016 Twitter, Inc. | Licensed under MIT */\n"
    println license
    
-   FileTree tree = fileTree("${buildDir}/assets/less") {
+   FileTree tree = fileTree("${buildDir}/assets/default") {
      include '**/*.css'
    }
    // Iterate over the contents of the tree
