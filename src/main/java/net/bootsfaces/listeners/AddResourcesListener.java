@@ -73,6 +73,9 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private static final String THEME_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ThemedResourceFiles";
 
+	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
+								CSS_RENDERER = "javax.faces.resource.Stylesheet";
+
 	static {
 		LOGGER.info("This application is running on BootsFaces 0.8.2 (developer preview).");
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
@@ -103,23 +106,14 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private void addMetaTags(UIViewRoot root, FacesContext context) {
 		// Check context-param
-		String viewportParam = null;
-		viewportParam = context.getExternalContext().getInitParameter(C.P_VIEWPORT);
-		if (viewportParam != null) {
-			viewportParam = ELTools.evalAsString(viewportParam);
-		} else {
-			viewportParam = "";
-		}
-		viewportParam = viewportParam.trim();
+		String viewportParam = context.getExternalContext().getInitParameter(C.P_VIEWPORT);
+
+		viewportParam = evalELIfPossible(viewportParam);
 		String content = "width=device-width, initial-scale=1";
-		if (viewportParam.length() > 0) {
-			if (viewportParam.equalsIgnoreCase("no") || viewportParam.equalsIgnoreCase("false")) {
-				return;
-			}
-			if (!viewportParam.equalsIgnoreCase("yes") && !viewportParam.equalsIgnoreCase("true")) {
-				content = viewportParam;
-			}
-		}
+		if (!viewportParam.isEmpty() && isFalseOrNo(viewportParam))
+			return;
+		if(!viewportParam.isEmpty() && !isTrueOrYes(viewportParam))
+			content = viewportParam;
 
 		// Otherwise
 		String viewportMeta = "<meta name=\"viewport\" content=\"" + content + "\"/>";
@@ -175,13 +169,8 @@ public class AddResourcesListener implements SystemEventListener {
 		String usetheme = null;
 		theme = context.getExternalContext().getInitParameter(C.P_THEME);
 		usetheme = context.getExternalContext().getInitParameter(C.P_USETHEME);
-		if (theme != null) {
-			theme = ELTools.evalAsString(theme);
-		} else {
-			theme = "";
-		}
-		theme = theme.trim();
-		if (theme.length() > 0) {
+		theme = evalELIfPossible(theme);
+		if (!theme.isEmpty()) {
 			if (theme.equalsIgnoreCase("custom")) {
 				theme = "other";
 			}
@@ -197,30 +186,15 @@ public class AddResourcesListener implements SystemEventListener {
 				throw new FacesException("Error loading theme, cannot find \"" + "css/" + theme + "/" + filename + "\" resource of \""
 						+ C.BSF_LIBRARY + "\" library");
 			} else {
-				UIOutput output = new UIOutput();
-				output.setRendererType("javax.faces.resource.Stylesheet");
-				output.getAttributes().put("name", "css/" + theme + "/" + filename);
-				output.getAttributes().put("library", C.BSF_LIBRARY);
-				output.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, output);
+				String name = "css/" + theme + "/" + filename;
+				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
-		if (usetheme != null) {
-			usetheme = ELTools.evalAsString(usetheme);
-		} else {
-			usetheme = "";
-		}
-		usetheme = usetheme.trim();
-		if (usetheme.length() > 0) {
-			if (usetheme.equalsIgnoreCase("true") || usetheme.equalsIgnoreCase("yes")) {
-				UIOutput output = new UIOutput();
-				output.setRendererType("javax.faces.resource.Stylesheet");
-				output.getAttributes().put("name", "css/" + theme + "/theme.css");
-				output.getAttributes().put("library", C.BSF_LIBRARY);
-				output.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, output);
-			}
+		usetheme = evalELIfPossible(usetheme);
+		if (!usetheme.isEmpty() && isTrueOrYes(usetheme)) {
+			String name = "css/" + theme + "/theme.css";
+			createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 		}
 
 		// deactivate FontAwesome support if the no-fa facet is found in the
@@ -234,41 +208,15 @@ public class AddResourcesListener implements SystemEventListener {
 				useCDN = ELTools.evalAsString(useCDN);
 			}
 			if (null != useCDN) {
-				if (useCDN.equalsIgnoreCase("false") || useCDN.equals("no"))
-					useCDNImportForFontAwesome = false;
-				else
-					useCDNImportForFontAwesome = true;
+				useCDNImportForFontAwesome = !isFalseOrNo(useCDN);
 			}
 		}
 
 		// Do we have to add font-awesome and jQuery, or are the resources
 		// already there?
-		boolean loadJQuery = true;
-		String suppressJQuery = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.get_jquery_from_cdn");
-		if (null != suppressJQuery)
-			suppressJQuery = ELTools.evalAsString(suppressJQuery);
-		if (null != suppressJQuery)
-			if (suppressJQuery.equalsIgnoreCase("true") || suppressJQuery.equals("yes"))
-				loadJQuery = false;
-
-		boolean loadJQueryUI = true;
-		String suppressJQueryUI = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.get_jqueryui_from_cdn");
-		if (null != suppressJQueryUI)
-			suppressJQueryUI = ELTools.evalAsString(suppressJQueryUI);
-		if (null != suppressJQueryUI)
-			if (suppressJQueryUI.equalsIgnoreCase("true") || suppressJQueryUI.equals("yes"))
-				loadJQueryUI = false;
-
-		boolean loadBootstrapFromCDN = false;
-		String loadBootstrapFromCDNParam = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.get_bootstrap_from_cdn");
-		if (null != loadBootstrapFromCDNParam)
-			loadBootstrapFromCDNParam = ELTools.evalAsString(loadBootstrapFromCDNParam);
-		if (null != loadBootstrapFromCDNParam)
-			if (loadBootstrapFromCDNParam.equalsIgnoreCase("true") || loadBootstrapFromCDNParam.equals("yes"))
-				loadBootstrapFromCDN = true;
+		boolean loadJQuery = shouldLibraryBeLoaded("net.bootsfaces.get_jquery_from_cdn");
+		boolean loadJQueryUI = shouldLibraryBeLoaded("net.bootsfaces.get_jqueryui_from_cdn");
+		boolean loadBootstrapFromCDN = shouldLibraryBeLoaded("net.bootsfaces.get_bootstrap_from_cdn");
 
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
@@ -305,7 +253,7 @@ public class AddResourcesListener implements SystemEventListener {
 		if(basicResourceMap != null) {
 			if (basicResourceMap.containsValue("jsf.js")) {
 				UIOutput output = new UIOutput();
-				output.setRendererType("javax.faces.resource.Script");
+				output.setRendererType(SCRIPT_RENDERER);
 				output.getAttributes().put("name", "jsf.js");
 				output.getAttributes().put("library", "javax.faces");
 				output.getAttributes().put("target", "head");
@@ -314,7 +262,7 @@ public class AddResourcesListener implements SystemEventListener {
 			
 			if (basicResourceMap.containsValue("bsf.js") || basicResourceMap.containsValue("js/bsf.js")) {
 				UIOutput output = new UIOutput();
-				output.setRendererType("javax.faces.resource.Script");
+				output.setRendererType(SCRIPT_RENDERER);
 				output.getAttributes().put("name", "js/bsf.js");
 				output.getAttributes().put("library", "bsf");
 				output.getAttributes().put("target", "head");
@@ -324,20 +272,9 @@ public class AddResourcesListener implements SystemEventListener {
 		 */
 		
 		// add JSF by default
-		UIOutput jsfOutput = new UIOutput();
-		jsfOutput.setRendererType("javax.faces.resource.Script");
-		jsfOutput.getAttributes().put("name", "jsf.js");
-		jsfOutput.getAttributes().put("library", "javax.faces");
-		jsfOutput.getAttributes().put("target", "head");
-		addResourceIfNecessary(root, context, jsfOutput);
-		
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
 		// add BSF by default
-		UIOutput bsfOutput = new UIOutput();
-		bsfOutput.setRendererType("javax.faces.resource.Script");
-		bsfOutput.getAttributes().put("name", "js/bsf.js");
-		bsfOutput.getAttributes().put("library", "bsf");
-		bsfOutput.getAttributes().put("target", "head");
-		addResourceIfNecessary(root, context, bsfOutput);
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
 
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
@@ -356,48 +293,31 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 				if (needsJQuery) {
 					UIOutput output = new UIOutput();
-					output.setRendererType("javax.faces.resource.Script");
+					output.setRendererType(SCRIPT_RENDERER);
 					output.getAttributes().put("name", "jq/jquery.js");
 					output.getAttributes().put("library", C.BSF_LIBRARY);
 					output.getAttributes().put("target", "head");
 					addResourceIfNecessary(root, context, output);
 				}*/
-				UIOutput output = new UIOutput();
-				output.setRendererType("javax.faces.resource.Script");
-				output.getAttributes().put("name", "jq/jquery.js");
-				output.getAttributes().put("library", C.BSF_LIBRARY);
-				output.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, output);
+
+				createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
 			}
 
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || (!"bsf".equals(library))) {
-					if ((!file.startsWith("jq/ui")) || (!"bsf".equals(library)) || loadJQueryUI) {
-						UIOutput output = new UIOutput();
-						output.setRendererType("javax.faces.resource.Script");
-						output.getAttributes().put("name", file);
-						output.getAttributes().put("library", library);
-						output.getAttributes().put("target", "head");
-						addResourceIfNecessary(root, context, output);
-					}
-				}
+				if (!"jq/jquery.js".equals(file) || (!"bsf".equals(library)))
+					if ((!file.startsWith("jq/ui")) || (!"bsf".equals(library)) || loadJQueryUI)
+						createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
 		String blockUI = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("net.bootsfaces.blockUI");
 		if (null != blockUI)
 			blockUI = ELTools.evalAsString(blockUI);
-		if (null != blockUI && (blockUI.equalsIgnoreCase("yes") || blockUI.equalsIgnoreCase("true")))
-		{
+		if (null != blockUI && isTrueOrYes(blockUI)) {
 			// addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-			UIOutput output = new UIOutput();
-			output.setRendererType("javax.faces.resource.Script");
-			output.getAttributes().put("name", "js/jquery.blockUI.js");
-			output.getAttributes().put("library", C.BSF_LIBRARY);
-			output.getAttributes().put("target", "head");
-			addResourceIfNecessary(root, context, output);
+			createAndAddComponent(root, context, SCRIPT_RENDERER, "js/jquery.blockUI.js", C.BSF_LIBRARY);
 		}
 
 		// replaceCSSResourcesByMinifiedResources(root, context);
@@ -407,10 +327,8 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 		enforceCorrectLoadOrder(root, context);
 
-		{
-			InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
-			addResourceIfNecessary(root, context, output);
-		}
+		InternalIE8CompatiblityLinks output = new InternalIE8CompatiblityLinks();
+		addResourceIfNecessary(root, context, output);
 
 		List<UIComponent> res = root.getComponentResources(context, "head");
 		for (UIComponent ava : res) {
@@ -432,38 +350,40 @@ public class AddResourcesListener implements SystemEventListener {
 		List<String> themedCSSMap = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
 		if(themedCSSMap != null) {
 			for (String file: themedCSSMap) {
-				UIOutput themedCSS = new UIOutput();
-				themedCSS.setRendererType("javax.faces.resource.Stylesheet");
-				themedCSS.getAttributes().put("name", "css/" + theme + "/" + file);
-				themedCSS.getAttributes().put("library", C.BSF_LIBRARY);
-				themedCSS.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, themedCSS);
+				String name = "css/" + theme + "/" + file;
+				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
 		// Glyphicons
-		UIOutput goutput = new UIOutput();
-		goutput.setRendererType("javax.faces.resource.Stylesheet");
-		goutput.getAttributes().put("name", "css/icons.css");
-		//goutput.getAttributes().put("name", "css/" + theme + "/icons.css");
-		goutput.getAttributes().put("library", C.BSF_LIBRARY);
-		goutput.getAttributes().put("target", "head");
-		addResourceIfNecessary(root, context, goutput);
+		String name = "css/icons.css";
+		//String name = "css/" + theme + "/icons.css";
+		createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+	}
+
+	private boolean shouldLibraryBeLoaded(String initParameter) {
+		String suppressLibrary = FacesContext.getCurrentInstance().getExternalContext()
+				.getInitParameter(initParameter);
+		if (suppressLibrary != null)
+			suppressLibrary = ELTools.evalAsString(suppressLibrary);
+
+		//default to true if no param is set, false if 'true' or 'yes' is set
+		return suppressLibrary == null || !isTrueOrYes(suppressLibrary);
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalIE8CompatiblityLinks output) {
-		for (UIComponent c : root.getComponentResources(context, "head")) {
-			if (c instanceof InternalIE8CompatiblityLinks)
-				return;
-		}
-		root.addComponentResource(context, output, "head");
+		addResourceIfNecessary(root, context, output, output.getClass());
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, InternalFALink output) {
-		for (UIComponent c : root.getComponentResources(context, "head")) {
-			if (c instanceof InternalFALink)
+		addResourceIfNecessary(root, context, output, output.getClass());
+	}
+
+	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, UIComponent output, Class<?> clazz) {
+		for (UIComponent c : root.getComponentResources(context, "head"))
+			if (c.getClass() == clazz)
 				return;
-		}
+		//resource not found yet, so add it now
 		root.addComponentResource(context, output, "head");
 	}
 
@@ -587,9 +507,7 @@ public class AddResourcesListener implements SystemEventListener {
 			@Override
 			public int compare(UIComponent o1, UIComponent o2) {
 				String name1 = (String) o1.getAttributes().get("name");
-				// String lib1 = (String) o1.getAttributes().get("name");
 				String name2 = (String) o2.getAttributes().get("name");
-				// String lib2 = (String) o2.getAttributes().get("name");
 				if (name1 == null)
 					return 1;
 				if (name2 == null)
@@ -599,36 +517,30 @@ public class AddResourcesListener implements SystemEventListener {
 				if (name2.endsWith(".js") && (!(name1.endsWith(".js"))))
 					return -1;
 				if (name1.endsWith(".js")) {
-					if (name1.toLowerCase().contains("jquery-ui"))
-						name1 = "2.js"; // make it the second JS file
-					else if (name1.toLowerCase().contains("jquery"))
-						name1 = "1.js"; // make it the first JS file
-					else if (name1.toLowerCase().contains("ui/core.js"))
-						name1 = "3.js"; // make it the first JS file
-					else if (name1.toLowerCase().contains("ui/widget.js"))
-						name1 = "4.js"; // make it the last JS file
-					else if (name1.toLowerCase().contains("bsf.js"))
-						name1 = "zzz.js"; // make it the last JS file
-					else
-						name1 = "keep.js"; // don't move it
+					name1 = renameJSFile(name1);
 				}
 				if (name2.endsWith(".js")) {
-					if (name2.toLowerCase().contains("jquery-ui"))
-						name2 = "2.js"; // make it the second JS file
-					else if (name2.toLowerCase().contains("jquery"))
-						name2 = "1.js"; // make it the first JS file
-					else if (name2.toLowerCase().contains("ui/core.js"))
-						name2 = "3.js"; // make it the first JS file
-					else if (name2.toLowerCase().contains("ui/widget.js"))
-						name2 = "4.js"; // make it the last JS file
-					else if (name2.toLowerCase().contains("bsf.js"))
-						name2 = "zzz.js"; // make it the last JS file
-					else
-						name2 = "keep.js"; // don't move it
+					name2 = renameJSFile(name2);
 				}
 				int result = name1.compareTo(name2);
 
 				return result;
+			}
+
+			private String renameJSFile(String name) {
+				if (name.toLowerCase().contains("jquery-ui"))
+					name = "2.js"; // make it the second JS file
+				else if (name.toLowerCase().contains("jquery"))
+					name = "1.js"; // make it the first JS file
+				else if (name.toLowerCase().contains("ui/core.js"))
+					name = "3.js"; // make it the third JS file
+				else if (name.toLowerCase().contains("ui/widget.js"))
+					name = "4.js"; // make it the second last JS file
+				else if (name.toLowerCase().contains("bsf.js"))
+					name = "zzz.js"; // make it the last JS file
+				else
+					name = "keep.js"; // don't move it
+				return name;
 			}
 		});
 
@@ -678,7 +590,7 @@ public class AddResourcesListener implements SystemEventListener {
 		ListIterator<UIComponent> resourceIterator = (viewRoot.getComponentResources(fc, "head")).listIterator();
 		UIComponent fontAwesomeResource = null;
 		while (resourceIterator.hasNext()) {
-			UIComponent resource = (UIComponent) resourceIterator.next();
+			UIComponent resource = resourceIterator.next();
 			String name = (String) resource.getAttributes().get("name");
 			// rw.write("\n<!-- res: '"+name+"' -->" );
 			if (name != null) {
@@ -730,7 +642,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a JS file that needs to be include in the header of the HTML
+	 * Registers a JS file that needs to be included in the header of the HTML
 	 * file, but after jQuery and AngularJS.
 	 * 
 	 * @param library
@@ -739,6 +651,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The name of the resource file within the library folder.
 	 */
 	public static void addResourceToHeadButAfterJQuery(String library, String resource) {
+//		addResource(library + "#" + resource, RESOURCE_KEY);
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		UIViewRoot v = ctx.getViewRoot();
 		Map<String, Object> viewMap = v.getViewMap();
@@ -755,7 +668,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a core JS file that needs to be include in the header of the HTML
+	 * Registers a core JS file that needs to be included in the header of the HTML
 	 * file, but after jQuery and AngularJS.
 	 * 
 	 * @param library
@@ -764,41 +677,72 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The name of the resource file within the library folder.
 	 */
 	public static void addBasicJSResource(String library, String resource) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		UIViewRoot v = ctx.getViewRoot();
-		Map<String, Object> viewMap = v.getViewMap();
-		@SuppressWarnings("unchecked")
-		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
-		if (null == resourceMap) {
-			resourceMap = new HashMap<String, String>();
-			viewMap.put(BASIC_JS_RESOURCE_KEY, resourceMap);
-		}
-		String key = library + "#" + resource;
-		if (!resourceMap.containsKey(resource)) {
-			resourceMap.put(key, resource);
-		}
+		addResource(library + "#" + resource, BASIC_JS_RESOURCE_KEY);
 	}
 
 	/**
-	 * Registers a themed CSS file that needs to be includes in the header of the HTML
+	 * Registers a themed CSS file that needs to be included in the header of the HTML
 	 * file.
 	 * 
 	 * @param resource
 	 *            The name of the resource file within the library folder.
 	 */
 	public static void addThemedCSSResource(String resource) {
+//		addResource(resource, THEME_RESOURCE_KEY);
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		UIViewRoot v = ctx.getViewRoot();
 		Map<String, Object> viewMap = v.getViewMap();
 		@SuppressWarnings("unchecked")
-		List<String> resourceMap = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
+		List<String> resourceList = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
+		if (null == resourceList) {
+			resourceList = new ArrayList<String>();
+			viewMap.put(THEME_RESOURCE_KEY, resourceList);
+		}
+
+		if (!resourceList.contains(resource)) {
+			resourceList.add(resource);
+		}
+	}
+
+	private static void addResource(String resourceKey, String resourceTypeKey) {
+		FacesContext ctx = FacesContext.getCurrentInstance();
+		UIViewRoot v = ctx.getViewRoot();
+		Map<String, Object> viewMap = v.getViewMap();
+		@SuppressWarnings("unchecked")
+		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(resourceTypeKey);
 		if (null == resourceMap) {
-			resourceMap = new ArrayList<String>();
-			viewMap.put(THEME_RESOURCE_KEY, resourceMap);
+			resourceMap = new HashMap<String, String>();
+			viewMap.put(resourceTypeKey, resourceMap);
 		}
-		String key = resource;
-		if (!resourceMap.contains(key)) {
-			resourceMap.add(key);
+
+		if (!resourceMap.containsKey(resourceKey)) {
+			resourceMap.put(resourceTypeKey, resourceKey);
 		}
+	}
+
+	private String evalELIfPossible(String expression) {
+		if (expression != null)
+			expression = ELTools.evalAsString(expression).trim();
+		else
+			expression = "";
+		return expression;
+	}
+
+	private void createAndAddComponent(UIViewRoot root, FacesContext context,
+										String rendererType, String name, String library) {
+		UIOutput output = new UIOutput();
+		output.setRendererType(rendererType);
+		output.getAttributes().put("name", name);
+		output.getAttributes().put("library", library);
+		output.getAttributes().put("target", "head");
+		addResourceIfNecessary(root, context, output);
+	}
+
+	private boolean isTrueOrYes(String param) {
+		return param.equalsIgnoreCase("true") || param.equalsIgnoreCase("yes");
+	}
+
+	private boolean isFalseOrNo(String param) {
+		return param.equalsIgnoreCase("false") || param.equalsIgnoreCase("no");
 	}
 }
