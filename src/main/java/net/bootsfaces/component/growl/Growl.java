@@ -171,7 +171,7 @@ public class Growl extends UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getIcon() {
-		String value = (String) getStateHelper().eval(PropertyKeys.icon);
+		String value = (String) getStateHelper().eval(PropertyKeys.icon, null);
 		return value;
 	}
 
@@ -192,7 +192,7 @@ public class Growl extends UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getPlacementFrom() {
-		String value = (String) getStateHelper().eval(PropertyKeys.placementFrom);
+		String value = (String) getStateHelper().eval(PropertyKeys.placementFrom, "top");
 		return value;
 	}
 
@@ -213,7 +213,7 @@ public class Growl extends UIMessages {
 	 *         set by the JSF file.
 	 */
 	public String getPlacementAlign() {
-		String value = (String) getStateHelper().eval(PropertyKeys.placementAlign);
+		String value = (String) getStateHelper().eval(PropertyKeys.placementAlign, "right");
 		return value;
 	}
 
