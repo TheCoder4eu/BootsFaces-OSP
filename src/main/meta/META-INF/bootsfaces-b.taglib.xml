@@ -3763,6 +3763,18 @@
       <required>false</required>
       <type>java.lang.Boolean</type>
     </attribute>
+   	<attribute>
+	  <description><![CDATA[Animation of the message while entering. Default 'animated fadeInDown']]></description>
+	  <name>animationEnter</name>
+	  <required>false</required>
+	  <type>String</type>
+	</attribute>
+	<attribute>
+	  <description><![CDATA[Animation of the message while exiting. Default 'animated fadeOutUp']]></description>
+	  <name>animationExit</name>
+	  <required>false</required>
+	  <type>String</type>
+	</attribute>
     <attribute>
       <description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
       <name>delay</name>

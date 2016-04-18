@@ -38,7 +38,7 @@ public class Growl extends UIMessages {
 	}
 
 	protected enum PropertyKeys {
-		globalOnly, showDetail, showSummary, icon, placementFrom, placementAlign, escape, style, styleClass, delay, timer, newestOnTop, allowDismiss;
+		globalOnly, showDetail, showSummary, icon, placementFrom, placementAlign, escape, style, styleClass, animationEnter, animationExit, delay, timer, newestOnTop, allowDismiss;
 
 		String toString;
 
@@ -269,6 +269,41 @@ public class Growl extends UIMessages {
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
+	
+	/**
+	 * Animation of the message while entering <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAnimationEnter() {
+		String value = (String)getStateHelper().eval(PropertyKeys.animationEnter, "animated fadeInDown");
+		return  value;
+	}
+	
+	/**
+	 * Animation of the message while entering <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAnimationEnter(String _animationEnter) {
+	    getStateHelper().put(PropertyKeys.animationEnter, _animationEnter);
+    }
+	
+
+	/**
+	 * Animation of the message while exiting <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAnimationExit() {
+		String value = (String)getStateHelper().eval(PropertyKeys.animationExit, "animated fadeOutUp");
+		return  value;
+	}
+	
+	/**
+	 * Animation of the message while exiting <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAnimationExit(String _animationExit) {
+	    getStateHelper().put(PropertyKeys.animationExit, _animationExit);
+    }
 	
 	/**
 	 * The message is shown and hidden with a delay. This value is the delay in

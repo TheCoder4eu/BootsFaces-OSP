@@ -648,6 +648,8 @@ widget growl
     placementAlign		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
     delay				Integer	default "5000"							   "The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     timer				Integer	default "1000"                 			   "This is the amount of milliseconds removed from the notify at every timer milliseconds."
+    animationEnter		String default "animated fadeInDown"			   "Animation of the message while entering"
+    animationExit		String default "animated fadeOutUp"				   "Animation of the message while exiting"
     newestOnTop			Boolean											   "Specifies if newest messages must be displayed on top of the others."
     allowDismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape                     											   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."

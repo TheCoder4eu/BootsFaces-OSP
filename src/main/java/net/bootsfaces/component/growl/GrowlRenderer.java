@@ -27,6 +27,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -48,7 +49,18 @@ public class GrowlRenderer extends CoreRenderer {
         
         String clientId = uiGrowl.getClientId(facesContext);
         
-        Iterator<FacesMessage> allMessages = uiGrowl.isGlobalOnly() ? facesContext.getMessages(null) : facesContext.getMessages();
+        // get the for value
+        String forValue = uiGrowl.getFor();
+       
+        Iterator<FacesMessage> allMessages = null;
+        if ( uiGrowl.isGlobalOnly() ) {
+        	allMessages = facesContext.getMessages(null); 
+        } else if(forValue != null && forValue.length() > 0) {
+        	forValue = ExpressionResolver.getComponentIDs(facesContext, uiGrowl, forValue);
+        	allMessages = facesContext.getMessages(forValue);
+        } else {
+        	allMessages = facesContext.getMessages();
+        }
         
         writer.startElement("script", uiGrowl);
         writer.writeAttribute("id", clientId, "id");
@@ -109,8 +121,8 @@ public class GrowlRenderer extends CoreRenderer {
 				"			align: '" + uiGrowl.getPlacementAlign() + "'" + 
 				" 		}, " + 
 				"		animate: { " + 
-				"			enter: 'animated fadeInDown', " +
-				"			exit: 'animated fadeOutUp' " +
+				"			enter: '" + uiGrowl.getAnimationEnter() + "', " +
+				"			exit: '" + uiGrowl.getAnimationExit() + "' " +
 				"		} " + 
 				"   }); " +
 				"", null);
