@@ -225,6 +225,9 @@ public class ColorPickerRenderer extends CoreRenderer {
 					" theme: 'bootstrap' " +
 					"});" +
 					"});", null);
+		rw.writeText("document.getElementById('" + clientId + "').addEventListener('touchmove', function(event) {\r\n"+
+      		  "event.preventDefault();\r\n"+
+      	      "}, false);", null);
 		rw.endElement("script");
 	}
 
