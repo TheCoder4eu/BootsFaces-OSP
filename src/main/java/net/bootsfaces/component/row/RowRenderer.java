@@ -75,7 +75,7 @@ public class RowRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("class", s, "class");
 
-		Tooltip.activateTooltips(context, row.getAttributes(), row);
+		Tooltip.activateTooltips(context, row);
 	}
 
 	/**

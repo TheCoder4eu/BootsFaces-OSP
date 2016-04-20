@@ -38,11 +38,8 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.container.Container";
 
 	public Container() {
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
-		// "jq/jquery.js");
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

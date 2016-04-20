@@ -149,7 +149,7 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 		
 		writer.endElement("div");
-		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
+		Tooltip.activateTooltips(context, tabView);
 	}
 	
 	/**

@@ -38,9 +38,8 @@ public class ButtonToolbar extends UIComponentBase implements net.bootsfaces.ren
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.buttonToolbar.ButtonToolbar";
 
 	public ButtonToolbar() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

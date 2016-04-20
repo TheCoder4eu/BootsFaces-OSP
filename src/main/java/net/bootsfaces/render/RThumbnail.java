@@ -95,6 +95,6 @@ public enum RThumbnail {
             rw.endElement("div");
         }
         rw.endElement("div");
-        Tooltip.activateTooltips(fc, c.getAttributes(), c);
+        Tooltip.activateTooltips(fc, c);
     }
 }

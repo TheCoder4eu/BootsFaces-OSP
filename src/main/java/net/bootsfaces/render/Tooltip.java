@@ -160,36 +160,24 @@ public class Tooltip {
 
 	}
 
-	public static void addResourceFile() {
+	/**
+	 * Adds the required resource files for tooltips to the required resources list.
+	 */
+	public static void addResourceFiles() {
 		// if (null != getAttributes().get("tooltip")) {
+		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/tooltip.js");
 		// }
 	}
 
-	public static void activateTooltips(FacesContext context, Map<String, Object> attributes, UIComponent component)
+	public static void activateTooltips(FacesContext context, UIComponent component)
 			throws IOException {
+		Map<String, Object> attributes = component.getAttributes();
 		if (attributes.get("tooltip") != null) {
 			String id = component.getClientId();
 			id = id.replace(":", "\\\\:"); // we need to escape the id for
 											// jQuery
 			String delayOptions = generateDelayAttributes(attributes);
-			String options = "";
-			if (null != delayOptions)
-				options = "'delay':" + delayOptions + ",";
-			if (options.length() > 0)
-				options = "{" + options.substring(0, options.length() - 1) + "}";
-
-			String js = "$(function () {\n" + "$('#" + id + "').tooltip(" + options + ")\n" + "});\n";
-			context.getResponseWriter().write("<script type='text/javascript'>" + js + "</script>");
-		}
-	}
-
-	public static void activateTooltips(FacesContext context, IHasTooltip component) throws IOException {
-		if (component.getTooltip() != null) {
-			String id = ((UIComponent) component).getClientId();
-			id = id.replace(":", "\\\\:"); // we need to escape the id for
-											// jQuery
-			String delayOptions = generateDelayAttributes(component);
 			String options = "";
 			if (null != delayOptions)
 				options = "'delay':" + delayOptions + ",";

@@ -57,7 +57,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	@Override

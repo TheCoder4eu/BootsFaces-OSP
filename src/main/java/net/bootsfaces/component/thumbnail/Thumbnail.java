@@ -40,9 +40,8 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 
 	public Thumbnail() {
 
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("thumbnails.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

@@ -37,8 +37,7 @@ public class ButtonGroup extends UIComponentBase implements net.bootsfaces.rende
 	
 	public ButtonGroup() {
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		setRendererType(DEFAULT_RENDERER);
 	}
 	

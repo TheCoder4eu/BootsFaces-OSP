@@ -53,9 +53,8 @@ public class Label extends UIComponentBase {
 	public Label() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("labels.css");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -90,7 +89,7 @@ public class Label extends UIComponentBase {
 		rw.writeAttribute("class", sclass, "class");
 		rw.writeText(txt, null);
 		rw.endElement("span");
-		Tooltip.activateTooltips(context, this.getAttributes(), this);
+		Tooltip.activateTooltips(context, this);
 	}
 
 	@Override

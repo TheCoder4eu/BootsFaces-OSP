@@ -51,9 +51,8 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	public NavBar() {
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("navbar.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);

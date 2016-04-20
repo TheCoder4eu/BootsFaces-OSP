@@ -42,7 +42,6 @@ public class Messages extends javax.faces.component.UIMessages {
 	public Messages() {
 		super();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("alerts.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType("net.bootsfaces.component.messages.MessagesRenderer");

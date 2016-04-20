@@ -59,11 +59,10 @@ public class DataTable extends UIData
 	}
 
 	public DataTable() {
-		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

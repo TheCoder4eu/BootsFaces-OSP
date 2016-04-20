@@ -37,7 +37,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.canvas.Canvas";
 
 	public Canvas() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		setRendererType(DEFAULT_RENDERER);
 	}
 

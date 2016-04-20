@@ -39,7 +39,6 @@ import net.bootsfaces.utils.BsfUtils;
  */
 
 public class LinksContainer extends UIComponentBase {
-
 	/**
 	 * <p>
 	 * The standard component type for this component.
@@ -55,9 +54,8 @@ public class LinksContainer extends UIComponentBase {
 
 	public LinksContainer() {
 		setRendererType(null); // this component renders itself
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 	}
 
@@ -87,7 +85,7 @@ public class LinksContainer extends UIComponentBase {
 		if (null != style && style.length() > 0) {
 			rw.writeAttribute("style", style, "style");
 		}
-		Tooltip.generateTooltip(fc, attrs, rw);
+		Tooltip.generateTooltip(fc, this, rw);
 		String styleClass = (String) attrs.get("styleClass");
 		if (null == styleClass) {
 			styleClass = "";
@@ -98,7 +96,6 @@ public class LinksContainer extends UIComponentBase {
 		} else {
 			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()), "class");
 		}
-
 	}
 
 	/**
@@ -114,12 +111,11 @@ public class LinksContainer extends UIComponentBase {
 	@Override
 	public void encodeEnd(FacesContext fc) throws IOException {
 		fc.getResponseWriter().endElement("ul");
-		Tooltip.activateTooltips(fc, getAttributes(), this);
+		Tooltip.activateTooltips(fc, this);
 	}
 
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-
 }

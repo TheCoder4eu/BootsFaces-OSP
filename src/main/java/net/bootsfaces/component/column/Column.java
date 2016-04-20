@@ -38,9 +38,8 @@ public class Column extends UIOutput implements net.bootsfaces.render.IHasToolti
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.column.Column";
 
 	public Column() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

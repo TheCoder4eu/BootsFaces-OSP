@@ -42,7 +42,6 @@ public class Modal extends UIComponentBase {
 	public Modal() {
 		setRendererType(DEFAULT_RENDERER);
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("modals.css");
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");

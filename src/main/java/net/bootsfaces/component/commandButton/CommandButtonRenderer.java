@@ -149,7 +149,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		rw.endElement("button");
 
-		Tooltip.activateTooltips(context, attrs, component);
+		Tooltip.activateTooltips(context, component);
 	}
 
 	private String getStyleClasses(CommandButton component) {

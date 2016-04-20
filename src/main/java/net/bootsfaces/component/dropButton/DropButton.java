@@ -42,8 +42,7 @@ public class DropButton extends UIComponentBase implements net.bootsfaces.render
 		// "jq/jquery.js");
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "js/dropdown.js");
 		setRendererType(DEFAULT_RENDERER);
 	}

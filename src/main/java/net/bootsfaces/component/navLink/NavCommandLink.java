@@ -46,13 +46,8 @@ public class NavCommandLink extends UICommand
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navLink.NavLink";
 
 	public NavCommandLink() {
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
-		// "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -94,7 +94,6 @@ public class DatePicker extends HtmlInputText {
 		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
 		AddResourcesListener.addThemedCSSResource("jq.ui.datepicker.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
@@ -117,7 +116,7 @@ public class DatePicker extends HtmlInputText {
 			}
 
 		}
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -189,7 +188,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeHTML(fc);
 		encodeDefaultLanguageJS(fc);
-		Tooltip.activateTooltips(fc, getAttributes(), this);
+		Tooltip.activateTooltips(fc, this);
 	}
 
 	/**

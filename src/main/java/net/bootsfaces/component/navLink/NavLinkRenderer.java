@@ -89,8 +89,7 @@ public class NavLinkRenderer extends CoreRenderer {
 				encodeHTML(context, (UIComponent) navlink);
 			}
 		} // if header
-		Tooltip.activateTooltips(context, navlink);
-
+		Tooltip.activateTooltips(context, component);
 	}
 
 	public void encodeHeader(FacesContext context, String h, UIComponent navlink) throws IOException {

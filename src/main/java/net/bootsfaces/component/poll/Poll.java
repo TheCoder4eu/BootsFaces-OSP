@@ -30,7 +30,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
 
 import net.bootsfaces.C;
-import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -55,10 +55,8 @@ public class Poll extends HtmlCommandButton {
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Poll() {
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-
 		setRendererType(null); // this component renders itself
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

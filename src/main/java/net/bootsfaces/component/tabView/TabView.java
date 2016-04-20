@@ -51,15 +51,10 @@ public class TabView extends UIOutput
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
 	public TabView() {
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
-		// "jq/jquery.js");
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

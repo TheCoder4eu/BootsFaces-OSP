@@ -38,9 +38,8 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.flyOutMenu.FlyOutMenu";
 
 	public FlyOutMenu() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

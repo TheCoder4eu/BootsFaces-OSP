@@ -41,11 +41,11 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropMenu.DropMenu";
 
 	public DropMenu() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("dropdown-submenu.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

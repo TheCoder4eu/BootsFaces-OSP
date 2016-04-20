@@ -44,7 +44,6 @@ public class PillLinks extends LinksContainer {
 	public PillLinks() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

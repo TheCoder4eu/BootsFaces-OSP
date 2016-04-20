@@ -53,7 +53,6 @@ public class NavBarLinks extends LinksContainer {
     public NavBarLinks() {
         setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
     }
     
 	public void setValueExpression(String name, ValueExpression binding) {

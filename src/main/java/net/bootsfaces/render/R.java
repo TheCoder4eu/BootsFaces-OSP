@@ -126,7 +126,7 @@ public final class R {
 		}
 
 		if (null != c) {
-			Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
+			Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c);
 		}
 	}
 

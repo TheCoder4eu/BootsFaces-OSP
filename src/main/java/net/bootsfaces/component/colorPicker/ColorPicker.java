@@ -40,15 +40,10 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 
 	public ColorPicker() {
 		setRendererType("net.bootsfaces.component.colorPicker.ColorPicker");
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("jquery.minicolors.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
-		// "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");
 
 		renderLabel = FacesContext.getCurrentInstance().getExternalContext()

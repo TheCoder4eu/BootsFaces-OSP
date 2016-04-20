@@ -223,7 +223,7 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.endElement("div"); // collapse
 		rw.endElement("div"); // container
 		rw.endElement("div"); // navbar
-		Tooltip.activateTooltips(context, component.getAttributes(), component);
+		Tooltip.activateTooltips(context, component);
 
 	}
 

@@ -264,7 +264,7 @@ public class PanelRenderer extends CoreRenderer {
 					+ "').value='true';");
 			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryClientID+"content", eventHandlers);
 		} 
-		Tooltip.activateTooltips(context, panel.getAttributes(), panel);
+		Tooltip.activateTooltips(context, panel);
 	}
 	//  $('#j_idt40_j_idt43content').on('show.bs.collapse', function(){ document.getElementById('j_idt40_j_idt43_collapsed').value='false'; });
 }

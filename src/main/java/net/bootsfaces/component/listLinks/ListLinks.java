@@ -25,6 +25,7 @@ import javax.faces.component.FacesComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -57,20 +58,17 @@ public class ListLinks extends LinksContainer {
 	public ListLinks() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-	}
-
-	/*
-	 * <ul class="nav nav-list"> ... </ul>
-	 */
-	@Override
-	protected String getContainerStyles() {
-		return STYLE;
-	}
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
+		Tooltip.addResourceFiles();
+   }
+    
+    /*
+     * <ul class="nav nav-list">
+     * ...
+     * </ul>
+     */
+    @Override
+    protected String getContainerStyles() {
+        return STYLE;
+    }
 
 }
