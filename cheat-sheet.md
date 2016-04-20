@@ -6,7 +6,7 @@
 * ignore the errors in the test folders
 * run the Gradle build from the next section
 
-*Note: You don't explicitly need the Gradle plugin to import the project, you can also build it manually.*  
+*Note: You don't explicitly need the Gradle plugin to import the project, you can also build it manually via the included Gradle wrapper without having Gradle installed.*  
 
 ###Gradle
 Run `./gradlew` (or `gradlew.bat` on Windows) in the project's root directory to trigger the full gradle build via the included [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).
@@ -21,9 +21,7 @@ Now the lib folder contains a `BootsFaces-OSP-{VERSION_NUMBER}.jar` file.
 
 
 ####Maven
-Us usual run  
-`mvn clean install`   
-to build the artifact and register it in your local Maven repository.
+Run `mvn clean install` as usual to build the artifact and register it in your local Maven repository.
 
 Maven will take the needed resources from `mavenResources`. You _could_ change the resources for local testing right in there, but _it's not recommended_, because those changes will be overwritten on the next [Gradle build](#gradle). If you want your changes to persist, they must be made in the Gradle resources.
 
@@ -39,7 +37,7 @@ This file is used by our [JSFLibraryGenerator](https://github.com/stephanrauh/JS
 ##Adding components 
 ###Adding a standard Bootstrap component
 * examine the `build.gradle` file in the `gradleResources` folder
-* if the JS file you need is excluded (line 36), remove it from the exclude list to activate it **(outdated?)**
+* if the JS file you need is excluded, remove it from the exclude list to activate it 
 * add a `bs-(component).less` file to the `gradleResources/less` folder. Only `bs*.less` files are processed!
 * put custom additions to the CSS file in `/gradleResources/less/bs-(component).less`
 * put custom JS files into `gradleResources/js` and add them to the `build.gradle` file
@@ -90,13 +88,13 @@ This file is used by our [JSFLibraryGenerator](https://github.com/stephanrauh/JS
     * add the `@ResourceDependencies` annotation to the component
     * add tooltips and AJAX (see below)
     * run organize imports
-  * delete the line that renders the 'rendered' attribute in the renderer class
-  * start implementing the renderer. The generators generate a default implementation which simply renders the tag and every attribute (as if it were valid HTML).
+  * delete the line that renders the `rendered` attribute in the renderer class
+  * start implementing the renderer. The generators generate a default implementation which simply renders the tag and every attribute (as if it was valid HTML).
     
 #### Activating AJAX
   * add an on(event) attribute for every JS event you want to deal with
   * the component should implement `ClientBehaviorHolder` and `IAJAXComponent`
-  * add these the list of JavaScript AJAX events (without the prefix "on") and two methods to the component above the properties attribute:
+  * add these to the list of JavaScript AJAX events (without the prefix "on") and two methods to the component above the properties attribute:
     	   
     	  	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			 Arrays.asList("blur", "change", "valueChange", "click", "dblclick", ...,
@@ -112,16 +110,15 @@ This file is used by our [JSFLibraryGenerator](https://github.com/stephanrauh/JS
     
   * add `AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer);` to the encode method to generate the JS handlers
   * remove the generation of the on(event) attributes - they are already covered by `generateBootsFacesAJAXAndJavaScript()`.
-  * also remove the generation of `action`, `actionListener` and `ajax`.
-  * add `new AJAXRenderer().decode(context, component);` to the renderer's decode method.
+  * also remove the auto-generated `action`, `actionListener` and `ajax` methods
+  * add `new AJAXRenderer().decode(context, component);` to the renderer's decode method
 
 ####Activating tooltips
 * add the property `has_tooltip` to the component description
-* add the resource dependency `@ResourceDependency(library = "bsf", name = "css/tooltip.css", target = "head")` to the component
-* add `Tooltip.addResourceFile();` to the component constructor
-* correct `Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);` as last line of the renderer encode method
+* add `Tooltip.addResourceFiles();` to the component constructor
+* correct `Tooltip.activateTooltips(context, component);` as last line of the renderer encode method
       (it's already there, but uses a deprecated API)
-* insert `Tooltip.generateTooltip(context, carousel, rw);` after the line which renders the ID
-* delete the generation of the tooltip attributes - they are already covered by `Tooltip.generateTooltip(context, carousel, rw);`
+* insert `Tooltip.generateTooltip(context, component, rw);` after the line which renders the ID
+* delete the auto-generated tooltip attributes - they are already covered by `Tooltip.generateTooltip(context, component, rw);`
   
   
