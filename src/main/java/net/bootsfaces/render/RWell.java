@@ -61,7 +61,7 @@ public enum RWell {
         }
         String styleClass=(String) attrs.get("styleClass");
         if (null ==styleClass) styleClass=""; else styleClass=" "+styleClass;
-        Tooltip.generateTooltip(fc, attrs, rw);
+        Tooltip.generateTooltip(fc, c, rw);
         
         if(sz!=null) { rw.writeAttribute("class", well+" "+well+"-"+sz+styleClass,"class"); }
         else           { rw.writeAttribute("class", well+styleClass, "class"); }

@@ -79,7 +79,7 @@ public class Label extends UIComponentBase {
 
 		rw.startElement("span", this);
 		rw.writeAttribute("id", this.getClientId(), "id");
-		Tooltip.generateTooltip(context, this.getAttributes(), rw);
+		Tooltip.generateTooltip(context, this, rw);
 		String sclass = "label" + " " + "label";
 		if (sev != null) {
 			sclass += "-" + sev;

@@ -74,7 +74,7 @@ public class BadgeRenderer extends CoreRenderer {
 			styleClass = "badge";
 		else
 			styleClass += " badge";
-		Tooltip.generateTooltip(context, component.getAttributes(), rw);
+		Tooltip.generateTooltip(context, component, rw);
 		rw.writeAttribute("class", styleClass, "class");
 		if (null != style)
 			rw.writeAttribute("style", style, "style");

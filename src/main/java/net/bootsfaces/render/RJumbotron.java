@@ -47,7 +47,7 @@ public enum RJumbotron {
         
         rw.startElement("div", c);
         rw.writeAttribute("id",c.getClientId(fc),"id");
-        Tooltip.generateTooltip(fc, c.getAttributes(), rw);
+        Tooltip.generateTooltip(fc, c, rw);
         rw.writeAttribute("class", jumbotron, "class");
     }
     

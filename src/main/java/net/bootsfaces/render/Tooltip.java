@@ -37,26 +37,12 @@ import net.bootsfaces.listeners.AddResourcesListener;
  */
 public class Tooltip {
 
-	public static void generateTooltip(FacesContext context, IHasTooltip component, ResponseWriter rw)
+	public static void generateTooltip(FacesContext context, UIComponent component, ResponseWriter rw)
 			throws IOException {
-		if (null != component.getTooltip()) {
-			String tooltipPosition = component.getTooltipPosition();
-			if (null == tooltipPosition) // compatibility for the HTML-style using "-" characters instead of camelcase
-				tooltipPosition = (String) ((UIComponent) component).getAttributes().get("tooltip-position");
-			String tooltipContainer = component.getTooltipContainer();
-			if ("body".equals(tooltipContainer)) // compatibility for the HTML-style using "-" characters instead of camelcase
-				tooltipContainer = (String) ((UIComponent) component).getAttributes().get("tooltip-container");
-			if (null == tooltipContainer)
-				tooltipContainer = "body";
-			
-			generateTooltipInternal(context, rw, component.getTooltip(), tooltipPosition, tooltipContainer);
-		}
-	}
-
-	public static void generateTooltip(FacesContext context, Map<String, Object> attrs, ResponseWriter rw)
-			throws IOException {
+		Map<String, Object> attrs = component.getAttributes();
 		String tooltip = (String) attrs.get("tooltip");
 		if (null != tooltip) {
+			//set default values first, if not present
 			String position = (String) attrs.get("tooltipPosition");
 			if (null == position) // compatibility for the HTML-style using "-" characters instead of camelcase
 				position = (String) attrs.get("tooltip-position");
@@ -67,11 +53,11 @@ public class Tooltip {
 				container = (String) attrs.get("tooltip-container");
 			if (null == container || container.length() == 0)
 				container = "body";
-			generateTooltipInternal(context, rw, tooltip, position, container);
+			verifyAndWriteTooltip(context, rw, tooltip, position, container);
 		}
 	}
 
-	private static void generateTooltipInternal(FacesContext context, ResponseWriter rw, String tooltip,
+	private static void verifyAndWriteTooltip(FacesContext context, ResponseWriter rw, String tooltip,
 			String position, String container) throws IOException {
 		if (null == position)
 			position="bottom";
@@ -110,32 +96,12 @@ public class Tooltip {
 		}
 		if (null != delayHide)
 			json += delayHide + ",";
-		if (json.length() > 0) {
+		if (!json.isEmpty()) {
 			return "{" + json.substring(0, json.length() - 1) + "}";
 		}
 		return null;
 	}
-
-	private static String generateDelayAttributes(IHasTooltip component) throws IOException {
-		String json = "";
-		int tooltipDelayShow = component.getTooltipDelayShow();
-		if (0 == tooltipDelayShow)
-			tooltipDelayShow = component.getTooltipDelay();
-
-		if (0 != tooltipDelayShow) 
-			json += "tooltip-delay-show" + tooltipDelayShow + ",";
-		int tooltipDelayHide = component.getTooltipDelayHide();
-		if (0 == tooltipDelayHide)
-			tooltipDelayHide = component.getTooltipDelay();
-		if (0 != tooltipDelayHide)
-			json += "tooltip-delay-show" + tooltipDelayShow + ",";
-
-		if (json.length() > 0) {
-			return "{" + json.substring(0, json.length() - 1) + "}";
-		} else // compatibility for the HTML-style using "-" characters instead of camelcase
-			return generateDelayAttributes(((UIComponent) component).getAttributes());
-	}
-
+	
 	private static String getAndCheckDelayAttribute(String attributeName, Map<String, Object> attrs,
 			String htmlAttributeName) throws FacesException {
 		Object value = attrs.get(attributeName);
@@ -145,19 +111,19 @@ public class Tooltip {
 					Integer.parseInt((String)value);
 					return htmlAttributeName + ":" + value;
 				} catch (NumberFormatException ex) {
-					throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
-							+ value + "' is invalid.");
+					//throw exception later
 				}
 			}
 			else if (value instanceof Integer) {
 				return htmlAttributeName + ":" + value;
-			} else {
-				throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
-						+ value + "' is invalid.");
 			}
+			
+			//if we reach this point, the value wasn't accepted as Integer
+			throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
+					+ value + "' is invalid.");
 		}
+		
 		return null;
-
 	}
 
 	/**

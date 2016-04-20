@@ -123,7 +123,7 @@ public class IconRenderer extends AJAXRenderer {
 				rw.writeAttribute("id", c.getClientId() + "_icon", null);
 			else
 				rw.writeAttribute("id", c.getClientId(), null);
-			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c, rw);
 		}
 
 		StringBuilder sb = new StringBuilder(100); // optimize int

@@ -111,7 +111,7 @@ public class NavLinkRenderer extends CoreRenderer {
 	public void encodeDivider(FacesContext context, AbstractNavLink navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 		rw.startElement("li", (UIComponent) navlink);
-		Tooltip.generateTooltip(context, navlink, rw);
+		Tooltip.generateTooltip(context, (UIComponent) navlink, rw);
 		String styleClass = navlink.getStyleClass();
 		if (null == styleClass)
 			styleClass = "";
@@ -134,7 +134,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		String value = (String) ((AbstractNavLink)navlink).getValue();
 		rw.startElement("li", navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
-		Tooltip.generateTooltip(context, ((AbstractNavLink)navlink), rw);
+		Tooltip.generateTooltip(context, navlink, rw);
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder)navlink, rw);
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);

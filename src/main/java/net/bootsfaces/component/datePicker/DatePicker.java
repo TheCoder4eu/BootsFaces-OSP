@@ -269,7 +269,7 @@ public class DatePicker extends HtmlInputText {
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId, null);
 		rw.writeAttribute("name", clientId, null);
-		Tooltip.generateTooltip(fc, attrs, rw);
+		Tooltip.generateTooltip(fc, this, rw);
 		rw.writeAttribute("type", type, null);
 		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
 		rw.writeAttribute("class", "form-control " + styleClass, "class");
