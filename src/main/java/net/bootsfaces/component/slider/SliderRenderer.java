@@ -275,7 +275,7 @@ public class SliderRenderer extends BadgeRenderer {
 						attributes.remove("type");
 				}
 			}
-		} catch (ReflectiveOperationException ignoreMe) {
+		} catch (Exception ignoreMe) {
 			// we don't really have to care about this error
 		}
 

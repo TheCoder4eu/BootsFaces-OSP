@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.el.MethodExpression;
 import javax.faces.FacesException;
@@ -31,7 +33,8 @@ import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 
 public class AJAXRenderer extends CoreRenderer {
-
+	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
+	
 	public void decode(FacesContext context, UIComponent component) {
 		String id = component.getClientId(context);
 		decode(context, component, id);
@@ -96,8 +99,8 @@ public class AJAXRenderer extends CoreRenderer {
 						}
 					}
 				}
-			} catch (ReflectiveOperationException ex) {
-				System.err.println("Couldn't invoke method " + nameOfGetter);
+			} catch (Exception ex) {
+				LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter);
 			}
 
 			if (null != event) {
@@ -243,8 +246,8 @@ public class AJAXRenderer extends CoreRenderer {
 					}
 				}
 			}
-		} catch (ReflectiveOperationException ex) {
-			System.err.println("Couldn't invoke method " + nameOfGetter);
+		} catch (Exception ex) {
+			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter);
 		}
 
 		// TODO behaviors don't render correctly?
@@ -302,7 +305,7 @@ public class AJAXRenderer extends CoreRenderer {
 			Method method = bean.getClass().getMethod(getter);
 			Object result = method.invoke(bean);
 			return result;
-		} catch (ReflectiveOperationException e) {
+		} catch (Exception e) {
 			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
 					+ bean.getClass().getName(), e);
 		}
@@ -322,7 +325,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 			return result;
-		} catch (ReflectiveOperationException e) {
+		} catch (Exception e) {
 			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
 					+ bean.getClass().getName(), e);
 		}

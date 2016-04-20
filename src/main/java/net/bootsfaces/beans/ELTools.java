@@ -45,7 +45,7 @@ public class ELTools {
 	/** Caching */
 	// private static Map<String, Method> getters = new HashMap<String, Method>();
 
-	private static final Logger LOGGER = Logger.getLogger("de.beyondjava.angularFaces.common.ELTools");
+	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.beans.ELTools");
 
 	/** Caching */
 	// private static Map<String, List<String>> propertyLists = new HashMap<String, List<String>>();
