@@ -45,6 +45,7 @@ import javax.faces.event.SystemEventListener;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
  * This class adds the resource needed by BootsFaces and ensures that they are
@@ -106,7 +107,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private void addMetaTags(UIViewRoot root, FacesContext context) {
 		// Check context-param
-		String viewportParam = context.getExternalContext().getInitParameter(C.P_VIEWPORT);
+		String viewportParam = BsfUtils.getInitParam(C.P_VIEWPORT, context);
 
 		viewportParam = evalELIfPossible(viewportParam);
 		String content = "width=device-width, initial-scale=1";
@@ -167,8 +168,8 @@ public class AddResourcesListener implements SystemEventListener {
 		 */
 		String theme = null;
 		String usetheme = null;
-		theme = context.getExternalContext().getInitParameter(C.P_THEME);
-		usetheme = context.getExternalContext().getInitParameter(C.P_USETHEME);
+		theme = BsfUtils.getInitParam(C.P_THEME, context);
+		usetheme = BsfUtils.getInitParam(C.P_USETHEME, context);
 		theme = evalELIfPossible(theme);
 		if (!theme.isEmpty()) {
 			if (theme.equalsIgnoreCase("custom")) {
@@ -202,8 +203,7 @@ public class AddResourcesListener implements SystemEventListener {
 		UIComponent header = findHeader(root);
 		boolean useCDNImportForFontAwesome = (null == header) || (null == header.getFacet("no-fa"));
 		if (useCDNImportForFontAwesome) {
-			String useCDN = FacesContext.getCurrentInstance().getExternalContext()
-					.getInitParameter("net.bootsfaces.get_fontawesome_from_cdn");
+			String useCDN = BsfUtils.getInitParam("net.bootsfaces.get_fontawesome_from_cdn");
 			if (null != useCDN) {
 				useCDN = ELTools.evalAsString(useCDN);
 			}
@@ -312,7 +312,8 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
-		String blockUI = FacesContext.getCurrentInstance().getExternalContext().getInitParameter("net.bootsfaces.blockUI");
+		
+		String blockUI = BsfUtils.getInitParam("net.bootsfaces.blockUI", context);
 		if (null != blockUI)
 			blockUI = ELTools.evalAsString(blockUI);
 		if (null != blockUI && isTrueOrYes(blockUI)) {
@@ -362,8 +363,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private boolean shouldLibraryBeLoaded(String initParameter) {
-		String suppressLibrary = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter(initParameter);
+		String suppressLibrary = BsfUtils.getInitParam(initParameter);
 		if (suppressLibrary != null)
 			suppressLibrary = ELTools.evalAsString(suppressLibrary);
 

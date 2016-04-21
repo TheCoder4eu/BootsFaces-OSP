@@ -268,4 +268,22 @@ public class BsfUtils {
 		}
 		return null;
 	}
+	
+	/**
+	 * Shortcut for getting context parameters.
+	 * @param param context parameter name
+	 * @return value of context parameter, may be null or empty
+	 */
+	public static String getInitParam(String param) {
+		return getInitParam(param, FacesContext.getCurrentInstance());
+	}
+	
+	/**
+	 * Shortcut for getting context parameters using an already obtained FacesContext.
+	 * @param param context parameter name
+	 * @return value of context parameter, may be null or empty
+	 */
+	public static String getInitParam(String param, FacesContext context) {
+		return context.getExternalContext().getInitParameter(param);
+	}
 }
