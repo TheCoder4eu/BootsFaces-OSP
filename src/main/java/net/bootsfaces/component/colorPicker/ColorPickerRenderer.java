@@ -13,7 +13,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -225,9 +224,6 @@ public class ColorPickerRenderer extends CoreRenderer {
 					" theme: 'bootstrap' " +
 					"});" +
 					"});", null);
-		rw.writeText("document.getElementById('" + clientId + "').addEventListener('touchmove', function(event) {\r\n"+
-      		  "event.preventDefault();\r\n"+
-      	      "}, false);", null);
 		rw.endElement("script");
 	}
 
