@@ -112,7 +112,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @return
 	 */
-	protected String getErrorAndRequiredClass(UIInput input, String clientId) {
+	public String getErrorAndRequiredClass(UIInput input, String clientId) {
 		String[] levels = { "bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal" };
 		int level = 0;
 		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
