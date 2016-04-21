@@ -151,6 +151,8 @@ public class Tooltip {
 				options = "{" + options.substring(0, options.length() - 1) + "}";
 
 			String js = "$(function () {\n" + "$('#" + id + "').tooltip(" + options + ")\n" + "});\n";
+			//destroy existing tooltips to prevent ajax bugs in some browsers and prevent memory leaks (see #323 and #220)
+			js+="$('.tooltip').tooltip('destroy'); ";
 			context.getResponseWriter().write("<script type='text/javascript'>" + js + "</script>");
 		}
 	}
