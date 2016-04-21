@@ -47,6 +47,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
+import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -262,7 +263,8 @@ public class DatePicker extends HtmlInputText {
 		rw.writeAttribute("name", clientId, null);
 		Tooltip.generateTooltip(fc, attrs, rw);
 		rw.writeAttribute("type", type, null);
-		rw.writeAttribute("class", "form-control", "class");
+		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
+		rw.writeAttribute("class", "form-control " + styleClass, "class");
 		if (v != null) {
 			rw.writeAttribute("value", getDateAsString(v, sdf, sloc), null);
 		}
