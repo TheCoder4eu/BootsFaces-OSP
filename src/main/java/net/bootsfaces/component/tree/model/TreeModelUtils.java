@@ -19,6 +19,8 @@
 
 package net.bootsfaces.component.tree.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -121,7 +123,7 @@ public class TreeModelUtils {
 	 */
 	public static String renderModelAsJson (Node rootNode, boolean renderRoot) {
 		if(renderRoot) 
-			return renderSubnodes(BsfUtils.AsList(rootNode));
+			return renderSubnodes(new ArrayList<Node>(Arrays.asList(rootNode)));
 		else {
 			if(rootNode.hasChild()) return renderSubnodes(rootNode.getChilds());
 		}

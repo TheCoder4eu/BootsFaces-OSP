@@ -132,7 +132,7 @@ public class ExpressionResolver {
 				result.addAll(idExpressionResolver.resolve(component, roots, currentId, originalExpression, null));
 
 			return result;
-		} catch (ReflectiveOperationException e) {
+		} catch (Exception e) {
 			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
 					+ currentId + " doesn't exist");
 		}

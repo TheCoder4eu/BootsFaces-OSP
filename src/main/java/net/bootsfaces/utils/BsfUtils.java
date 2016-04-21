@@ -1,17 +1,12 @@
 package net.bootsfaces.utils;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
-import javax.faces.component.visit.VisitCallback;
-import javax.faces.component.visit.VisitContext;
-import javax.faces.component.visit.VisitResult;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -81,20 +76,6 @@ public class BsfUtils {
 	public static String StringOrDefault(String str, String defaultValue) {
 		if(StringIsValued(str)) return str;
 		return defaultValue;
-	}
-
-	/**
-	 * Return a var-args list of items as List
-	 * @param objects
-	 * @return
-	 */
-	@SafeVarargs
-	public static <T> List<T> AsList (T ... objects) {
-		List<T> listOfObjects = new ArrayList<T>();
-		for(T obj: objects)
-			listOfObjects.add(obj);
-
-		return listOfObjects;
 	}
 
 	/**
