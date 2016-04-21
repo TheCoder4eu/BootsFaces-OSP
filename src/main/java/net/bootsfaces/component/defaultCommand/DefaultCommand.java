@@ -52,8 +52,8 @@ public class DefaultCommand extends UIComponentBase {
 		if (form == null) {
 			throw new FacesException("The default command component must be inside a form", null);
 		} else {
-			String target = (String) attrs.get("target");
-			if (BsfUtils.StringIsValued(target)) {
+			String target = (String)attrs.get("target");
+			if(BsfUtils.isStringValued(target)) {
 				ResponseWriter rw = context.getResponseWriter();
 				String formId = form.getClientId();
 				String actionCommandId = BsfUtils.getComponentClientId(target);
@@ -61,7 +61,7 @@ public class DefaultCommand extends UIComponentBase {
 				rw.startElement("script", this);
 
 				rw.writeText("" + "$(function() { " + "    $('form#"
-						+ BsfUtils.EscapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { "
+						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { "
 						+ "    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { "
 						+ "        document.getElementById('" + actionCommandId + "').click();return false; "
 						+ "    } else { " + "        console.log('keycode not 13'); " + "        return true; "

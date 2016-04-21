@@ -215,7 +215,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		// build color picker init script
 		rw.startElement("script", colorPicker);
 		rw.writeText("$(function() {" +
-					"$('#input_" + BsfUtils.EscapeJQuerySpecialCharsInSelector(clientId) + "').minicolors({" +
+					"$('#input_" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').minicolors({" +
 					(colorPicker.getAttributes().get("control") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
 					(colorPicker.getAttributes().get("format") != null ? " format: '" + colorPicker.getAttributes().get("format")  + "'," : "")  +
 					(colorPicker.getAttributes().get("opacity") != null ? " opacity: " + colorPicker.getAttributes().get("opacity")  + "," : "")  +

@@ -310,7 +310,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	pageLength: " + pageLength + ", " + 
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " + 
 					 "	order: " + orderString + ", " +
-					 (BsfUtils.StringIsValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
+					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 // "var table = " + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
@@ -382,9 +382,9 @@ public class DataTableRenderer extends CoreRenderer {
 		final Set<String> availableLanguages = new HashSet<String>(Arrays.asList(
 		     new String[] {"de", "en", "es", "fr", "hu", "it", "pl", "ru"}
 		));
-		if(BsfUtils.StringIsValued(dataTable.getCustomLangUrl())) {
+		if(BsfUtils.isStringValued(dataTable.getCustomLangUrl())) {
 			return dataTable.getCustomLangUrl();
-		} else if(BsfUtils.StringIsValued(dataTable.getLang())) {
+		} else if(BsfUtils.isStringValued(dataTable.getLang())) {
 			String lang = dataTable.getLang();
 			if(availableLanguages.contains(lang)) return determineLanguageUrl(fc, lang);
 		} 

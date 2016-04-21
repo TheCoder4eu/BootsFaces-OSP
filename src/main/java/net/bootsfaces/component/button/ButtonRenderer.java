@@ -84,7 +84,7 @@ public class ButtonRenderer extends CoreRenderer {
 		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("name", clientId, "name");
 		rw.writeAttribute("type", "button", null);
-		if(BsfUtils.StringIsValued(button.getDir())) {
+		if(BsfUtils.isStringValued(button.getDir())) {
 			rw.writeAttribute("dir", button.getDir(), "dir");
 		}
 		if (style != null) {
@@ -98,7 +98,7 @@ public class ButtonRenderer extends CoreRenderer {
 		if (null != clickHandler && clickHandler.length() > 0) {
 			rw.writeAttribute("onclick", clickHandler, null);
 		}
-		if (BsfUtils.StringIsValued(button.getDismiss())) {
+		if (BsfUtils.isStringValued(button.getDismiss())) {
 			rw.writeAttribute("data-dismiss", button.getDismiss(), null);
 		}
 		if (button.isDisabled()) {
