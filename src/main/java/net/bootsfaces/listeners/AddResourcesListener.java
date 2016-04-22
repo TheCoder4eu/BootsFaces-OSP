@@ -29,7 +29,6 @@ import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import javax.faces.FacesException;
-import javax.faces.application.Application;
 import javax.faces.application.ProjectStage;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
@@ -141,9 +140,6 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            library, optimized for debugging or production.
 	 */
 	private void addJavascript(UIViewRoot root, FacesContext context, boolean isProduction) {
-		Application app = context.getApplication();
-		ResourceHandler rh = app.getResourceHandler();
-
 // The following code is needed to diagnose the warning "Unable to save dynamic action with clientId 'j_id...'"
 //				List<UIComponent> r = root.getComponentResources(context, "head");
 //				System.out.println("**************");
@@ -154,49 +150,8 @@ public class AddResourcesListener implements SystemEventListener {
 //				System.out.println("**************");
 // end of the diagnostic code
 
-		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
-
-		/*
-		 * As of v0.8.0 we have two Context Parameters: BootsFaces_USETHEME - as
-		 * in previous versions controls if the current theme is to be rendered
-		 * in the Flat variant (default) or in its Enhanced variant, with
-		 * shadows and decorations turned on. BootsFaces_THEME - controls the
-		 * Theme to use: the value "default" is plain Bootstrap, the other
-		 * options are a Bootswach Theme name (lowercase) or "custom". If custom
-		 * is chosen, you will have to provide your custom CSS in the "other"
-		 * folder.
-		 */
-		String theme = null;
-		String usetheme = null;
-		theme = BsfUtils.getInitParam(C.P_THEME, context);
-		usetheme = BsfUtils.getInitParam(C.P_USETHEME, context);
-		theme = evalELIfPossible(theme);
-		if (!theme.isEmpty()) {
-			if (theme.equalsIgnoreCase("custom")) {
-				theme = "other";
-			}
-		} else
-			theme = "default";
-
-		// Theme loading
-		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
-			String filename = "bsf.css";
-			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
-
-			if (themeResource == null) {
-				throw new FacesException("Error loading theme, cannot find \"" + "css/" + theme + "/" + filename + "\" resource of \""
-						+ C.BSF_LIBRARY + "\" library");
-			} else {
-				String name = "css/" + theme + "/" + filename;
-				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
-			}
-		}
-
-		usetheme = evalELIfPossible(usetheme);
-		if (!usetheme.isEmpty() && isTrueOrYes(usetheme)) {
-			String name = "css/" + theme + "/theme.css";
-			createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
-		}
+		ResourceHandler rh = context.getApplication().getResourceHandler();
+		String theme = loadTheme(root, context, rh);
 
 		// deactivate FontAwesome support if the no-fa facet is found in the
 		// h:head tag
@@ -211,13 +166,11 @@ public class AddResourcesListener implements SystemEventListener {
 				useCDNImportForFontAwesome = !isFalseOrNo(useCDN);
 			}
 		}
-
-		// Do we have to add font-awesome and jQuery, or are the resources
-		// already there?
+		
 		boolean loadJQuery = shouldLibraryBeLoaded("net.bootsfaces.get_jquery_from_cdn");
 		boolean loadJQueryUI = shouldLibraryBeLoaded("net.bootsfaces.get_jqueryui_from_cdn");
 		boolean loadBootstrapFromCDN = shouldLibraryBeLoaded("net.bootsfaces.get_bootstrap_from_cdn");
-
+		// Do we have to add font-awesome and jQuery, or are the resources already there?
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
 			String name = (String) ava.getAttributes().get("name");
@@ -236,82 +189,13 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		// Font Awesome
-		if (useCDNImportForFontAwesome) { // !=null && usefa.equals(C.TRUE)) {
+		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
 			output.getAttributes().put("src", C.FONTAWESOME_CDN_URL);
 			addResourceIfNecessary(root, context, output);
 		}
 
-		Map<String, Object> viewMap = root.getViewMap();
-
-		/* In the old way, we check if the single component needs the bsf.js
-		 * library. This can be an error prone approach so we start to force
-		 * the bsf addition (if not different specified) 
-		 * 
-		@SuppressWarnings("unchecked")
-		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
-		if(basicResourceMap != null) {
-			if (basicResourceMap.containsValue("jsf.js")) {
-				UIOutput output = new UIOutput();
-				output.setRendererType(SCRIPT_RENDERER);
-				output.getAttributes().put("name", "jsf.js");
-				output.getAttributes().put("library", "javax.faces");
-				output.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, output);
-			}
-			
-			if (basicResourceMap.containsValue("bsf.js") || basicResourceMap.containsValue("js/bsf.js")) {
-				UIOutput output = new UIOutput();
-				output.setRendererType(SCRIPT_RENDERER);
-				output.getAttributes().put("name", "js/bsf.js");
-				output.getAttributes().put("library", "bsf");
-				output.getAttributes().put("target", "head");
-				addResourceIfNecessary(root, context, output);
-			}
-		}
-		 */
-		
-		// add JSF by default
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
-		// add BSF by default
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
-
-		@SuppressWarnings("unchecked")
-		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
-
-		if (null != resourceMap) {
-			if (loadJQuery) {
-				/* In the old way, we check if the single component needs the jquery
-				 * library. This can be an error prone approach so we start to force
-				 * the jquery addition (if not different specified)
-				boolean needsJQuery = false;
-				for (Entry<String, String> entry : resourceMap.entrySet()) {
-					String file = entry.getValue();
-					if ("jq/jquery.js".equals(file)) {
-						needsJQuery = true;
-					}
-				}
-				if (needsJQuery) {
-					UIOutput output = new UIOutput();
-					output.setRendererType(SCRIPT_RENDERER);
-					output.getAttributes().put("name", "jq/jquery.js");
-					output.getAttributes().put("library", C.BSF_LIBRARY);
-					output.getAttributes().put("target", "head");
-					addResourceIfNecessary(root, context, output);
-				}*/
-
-				createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
-			}
-
-			for (Entry<String, String> entry : resourceMap.entrySet()) {
-				String file = entry.getValue();
-				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || (!"bsf".equals(library)))
-					if ((!file.startsWith("jq/ui")) || (!"bsf".equals(library)) || loadJQueryUI)
-						createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
-			}
-			viewMap.remove(RESOURCE_KEY);
-		}
+		addMandatoryLibraries(root, context, loadJQuery, loadJQueryUI);
 		
 		String blockUI = BsfUtils.getInitParam("net.bootsfaces.blockUI", context);
 		if (null != blockUI)
@@ -347,8 +231,9 @@ public class AddResourcesListener implements SystemEventListener {
 				}
 			}
 		}
-
-		List<String> themedCSSMap = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
+		
+		@SuppressWarnings("unchecked")
+		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
 		if(themedCSSMap != null) {
 			for (String file: themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
@@ -360,6 +245,77 @@ public class AddResourcesListener implements SystemEventListener {
 		String name = "css/icons.css";
 		//String name = "css/" + theme + "/icons.css";
 		createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+	}
+
+	private Map<String, Object> addMandatoryLibraries(UIViewRoot root, FacesContext context, 
+													boolean loadJQuery, boolean loadJQueryUI) {
+		/* We used to check if a single component needs the bsf.js, jsf or jquery library. 
+		 * This can be an error prone approach so we add all of them (if not different specified) 
+		 */
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
+		
+		Map<String, Object> viewMap = root.getViewMap();
+		@SuppressWarnings("unchecked")
+		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
+
+		if (null != resourceMap) {
+			if (loadJQuery)
+				createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
+
+			for (Entry<String, String> entry : resourceMap.entrySet()) {
+				String file = entry.getValue();
+				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
+				if (!"jq/jquery.js".equals(file) || (!"bsf".equals(library)))
+					if ((!file.startsWith("jq/ui")) || (!"bsf".equals(library)) || loadJQueryUI)
+						createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+			}
+			viewMap.remove(RESOURCE_KEY);
+		}
+		return viewMap;
+	}
+
+	private String loadTheme(UIViewRoot root, FacesContext context, ResourceHandler rh) {
+		/*
+		 * As of v0.8.0 we have two Context Parameters: BootsFaces_USETHEME - as
+		 * in previous versions controls if the current theme is to be rendered
+		 * in the Flat variant (default) or in its Enhanced variant, with
+		 * shadows and decorations turned on. BootsFaces_THEME - controls the
+		 * Theme to use: the value "default" is plain Bootstrap, the other
+		 * options are a Bootswach Theme name (lowercase) or "custom". If custom
+		 * is chosen, you will have to provide your custom CSS in the "other"
+		 * folder.
+		 */
+		String theme = evalELIfPossible(BsfUtils.getInitParam(C.P_THEME, context));
+		if (!theme.isEmpty()) {
+			if (theme.equalsIgnoreCase("custom")) {
+				theme = "other";
+			}
+		} else
+			theme = "default";
+
+		// Theme loading
+		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
+			String filename = "bsf.css";
+			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
+
+			if (themeResource == null) {
+				throw new FacesException("Error loading theme, cannot find \"" + "css/" + theme + "/" + filename + "\" resource of \""
+						+ C.BSF_LIBRARY + "\" library");
+			} else {
+				String name = "css/" + theme + "/" + filename;
+				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+			}
+		}
+
+		// If the BootsFaces_USETHEME parameter is true, render Theme CSS link
+		String usetheme = evalELIfPossible(BsfUtils.getInitParam(C.P_USETHEME, context));
+		if (!usetheme.isEmpty() && isTrueOrYes(usetheme)) {
+			String name = "css/" + theme + "/theme.css";
+			createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+		}
+		
+		return theme;
 	}
 
 	private boolean shouldLibraryBeLoaded(String initParameter) {
@@ -705,9 +661,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private static void addResource(String resourceKey, String resourceTypeKey) {
-		FacesContext ctx = FacesContext.getCurrentInstance();
-		UIViewRoot v = ctx.getViewRoot();
-		Map<String, Object> viewMap = v.getViewMap();
+		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(resourceTypeKey);
 		if (null == resourceMap) {
