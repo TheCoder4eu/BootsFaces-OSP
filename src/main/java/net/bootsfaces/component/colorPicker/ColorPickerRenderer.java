@@ -224,7 +224,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 					" theme: 'bootstrap' " +
 					"});" +
 					"});", null);
-		rw.writeText("document.getElementById('input_" + BsfUtils.EscapeJQuerySpecialCharsInSelector(clientId) + "').addEventListener('touchmove', function(event) {\r\n"+
+		rw.writeText("document.getElementById('input_" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').addEventListener('touchmove', function(event) {\r\n"+
 	      		  "event.preventDefault();\r\n"+
 	      	      "}, false);", null);
 		rw.endElement("script");
