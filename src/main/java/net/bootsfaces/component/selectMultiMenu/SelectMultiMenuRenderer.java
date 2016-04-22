@@ -630,12 +630,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		} else if (isInList(itemLabel, selectedOption)) {
 			rw.writeAttribute("selected", "true", "selected");
 		}
-
-		if (itemLabel.equals("&nbsp;"))
-			rw.write(itemLabel);
-		else {
-			rw.write(itemLabel);
-		}
+                
+                rw.write(itemLabel);
 
 		rw.endElement("option");
 	}

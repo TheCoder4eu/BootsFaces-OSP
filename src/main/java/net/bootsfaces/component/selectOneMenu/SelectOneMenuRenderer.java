@@ -513,12 +513,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		}
 		if (isDisabled)
 			rw.writeAttribute("disabled", "disabled", "disabled");
-
-		if (itemLabel.equals("&nbsp;"))
-			rw.write(itemLabel);
-		else {
-			rw.write(itemLabel);
-		}
+                
+                rw.write(itemLabel);
 
 		rw.endElement("option");
 	}
