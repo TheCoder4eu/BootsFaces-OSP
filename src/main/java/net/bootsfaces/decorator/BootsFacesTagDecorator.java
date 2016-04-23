@@ -25,6 +25,8 @@ import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
 import javax.faces.view.facelets.TagDecorator;
 
+import net.bootsfaces.component.ComponentsEnum;
+
 /**
  * This is one of the most important classes of AngularFaces. It converts
  * attributes to pass-through parameters, adds them to the list of JSF bean to
@@ -42,35 +44,12 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	private static final Map<String, String> bootsfacesTags;
 
 	static {
+		ComponentsEnum[] components = ComponentsEnum.values();
 		bootsfacesTags = new HashMap<String, String>();
-		bootsfacesTags.put("alert", "alert");
-		bootsfacesTags.put("badge", "badge");
-		bootsfacesTags.put("modal", "modal");
-		bootsfacesTags.put("commandButton", "commandButton");
-		bootsfacesTags.put("buttonGroup", "buttonGroup");
-		bootsfacesTags.put("buttonToolbar", "buttonToolbar");
-		bootsfacesTags.put("navBar", "navBar");
-		bootsfacesTags.put("navbarLinks", "navbarLinks");
-		bootsfacesTags.put("listLinks", "listLinks");
-		bootsfacesTags.put("navLink", "navLink");
-		bootsfacesTags.put("dropButton", "dropButton");
-		bootsfacesTags.put("dropMenu", "dropMenu");
-		bootsfacesTags.put("thumbnail", "thumbnail");
-		bootsfacesTags.put("container", "container");
-		bootsfacesTags.put("row", "row");
-		bootsfacesTags.put("column", "column");
-		bootsfacesTags.put("panel", "panel");
-		bootsfacesTags.put("panelGrid", "panelGrid");
-		bootsfacesTags.put("jumbotron", "jumbotron");
-		bootsfacesTags.put("well", "well");
-		bootsfacesTags.put("datepicker", "datepicker");
-		bootsfacesTags.put("slider", "slider");
-		bootsfacesTags.put("inputSecret", "inputSecret");
-		bootsfacesTags.put("inputText", "inputText");
-		bootsfacesTags.put("selectBooleanCheckbox", "selectBooleanCheckbox");
-		bootsfacesTags.put("selectOneMenu", "selectOneMenu");
-		bootsfacesTags.put("tabView", "tabView");
-		bootsfacesTags.put("tab", "tab");
+		for (ComponentsEnum component:components) {
+			bootsfacesTags.put(component.tagname(), component.tagname());
+		}
+		System.out.println(bootsfacesTags.size());
 	}
 
 	public static boolean isActive() {
