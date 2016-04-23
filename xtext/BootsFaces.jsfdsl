@@ -4,8 +4,8 @@ widget accordion
        has_children
 {
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-	expandedPanels														  "Comma separated list of child panel id that need to render expanded."
+    rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
 }
 
 
@@ -147,8 +147,8 @@ widget canvas
     tooltip-delay-show    Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     width                Integer default "600"                             "Width of the canvas in pixels. This is a mandatory field."
-	
-} 
+
+}
 
 widget carousel
        implemented_by net.bootsfaces.component.Carousel
@@ -175,7 +175,7 @@ widget carousel
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onslidestart                                                           "Client side callback to execute when the carousel start to slide to another item."
-    onslid                                                                 "Client side callback to execute when the carousel just finished sliding to another item."  
+    onslid                                                                 "Client side callback to execute when the carousel just finished sliding to another item."
 	process                                                                  "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     start-animation      Boolean default "true"                             "tells Bootstrap to begin animating the carousel immediately when the page loads."
     show-controls        Boolean default "true"                             "adds 'left' and 'right' buttons that allows the user to go back and forth between the slides manually"
@@ -197,7 +197,7 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
        processes_input
        extends UICommand
        has_children
-       has_tooltip 
+       has_tooltip
 {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
@@ -223,7 +223,7 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
     tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
 }
 
@@ -231,7 +231,7 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
        processes_input
        extends UICommand
        has_children
-       has_tooltip 
+       has_tooltip
 {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
@@ -255,16 +255,16 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
     tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
 }
-	
+
 
 widget carouselControl implemented_by net.bootsfaces.component.Carousel
        processes_input
        extends UICommand
        has_children
-       has_tooltip 
+       has_tooltip
 {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
@@ -289,7 +289,7 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
     tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."	
+    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
 }
 
@@ -306,7 +306,7 @@ widget colorPicker
     autocomplete                                                           "Controls browser autocomplete behavior."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
-    converterMessage                                                       "Message to display when conversion fails."
+    converter-message                                                      "Message to display when conversion fails."
     control																   "The type of control to display. Valid values: hue, brightness, saturation, and wheel."
     format 																   "Type of returned data. Valid values: hex and rgb."
     opacity				Boolean											   "True to enable opacity swatches."
@@ -340,25 +340,25 @@ widget colorPicker
     renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
-    requiredMessage                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
     span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
-    styleClass                                                             "Style class of the input element."
+    style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    tooltip-container    default "body"                                    "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay        Integer                                           "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide    Integer                                          "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show    Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator                    "A method expression referring to a method validationg the input."
     validatorMessage                                                       "Message to display when validation fails."
     value               inherited                                          "Value."
-    valueChangeListener javax.faces.event.ValueChangeListener              "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener javax.faces.event.ValueChangeListener            "A method binding expression referring to a method for handling a valuechangeevent."
 }
 
 widget column
@@ -449,7 +449,7 @@ widget commandButton
     update                                                                 "Component(s) to be updated with ajax."
     value               mandatory inherited                                "Button text."
 }
-  
+
 
 widget container
        implemented_by net.bootsfaces.layout.Container
@@ -618,7 +618,7 @@ widget flyOutMenu
     tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."         
+	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."
 }
 
 widget focus
@@ -636,22 +636,22 @@ widget growl
     extends UIMessages
  {
     for                                                                    "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
-    globalOnly          Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
+    global-only          Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
     id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
-    showDetail          Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to false."
-    showSummary         Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
+    show-detail          Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to false."
+    show-summary         Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
     style                                                                  "HTML: CSS styling instructions."
-    styleClass                                                             "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
+    style-class                                                             "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
     icon																   "The glyphicon to display on message"
-    placementFor		default "top"									   "Vertical position of the growl message. Valid values are 'top' or 'bottom'."
-    placementAlign		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
+    placement-for		default "top"									   "Vertical position of the growl message. Valid values are 'top' or 'bottom'."
+    placement-align		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
     delay				Integer	default "5000"							   "The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     timer				Integer	default "1000"                 			   "This is the amount of milliseconds removed from the notify at every timer milliseconds."
-    animationEnter		String default "animated fadeInDown"			   "Animation of the message while entering"
-    animationExit		String default "animated fadeOutUp"				   "Animation of the message while exiting"
-    newestOnTop			Boolean											   "Specifies if newest messages must be displayed on top of the others."
-    allowDismiss		Boolean											   "Specifies whether the message can be dismissed."
+    animation-enter		String default "animated fadeInDown"			   "Animation of the message while entering"
+    animation-exit		String default "animated fadeOutUp"				   "Animation of the message while exiting"
+    newest-on-top			Boolean											   "Specifies if newest messages must be displayed on top of the others."
+    allow-dismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape                     											   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
 }
 
@@ -865,7 +865,7 @@ widget inputText
     autocomplete                                                           "Controls browser autocomplete behavior."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
-    converterMessage                                                       "Message to display when conversion fails."
+    converter-message                                                      "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     field-size                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
@@ -930,7 +930,7 @@ widget inputTextarea
     autocomplete                                                           "Controls browser autocomplete behavior."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
-    converterMessage                                                       "Message to display when conversion fails."
+    converter-message                                                      "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     field-size                                                              "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
@@ -1183,7 +1183,7 @@ widget navCommandLink
     icon-awesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    includeViewParams   Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "The onclick attribute."
@@ -1235,7 +1235,7 @@ widget navLink
     icon-awesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    includeViewParams   Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "The onclick attribute."
@@ -1285,8 +1285,8 @@ widget navbarLinks
 
 
 widget panel
-       implemented_by net.bootsfaces.component.panel.Panel       
-       processes_input 
+       implemented_by net.bootsfaces.component.panel.Panel
+       processes_input
        has_children
        has_tooltip
  {
@@ -1422,7 +1422,7 @@ widget scrollUp
 	from																	"scroll direction: 'top' or 'bottom'"
 	speed				Integer												"Speed back to top (ms)."
 	animation																"Animation type: Fade, slide, none."
-	animationSpeed		Integer												"Animation speed (ms)."
+	animation-speed   	Integer												"Animation speed (ms)."
 	text																	"Text for element, can contain HTML."
 	title																	"Set a custom &lt;a&gt; title if required."
 	image 																	"Set true to use image. (Must be set in related css)."
@@ -1432,7 +1432,7 @@ widget scrollUp
 	overlay																	"Set CSS color to display scrollUp active point, e.g '#00FFFF'"
 }
 
-widget scrollSpy 
+widget scrollSpy
        implemented_by net.bootsfaces.component.scrollspy.ScrollSpy
        extends UIComponentBase
 {
@@ -1443,8 +1443,8 @@ widget scrollSpy
 	offset				Integer											   "Scroll offset"
 	smooth				Boolean											   "Enable smooth scroll"
 	smoothSpeed			Integer											   "Speed of the smooth scroll (default 800)"
-	selectionListener 	ScrollSpyEventListener	                           "Selection listener called on selection changed."
-    update																   "Component(s) to be updated with ajax."	
+	selection-listener 	ScrollSpyEventListener	                           "Selection listener called on selection changed."
+    update																   "Component(s) to be updated with ajax."
 }
 
 
@@ -1609,7 +1609,7 @@ widget selectMultiMenu
     select-all-text       String                                             "The text displayed for the select all option."
     enable-filtering     Boolean	                                           "Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options."
     filter-placeholder	String                                             "The placeholder used for the filter input."
-    
+
     radiobuttons        Boolean default "false"                            "Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer."
     disable-if-empty      Boolean default "false"                            "If true, the button is disabled if no options are given."
     dropRight           Boolean default "false"                            "Moves the drop-down-area from the left hand side to the right hand side."
@@ -1793,15 +1793,15 @@ widget tree
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     value					List														"Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work."
-    nodeSelectionListener 	TreeNodeEventListener	                                    "Selection listener called on selection changed."
-    showTags				Boolean														"Boolean value to specify if tags was show or not."
-    showIcon				Boolean														"Boolean value to specify if icons are rendered or not."
-    showCheckbox			Boolean														"Boolean value to specify if checkbox is rendered or not."
-    enableLinks				Boolean														"Boolean value to specify if enable href link."
-    collapseIcon																		"Glyphicons of collapse."
-    expandIcon																			"Glyphicons of expand."
+    node-selection-listener	TreeNodeEventListener	                                    "Selection listener called on selection changed."
+    show-tags				Boolean														"Boolean value to specify if tags was show or not."
+    show-icon				Boolean														"Boolean value to specify if icons are rendered or not."
+    show-checkbox			Boolean														"Boolean value to specify if checkbox is rendered or not."
+    enable-links				Boolean														"Boolean value to specify if enable href link."
+    collapse-icon																		"Glyphicons of collapse."
+    expand-icon																			"Glyphicons of expand."
     color																				"Text color."
-    update																   				"Component(s) to be updated with ajax."	
+    update																   				"Component(s) to be updated with ajax."
 }
 
 
@@ -1815,11 +1815,11 @@ widget thumbnail
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
 
@@ -1838,8 +1838,3 @@ widget well
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
-
-
-
-
-
