@@ -49,7 +49,7 @@ public class BootsFacesTagDecorator implements TagDecorator {
 		for (ComponentsEnum component:components) {
 			bootsfacesTags.put(component.tagname(), component.tagname());
 		}
-		System.out.println(bootsfacesTags.size());
+		System.out.println("The simplified HTML-like syntax of BootsFaces is available with " + bootsfacesTags.size() + " components");
 	}
 
 	public static boolean isActive() {
