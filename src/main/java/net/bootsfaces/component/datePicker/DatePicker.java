@@ -257,7 +257,7 @@ public class DatePicker extends HtmlInputText {
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
-					rw.writeAttribute("class", "input-group-addon", "class");
+					rw.writeAttribute("class", ADDON, "class");
 					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null,
 							isDisabled, true, true, true);
 					rw.endElement("span");
@@ -294,7 +294,7 @@ public class DatePicker extends HtmlInputText {
 		if (mode.equals("popup-icon") || mode.equals("toggle-icon")) {
 			rw.startElement("span", this);
 			rw.writeAttribute("id", clientId + "_" + ADDON, "id");
-			rw.writeAttribute("class", "input-group-addon", "class");
+			rw.writeAttribute("class", ADDON, "class");
 
 			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true,
 					true, true);
