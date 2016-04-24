@@ -1,3 +1,4 @@
+
 widget accordion
        implemented_by net.bootsfaces.component.accordion.Accordion
        extends UIComponentBase
@@ -396,7 +397,6 @@ widget column
     visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
-
 widget commandButton
        implemented_by net.bootsfaces.component.commandButton.CommandButton
        processes_input
@@ -579,7 +579,9 @@ widget dropMenu
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                           "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                           "Inline style of the content area."
+    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
+    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                              "Alignment can be right or left."
     icon-awesome                                                            "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
@@ -594,6 +596,7 @@ widget dropMenu
     tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               mandatory inherited                                "The Label for the Dropdown."
+    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
 

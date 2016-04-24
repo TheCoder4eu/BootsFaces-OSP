@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -30,9 +30,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
-@ResourceDependencies({ 
-	@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"),
-	 })
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
 public class DropMenu extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
@@ -44,7 +42,6 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	public DropMenu() {
 		Tooltip.addResourceFile();
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("dropdown-submenu.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
@@ -62,12 +59,26 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	protected enum PropertyKeys {
-		binding, contentClass, contentStyle, drop,icon,
+		binding,
+		contentClass,
+		contentStyle,
+		display,
+		drop,
+		hidden,
+		icon,
 		iconAlign,
-		iconAwesome, id, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, tooltipContainer;
-
+		iconAwesome,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		visible;
 		String toString;
-		
+
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
@@ -81,37 +92,21 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
-	}
-	
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <P>
-	 * 
+	 * An EL expression referring to a server side UIComponent instance in a
+	 * backing bean.
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <P>
+	 * An EL expression referring to a server side UIComponent instance in a
+	 * backing bean.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -119,20 +114,21 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <P>
-	 * 
+	 * content-class is optional: if specified, the content will be displayed
+	 * with this specific class
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getContentClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentClass);
 	}
 
 	/**
-	 * contentClass is optional: if specified, the content will be displayed
-	 * with this specific class <P>
+	 * content-class is optional: if specified, the content will be displayed
+	 * with this specific class
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentClass(String _contentClass) {
@@ -140,18 +136,19 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style of the content area. <P>
-	 * 
+	 * Inline style of the content area.
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getContentStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentStyle);
 	}
 
 	/**
-	 * Inline style of the content area. <P>
+	 * Inline style of the content area.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContentStyle(String _contentStyle) {
@@ -159,18 +156,41 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
-	 * 
+	 * If you use the "visible" attribute, the value of this attribute is added.
+	 * Legal values: block, inline, inline-block. Default: block.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getDisplay() {
+		return (String) getStateHelper().eval(PropertyKeys.display, "block");
+	}
+
+	/**
+	 * If you use the "visible" attribute, the value of this attribute is added.
+	 * Legal values: block, inline, inline-block. Default: block.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisplay(String _display) {
+		getStateHelper().put(PropertyKeys.display, _display);
+	}
+
+	/**
+	 * Use up For Dropup and down for Dropdown, default is down.
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getDrop() {
-		String value = (String) getStateHelper().eval(PropertyKeys.drop);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.drop);
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
+	 * Use up For Dropup and down for Dropdown, default is down.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDrop(String _drop) {
@@ -178,72 +198,105 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * This row is hidden on a certain screen size and below. Legal values: lg,
+	 * md, sm, xs.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getHidden() {
+		return (String) getStateHelper().eval(PropertyKeys.hidden);
+	}
+
+	/**
+	 * This row is hidden on a certain screen size and below. Legal values: lg,
+	 * md, sm, xs.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHidden(String _hidden) {
+		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
+	 * names. Alignment can be specified with the icon-align attribute.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getIcon() {
-		String value = (String)getStateHelper().eval(PropertyKeys.icon);
-		return  value;
+		return (String) getStateHelper().eval(PropertyKeys.icon);
 	}
-	
+
 	/**
-	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
+	 * names. Alignment can be specified with the icon-align attribute.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIcon(String _icon) {
-	    getStateHelper().put(PropertyKeys.icon, _icon);
-    }
-	
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
 
 	/**
-	 * Alignment can right or left. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Alignment can be right or left.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getIconAlign() {
-		String value = (String)getStateHelper().eval(PropertyKeys.iconAlign);
-		return  value;
+		return (String) getStateHelper().eval(PropertyKeys.iconAlign);
 	}
-	
+
 	/**
-	 * Alignment can right or left. <P>
+	 * Alignment can be right or left.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAlign(String _iconAlign) {
-	    getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
-    }
-	
+		getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
+	}
 
 	/**
-	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
+	 * names. Alignment can be specified with the icon-align attribute.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getIconAwesome() {
-		String value = (String)getStateHelper().eval(PropertyKeys.iconAwesome);
-		return  value;
+		return (String) getStateHelper().eval(PropertyKeys.iconAwesome);
 	}
-	
+
 	/**
-	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the iconAlign attribute. <P>
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
+	 * names. Alignment can be specified with the icon-align attribute.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
-	    getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
-    }
-	
+		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
 
 	/**
-	 * Inline style <P>
-	 * 
+	 * Inline style
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
-	 * Inline style <P>
+	 * Inline style
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -251,18 +304,19 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * CSS style class <P>
-	 * 
+	 * CSS style class
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
-	 * CSS style class <P>
+	 * CSS style class
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -270,18 +324,19 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * The text of the tooltip. <P>
-	 * 
+	 * The text of the tooltip.
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
-	 * The text of the tooltip. <P>
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -289,20 +344,47 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+	public String getTooltipContainer() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
 	}
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public int getTooltipDelay() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -311,19 +393,20 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -332,19 +415,20 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
-	 * 
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -354,24 +438,47 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
-	 * 
+	 * "auto left". Default to "bottom".
+	 * <P>
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+
+	/**
+	 * This row is shown on a certain screen size and above. Legal values: lg,
+	 * md, sm, xs.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getVisible() {
+		return (String) getStateHelper().eval(PropertyKeys.visible);
+	}
+
+	/**
+	 * This row is shown on a certain screen size and above. Legal values: lg,
+	 * md, sm, xs.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setVisible(String _visible) {
+		getStateHelper().put(PropertyKeys.visible, _visible);
 	}
 
 }

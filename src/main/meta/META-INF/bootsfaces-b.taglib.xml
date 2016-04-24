@@ -3530,8 +3530,20 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Use up For Dropup and down for Dropdown, default is down.]]></description>
 		  <name>drop</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3665,6 +3677,12 @@
 		  <description><![CDATA[The Label for the Dropdown.]]></description>
 		  <name>value</name>
 		  <required>true</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
