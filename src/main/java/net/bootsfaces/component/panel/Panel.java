@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -38,9 +38,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
-@ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"),
-})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.panel.Panel")
 public class Panel extends UIComponentBase
 		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
@@ -69,15 +67,15 @@ public class Panel extends UIComponentBase
 		return COMPONENT_FAMILY;
 	}
 
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
-			"click", "dblclick", "mousedown",
-			"mousemove", "mouseout", "mouseover", "mouseup", "expand", "expanded", "collapse", "collapsed"));
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("click", "dblclick", "mousedown", "mousemove", "mouseout",
+					"mouseover", "mouseup", "expand", "expanded", "collapse", "collapsed"));
 
 	/**
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).Ø
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, String> getJQueryEvents() {
@@ -97,9 +95,63 @@ public class Panel extends UIComponentBase
 		return "click";
 	}
 
-	protected enum PropertyKeys {
-		ajax, binding, collapsed, collapsible, accordionParent, contentClass, contentStyle, dir, disabled, immediate, look, onclick, oncomplete, oncollapse, ondblclick, oncollapsed, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, title, titleClass, titleStyle, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
+	/**
+	 * This attribute specify the accordion parent if exist. This property is
+	 * not exposed as component TAG because is driven by the Accordion component
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getAccordionParent() {
+		String value = (String) getStateHelper().eval("accordionParent", null);
+		return value;
+	}
 
+	/**
+	 * This attribute specify the accordion parent if exist. This property is
+	 * not exposed as component TAG because is driven by the Accordion component
+	 */
+	public void setAccordionParent(String _accordionParent) {
+		getStateHelper().put("accordionParent", _accordionParent);
+	}
+
+	protected enum PropertyKeys {
+		ajax,
+		binding,
+		collapsed,
+		collapsible,
+		contentClass,
+		contentStyle,
+		disabled,
+		dir,
+		immediate,
+		look,
+		onclick,
+		oncomplete,
+		oncollapse,
+		ondblclick,
+		oncollapsed,
+		onexpand,
+		onexpanded,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		process,
+		style,
+		styleClass,
+		title,
+		titleClass,
+		titleStyle,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -115,31 +167,14 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
-	}
-	
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	/**
 	 * Activates AJAX. The default value is false (no AJAX).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 	}
 
 	/**
@@ -152,21 +187,19 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -178,13 +211,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Is the panel collapsed?
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isCollapsed() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.collapsed, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.collapsed, false);
 	}
 
 	/**
@@ -200,13 +232,12 @@ public class Panel extends UIComponentBase
 	 * By default, panels can be folded by clicking the title bar. Seting
 	 * collapsible to false will suppress the collapse/expand feature.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isCollapsible() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.collapsible, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.collapsible, true);
 	}
 
 	/**
@@ -218,45 +249,21 @@ public class Panel extends UIComponentBase
 	public void setCollapsible(boolean _collapsible) {
 		getStateHelper().put(PropertyKeys.collapsible, _collapsible);
 	}
-	
-	/**
-	 * This attribute specify the accordion parent if exist.
-	 * This property is not exposed as component TAG because is driven by the
-	 * Accordion component
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getAccordionParent() {
-		String value = (String) getStateHelper().eval(PropertyKeys.accordionParent, null);
-		return value;
-	}
 
 	/**
-	 * This attribute specify the accordion parent if exist.
-	 * This property is not exposed as component TAG because is driven by the
-	 * Accordion component
-	 */
-	public void setAccordionParent(String _accordionParent) {
-		getStateHelper().put(PropertyKeys.accordionParent, _accordionParent);
-	}
-
-	/**
-	 * contentClass is optional: if specified, the content will be displayed
+	 * content-class is optional: if specified, the content will be displayed
 	 * with this specific class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getContentClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentClass);
 	}
 
 	/**
-	 * contentClass is optional: if specified, the content will be displayed
+	 * content-class is optional: if specified, the content will be displayed
 	 * with this specific class
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -268,13 +275,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Inline style of the content area.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getContentStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentStyle);
 	}
 
 	/**
@@ -289,13 +295,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Boolean value to specify if the button is disabled.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isDisabled() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
 	}
 
 	/**
@@ -308,18 +313,43 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
+	 * Direction indication for text that does not inherit directionality. Legal
+	 * values: ltr (Default. Left-to-right text direction), rtl (Right-to-left
+	 * text direction) and auto (let the browser figure out the direction of
+	 * your alphabet, based on the page content).
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getDir() {
+		return (String) getStateHelper().eval(PropertyKeys.dir);
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal
+	 * values: ltr (Default. Left-to-right text direction), rtl (Right-to-left
+	 * text direction) and auto (let the browser figure out the direction of
+	 * your alphabet, based on the page content).
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
+
+	/**
 	 * Flag indicating that, if this component is activated by the user,
 	 * notifications should be delivered to interested listeners and actions
 	 * immediately (that is, during Apply Request Values phase) rather than
 	 * waiting until Invoke Application phase. Default is false.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isImmediate() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
 	}
 
 	/**
@@ -338,13 +368,12 @@ public class Panel extends UIComponentBase
 	 * Look of the Panel, can be primary, success, info, warning, danger.
 	 * Default is warning.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getLook() {
-		String value = (String) getStateHelper().eval(PropertyKeys.look);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.look);
 	}
 
 	/**
@@ -360,13 +389,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * The onclick attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnclick() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
 	}
 
 	/**
@@ -379,19 +407,18 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success.
+	 * JavaScript to be executed when ajax completes with success.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOncomplete() {
-		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success.
+	 * JavaScript to be executed when ajax completes with success.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -403,13 +430,12 @@ public class Panel extends UIComponentBase
 	 * JavaScript code or AJAX method to be executed when the panel starts to be
 	 * collapsed.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOncollapse() {
-		String value = (String) getStateHelper().eval(PropertyKeys.oncollapse);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.oncollapse);
 	}
 
 	/**
@@ -425,13 +451,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Client side callback to execute when input element is double clicked.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOndblclick() {
-		String value = (String) getStateHelper().eval(PropertyKeys.ondblclick);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.ondblclick);
 	}
 
 	/**
@@ -447,13 +472,12 @@ public class Panel extends UIComponentBase
 	 * JavaScript code or AJAX method to be executed when the panel has finished
 	 * collapsing.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOncollapsed() {
-		String value = (String) getStateHelper().eval(PropertyKeys.oncollapsed);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.oncollapsed);
 	}
 
 	/**
@@ -470,13 +494,12 @@ public class Panel extends UIComponentBase
 	 * JavaScript code or AJAX method to be executed when the panel starts to be
 	 * expanded.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnexpand() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onexpand);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onexpand);
 	}
 
 	/**
@@ -493,13 +516,12 @@ public class Panel extends UIComponentBase
 	 * JavaScript code or AJAX method to be executed when the panel has finished
 	 * expandeding.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnexpanded() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onexpanded);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onexpanded);
 	}
 
 	/**
@@ -516,13 +538,12 @@ public class Panel extends UIComponentBase
 	 * Client side callback to execute when a pointer input element is pressed
 	 * down over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnmousedown() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmousedown);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmousedown);
 	}
 
 	/**
@@ -539,13 +560,12 @@ public class Panel extends UIComponentBase
 	 * Client side callback to execute when a pointer input element is moved
 	 * within input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnmousemove() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmousemove);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmousemove);
 	}
 
 	/**
@@ -562,13 +582,12 @@ public class Panel extends UIComponentBase
 	 * Client side callback to execute when a pointer input element is moved
 	 * away from input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnmouseout() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseout);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseout);
 	}
 
 	/**
@@ -585,13 +604,12 @@ public class Panel extends UIComponentBase
 	 * Client side callback to execute when a pointer input element is moved
 	 * onto input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnmouseover() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseover);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseover);
 	}
 
 	/**
@@ -608,13 +626,12 @@ public class Panel extends UIComponentBase
 	 * Client side callback to execute when a pointer input element is released
 	 * over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getOnmouseup() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseup);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseup);
 	}
 
 	/**
@@ -628,12 +645,15 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		return (String) getStateHelper().eval(PropertyKeys.process);
 	}
 
 	/**
@@ -649,13 +669,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Inline style of the entire panel area.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
@@ -670,13 +689,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Style class of the input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
@@ -692,13 +710,12 @@ public class Panel extends UIComponentBase
 	 * Title is optional: if specified, the heading facet will not be rendered
 	 * and the panel will render with a heading with this Title.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTitle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.title);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.title);
 	}
 
 	/**
@@ -715,13 +732,12 @@ public class Panel extends UIComponentBase
 	 * TitleClass is optional: if specified, the title will be displayed with
 	 * this specific class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTitleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.titleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.titleClass);
 	}
 
 	/**
@@ -737,13 +753,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Inline style of the title area.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTitleStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.titleStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.titleStyle);
 	}
 
 	/**
@@ -758,13 +773,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -777,16 +791,41 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
+	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -803,13 +842,12 @@ public class Panel extends UIComponentBase
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -826,13 +864,12 @@ public class Panel extends UIComponentBase
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -850,13 +887,12 @@ public class Panel extends UIComponentBase
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
@@ -873,13 +909,12 @@ public class Panel extends UIComponentBase
 	/**
 	 * Which region of the screen is to be updated? Default value: @form
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.update);
 	}
 
 	/**
@@ -889,27 +924,6 @@ public class Panel extends UIComponentBase
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
-	}
-
-	/**
-	 * Direction indication for text that does not inherit directionality.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getDir() {
-		String value = (String) getStateHelper().eval(PropertyKeys.dir);
-		return value;
-	}
-
-	/**
-	 * Direction indication for text that does not inherit directionality.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDir(String _dir) {
-		getStateHelper().put(PropertyKeys.dir, _dir);
 	}
 
 }

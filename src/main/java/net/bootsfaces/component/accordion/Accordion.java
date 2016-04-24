@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu), Stephan Rauh (http://www.beyondjava.net) and Dario D'Urzo.
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -73,7 +73,7 @@ public class Accordion extends UIComponentBase {
 	/**
 	 * Comma separated list of child panel id that need to render expanded.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
