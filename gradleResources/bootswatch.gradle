@@ -30,9 +30,10 @@ ext.downloadURL = 'https://github.com/thomaspark/bootswatch/archive/v'+Bootswatc
 ext.zipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
 ext.zipFile = zipFolder+'.zip'
 if(System.getProperty("BSF-THEME", "") != "") {
-   ext.theme = System.getProperty("BSF-THEME", "")
+   //ext.theme = System.getProperty("BSF-THEME", "")
+   ext.themes = System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
 } else {
-   ext.theme = props['bootswatch.theme']
+   //ext.theme = props['bootswatch.theme']
    ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
 }
 
@@ -55,11 +56,12 @@ task downloadBootswatchZipFile(type: Download) {
 }
 downloadBootswatchZipFile.onlyIf { !bootswatchZip.exists() }
 
+/*
 task downloadAndUnzipBootswatch(dependsOn: downloadBootswatchZipFile, type: Copy) {
     from zipTree(bootswatchZip)
     into 'Bootswatch'
     include zipFolder+"/"+theme+"/*.less"
-}
+}*/
 
 themes.each { 
     //create a dynamic task for each theme

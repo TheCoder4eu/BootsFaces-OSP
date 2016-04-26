@@ -22,6 +22,7 @@ ext.BootswatchFolder = "${projectDir}"+'/Bootswatch/bootswatch-'+BootswatchFullV
 
 if(System.getProperty("BSF-THEME", "") != "") {
    ext.themes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
+   ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
 } else {
    ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
    ext.allThemes= ('default,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
