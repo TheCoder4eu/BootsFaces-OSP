@@ -17,13 +17,16 @@
 
 buildscript {
     dependencies {
-        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.5.4'
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.7.4'
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.7.4'
     }
 }
 
-plugins {
-  id "com.bertramlabs.asset-pipeline" version "2.5.0"
-}
+/*plugins {
+//  id "com.bertramlabs.asset-pipeline" version "2.5.0"
+}*/
+
+apply plugin: 'com.bertramlabs.asset-pipeline'
 
 Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/../build.properties"))
