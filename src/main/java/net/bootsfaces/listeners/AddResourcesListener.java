@@ -255,10 +255,9 @@ public class AddResourcesListener implements SystemEventListener {
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				//TODO combine if statements
-				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library))
-					if (!file.startsWith("jq/ui") || !"bsf".equals(library) || loadJQueryUI)
-						createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) || 
+						!file.startsWith("jq/ui") || loadJQueryUI)
+					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
