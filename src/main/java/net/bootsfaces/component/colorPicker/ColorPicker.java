@@ -20,7 +20,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
 public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComponent {
-	
+
 	private String renderLabel = null;
 
 	/**
@@ -28,7 +28,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT+".ColorPicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".ColorPicker";
 	/**
 	 * <p>
 	 * The component family for this component.
@@ -44,7 +44,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, String> getJQueryEvents() {
@@ -61,7 +61,23 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 
 	protected enum PropertyKeys {
 
-		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer, swatches;
+		ajax,
+		placeholder,
+		fieldSize,
+		inline,
+		type,
+		oncomplete,
+		renderLabel,
+		span,
+		tooltip,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		process,
+		update,
+		tooltipContainer,
+		swatches;
 
 		String toString;
 
@@ -81,16 +97,17 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	public ColorPicker() {
 		setRendererType("net.bootsfaces.component.colorPicker.ColorPicker");
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("jquery.minicolors.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-        // AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");
 
-		renderLabel= FacesContext.getCurrentInstance().getExternalContext()
+		renderLabel = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);
@@ -113,7 +130,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -138,7 +155,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * Comma or space separated list of ids or search expressions denoting which
 	 * values are to be sent to the server.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -160,7 +177,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	/**
 	 * Activates AJAX. The default value is false (no AJAX).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -199,7 +216,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * the input field instead of putting it above the input field. Inline
 	 * applies only to screens that are at least 768 pixels wide.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -223,7 +240,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * Allows you to suppress automatic rendering of labels. Used by
 	 * AngularFaces, too.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -250,7 +267,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	/**
 	 * The size of the input specified as number of grid columns.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -271,7 +288,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -293,7 +310,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -316,7 +333,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -339,7 +356,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -363,7 +380,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -408,7 +425,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -425,11 +442,11 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
-	
+
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
