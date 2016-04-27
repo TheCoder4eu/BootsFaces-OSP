@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -36,7 +36,8 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
 @FacesComponent("net.bootsfaces.component.navLink.NavLink")
-public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
+public class NavLink extends HtmlOutcomeTargetLink
+		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navLink.NavLink";
 
@@ -46,44 +47,18 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 
 	public NavLink() {
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
-	}
-
-	@Override
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
-	
-	@Override
-	public boolean getRendersChildren() {
-		return true;
-	}
-
-	protected enum PropertyKeys {
-		active, ajax, binding, contentClass, contentStyle, disabled, fragment, header, href, icon, iconAlign, iconAwesome, immediate, includeViewParams, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
-
-		String toString;
-
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
-
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections
@@ -94,7 +69,7 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).
-	 * 
+	 *
 	 * @return
 	 */
 	@Override
@@ -112,17 +87,80 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 		return "click";
 	}
 
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
+
+	protected enum PropertyKeys {
+		active,
+		ajax,
+		binding,
+		contentClass,
+		contentStyle,
+		disabled,
+		fragment,
+		header,
+		href,
+		icon,
+		iconAlign,
+		iconAwesome,
+		immediate,
+		includeViewParams,
+		onblur,
+		onchange,
+		onclick,
+		oncomplete,
+		ondblclick,
+		onfocus,
+		onkeydown,
+		onkeypress,
+		onkeyup,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		onselect,
+		outcome,
+		process,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update;
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
 	/**
 	 * Adds the active state to the link.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public boolean isActive() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.active, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.active, false);
 	}
 
 	/**
@@ -130,81 +168,70 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setActive(boolean _active) {
 		getStateHelper().put(PropertyKeys.active, _active);
 	}
 
 	/**
-	 * Whether the Button submits the form with AJAX.
+	 * Whether the navLink submits the form with AJAX.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public boolean isAjax() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 	}
 
 	/**
-	 * Whether the Button submits the form with AJAX.
+	 * Whether the navLink submits the form with AJAX.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setBinding(javax.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 
 	/**
-	 * contentClass is optional: if specified, the content (i.e. the anchor tag)
-	 * will be displayed with this specific class
+	 * content-class is optional: if specified, the content (i.e. the anchor
+	 * tag) will be displayed with this specific class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getContentClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentClass);
 	}
 
 	/**
-	 * contentClass is optional: if specified, the content (i.e. the anchor tag)
-	 * will be displayed with this specific class
+	 * content-class is optional: if specified, the content (i.e. the anchor
+	 * tag) will be displayed with this specific class
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setContentClass(String _contentClass) {
 		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
 	}
@@ -212,14 +239,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * Inline style of the content area (i.e the anchor tag).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getContentStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.contentStyle);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.contentStyle);
 	}
 
 	/**
@@ -227,23 +252,40 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setContentStyle(String _contentStyle) {
 		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
+	}
+
+	/**
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
 	}
 
 	/**
 	 * The fragment that is to be appended to the target URL. The # separator is
 	 * applied automatically and needs not be included.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getFragment() {
-		String value = (String) getStateHelper().eval(PropertyKeys.fragment);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.fragment);
 	}
 
 	/**
@@ -252,7 +294,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setFragment(String _fragment) {
 		getStateHelper().put(PropertyKeys.fragment, _fragment);
 	}
@@ -261,14 +302,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * If present, this element is rendered as Header in a menu with the text
 	 * specifide by this attribute value: all other attributes will be ignored.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getHeader() {
-		String value = (String) getStateHelper().eval(PropertyKeys.header);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.header);
 	}
 
 	/**
@@ -277,7 +316,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setHeader(String _header) {
 		getStateHelper().put(PropertyKeys.header, _header);
 	}
@@ -285,14 +323,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * URL to link directly to implement anchor behavior.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getHref() {
-		String value = (String) getStateHelper().eval(PropertyKeys.href);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.href);
 	}
 
 	/**
@@ -300,80 +336,70 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setHref(String _href) {
 		getStateHelper().put(PropertyKeys.href, _href);
 	}
 
 	/**
 	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
-	 * names. Alignment can be specified with the iconAlign attribute.
+	 * names. Alignment can be specified with the icon-align attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getIcon() {
-		String value = (String) getStateHelper().eval(PropertyKeys.icon);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.icon);
 	}
 
 	/**
 	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
-	 * names. Alignment can be specified with the iconAlign attribute.
+	 * names. Alignment can be specified with the icon-align attribute.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setIcon(String _icon) {
 		getStateHelper().put(PropertyKeys.icon, _icon);
 	}
 
 	/**
-	 * Alignment can right or left.
+	 * Alignment can be right or left.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getIconAlign() {
-		String value = (String) getStateHelper().eval(PropertyKeys.iconAlign);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.iconAlign);
 	}
 
 	/**
-	 * Alignment can right or left.
+	 * Alignment can be right or left.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setIconAlign(String _iconAlign) {
 		getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
 	}
 
 	/**
 	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
-	 * names. Alignment can be specified with the iconAlign attribute.
+	 * names. Alignment can be specified with the icon-align attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getIconAwesome() {
-		String value = (String) getStateHelper().eval(PropertyKeys.iconAwesome);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.iconAwesome);
 	}
 
 	/**
 	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
-	 * names. Alignment can be specified with the iconAlign attribute.
+	 * names. Alignment can be specified with the icon-align attribute.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setIconAwesome(String _iconAwesome) {
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
 	}
@@ -384,14 +410,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * immediately (that is, during Apply Request Values phase) rather than
 	 * waiting until Invoke Application phase. Default is false.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public boolean isImmediate() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
 	}
 
 	/**
@@ -402,51 +426,41 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setImmediate(boolean _immediate) {
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
-    /**
-     * <p class="changed_added_2_0">Return whether or not the view
-     * parameters should be encoded into the target url.</p>
-     *
-     * @since 2.0
-     */
-    @Override
-	public boolean isIncludeViewParams() {
-
-        return (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
-
-    }
-
-    /**
-     * <p class="changed_added_2_0">Set whether or not the page
-     * parameters should be encoded into the target url.</p>
-     *
-     * @param includeViewParams The state of the switch for encoding
-     * page parameters
-     *
-     * @since 2.0
-     */
-    @Override
-	public void setIncludeViewParams(boolean includeViewParams) {
-
-        getStateHelper().put(PropertyKeys.includeViewParams, includeViewParams);
-
-    }
-    
- 	/**
-	 * Client side callback to execute when input element loses focus.
+	/**
+	 * Set whether or not the page parameters should be encoded into the target
+	 * url.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
+	public boolean isIncludeViewParams() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
+	}
+
+	/**
+	 * Set whether or not the page parameters should be encoded into the target
+	 * url.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIncludeViewParams(boolean _includeViewParams) {
+		getStateHelper().put(PropertyKeys.includeViewParams, _includeViewParams);
+	}
+
+	/**
+	 * Client side callback to execute when input element loses focus.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
 	public String getOnblur() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onblur);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onblur);
 	}
 
 	/**
@@ -454,7 +468,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnblur(String _onblur) {
 		getStateHelper().put(PropertyKeys.onblur, _onblur);
 	}
@@ -463,14 +476,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when input element loses focus and its
 	 * value has been modified since gaining focus.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnchange() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onchange);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onchange);
 	}
 
 	/**
@@ -479,7 +490,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnchange(String _onchange) {
 		getStateHelper().put(PropertyKeys.onchange, _onchange);
 	}
@@ -487,14 +497,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * The onclick attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnclick() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onclick);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
 	}
 
 	/**
@@ -502,30 +510,26 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnclick(String _onclick) {
 		getStateHelper().put(PropertyKeys.onclick, _onclick);
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success.
+	 * JavaScript to be executed when ajax completes with success.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOncomplete() {
-		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success.
+	 * JavaScript to be executed when ajax completes with success.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
 	}
@@ -533,14 +537,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * Client side callback to execute when input element is double clicked.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOndblclick() {
-		String value = (String) getStateHelper().eval(PropertyKeys.ondblclick);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.ondblclick);
 	}
 
 	/**
@@ -548,7 +550,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
 	}
@@ -556,14 +557,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * Client side callback to execute when input element receives focus.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnfocus() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onfocus);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onfocus);
 	}
 
 	/**
@@ -571,7 +570,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnfocus(String _onfocus) {
 		getStateHelper().put(PropertyKeys.onfocus, _onfocus);
 	}
@@ -580,14 +578,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a key is pressed down over input
 	 * element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnkeydown() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onkeydown);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onkeydown);
 	}
 
 	/**
@@ -596,7 +592,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnkeydown(String _onkeydown) {
 		getStateHelper().put(PropertyKeys.onkeydown, _onkeydown);
 	}
@@ -605,14 +600,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a key is pressed and released over
 	 * input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnkeypress() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onkeypress);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onkeypress);
 	}
 
 	/**
@@ -621,7 +614,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnkeypress(String _onkeypress) {
 		getStateHelper().put(PropertyKeys.onkeypress, _onkeypress);
 	}
@@ -630,14 +622,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a key is released over input
 	 * element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnkeyup() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onkeyup);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onkeyup);
 	}
 
 	/**
@@ -646,7 +636,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnkeyup(String _onkeyup) {
 		getStateHelper().put(PropertyKeys.onkeyup, _onkeyup);
 	}
@@ -655,14 +644,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a pointer input element is pressed
 	 * down over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnmousedown() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmousedown);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmousedown);
 	}
 
 	/**
@@ -671,7 +658,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnmousedown(String _onmousedown) {
 		getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
 	}
@@ -680,14 +666,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a pointer input element is moved
 	 * within input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnmousemove() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmousemove);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmousemove);
 	}
 
 	/**
@@ -696,7 +680,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnmousemove(String _onmousemove) {
 		getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
 	}
@@ -705,14 +688,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a pointer input element is moved
 	 * away from input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnmouseout() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseout);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseout);
 	}
 
 	/**
@@ -721,7 +702,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnmouseout(String _onmouseout) {
 		getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
 	}
@@ -730,14 +710,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a pointer input element is moved
 	 * onto input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnmouseover() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseover);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseover);
 	}
 
 	/**
@@ -746,7 +724,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnmouseover(String _onmouseover) {
 		getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
 	}
@@ -755,14 +732,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when a pointer input element is released
 	 * over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnmouseup() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onmouseup);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onmouseup);
 	}
 
 	/**
@@ -771,7 +746,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
 	}
@@ -780,14 +754,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Client side callback to execute when text within input element is
 	 * selected by user.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOnselect() {
-		String value = (String) getStateHelper().eval(PropertyKeys.onselect);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.onselect);
 	}
 
 	/**
@@ -796,7 +768,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOnselect(String _onselect) {
 		getStateHelper().put(PropertyKeys.onselect, _onselect);
 	}
@@ -804,14 +775,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * The outcome to navigate to.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getOutcome() {
-		String value = (String) getStateHelper().eval(PropertyKeys.outcome);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.outcome);
 	}
 
 	/**
@@ -819,7 +788,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setOutcome(String _outcome) {
 		getStateHelper().put(PropertyKeys.outcome, _outcome);
 	}
@@ -828,14 +796,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * Comma or space separated list of ids or search expressions denoting which
 	 * values are to be sent to the server.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getProcess() {
-		String value = (String) getStateHelper().eval(PropertyKeys.process);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.process);
 	}
 
 	/**
@@ -844,7 +810,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setProcess(String _process) {
 		getStateHelper().put(PropertyKeys.process, _process);
 	}
@@ -852,14 +817,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * Inline style
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
@@ -867,7 +830,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setStyle(String _style) {
 		getStateHelper().put(PropertyKeys.style, _style);
 	}
@@ -875,14 +837,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * CSS style class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
@@ -890,7 +850,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
@@ -898,14 +857,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -913,36 +870,32 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltip(String _tooltip) {
 		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
 	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getTooltipContainer() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltipContainer(String _tooltipContainer) {
 		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
 	}
@@ -951,14 +904,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -967,7 +918,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltipDelay(int _tooltipDelay) {
 		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
 	}
@@ -976,14 +926,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -992,7 +940,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
 		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
 	}
@@ -1001,14 +948,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -1017,7 +962,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
 		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
 	}
@@ -1027,14 +971,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
@@ -1044,7 +986,6 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
@@ -1052,14 +993,12 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	@Override
 	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.update);
 	}
 
 	/**
@@ -1067,28 +1006,8 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	@Override
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
 	}
-
-	/**
-	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	@Override
-	public boolean isDisabled() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
-		return (boolean) value;
-	}
-	
-	/**
-	 * Boolean value to specify if the button is disabled. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	@Override
-	public void setDisabled(boolean _disabled) {
-	    getStateHelper().put(PropertyKeys.disabled, _disabled);
-    }
 
 }

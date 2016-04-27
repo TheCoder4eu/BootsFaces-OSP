@@ -20,8 +20,6 @@
 package net.bootsfaces.component.container;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
@@ -41,7 +39,8 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	public Container() {
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
@@ -57,7 +56,16 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	protected enum PropertyKeys {
-		dir, fluid, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		dir,
+		fluid,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition;
 
 		String toString;
 

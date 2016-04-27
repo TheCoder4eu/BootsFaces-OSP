@@ -16,13 +16,14 @@ import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.defaultCommand.DefaultCommand")
 public class DefaultCommand extends UIComponentBase {
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT+".DefaultCommand";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".DefaultCommand";
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public DefaultCommand() {
 		setRendererType(null); // this component renders itself
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -37,7 +38,7 @@ public class DefaultCommand extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		//		super.encodeBegin(context);
+		// super.encodeBegin(context);
 	}
 
 	@Override
@@ -48,34 +49,28 @@ public class DefaultCommand extends UIComponentBase {
 		Map<String, Object> attrs = getAttributes();
 
 		final UIForm form = BsfUtils.getClosestForm(this);
-		if(form == null) {
+		if (form == null) {
 			throw new FacesException("The default command component must be inside a form", null);
 		} else {
-			String target = (String)attrs.get("target");
-			if(BsfUtils.StringIsValued(target)) {
+			String target = (String) attrs.get("target");
+			if (BsfUtils.StringIsValued(target)) {
 				ResponseWriter rw = context.getResponseWriter();
 				String formId = form.getClientId();
 				String actionCommandId = BsfUtils.getComponentClientId(target);
-			
+
 				rw.startElement("script", this);
-				
-				rw.writeText("" +
-							"$(function() { " +
-							"    $('form#" + BsfUtils.EscapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { " +
-							"    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { " +
-							"        document.getElementById('" + actionCommandId + "').click();return false; " + 
-							"    } else { " +
-							"        console.log('keycode not 13'); " + 
-							"        return true; " +
-							"    } " +
-							"    }); " +
-							"});", null);
+
+				rw.writeText("" + "$(function() { " + "    $('form#"
+						+ BsfUtils.EscapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { "
+						+ "    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { "
+						+ "        document.getElementById('" + actionCommandId + "').click();return false; "
+						+ "    } else { " + "        console.log('keycode not 13'); " + "        return true; "
+						+ "    } " + "    }); " + "});", null);
 				rw.endElement("script");
 			} else {
 				throw new FacesException("The default command component needs a defined target ID", null);
 			}
 		}
 	}
-
 
 }

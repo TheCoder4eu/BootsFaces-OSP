@@ -58,7 +58,18 @@ public class Alert extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	protected enum PropertyKeys {
-		binding, closable, severity, style, styleClass, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		binding,
+		closable,
+		severity,
+		style,
+		styleClass,
+		title,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition;
 
 		String toString;
 

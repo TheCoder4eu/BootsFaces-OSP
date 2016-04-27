@@ -32,37 +32,37 @@ import net.bootsfaces.utils.BsfUtils;
  */
 
 public class TabLinks extends LinksContainer {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+".TabLinks";
-    
-    private static final String STYLE="nav nav-tabs";
 
-    public TabLinks() {
-        setRendererType(null); // this component renders itself
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".TabLinks";
+
+	private static final String STYLE = "nav nav-tabs";
+
+	public TabLinks() {
+		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-    }
+	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
 
-    /*
-     * <ul class="nav nav-tabs">
-     * ...
-     * </ul>
-     */
-    @Override
-    protected String getContainerStyles() {
-        return STYLE;
-    }
+	/*
+	 * <ul class="nav nav-tabs"> ... </ul>
+	 */
+	@Override
+	protected String getContainerStyles() {
+		return STYLE;
+	}
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
 }

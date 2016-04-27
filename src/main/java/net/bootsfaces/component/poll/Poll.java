@@ -35,6 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 /**
  * The poll component refreshes a portion of the JSF view periodically via AJAX.
+ * 
  * @author Stephan Rauh
  */
 @FacesComponent("net.bootsfaces.component.poll.Poll")
@@ -56,7 +57,7 @@ public class Poll extends HtmlCommandButton {
 	public Poll() {
 		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		
+
 		setRendererType(null); // this component renders itself
 	}
 
@@ -75,10 +76,10 @@ public class Poll extends HtmlCommandButton {
 			queueEvent(new ActionEvent(this));
 		}
 	}
-	
+
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-//		super.encodeBegin(context);
+		// super.encodeBegin(context);
 	}
 
 	@Override
@@ -90,18 +91,21 @@ public class Poll extends HtmlCommandButton {
 		ResponseWriter rw = context.getResponseWriter();
 
 		/*
-        context.getApplication().publishEvent(context,
-                                              PreRenderComponentEvent.class,
-                                              this);*/
+		 * context.getApplication().publishEvent(context,
+		 * PreRenderComponentEvent.class, this);
+		 */
 
 		String id = getClientId();
 		String update = (String) attrs.get("update");
-		if (null == update) update="@form";
+		if (null == update)
+			update = "@form";
 		String intervalAsString = (String) attrs.get("interval");
-		if (null == intervalAsString) intervalAsString="1000";
+		if (null == intervalAsString)
+			intervalAsString = "1000";
 		String intervalInMillseconds = intervalAsString;
 		String execute = (String) attrs.get("execute");
-		if (null == execute) execute="@none";
+		if (null == execute)
+			execute = "@none";
 		String once = (String) attrs.get("once");
 		boolean isOnce = "true".equalsIgnoreCase(once);
 
@@ -111,7 +115,8 @@ public class Poll extends HtmlCommandButton {
 		rw.append("\r\n");
 		rw.append("   var pollId;");
 		rw.append("\r\n");
-		rw.append("  var handleError = function(){clearInterval(pollId);console.log('error with b:poll " + id + "');};");
+		rw.append(
+				"  var handleError = function(){clearInterval(pollId);console.log('error with b:poll " + id + "');};");
 		rw.append("\r\n");
 		rw.append("  pollId = setInterval(function() {");
 		rw.append("\r\n");
@@ -119,14 +124,14 @@ public class Poll extends HtmlCommandButton {
 			rw.append("    clearInterval(pollId);");
 			rw.append("\r\n");
 		}
-		rw.append("    jsf.ajax.request('" + id + "',null, {'" + id + "':'" + id + "', execute:'" + execute+"', render:'" + update + "', onerror:handleError	});");
+		rw.append("    jsf.ajax.request('" + id + "',null, {'" + id + "':'" + id + "', execute:'" + execute
+				+ "', render:'" + update + "', onerror:handleError	});");
 		rw.append("\r\n");
 		rw.append("  }, " + intervalInMillseconds + ");");
 		rw.append("\r\n");
 		rw.append("}();");
 		rw.append("\r\n");
 
-		
 		rw.append("</script>");
 		// popComponentFromEL(context);
 	}

@@ -37,7 +37,7 @@ import net.bootsfaces.utils.BsfUtils;
  */
 @FacesComponent("net.bootsfaces.component.inputText.InputText")
 public class InputText extends HtmlInputText implements IHasTooltip, IAJAXComponent {
-	
+
 	private String renderLabel = null;
 
 	/**
@@ -53,15 +53,15 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "click", "dblclick", "focus", "input", "keydown", "keypress", "keyup",
-					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "input", "keydown",
+					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).
-	 * 
+	 *
 	 * @return
 	 */
 	public Map<String, String> getJQueryEvents() {
@@ -76,25 +76,6 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 		return "input";
 	}
 
-	protected enum PropertyKeys {
-
-		ajax, placeholder, fieldSize, inline, type, oncomplete, renderLabel, span, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, process, update, tooltipContainer;
-
-		String toString;
-
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
-
-		PropertyKeys() {
-		}
-
-		@Override
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
-
 	public InputText() {
 		setRendererType("net.bootsfaces.component.inputText.InputText");
 		Tooltip.addResourceFile();
@@ -103,7 +84,7 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		renderLabel= FacesContext.getCurrentInstance().getExternalContext()
+		renderLabel = FacesContext.getCurrentInstance().getExternalContext()
 				.getInitParameter("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);
@@ -120,66 +101,46 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 		return COMPONENT_FAMILY;
 	}
 
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
-	 * data-container in the documentation of Bootstrap. The default value is
-	 * body.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return value;
-	}
+	protected enum PropertyKeys {
+		ajax,
+		fieldSize,
+		inline,
+		oncomplete,
+		placeholder,
+		process,
+		renderLabel,
+		span,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		type,
+		update;
+		String toString;
 
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
-	 * data-container in the documentation of Bootstrap. The default value is
-	 * body.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-	}
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-	/**
-	 * Comma or space separated list of ids or search expressions denoting which
-	 * values are to be sent to the server.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getProcess() {
-		String value = (String) getStateHelper().eval(PropertyKeys.process);
-		return value;
-	}
+		PropertyKeys() {
+		}
 
-	/**
-	 * Comma or space separated list of ids or search expressions denoting which
-	 * values are to be sent to the server.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setProcess(String _process) {
-		getStateHelper().put(PropertyKeys.process, _process);
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
 	}
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 	}
 
 	/**
@@ -191,19 +152,25 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
-	public java.lang.String getPlaceholder() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.placeholder, null);
+	/**
+	 * The size of the input. Possible values are xs (extra small), sm (small),
+	 * md (medium) and lg (large) .
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getFieldSize() {
+		return (String) getStateHelper().eval(PropertyKeys.fieldSize);
 	}
 
-	public void setPlaceholder(java.lang.String _placeholder) {
-		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
-	}
-
-	public java.lang.String getFieldSize() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.fieldSize, null);
-	}
-
-	public void setFieldSize(java.lang.String _fieldSize) {
+	/**
+	 * The size of the input. Possible values are xs (extra small), sm (small),
+	 * md (medium) and lg (large) .
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFieldSize(String _fieldSize) {
 		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
 	}
 
@@ -212,13 +179,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 * the input field instead of putting it above the input field. Inline
 	 * applies only to screens that are at least 768 pixels wide.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isInline() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
 	}
 
 	/**
@@ -233,21 +199,79 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	/**
+	 * JavaScript to be executed when ajax completes with success.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getOncomplete() {
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * The placeholder attribute shows text in a field until the field is
+	 * focused upon, then hides the text.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getPlaceholder() {
+		return (String) getStateHelper().eval(PropertyKeys.placeholder);
+	}
+
+	/**
+	 * The placeholder attribute shows text in a field until the field is
+	 * focused upon, then hides the text.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPlaceholder(String _placeholder) {
+		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getProcess() {
+		return (String) getStateHelper().eval(PropertyKeys.process);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
+	/**
 	 * Allows you to suppress automatic rendering of labels. Used by
 	 * AngularFaces, too.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
-		if (null != renderLabel) {
-			boolean defaultValue = Boolean.valueOf(renderLabel);
-			Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, defaultValue);
-			return (boolean) value;
-		}
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 	}
 
 	/**
@@ -263,13 +287,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	/**
 	 * The size of the input specified as number of grid columns.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getSpan() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.span, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.span, 0);
 	}
 
 	/**
@@ -284,13 +307,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -303,16 +325,41 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	}
 
 	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering errors in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
+	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -329,13 +376,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -352,13 +398,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -376,13 +421,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
@@ -396,38 +440,35 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
 
-	public java.lang.String getType() {
-		return (java.lang.String) getStateHelper().eval(PropertyKeys.type, "text");
-	}
-
-	public void setType(java.lang.String _type) {
-		getStateHelper().put(PropertyKeys.type, _type);
-	}
-
-	public String getOncomplete() {
-		String value = (String) getStateHelper().eval(PropertyKeys.oncomplete);
-		return value;
+	/**
+	 * Type of the input. The default is text.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getType() {
+		return (String) getStateHelper().eval(PropertyKeys.type);
 	}
 
 	/**
-	 * Javascript to be executed when ajax completes with success.
+	 * Type of the input. The default is text.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOncomplete(String _oncomplete) {
-		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	public void setType(String _type) {
+		getStateHelper().put(PropertyKeys.type, _type);
 	}
 
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.update);
 	}
 
 	/**

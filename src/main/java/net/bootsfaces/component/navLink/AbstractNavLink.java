@@ -236,19 +236,23 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	void setImmediate(boolean _immediate);
 
 	/**
-	 * <p class="changed_added_2_0">Return whether or not the view
-	 * parameters should be encoded into the target url.</p>
+	 * <p class="changed_added_2_0">
+	 * Return whether or not the view parameters should be encoded into the
+	 * target url.
+	 * </p>
 	 *
 	 * @since 2.0
 	 */
 	boolean isIncludeViewParams();
 
 	/**
-	 * <p class="changed_added_2_0">Set whether or not the page
-	 * parameters should be encoded into the target url.</p>
+	 * <p class="changed_added_2_0">
+	 * Set whether or not the page parameters should be encoded into the target
+	 * url.
+	 * </p>
 	 *
-	 * @param includeViewParams The state of the switch for encoding
-	 * page parameters
+	 * @param includeViewParams
+	 *            The state of the switch for encoding page parameters
 	 *
 	 * @since 2.0
 	 */
@@ -709,18 +713,23 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	void setUpdate(String _update);
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	boolean isDisabled();
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	void setDisabled(boolean _disabled);
 
-    public Object getValue();
-    public boolean isRendered();
+	public Object getValue();
+
+	public boolean isRendered();
 
 }

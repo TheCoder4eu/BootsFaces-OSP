@@ -28,43 +28,48 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 
 /**
- * The &lt;alert&gt; tag generates a colored box that can be used to display error messages, warnings, informations or simply success messages.
+ * The &lt;alert&gt; tag generates a colored box that can be used to display
+ * error messages, warnings, informations or simply success messages.
  * 
  * @author thecoder4eu
  */
 
 @FacesComponent("net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos")
 public class FetchBeanInfos extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE ="net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos";
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-    public FetchBeanInfos() {
-        setRendererType(null); // this component renders itself
-    }
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos";
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-    @Override
-    public void encodeBegin(FacesContext fc) throws IOException {
-        ResponseWriter rw = fc.getResponseWriter();
-        rw.startElement("script", this);
-        if (fc.isValidationFailed()) {
-        	rw.writeText("validationFailed=true;", null);
-        } else  {
-        	rw.writeText("validationFailed=false;", null);
-        }
-        rw.endElement("script");
-        
-    }
+	public FetchBeanInfos() {
+		setRendererType(null); // this component renders itself
+	}
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+	@Override
+	public void encodeBegin(FacesContext fc) throws IOException {
+		ResponseWriter rw = fc.getResponseWriter();
+		rw.startElement("script", this);
+		if (fc.isValidationFailed()) {
+			rw.writeText("validationFailed=true;", null);
+		} else {
+			rw.writeText("validationFailed=false;", null);
+		}
+		rw.endElement("script");
+
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 }

@@ -57,8 +57,15 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	}
 
 	protected enum PropertyKeys {
-		binding, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
-
+		binding,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -74,7 +81,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
 	 * 
@@ -82,13 +89,11 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
+	 * An EL expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -98,19 +103,18 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	}
 
 	/**
-	 * Inline CSS of the tab.
+	 * Inline style of the input element.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
-	 * Inline CSS of the tab.
+	 * Inline style of the input element.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -119,19 +123,18 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane.
+	 * Style class of the input element.
 	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane.
+	 * Style class of the input element.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -147,8 +150,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -162,7 +164,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
@@ -171,13 +173,12 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
@@ -196,8 +197,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -219,8 +219,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -242,8 +241,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -266,8 +264,7 @@ public class Thumbnail extends UIComponentBase implements net.bootsfaces.render.
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**

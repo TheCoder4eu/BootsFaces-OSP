@@ -61,16 +61,18 @@ public class CarouselControl extends UICommand
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	return null;
-    }
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
 
-    public Collection<String> getEventNames() {
+	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
@@ -79,7 +81,27 @@ public class CarouselControl extends UICommand
 	}
 
 	protected enum PropertyKeys {
-		ajax, direction, disabled, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, tooltipContainer;
+		ajax,
+		direction,
+		disabled,
+		onclick,
+		oncomplete,
+		ondblclick,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		process,
+		style,
+		styleClass,
+		tooltip,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update,
+		tooltipContainer;
 
 		String toString;
 
@@ -96,37 +118,55 @@ public class CarouselControl extends UICommand
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
 	/**
 	 * Whether the Button submits the form with AJAX.
 	 * <P>
@@ -367,7 +407,6 @@ public class CarouselControl extends UICommand
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
 	}
-
 
 	/**
 	 * Inline style of the input element.

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Dario D'Urzo
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -36,12 +36,10 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tree /&gt;. */
-@ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/bootstrap-treeview.min.js", target = "body"),
-		})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/bootstrap-treeview.min.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.tree.Tree")
 public class Tree extends UIComponentBase implements ClientBehaviorHolder {
-	
+
 	// Static internal references
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tree.Tree";
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
@@ -49,35 +47,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 
 	// Supported event list
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click"));
-
-	// Object properties
-	protected enum PropertyKeys {
-		value, 
-		nodeSelectionListener, 
-		showTags, 
-		showIcon, 
-		showCheckbox, 
-		enableLinks, 
-		collapseIcon, 
-		expandIcon, 
-		color, 
-		update, 
-		renderRoot
-		;
-
-		String toString;
-
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
-
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
 
 	/**
 	 * Constructor. It is used to configure the renderer
@@ -90,7 +59,7 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
-	
+
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
@@ -104,7 +73,7 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	
+
 	/**
 	 * Management of events
 	 */
@@ -117,139 +86,23 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	}
 
 	/**
-	 * Get the configured NodeSelectionListener 
-	 * @return
-	 */
-	public TreeNodeEventListener getNodeSelectionListener() {
-		return (TreeNodeEventListener) this.getStateHelper().eval(PropertyKeys.nodeSelectionListener);
-	}
-	public void setNodeSelectionListener(TreeNodeEventListener nodeSelectionListener) {
-		this.updateStateHelper(PropertyKeys.nodeSelectionListener.toString(), nodeSelectionListener);
-	}
-
-	/**
-	 * Get the binding value. Here we have to set the Root Node 
-	 * of the tree structure. The renderer provide a JSON Transformation
-	 * to support the javascript library
+	 * Get the binding value. Here we have to set the Root Node of the tree
+	 * structure. The renderer provide a JSON Transformation to support the
+	 * javascript library
+	 *
 	 * @return
 	 */
 	public Node getValue() {
-		return (Node) this.getStateHelper().eval(PropertyKeys.value);
+		return (Node) this.getStateHelper().eval("value");
 	}
+
 	public void setValue(final Node _value) {
-		this.updateStateHelper(PropertyKeys.value.toString(), _value);
-	}
-	
-	/**
-	 * Check if root node have to be displayed or not
-	 * @return
-	 */
-	public boolean isRenderRoot() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.renderRoot, true);
-		return (boolean) value;
-	}
-	public void setRenderRoot(boolean _renderRoot) {
-		getStateHelper().put(PropertyKeys.renderRoot, _renderRoot);
-	}
-
-	/**
-	 * Check if the icons have to be displayed or not
-	 * @return
-	 */
-	public boolean isShowIcon() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
-		return (boolean) value;
-	}
-	public void setShowIcon(boolean _showIcon) {
-		getStateHelper().put(PropertyKeys.showIcon, _showIcon);
-	}
-
-	/**
-	 * Check if the checkbox have to be displayed or not
-	 * @return
-	 */
-	public boolean isShowCheckbox() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showCheckbox, false);
-		return (boolean) value;
-	}
-	public void setShowCheckbox(boolean _showCheckbox) {
-		getStateHelper().put(PropertyKeys.showCheckbox, _showCheckbox);
-	}
-
-	/**
-	 * Check if the node tags have to be displayed or not
-	 * @return
-	 */
-	public boolean isShowTags() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showTags, false);
-		return (boolean) value;
-	}
-	public void setShowTags(boolean _showTags) {
-		getStateHelper().put(PropertyKeys.showTags, _showTags);
-	}
-
-	/**
-	 * Check if the href links are enabled or not
-	 * @return
-	 */
-	public boolean isEnableLinks() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.enableLinks, false);
-		return (boolean) value;
-	}
-	public void setEnableLinks(boolean _enableLinks) {
-		getStateHelper().put(PropertyKeys.enableLinks, _enableLinks);
-	}
-
-	/**
-	 * Get/Set the collapse icon for the tree
-	 * @return
-	 */
-	public String getCollapseIcon() {
-		String value = (String) getStateHelper().eval(PropertyKeys.collapseIcon);
-		return value;
-	}
-	public void setCollapseIcon(String _collapseIcon) {
-		getStateHelper().put(PropertyKeys.collapseIcon, _collapseIcon);
-	}
-
-	/**
-	 * Get/Set the expand icon for the tree
-	 * @return
-	 */
-	public String getExpandIcon() {
-		String value = (String) getStateHelper().eval(PropertyKeys.expandIcon);
-		return value;
-	}
-	public void setExpandIcon(String _expandIcon) {
-		getStateHelper().put(PropertyKeys.expandIcon, _expandIcon);
-	}
-
-	/**
-	 * Get the tree item text color
-	 * @return
-	 */
-	public String getColor() {
-		String value = (String) getStateHelper().eval(PropertyKeys.color);
-		return value;
-	}
-	public void setColor(String _color) {
-		getStateHelper().put(PropertyKeys.color, _color);
-	}
-
-	/**
-	 * Get the item to update after an ajax request
-	 * @return
-	 */
-	public String getUpdate() {
-		String value = (String) getStateHelper().eval(PropertyKeys.update, null);
-		return value;
-	}
-	public void setUpdate(String _update) {
-		getStateHelper().put(PropertyKeys.update, _update);
+		this.updateStateHelper("value", _value);
 	}
 
 	/**
 	 * Utility method to update the state helper
+	 *
 	 * @param propertyName
 	 * @param value
 	 */
@@ -262,4 +115,203 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 			ve.setValue(this.getFacesContext().getELContext(), value);
 		}
 	}
+
+
+	// Object properties
+	protected enum PropertyKeys {
+		color,
+		collapseIcon,
+		enableLinks,
+		expandIcon,
+		nodeSelectionListener,
+		renderRoot,
+		showTags,
+		showIcon,
+		showCheckbox,
+		update
+;
+        String toString;
+
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
+
+        PropertyKeys() {}
+
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+
+
+/**
+ * Text color. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public String getColor() {
+	return  (String)getStateHelper().eval(PropertyKeys.color);
 }
+
+/**
+ * Text color. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setColor(String _color) {
+    getStateHelper().put(PropertyKeys.color, _color);
+}
+
+
+/**
+ * Glyphicons of collapse. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public String getCollapseIcon() {
+	return  (String)getStateHelper().eval(PropertyKeys.collapseIcon);
+}
+
+/**
+ * Glyphicons of collapse. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setCollapseIcon(String _collapseIcon) {
+    getStateHelper().put(PropertyKeys.collapseIcon, _collapseIcon);
+}
+
+
+/**
+ * Boolean value to specify if enable href link. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public boolean isEnableLinks() {
+	return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.enableLinks, false);
+}
+
+/**
+ * Boolean value to specify if enable href link. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setEnableLinks(boolean _enableLinks) {
+    getStateHelper().put(PropertyKeys.enableLinks, _enableLinks);
+}
+
+
+/**
+ * Glyphicons of expand. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public String getExpandIcon() {
+	return  (String)getStateHelper().eval(PropertyKeys.expandIcon);
+}
+
+/**
+ * Glyphicons of expand. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setExpandIcon(String _expandIcon) {
+    getStateHelper().put(PropertyKeys.expandIcon, _expandIcon);
+}
+
+
+/**
+ * Selection listener called on selection changed. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public TreeNodeEventListener getNodeSelectionListener() {
+	return  (TreeNodeEventListener)getStateHelper().eval(PropertyKeys.nodeSelectionListener);
+}
+
+/**
+ * Selection listener called on selection changed. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setNodeSelectionListener(TreeNodeEventListener _nodeSelectionListener) {
+    getStateHelper().put(PropertyKeys.nodeSelectionListener, _nodeSelectionListener);
+}
+
+
+/**
+ * Do you want to show the root of the tree? <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public boolean isRenderRoot() {
+	return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.renderRoot, false);
+}
+
+/**
+ * Do you want to show the root of the tree? <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setRenderRoot(boolean _renderRoot) {
+    getStateHelper().put(PropertyKeys.renderRoot, _renderRoot);
+}
+
+
+/**
+ * Boolean value to specify if tags was show or not. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public boolean isShowTags() {
+	return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showTags, false);
+}
+
+/**
+ * Boolean value to specify if tags was show or not. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setShowTags(boolean _showTags) {
+    getStateHelper().put(PropertyKeys.showTags, _showTags);
+}
+
+
+/**
+ * Boolean value to specify if icons are rendered or not. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public boolean isShowIcon() {
+	return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showIcon, false);
+}
+
+/**
+ * Boolean value to specify if icons are rendered or not. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setShowIcon(boolean _showIcon) {
+    getStateHelper().put(PropertyKeys.showIcon, _showIcon);
+}
+
+
+/**
+ * Boolean value to specify if checkbox is rendered or not. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public boolean isShowCheckbox() {
+	return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showCheckbox, false);
+}
+
+/**
+ * Boolean value to specify if checkbox is rendered or not. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setShowCheckbox(boolean _showCheckbox) {
+    getStateHelper().put(PropertyKeys.showCheckbox, _showCheckbox);
+}
+
+
+/**
+ * Component(s) to be updated with ajax. <P>
+ * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+ */
+public String getUpdate() {
+	return  (String)getStateHelper().eval(PropertyKeys.update);
+}
+
+/**
+ * Component(s) to be updated with ajax. <P>
+ * Usually this method is called internally by the JSF engine.
+ */
+public void setUpdate(String _update) {
+    getStateHelper().put(PropertyKeys.update, _update);
+}
+
+}
+

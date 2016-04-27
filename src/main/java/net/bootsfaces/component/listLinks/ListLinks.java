@@ -33,42 +33,44 @@ import net.bootsfaces.utils.BsfUtils;
  */
 @FacesComponent("net.bootsfaces.component.listLinks.ListLinks")
 public class ListLinks extends LinksContainer {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE ="net.bootsfaces.component.listLinks.ListLinks";
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    
-    private static final String STYLE="nav nav-list";//S.NAV+S.SP+S.NAVLIST;
-    
+
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.listLinks.ListLinks";
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	private static final String STYLE = "nav nav-list";// S.NAV+S.SP+S.NAVLIST;
+
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
 
-    public ListLinks() {
-        setRendererType(null); // this component renders itself
+	public ListLinks() {
+		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-   }
-    
-    /*
-     * <ul class="nav nav-list">
-     * ...
-     * </ul>
-     */
-    @Override
-    protected String getContainerStyles() {
-        return STYLE;
-    }
+	}
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-    
+	/*
+	 * <ul class="nav nav-list"> ... </ul>
+	 */
+	@Override
+	protected String getContainerStyles() {
+		return STYLE;
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
 }

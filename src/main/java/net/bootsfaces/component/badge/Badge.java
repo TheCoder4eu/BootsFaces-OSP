@@ -26,104 +26,113 @@ import javax.faces.component.UIOutput;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
-
 /** This class holds the attributes of &lt;b:badge /&gt;. */
 @FacesComponent("net.bootsfaces.component.badge.Badge")
 public class Badge extends UIOutput {
-	
+
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.badge.Badge";
-	
+
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
-	
+
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.badge.Badge";
-	
+
 	public Badge() {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("badges.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
-	
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
+
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	
-    protected enum PropertyKeys {
-		binding,
-		style,
-		styleClass
-		;
 
-        String toString;
+	protected enum PropertyKeys {
+		binding, style, styleClass;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		String toString;
 
-        PropertyKeys() {}
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * An el expression referring to a server side UIComponent instance in a
+	 * backing bean.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
-		return  value;
+		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
+				.eval(PropertyKeys.binding);
+		return value;
 	}
-	
+
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * An el expression referring to a server side UIComponent instance in a
+	 * backing bean.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
-	    getStateHelper().put(PropertyKeys.binding, _binding);
-    }	
+		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
 
 	/**
-	 * Inline style of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Inline style of the input element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String)getStateHelper().eval(PropertyKeys.style);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.style);
+		return value;
 	}
-	
+
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
 
 	/**
-	 * Style class of this element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Style class of this element.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
+		return value;
 	}
-	
+
 	/**
-	 * Style class of this element. <P>
+	 * Style class of this element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-    }
-	
-}
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
 
+}

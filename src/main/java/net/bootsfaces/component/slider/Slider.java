@@ -47,9 +47,9 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/widget.js");
-        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/mouse.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/mouse.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/slider.js");
 		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
@@ -82,7 +82,27 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	protected enum PropertyKeys {
-		binding, disabled, handleShape, handleSize, id, inline, label, max, min, mode, orientation, span, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		binding,
+		disabled,
+		handleShape,
+		handleSize,
+		id,
+		inline,
+		label,
+		max,
+		min,
+		mode,
+		orientation,
+		span,
+		step,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition;
 
 		String toString;
 
@@ -99,24 +119,36 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <P>
+	 * backing bean.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -129,7 +161,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean. <P>
+	 * backing bean.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -137,7 +170,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * If true, you can't move the slider, nor can you edit the number. <P>
+	 * If true, you can't move the slider, nor can you edit the number.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -148,7 +182,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * If true, you can't move the slider, nor can you edit the number. <P>
+	 * If true, you can't move the slider, nor can you edit the number.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
@@ -157,7 +192,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The default handle is squared. Specifing the "round" value for this
-	 * attribute will turn the handle shape to a circle. <P>
+	 * attribute will turn the handle shape to a circle.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -169,7 +205,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The default handle is squared. Specifing the "round" value for this
-	 * attribute will turn the handle shape to a circle. <P>
+	 * attribute will turn the handle shape to a circle.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHandleShape(String _handleShape) {
@@ -179,7 +216,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	/**
 	 * In some situations (eg. mobile phones) the slider handle may be difficult
 	 * to operate because of its size. Specifing the "md" or "lg" value for this
-	 * attribute will change the handle size accordingly. <P>
+	 * attribute will change the handle size accordingly.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -192,32 +230,42 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	/**
 	 * In some situations (eg. mobile phones) the slider handle may be difficult
 	 * to operate because of its size. Specifing the "md" or "lg" value for this
-	 * attribute will change the handle size accordingly. <P>
+	 * attribute will change the handle size accordingly.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHandleSize(String _handleSize) {
 		getStateHelper().put(PropertyKeys.handleSize, _handleSize);
 	}
-	
+
 	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isInline() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.inline, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Inline forms are more compact and put the label to the left hand side of
+	 * the input field instead of putting it above the input field. Inline
+	 * applies only to screens that are at least 768 pixels wide.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInline(boolean _inline) {
-	    getStateHelper().put(PropertyKeys.inline, _inline);
-    }
+		getStateHelper().put(PropertyKeys.inline, _inline);
+	}
 
 	/**
-	 * Label for the widget field. <P>
+	 * Label for the widget field.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -228,7 +276,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Label for the widget field. <P>
+	 * Label for the widget field.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLabel(String _label) {
@@ -236,7 +285,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The maximum value of the slider. (default 100) <P>
+	 * The maximum value of the slider. (default 100)
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -247,7 +297,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The maximum value of the slider. (default 100) <P>
+	 * The maximum value of the slider. (default 100)
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMax(int _max) {
@@ -255,7 +306,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The minimum value of the slider. (default 0) <P>
+	 * The minimum value of the slider. (default 0)
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -266,7 +318,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The minimum value of the slider. (default 0) <P>
+	 * The minimum value of the slider. (default 0)
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMin(int _min) {
@@ -282,7 +335,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 * badge.<br>
 	 * In <b>edit mode</b>, an editable input field showing the slider value
 	 * will be shown; in this mode you can change the value by sliding or
-	 * editing the value in the field. <P>
+	 * editing the value in the field.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -301,7 +355,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 * badge.<br>
 	 * In <b>edit mode</b>, an editable input field showing the slider value
 	 * will be shown; in this mode you can change the value by sliding or
-	 * editing the value in the field. <P>
+	 * editing the value in the field.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMode(String _mode) {
@@ -316,7 +371,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 * If <b>vertical</b> is specified, the Label is rendered on top, then the
 	 * value and the slider on the bottom.<br>
 	 * If <b>vertical-bottom</b> is specified, the slider is rendered on top,
-	 * then the value and the Label on the bottom. <P>
+	 * then the value and the Label on the bottom.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -334,7 +390,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 * If <b>vertical</b> is specified, the Label is rendered on top, then the
 	 * value and the slider on the bottom.<br>
 	 * If <b>vertical-bottom</b> is specified, the slider is rendered on top,
-	 * then the value and the Label on the bottom. <P>
+	 * then the value and the Label on the bottom.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOrientation(String _orientation) {
@@ -342,7 +399,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The column span of a Horizontal slider. <P>
+	 * The column span of a Horizontal slider.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -353,15 +411,17 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The column span of the slider. <P>
+	 * The column span of the slider.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSpan(int _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
 	}
-        
-        /**
-	 * The step of the slider. <P>
+
+	/**
+	 * The step of the slider.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -372,7 +432,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The step of the slider. <P>
+	 * The step of the slider.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStep(int _step) {
@@ -380,7 +441,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -391,7 +453,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -399,7 +462,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the input element.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -410,7 +474,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the input element.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -418,7 +483,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The text of the tooltip. <P>
+	 * The text of the tooltip.
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -429,7 +495,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * The text of the tooltip. <P>
+	 * The text of the tooltip.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
@@ -438,7 +505,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -450,7 +518,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
@@ -459,7 +528,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -471,7 +541,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
@@ -480,7 +551,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -492,7 +564,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in
-	 * milliseconds. Defaults to 0 (no delay). <P>
+	 * milliseconds. Defaults to 0 (no delay).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
@@ -502,7 +575,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * 
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
@@ -515,7 +589,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom",
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
-	 * "auto left". Default to "bottom". <P>
+	 * "auto left". Default to "bottom".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {

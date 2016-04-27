@@ -20,7 +20,8 @@ public class Focus extends UIComponentBase {
 
 	public Focus() {
 		setRendererType(null); // this component renders itself
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -35,7 +36,7 @@ public class Focus extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		//	super.encodeBegin(context);
+		// super.encodeBegin(context);
 	}
 
 	@Override
@@ -45,25 +46,21 @@ public class Focus extends UIComponentBase {
 		}
 		Map<String, Object> attrs = getAttributes();
 
-		String target = (String)attrs.get("target");
-		if(!BsfUtils.StringIsValued(target)) {
-			if(this.getParent() != null)
+		String target = (String) attrs.get("target");
+		if (!BsfUtils.StringIsValued(target)) {
+			if (this.getParent() != null)
 				target = this.getParent().getId();
 		}
-		
-		// 
-		if(BsfUtils.StringIsValued(target)) {
+
+		//
+		if (BsfUtils.StringIsValued(target)) {
 			ResponseWriter rw = context.getResponseWriter();
 			String itemToFocusID = BsfUtils.getComponentClientId(target);
-		
+
 			rw.startElement("script", this);
-			rw.writeText("" +
-						"$(document).ready(function() { " +
-						"   var item = $(jq('" + itemToFocusID + "')); " +
-						"   if (item.is('div')) { " +
- 						"   	$(jq('input_" + itemToFocusID + "')).focus(); " +
-						"   } else { item.focus(); }" +
-						"});", null);
+			rw.writeText("" + "$(document).ready(function() { " + "   var item = $(jq('" + itemToFocusID + "')); "
+					+ "   if (item.is('div')) { " + "   	$(jq('input_" + itemToFocusID + "')).focus(); "
+					+ "   } else { item.focus(); }" + "});", null);
 			rw.endElement("script");
 		} else {
 			throw new FacesException("The focus component needs a defined target ID", null);

@@ -39,86 +39,87 @@ import net.bootsfaces.utils.BsfUtils;
  */
 
 public class LinksContainer extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE =C.BSFCOMPONENT+"."+"LinksContainer";
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    public LinksContainer() {
-        setRendererType(null); // this component renders itself
-        Tooltip.addResourceFile();
+
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + "." + "LinksContainer";
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	public LinksContainer() {
+		setRendererType(null); // this component renders itself
+		Tooltip.addResourceFile();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-   }
-    
+	}
+
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
 
+	@Override
+	public void encodeBegin(FacesContext fc) throws IOException {
+		if (!isRendered()) {
+			return;
+		}
+		/*
+		 * <ul class="?"> ... </ul>
+		 */
 
-    @Override
-    public void encodeBegin(FacesContext fc) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
-        /*
-         * <ul class="?">
-         * ...
-         * </ul>
-         */
-        
-        ResponseWriter rw = fc.getResponseWriter();
-        
-        Map<String, Object> attrs = getAttributes();
-        
-        
-        String pull = A.asString(attrs.get("pull"));
-        
-        rw.startElement("ul", this);
-        rw.writeAttribute("id",getClientId(fc),"id");
-        String style = (String) attrs.get("style");
-        if (null != style && style.length()>0) {
-        	rw.writeAttribute("style", style, "style");
-        }
-        Tooltip.generateTooltip(fc, attrs, rw);
-        String styleClass = (String) attrs.get("styleClass");
-        if (null == styleClass) {
-        	styleClass="";
-        }
-        if(pull!=null && (pull.equals("right") || pull.equals("left")) ) {
-            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat("pull").concat("-").concat(pull),"class");
-        } else {
-            rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()),"class");
-        }
-        
-        
-    }
-    
-    /** 
-     * every container must override this method returning
-     * the specific class(es) for its rendering
-     * @return the specific class
-     */
-    protected String getContainerStyles() {
-        throw new UnsupportedOperationException("Please Extend this class.");
-    }
-    
-    @Override
-    public void encodeEnd(FacesContext fc) throws IOException {
-        fc.getResponseWriter()
-               .endElement("ul");
-        Tooltip.activateTooltips(fc, getAttributes(), this);
-    }
+		ResponseWriter rw = fc.getResponseWriter();
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
+		Map<String, Object> attrs = getAttributes();
+
+		String pull = A.asString(attrs.get("pull"));
+
+		rw.startElement("ul", this);
+		rw.writeAttribute("id", getClientId(fc), "id");
+		String style = (String) attrs.get("style");
+		if (null != style && style.length() > 0) {
+			rw.writeAttribute("style", style, "style");
+		}
+		Tooltip.generateTooltip(fc, attrs, rw);
+		String styleClass = (String) attrs.get("styleClass");
+		if (null == styleClass) {
+			styleClass = "";
+		}
+		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
+			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat("pull")
+					.concat("-").concat(pull), "class");
+		} else {
+			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()), "class");
+		}
+
+	}
+
+	/**
+	 * every container must override this method returning the specific
+	 * class(es) for its rendering
+	 * 
+	 * @return the specific class
+	 */
+	protected String getContainerStyles() {
+		throw new UnsupportedOperationException("Please Extend this class.");
+	}
+
+	@Override
+	public void encodeEnd(FacesContext fc) throws IOException {
+		fc.getResponseWriter().endElement("ul");
+		Tooltip.activateTooltips(fc, getAttributes(), this);
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
 
 }

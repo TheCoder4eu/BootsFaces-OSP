@@ -43,7 +43,7 @@ public class IconAwesome extends Icon {
 		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-//		AddResourcesListener.addThemedCSSResource("font-awesome.css");
+		// AddResourcesListener.addThemedCSSResource("font-awesome.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

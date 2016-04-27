@@ -39,9 +39,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tabView /&gt;. */
-@ResourceDependencies({ 
-		@ResourceDependency(library = "bsf", name = "js/tab.js", target = "head"),
-		})
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/tab.js", target = "head"), })
 @FacesComponent("net.bootsfaces.component.tabView.TabView")
 public class TabView extends UIOutput
 		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
@@ -53,10 +51,11 @@ public class TabView extends UIOutput
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
 	public TabView() {
-		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
@@ -72,25 +71,26 @@ public class TabView extends UIOutput
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
 			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
-	
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).Ø
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	Map<String, String> result= new HashMap<String, String>();
-    	result.put("click", "click");
-    	return result;
-    }
 
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).Ø
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("click", "click");
+		return result;
+	}
 
 	@Override
 	public boolean getRendersChildren() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
@@ -109,26 +109,26 @@ public class TabView extends UIOutput
 	}
 
 	protected enum PropertyKeys {
-		tooltipContainer, 
-		activeIndex, 
-		ajax, 
-		contentClass, 
-		contentStyle, 
-		dir, 
+		tooltipContainer,
+		activeIndex,
+		ajax,
+		contentClass,
+		contentStyle,
+		dir,
 		tabPosition,
 		pills,
-		disabled, 
-		immediate, 
-		onclick, 
-		oncomplete, 
-		process, 
-		role, 
-		styleClass, 
-		tooltip, 
-		tooltipDelay, 
-		tooltipDelayHide, 
-		tooltipDelayShow, 
-		tooltipPosition, 
+		disabled,
+		immediate,
+		onclick,
+		oncomplete,
+		process,
+		role,
+		styleClass,
+		tooltip,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
 		update;
 
 		String toString;
@@ -146,37 +146,54 @@ public class TabView extends UIOutput
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
 
 	/**
 	 * Optional attribute to define which tab is active initially.
@@ -263,21 +280,31 @@ public class TabView extends UIOutput
 	}
 
 	/**
-	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Direction indication for text that does not inherit directionality. Legal
+	 * values: ltr (Default. Left-to-right text direction), rtl (Right-to-left
+	 * text direction) and auto (let the browser figure out the direction of
+	 * your alphebet, based on the page content).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getDir() {
-		String value = (String)getStateHelper().eval(PropertyKeys.dir);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.dir);
+		return value;
 	}
-	
+
 	/**
-	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphebet, based on the page content). <P>
+	 * Direction indication for text that does not inherit directionality. Legal
+	 * values: ltr (Default. Left-to-right text direction), rtl (Right-to-left
+	 * text direction) and auto (let the browser figure out the direction of
+	 * your alphebet, based on the page content).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
-	    getStateHelper().put(PropertyKeys.dir, _dir);
-    }
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
 
 	/**
 	 * Disables the input element, default is false.
@@ -368,23 +395,27 @@ public class TabView extends UIOutput
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
 	}
-	
+
 	/**
-	 * Change the rendering of tab to pills mode. Default false <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Change the rendering of tab to pills mode. Default false
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isPills() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.pills, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.pills, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Change the rendering of tab to pills mode. Default false <P>
+	 * Change the rendering of tab to pills mode. Default false
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPills(boolean _pills) {
-	    getStateHelper().put(PropertyKeys.pills, _pills);
-    }
+		getStateHelper().put(PropertyKeys.pills, _pills);
+	}
 
 	/**
 	 * The role can be used to provide information to screenreaders.
@@ -427,23 +458,29 @@ public class TabView extends UIOutput
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
-	
+
 	/**
-	 * Position of tabs. Legal values are: left, right, top, bottom. Default is top <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Position of tabs. Legal values are: left, right, top, bottom. Default is
+	 * top
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTabPosition() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tabPosition, "top");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tabPosition, "top");
+		return value;
 	}
-	
+
 	/**
-	 * Position of tabs. Legal values are: left, right, top, bottom. Default is top <P>
+	 * Position of tabs. Legal values are: left, right, top, bottom. Default is
+	 * top
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTabPosition(String _tabPosition) {
-	    getStateHelper().put(PropertyKeys.tabPosition, _tabPosition);
-    }
+		getStateHelper().put(PropertyKeys.tabPosition, _tabPosition);
+	}
 
 	/**
 	 * The text of the tooltip.

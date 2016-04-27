@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -55,8 +55,15 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	}
 
 	protected enum PropertyKeys {
-		size, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
-
+		size,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -74,13 +81,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	/**
 	 * Size can be large or small and controls padding and rounded corners.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getSize() {
-		String value = (String) getStateHelper().eval(PropertyKeys.size);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.size);
 	}
 
 	/**
@@ -93,19 +99,18 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	}
 
 	/**
-	 * Inline CSS of the tab.
+	 * Inline style of the input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
-	 * Inline CSS of the tab.
+	 * Inline style of the input element.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -114,19 +119,18 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane.
+	 * Style class of the input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane.
+	 * Style class of the input element.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
@@ -137,13 +141,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltip);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
 
 	/**
@@ -157,22 +160,21 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value
-	 * that can be used to fix rendering error in special cases. Also see
+	 * that can be used to fix rendering errors in special cases. Also see
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
@@ -186,13 +188,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 
 	/**
@@ -209,13 +210,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 
 	/**
@@ -232,13 +232,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 
 	/**
@@ -256,13 +255,12 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 
 	/**
@@ -275,4 +273,5 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
 	}
+
 }

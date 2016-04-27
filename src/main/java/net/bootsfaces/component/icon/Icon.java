@@ -46,8 +46,8 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 
 	public Icon() {
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("icons.css");
@@ -59,19 +59,21 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 		super.setValueExpression(name, binding);
 	}
 
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList(
-			"click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			Arrays.asList("click", "dblclick", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
-    /**
-     * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means
-     * (such as the onclick event of b:tabView, which has to be implemented manually).
-     * @return
-     */
-    public Map<String, String> getJQueryEvents() {
-    	return null;
-    }
+	/**
+	 * returns the subset of AJAX requests that are implemented by jQuery
+	 * callback or other non-standard means (such as the onclick event of
+	 * b:tabView, which has to be implemented manually).
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
 
-    public Collection<String> getEventNames() {
+	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
@@ -84,7 +86,34 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 	}
 
 	protected enum PropertyKeys {
-		addon, binding, disabled, flip, name, onclick, oncomplete, ondblclick, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, process, readonly, rotate, size, spin, style, styleClass, tooltip, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, ajax, tooltipContainer;
+		addon,
+		binding,
+		disabled,
+		flip,
+		name,
+		onclick,
+		oncomplete,
+		ondblclick,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		process,
+		readonly,
+		rotate,
+		size,
+		spin,
+		style,
+		styleClass,
+		tooltip,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update,
+		ajax,
+		tooltipContainer;
 
 		String toString;
 
@@ -101,37 +130,54 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 	}
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return value;
 	}
-	
+
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value
+	 * that can be used to fix rendering error in special cases. Also see
+	 * data-container in the documentation of Bootstrap. The default value is
+	 * body.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getProcess() {
-		String value = (String)getStateHelper().eval(PropertyKeys.process);
-		return  value;
+		String value = (String) getStateHelper().eval(PropertyKeys.process);
+		return value;
 	}
-	
+
 	/**
-	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Comma or space separated list of ids or search expressions denoting which
+	 * values are to be sent to the server.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setProcess(String _process) {
-	    getStateHelper().put(PropertyKeys.process, _process);
-    }
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
 
 	/**
 	 * Boolean value: if true the element is used as Addon.
@@ -221,21 +267,25 @@ public class Icon extends UICommand implements net.bootsfaces.render.IHasTooltip
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isAjax() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Activates AJAX. The default value is false (no AJAX).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
-	    getStateHelper().put(PropertyKeys.ajax, _ajax);
-    }
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
 
 	/**
 	 * Icon name, mandatory.

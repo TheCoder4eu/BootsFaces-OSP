@@ -95,8 +95,8 @@ public class DatePicker extends HtmlInputText {
 		AddResourcesListener.addThemedCSSResource("jq.ui.datepicker.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		
-        AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
+
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
 		FacesContext context = FacesContext.getCurrentInstance();
 		Application app = context.getApplication();
@@ -110,7 +110,8 @@ public class DatePicker extends HtmlInputText {
 			}
 			final String jsl = "jq/ui/i18n/datepicker-" + language + ".js";
 			rdp = rh.createResource(jsl, C.BSF_LIBRARY);
-			if (rdp != null) { //rdp is null if the language .js is not present in jar
+			if (rdp != null) { // rdp is null if the language .js is not present
+								// in jar
 				AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, jsl);
 				break;
 			}
@@ -119,7 +120,6 @@ public class DatePicker extends HtmlInputText {
 		Tooltip.addResourceFile();
 	}
 
-	
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
@@ -168,18 +168,21 @@ public class DatePicker extends HtmlInputText {
 			return cal.getTime();
 		} catch (ParseException e) {
 			this.setValid(false);
-			throw new ConverterException(getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, getLabel(fc)));
+			throw new ConverterException(
+					getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, getLabel(fc)));
 		}
 	}
 
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
-        if (!isRendered()) {
-            return;
-        }
+		if (!isRendered()) {
+			return;
+		}
 		/*
-		 * Popup <input id="form:popCal" name="form:popCal" type="text" /> <script id="form:popCal_js" type="text/javascript"> $(function(){
-		 * $('form:popCal').datepicker({id:'form:popupCal',popup:true,locale:'en_US',dateFormat:'m/d/y'}); }); </script>
+		 * Popup <input id="form:popCal" name="form:popCal" type="text" />
+		 * <script id="form:popCal_js" type="text/javascript"> $(function(){
+		 * $('form:popCal').datepicker({id:'form:popupCal',popup:true,locale:'
+		 * en_US',dateFormat:'m/d/y'}); }); </script>
 		 * 
 		 * Inline Adds a Div and Uses a Hidden Input
 		 */
@@ -190,17 +193,20 @@ public class DatePicker extends HtmlInputText {
 	}
 
 	/**
-	 * Generates the default language for the date picker. Originally implemented in the HeadRenderer, this code has been moved here to
-	 * provide better compatibility to PrimeFaces. If multiple date pickers are on the page, the script is generated redundantly, but this
-	 * shouldn't do no harm.
+	 * Generates the default language for the date picker. Originally
+	 * implemented in the HeadRenderer, this code has been moved here to provide
+	 * better compatibility to PrimeFaces. If multiple date pickers are on the
+	 * page, the script is generated redundantly, but this shouldn't do no harm.
 	 * 
-	 * @param fc The current FacesContext
+	 * @param fc
+	 *            The current FacesContext
 	 * @throws IOException
 	 */
 	private void encodeDefaultLanguageJS(FacesContext fc) throws IOException {
 		ResponseWriter rw = fc.getResponseWriter();
 		rw.startElement("script", null);
-		rw.write("$.datepicker.setDefaults($.datepicker.regional['" + fc.getViewRoot().getLocale().getLanguage() + "']);");
+		rw.write("$.datepicker.setDefaults($.datepicker.regional['" + fc.getViewRoot().getLocale().getLanguage()
+				+ "']);");
 		rw.endElement("script");
 	}
 
@@ -230,7 +236,8 @@ public class DatePicker extends HtmlInputText {
 		}
 
 		/*
-		 * 6 modes: 1) inline 2) popup (no icons) 3) popup-icon 4) icon-popup 5) toggle-icon (Default) 6) icon-toggle
+		 * 6 modes: 1) inline 2) popup (no icons) 3) popup-icon 4) icon-popup 5)
+		 * toggle-icon (Default) 6) icon-toggle
 		 */
 		boolean isDisabled = A.toBool(attrs.get("disabled"));
 		mode = A.asString(attrs.get("mode"), "toggle-icon");
@@ -244,14 +251,16 @@ public class DatePicker extends HtmlInputText {
 		} else { // popup
 			dpId = clientId;
 
-			if (!mode.equals("popup")) { // with icon => div with prepend/append style
+			if (!mode.equals("popup")) { // with icon => div with prepend/append
+											// style
 				rw.startElement("div", this);
 				rw.writeAttribute("class", "input-group", "class");
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
 					rw.writeAttribute("class", "input-group-addon", "class");
-					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true, true, true);
+					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null,
+							isDisabled, true, true, true);
 					rw.endElement("span");
 				}
 			}
@@ -287,8 +296,9 @@ public class DatePicker extends HtmlInputText {
 			rw.startElement("span", this);
 			rw.writeAttribute("id", clientId + "_" + ADDON, "id");
 			rw.writeAttribute("class", "input-group-addon", "class");
-			
-			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true, true, true);
+
+			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true,
+					true, true);
 			rw.endElement("span");
 		}
 
@@ -327,7 +337,7 @@ public class DatePicker extends HtmlInputText {
 		if (mode.equals("toggle-icon") || mode.equals("icon-toggle")) {
 			sb.append(JQ.SHOWON).append(":").append("'" + "button" + "'").append(",");
 		}
-		if(A.toBool(attrs.get(JQ.DTDISABLED))) {
+		if (A.toBool(attrs.get(JQ.DTDISABLED))) {
 			sb.append(JQ.DTDISABLED).append(":").append("true").append(",");
 		}
 
@@ -341,7 +351,8 @@ public class DatePicker extends HtmlInputText {
 			sb.append(JQ.MAXDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("'");
 		}
 
-		// If user specifies a specific language to use then we render the datepicker using this language
+		// If user specifies a specific language to use then we render the
+		// datepicker using this language
 		// else we use the selected locale language
 		String l = A.asString(attrs.get(JQ.LANG));
 		if (l == null) {
@@ -363,16 +374,20 @@ public class DatePicker extends HtmlInputText {
 
 			return dtFormat.format((Date) dt);
 		} else {
-			throw new IllegalArgumentException("Value could be either String or java.util.Date, you may want to use a custom converter.");
+			throw new IllegalArgumentException(
+					"Value could be either String or java.util.Date, you may want to use a custom converter.");
 		}
 	}
 
 	// Pass the attrs timezone value
 	/*
-	 * public static TimeZone selectTimeZone(Object utz) { java.util.TimeZone selTimeZone; if (utz != null) { if (utz instanceof String) {
-	 * selTimeZone = java.util.TimeZone.getTimeZone((String) utz); } else if (utz instanceof java.util.TimeZone) { selTimeZone =
-	 * (java.util.TimeZone) utz; } else { throw new IllegalArgumentException("TimeZone should be either String or java.util.TimeZone"); } }
-	 * else { selTimeZone = java.util.TimeZone.getDefault(); } return selTimeZone; }
+	 * public static TimeZone selectTimeZone(Object utz) { java.util.TimeZone
+	 * selTimeZone; if (utz != null) { if (utz instanceof String) { selTimeZone
+	 * = java.util.TimeZone.getTimeZone((String) utz); } else if (utz instanceof
+	 * java.util.TimeZone) { selTimeZone = (java.util.TimeZone) utz; } else {
+	 * throw new IllegalArgumentException(
+	 * "TimeZone should be either String or java.util.TimeZone"); } } else {
+	 * selTimeZone = java.util.TimeZone.getDefault(); } return selTimeZone; }
 	 */
 
 	// Pass facesContext.getViewRoot().getLocale() and attrs locale value
@@ -385,8 +400,8 @@ public class DatePicker extends HtmlInputText {
 			} else if (loc instanceof java.util.Locale) {
 				selLocale = (java.util.Locale) loc;
 			} else {
-				throw new IllegalArgumentException("Type:" + loc.getClass() + " is not a valid locale type for DatePicker:"
-						+ this.getClientId());
+				throw new IllegalArgumentException(
+						"Type:" + loc.getClass() + " is not a valid locale type for DatePicker:" + this.getClientId());
 			}
 		}
 
@@ -394,7 +409,8 @@ public class DatePicker extends HtmlInputText {
 	}
 
 	/**
-	 * Selects the Date Pattern to use based on the given Locale if the input format is null
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
 	 * 
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
@@ -500,14 +516,16 @@ public class DatePicker extends HtmlInputText {
 	 * <p>
 	 * Creates and returns a FacesMessage for the specified Locale.
 	 * </p>
-	 * Simplified and streamlined version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
+	 * Simplified and streamlined version of the implementation of Mojarra
+	 * 2.2.8-b02 (see MessageFactory).
 	 *
 	 * @param messageId
 	 *            - the key of the message in the resource bundle
 	 * @param params
 	 *            - substitution parameters
 	 *
-	 * @return a localized <code>FacesMessage</code> with the severity of FacesMessage.SEVERITY_ERROR
+	 * @return a localized <code>FacesMessage</code> with the severity of
+	 *         FacesMessage.SEVERITY_ERROR
 	 */
 	public static FacesMessage getMessage(String messageId, String... params) {
 		String summary = null;
@@ -520,7 +538,8 @@ public class DatePicker extends HtmlInputText {
 		// see if we have a user-provided bundle
 		Application app = (FacesContext.getCurrentInstance().getApplication());
 		if (null != (bundleName = app.getMessageBundle())) {
-			if (null != (bundle = ResourceBundle.getBundle(bundleName, locale, Thread.currentThread().getContextClassLoader()))) {
+			if (null != (bundle = ResourceBundle.getBundle(bundleName, locale,
+					Thread.currentThread().getContextClassLoader()))) {
 				// see if we have a hit
 				try {
 					summary = bundle.getString(messageId);
@@ -534,7 +553,8 @@ public class DatePicker extends HtmlInputText {
 		// we couldn't find a summary in the user-provided bundle
 		if (null == summary) {
 			// see if we have a summary in the app provided bundle
-			bundle = ResourceBundle.getBundle(FacesMessage.FACES_MESSAGES, locale, Thread.currentThread().getContextClassLoader());
+			bundle = ResourceBundle.getBundle(FacesMessage.FACES_MESSAGES, locale,
+					Thread.currentThread().getContextClassLoader());
 			if (null == bundle) {
 				throw new NullPointerException();
 			}
@@ -562,7 +582,8 @@ public class DatePicker extends HtmlInputText {
 	 * <p>
 	 * Returns the <code>label</code> property from the specified component.
 	 * </p>
-	 * Simplified and adapted version of the implementation of Mojarra 2.2.8-b02 (see MessageFactory).
+	 * Simplified and adapted version of the implementation of Mojarra 2.2.8-b02
+	 * (see MessageFactory).
 	 *
 	 * @param context
 	 *            - the <code>FacesContext</code> for the current request
@@ -576,10 +597,10 @@ public class DatePicker extends HtmlInputText {
 			if (null != vex)
 				return (String) vex.getValue(context.getELContext());
 		}
-        if (o == null) {
-        	// Use the "clientId" if there was no label specified.
-            o = getClientId(context);
-        }
-        return (String)o;
+		if (o == null) {
+			// Use the "clientId" if there was no label specified.
+			o = getClientId(context);
+		}
+		return (String) o;
 	}
 }

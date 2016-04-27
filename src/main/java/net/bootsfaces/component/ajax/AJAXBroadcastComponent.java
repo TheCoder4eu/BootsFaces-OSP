@@ -74,8 +74,8 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 	}
 
 	/**
-	 * Execute the ajax call when ajax syntax was found 
-	 * ajax:<command>
+	 * Execute the ajax call when ajax syntax was found ajax:<command>
+	 * 
 	 * @param context
 	 * @param command
 	 * @return
@@ -110,6 +110,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 
 	/**
 	 * Evaluate the expression syntax
+	 * 
 	 * @param el
 	 * @param context
 	 */

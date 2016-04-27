@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Dario D'Urzo
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU Lesser General Public License
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
- */package net.bootsfaces.component.growl;
+ */
+package net.bootsfaces.component.growl;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
@@ -37,9 +38,32 @@ public class Growl extends UIMessages {
 		AddResourcesListener.addThemedCSSResource("animate.css");
 	}
 
-	protected enum PropertyKeys {
-		globalOnly, showDetail, showSummary, icon, placementFrom, placementAlign, escape, style, styleClass, animationEnter, animationExit, delay, timer, newestOnTop, allowDismiss;
+	/**
+	 * Provide support to snake-case attribute in EL-expression items
+	 */
+	@Override
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
+	}
 
+	protected enum PropertyKeys {
+		_for,
+		globalOnly,
+		showDetail,
+		showSummary,
+		style,
+		styleClass,
+		icon,
+		placementFrom,
+		placementAlign,
+		delay,
+		timer,
+		animationEnter,
+		animationExit,
+		newestOnTop,
+		allowDismiss,
+		escape;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -53,54 +77,67 @@ public class Growl extends UIMessages {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
-	
+
 	/**
-	 * Provide support to snake-case attribute in EL-expression items
-	 */
-	@Override
-	public void setValueExpression(String name, ValueExpression binding) {
-		name = BsfUtils.snakeCaseToCamelCase(name);
-		super.setValueExpression(name, binding);
-	}
-	
-	/**
-	 * By default, error messages encode HTML and JavaScript code. Instead of
-	 * being executed, the source code is displayed. This protects you against
-	 * hacker attacks. By setting escape=false, you deactivate the protection,
-	 * and allow HTML and JavaScript code to be rendered.
+	 * The ID of the component whose attached FacesMessage object (if present)
+	 * should be diplayed by this component. It takes precedence over
+	 * globalOnly.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	public boolean isEscape() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
-		return (boolean) value;
+	public String getFor() {
+		return (String) getStateHelper().eval(PropertyKeys._for);
 	}
 
 	/**
-	 * By default, error messages encode HTML and JavaScript code. Instead of
-	 * being execute, the source code is displayed. This protects you against
-	 * hacker attacks. By setting escape=false, you deactivate the protection,
-	 * and allow HTML and JavaScript code to be rendered.
+	 * The ID of the component whose attached FacesMessage object (if present)
+	 * should be diplayed by this component. It takes precedence over
+	 * globalOnly.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setEscape(boolean _escape) {
-		getStateHelper().put(PropertyKeys.escape, _escape);
+	public void setFor(String _for) {
+		getStateHelper().put(PropertyKeys._for, _for);
 	}
-	
+
+	/**
+	 * Specifies whether only messages (FacesMessage objects) not associated
+	 * with a specific component should be displayed, ie whether messages should
+	 * be ignored if they are attached to a particular component. Defaults to
+	 * false.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isGlobalOnly() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.globalOnly, false);
+	}
+
+	/**
+	 * Specifies whether only messages (FacesMessage objects) not associated
+	 * with a specific component should be displayed, ie whether messages should
+	 * be ignored if they are attached to a particular component. Defaults to
+	 * false.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setGlobalOnly(boolean _globalOnly) {
+		getStateHelper().put(PropertyKeys.globalOnly, _globalOnly);
+	}
+
 	/**
 	 * Specifies whether the detailed information from the message should be
 	 * shown. Default to false.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isShowDetail() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, false);
 	}
 
 	/**
@@ -117,13 +154,12 @@ public class Growl extends UIMessages {
 	 * Specifies whether the summary information from the message should be
 	 * shown. Defaults to true.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isShowSummary() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
 	}
 
 	/**
@@ -135,107 +171,16 @@ public class Growl extends UIMessages {
 	public void setShowSummary(boolean _showSummary) {
 		getStateHelper().put(PropertyKeys.showSummary, _showSummary);
 	}
-	
-	/**
-	 * Specifies whether only messages (FacesMessage objects) not associated
-	 * with a specific component should be displayed, ie whether messages should
-	 * be ignored if they are attached to a particular component. Defaults to
-	 * false.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public boolean isGlobalOnly() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.globalOnly, false);
-		return (boolean) value;
-	}
 
-	/**
-	 * Specifies whether only messages (FacesMessage objects) not associated
-	 * with a specific component should be displayed, ie whether messages should
-	 * be ignored if they are attached to a particular component. Defaults to
-	 * false.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setGlobalOnly(boolean _globalOnly) {
-		getStateHelper().put(PropertyKeys.globalOnly, _globalOnly);
-	}
-	
-	/**
-	 * Icon of the message
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getIcon() {
-		String value = (String) getStateHelper().eval(PropertyKeys.icon, null);
-		return value;
-	}
-
-	/**
-	 * Icon of the message
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setIcon(String _icon) {
-		getStateHelper().put(PropertyKeys.icon, _icon);
-	}
-	
-	/**
-	 * The position of growl in vertical. Valid values are 'top' or 'bottom'
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getPlacementFrom() {
-		String value = (String) getStateHelper().eval(PropertyKeys.placementFrom, "top");
-		return value;
-	}
-
-	/**
-	 * The position of growl in vertical. Valid values are 'top' or 'bottom'
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPlacementFrom(String _placementFrom) {
-		getStateHelper().put(PropertyKeys.placementFrom, _placementFrom);
-	}
-
-	/**
-	 * The position of growl in horizontal. Valid values are 'left', 'center' or 'right'
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getPlacementAlign() {
-		String value = (String) getStateHelper().eval(PropertyKeys.placementAlign, "right");
-		return value;
-	}
-
-	/**
-	 * The position of growl in horizontal. Valid values are 'left', 'center' or 'right'
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPlacementAlign(String _placementAlign) {
-		getStateHelper().put(PropertyKeys.placementAlign, _placementAlign);
-	}
-	
 	/**
 	 * HTML: CSS styling instructions.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
 
 	/**
@@ -251,13 +196,12 @@ public class Growl extends UIMessages {
 	 * The CSS class for this element. Corresponds to the HTML 'class'
 	 * attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
 
 	/**
@@ -269,53 +213,81 @@ public class Growl extends UIMessages {
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
-	
-	/**
-	 * Animation of the message while entering <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getAnimationEnter() {
-		String value = (String)getStateHelper().eval(PropertyKeys.animationEnter, "animated fadeInDown");
-		return  value;
-	}
-	
-	/**
-	 * Animation of the message while entering <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAnimationEnter(String _animationEnter) {
-	    getStateHelper().put(PropertyKeys.animationEnter, _animationEnter);
-    }
-	
 
 	/**
-	 * Animation of the message while exiting <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The glyphicon to display on message
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
-	public String getAnimationExit() {
-		String value = (String)getStateHelper().eval(PropertyKeys.animationExit, "animated fadeOutUp");
-		return  value;
+	public String getIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.icon);
 	}
-	
+
 	/**
-	 * Animation of the message while exiting <P>
+	 * The glyphicon to display on message
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAnimationExit(String _animationExit) {
-	    getStateHelper().put(PropertyKeys.animationExit, _animationExit);
-    }
-	
+	public void setIcon(String _icon) {
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
+
+	/**
+	 * Vertical position of the growl message. Valid values are 'top' or
+	 * 'bottom'.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getPlacementFrom() {
+		return (String) getStateHelper().eval(PropertyKeys.placementFrom, "top");
+	}
+
+	/**
+	 * Vertical position of the growl message. Valid values are 'top' or
+	 * 'bottom'.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPlacementFrom(String _placementFrom) {
+		getStateHelper().put(PropertyKeys.placementFrom, _placementFrom);
+	}
+
+	/**
+	 * Horizontal position of the growl message. Valid values are 'left',
+	 * 'center' or 'right'.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getPlacementAlign() {
+		return (String) getStateHelper().eval(PropertyKeys.placementAlign, "right");
+	}
+
+	/**
+	 * Horizontal position of the growl message. Valid values are 'left',
+	 * 'center' or 'right'.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPlacementAlign(String _placementAlign) {
+		getStateHelper().put(PropertyKeys.placementAlign, _placementAlign);
+	}
+
 	/**
 	 * The message is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getDelay() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.delay, 5000);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.delay, 5000);
 	}
 
 	/**
@@ -327,38 +299,78 @@ public class Growl extends UIMessages {
 	public void setDelay(int _delay) {
 		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
-	
+
 	/**
-	 * This is the amount of milliseconds removed from the notify at every timer milliseconds.
+	 * This is the amount of milliseconds removed from the notify at every timer
+	 * milliseconds.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public int getTimer() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.timer, 1000);
-		return (int) value;
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.timer, 1000);
 	}
 
 	/**
-	 * This is the amount of milliseconds removed from the notify at every timer milliseconds.
+	 * This is the amount of milliseconds removed from the notify at every timer
+	 * milliseconds.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTimer(int _timer) {
 		getStateHelper().put(PropertyKeys.timer, _timer);
 	}
-	
+
+	/**
+	 * Animation of the message while entering
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getAnimationEnter() {
+		return (String) getStateHelper().eval(PropertyKeys.animationEnter, "animated fadeInDown");
+	}
+
+	/**
+	 * Animation of the message while entering
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAnimationEnter(String _animationEnter) {
+		getStateHelper().put(PropertyKeys.animationEnter, _animationEnter);
+	}
+
+	/**
+	 * Animation of the message while exiting
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public String getAnimationExit() {
+		return (String) getStateHelper().eval(PropertyKeys.animationExit, "animated fadeOutUp");
+	}
+
+	/**
+	 * Animation of the message while exiting
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAnimationExit(String _animationExit) {
+		getStateHelper().put(PropertyKeys.animationExit, _animationExit);
+	}
+
 	/**
 	 * Specifies if newest messages must be displayed on top of the others.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isNewestOnTop() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.newestOnTop, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.newestOnTop, false);
 	}
 
 	/**
@@ -369,17 +381,16 @@ public class Growl extends UIMessages {
 	public void setNewestOnTop(boolean _newestOnTop) {
 		getStateHelper().put(PropertyKeys.newestOnTop, _newestOnTop);
 	}
-	
+
 	/**
 	 * Specifies whether the message can be dismissed.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
 	public boolean isAllowDismiss() {
-		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.allowDismiss, false);
-		return (boolean) value;
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.allowDismiss, false);
 	}
 
 	/**
@@ -390,5 +401,31 @@ public class Growl extends UIMessages {
 	public void setAllowDismiss(boolean _allowDismiss) {
 		getStateHelper().put(PropertyKeys.allowDismiss, _allowDismiss);
 	}
-	
+
+	/**
+	 * By default, error messages encode HTML and JavaScript code. Instead of
+	 * being executed, the source code is displayed. This protects you against
+	 * hacker attacks. By setting escape=false, you deactivate the protection,
+	 * and allow HTML and JavaScript code to be rendered.
+	 * <P>
+	 *
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isEscape() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, false);
+	}
+
+	/**
+	 * By default, error messages encode HTML and JavaScript code. Instead of
+	 * being executed, the source code is displayed. This protects you against
+	 * hacker attacks. By setting escape=false, you deactivate the protection,
+	 * and allow HTML and JavaScript code to be rendered.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setEscape(boolean _escape) {
+		getStateHelper().put(PropertyKeys.escape, _escape);
+	}
+
 }

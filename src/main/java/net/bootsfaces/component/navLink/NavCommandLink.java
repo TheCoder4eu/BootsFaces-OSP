@@ -36,7 +36,8 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
 @FacesComponent("net.bootsfaces.component.navLink.NavCommandLink")
-public class NavCommandLink extends UICommand implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
+public class NavCommandLink extends UICommand
+		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navLink.NavCommandLink";
 
@@ -46,11 +47,12 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 
 	public NavCommandLink() {
 		Tooltip.addResourceFile();
-		//AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		//AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
+		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
+		// "jq/jquery.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -62,14 +64,53 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
+
 	@Override
 	public boolean getRendersChildren() {
 		return true;
 	}
 
 	protected enum PropertyKeys {
-		active, ajax, binding, contentClass, contentStyle, disabled, fragment, header, href, icon, iconAlign, iconAwesome, immediate, includeViewParams, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		active,
+		ajax,
+		binding,
+		contentClass,
+		contentStyle,
+		disabled,
+		fragment,
+		header,
+		href,
+		icon,
+		iconAlign,
+		iconAwesome,
+		immediate,
+		includeViewParams,
+		onblur,
+		onchange,
+		onclick,
+		oncomplete,
+		ondblclick,
+		onfocus,
+		onkeydown,
+		onkeypress,
+		onkeyup,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		onselect,
+		outcome,
+		process,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update;
 
 		String toString;
 
@@ -379,34 +420,38 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
-    /**
-     * <p class="changed_added_2_0">Return whether or not the view
-     * parameters should be encoded into the target url.</p>
-     *
-     * @since 2.0
-     */
-    public boolean isIncludeViewParams() {
+	/**
+	 * <p class="changed_added_2_0">
+	 * Return whether or not the view parameters should be encoded into the
+	 * target url.
+	 * </p>
+	 *
+	 * @since 2.0
+	 */
+	public boolean isIncludeViewParams() {
 
-        return (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
+		return (Boolean) getStateHelper().eval(PropertyKeys.includeViewParams, false);
 
-    }
+	}
 
-    /**
-     * <p class="changed_added_2_0">Set whether or not the page
-     * parameters should be encoded into the target url.</p>
-     *
-     * @param includeViewParams The state of the switch for encoding
-     * page parameters
-     *
-     * @since 2.0
-     */
-    public void setIncludeViewParams(boolean includeViewParams) {
+	/**
+	 * <p class="changed_added_2_0">
+	 * Set whether or not the page parameters should be encoded into the target
+	 * url.
+	 * </p>
+	 *
+	 * @param includeViewParams
+	 *            The state of the switch for encoding page parameters
+	 *
+	 * @since 2.0
+	 */
+	public void setIncludeViewParams(boolean includeViewParams) {
 
-        getStateHelper().put(PropertyKeys.includeViewParams, includeViewParams);
+		getStateHelper().put(PropertyKeys.includeViewParams, includeViewParams);
 
-    }
-    
- 	/**
+	}
+
+	/**
 	 * Client side callback to execute when input element loses focus.
 	 * <P>
 	 * 
@@ -991,20 +1036,24 @@ public class NavCommandLink extends UICommand implements ClientBehaviorHolder, n
 	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isDisabled() {
-		Boolean value = (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
+		Boolean value = (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
 		return (boolean) value;
 	}
-	
+
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
+	 * Boolean value to specify if the button is disabled.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
-	    getStateHelper().put(PropertyKeys.disabled, _disabled);
-    }
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
+	}
 
 }
