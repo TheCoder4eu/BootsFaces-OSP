@@ -56,291 +56,253 @@ public class ScrollUp extends UIComponentBase {
 	}
 
 	protected enum PropertyKeys {
-		name, distance, from, speed, animation, animationSpeed, text, title, image, easing, trigger, target, overlay;
-		String toString;
+		name,
+		distance,
+		from,
+		speed,
+		animation,
+		animationSpeed,
+		text,
+		title,
+		image,
+		easing,
+		trigger,
+		target,
+		overlay
+;
+        String toString;
 
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
 
-		PropertyKeys() {
-		}
+        PropertyKeys() {}
 
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+	
 
 	/**
-	 * Element ID
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Element ID <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getName() {
-		String value = (String) getStateHelper().eval(PropertyKeys.name, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.name);
 	}
-
+	
 	/**
-	 * Element ID
-	 * <P>
+	 * Element ID <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setName(String _name) {
-		getStateHelper().put(PropertyKeys.name, _name);
-	}
+	    getStateHelper().put(PropertyKeys.name, _name);
+    }
+	
 
 	/**
-	 * Distance from top/bottom before showing element (px)
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Distance from top/bottom before showing element (px) <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getDistance() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.distance, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.distance, 0);
 	}
-
+	
 	/**
-	 * Distance from top/bottom before showing element (px)
-	 * <P>
+	 * Distance from top/bottom before showing element (px) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDistance(int _distance) {
-		getStateHelper().put(PropertyKeys.distance, _distance);
-	}
+	    getStateHelper().put(PropertyKeys.distance, _distance);
+    }
+	
 
 	/**
-	 * scroll direction: 'top' or 'bottom'
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * scroll direction: 'top' or 'bottom' <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getFrom() {
-		String value = (String) getStateHelper().eval(PropertyKeys.from, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.from);
 	}
-
+	
 	/**
-	 * scroll direction: 'top' or 'bottom'
-	 * <P>
+	 * scroll direction: 'top' or 'bottom' <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFrom(String _from) {
-		getStateHelper().put(PropertyKeys.from, _from);
-	}
+	    getStateHelper().put(PropertyKeys.from, _from);
+    }
+	
 
 	/**
-	 * Speed back to top (ms).
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Speed back to top (ms). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getSpeed() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.speed, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.speed, 0);
 	}
-
+	
 	/**
-	 * Speed back to top (ms).
-	 * <P>
+	 * Speed back to top (ms). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSpeed(int _speed) {
-		getStateHelper().put(PropertyKeys.speed, _speed);
-	}
+	    getStateHelper().put(PropertyKeys.speed, _speed);
+    }
+	
 
 	/**
-	 * Animation type: Fade, slide, none.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Animation type: Fade, slide, none. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAnimation() {
-		String value = (String) getStateHelper().eval(PropertyKeys.animation, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.animation);
 	}
-
+	
 	/**
-	 * Animation type: Fade, slide, none.
-	 * <P>
+	 * Animation type: Fade, slide, none. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAnimation(String _animation) {
-		getStateHelper().put(PropertyKeys.animation, _animation);
-	}
+	    getStateHelper().put(PropertyKeys.animation, _animation);
+    }
+	
 
 	/**
-	 * Animation speed (ms).
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Animation speed (ms). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getAnimationSpeed() {
-		Integer value = (Integer) getStateHelper().eval(PropertyKeys.animationSpeed, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.animationSpeed, 0);
 	}
-
+	
 	/**
-	 * Animation speed (ms).
-	 * <P>
+	 * Animation speed (ms). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAnimationSpeed(int _animationSpeed) {
-		getStateHelper().put(PropertyKeys.animationSpeed, _animationSpeed);
-	}
+	    getStateHelper().put(PropertyKeys.animationSpeed, _animationSpeed);
+    }
+	
 
 	/**
-	 * Text for element, can contain HTML.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Text for element, can contain HTML. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getText() {
-		String value = (String) getStateHelper().eval(PropertyKeys.text, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.text);
 	}
-
+	
 	/**
-	 * Text for element, can contain HTML.
-	 * <P>
+	 * Text for element, can contain HTML. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setText(String _text) {
-		getStateHelper().put(PropertyKeys.text, _text);
-	}
+	    getStateHelper().put(PropertyKeys.text, _text);
+    }
+	
 
 	/**
-	 * Set a custom &lt;a&gt; title if required.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Set a custom &lt;a&gt; title if required. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTitle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.title, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.title);
 	}
-
+	
 	/**
-	 * Set a custom &lt;a&gt; title if required.
-	 * <P>
+	 * Set a custom &lt;a&gt; title if required. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTitle(String _title) {
-		getStateHelper().put(PropertyKeys.title, _title);
-	}
+	    getStateHelper().put(PropertyKeys.title, _title);
+    }
+	
 
 	/**
-	 * Set true to use image. (Must be set in related css).
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Set true to use image. (Must be set in related css). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getImage() {
-		String value = (String) getStateHelper().eval(PropertyKeys.image, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.image);
 	}
-
+	
 	/**
-	 * Set true to use image. (Must be set in related css).
-	 * <P>
+	 * Set true to use image. (Must be set in related css). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setImage(String _image) {
-		getStateHelper().put(PropertyKeys.image, _image);
-	}
+	    getStateHelper().put(PropertyKeys.image, _image);
+    }
+	
 
 	/**
-	 * Scroll easing (see http://easings.net/).
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Scroll easing (see http://easings.net/). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getEasing() {
-		String value = (String) getStateHelper().eval(PropertyKeys.easing, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.easing);
 	}
-
+	
 	/**
-	 * Scroll easing (see http://easings.net/).
-	 * <P>
+	 * Scroll easing (see http://easings.net/). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEasing(String _easing) {
-		getStateHelper().put(PropertyKeys.easing, _easing);
-	}
+	    getStateHelper().put(PropertyKeys.easing, _easing);
+    }
+	
 
 	/**
-	 * Set a custom triggering element. Can be an HTML string or jQuery object
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Set a custom triggering element. Can be an HTML string or jQuery object <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTrigger() {
-		String value = (String) getStateHelper().eval(PropertyKeys.trigger, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.trigger);
 	}
-
+	
 	/**
-	 * Set a custom triggering element. Can be an HTML string or jQuery object
-	 * <P>
+	 * Set a custom triggering element. Can be an HTML string or jQuery object <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTrigger(String _trigger) {
-		getStateHelper().put(PropertyKeys.trigger, _trigger);
-	}
+	    getStateHelper().put(PropertyKeys.trigger, _trigger);
+    }
+	
 
 	/**
-	 * Set a custom target element for scrolling to. Can be element or number.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Set a custom target element for scrolling to. Can be element or number. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTarget() {
-		String value = (String) getStateHelper().eval(PropertyKeys.target, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.target);
 	}
-
+	
 	/**
-	 * Set a custom target element for scrolling to. Can be element or number.
-	 * <P>
+	 * Set a custom target element for scrolling to. Can be element or number. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTarget(String _target) {
-		getStateHelper().put(PropertyKeys.target, _target);
-	}
+	    getStateHelper().put(PropertyKeys.target, _target);
+    }
+	
 
 	/**
-	 * Set CSS color to display scrollUp active point, e.g '#00FFFF'
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Set CSS color to display scrollUp active point, e.g '#00FFFF' <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOverlay() {
-		String value = (String) getStateHelper().eval(PropertyKeys.overlay, null);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.overlay);
 	}
-
+	
 	/**
-	 * Set CSS color to display scrollUp active point, e.g '#00FFFF'
-	 * <P>
+	 * Set CSS color to display scrollUp active point, e.g '#00FFFF' <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOverlay(String _overlay) {
-		getStateHelper().put(PropertyKeys.overlay, _overlay);
-	}
+	    getStateHelper().put(PropertyKeys.overlay, _overlay);
+    }
+	
 }
+

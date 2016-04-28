@@ -107,8 +107,8 @@ public class MessageRenderer extends CoreRenderer {
 					writeAttribute(rw, "aria-hidden", "true");
 					rw.endElement("span");
 				}
-				if (message.isShowSummary()) {
-					if (msg.getSummary() != null && (!msg.getSummary().equals(msg.getDetail()))) {
+				if (message.isShowSummary() && msg.getSummary() != null) {
+					if(!msg.getSummary().equals(msg.getDetail()) || message.isShowDetail() == false) {
 						rw.startElement("span", component);
 						writeAttribute(rw, "class", "bf-message-summary");
 						if (message.isEscape()) {

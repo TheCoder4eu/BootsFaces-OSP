@@ -47,20 +47,19 @@ public class ButtonGroup extends UIComponentBase implements net.bootsfaces.rende
 	}	
 	
     protected enum PropertyKeys {
-binding,
-orientation,
-pull,
-size,
-style,
-styleClass,
-tooltip,
-tooltipContainer,
-tooltipDelay,
-tooltipDelayHide,
-tooltipDelayShow,
-tooltipPosition
+		binding,
+		orientation,
+		pull,
+		size,
+		style,
+		styleClass,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition
 ;
-
         String toString;
 
         PropertyKeys(String toString) {
@@ -76,16 +75,15 @@ tooltipPosition
 	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
-		return  value;
+		return  (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
 	}
 	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
@@ -98,8 +96,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOrientation() {
-		String value = (String)getStateHelper().eval(PropertyKeys.orientation);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.orientation);
 	}
 	
 	/**
@@ -116,8 +113,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPull() {
-		String value = (String)getStateHelper().eval(PropertyKeys.pull);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.pull);
 	}
 	
 	/**
@@ -134,8 +130,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSize() {
-		String value = (String)getStateHelper().eval(PropertyKeys.size);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.size);
 	}
 	
 	/**
@@ -152,8 +147,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String)getStateHelper().eval(PropertyKeys.style);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.style);
 	}
 	
 	/**
@@ -170,8 +164,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String)getStateHelper().eval(PropertyKeys.styleClass);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
 	}
 	
 	/**
@@ -188,8 +181,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltip);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.tooltip);
 	}
 	
 	/**
@@ -202,16 +194,15 @@ tooltipPosition
 	
 
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
 	
 	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering error in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
@@ -224,8 +215,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
 	
 	/**
@@ -242,8 +232,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
 	
 	/**
@@ -260,8 +249,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		Integer value = (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-		return (int) value;
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
 	
 	/**
@@ -278,8 +266,7 @@ tooltipPosition
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		String value = (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
-		return  value;
+		return  (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
 	
 	/**

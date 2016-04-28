@@ -35,11 +35,11 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
-@FacesComponent("net.bootsfaces.component.navLink.NavCommandLink")
+@FacesComponent("net.bootsfaces.component.navCommandLink.NavCommandLink")
 public class NavCommandLink extends UICommand
 		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navLink.NavCommandLink";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navCommandLink.NavCommandLink";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 

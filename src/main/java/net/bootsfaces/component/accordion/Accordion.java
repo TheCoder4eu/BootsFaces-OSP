@@ -54,40 +54,37 @@ public class Accordion extends UIComponentBase {
 	}
 
 	protected enum PropertyKeys {
-		expandedPanels;
+		expandedPanels
+;
+        String toString;
 
-		String toString;
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
 
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
+        PropertyKeys() {}
 
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+	
 
 	/**
-	 * Comma separated list of child panel id that need to render expanded.
-	 * <P>
-	 *
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Comma separated list of child panel id that need to render expanded. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getExpandedPanels() {
-		String value = (String) getStateHelper().eval(PropertyKeys.expandedPanels);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.expandedPanels);
 	}
-
+	
 	/**
-	 * Comma separated list of child panel id that need to render expanded.
-	 * <P>
+	 * Comma separated list of child panel id that need to render expanded. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setExpandedPanels(String _expandedPanels) {
-		getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
-	}
+	    getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
+    }
+	
 }
+

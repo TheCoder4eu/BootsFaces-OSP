@@ -53,86 +53,73 @@ public class Badge extends UIOutput {
 	}
 
 	protected enum PropertyKeys {
-		binding, style, styleClass;
+		binding,
+		style,
+		styleClass
+;
+        String toString;
 
-		String toString;
+        PropertyKeys(String toString) {
+            this.toString = toString;
+        }
 
-		PropertyKeys(String toString) {
-			this.toString = toString;
-		}
+        PropertyKeys() {}
 
-		PropertyKeys() {
-		}
-
-		public String toString() {
-			return ((this.toString != null) ? this.toString : super.toString());
-		}
-	}
+        public String toString() {
+            return ((this.toString != null) ? this.toString : super.toString());
+        }
+    }
+	
 
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		javax.faces.component.UIComponent value = (javax.faces.component.UIComponent) getStateHelper()
-				.eval(PropertyKeys.binding);
-		return value;
+		return  (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
 	}
-
+	
 	/**
-	 * An el expression referring to a server side UIComponent instance in a
-	 * backing bean.
-	 * <P>
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
-		getStateHelper().put(PropertyKeys.binding, _binding);
-	}
+	    getStateHelper().put(PropertyKeys.binding, _binding);
+    }
+	
 
 	/**
-	 * Inline style of the input element.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
-		String value = (String) getStateHelper().eval(PropertyKeys.style);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.style);
 	}
-
+	
 	/**
-	 * Inline style of the input element.
-	 * <P>
+	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-		getStateHelper().put(PropertyKeys.style, _style);
-	}
+	    getStateHelper().put(PropertyKeys.style, _style);
+    }
+	
 
 	/**
-	 * Style class of this element.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
-		String value = (String) getStateHelper().eval(PropertyKeys.styleClass);
-		return value;
+		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
 	}
-
+	
 	/**
-	 * Style class of this element.
-	 * <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
+	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+    }
+	
 }
+
