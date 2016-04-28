@@ -17,7 +17,7 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.navLink;
+package net.bootsfaces.component.navCommandLink;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -30,6 +30,7 @@ import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.navLink.AbstractNavLink;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -38,7 +39,6 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent("net.bootsfaces.component.navCommandLink.NavCommandLink")
 public class NavCommandLink extends UICommand
 		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
-
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navCommandLink.NavCommandLink";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";

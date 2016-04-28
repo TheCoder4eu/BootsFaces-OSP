@@ -38,6 +38,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.component.navBarLinks.NavBarLinks;
+import net.bootsfaces.component.navCommandLink.NavCommandLink;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
