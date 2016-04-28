@@ -71,9 +71,8 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panelGrid.PanelGrid";
 
 	public PanelGrid() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

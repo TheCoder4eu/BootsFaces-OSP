@@ -24,6 +24,7 @@ import javax.el.ValueExpression;
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -45,7 +46,7 @@ public class TabLinks extends LinksContainer {
 	public TabLinks() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

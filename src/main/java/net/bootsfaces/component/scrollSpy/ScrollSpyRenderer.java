@@ -90,17 +90,17 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		
 		// Get attributes
 		String container = scrollSpy.getContainer();
-		if(!BsfUtils.StringIsValued(container)) {
+		if(!BsfUtils.isStringValued(container)) {
 			container = "body";
 		} else container = "#" + decodeAndEscapeSelectors(context, component, container);
 		
 		String target = scrollSpy.getTarget();
-		if(!BsfUtils.StringIsValued(target)) {
+		if(!BsfUtils.isStringValued(target)) {
 			target = ".navbar";
 		} else target = "#" + decodeAndEscapeSelectors(context, component, target);
 		
 		int offset = scrollSpy.getOffset();
-		if(!BsfUtils.StringIsValued(target)) {
+		if(!BsfUtils.isStringValued(target)) {
 			offset = 20;
 		} 
 		boolean smooth = scrollSpy.isSmooth();
@@ -160,7 +160,7 @@ public class ScrollSpyRenderer extends CoreRenderer {
 	 */
 	private String decodeAndEscapeSelectors(FacesContext context, UIComponent component, String selector) {
 		selector = ExpressionResolver.getComponentIDs(context, component, selector);
-		selector = BsfUtils.EscapeJQuerySpecialCharsInSelector(selector);
+		selector = BsfUtils.escapeJQuerySpecialCharsInSelector(selector);
 		
 		return selector;
 	}

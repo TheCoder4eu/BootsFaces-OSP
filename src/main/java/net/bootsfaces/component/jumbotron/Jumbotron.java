@@ -39,9 +39,8 @@ public class Jumbotron extends UIOutput implements net.bootsfaces.render.IHasToo
 
 	public Jumbotron() {
 
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("jumbotron.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

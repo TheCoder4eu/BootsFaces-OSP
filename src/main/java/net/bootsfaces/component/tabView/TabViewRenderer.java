@@ -149,7 +149,7 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 		
 		writer.endElement("div");
-		Tooltip.activateTooltips(context, tabView.getAttributes(), tabView);
+		Tooltip.activateTooltips(context, tabView);
 	}
 	
 	/**
@@ -182,7 +182,7 @@ public class TabViewRenderer extends CoreRenderer {
 	throws IOException {
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
-		Tooltip.generateTooltip(context, tabView.getAttributes(), writer);
+		Tooltip.generateTooltip(context, tabView, writer);
 		String classes = "nav ";
 		if("left".equalsIgnoreCase(tabView.getTabPosition()) || "right".equalsIgnoreCase(tabView.getTabPosition())) {
 			classes += " nav-pills nav-stacked";
@@ -362,7 +362,7 @@ public class TabViewRenderer extends CoreRenderer {
 			writer.writeAttribute("dir", tab.getDir(), "dir");
 		writer.writeAttribute("id", tab.getClientId(), "id");
 		writer.writeAttribute("role", "presentation", "role");
-		Tooltip.generateTooltip(context, tab.getAttributes(), writer);
+		Tooltip.generateTooltip(context, tab, writer);
 
 		String classes = isActive ? "active" : "";
 		if (tab.getStyleClass() != null) {

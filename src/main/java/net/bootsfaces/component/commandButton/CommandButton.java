@@ -69,13 +69,8 @@ public class CommandButton extends UICommand implements ClientBehaviorHolder, IH
 
 	public CommandButton() {
 		setRendererType(DEFAULT_RENDERER); // this component renders itself
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
-		// "jq/jquery.js");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	/**

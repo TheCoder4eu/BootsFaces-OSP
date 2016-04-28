@@ -79,7 +79,7 @@ public class GenContainerDiv extends UIComponentBase {
         }
         context.getResponseWriter()
                .endElement("div");
-		Tooltip.activateTooltips(context, getAttributes(), this);
+		Tooltip.activateTooltips(context, this);
 
     }
 

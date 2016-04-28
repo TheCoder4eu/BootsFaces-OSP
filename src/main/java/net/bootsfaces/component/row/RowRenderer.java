@@ -59,7 +59,7 @@ public class RowRenderer extends CoreRenderer {
 		String clientId = row.getClientId();
 
 		rw.startElement("div", row);
-		Tooltip.generateTooltip(context, row.getAttributes(), rw);
+		Tooltip.generateTooltip(context, row, rw);
 		String dir = row.getDir();
 		if (null != dir)
 			rw.writeAttribute("dir", dir, "dir");
@@ -75,7 +75,7 @@ public class RowRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("class", s, "class");
 
-		Tooltip.activateTooltips(context, row.getAttributes(), row);
+		Tooltip.activateTooltips(context, row);
 	}
 
 	/**

@@ -21,7 +21,6 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
@@ -78,14 +77,12 @@ public class InputText extends HtmlInputText implements IHasTooltip, IAJAXCompon
 
 	public InputText() {
 		setRendererType("net.bootsfaces.component.inputText.InputText");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		renderLabel = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.defaults.renderLabel");
+		renderLabel= BsfUtils.getInitParam("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);
 		}

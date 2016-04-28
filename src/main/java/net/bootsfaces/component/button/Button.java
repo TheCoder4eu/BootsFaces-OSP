@@ -41,8 +41,7 @@ public class Button extends HtmlOutcomeTargetButton implements net.bootsfaces.re
 		setRendererType(DEFAULT_RENDERER);
 
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	public String getFamily() {

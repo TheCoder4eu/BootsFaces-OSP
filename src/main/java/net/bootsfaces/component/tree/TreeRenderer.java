@@ -130,7 +130,7 @@ public class TreeRenderer extends CoreRenderer {
 		}
 		Tree tree = (Tree) component;
 		String clientId = tree.getClientId();
-		String jqClientId = BsfUtils.EscapeJQuerySpecialCharsInSelector(clientId);
+		String jqClientId = BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
 		ResponseWriter rw = context.getResponseWriter();
 		
 		final UIForm form = BsfUtils.getClosestForm(tree);
@@ -156,9 +156,9 @@ public class TreeRenderer extends CoreRenderer {
 					 	(tree.isShowIcon()  ? "showIcon: true," : "") +
 					 	(tree.isShowCheckbox() ? "showCheckbox: true," : "") +
 					 	(tree.isEnableLinks() ? "enableLinks: true," : "") +
-					 	(BsfUtils.StringIsValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
-					 	(BsfUtils.StringIsValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
-					 	(BsfUtils.StringIsValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
 						"   data: getTreeData(),   " + 
 						// enable nodeSelected event callback
 						"	onNodeSelected: function(event, data) { " +

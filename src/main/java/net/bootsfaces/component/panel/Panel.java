@@ -50,9 +50,8 @@ public class Panel extends UIComponentBase
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panel.Panel";
 
 	public Panel() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);

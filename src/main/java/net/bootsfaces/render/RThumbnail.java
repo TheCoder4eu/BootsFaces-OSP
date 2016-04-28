@@ -58,7 +58,7 @@ public enum RThumbnail {
         ResponseWriter rw = fc.getResponseWriter();
         rw.startElement("div", c);
         rw.writeAttribute("id", c.getClientId(fc), "id");
-        Tooltip.generateTooltip(fc, c.getAttributes(), rw);
+        Tooltip.generateTooltip(fc, c, rw);
         rw.writeAttribute("class", thumbnail, "class");
         /*UIComponent capt;
         capt = c.getFacet(caption.name());
@@ -95,6 +95,6 @@ public enum RThumbnail {
             rw.endElement("div");
         }
         rw.endElement("div");
-        Tooltip.activateTooltips(fc, c.getAttributes(), c);
+        Tooltip.activateTooltips(fc, c);
     }
 }

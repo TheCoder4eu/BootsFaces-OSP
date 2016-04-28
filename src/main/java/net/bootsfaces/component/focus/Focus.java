@@ -47,13 +47,10 @@ public class Focus extends UIComponentBase {
 		Map<String, Object> attrs = getAttributes();
 
 		String target = (String) attrs.get("target");
-		if (!BsfUtils.StringIsValued(target)) {
-			if (this.getParent() != null)
-				target = this.getParent().getId();
-		}
-
-		//
-		if (BsfUtils.StringIsValued(target)) {
+		if(!BsfUtils.isStringValued(target) && this.getParent() != null)
+			target = this.getParent().getId();
+		
+		if(BsfUtils.isStringValued(target)) {
 			ResponseWriter rw = context.getResponseWriter();
 			String itemToFocusID = BsfUtils.getComponentClientId(target);
 

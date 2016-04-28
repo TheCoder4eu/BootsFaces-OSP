@@ -73,12 +73,11 @@ public class SelectBooleanCheckbox extends HtmlInputText implements net.bootsfac
 	}
 
 	public SelectBooleanCheckbox() {
-		Tooltip.addResourceFile();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		Tooltip.addResourceFiles();
+//		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+//		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

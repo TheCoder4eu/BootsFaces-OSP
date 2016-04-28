@@ -45,7 +45,7 @@ public class CarouselCaption extends UICommand
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselCaption.CarouselCaption";
 
 	public CarouselCaption() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		setRendererType(DEFAULT_RENDERER);
 	}
 

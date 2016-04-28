@@ -42,7 +42,6 @@ public class Message extends UIMessage {
 	public Message() {
 		setRendererType(DEFAULT_RENDERER);
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("alerts.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 	}

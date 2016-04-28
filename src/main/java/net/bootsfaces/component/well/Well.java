@@ -38,9 +38,8 @@ public class Well extends UIOutput implements net.bootsfaces.render.IHasTooltip 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.well.Well";
 
 	public Well() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("wells.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

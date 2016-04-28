@@ -26,12 +26,9 @@ implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHold
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.image.Image";
 
-	public Image() {
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+    public Image() {
+        Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

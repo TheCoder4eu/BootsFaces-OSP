@@ -117,6 +117,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		String clientId = outerClientId+"Inner";
 		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
+		Tooltip.generateTooltip(context, menu, rw);
+		
 		if (menu.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 		} else {
@@ -482,15 +484,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		final String itemDescription = selectItem.getItemDescription();
 		final Object itemValue = selectItem.getItemValue();
 
-		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
-		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
-
 		renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue, selectItem.isItemDisabled());
 	}
 
 	private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
 			final String description, final Object itemValue, boolean isDisabled) throws IOException {
-		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().length() == 0;
+		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
 		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
 		rw.startElement("option", null);
@@ -513,8 +512,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		}
 		if (isDisabled)
 			rw.writeAttribute("disabled", "disabled", "disabled");
-                
-                rw.write(itemLabel);
+
+		rw.write(itemLabel);
 
 		rw.endElement("option");
 	}
@@ -547,7 +546,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectOneMenu menu)
 			throws IOException {
 		rw.writeAttribute("id", clientId, null);
-		Tooltip.generateTooltip(FacesContext.getCurrentInstance(), menu, rw);
+		//Tooltip.generateTooltip(FacesContext.getCurrentInstance(), menu, rw);
 		rw.writeAttribute("name", clientId, null);
 
 		StringBuilder sb;

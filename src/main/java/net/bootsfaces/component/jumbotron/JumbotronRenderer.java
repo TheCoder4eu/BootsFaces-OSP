@@ -57,13 +57,13 @@ public class JumbotronRenderer extends CoreRenderer {
 		rw.startElement("div", jumbotron);
 		rw.writeAttribute("id",clientId,"id");
 		
-		if(BsfUtils.StringIsValued(jumbotron.getStyle()))
+		if(BsfUtils.isStringValued(jumbotron.getStyle()))
 			rw.writeAttribute("style", jumbotron.getStyle(), "style");
 		
 		Tooltip.generateTooltip(context, jumbotron, rw);
 		
 		String styleClass = "jumbotron";
-		if(BsfUtils.StringIsValued(jumbotron.getStyleClass()))
+		if(BsfUtils.isStringValued(jumbotron.getStyleClass()))
 			styleClass = styleClass + " " + jumbotron.getStyleClass();
 		rw.writeAttribute("class", styleClass, "class");
 	}

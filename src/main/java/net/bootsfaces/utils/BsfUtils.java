@@ -62,19 +62,19 @@ public class BsfUtils {
 	 * @param str
 	 * @return
 	 */
-	public static boolean StringIsValued(String str) {
-		if(str != null && !"".equals(str.trim())) return true;
-		return false;
+	public static boolean isStringValued(String str) {
+		return str != null && !"".equals(str.trim());
 	}
 
 	/**
-	 * Get the string if is valued, otherwise return default Value
+	 *  Get the string if is not null or empty,
+	 *  otherwise return the default value
 	 * @param str
 	 * @param defaultValue
 	 * @return
 	 */
-	public static String StringOrDefault(String str, String defaultValue) {
-		if(StringIsValued(str)) return str;
+	public static String stringOrDefault(String str, String defaultValue) {
+		if(isStringValued(str)) return str;
 		return defaultValue;
 	}
 
@@ -196,24 +196,11 @@ public class BsfUtils {
 	}
 
 	/**
-	 * Get the string if is not null or empty,
-	 * otherwise return the default value
-	 * 
-	 * @param inputValue
-	 * @param defaultReturnValue
-	 * @return
-	 */
-	public static String GetOrDefault (String inputValue, String defaultReturnValue) {
-		if(StringIsValued(inputValue)) return inputValue;
-		else return defaultReturnValue;
-	}
-
-	/**
 	 * Escape special jQuery chars in selector query
 	 * @param selector
 	 * @return
 	 */
-	public static String EscapeJQuerySpecialCharsInSelector(String selector) {
+	public static String escapeJQuerySpecialCharsInSelector(String selector) {
 		String jQuerySpecialChars = "!\"#$%&'()*+,./:;<=>?@[]^`{|}~;";
 		String[] jsc = jQuerySpecialChars.split("(?!^)");
 		for(String c: jsc) {
@@ -280,5 +267,23 @@ public class BsfUtils {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Shortcut for getting context parameters.
+	 * @param param context parameter name
+	 * @return value of context parameter, may be null or empty
+	 */
+	public static String getInitParam(String param) {
+		return getInitParam(param, FacesContext.getCurrentInstance());
+	}
+	
+	/**
+	 * Shortcut for getting context parameters using an already obtained FacesContext.
+	 * @param param context parameter name
+	 * @return value of context parameter, may be null or empty
+	 */
+	public static String getInitParam(String param, FacesContext context) {
+		return context.getExternalContext().getInitParameter(param);
 	}
 }

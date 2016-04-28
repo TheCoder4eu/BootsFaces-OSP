@@ -40,10 +40,9 @@ public class Alert extends UIComponentBase implements net.bootsfaces.render.IHas
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.alert.Alert";
 
 	public Alert() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("alerts.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 
 		setRendererType(DEFAULT_RENDERER);
 	}

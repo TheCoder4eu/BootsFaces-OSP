@@ -46,13 +46,10 @@ public class SelectOneMenu extends HtmlInputText implements net.bootsfaces.rende
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
 
 	public SelectOneMenu() {
-		Tooltip.addResourceFile();
-		// AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		// AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

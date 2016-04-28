@@ -80,12 +80,11 @@ public class InputTextarea extends HtmlInputText implements IHasTooltip, IAJAXCo
 
 	public InputTextarea() {
 		setRendererType("net.bootsfaces.component.InputTextareaRenderer");
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
+//		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
+//		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

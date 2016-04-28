@@ -28,7 +28,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:carouselCaption /&gt;. */
@@ -49,10 +48,7 @@ public class CarouselCaptionRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-		CarouselCaption carouselCaption = (CarouselCaption) component;
-
 		new AJAXRenderer().decode(context, component);
-
 	}
 
 	/**
@@ -122,7 +118,7 @@ public class CarouselCaptionRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div");
 		if (component instanceof CarouselCaption) {
-			Tooltip.activateTooltips(context, (IHasTooltip) component);
+			Tooltip.activateTooltips(context, component);
 		}
 
 	}

@@ -38,11 +38,10 @@ public class IconAwesome extends Icon {
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.iconAwesome.IconAwesome";
 
 	public IconAwesome() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		// AddResourcesListener.addThemedCSSResource("font-awesome.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

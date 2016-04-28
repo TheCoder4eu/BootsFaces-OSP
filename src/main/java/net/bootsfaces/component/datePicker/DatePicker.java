@@ -94,7 +94,6 @@ public class DatePicker extends HtmlInputText {
 		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
 		AddResourcesListener.addThemedCSSResource("jq.ui.datepicker.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");
@@ -117,7 +116,7 @@ public class DatePicker extends HtmlInputText {
 			}
 
 		}
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -189,7 +188,7 @@ public class DatePicker extends HtmlInputText {
 
 		encodeHTML(fc);
 		encodeDefaultLanguageJS(fc);
-		Tooltip.activateTooltips(fc, getAttributes(), this);
+		Tooltip.activateTooltips(fc, this);
 	}
 
 	/**
@@ -258,7 +257,7 @@ public class DatePicker extends HtmlInputText {
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
-					rw.writeAttribute("class", "input-group-addon", "class");
+					rw.writeAttribute("class", ADDON, "class");
 					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null,
 							isDisabled, true, true, true);
 					rw.endElement("span");
@@ -270,7 +269,7 @@ public class DatePicker extends HtmlInputText {
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId, null);
 		rw.writeAttribute("name", clientId, null);
-		Tooltip.generateTooltip(fc, attrs, rw);
+		Tooltip.generateTooltip(fc, this, rw);
 		rw.writeAttribute("type", type, null);
 		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
 		rw.writeAttribute("class", "form-control " + styleClass, "class");
@@ -295,7 +294,7 @@ public class DatePicker extends HtmlInputText {
 		if (mode.equals("popup-icon") || mode.equals("toggle-icon")) {
 			rw.startElement("span", this);
 			rw.writeAttribute("id", clientId + "_" + ADDON, "id");
-			rw.writeAttribute("class", "input-group-addon", "class");
+			rw.writeAttribute("class", ADDON, "class");
 
 			IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null, isDisabled, true,
 					true, true);

@@ -67,7 +67,7 @@ public class AlertRenderer extends CoreRenderer {
 
 		rw.startElement("div", alert);
 		rw.writeAttribute("id", clientId, "id");
-		Tooltip.generateTooltip(context, attrs, rw);
+		Tooltip.generateTooltip(context, component, rw);
 
 		String style = alert.getStyle();
 		if (null != style)

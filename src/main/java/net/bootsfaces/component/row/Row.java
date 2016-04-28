@@ -38,9 +38,8 @@ public class Row extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.row.Row";
 
 	public Row() {
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

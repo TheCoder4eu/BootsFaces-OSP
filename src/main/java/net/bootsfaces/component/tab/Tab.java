@@ -68,7 +68,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 
 	public Tab() {
 
-		Tooltip.addResourceFile();
+		Tooltip.addResourceFiles();
 		setRendererType(DEFAULT_RENDERER);
 	}
 

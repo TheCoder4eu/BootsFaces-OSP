@@ -141,27 +141,27 @@ public class TreeModelUtils {
 			sb.append("\"nodeInternalId\": " + node.getNodeId() + ", "); 
 		}
 		// TEXT
-		if(BsfUtils.StringIsValued(node.getText())) {
+		if(BsfUtils.isStringValued(node.getText())) {
 			sb.append("\"text\": \"" + node.getText() + "\", ");
 		}
 		// ICON
-		if(BsfUtils.StringIsValued(node.getIcon())) {
+		if(BsfUtils.isStringValued(node.getIcon())) {
 			sb.append("\"icon\": \"" + node.getIcon() + "\", ");
 		}
 		// SELECTED ICON
-		if(BsfUtils.StringIsValued(node.getSelectedIcon())) {
+		if(BsfUtils.isStringValued(node.getSelectedIcon())) {
 			sb.append("\"selectedIcon\": \"" + node.getSelectedIcon() + "\", ");
 		}
 		// COLOR
-		if(BsfUtils.StringIsValued(node.getColor())) {
+		if(BsfUtils.isStringValued(node.getColor())) {
 			sb.append("\"color\": \"" + node.getColor() + "\", ");
 		}
 		// BACK COLOR
-		if(BsfUtils.StringIsValued(node.getBackColor())) {
+		if(BsfUtils.isStringValued(node.getBackColor())) {
 			sb.append("\"backColor\": \"" + node.getBackColor() + "\", ");
 		}
 		// HREF
-		if(BsfUtils.StringIsValued(node.getHRef())) {
+		if(BsfUtils.isStringValued(node.getHRef())) {
 			sb.append("\"href\": \"" + node.getHRef() + "\", ");
 		}	
 		// TAGS

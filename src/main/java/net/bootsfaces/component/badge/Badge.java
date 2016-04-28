@@ -39,7 +39,6 @@ public class Badge extends UIOutput {
 	public Badge() {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("badges.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

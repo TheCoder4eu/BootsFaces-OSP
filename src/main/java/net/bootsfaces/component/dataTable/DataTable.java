@@ -59,11 +59,10 @@ public class DataTable extends UIData
 	}
 
 	public DataTable() {
-		Tooltip.addResourceFile();
 		setRendererType(DEFAULT_RENDERER);
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -524,6 +523,7 @@ public class DataTable extends UIData
 	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<DataTablePropertyType, Object> getDataTableProperties() {
 		return  (Map<DataTablePropertyType, Object>)getStateHelper().eval(PropertyKeys.dataTableProperties);
 	}

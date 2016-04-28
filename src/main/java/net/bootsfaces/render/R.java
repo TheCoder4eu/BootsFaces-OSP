@@ -69,7 +69,7 @@ public final class R {
 
 		if (c != null) {
 			rw.writeAttribute("id", c.getClientId(), "id");
-			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c.getAttributes(), rw);
+			Tooltip.generateTooltip(FacesContext.getCurrentInstance(), c, rw);
 			componentAttrs = c.getAttributes();
 		}
 
@@ -126,7 +126,7 @@ public final class R {
 		}
 
 		if (null != c) {
-			Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c.getAttributes(), c);
+			Tooltip.activateTooltips(FacesContext.getCurrentInstance(), c);
 		}
 	}
 
@@ -149,7 +149,7 @@ public final class R {
 
 		rw.startElement("div", c);
 		rw.writeAttribute("id", c.getClientId(fc), "id");
-		Tooltip.generateTooltip(fc, attrs, rw);
+		Tooltip.generateTooltip(fc, c, rw);
 		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
 			rw.writeAttribute("class", c.getContainerStyles().concat(" ").concat("pull").concat("-").concat(pull),
 					"class");
