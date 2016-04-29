@@ -19,6 +19,8 @@
 
 package net.bootsfaces.component.navBar;
 
+import java.util.Map;
+
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -47,7 +49,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navBar.NavBar";
-
+	
 	public NavBar() {
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");

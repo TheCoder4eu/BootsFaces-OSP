@@ -32,7 +32,7 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:navBar /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.navBar.NavBar")
 public class NavBarRenderer extends CoreRenderer {
-
+	
 	/**
 	 * This methods generates the HTML code of the current b:navBar.
 	 * <code>encodeBegin</code> generates the start of the component. After the,

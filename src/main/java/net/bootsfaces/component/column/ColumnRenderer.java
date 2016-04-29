@@ -33,6 +33,14 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:column /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.column.Column")
 public class ColumnRenderer extends CoreRenderer {
+	/**
+	 * Column sizes
+	 * @author durzod
+	 *
+	 */
+	public enum ColSizes {
+		xs, sm, md, lg
+	}
 
 	/**
 	 * This methods generates the HTML code of the current b:column.
@@ -57,13 +65,13 @@ public class ColumnRenderer extends CoreRenderer {
 		if (column.isRendered()) {
 			ResponseWriter rw = context.getResponseWriter();
 
-			int colxs = columnToInt(column.getColXs());
-			int colsm = columnToInt(column.getColSm());
-			int collg = columnToInt(column.getColLg());
+			int colxs = columnToInt(getColSize(column, ColSizes.xs)); //column.getColXs());
+			int colsm = columnToInt(getColSize(column, ColSizes.sm)); //column.getColSm());
+			int collg = columnToInt(getColSize(column, ColSizes.lg)); //column.getColLg());
 
 			int span = columnToInt(column.getSpan()); 
 
-			int colmd = (span > 0) ? span : columnToInt(column.getColMd());
+			int colmd = (span > 0) ? span : columnToInt(getColSize(column, ColSizes.md)); //column.getColMd());
 			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
 				colmd = (colmd > 0) ? colmd : 0;
 			} else {
@@ -201,6 +209,44 @@ public class ColumnRenderer extends CoreRenderer {
 	        Tooltip.activateTooltips(FacesContext.getCurrentInstance(), column);
 		}
     }
+	
+	private String getColSize(Column col, ColSizes size) {
+		String colSize = "-1";
+		switch(size) {
+		case xs:
+			colSize = col.getColXs();
+			if(colSize.equals("-1")) colSize = col.getTinyScreen();
+			break;
+		case sm:
+			colSize = col.getColSm();
+			if(colSize.equals("-1")) colSize = col.getSmallScreen();
+			break;
+		case md:
+			colSize = col.getColMd();
+			if(colSize.equals("-1")) colSize = col.getMediumScreen();
+			break;
+		case lg:
+			colSize = col.getColLg();
+			if(colSize.equals("-1")) colSize = col.getLargeScreen();
+			break;
+		}
+		return colSize;
+		/*
+		if(size.equals("xs")) {
+			if(!col.getColXs().equals("-1")) return col.getColXs();
+			if(!col.getTinyScreen().equals("-1")) return col.getTinyScreen();
+		} else if(size.equals("sm")) {
+			if(!col.getColSm().equals("-1")) return col.getColSm();
+			if(!col.getSmallScreen().equals("-1")) return col.getSmallScreen();
+		} else if(size.equals("md")) {
+			if(!col.getColMd().equals("-1")) return col.getColMd();
+			if(!col.getMediumScreen().equals("-1")) return col.getMediumScreen();
+		} else if(size.equals("lg")) {
+			if(!col.getColLg().equals("-1")) return col.getColLg();
+			if(!col.getLargeScreen().equals("-1")) return col.getLargeScreen();
+		}
+		return "-1";*/
+	}
 	
 	private int columnToInt(String column) {
 		if (column==null) return -1;

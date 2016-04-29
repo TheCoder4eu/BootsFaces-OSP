@@ -291,7 +291,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getSpan() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.span, 0);
+		return (int) (Integer)getStateHelper().eval(PropertyKeys.span, 12);
 	}
 	
 	/**
