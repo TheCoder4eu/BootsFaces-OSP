@@ -156,9 +156,13 @@ public class TreeRenderer extends CoreRenderer {
 					 	(tree.isShowIcon()  ? "showIcon: true," : "") +
 					 	(tree.isShowCheckbox() ? "showCheckbox: true," : "") +
 					 	(tree.isEnableLinks() ? "enableLinks: true," : "") +
+					 	(tree.isShowBorder() ? "showBorder: true," : "showBorder: false,") +
 					 	(BsfUtils.isStringValued(tree.getCollapseIcon()) ? "collapseIcon: '" + tree.getCollapseIcon() + "'," : "") +
 					 	(BsfUtils.isStringValued(tree.getExpandIcon())  ? "expandIcon: '" + tree.getExpandIcon() + "'," : "") +
 					 	(BsfUtils.isStringValued(tree.getColor())  ? "color: '" + tree.getColor() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getHoverColor())  ? "onhoverColor: '" + tree.getHoverColor() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getSelectedColor())  ? "selectedColor: '" + tree.getSelectedColor() + "'," : "") +
+					 	(BsfUtils.isStringValued(tree.getBorderColor())  ? "borderColor: '" + tree.getBorderColor() + "'," : "") +
 						"   data: getTreeData(),   " + 
 						// enable nodeSelected event callback
 						"	onNodeSelected: function(event, data) { " +

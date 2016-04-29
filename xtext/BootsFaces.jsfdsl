@@ -1813,10 +1813,14 @@ widget tree
     show-tags				Boolean														"Boolean value to specify if tags was show or not."
     show-icon				Boolean														"Boolean value to specify if icons are rendered or not."
     show-checkbox			Boolean														"Boolean value to specify if checkbox is rendered or not."
+    show-border				Boolean														"Boolean value to specify if tree items has to display the border."
     enable-links			Boolean														"Boolean value to specify if enable href link."
     collapse-icon																		"Glyphicons of collapse."
     expand-icon																			"Glyphicons of expand."
-    color																				"Text color."
+    color																				"Hex value of text color."
+    hover-color																			"Hex value of hover color."
+    selected-color																		"Hex value of selected color."
+    border-color			default "#DDDDDD"											"Hex value of border color (default #DDDDDD)"
     update																   				"Component(s) to be updated with ajax."
 } 
 

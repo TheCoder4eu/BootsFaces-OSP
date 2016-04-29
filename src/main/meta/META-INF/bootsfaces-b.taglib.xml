@@ -11313,6 +11313,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
+		  <name>show-border</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
+		  <name>showBorder</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
 		  <name>enable-links</name>
 		  <required>false</required>
@@ -11349,8 +11361,44 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Text color.]]></description>
+		  <description><![CDATA[Hex value of text color.]]></description>
 		  <name>color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of hover color.]]></description>
+		  <name>hover-color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of hover color.]]></description>
+		  <name>hoverColor</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of selected color.]]></description>
+		  <name>selected-color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of selected color.]]></description>
+		  <name>selectedColor</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
+		  <name>border-color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
+		  <name>borderColor</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

@@ -92,10 +92,14 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 		showTags,
 		showIcon,
 		showCheckbox,
+		showBorder,
 		enableLinks,
 		collapseIcon,
 		expandIcon,
 		color,
+		hoverColor,
+		selectedColor,
+		borderColor,
 		update
 ;
         String toString;
@@ -215,6 +219,23 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	
 
 	/**
+	 * Boolean value to specify if tree items has to display the border. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowBorder() {
+		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showBorder, false);
+	}
+	
+	/**
+	 * Boolean value to specify if tree items has to display the border. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowBorder(boolean _showBorder) {
+	    getStateHelper().put(PropertyKeys.showBorder, _showBorder);
+    }
+	
+
+	/**
 	 * Boolean value to specify if enable href link. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -266,7 +287,7 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	
 
 	/**
-	 * Text color. <P>
+	 * Hex value of text color. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColor() {
@@ -274,11 +295,62 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	}
 	
 	/**
-	 * Text color. <P>
+	 * Hex value of text color. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColor(String _color) {
 	    getStateHelper().put(PropertyKeys.color, _color);
+    }
+	
+
+	/**
+	 * Hex value of hover color. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHoverColor() {
+		return  (String)getStateHelper().eval(PropertyKeys.hoverColor);
+	}
+	
+	/**
+	 * Hex value of hover color. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHoverColor(String _hoverColor) {
+	    getStateHelper().put(PropertyKeys.hoverColor, _hoverColor);
+    }
+	
+
+	/**
+	 * Hex value of selected color. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectedColor() {
+		return  (String)getStateHelper().eval(PropertyKeys.selectedColor);
+	}
+	
+	/**
+	 * Hex value of selected color. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectedColor(String _selectedColor) {
+	    getStateHelper().put(PropertyKeys.selectedColor, _selectedColor);
+    }
+	
+
+	/**
+	 * Hex value of border color (default #DDDDDD) <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBorderColor() {
+		return  (String)getStateHelper().eval(PropertyKeys.borderColor, "#DDDDDD");
+	}
+	
+	/**
+	 * Hex value of border color (default #DDDDDD) <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBorderColor(String _borderColor) {
+	    getStateHelper().put(PropertyKeys.borderColor, _borderColor);
     }
 	
 
