@@ -73,326 +73,401 @@ public class Message extends UIMessage {
 		style,
 		styleClass,
 		warnClass,
-		warnStyle
-;
-        String toString;
+		warnStyle;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
-	 * HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * HTML: The direction of text display, either 'ltr' (left-to-right) or
+	 * 'rtl' (right-to-left).
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getDir() {
-		return  (String)getStateHelper().eval(PropertyKeys.dir);
+		return (String) getStateHelper().eval(PropertyKeys.dir);
 	}
-	
+
 	/**
-	 * HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left). <P>
+	 * HTML: The direction of text display, either 'ltr' (left-to-right) or
+	 * 'rtl' (right-to-left).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
-	    getStateHelper().put(PropertyKeys.dir, _dir);
-    }
-	
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
 
 	/**
-	 * CSS class to be used for messages with severity "ERROR". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS class to be used for messages with severity "ERROR".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getErrorClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.errorClass);
+		return (String) getStateHelper().eval(PropertyKeys.errorClass);
 	}
-	
+
 	/**
-	 * CSS class to be used for messages with severity "ERROR". <P>
+	 * CSS class to be used for messages with severity "ERROR".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setErrorClass(String _errorClass) {
-	    getStateHelper().put(PropertyKeys.errorClass, _errorClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.errorClass, _errorClass);
+	}
 
 	/**
-	 * CSS style to be used for messages with severity "ERROR". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS style to be used for messages with severity "ERROR".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getErrorStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.errorStyle);
+		return (String) getStateHelper().eval(PropertyKeys.errorStyle);
 	}
-	
+
 	/**
-	 * CSS style to be used for messages with severity "ERROR". <P>
+	 * CSS style to be used for messages with severity "ERROR".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setErrorStyle(String _errorStyle) {
-	    getStateHelper().put(PropertyKeys.errorStyle, _errorStyle);
-    }
-	
+		getStateHelper().put(PropertyKeys.errorStyle, _errorStyle);
+	}
 
 	/**
-	 * By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * By default, error messages encode HTML and JavaScript code. Instead of
+	 * being executed, the source code is displayed. This protects you against
+	 * hacker attacks. By setting escape=false, you deactivate the protection,
+	 * and allow HTML and JavaScript code to be rendered.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isEscape() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.escape, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
 	}
-	
+
 	/**
-	 * By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
+	 * By default, error messages encode HTML and JavaScript code. Instead of
+	 * being executed, the source code is displayed. This protects you against
+	 * hacker attacks. By setting escape=false, you deactivate the protection,
+	 * and allow HTML and JavaScript code to be rendered.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEscape(boolean _escape) {
-	    getStateHelper().put(PropertyKeys.escape, _escape);
-    }
-	
+		getStateHelper().put(PropertyKeys.escape, _escape);
+	}
 
 	/**
-	 * CSS class to be used for messages with severity "FATAL". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS class to be used for messages with severity "FATAL".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getFatalClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.fatalClass);
+		return (String) getStateHelper().eval(PropertyKeys.fatalClass);
 	}
-	
+
 	/**
-	 * CSS class to be used for messages with severity "FATAL". <P>
+	 * CSS class to be used for messages with severity "FATAL".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFatalClass(String _fatalClass) {
-	    getStateHelper().put(PropertyKeys.fatalClass, _fatalClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.fatalClass, _fatalClass);
+	}
 
 	/**
-	 * CSS style to be used for messages with severity "FATAL". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS style to be used for messages with severity "FATAL".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getFatalStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.fatalStyle);
+		return (String) getStateHelper().eval(PropertyKeys.fatalStyle);
 	}
-	
+
 	/**
-	 * CSS style to be used for messages with severity "FATAL". <P>
+	 * CSS style to be used for messages with severity "FATAL".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFatalStyle(String _fatalStyle) {
-	    getStateHelper().put(PropertyKeys.fatalStyle, _fatalStyle);
-    }
-	
+		getStateHelper().put(PropertyKeys.fatalStyle, _fatalStyle);
+	}
 
 	/**
-	 * CSS class to be used for messages with severity "INFO". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS class to be used for messages with severity "INFO".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getInfoClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.infoClass);
+		return (String) getStateHelper().eval(PropertyKeys.infoClass);
 	}
-	
+
 	/**
-	 * CSS class to be used for messages with severity "INFO". <P>
+	 * CSS class to be used for messages with severity "INFO".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInfoClass(String _infoClass) {
-	    getStateHelper().put(PropertyKeys.infoClass, _infoClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.infoClass, _infoClass);
+	}
 
 	/**
-	 * CSS style to be used for messages with severity "INFO". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS style to be used for messages with severity "INFO".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getInfoStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.infoStyle);
+		return (String) getStateHelper().eval(PropertyKeys.infoStyle);
 	}
-	
+
 	/**
-	 * CSS style to be used for messages with severity "INFO". <P>
+	 * CSS style to be used for messages with severity "INFO".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInfoStyle(String _infoStyle) {
-	    getStateHelper().put(PropertyKeys.infoStyle, _infoStyle);
-    }
-	
+		getStateHelper().put(PropertyKeys.infoStyle, _infoStyle);
+	}
 
 	/**
-	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isLineBreak() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.lineBreak, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.lineBreak, true);
 	}
-	
+
 	/**
-	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. <P>
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLineBreak(boolean _lineBreak) {
-	    getStateHelper().put(PropertyKeys.lineBreak, _lineBreak);
-    }
-	
+		getStateHelper().put(PropertyKeys.lineBreak, _lineBreak);
+	}
 
 	/**
-	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getLineBreakTag() {
-		return  (String)getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
+		return (String) getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
 	}
-	
+
 	/**
-	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet. <P>
+	 * If there's more than one message, they can optionally be separated by a
+	 * line break. By default, the separator is a br tag. You can replace if
+	 * with an arbitrary HTML snippet.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLineBreakTag(String _lineBreakTag) {
-	    getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
-    }
-	
+		getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
+	}
 
 	/**
-	 * Specifies whether the detailed information from the message should be shown. Default to false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Specifies whether the detailed information from the message should be
+	 * shown. Default to true.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isShowDetail() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showDetail, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
 	}
-	
+
 	/**
-	 * Specifies whether the detailed information from the message should be shown. Default to false. <P>
+	 * Specifies whether the detailed information from the message should be
+	 * shown. Default to true.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setShowDetail(boolean _showDetail) {
-	    getStateHelper().put(PropertyKeys.showDetail, _showDetail);
-    }
-	
+		getStateHelper().put(PropertyKeys.showDetail, _showDetail);
+	}
 
 	/**
-	 * If false, the icon of the message is not show. Default = true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * If false, the icon of the message is not show. Default = true.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isShowIcon() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showIcon, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
 	}
-	
+
 	/**
-	 * If false, the icon of the message is not show. Default = true. <P>
+	 * If false, the icon of the message is not show. Default = true.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setShowIcon(boolean _showIcon) {
-	    getStateHelper().put(PropertyKeys.showIcon, _showIcon);
-    }
-	
+		getStateHelper().put(PropertyKeys.showIcon, _showIcon);
+	}
 
 	/**
-	 * Specifies whether the summary information from the message should be shown. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Specifies whether the summary information from the message should be
+	 * shown. Defaults to true.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isShowSummary() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showSummary, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
 	}
-	
+
 	/**
-	 * Specifies whether the summary information from the message should be shown. Defaults to true. <P>
+	 * Specifies whether the summary information from the message should be
+	 * shown. Defaults to true.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setShowSummary(boolean _showSummary) {
-	    getStateHelper().put(PropertyKeys.showSummary, _showSummary);
-    }
-	
+		getStateHelper().put(PropertyKeys.showSummary, _showSummary);
+	}
 
 	/**
-	 * Flag indicating whether previously handled messages are redisplayed or not <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * Flag indicating whether previously handled messages are redisplayed or
+	 * not
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public boolean isRedisplay() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.redisplay, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.redisplay, true);
 	}
-	
+
 	/**
-	 * Flag indicating whether previously handled messages are redisplayed or not <P>
+	 * Flag indicating whether previously handled messages are redisplayed or
+	 * not
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRedisplay(boolean _redisplay) {
-	    getStateHelper().put(PropertyKeys.redisplay, _redisplay);
-    }
-	
+		getStateHelper().put(PropertyKeys.redisplay, _redisplay);
+	}
 
 	/**
-	 * HTML: CSS styling instructions. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * HTML: CSS styling instructions.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.style);
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
-	
+
 	/**
-	 * HTML: CSS styling instructions. <P>
+	 * HTML: CSS styling instructions.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
 
 	/**
-	 * The CSS class for this element.  Corresponds to the HTML 'class' attribute. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * The CSS class for this element. Corresponds to the HTML 'class'
+	 * attribute.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getStyleClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
-	
+
 	/**
-	 * The CSS class for this element.  Corresponds to the HTML 'class' attribute. <P>
+	 * The CSS class for this element. Corresponds to the HTML 'class'
+	 * attribute.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
 
 	/**
-	 * CSS class to be used for messages with severity "WARN". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS class to be used for messages with severity "WARN".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getWarnClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.warnClass);
+		return (String) getStateHelper().eval(PropertyKeys.warnClass);
 	}
-	
+
 	/**
-	 * CSS class to be used for messages with severity "WARN". <P>
+	 * CSS class to be used for messages with severity "WARN".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setWarnClass(String _warnClass) {
-	    getStateHelper().put(PropertyKeys.warnClass, _warnClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.warnClass, _warnClass);
+	}
 
 	/**
-	 * CSS style to be used for messages with severity "WARN". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * CSS style to be used for messages with severity "WARN".
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been
+	 *         set by the JSF file.
 	 */
 	public String getWarnStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.warnStyle);
+		return (String) getStateHelper().eval(PropertyKeys.warnStyle);
 	}
-	
+
 	/**
-	 * CSS style to be used for messages with severity "WARN". <P>
+	 * CSS style to be used for messages with severity "WARN".
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setWarnStyle(String _warnStyle) {
-	    getStateHelper().put(PropertyKeys.warnStyle, _warnStyle);
-    }
-	
-}
+		getStateHelper().put(PropertyKeys.warnStyle, _warnStyle);
+	}
 
+}
