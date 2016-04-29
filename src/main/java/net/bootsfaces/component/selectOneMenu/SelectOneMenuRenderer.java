@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -88,7 +88,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 					menu.setSubmittedValue(currentOptionValue);
 					menu.setValid(true);
 					menu.validateValue(context, submittedOptionValue);
-					new AJAXRenderer().decode(context, component);
+					new AJAXRenderer().decode(context, component, clientId);
 					return;
 				}
 			}
@@ -101,7 +101,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		menu.setValid(true);
 		menu.validateValue(context, submittedOptionValue);
 		menu.setSubmittedValue(submittedOptionValue);
-		new AJAXRenderer().decode(context, component);
+		new AJAXRenderer().decode(context, component, clientId);
 	}
 
 	/** Generates the HTML code for this component. */
@@ -118,7 +118,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 		int span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		Tooltip.generateTooltip(context, menu, rw);
-		
+
 		if (menu.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 		} else {
@@ -146,7 +146,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
 	/**
 	 * Renders components added seamlessly behind the input field.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext
 	 * @param rw
@@ -181,7 +181,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the optional label. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -207,7 +207,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
 	/**
 	 * Renders components added seamlessly in front of the input field.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext
 	 * @param rw
@@ -241,7 +241,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Terminate the column span div (if there's one). This method is protected
 	 * in order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param span
@@ -258,7 +258,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Terminates the input field group (if there's one). This method is
 	 * protected in order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param hasAddon
@@ -318,7 +318,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
 	/**
 	 * Copied from the InputRenderer class of PrimeFaces 5.1.
-	 * 
+	 *
 	 * @param context
 	 * @param uiSelectItems
 	 * @param value
@@ -365,7 +365,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Parts of this class are an adapted version of
 	 * InputRenderer#getSelectItems() of PrimeFaces 5.1.
-	 * 
+	 *
 	 * @param rw
 	 * @param selectedOption
 	 * @throws IOException
@@ -443,7 +443,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Renders a single &lt;option&gt; tag. For some reason,
 	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
 	 * common interface, so this method is repeated twice.
-	 * 
+	 *
 	 * @param rw
 	 *            The response writer
 	 * @param selectItem
@@ -467,7 +467,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Renders a single &lt;option&gt; tag. For some reason,
 	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
 	 * common interface, so this method is repeated twice.
-	 * 
+	 *
 	 * @param rw
 	 *            The response writer
 	 * @param selectItem
@@ -521,7 +521,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the start of the input tag. This method is protected in order to
 	 * allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
@@ -535,7 +535,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the attributes of the input tag. This method is protected in
 	 * order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -585,7 +585,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Closes the input tag. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
@@ -598,7 +598,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	/**
 	 * Start the column span div (if there's one). This method is protected in
 	 * order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
@@ -617,9 +617,9 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 	 * Starts the input field group (if needed to display a component seamlessly
 	 * in front of or behind the input field). This method is protected in order
 	 * to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param hasAppendingAddOn
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param hasPrependingAddOn
