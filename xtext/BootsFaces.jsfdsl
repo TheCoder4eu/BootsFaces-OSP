@@ -9,7 +9,7 @@ widget accordion
 	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
 }
 
- 
+
 widget alert
        implemented_by net.bootsfaces.component.Alert
        extends UIComponentBase
@@ -137,7 +137,7 @@ widget buttonToolbar
     tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
-widget canvas 
+widget canvas
        has_tooltip
 {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
@@ -992,7 +992,7 @@ widget inputTextarea
     value                 inherited                                        "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 }
- 
+
 
 widget internalFALink
        implemented_by net.bootsfaces.component.InternalFALink
@@ -1076,7 +1076,7 @@ widget message
     line-break          Boolean default "true"                             "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag."
     line-break-tag      String  default "<br />"                           "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet."
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
-    show-detail         Boolean default "false"                             "Specifies whether the detailed information from the message should be shown. Default to false."
+    show-detail         Boolean default "true"                             "Specifies whether the detailed information from the message should be shown. Default to true."
     show-icon           Boolean default "true"                             "If false, the icon of the message is not show. Default = true."
     show-summary        Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
 	redisplay           Boolean default "true"                             "Flag indicating whether previously handled messages are redisplayed or not"
@@ -1105,7 +1105,7 @@ widget messages
     line-break          Boolean default "true"                             "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag."
     line-break-tag      String  default "<br />"                           "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet."
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
-    show-detail         Boolean default "false"                            "Specifies whether the detailed information from the message should be shown. Default to false."
+    show-detail         Boolean default "true"                            "Specifies whether the detailed information from the message should be shown. Default to true."
     show-summary        Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
     show-icon           Boolean default "true"                             "If false, the icon of the message is not show. Default = true."
     style                                                                  "HTML: CSS styling instructions."
@@ -1226,7 +1226,7 @@ widget navCommandLink
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
 }
- 
+
 widget navLink
        implemented_by net.bootsfaces.component.NavLink
        extends UICommand
@@ -1458,7 +1458,7 @@ widget scrollSpy
 	smoothSpeed			Integer											   "Speed of the smooth scroll (default 800)"
 	selection-listener	ScrollSpyEventListener          				   "Selection listener called on selection changed."
     update																   "Component(s) to be updated with ajax."
-}  
+}
 
 
 widget selectBooleanCheckbox
@@ -1822,7 +1822,7 @@ widget tree
     selected-color																		"Hex value of selected color."
     border-color			default "#DDDDDD"											"Hex value of border color (default #DDDDDD)"
     update																   				"Component(s) to be updated with ajax."
-} 
+}
 
 
 widget thumbnail
