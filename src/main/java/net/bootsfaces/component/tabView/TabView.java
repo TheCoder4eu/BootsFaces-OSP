@@ -26,8 +26,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;

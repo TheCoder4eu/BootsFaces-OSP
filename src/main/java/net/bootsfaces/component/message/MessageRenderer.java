@@ -107,20 +107,21 @@ public class MessageRenderer extends CoreRenderer {
 					writeAttribute(rw, "aria-hidden", "true");
 					rw.endElement("span");
 				}
-				if (message.isShowSummary() && msg.getSummary() != null) {
-					if(!msg.getSummary().equals(msg.getDetail()) || message.isShowDetail() == false) {
-						rw.startElement("span", component);
-						writeAttribute(rw, "class", "bf-message-summary");
-						if (message.isEscape()) {
-							rw.writeText(msg.getSummary(), null);
-						} else {
-							warnOnFirstUse();
-							rw.write(msg.getSummary());
-						}
-						rw.endElement("span");
+				
+				if (message.isShowSummary() && msg.getSummary() != null &&
+						!msg.getSummary().equals(msg.getDetail()) ) {
+					rw.startElement("span", component);
+					writeAttribute(rw, "class", "bf-message-summary");
+					if (message.isEscape()) {
+						rw.writeText(msg.getSummary(), null);
+					} else {
+						warnOnFirstUse();
+						rw.write(msg.getSummary());
 					}
+					rw.endElement("span");
 				}
-				if (message.isShowDetail()) {
+				
+				if (message.isShowDetail() && msg.getDetail() != null) {
 					rw.startElement("span", component);
 					writeAttribute(rw, "class", "bf-message-detail");
 					if (message.isEscape()) {

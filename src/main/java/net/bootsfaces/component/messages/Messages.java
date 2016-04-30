@@ -20,10 +20,9 @@
 package net.bootsfaces.component.messages;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -35,7 +34,6 @@ import net.bootsfaces.utils.BsfUtils;
  * <code>setRendererType()</code> method.
  * </p>
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.messages.Messages")
 public class Messages extends javax.faces.component.UIMessages {
 
@@ -44,6 +42,7 @@ public class Messages extends javax.faces.component.UIMessages {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("alerts.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/alert.js");
 		setRendererType("net.bootsfaces.component.messages.MessagesRenderer");
 	}
 

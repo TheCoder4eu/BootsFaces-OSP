@@ -20,16 +20,14 @@
 package net.bootsfaces.component.message;
 
 import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessage;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.message.Message")
 public class Message extends UIMessage {
 
@@ -44,6 +42,7 @@ public class Message extends UIMessage {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("alerts.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/alert.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

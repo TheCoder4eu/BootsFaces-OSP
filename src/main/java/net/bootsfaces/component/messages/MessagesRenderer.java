@@ -126,18 +126,12 @@ public class MessagesRenderer extends CoreRenderer {
         writer.write("&times;");
         writer.endElement("a");
         
-        boolean firstMessage=true;
+        boolean firstMessage = true;
         for (FacesMessage msg : messages){
-        	if (!firstMessage) {
-				if (uiMessages.isLineBreak()) {
-					writer.append(uiMessages.getLineBreakTag());
-				}
-			}
-			firstMessage=false;
+        	if (!firstMessage && uiMessages.isLineBreak())
+				writer.append(uiMessages.getLineBreakTag());
+        	firstMessage = false;
 			
-            String summary = msg.getSummary() != null ? msg.getSummary() : "";
-            String detail = msg.getDetail() != null ? msg.getDetail() : summary;
-            
             writer.startElement("span", null);
             writer.writeAttribute("class", "bf-message", null);
             
@@ -147,29 +141,33 @@ public class MessagesRenderer extends CoreRenderer {
 				writeAttribute(writer, "aria-hidden", "true");
 				writer.endElement("span");
 			}
-
-            if (uiMessages.isShowSummary()){
+			
+			/* only show the summary, if it is neither deactivated nor the same as detail 
+			 * nor empty to prevent unwanted duplicated messages*/
+            if (uiMessages.isShowSummary() && msg.getSummary() != null
+            		&& !msg.getSummary().trim().isEmpty()
+            		&& !msg.getSummary().equals(msg.getDetail())){
  				writer.startElement("strong", null);
  	           	writer.startElement("span", null);
  				writeAttribute(writer, "class", "bf-message-summary");
                if (uiMessages.isEscape()) {
-					writer.writeText(summary, null);
+					writer.writeText(msg.getSummary(), null);
 				} else {
 					MessageRenderer.warnOnFirstUse();
-					writer.write(summary);
+					writer.write(msg.getSummary());
 				}
                 writer.endElement("span");
                 writer.endElement("strong");
             }
             
-            if (uiMessages.isShowDetail()){
+            if (uiMessages.isShowDetail() && msg.getDetail() != null){
  	           	writer.startElement("span", null);
  				writeAttribute(writer, "class", "bf-message-detail");
                 if (uiMessages.isEscape()) {
-					writer.writeText(" "+detail, null);
+					writer.writeText(msg.getDetail(), null);
 				} else {
 					MessageRenderer.warnOnFirstUse();
-					writer.write(" "+detail);
+					writer.write(msg.getDetail());
 				}
                 writer.endElement("span");
             }
