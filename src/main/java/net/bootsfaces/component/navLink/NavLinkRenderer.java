@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -62,7 +62,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:navLink.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -268,8 +268,11 @@ public class NavLinkRenderer extends CoreRenderer {
 
 	}
 
-	protected String getResourceURL(FacesContext fc, String value) {
-		return fc.getExternalContext().encodeResourceURL(value);
+	protected String getResourceURL(FacesContext fc, String url) {
+		if (url.startsWith("http://")) {
+			return url;
+		}
+		return fc.getExternalContext().encodeResourceURL(url);
 	}
 
 	/**
