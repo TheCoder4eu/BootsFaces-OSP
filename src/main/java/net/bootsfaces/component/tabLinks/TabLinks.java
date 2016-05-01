@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -20,8 +20,8 @@
 package net.bootsfaces.component.tabLinks;
 
 import javax.el.ValueExpression;
+import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -32,6 +32,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 
+@FacesComponent("net.bootsfaces.component.tabLinks.TabLinks")
 public class TabLinks extends LinksContainer {
 
 	/**
@@ -39,9 +40,7 @@ public class TabLinks extends LinksContainer {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".TabLinks";
-
-	private static final String STYLE = "nav nav-tabs";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabLinks.TabLinks";
 
 	public TabLinks() {
 		setRendererType(null); // this component renders itself
@@ -59,7 +58,7 @@ public class TabLinks extends LinksContainer {
 	 */
 	@Override
 	protected String getContainerStyles() {
-		return STYLE;
+		return "nav nav-tabs";
 	}
 
 	@Override

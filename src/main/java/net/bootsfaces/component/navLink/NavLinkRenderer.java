@@ -36,9 +36,14 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.icon.IconRenderer;
+import net.bootsfaces.component.listLinks.ListLinks;
+import net.bootsfaces.component.navBar.NavBar;
 import net.bootsfaces.component.navBarLinks.NavBarLinks;
 import net.bootsfaces.component.navCommandLink.NavCommandLink;
+import net.bootsfaces.component.pillLinks.PillLinks;
+import net.bootsfaces.component.tabLinks.TabLinks;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -96,7 +101,18 @@ public class NavLinkRenderer extends CoreRenderer {
 	public void encodeHeader(FacesContext context, String h, UIComponent navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		rw.startElement("li", navlink);
+		String htmlTag = "span";
+		UIComponent parent = navlink.getParent();
+		if (parent != null) {
+			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks || parent instanceof PillLinks
+					|| parent instanceof ListLinks) {
+				htmlTag="li";
+			}
+			else {
+				System.out.println(parent.getClass().getName());
+			}
+		}
+		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		String styleClass = ((AbstractNavLink)navlink).getStyleClass();
 		if (null == styleClass)
@@ -106,7 +122,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		writeAttribute(rw, "style", ((AbstractNavLink)navlink).getStyle(), "style");
 		writeAttribute(rw, "role", "presentation", null);
 		rw.writeText(h, null);
-		rw.endElement("li");
+		rw.endElement(htmlTag);
 	}
 
 	public void encodeDivider(FacesContext context, AbstractNavLink navlink) throws IOException {
@@ -133,7 +149,18 @@ public class NavLinkRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 
 		String value = (String) ((AbstractNavLink)navlink).getValue();
-		rw.startElement("li", navlink);
+		String htmlTag = "span";
+		UIComponent parent = navlink.getParent();
+		if (parent != null) {
+			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks || parent instanceof PillLinks
+					|| parent instanceof ListLinks) {
+				htmlTag="li";
+			}
+			else {
+				System.out.println(parent.getClass().getName());
+			}
+		}
+		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		Tooltip.generateTooltip(context, navlink, rw);
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder)navlink, rw);
@@ -213,7 +240,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 		}
 		rw.endElement("a");
-		rw.endElement("li");
+		rw.endElement(htmlTag);
 	}
 
 	private String getStyleClasses(AbstractNavLink navlink) {

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -20,8 +20,8 @@
 package net.bootsfaces.component.pillLinks;
 
 import javax.el.ValueExpression;
+import javax.faces.component.FacesComponent;
 
-import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
@@ -30,6 +30,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4eu
  */
+@FacesComponent("net.bootsfaces.component.pillLinks.PillLinks")
 public class PillLinks extends LinksContainer {
 
 	/**
@@ -37,9 +38,7 @@ public class PillLinks extends LinksContainer {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".PillLinks";
-
-	private static final String STYLE = "nav nav-pills";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.pillLinks.PillLinks";
 
 	public PillLinks() {
 		setRendererType(null); // this component renders itself
@@ -56,7 +55,7 @@ public class PillLinks extends LinksContainer {
 	 */
 	@Override
 	protected String getContainerStyles() {
-		return STYLE;
+		return "nav nav-pills";
 	}
 
 	@Override
