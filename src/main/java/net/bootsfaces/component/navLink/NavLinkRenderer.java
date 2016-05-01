@@ -37,6 +37,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dropButton.DropButton;
+import net.bootsfaces.component.dropMenu.DropMenu;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.component.listLinks.ListLinks;
 import net.bootsfaces.component.navBar.NavBar;
@@ -105,11 +106,10 @@ public class NavLinkRenderer extends CoreRenderer {
 		UIComponent parent = navlink.getParent();
 		if (parent != null) {
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks || parent instanceof PillLinks
-					|| parent instanceof ListLinks) {
+					|| parent instanceof ListLinks
+					|| parent instanceof NavBarLinks
+					|| parent instanceof DropMenu) {
 				htmlTag="li";
-			}
-			else {
-				System.out.println(parent.getClass().getName());
 			}
 		}
 		rw.startElement(htmlTag, navlink);
@@ -153,11 +153,10 @@ public class NavLinkRenderer extends CoreRenderer {
 		UIComponent parent = navlink.getParent();
 		if (parent != null) {
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks || parent instanceof PillLinks
-					|| parent instanceof ListLinks) {
+					|| parent instanceof ListLinks
+					|| parent instanceof NavBarLinks
+					|| parent instanceof DropMenu) {
 				htmlTag="li";
-			}
-			else {
-				System.out.println(parent.getClass().getName());
 			}
 		}
 		rw.startElement(htmlTag, navlink);
