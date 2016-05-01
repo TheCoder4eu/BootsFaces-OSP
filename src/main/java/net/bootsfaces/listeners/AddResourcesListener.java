@@ -226,13 +226,15 @@ public class AddResourcesListener implements SystemEventListener {
 		if(themedCSSMap != null) {
 			for (String file: themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
+				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
+					name = "css/icons.css";  //look for it under the css root instead
+					
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
 		// Glyphicons
 		String name = "css/icons.css";
-		//String name = "css/" + theme + "/icons.css";
 		createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 	}
 
