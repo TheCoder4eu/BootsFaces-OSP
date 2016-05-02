@@ -206,7 +206,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		writer.writeAttribute("role", role, "role");
 
-		encodeTabs(context, writer, tabs, tabView.getActiveIndex(), hiddenInputFieldID);
+		encodeTabs(context, writer, tabs, currentlyActiveIndex, hiddenInputFieldID);
 		writer.endElement("ul");
 	}
 
@@ -260,12 +260,12 @@ public class TabViewRenderer extends CoreRenderer {
 			role = tabView.getRole();
 		}
 		writer.writeAttribute("role", role, "role");
-		int activeIndex = tabView.getActiveIndex();
+		// int activeIndex = tabView.getActiveIndex();
 
 		if (null != tabs) {
 			for (int index = 0; index < tabs.size(); index++) {
 				if (tabs.get(index).isRendered()) {
-					encodeTabPane(context, writer, tabs.get(index), index == activeIndex);
+					encodeTabPane(context, writer, tabs.get(index), index == currentlyActiveIndex);
 				}
 			}
 		}
@@ -329,8 +329,7 @@ public class TabViewRenderer extends CoreRenderer {
 			int currentlyActiveIndex, String hiddenInputFieldID) throws IOException {
 		if (null != children) {
 			for (int index = 0; index < children.size(); index++) {
-				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID,
-						index);
+				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID, index);
 			}
 		}
 	}
@@ -358,19 +357,22 @@ public class TabViewRenderer extends CoreRenderer {
 			return;
 		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
-		if (tab.getDir()!=null)
+		if (tab.getDir() != null)
 			writer.writeAttribute("dir", tab.getDir(), "dir");
 		writer.writeAttribute("id", tab.getClientId(), "id");
 		writer.writeAttribute("role", "presentation", "role");
-		Tooltip.generateTooltip(context, tab, writer);
 
+		Tooltip.generateTooltip(context, tab, writer);
+		
 		String classes = isActive ? "active" : "";
 		if (tab.getStyleClass() != null) {
 			classes += " ";
 			classes += tab.getStyleClass();
 		}
-		if (classes.length() > 0)
+		if (classes.length() > 0) {
 			writer.writeAttribute("class", classes, "class");
+		}
+		
 		if (tab.getStyle() != null) {
 			writer.writeAttribute("style", tab.getStyle(), "style");
 		}
@@ -397,8 +399,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("role", "tab", "role");
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
 		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
-		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
-				+ "';";
+		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false);
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
 

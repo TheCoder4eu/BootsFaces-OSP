@@ -138,7 +138,7 @@ public class NavCommandLink extends UICommand
             return ((this.toString != null) ? this.toString : super.toString());
         }
     }
-
+	
 
 	/**
 	 * Adds the active state to the link. <P>
@@ -147,7 +147,7 @@ public class NavCommandLink extends UICommand
 	public boolean isActive() {
 		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.active, false);
 	}
-
+	
 	/**
 	 * Adds the active state to the link. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -155,7 +155,7 @@ public class NavCommandLink extends UICommand
 	public void setActive(boolean _active) {
 	    getStateHelper().put(PropertyKeys.active, _active);
     }
-
+	
 
 	/**
 	 * Whether the navLink submits the form with AJAX. <P>
@@ -164,7 +164,7 @@ public class NavCommandLink extends UICommand
 	public boolean isAjax() {
 		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.ajax, false);
 	}
-
+	
 	/**
 	 * Whether the navLink submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -172,7 +172,7 @@ public class NavCommandLink extends UICommand
 	public void setAjax(boolean _ajax) {
 	    getStateHelper().put(PropertyKeys.ajax, _ajax);
     }
-
+	
 
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
@@ -181,7 +181,7 @@ public class NavCommandLink extends UICommand
 	public javax.faces.component.UIComponent getBinding() {
 		return  (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
 	}
-
+	
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -189,7 +189,7 @@ public class NavCommandLink extends UICommand
 	public void setBinding(javax.faces.component.UIComponent _binding) {
 	    getStateHelper().put(PropertyKeys.binding, _binding);
     }
-
+	
 
 	/**
 	 * content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class <P>
@@ -198,7 +198,7 @@ public class NavCommandLink extends UICommand
 	public String getContentClass() {
 		return  (String)getStateHelper().eval(PropertyKeys.contentClass);
 	}
-
+	
 	/**
 	 * content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -206,7 +206,7 @@ public class NavCommandLink extends UICommand
 	public void setContentClass(String _contentClass) {
 	    getStateHelper().put(PropertyKeys.contentClass, _contentClass);
     }
-
+	
 
 	/**
 	 * Inline style of the content area (i.e the anchor tag). <P>
@@ -215,7 +215,7 @@ public class NavCommandLink extends UICommand
 	public String getContentStyle() {
 		return  (String)getStateHelper().eval(PropertyKeys.contentStyle);
 	}
-
+	
 	/**
 	 * Inline style of the content area (i.e the anchor tag). <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -223,7 +223,7 @@ public class NavCommandLink extends UICommand
 	public void setContentStyle(String _contentStyle) {
 	    getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
     }
-
+	
 
 	/**
 	 * Boolean value to specify if the button is disabled. <P>
@@ -232,7 +232,7 @@ public class NavCommandLink extends UICommand
 	public boolean isDisabled() {
 		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.disabled, false);
 	}
-
+	
 	/**
 	 * Boolean value to specify if the button is disabled. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -240,7 +240,7 @@ public class NavCommandLink extends UICommand
 	public void setDisabled(boolean _disabled) {
 	    getStateHelper().put(PropertyKeys.disabled, _disabled);
     }
-
+	
 
 	/**
 	 * The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included. <P>
@@ -249,7 +249,7 @@ public class NavCommandLink extends UICommand
 	public String getFragment() {
 		return  (String)getStateHelper().eval(PropertyKeys.fragment);
 	}
-
+	
 	/**
 	 * The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -257,7 +257,7 @@ public class NavCommandLink extends UICommand
 	public void setFragment(String _fragment) {
 	    getStateHelper().put(PropertyKeys.fragment, _fragment);
     }
-
+	
 
 	/**
 	 * If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored. <P>
@@ -266,7 +266,7 @@ public class NavCommandLink extends UICommand
 	public String getHeader() {
 		return  (String)getStateHelper().eval(PropertyKeys.header);
 	}
-
+	
 	/**
 	 * If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -274,7 +274,7 @@ public class NavCommandLink extends UICommand
 	public void setHeader(String _header) {
 	    getStateHelper().put(PropertyKeys.header, _header);
     }
-
+	
 
 	/**
 	 * URL to link directly to implement anchor behavior. <P>
@@ -283,7 +283,7 @@ public class NavCommandLink extends UICommand
 	public String getHref() {
 		return  (String)getStateHelper().eval(PropertyKeys.href);
 	}
-
+	
 	/**
 	 * URL to link directly to implement anchor behavior. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -291,7 +291,7 @@ public class NavCommandLink extends UICommand
 	public void setHref(String _href) {
 	    getStateHelper().put(PropertyKeys.href, _href);
     }
-
+	
 
 	/**
 	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
@@ -300,7 +300,7 @@ public class NavCommandLink extends UICommand
 	public String getIcon() {
 		return  (String)getStateHelper().eval(PropertyKeys.icon);
 	}
-
+	
 	/**
 	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -308,7 +308,7 @@ public class NavCommandLink extends UICommand
 	public void setIcon(String _icon) {
 	    getStateHelper().put(PropertyKeys.icon, _icon);
     }
-
+	
 
 	/**
 	 * Alignment can be right or left. <P>
@@ -317,7 +317,7 @@ public class NavCommandLink extends UICommand
 	public String getIconAlign() {
 		return  (String)getStateHelper().eval(PropertyKeys.iconAlign);
 	}
-
+	
 	/**
 	 * Alignment can be right or left. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -325,7 +325,7 @@ public class NavCommandLink extends UICommand
 	public void setIconAlign(String _iconAlign) {
 	    getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
     }
-
+	
 
 	/**
 	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
@@ -334,7 +334,7 @@ public class NavCommandLink extends UICommand
 	public String getIconAwesome() {
 		return  (String)getStateHelper().eval(PropertyKeys.iconAwesome);
 	}
-
+	
 	/**
 	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -342,7 +342,7 @@ public class NavCommandLink extends UICommand
 	public void setIconAwesome(String _iconAwesome) {
 	    getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
     }
-
+	
 
 	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
@@ -351,7 +351,7 @@ public class NavCommandLink extends UICommand
 	public boolean isImmediate() {
 		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.immediate, false);
 	}
-
+	
 	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -359,7 +359,7 @@ public class NavCommandLink extends UICommand
 	public void setImmediate(boolean _immediate) {
 	    getStateHelper().put(PropertyKeys.immediate, _immediate);
     }
-
+	
 
 	/**
 	 * Set whether or not the page parameters should be encoded into the target url. <P>
@@ -368,7 +368,7 @@ public class NavCommandLink extends UICommand
 	public boolean isIncludeViewParams() {
 		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.includeViewParams, false);
 	}
-
+	
 	/**
 	 * Set whether or not the page parameters should be encoded into the target url. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -376,7 +376,7 @@ public class NavCommandLink extends UICommand
 	public void setIncludeViewParams(boolean _includeViewParams) {
 	    getStateHelper().put(PropertyKeys.includeViewParams, _includeViewParams);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when input element loses focus. <P>
@@ -385,7 +385,7 @@ public class NavCommandLink extends UICommand
 	public String getOnblur() {
 		return  (String)getStateHelper().eval(PropertyKeys.onblur);
 	}
-
+	
 	/**
 	 * Client side callback to execute when input element loses focus. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -393,7 +393,7 @@ public class NavCommandLink extends UICommand
 	public void setOnblur(String _onblur) {
 	    getStateHelper().put(PropertyKeys.onblur, _onblur);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
@@ -402,7 +402,7 @@ public class NavCommandLink extends UICommand
 	public String getOnchange() {
 		return  (String)getStateHelper().eval(PropertyKeys.onchange);
 	}
-
+	
 	/**
 	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -410,7 +410,7 @@ public class NavCommandLink extends UICommand
 	public void setOnchange(String _onchange) {
 	    getStateHelper().put(PropertyKeys.onchange, _onchange);
     }
-
+	
 
 	/**
 	 * The onclick attribute. <P>
@@ -419,7 +419,7 @@ public class NavCommandLink extends UICommand
 	public String getOnclick() {
 		return  (String)getStateHelper().eval(PropertyKeys.onclick);
 	}
-
+	
 	/**
 	 * The onclick attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -427,7 +427,7 @@ public class NavCommandLink extends UICommand
 	public void setOnclick(String _onclick) {
 	    getStateHelper().put(PropertyKeys.onclick, _onclick);
     }
-
+	
 
 	/**
 	 * JavaScript to be executed when ajax completes with success. <P>
@@ -436,7 +436,7 @@ public class NavCommandLink extends UICommand
 	public String getOncomplete() {
 		return  (String)getStateHelper().eval(PropertyKeys.oncomplete);
 	}
-
+	
 	/**
 	 * JavaScript to be executed when ajax completes with success. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -444,7 +444,7 @@ public class NavCommandLink extends UICommand
 	public void setOncomplete(String _oncomplete) {
 	    getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when input element is double clicked. <P>
@@ -453,7 +453,7 @@ public class NavCommandLink extends UICommand
 	public String getOndblclick() {
 		return  (String)getStateHelper().eval(PropertyKeys.ondblclick);
 	}
-
+	
 	/**
 	 * Client side callback to execute when input element is double clicked. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -461,7 +461,7 @@ public class NavCommandLink extends UICommand
 	public void setOndblclick(String _ondblclick) {
 	    getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when input element receives focus. <P>
@@ -470,7 +470,7 @@ public class NavCommandLink extends UICommand
 	public String getOnfocus() {
 		return  (String)getStateHelper().eval(PropertyKeys.onfocus);
 	}
-
+	
 	/**
 	 * Client side callback to execute when input element receives focus. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -478,7 +478,7 @@ public class NavCommandLink extends UICommand
 	public void setOnfocus(String _onfocus) {
 	    getStateHelper().put(PropertyKeys.onfocus, _onfocus);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a key is pressed down over input element. <P>
@@ -487,7 +487,7 @@ public class NavCommandLink extends UICommand
 	public String getOnkeydown() {
 		return  (String)getStateHelper().eval(PropertyKeys.onkeydown);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a key is pressed down over input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -495,7 +495,7 @@ public class NavCommandLink extends UICommand
 	public void setOnkeydown(String _onkeydown) {
 	    getStateHelper().put(PropertyKeys.onkeydown, _onkeydown);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a key is pressed and released over input element. <P>
@@ -504,7 +504,7 @@ public class NavCommandLink extends UICommand
 	public String getOnkeypress() {
 		return  (String)getStateHelper().eval(PropertyKeys.onkeypress);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a key is pressed and released over input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -512,7 +512,7 @@ public class NavCommandLink extends UICommand
 	public void setOnkeypress(String _onkeypress) {
 	    getStateHelper().put(PropertyKeys.onkeypress, _onkeypress);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a key is released over input element. <P>
@@ -521,7 +521,7 @@ public class NavCommandLink extends UICommand
 	public String getOnkeyup() {
 		return  (String)getStateHelper().eval(PropertyKeys.onkeyup);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a key is released over input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -529,7 +529,7 @@ public class NavCommandLink extends UICommand
 	public void setOnkeyup(String _onkeyup) {
 	    getStateHelper().put(PropertyKeys.onkeyup, _onkeyup);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
@@ -538,7 +538,7 @@ public class NavCommandLink extends UICommand
 	public String getOnmousedown() {
 		return  (String)getStateHelper().eval(PropertyKeys.onmousedown);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -546,7 +546,7 @@ public class NavCommandLink extends UICommand
 	public void setOnmousedown(String _onmousedown) {
 	    getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved within input element. <P>
@@ -555,7 +555,7 @@ public class NavCommandLink extends UICommand
 	public String getOnmousemove() {
 		return  (String)getStateHelper().eval(PropertyKeys.onmousemove);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a pointer input element is moved within input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -563,7 +563,7 @@ public class NavCommandLink extends UICommand
 	public void setOnmousemove(String _onmousemove) {
 	    getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
@@ -572,7 +572,7 @@ public class NavCommandLink extends UICommand
 	public String getOnmouseout() {
 		return  (String)getStateHelper().eval(PropertyKeys.onmouseout);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -580,7 +580,7 @@ public class NavCommandLink extends UICommand
 	public void setOnmouseout(String _onmouseout) {
 	    getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
@@ -589,7 +589,7 @@ public class NavCommandLink extends UICommand
 	public String getOnmouseover() {
 		return  (String)getStateHelper().eval(PropertyKeys.onmouseover);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -597,7 +597,7 @@ public class NavCommandLink extends UICommand
 	public void setOnmouseover(String _onmouseover) {
 	    getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when a pointer input element is released over input element. <P>
@@ -606,7 +606,7 @@ public class NavCommandLink extends UICommand
 	public String getOnmouseup() {
 		return  (String)getStateHelper().eval(PropertyKeys.onmouseup);
 	}
-
+	
 	/**
 	 * Client side callback to execute when a pointer input element is released over input element. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -614,7 +614,7 @@ public class NavCommandLink extends UICommand
 	public void setOnmouseup(String _onmouseup) {
 	    getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
     }
-
+	
 
 	/**
 	 * Client side callback to execute when text within input element is selected by user. <P>
@@ -623,7 +623,7 @@ public class NavCommandLink extends UICommand
 	public String getOnselect() {
 		return  (String)getStateHelper().eval(PropertyKeys.onselect);
 	}
-
+	
 	/**
 	 * Client side callback to execute when text within input element is selected by user. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -631,7 +631,7 @@ public class NavCommandLink extends UICommand
 	public void setOnselect(String _onselect) {
 	    getStateHelper().put(PropertyKeys.onselect, _onselect);
     }
-
+	
 
 	/**
 	 * The outcome to navigate to. <P>
@@ -640,7 +640,7 @@ public class NavCommandLink extends UICommand
 	public String getOutcome() {
 		return  (String)getStateHelper().eval(PropertyKeys.outcome);
 	}
-
+	
 	/**
 	 * The outcome to navigate to. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -648,7 +648,7 @@ public class NavCommandLink extends UICommand
 	public void setOutcome(String _outcome) {
 	    getStateHelper().put(PropertyKeys.outcome, _outcome);
     }
-
+	
 
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
@@ -657,7 +657,7 @@ public class NavCommandLink extends UICommand
 	public String getProcess() {
 		return  (String)getStateHelper().eval(PropertyKeys.process);
 	}
-
+	
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -665,7 +665,7 @@ public class NavCommandLink extends UICommand
 	public void setProcess(String _process) {
 	    getStateHelper().put(PropertyKeys.process, _process);
     }
-
+	
 
 	/**
 	 * Inline style <P>
@@ -674,7 +674,7 @@ public class NavCommandLink extends UICommand
 	public String getStyle() {
 		return  (String)getStateHelper().eval(PropertyKeys.style);
 	}
-
+	
 	/**
 	 * Inline style <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -682,7 +682,7 @@ public class NavCommandLink extends UICommand
 	public void setStyle(String _style) {
 	    getStateHelper().put(PropertyKeys.style, _style);
     }
-
+	
 
 	/**
 	 * CSS style class <P>
@@ -691,7 +691,7 @@ public class NavCommandLink extends UICommand
 	public String getStyleClass() {
 		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
 	}
-
+	
 	/**
 	 * CSS style class <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -699,7 +699,7 @@ public class NavCommandLink extends UICommand
 	public void setStyleClass(String _styleClass) {
 	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
     }
-
+	
 
 	/**
 	 * The text of the tooltip. <P>
@@ -708,7 +708,7 @@ public class NavCommandLink extends UICommand
 	public String getTooltip() {
 		return  (String)getStateHelper().eval(PropertyKeys.tooltip);
 	}
-
+	
 	/**
 	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -716,7 +716,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltip(String _tooltip) {
 	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
     }
-
+	
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
@@ -725,7 +725,7 @@ public class NavCommandLink extends UICommand
 	public String getTooltipContainer() {
 		return  (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
-
+	
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -733,7 +733,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltipContainer(String _tooltipContainer) {
 	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
     }
-
+	
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
@@ -742,7 +742,7 @@ public class NavCommandLink extends UICommand
 	public int getTooltipDelay() {
 		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
-
+	
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -750,7 +750,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltipDelay(int _tooltipDelay) {
 	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
     }
-
+	
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
@@ -759,7 +759,7 @@ public class NavCommandLink extends UICommand
 	public int getTooltipDelayHide() {
 		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
-
+	
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -767,7 +767,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
 	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
     }
-
+	
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
@@ -776,7 +776,7 @@ public class NavCommandLink extends UICommand
 	public int getTooltipDelayShow() {
 		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
-
+	
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -784,7 +784,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
 	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
     }
-
+	
 
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
@@ -793,7 +793,7 @@ public class NavCommandLink extends UICommand
 	public String getTooltipPosition() {
 		return  (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
-
+	
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -801,7 +801,7 @@ public class NavCommandLink extends UICommand
 	public void setTooltipPosition(String _tooltipPosition) {
 	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
     }
-
+	
 
 	/**
 	 * Component(s) to be updated with ajax. <P>
@@ -810,7 +810,7 @@ public class NavCommandLink extends UICommand
 	public String getUpdate() {
 		return  (String)getStateHelper().eval(PropertyKeys.update);
 	}
-
+	
 	/**
 	 * Component(s) to be updated with ajax. <P>
 	 * Usually this method is called internally by the JSF engine.
@@ -818,6 +818,6 @@ public class NavCommandLink extends UICommand
 	public void setUpdate(String _update) {
 	    getStateHelper().put(PropertyKeys.update, _update);
     }
-
+	
 }
 
