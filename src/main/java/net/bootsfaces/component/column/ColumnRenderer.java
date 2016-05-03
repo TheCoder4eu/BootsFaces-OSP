@@ -231,21 +231,6 @@ public class ColumnRenderer extends CoreRenderer {
 			break;
 		}
 		return colSize;
-		/*
-		if(size.equals("xs")) {
-			if(!col.getColXs().equals("-1")) return col.getColXs();
-			if(!col.getTinyScreen().equals("-1")) return col.getTinyScreen();
-		} else if(size.equals("sm")) {
-			if(!col.getColSm().equals("-1")) return col.getColSm();
-			if(!col.getSmallScreen().equals("-1")) return col.getSmallScreen();
-		} else if(size.equals("md")) {
-			if(!col.getColMd().equals("-1")) return col.getColMd();
-			if(!col.getMediumScreen().equals("-1")) return col.getMediumScreen();
-		} else if(size.equals("lg")) {
-			if(!col.getColLg().equals("-1")) return col.getColLg();
-			if(!col.getLargeScreen().equals("-1")) return col.getLargeScreen();
-		}
-		return "-1";*/
 	}
 	
 	private int columnToInt(String column) {
