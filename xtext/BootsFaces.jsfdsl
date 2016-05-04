@@ -603,7 +603,7 @@ widget dropMenu
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               mandatory inherited                                "The Label for the Dropdown."
     visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
-    
+
     col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
@@ -1047,7 +1047,7 @@ widget label
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
     text                mandatory                                          "Label text."
-    
+
     col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
@@ -1065,8 +1065,8 @@ widget label
     offset-xs           Integer                                            "Integer value to specify how many columns to offset."
     span                default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
-    
-    
+
+
     tooltip                                                                "The text of the tooltip."
     tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
     tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
@@ -1260,6 +1260,25 @@ widget navCommandLink
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
+
+    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    offset              Integer                                            "Integer value to specify how many columns to offset."
+    offset-lg           Integer                                            "Integer value to specify how many columns to offset."
+    offset-md           Integer                                            "Integer value to specify how many columns to offset."
+    offset-sm           Integer                                            "Integer value to specify how many columns to offset."
+    offset-xs           Integer                                            "Integer value to specify how many columns to offset."
+    span                default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+
 }
 
 widget navLink
@@ -1312,6 +1331,25 @@ widget navLink
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
+
+    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    offset              Integer                                            "Integer value to specify how many columns to offset."
+    offset-lg           Integer                                            "Integer value to specify how many columns to offset."
+    offset-md           Integer                                            "Integer value to specify how many columns to offset."
+    offset-sm           Integer                                            "Integer value to specify how many columns to offset."
+    offset-xs           Integer                                            "Integer value to specify how many columns to offset."
+    span                default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+
 }
 
 

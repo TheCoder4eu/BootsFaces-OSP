@@ -5,8 +5,9 @@ import java.util.Map;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IHasTooltip;
+import net.bootsfaces.render.IResponsive;
 
-public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
+public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsive {
 
 	String getFamily();
 
@@ -16,7 +17,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).
-	 * 
+	 *
 	 * @return
 	 */
 	Map<String, String> getJQueryEvents();
@@ -28,7 +29,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Adds the active state to the link.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -44,7 +45,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Whether the Button submits the form with AJAX.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -61,7 +62,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * An el expression referring to a server side UIComponent instance in a
 	 * backing bean.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -79,7 +80,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * contentClass is optional: if specified, the content (i.e. the anchor tag)
 	 * will be displayed with this specific class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -96,7 +97,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Inline style of the content area (i.e the anchor tag).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -113,7 +114,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * The fragment that is to be appended to the target URL. The # separator is
 	 * applied automatically and needs not be included.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -131,7 +132,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * If present, this element is rendered as Header in a menu with the text
 	 * specifide by this attribute value: all other attributes will be ignored.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -148,7 +149,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * URL to link directly to implement anchor behavior.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -165,7 +166,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon
 	 * names. Alignment can be specified with the iconAlign attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -182,7 +183,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Alignment can right or left.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -199,7 +200,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon
 	 * names. Alignment can be specified with the iconAlign attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -219,7 +220,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * immediately (that is, during Apply Request Values phase) rather than
 	 * waiting until Invoke Application phase. Default is false.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -261,7 +262,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Client side callback to execute when input element loses focus.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -278,7 +279,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when input element loses focus and its
 	 * value has been modified since gaining focus.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -295,7 +296,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * The onclick attribute.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -311,7 +312,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Javascript to be executed when ajax completes with success.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -327,7 +328,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Client side callback to execute when input element is double clicked.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -343,7 +344,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Client side callback to execute when input element receives focus.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -360,7 +361,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a key is pressed down over input
 	 * element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -378,7 +379,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a key is pressed and released over
 	 * input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -396,7 +397,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a key is released over input
 	 * element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -414,7 +415,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a pointer input element is pressed
 	 * down over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -432,7 +433,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a pointer input element is moved
 	 * within input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -450,7 +451,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a pointer input element is moved
 	 * away from input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -468,7 +469,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a pointer input element is moved
 	 * onto input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -486,7 +487,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when a pointer input element is released
 	 * over input element.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -504,7 +505,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Client side callback to execute when text within input element is
 	 * selected by user.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -521,7 +522,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * The outcome to navigate to.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -538,7 +539,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * Comma or space separated list of ids or search expressions denoting which
 	 * values are to be sent to the server.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -555,7 +556,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Inline style
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -571,7 +572,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * CSS style class
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -587,7 +588,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * The text of the tooltip.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -606,7 +607,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * data-container in the documentation of Bootstrap. The default value is
 	 * body.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -626,7 +627,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * The tooltip is shown and hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -644,7 +645,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * The tooltip is hidden with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -662,7 +663,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * The tooltip is shown with a delay. This value is the delay in
 	 * milliseconds. Defaults to 0 (no delay).
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -681,7 +682,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	 * "right", "left", "auto", "auto top", "auto bottom", "auto right" and
 	 * "auto left". Default to "bottom".
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -699,7 +700,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Component(s) to be updated with ajax.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
@@ -715,7 +716,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent {
 	/**
 	 * Boolean value to specify if the button is disabled.
 	 * <P>
-	 * 
+	 *
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */

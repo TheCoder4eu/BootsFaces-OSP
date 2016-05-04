@@ -10,11 +10,11 @@ import javax.faces.FacesException;
 public class Responsive {
 	private static String[] delimiters = new String[] {",", "..." };
 	private static String[] validValues = new String[] { "xs", "sm", "md", "lg", "tiny-screen", "small-screen", "medium-screen", "large-screen" };
-	
+
 	public enum Sizes {
 		xs, sm, md, lg
 	}
-	
+
 	/**
 	 * Create the responsive class combination
 	 * @param r
@@ -25,20 +25,20 @@ public class Responsive {
 		int colxs = sizeToInt(getSize(r, Sizes.xs));
 		int colsm = sizeToInt(getSize(r, Sizes.sm));
 		int collg = sizeToInt(getSize(r, Sizes.lg));
-		
-		int span = sizeToInt(r.getSpan()); 
 
-		int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md)); 
+		int span = sizeToInt(r.getSpan());
+
+		int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md));
 		if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
 			colmd = (colmd > 0) ? colmd : -1;
 		} else {
 			colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
 		}
 
-		int offs = r.getOffset(); 
+		int offs = r.getOffset();
 		int offsmd = (offs > 0) ? offs : r.getOffsetMd();
-		int oxs = r.getOffsetXs(); 
-		int osm = r.getOffsetSm(); 
+		int oxs = r.getOffsetXs();
+		int osm = r.getOffsetSm();
 		int olg = r.getOffsetLg();
 
 		StringBuilder sb = new StringBuilder();
@@ -62,7 +62,7 @@ public class Responsive {
 		}
 		if (colxs == 0) {
 			sb.append(" hidden-xs");
-		}  
+		}
 
 		if (colsm > 0) {
 			sb.append(" col-sm-").append(colsm);
@@ -80,7 +80,7 @@ public class Responsive {
 
 		sb.append(encodeVisibility(r, r.getVisible(), "visible"));
 		sb.append(encodeVisibility(r, r.getHidden(), "hidden"));
-		
+
 		if (oxs > 0) {
 			sb.append(" col-xs-offset-").append(oxs);
 		}
@@ -93,7 +93,7 @@ public class Responsive {
 
 		return " " + sb.toString().trim() + " ";
 	}
-	
+
 	/**
 	 * Encode the visible field
 	 * @param r
@@ -101,11 +101,11 @@ public class Responsive {
 	 */
 	private static String encodeVisibility(IResponsive r, String value, String prefix) {
 		if(value == null) return "";
-		
+
 		List<String> str = wonderfulTokenizer(value, delimiters);
 		return evaluateExpression(str, delimiters, validValues, prefix, r.getDisplay());
 	}
-	
+
 	/**
 	 * Decode col sizes between two way of definition
 	 * @param col
@@ -134,7 +134,7 @@ public class Responsive {
 		}
 		return colSize;
 	}
-	
+
 	/**
 	 * Convert the specified size to int value
 	 * @param size
@@ -163,10 +163,10 @@ public class Responsive {
 		}
 		return new Integer(size).intValue();
 	}
-	
+
 	/**
 	 * Parse the expression token
-	 * 
+	 *
 	 * @param expressionToken
 	 * @param delimiters
 	 * @param validValues
@@ -176,13 +176,19 @@ public class Responsive {
 	 * @throws Exception
 	 */
 	public static String evaluateExpression(
-				List<String> expressionToken, String[] delimiters, 
-				String[] validValues, String visibilityLevel, String display) 
+				List<String> expressionToken, String[] delimiters,
+				String[] validValues, String visibilityLevel, String display)
 	{
+		if ("visible".equals(visibilityLevel)) {
 		display = (display == null || display.trim().isEmpty()) ? "" : "-" + display;
+		}
+		else {
+			// hidden is not suffixed by -block, -inline or -inline-block
+			display="";
+		}
 		String finalExpr = "";
 		List<String> _valid = Arrays.asList(validValues);
-		
+
 		// Validate expression
 		//
 		// expression can be:
@@ -190,23 +196,23 @@ public class Responsive {
 		// SIZE LIST: [size],[size],...,[size]
 		// RANGE FROM: ...[size] or [size]... to get range (only inclusive)
 		// RANGE BETWEEN: [size]...[size]
-		
+
 		// 1. Only one size:
-		if(expressionToken.size() == 1) 
+		if(expressionToken.size() == 1)
 		{
 			// validation:
-			if(!_valid.contains(expressionToken.get(0))) 
+			if(!_valid.contains(expressionToken.get(0)))
 				throw new FacesException("Expression not valid. Valid sizes are [ xs, sm, md, lg ]");
 			finalExpr = visibilityLevel + "-" + translateSize(expressionToken.get(0)) + display;
 		}
 		// 2. Expression contains comma, so is a list of sizes
-		else if (expressionToken.contains(",")) 
+		else if (expressionToken.contains(","))
 		{
 			for(String ex: expressionToken) {
 				if(",".equals(ex)) continue;
 				if(!_valid.contains(ex))
 					throw new FacesException("Expression contains a non valid size. Valid sizes are [ xs, sm, md, lg ]. ");
-				
+
 				finalExpr += " " + visibilityLevel + "-" + translateSize(ex) + display + " ";
 			}
 		}
@@ -215,7 +221,7 @@ public class Responsive {
 			if(expressionToken.get(0).equals("...")) {
 				if(!_valid.contains(expressionToken.get(1)))
 					throw new FacesException("Expression not valid. Valid syntax is ...[size] eg. ...sm . Valid sizes are [ xs, sm, md, lg ].");
-				
+
 				List<String> sR = getSizeRange("<=", translateSize(expressionToken.get(1)));
 				for(String s: sR) {
 					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
@@ -223,7 +229,7 @@ public class Responsive {
 			} else if(expressionToken.get(1).equals("...")) {
 				if(!_valid.contains(expressionToken.get(0)))
 					throw new FacesException("Expression not valid. Valid syntax is [size]... eg. sm... . Valid sizes are [ xs, sm, md, lg ].");
-				
+
 				List<String> sR = getSizeRange(">=", translateSize(expressionToken.get(0)));
 				for(String s: sR) {
 					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
@@ -235,9 +241,9 @@ public class Responsive {
 		// 4. Expression is in range
 		else if(expressionToken.size() == 3) {
 			// validation:
-			if(!_valid.contains(expressionToken.get(0)) && !"...".equals(expressionToken.get(1)) && !_valid.contains(expressionToken.get(2))) 
+			if(!_valid.contains(expressionToken.get(0)) && !"...".equals(expressionToken.get(1)) && !_valid.contains(expressionToken.get(2)))
 				throw new FacesException("Expression not valid. Valid syntax is [size]...[size] eg. xs...md . Valid sizes are [ xs, sm, md, lg ].");
-			
+
 			List<String> sR2 = getSizeRange(expressionToken.get(1), translateSize(expressionToken.get(0)), translateSize(expressionToken.get(2)));
 			for(String s: sR2) {
 				finalExpr += " " + visibilityLevel + "-" + s + display + " ";
@@ -247,10 +253,10 @@ public class Responsive {
 		else {
 			throw new FacesException("Expression not valid. See the docs for a list of possibile rules.");
 		}
-		
+
 		return finalExpr;
 	}
-	
+
 	/**
 	 * Translate Sizes
 	 * @param size
@@ -263,24 +269,24 @@ public class Responsive {
 		if(size.equalsIgnoreCase("lg") || size.equalsIgnoreCase("large-screen")) return "lg";
 		return size;
 	}
-	
+
 	/**
 	 * Get the size ranges
 	 * @param operation
 	 * @param size
 	 * @return
 	 */
-	private static List<String> getSizeRange(String operation, String size) 
-	{ 
+	private static List<String> getSizeRange(String operation, String size)
+	{
 		return getSizeRange(operation, size, null);
 	}
-	private static List<String> getSizeRange(String operation, String size1, String size2) 
+	private static List<String> getSizeRange(String operation, String size1, String size2)
 	 {
 		String[] orderSizes = { "xs", "sm", "md", "lg" };
 		List<String> sizeRange = new ArrayList<String>();
-		
+
 		int itemIdx = Arrays.asList(orderSizes).indexOf(size1);
-		
+
 		if(operation.equals(">")) {
 			for(int i = itemIdx + 1; i < orderSizes.length; i++) {
 				sizeRange.add(orderSizes[i]);
@@ -310,13 +316,13 @@ public class Responsive {
 		} else {
 			throw new FacesException("Operation not valid");
 		}
-		
+
 		return sizeRange;
 	}
-	
+
 	/**
 	 * Tokenize string based on rules
-	 * 
+	 *
 	 * @param tokenString
 	 * @param delimiters
 	 * @param validValues
@@ -328,7 +334,7 @@ public class Responsive {
 		for(int i = 0; i < tokenString.length(); i++) {
 			String _currItem = String.valueOf(tokenString.charAt(i));
 			if(_currItem.trim().isEmpty()) continue;
-			
+
 			String delimiterFound = "";
 			for(String d: delimiters) {
 				if(d.startsWith(_currItem)) {
@@ -341,7 +347,7 @@ public class Responsive {
 				}
 				if(!delimiterFound.isEmpty()) break;
 			}
-			
+
 			if(!delimiterFound.isEmpty()) {
 				if(!currentToken.isEmpty()) {
 					tokens.add(currentToken);
@@ -351,41 +357,41 @@ public class Responsive {
 			} else currentToken += _currItem;
 		}
 		if(!currentToken.isEmpty()) tokens.add(currentToken);
-		
+
 		return tokens;
 	}
-	
+
 	// TEST METHOD
-	public static void main(String[] args) 
+	public static void main(String[] args)
 	{
 		List<String> str = wonderfulTokenizer("sm...md", delimiters);
 		String finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
-		
+
 		System.out.println("*******");
 		str = wonderfulTokenizer("sm...medium-screen", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
-		
+
 		System.out.println("*******");
 		str = wonderfulTokenizer("...md", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
-		
+
 		System.out.println("*******");
 		str = wonderfulTokenizer("xs,lg", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
-		
+
 		System.out.println("*******");
 		str = wonderfulTokenizer("md...", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
-		
+
 	}
 }
