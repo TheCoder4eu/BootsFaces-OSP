@@ -6,8 +6,9 @@ import java.util.List;
 
 import javax.faces.FacesException;
 
+
 public class Responsive {
-	private static String[] delimiters = new String[] {"<=", "<", ">=", ">", "..." };
+	private static String[] delimiters = new String[] {",", "..." };
 	private static String[] validValues = new String[] { "xs", "sm", "md", "lg", "tiny-screen", "small-screen", "medium-screen", "large-screen" };
 	
 	public enum Sizes {
@@ -19,7 +20,8 @@ public class Responsive {
 	 * @param r
 	 * @return
 	 */
-	public static String getResponsiveStyleClass(IResponsive r) {
+	public static String getResponsiveStyleClass(IResponsive r) { return getResponsiveStyleClass(r, true); }
+	public static String getResponsiveStyleClass(IResponsive r, boolean forceColMd) {
 		int colxs = sizeToInt(getSize(r, Sizes.xs));
 		int colsm = sizeToInt(getSize(r, Sizes.sm));
 		int collg = sizeToInt(getSize(r, Sizes.lg));
@@ -28,9 +30,9 @@ public class Responsive {
 
 		int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md)); 
 		if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
-			colmd = (colmd > 0) ? colmd : 0;
+			colmd = (colmd > 0) ? colmd : -1;
 		} else {
-			colmd = (colmd > 0) ? colmd : 12;
+			colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
 		}
 
 		int offs = r.getOffset(); 
@@ -76,8 +78,8 @@ public class Responsive {
 			sb.append(" hidden-lg");
 		}
 
-		sb.append(" " + encodeVisibility(r, r.getVisible(), "visible"));
-		sb.append(" " + encodeVisibility(r, r.getHidden(), "hidden"));
+		sb.append(encodeVisibility(r, r.getVisible(), "visible"));
+		sb.append(encodeVisibility(r, r.getHidden(), "hidden"));
 		
 		if (oxs > 0) {
 			sb.append(" col-xs-offset-").append(oxs);
@@ -89,7 +91,7 @@ public class Responsive {
 			sb.append(" col-lg-offset-").append(olg);
 		}
 
-		return " " + sb.toString().trim();
+		return " " + sb.toString().trim() + " ";
 	}
 	
 	/**
@@ -139,7 +141,7 @@ public class Responsive {
 	 * @return
 	 */
 	private static int sizeToInt(String size) {
-		if (size == null || "-1".equals(size)) return -1;
+		if (size==null) return -1;
 		if ("full".equals(size)) return 12;
 		if ("full-size".equals(size)) return 12;
 		if ("fullSize".equals(size)) return 12;
@@ -177,54 +179,73 @@ public class Responsive {
 				List<String> expressionToken, String[] delimiters, 
 				String[] validValues, String visibilityLevel, String display) 
 	{
+		display = (display == null || display.trim().isEmpty()) ? "" : "-" + display;
 		String finalExpr = "";
-		List<String> _delim = Arrays.asList(delimiters);
 		List<String> _valid = Arrays.asList(validValues);
 		
-		
-		// validate expression
+		// Validate expression
+		//
 		// expression can be:
-		// ONE ITEM: [size]
-		// TWO ITEMS: [operator] + [size] to get range (inclusive or exclusive)
-		// THREE ITEMS: only if there is a range [size] ... [size]
-		switch(expressionToken.size()) {
-		// only size
-		case 1: 
+		// ONE SIZE: [size]
+		// SIZE LIST: [size],[size],...,[size]
+		// RANGE FROM: ...[size] or [size]... to get range (only inclusive)
+		// RANGE BETWEEN: [size]...[size]
+		
+		// 1. Only one size:
+		if(expressionToken.size() == 1) 
+		{
 			// validation:
 			if(!_valid.contains(expressionToken.get(0))) 
 				throw new FacesException("Expression not valid. Valid sizes are [ xs, sm, md, lg ]");
-			finalExpr = visibilityLevel + "-" + translateSize(expressionToken.get(0)) + (display != null ? "-" + display : "");
-			
-			break;
-			
-		// size range
-		case 2:
-			// validation:
-			if(!_delim.contains(expressionToken.get(0)) && !_valid.contains(expressionToken.get(1)))
-				throw new FacesException("Expression not valid. Valid syntax is [operator][size] eg. <=md");
-			
-			List<String> sR = getSizeRange(expressionToken.get(0), translateSize(expressionToken.get(1)));
-			for(String s: sR) {
-				finalExpr += " " + visibilityLevel + "-" + s + (display != null ? "-" + display : "") + " ";
+			finalExpr = visibilityLevel + "-" + translateSize(expressionToken.get(0)) + display;
+		}
+		// 2. Expression contains comma, so is a list of sizes
+		else if (expressionToken.contains(",")) 
+		{
+			for(String ex: expressionToken) {
+				if(",".equals(ex)) continue;
+				if(!_valid.contains(ex))
+					throw new FacesException("Expression contains a non valid size. Valid sizes are [ xs, sm, md, lg ]. ");
+				
+				finalExpr += " " + visibilityLevel + "-" + translateSize(ex) + display + " ";
 			}
-			
-			break;
-			
-		// size between
-		case 3:
+		}
+		// 3. Expression is a range from
+		else if (expressionToken.size() == 2) {
+			if(expressionToken.get(0).equals("...")) {
+				if(!_valid.contains(expressionToken.get(1)))
+					throw new FacesException("Expression not valid. Valid syntax is ...[size] eg. ...sm . Valid sizes are [ xs, sm, md, lg ].");
+				
+				List<String> sR = getSizeRange("<=", translateSize(expressionToken.get(1)));
+				for(String s: sR) {
+					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
+				}
+			} else if(expressionToken.get(1).equals("...")) {
+				if(!_valid.contains(expressionToken.get(0)))
+					throw new FacesException("Expression not valid. Valid syntax is [size]... eg. sm... . Valid sizes are [ xs, sm, md, lg ].");
+				
+				List<String> sR = getSizeRange(">=", translateSize(expressionToken.get(0)));
+				for(String s: sR) {
+					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
+				}
+			} else {
+				throw new FacesException("Expression not valid. Valid syntax is ...[size] or [size]... . Valid sizes are [ xs, sm, md, lg ].");
+			}
+		}
+		// 4. Expression is in range
+		else if(expressionToken.size() == 3) {
 			// validation:
 			if(!_valid.contains(expressionToken.get(0)) && !"...".equals(expressionToken.get(1)) && !_valid.contains(expressionToken.get(2))) 
-				throw new FacesException("Expression not valid. Valid syntax is [size]...[size] eg. xs...md");
+				throw new FacesException("Expression not valid. Valid syntax is [size]...[size] eg. xs...md . Valid sizes are [ xs, sm, md, lg ].");
 			
 			List<String> sR2 = getSizeRange(expressionToken.get(1), translateSize(expressionToken.get(0)), translateSize(expressionToken.get(2)));
 			for(String s: sR2) {
-				finalExpr += " " + visibilityLevel + "-" + s + (display != null ? "-" + display : "") + " ";
+				finalExpr += " " + visibilityLevel + "-" + s + display + " ";
 			}
-			
-			break;
-			
-		default:
-			throw new FacesException("Expression not valid");
+		}
+		// 5. Otherwise
+		else {
+			throw new FacesException("Expression not valid. See the docs for a list of possibile rules.");
 		}
 		
 		return finalExpr;
@@ -334,17 +355,9 @@ public class Responsive {
 		return tokens;
 	}
 	
-	
-	/**
-	 * Test main
-	 * @param args
-	 * @throws Exception
-	 */
+	// TEST METHOD
 	public static void main(String[] args) 
-	throws Exception {
-		String[] delimiters = new String[] {"<=", "<", ">=", ">", "..." };
-		String[] validValues = new String[] { "xs", "sm", "md", "lg", "tiny-screen", "small-screen", "medium-screen", "large-screen" };
-		
+	{
 		List<String> str = wonderfulTokenizer("sm...md", delimiters);
 		String finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
@@ -357,19 +370,19 @@ public class Responsive {
 		System.out.println(finalExpr);
 		
 		System.out.println("*******");
-		str = wonderfulTokenizer("<=md", delimiters);
+		str = wonderfulTokenizer("...md", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
 		
 		System.out.println("*******");
-		str = wonderfulTokenizer("<sm", delimiters);
+		str = wonderfulTokenizer("xs,lg", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);
 		
 		System.out.println("*******");
-		str = wonderfulTokenizer(">=md", delimiters);
+		str = wonderfulTokenizer("md...", delimiters);
 		finalExpr = evaluateExpression(str, delimiters, validValues, "hidden", "block");
 		for(String s: str) System.out.println(s);
 		System.out.println(finalExpr);

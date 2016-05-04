@@ -21,7 +21,6 @@ package net.bootsfaces.component.dropMenu;
 
 import java.io.IOException;
 
-import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
@@ -31,6 +30,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:dropMenu /&gt;. */
@@ -145,40 +145,7 @@ public class DropMenuRenderer extends CoreRenderer {
 			userClass = "";
 		else
 			userClass += " ";
-		if (dropMenu.getHidden() != null) {
-			if ("xs".equals(dropMenu.getHidden())) {
-				userClass+=" hidden-xs";
-			}
-			else if ("sm".equals(dropMenu.getHidden())) {
-				userClass+=" hidden-xs  hidden-sm";
-			}
-			else if ("md".equals(dropMenu.getHidden())) {
-				userClass+=" hidden-xs hidden-sm  hidden-md";
-			}
-			else throw new FacesException("Error rendering the \"hidden\" attribute of b:dropMenu: unexpected value found. Legal values are xs, sm, md.");
-		}
-
-		if (dropMenu.getVisible() != null) {
-			if ("sm".equals(dropMenu.getVisible())) {
-				userClass+=" visible-sm-";
-				userClass+=dropMenu.getDisplay();
-				userClass+=" visible-md-";
-				userClass+=dropMenu.getDisplay();
-				userClass+=" visible-lg-";
-				userClass+=dropMenu.getDisplay();
-			}
-			else if ("md".equals(dropMenu.getVisible())) {
-				userClass+=" visible-md-";
-				userClass+=dropMenu.getDisplay();
-				userClass+=" visible-lg-";
-				userClass+=dropMenu.getDisplay();
-			}
-			else if ("lg".equals(dropMenu.getVisible())) {
-				userClass+=" visible-lg-";
-				userClass+=dropMenu.getDisplay();
-			}
-			else throw new FacesException("Error rendering the \"visible\" attribute of b:dropMenu: unexpected value found. Legal values are sm, md and lg.");
-		}
+		userClass += Responsive.getResponsiveStyleClass(dropMenu, false);
 		String direction = dropMenu.getDrop();
 		if (direction == null) {
 			direction = "down";
