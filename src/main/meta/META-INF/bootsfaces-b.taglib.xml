@@ -2841,7 +2841,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -2849,6 +2849,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2909,6 +2915,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

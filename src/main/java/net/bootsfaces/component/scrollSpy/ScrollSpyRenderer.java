@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -37,7 +37,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class generates the HTML code of &lt;b:scrollSpy /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.scrollSpy.ScrollSpy")
 public class ScrollSpyRenderer extends CoreRenderer {
-	
+
 	/**
 	 * Decode ajax behaviours specific to the components
 	 */
@@ -67,13 +67,13 @@ public class ScrollSpyRenderer extends CoreRenderer {
 			}
 		}
 	}
-	
+
 	/**
 	 * This methods generates the HTML code of the current b:scrollSpy.
 	 * @param context the FacesContext.
 	 * @param component the current b:scrollSpy.
 	 * @throws IOException thrown if something goes wrong when writing the HTML code.
-	 */  
+	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 	    // do nothing
@@ -87,22 +87,22 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		ScrollSpy scrollSpy = (ScrollSpy) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = scrollSpy.getClientId();
-		
+
 		// Get attributes
 		String container = scrollSpy.getContainer();
 		if(!BsfUtils.isStringValued(container)) {
 			container = "body";
 		} else container = "#" + decodeAndEscapeSelectors(context, component, container);
-		
+
 		String target = scrollSpy.getTarget();
 		if(!BsfUtils.isStringValued(target)) {
 			target = ".navbar";
 		} else target = "#" + decodeAndEscapeSelectors(context, component, target);
-		
+
 		int offset = scrollSpy.getOffset();
 		if(!BsfUtils.isStringValued(target)) {
 			offset = 20;
-		} 
+		}
 		boolean smooth = scrollSpy.isSmooth();
 		int smoothSpeed = scrollSpy.getSmoothSpeed();
 		boolean hasListeners = (scrollSpy.getSelectionListener() != null);
@@ -117,7 +117,7 @@ public class ScrollSpyRenderer extends CoreRenderer {
 				throw new FacesException("The scrollspy component must be inside a form if an actionlistener is defined", null);
 			}
 		}
-		
+
 		rw.startElement("script", component);
 		rw.writeText("" +
 					"$(document).ready(function() { " +
@@ -128,29 +128,29 @@ public class ScrollSpyRenderer extends CoreRenderer {
 					"	var hash = this.hash; " +
 					"	$('" + ("body".equals(container) ? "html, body": container) + "').animate({ " +
 					"		scrollTop: $(hash).parent().scrollTop() + $(hash).offset().top - $(hash).parent().offset().top " +
-					"	}, { " + 
-					"       duration: " + smoothSpeed + ", " + 
-					"		specialEasing: { " + 
-			        "        	width: 'linear', " + 
-			        "        	height: 'easeOutBounce' " + 
+					"	}, { " +
+					"       duration: " + smoothSpeed + ", " +
+					"		specialEasing: { " +
+			        "        	width: 'linear', " +
+			        "        	height: 'easeOutBounce' " +
 			        "	    } "+
 					"	}); " +
 			        "   event.preventDefault(); " +
 					"}); ", null);
 		}
-		
+
 		if(hasListeners) {
-			rw.writeText("" + 
-					"$('" + target + "').on('activate.bs.scrollspy', function() { " + 
+			rw.writeText("" +
+					"$('" + target + "').on('activate.bs.scrollspy', function() { " +
 					"	var x = $('" + target + " li.active > a').text(); " +
-					"   BsF.ajax.callAjax(this, 'action', '" + updateItems + "', '" + clientId + "', null, 'itemSelected:' + x); " +    
+					"   BsF.ajax.callAjax(this, 'action', '" + updateItems + "', '" + clientId + "', null,  null, null, 'itemSelected:' + x); " +
 		    		"}); ", null);
 		}
-					
+
 		rw.writeText("});", null);
 		rw.endElement("script");
 	}
-	
+
 	/**
 	 * Decode and escape selectors if necessary
 	 * @param context
@@ -161,7 +161,7 @@ public class ScrollSpyRenderer extends CoreRenderer {
 	private String decodeAndEscapeSelectors(FacesContext context, UIComponent component, String selector) {
 		selector = ExpressionResolver.getComponentIDs(context, component, selector);
 		selector = BsfUtils.escapeJQuerySpecialCharsInSelector(selector);
-		
+
 		return selector;
 	}
 }

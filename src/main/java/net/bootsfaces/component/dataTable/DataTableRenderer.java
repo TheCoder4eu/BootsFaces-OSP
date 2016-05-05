@@ -329,21 +329,21 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.writeText(widgetVar +".on('page.dt', function(event, settings, len){" +
 				"var info = table.page.info();" +
 				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
 				"'" + DataTablePropertyType.currentPage + ":'+info.page);" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/length
 			rw.writeText(widgetVar +".on('length.dt', function(event, settings, len) {" +
 				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
 				"'" + DataTablePropertyType.pageLength + ":'+len);" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);
 			//# Event setup: https://datatables.net/reference/event/search
 			rw.writeText(widgetVar +".on('search.dt', function(event, settings, len) {" +
 				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, " +
+				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
 				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
 				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
 				"});", null);

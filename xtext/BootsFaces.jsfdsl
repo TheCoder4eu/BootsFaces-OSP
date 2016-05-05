@@ -1,10 +1,18 @@
+attribute_list ajax {
+    oncomplete                                                            "JavaScript to be executed when ajax completes."
+    onerror                                                               "JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions)."
+    onsuccess                                                             "JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception)."
+	process                                                               "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    update                                                                "Component(s) to be updated with ajax."
+}
+
 attribute_list tooltip {
     tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    tooltip-container    default "body"                                    "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
+    tooltip-delay        Integer                                           "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-hide    Integer                                          "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-delay-show    Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
+    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 }
 
 attribute_list responsive {
@@ -458,7 +466,6 @@ widget commandButton
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
     onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -470,7 +477,6 @@ widget commandButton
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
     style                                                                  "Inline style of the input element."
@@ -484,8 +490,8 @@ widget commandButton
     tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "The button type, can be submit, button, reset ; default submit."
-    update                                                                 "Component(s) to be updated with ajax."
     value               mandatory inherited                                "Button text."
+    +ajax
 }
 
 

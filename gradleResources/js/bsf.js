@@ -1,38 +1,49 @@
 /*!
  * Copyright 2014 Riccardo Massera (TheCoder4.Eu)
  * BootsFaces JS
- * author: TheCoder4.eu
+ * author: TheonSuccessCallbackCoder4.eu
  */
 
 BsF = {};
 BsF.ajax = {};
+BsF.onCompleteCallback = {};
+BsF.onErrorCallback = {};
 BsF.onSuccessCallback = {};
 
 BsF.ajax.onevent = function(data) {
-	// console.log(data.status);
-	// if (data.status === 'begin') {
-	// requestOngoing = true;
-	// onCompleteCallbacks = [];
-	// }
-	if (data.status === 'complete') {
+	if (data.status === 'complete') { // note that JSF confuses onSuccess and onComplete
+		var cid = data.source.id.replace(/[^a-zA-Z0-9]+/g, '_');
+		if (data.responseText != null && data.responseText.indexOf("<error><error-name>") >= 0) {
+			var f = BsF.onErrorCallback[cid];
+			if (f && f != null && typeof (f) != 'undefined') {
+				f();
+			}
+		} else {
+			var f = BsF.onSuccessCallback[cid];
+			if (f && f != null && typeof (f) != 'undefined') {
+				f();
+			}
+		}
 		if ($.blockUI && $.blockUI != null) {
 			$.unblockUI();
 		}
 	}
-	// if (data.status === 'success') {
-	// handleAjaxUpdates(data);
-	// requestOngoing = false;
-	// }
-	if (data.status == "success") {
+	if (data.status == "success") { // note that JSF confuses onSuccess and onComplete
 		var cid = data.source.id.replace(/[^a-zA-Z0-9]+/g, '_');
-		var f = BsF.onSuccessCallback[cid];
+		var f = BsF.onCompleteCallback[cid];
+		if (f && f != null && typeof (f) != 'undefined') {
+			f();
+		}
+	}
+	if (data.status == "error") {
+		var cid = data.source.id.replace(/[^a-zA-Z0-9]+/g, '_');
+		var f = BsF.onErrorCallback[cid];
 		if (f && f != null && typeof (f) != 'undefined') {
 			f();
 		}
 	}
 };
-BsF.ajax.cb = function(o, e, r, f) { // commandButton ajax helper (object,
-	// event, [render], [oncomplete])
+BsF.ajax.cb = function(o, e, r, f) {
 	BsF.ajax.callAjax(o, e, r, "@all", f, null);
 }
 
@@ -42,8 +53,8 @@ BsF.ajax.cb = function(o, e, r, f) { // commandButton ajax helper (object,
  * in this parameter.
  */
 BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
-		eventType) { // commandButton ajax helper (object, event, [render],
-	// [oncomplete])
+		onerror, onsuccess,
+		eventType) {
 	var argn = arguments.length;
 	var oid = source.id;
 	var cid = oid.replace(/[^a-zA-Z0-9]+/g, '_');
@@ -63,12 +74,22 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	}
 	opts[oid] = oid;
 	if (oncomplete && oncomplete != null) {
+		BsF.onCompleteCallback[cid] = oncomplete;
+	} else {
+		BsF.onCompleteCallback[cid] = null;
+	}
+	if (onerror && onerror != null) {
+		BsF.onErrorCallback[cid] = onerror;
+	} else {
+		BsF.onErrorCallback[cid] = null;
+	}
+	if (oncomplete && oncomplete != null) {
 		BsF.onSuccessCallback[cid] = oncomplete;
 	} else {
 		BsF.onSuccessCallback[cid] = null;
 	}
 	opts.onevent = BsF.ajax.onevent;
-	
+
 	jsf.ajax.request(source, event, opts);
 	if ($.blockUI && $.blockUI != null) {
 		var message = $.blockUI.defaults.message;
@@ -141,11 +162,11 @@ function treeDataMapper(data) {
 	console.log(data);
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
-		return data.nodeInternalId + sep + 
-			   data.text + sep + 
-			   data.state.checked + sep + 
-			   data.state.disabled + sep + 
-			   data.state.expanded + sep + 
+		return data.nodeInternalId + sep +
+			   data.text + sep +
+			   data.state.checked + sep +
+			   data.state.disabled + sep +
+			   data.state.expanded + sep +
 			   data.state.selected;
 	}
 	return "";

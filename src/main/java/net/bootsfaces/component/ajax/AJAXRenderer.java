@@ -34,7 +34,7 @@ import net.bootsfaces.render.CoreRenderer;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
-	
+
 	public void decode(FacesContext context, UIComponent component) {
 		String id = component.getClientId(context);
 		decode(context, component, id);
@@ -55,14 +55,14 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		}
-		
+
 		if (source == null) {
 			// check for non-ajax call
 			if (context.getExternalContext().getRequestParameterMap().containsKey(componentId)) {
 				source = componentId;
 			}
 		}
-		
+
 		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
@@ -143,7 +143,7 @@ public class AJAXRenderer extends CoreRenderer {
 	/**
 	 * Public API for every input component (effectively everything except the
 	 * command button).
-	 * 
+	 *
 	 * @param context
 	 * @param component
 	 * @param rw
@@ -359,6 +359,12 @@ public class AJAXRenderer extends CoreRenderer {
 
 	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
+		String onError = null;
+		String onSuccess=null;
+		if (component instanceof IAJAXComponent2) {
+			onError = ((IAJAXComponent2) component).getOnerror();
+			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
+		}
 		StringBuilder cJS = new StringBuilder(150);
 		String update = component.getUpdate();
 		if (null == update) {
@@ -377,16 +383,22 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 
 		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
-		// BsF.ajax.callAjax(o,e,r,"@all",f, null);
 		cJS.append("BsF.ajax.callAjax(this, event").append(",'" + update + "'").append(",'").append(process)
 				.append("'");
 		if (complete != null) {
 			cJS.append(",function(){" + complete + "}");
 		} else
 			cJS.append(", null");
+		if (onError != null) {
+			cJS.append(",function(){" + onError + "}");
+		} else
+			cJS.append(", null");
+		if (onSuccess != null) {
+			cJS.append(",function(){" + onSuccess + "}");
+		} else
+			cJS.append(", null");
 		if ((event != null) && (event.length() > 0)) {
 			cJS.append(", '" + event + "'");
-			// cJS.append(", {'BsFEvent':'" + event+"'}'");
 		}
 		cJS.append(");");
 		return cJS;
@@ -400,6 +412,12 @@ public class AJAXRenderer extends CoreRenderer {
 		String oncomplete = component.getOncomplete();
 		String process = component.getProcess();
 		String onevent = "";
+		String onError = null;
+		String onSuccess=null;
+		if (component instanceof IAJAXComponent2) {
+			onError = ((IAJAXComponent2) component).getOnerror();
+			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
+		}
 		if (ajaxBehavior != null) {
 			// the default values can be overridden by the AJAX behavior
 			if (ajaxBehavior instanceof AjaxBehavior) {
@@ -440,6 +458,14 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(",function(){" + oncomplete + "}");
 		} else
 			cJS.append(", null");
+		if (onError != null) {
+			cJS.append(",function(){" + onError + "}");
+		} else
+			cJS.append(", null");
+		if (onSuccess != null) {
+			cJS.append(",function(){" + onSuccess + "}");
+		} else
+			cJS.append(", null");
 		if ((onevent != null) && (onevent.length() > 0)) {
 			cJS.append(", '" + onevent + "'");
 			// cJS.append(", {'BsFEvent':'" + event+"'}'");
@@ -463,7 +489,7 @@ public class AJAXRenderer extends CoreRenderer {
 
 	/**
 	 * Registers a callback with jQuery.
-	 * 
+	 *
 	 * @param context
 	 * @param component
 	 * @param rw
@@ -492,7 +518,7 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 	}
-	
+
 	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String clientId, String event) throws IOException {
 		StringBuilder code = new StringBuilder();
