@@ -884,7 +884,7 @@ widget inputSecret
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -950,7 +950,7 @@ widget inputText
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1015,7 +1015,7 @@ widget inputTextarea
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly              Boolean                                          "Flag indicating that this input element will prevent changes by the user."
-    render-label          Boolean default "false"                          "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label          Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered              Boolean inherited                                "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required              Boolean                                          "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1619,7 +1619,7 @@ widget selectBooleanCheckbox
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
@@ -1691,7 +1691,7 @@ widget switch
 	on-text                                                                         "Optional label of the active switch. The default value is 'on'."
 	off-text                                                                        "Optional label of the inactive switch. The default value is 'off'."
     readonly            Boolean                                      inherited      "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "true"                       inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()"  inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean                                      inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     span                Integer                                      inherited      "The size of the input specified as number of grid columns."
     style                                                            inherited      "Inline style of the input element."
@@ -1721,6 +1721,7 @@ widget switch
 
 
 widget selectMultiMenu
+       extends HtmlInputText
        has_tooltip
        description "Similar to a traditional combobox, but with the option to select multiple values."
  {
@@ -1759,7 +1760,7 @@ widget selectMultiMenu
 
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "true"                             "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1813,7 +1814,7 @@ widget selectOneMenu
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean  default "true"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
