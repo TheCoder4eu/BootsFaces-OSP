@@ -22,7 +22,6 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
@@ -33,7 +32,7 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.accordion.Accordion")
-public class Accordion extends AccordionCore implements IHasTooltip {
+public class Accordion extends AccordionCore implements IHasTooltip, net.bootsfaces.render.IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.accordion.Accordion";
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";

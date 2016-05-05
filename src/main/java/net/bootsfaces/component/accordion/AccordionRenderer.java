@@ -30,6 +30,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.panel.Panel;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:accordion /&gt;. */
@@ -83,7 +84,7 @@ public class AccordionRenderer extends CoreRenderer {
 				? Arrays.asList(accordion.getExpandedPanels().split(",")) : null;
 
 		rw.startElement("div", accordion);
-		rw.writeAttribute("class", "panel-group", null);
+		rw.writeAttribute("class", "panel-group" + Responsive.getResponsiveStyleClass(accordion), null);
 		rw.writeAttribute("id", accordionClientId, "id");
 		Tooltip.generateTooltip(context, component, rw);
 
