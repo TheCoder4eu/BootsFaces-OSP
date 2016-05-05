@@ -25,19 +25,22 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IHasTooltip;
+import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:accordion /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.accordion.Accordion")
-public class Accordion extends UIComponentBase {
+public class Accordion extends AccordionCore implements IHasTooltip {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.accordion.Accordion";
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.accordion.Accordion";
 
 	public Accordion() {
+		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("panels.css");
@@ -52,39 +55,4 @@ public class Accordion extends UIComponentBase {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-
-	protected enum PropertyKeys {
-		expandedPanels
-;
-        String toString;
-
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
-
-        PropertyKeys() {}
-
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
-
-	/**
-	 * Comma separated list of child panel id that need to render expanded. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getExpandedPanels() {
-		return  (String)getStateHelper().eval(PropertyKeys.expandedPanels);
-	}
-	
-	/**
-	 * Comma separated list of child panel id that need to render expanded. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setExpandedPanels(String _expandedPanels) {
-	    getStateHelper().put(PropertyKeys.expandedPanels, _expandedPanels);
-    }
-	
 }
-
