@@ -83,8 +83,8 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	} else {
 		BsF.onErrorCallback[cid] = null;
 	}
-	if (oncomplete && oncomplete != null) {
-		BsF.onSuccessCallback[cid] = oncomplete;
+	if (onsuccess && onsuccess != null) {
+		BsF.onSuccessCallback[cid] = onsuccess;
 	} else {
 		BsF.onSuccessCallback[cid] = null;
 	}
@@ -159,7 +159,6 @@ function jq( myid ) {
 
 /* tree support method to convert data object to state string */
 function treeDataMapper(data) {
-	console.log(data);
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
 		return data.nodeInternalId + sep +

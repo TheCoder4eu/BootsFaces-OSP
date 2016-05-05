@@ -159,7 +159,6 @@ function jq( myid ) {
 
 /* tree support method to convert data object to state string */
 function treeDataMapper(data) {
-	console.log(data);
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
 		return data.nodeInternalId + sep +
