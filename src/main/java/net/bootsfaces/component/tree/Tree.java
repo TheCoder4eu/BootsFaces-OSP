@@ -87,289 +87,273 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 
 	// Object properties
 	protected enum PropertyKeys {
-		value,
-		renderRoot,
-		nodeSelectionListener,
-		showTags,
-		showIcon,
-		showCheckbox,
-		showBorder,
-		enableLinks,
-		collapseIcon,
-		expandIcon,
-		color,
-		hoverColor,
-		selectedColor,
 		borderColor,
-		update
-;
-        String toString;
+		collapseIcon,
+		color,
+		enableLinks,
+		expandIcon,
+		hoverColor,
+		nodeSelectionListener,
+		renderRoot,
+		selectedColor,
+		showBorder,
+		showCheckbox,
+		showIcon,
+		showTags,
+		update,
+		value;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
-
-	/**
-	 * Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public Node getValue() {
-		return  (Node)getStateHelper().eval(PropertyKeys.value);
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
 	}
-	
-	/**
-	 * Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(Node _value) {
-	    getStateHelper().put(PropertyKeys.value, _value);
-    }
-	
-
-	/**
-	 * Boolean value to specify if the root node must be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isRenderRoot() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.renderRoot, true);
-	}
-	
-	/**
-	 * Boolean value to specify if the root node must be rendered. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRenderRoot(boolean _renderRoot) {
-	    getStateHelper().put(PropertyKeys.renderRoot, _renderRoot);
-    }
-	
-
-	/**
-	 * Selection listener called on selection changed. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public TreeNodeEventListener getNodeSelectionListener() {
-		return  (TreeNodeEventListener)getStateHelper().eval(PropertyKeys.nodeSelectionListener);
-	}
-	
-	/**
-	 * Selection listener called on selection changed. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setNodeSelectionListener(TreeNodeEventListener _nodeSelectionListener) {
-	    getStateHelper().put(PropertyKeys.nodeSelectionListener, _nodeSelectionListener);
-    }
-	
-
-	/**
-	 * Boolean value to specify if tags was show or not. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isShowTags() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showTags, false);
-	}
-	
-	/**
-	 * Boolean value to specify if tags was show or not. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setShowTags(boolean _showTags) {
-	    getStateHelper().put(PropertyKeys.showTags, _showTags);
-    }
-	
-
-	/**
-	 * Boolean value to specify if icons are rendered or not. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isShowIcon() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showIcon, false);
-	}
-	
-	/**
-	 * Boolean value to specify if icons are rendered or not. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setShowIcon(boolean _showIcon) {
-	    getStateHelper().put(PropertyKeys.showIcon, _showIcon);
-    }
-	
-
-	/**
-	 * Boolean value to specify if checkbox is rendered or not. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isShowCheckbox() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showCheckbox, false);
-	}
-	
-	/**
-	 * Boolean value to specify if checkbox is rendered or not. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setShowCheckbox(boolean _showCheckbox) {
-	    getStateHelper().put(PropertyKeys.showCheckbox, _showCheckbox);
-    }
-	
-
-	/**
-	 * Boolean value to specify if tree items has to display the border. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isShowBorder() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.showBorder, false);
-	}
-	
-	/**
-	 * Boolean value to specify if tree items has to display the border. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setShowBorder(boolean _showBorder) {
-	    getStateHelper().put(PropertyKeys.showBorder, _showBorder);
-    }
-	
-
-	/**
-	 * Boolean value to specify if enable href link. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isEnableLinks() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.enableLinks, false);
-	}
-	
-	/**
-	 * Boolean value to specify if enable href link. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setEnableLinks(boolean _enableLinks) {
-	    getStateHelper().put(PropertyKeys.enableLinks, _enableLinks);
-    }
-	
-
-	/**
-	 * Glyphicons of collapse. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getCollapseIcon() {
-		return  (String)getStateHelper().eval(PropertyKeys.collapseIcon);
-	}
-	
-	/**
-	 * Glyphicons of collapse. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCollapseIcon(String _collapseIcon) {
-	    getStateHelper().put(PropertyKeys.collapseIcon, _collapseIcon);
-    }
-	
-
-	/**
-	 * Glyphicons of expand. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getExpandIcon() {
-		return  (String)getStateHelper().eval(PropertyKeys.expandIcon);
-	}
-	
-	/**
-	 * Glyphicons of expand. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setExpandIcon(String _expandIcon) {
-	    getStateHelper().put(PropertyKeys.expandIcon, _expandIcon);
-    }
-	
-
-	/**
-	 * Hex value of text color. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getColor() {
-		return  (String)getStateHelper().eval(PropertyKeys.color);
-	}
-	
-	/**
-	 * Hex value of text color. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setColor(String _color) {
-	    getStateHelper().put(PropertyKeys.color, _color);
-    }
-	
-
-	/**
-	 * Hex value of hover color. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getHoverColor() {
-		return  (String)getStateHelper().eval(PropertyKeys.hoverColor);
-	}
-	
-	/**
-	 * Hex value of hover color. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setHoverColor(String _hoverColor) {
-	    getStateHelper().put(PropertyKeys.hoverColor, _hoverColor);
-    }
-	
-
-	/**
-	 * Hex value of selected color. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getSelectedColor() {
-		return  (String)getStateHelper().eval(PropertyKeys.selectedColor);
-	}
-	
-	/**
-	 * Hex value of selected color. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSelectedColor(String _selectedColor) {
-	    getStateHelper().put(PropertyKeys.selectedColor, _selectedColor);
-    }
-	
 
 	/**
 	 * Hex value of border color (default #DDDDDD) <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBorderColor() {
-		return  (String)getStateHelper().eval(PropertyKeys.borderColor, "#DDDDDD");
+		return (String) getStateHelper().eval(PropertyKeys.borderColor, "#DDDDDD");
 	}
-	
+
 	/**
 	 * Hex value of border color (default #DDDDDD) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBorderColor(String _borderColor) {
-	    getStateHelper().put(PropertyKeys.borderColor, _borderColor);
-    }
-	
+		getStateHelper().put(PropertyKeys.borderColor, _borderColor);
+	}
+
+	/**
+	 * Glyphicons of collapse. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getCollapseIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.collapseIcon);
+	}
+
+	/**
+	 * Glyphicons of collapse. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCollapseIcon(String _collapseIcon) {
+		getStateHelper().put(PropertyKeys.collapseIcon, _collapseIcon);
+	}
+
+	/**
+	 * Hex value of text color. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColor() {
+		return (String) getStateHelper().eval(PropertyKeys.color);
+	}
+
+	/**
+	 * Hex value of text color. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColor(String _color) {
+		getStateHelper().put(PropertyKeys.color, _color);
+	}
+
+	/**
+	 * Boolean value to specify if enable href link. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isEnableLinks() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.enableLinks, false);
+	}
+
+	/**
+	 * Boolean value to specify if enable href link. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setEnableLinks(boolean _enableLinks) {
+		getStateHelper().put(PropertyKeys.enableLinks, _enableLinks);
+	}
+
+	/**
+	 * Glyphicons of expand. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getExpandIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.expandIcon);
+	}
+
+	/**
+	 * Glyphicons of expand. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setExpandIcon(String _expandIcon) {
+		getStateHelper().put(PropertyKeys.expandIcon, _expandIcon);
+	}
+
+	/**
+	 * Hex value of hover color. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHoverColor() {
+		return (String) getStateHelper().eval(PropertyKeys.hoverColor);
+	}
+
+	/**
+	 * Hex value of hover color. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHoverColor(String _hoverColor) {
+		getStateHelper().put(PropertyKeys.hoverColor, _hoverColor);
+	}
+
+	/**
+	 * Selection listener called on selection changed. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public TreeNodeEventListener getNodeSelectionListener() {
+		return (TreeNodeEventListener) getStateHelper().eval(PropertyKeys.nodeSelectionListener);
+	}
+
+	/**
+	 * Selection listener called on selection changed. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setNodeSelectionListener(TreeNodeEventListener _nodeSelectionListener) {
+		getStateHelper().put(PropertyKeys.nodeSelectionListener, _nodeSelectionListener);
+	}
+
+	/**
+	 * Boolean value to specify if the root node must be rendered. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderRoot() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderRoot, true);
+	}
+
+	/**
+	 * Boolean value to specify if the root node must be rendered. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderRoot(boolean _renderRoot) {
+		getStateHelper().put(PropertyKeys.renderRoot, _renderRoot);
+	}
+
+	/**
+	 * Hex value of selected color. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectedColor() {
+		return (String) getStateHelper().eval(PropertyKeys.selectedColor);
+	}
+
+	/**
+	 * Hex value of selected color. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectedColor(String _selectedColor) {
+		getStateHelper().put(PropertyKeys.selectedColor, _selectedColor);
+	}
+
+	/**
+	 * Boolean value to specify if tree items has to display the border. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowBorder() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showBorder, false);
+	}
+
+	/**
+	 * Boolean value to specify if tree items has to display the border. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowBorder(boolean _showBorder) {
+		getStateHelper().put(PropertyKeys.showBorder, _showBorder);
+	}
+
+	/**
+	 * Boolean value to specify if checkbox is rendered or not. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowCheckbox() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCheckbox, false);
+	}
+
+	/**
+	 * Boolean value to specify if checkbox is rendered or not. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowCheckbox(boolean _showCheckbox) {
+		getStateHelper().put(PropertyKeys.showCheckbox, _showCheckbox);
+	}
+
+	/**
+	 * Boolean value to specify if icons are rendered or not. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowIcon() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, false);
+	}
+
+	/**
+	 * Boolean value to specify if icons are rendered or not. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowIcon(boolean _showIcon) {
+		getStateHelper().put(PropertyKeys.showIcon, _showIcon);
+	}
+
+	/**
+	 * Boolean value to specify if tags was show or not. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowTags() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showTags, false);
+	}
+
+	/**
+	 * Boolean value to specify if tags was show or not. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowTags(boolean _showTags) {
+		getStateHelper().put(PropertyKeys.showTags, _showTags);
+	}
 
 	/**
 	 * Component(s) to be updated with ajax. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getUpdate() {
-		return  (String)getStateHelper().eval(PropertyKeys.update);
+		return (String) getStateHelper().eval(PropertyKeys.update);
 	}
-	
+
 	/**
 	 * Component(s) to be updated with ajax. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUpdate(String _update) {
-	    getStateHelper().put(PropertyKeys.update, _update);
-    }
-	
-}
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
 
+	/**
+	 * Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public Node getValue() {
+		return (Node) getStateHelper().eval(PropertyKeys.value);
+	}
+
+	/**
+	 * Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setValue(Node _value) {
+		getStateHelper().put(PropertyKeys.value, _value);
+	}
+
+}

@@ -49,7 +49,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navBar.NavBar";
-	
+
 	public NavBar() {
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");
@@ -117,445 +117,419 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		tooltipDelay,
 		tooltipDelayHide,
 		tooltipDelayShow,
-		tooltipPosition
-;
-        String toString;
+		tooltipPosition;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
 	 * alternative text <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAlt() {
-		return  (String)getStateHelper().eval(PropertyKeys.alt, "Brand");
+		return (String) getStateHelper().eval(PropertyKeys.alt, "Brand");
 	}
-	
+
 	/**
 	 * alternative text <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAlt(String _alt) {
-	    getStateHelper().put(PropertyKeys.alt, _alt);
-    }
-	
+		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
 
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public javax.faces.component.UIComponent getBinding() {
-		return  (javax.faces.component.UIComponent)getStateHelper().eval(PropertyKeys.binding);
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
-	
+
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
-	    getStateHelper().put(PropertyKeys.binding, _binding);
-    }
-	
+		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
 
 	/**
 	 * Brand for the Navbar. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrand() {
-		return  (String)getStateHelper().eval(PropertyKeys.brand);
+		return (String) getStateHelper().eval(PropertyKeys.brand);
 	}
-	
+
 	/**
 	 * Brand for the Navbar. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrand(String _brand) {
-	    getStateHelper().put(PropertyKeys.brand, _brand);
-    }
-	
+		getStateHelper().put(PropertyKeys.brand, _brand);
+	}
 
 	/**
 	 * Brand alignment, can be right or left. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandAlign() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandAlign);
+		return (String) getStateHelper().eval(PropertyKeys.brandAlign);
 	}
-	
+
 	/**
 	 * Brand alignment, can be right or left. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandAlign(String _brandAlign) {
-	    getStateHelper().put(PropertyKeys.brandAlign, _brandAlign);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandAlign, _brandAlign);
+	}
 
 	/**
 	 * Link URL for the Navbar Brand. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandHref() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandHref);
+		return (String) getStateHelper().eval(PropertyKeys.brandHref);
 	}
-	
+
 	/**
 	 * Link URL for the Navbar Brand. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandHref(String _brandHref) {
-	    getStateHelper().put(PropertyKeys.brandHref, _brandHref);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandHref, _brandHref);
+	}
 
 	/**
 	 * Optional brand image. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandImg() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandImg);
+		return (String) getStateHelper().eval(PropertyKeys.brandImg);
 	}
-	
+
 	/**
 	 * Optional brand image. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandImg(String _brandImg) {
-	    getStateHelper().put(PropertyKeys.brandImg, _brandImg);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandImg, _brandImg);
+	}
 
 	/**
 	 * CSS inline style of the brand image. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandImgStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandImgStyle);
+		return (String) getStateHelper().eval(PropertyKeys.brandImgStyle);
 	}
-	
+
 	/**
 	 * CSS inline style of the brand image. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandImgStyle(String _brandImgStyle) {
-	    getStateHelper().put(PropertyKeys.brandImgStyle, _brandImgStyle);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandImgStyle, _brandImgStyle);
+	}
 
 	/**
 	 * CSS style class of the brand image. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandImgStyleClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandImgStyleClass);
+		return (String) getStateHelper().eval(PropertyKeys.brandImgStyleClass);
 	}
-	
+
 	/**
 	 * CSS style class of the brand image. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandImgStyleClass(String _brandImgStyleClass) {
-	    getStateHelper().put(PropertyKeys.brandImgStyleClass, _brandImgStyleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandImgStyleClass, _brandImgStyleClass);
+	}
 
 	/**
 	 * Inline style of the optional navBar brand. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandStyle);
+		return (String) getStateHelper().eval(PropertyKeys.brandStyle);
 	}
-	
+
 	/**
 	 * Inline style of the optional navBar brand. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandStyle(String _brandStyle) {
-	    getStateHelper().put(PropertyKeys.brandStyle, _brandStyle);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandStyle, _brandStyle);
+	}
 
 	/**
 	 * CSS style class of the optional navBar brand. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getBrandStyleClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.brandStyleClass);
+		return (String) getStateHelper().eval(PropertyKeys.brandStyleClass);
 	}
-	
+
 	/**
 	 * CSS style class of the optional navBar brand. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrandStyleClass(String _brandStyleClass) {
-	    getStateHelper().put(PropertyKeys.brandStyleClass, _brandStyleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.brandStyleClass, _brandStyleClass);
+	}
 
 	/**
 	 * Deprecated (use position and sticky instead). If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be "bottom", "top" or "non-sticky". The latter is a footer that scrolls with the page. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getFixed() {
-		return  (String)getStateHelper().eval(PropertyKeys.fixed);
+		return (String) getStateHelper().eval(PropertyKeys.fixed);
 	}
-	
+
 	/**
 	 * Deprecated (use position and sticky instead). If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be "bottom", "top" or "non-sticky". The latter is a footer that scrolls with the page. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFixed(String _fixed) {
-	    getStateHelper().put(PropertyKeys.fixed, _fixed);
-    }
-	
+		getStateHelper().put(PropertyKeys.fixed, _fixed);
+	}
 
 	/**
 	 * Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFluid() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.fluid, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fluid, false);
 	}
-	
+
 	/**
 	 * Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFluid(boolean _fluid) {
-	    getStateHelper().put(PropertyKeys.fluid, _fluid);
-    }
-	
+		getStateHelper().put(PropertyKeys.fluid, _fluid);
+	}
 
 	/**
 	 * Boolean value to specify if Navbar should use inverse color scheme. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInverse() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.inverse, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inverse, false);
 	}
-	
+
 	/**
 	 * Boolean value to specify if Navbar should use inverse color scheme. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInverse(boolean _inverse) {
-	    getStateHelper().put(PropertyKeys.inverse, _inverse);
-    }
-	
+		getStateHelper().put(PropertyKeys.inverse, _inverse);
+	}
 
 	/**
 	 * JavaScript function which is called when the widget is clicked. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
-		return  (String)getStateHelper().eval(PropertyKeys.onclick);
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
 	}
-	
+
 	/**
 	 * JavaScript function which is called when the widget is clicked. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
-	    getStateHelper().put(PropertyKeys.onclick, _onclick);
-    }
-	
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
 
 	/**
 	 * Position of the navBar. Legal values: "top", "bottom" or "inline". The default value is "top". <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPosition() {
-		return  (String)getStateHelper().eval(PropertyKeys.position);
+		return (String) getStateHelper().eval(PropertyKeys.position);
 	}
-	
+
 	/**
 	 * Position of the navBar. Legal values: "top", "bottom" or "inline". The default value is "top". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPosition(String _position) {
-	    getStateHelper().put(PropertyKeys.position, _position);
-    }
-	
-
-	/**
-	 * Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false"). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isSticky() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.sticky, true);
+		getStateHelper().put(PropertyKeys.position, _position);
 	}
-	
-	/**
-	 * Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false"). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSticky(boolean _sticky) {
-	    getStateHelper().put(PropertyKeys.sticky, _sticky);
-    }
-	
 
 	/**
 	 * Deprecated (use position and sticky instead). If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isStatic() {
-		return (boolean) (Boolean)getStateHelper().eval("static", false);
+		return (boolean) (Boolean) getStateHelper().eval("static", false);
 	}
-	
+
 	/**
 	 * Deprecated (use position and sticky instead). If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStatic(boolean _static) {
-	    getStateHelper().put("static", _static);
-    }
-	
+		getStateHelper().put("static", _static);
+	}
+
+	/**
+	 * Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false"). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSticky() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.sticky, true);
+	}
+
+	/**
+	 * Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false"). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSticky(boolean _sticky) {
+		getStateHelper().put(PropertyKeys.sticky, _sticky);
+	}
 
 	/**
 	 * Inline style of the navBar element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.style);
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
-	
+
 	/**
 	 * Inline style of the navBar element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
 
 	/**
 	 * Style class of the navBar element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
-	
+
 	/**
 	 * Style class of the navBar element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
 
 	/**
 	 * The text of the tooltip. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltip);
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
-	
+
 	/**
 	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
-	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
-	
+
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
-	
+
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
-	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
-	
+
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
-	
+
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
 
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
-	
+
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
-	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-    }
-	
-}
+		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
 
+}

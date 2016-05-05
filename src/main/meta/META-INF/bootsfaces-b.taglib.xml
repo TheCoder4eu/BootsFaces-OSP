@@ -13,18 +13,6 @@
 			<component-type>net.bootsfaces.component.accordion.Accordion</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Comma separated list of child panel id that need to render expanded.]]></description>
 		  <name>expanded-panels</name>
 		  <required>false</required>
@@ -35,6 +23,18 @@
 		  <name>expandedPanels</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -841,16 +841,16 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Height of the canvas in pixels. This is a mandatory field.]]></description>
-		  <name>height</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Optional description what to draw on this component.]]></description>
 		  <name>drawing</name>
 		  <required>false</required>
 		  <type>Drawing</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Height of the canvas in pixels. This is a mandatory field.]]></description>
+		  <name>height</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -963,18 +963,6 @@
 			<component-type>net.bootsfaces.component.carousel.Carousel</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
-		  <name>disabled</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
@@ -1011,22 +999,22 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Specifies the delay (in milliseconds) between each slide.]]></description>
 		  <name>interval</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Pauses the carousel from going through the next slide when the mouse pointer enters the carousel, and resumes the sliding when the mouse pointer leaves the carousel. Set pause to false to stop the ability to pause on hover.]]></description>
-		  <name>pause</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies whether the carousel should go through all slides continuously, or stop at the last slide.]]></description>
-		  <name>wrap</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The onclick attribute.]]></description>
@@ -1077,14 +1065,20 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Client side callback to execute when the carousel just finished sliding to another item.]]></description>
+		  <name>onslid</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Client side callback to execute when the carousel start to slide to another item.]]></description>
 		  <name>onslidestart</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when the carousel just finished sliding to another item.]]></description>
-		  <name>onslid</name>
+		  <description><![CDATA[Pauses the carousel from going through the next slide when the mouse pointer enters the carousel, and resumes the sliding when the mouse pointer leaves the carousel. Set pause to false to stop the ability to pause on hover.]]></description>
+		  <name>pause</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -1095,14 +1089,8 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[tells Bootstrap to begin animating the carousel immediately when the page loads.]]></description>
-		  <name>start-animation</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[tells Bootstrap to begin animating the carousel immediately when the page loads.]]></description>
-		  <name>startAnimation</name>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -1137,6 +1125,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[tells Bootstrap to begin animating the carousel immediately when the page loads.]]></description>
+		  <name>start-animation</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[tells Bootstrap to begin animating the carousel immediately when the page loads.]]></description>
+		  <name>startAnimation</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -1153,12 +1153,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -1232,6 +1226,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies whether the carousel should go through all slides continuously, or stop at the last slide.]]></description>
+		  <name>wrap</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:carouselItem ************************* -->
@@ -1240,12 +1240,6 @@
 		<component>
 			<component-type>net.bootsfaces.component.carouselItem.CarouselItem</component-type>
 		</component>
-		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
 		<attribute>
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
@@ -1287,6 +1281,12 @@
 		  <name>disabled</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The onclick attribute.]]></description>
@@ -1343,6 +1343,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -1359,12 +1365,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -1447,12 +1447,6 @@
 			<component-type>net.bootsfaces.component.carouselCaption.CarouselCaption</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
@@ -1481,6 +1475,12 @@
 		  <name>disabled</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The onclick attribute.]]></description>
@@ -1537,6 +1537,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -1553,12 +1559,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -1641,12 +1641,6 @@
 			<component-type>net.bootsfaces.component.carouselControl.CarouselControl</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
@@ -1681,6 +1675,12 @@
 		  <name>disabled</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The onclick attribute.]]></description>
@@ -1737,6 +1737,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -1753,12 +1759,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -1871,6 +1871,12 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The type of control to display. Valid values: hue, brightness, saturation, and wheel.]]></description>
+		  <name>control</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]></description>
 		  <name>converter</name>
 		  <required>false</required>
@@ -1889,30 +1895,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The type of control to display. Valid values: hue, brightness, saturation, and wheel.]]></description>
-		  <name>control</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Type of returned data. Valid values: hex and rgb.]]></description>
-		  <name>format</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[True to enable opacity swatches.]]></description>
-		  <name>opacity</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right.]]></description>
-		  <name>position</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -1927,6 +1909,12 @@
 		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>fieldSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Type of returned data. Valid values: hex and rgb.]]></description>
+		  <name>format</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2051,8 +2039,20 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[True to enable opacity swatches.]]></description>
+		  <name>opacity</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 		  <name>placeholder</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right.]]></description>
+		  <name>position</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2311,54 +2311,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>large-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>largeScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>medium-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>mediumScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>small-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tiny-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tinyScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -2379,6 +2331,30 @@
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2443,6 +2419,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
@@ -2463,6 +2451,18 @@
 		<attribute>
 		  <description><![CDATA[Style class of this element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2995,8 +2995,50 @@
 			<component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box.]]></description>
+		  <name>custom-lang-url</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box.]]></description>
+		  <name>customLangUrl</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
+		  <name>dataTable-properties</name>
+		  <required>false</required>
+		  <type>java.util.Map</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
+		  <name>dataTableProperties</name>
+		  <required>false</required>
+		  <type>java.util.Map</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
+		  <name>fixed-header</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
+		  <name>fixedHeader</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -3013,8 +3055,116 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used.]]></description>
+		  <name>lang</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering.]]></description>
+		  <name>multi-column-search</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering.]]></description>
+		  <name>multiColumnSearch</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The onclick attribute.]]></description>
+		  <name>onclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
+		  <name>onmousedown</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
+		  <name>onmousemove</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
+		  <name>onmouseout</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
+		  <name>onmouseover</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
+		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is 10.]]></description>
+		  <name>page-length</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is 10.]]></description>
+		  <name>pageLength</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
+		  <name>page-length-menu</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
+		  <name>pageLengthMenu</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the pagination of the dataTable. Default value is 'true'.]]></description>
+		  <name>paginated</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
 		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the responsive plugin of the dataTable]]></description>
+		  <name>responsive</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -3103,6 +3253,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[EL expression referring to the back-end bean attribute providing the value of the field.]]></description>
 		  <name>value</name>
 		  <required>false</required>
@@ -3111,162 +3267,6 @@
 		<attribute>
 		  <description><![CDATA[The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table.]]></description>
 		  <name>var</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
-		  <name>ajax</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The onclick attribute.]]></description>
-		  <name>onclick</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
-		  <name>oncomplete</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
-		  <name>ondblclick</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
-		  <name>onmousedown</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when a pointer input element is moved within input element.]]></description>
-		  <name>onmousemove</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when a pointer input element is moved away from input element.]]></description>
-		  <name>onmouseout</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when a pointer input element is moved onto input element.]]></description>
-		  <name>onmouseover</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
-		  <name>onmouseup</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
-		  <name>process</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
-		  <name>update</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTable-properties</name>
-		  <required>false</required>
-		  <type>java.util.Map</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTableProperties</name>
-		  <required>false</required>
-		  <type>java.util.Map</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering.]]></description>
-		  <name>multi-column-search</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering.]]></description>
-		  <name>multiColumnSearch</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is 10.]]></description>
-		  <name>page-length</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is 10.]]></description>
-		  <name>pageLength</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
-		  <name>page-length-menu</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
-		  <name>pageLengthMenu</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates the responsive plugin of the dataTable]]></description>
-		  <name>responsive</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
-		  <name>fixed-header</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
-		  <name>fixedHeader</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates the pagination of the dataTable. Default value is 'true'.]]></description>
-		  <name>paginated</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used.]]></description>
-		  <name>lang</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box.]]></description>
-		  <name>custom-lang-url</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box.]]></description>
-		  <name>customLangUrl</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
@@ -3621,6 +3621,54 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[content-class is optional: if specified, the content will be displayed with this specific class]]></description>
 		  <name>content-class</name>
 		  <required>false</required>
@@ -3699,10 +3747,106 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style]]></description>
@@ -3719,6 +3863,18 @@
 		<attribute>
 		  <description><![CDATA[CSS style class]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3797,162 +3953,6 @@
 		<attribute>
 		  <description><![CDATA[This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-lg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colLg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-md</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colMd</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-sm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colSm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-xs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colXs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>large-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>largeScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>medium-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>mediumScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>small-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tiny-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tinyScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-lg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetLg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-md</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetMd</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-sm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetSm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-xs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetXs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>span</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -4115,6 +4115,54 @@
 			<component-type>net.bootsfaces.component.growl.Growl</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Specifies whether the message can be dismissed.]]></description>
+		  <name>allow-dismiss</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies whether the message can be dismissed.]]></description>
+		  <name>allowDismiss</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Animation of the message while entering]]></description>
+		  <name>animation-enter</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Animation of the message while entering]]></description>
+		  <name>animationEnter</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Animation of the message while exiting]]></description>
+		  <name>animation-exit</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Animation of the message while exiting]]></description>
+		  <name>animationExit</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+		  <name>escape</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly.]]></description>
 		  <name>for</name>
 		  <required>false</required>
@@ -4133,8 +4181,50 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The glyphicon to display on message]]></description>
+		  <name>icon</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view.]]></description>
 		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
+		  <name>newest-on-top</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
+		  <name>newestOnTop</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
+		  <name>placement-align</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
+		  <name>placementAlign</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
+		  <name>placement-from</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
+		  <name>placementFrom</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -4187,100 +4277,10 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The glyphicon to display on message]]></description>
-		  <name>icon</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
-		  <name>placement-from</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Vertical position of the growl message. Valid values are 'top' or 'bottom'.]]></description>
-		  <name>placementFrom</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
-		  <name>placement-align</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'.]]></description>
-		  <name>placementAlign</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>delay</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[This is the amount of milliseconds removed from the notify at every timer milliseconds.]]></description>
 		  <name>timer</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Animation of the message while entering]]></description>
-		  <name>animation-enter</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Animation of the message while entering]]></description>
-		  <name>animationEnter</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Animation of the message while exiting]]></description>
-		  <name>animation-exit</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Animation of the message while exiting]]></description>
-		  <name>animationExit</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
-		  <name>newest-on-top</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies if newest messages must be displayed on top of the others.]]></description>
-		  <name>newestOnTop</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies whether the message can be dismissed.]]></description>
-		  <name>allow-dismiss</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies whether the message can be dismissed.]]></description>
-		  <name>allowDismiss</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
-		  <name>escape</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
 	
@@ -4891,14 +4891,14 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback when a drag-and-drop action starts. May also call an AJAX function.]]></description>
-		  <name>ondragstart</name>
+		  <description><![CDATA[Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function.]]></description>
+		  <name>ondragover</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function.]]></description>
-		  <name>ondragover</name>
+		  <description><![CDATA[Client side callback when a drag-and-drop action starts. May also call an AJAX function.]]></description>
+		  <name>ondragstart</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5977,14 +5977,14 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
-		  <name>inline</name>
+		  <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+		  <name>immediate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
-		  <name>immediate</name>
+		  <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+		  <name>inline</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -6447,30 +6447,6 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Severity of the Label, can be primary, success, info, warning, danger. Default is warning.]]></description>
-		  <name>severity</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Label text.]]></description>
-		  <name>text</name>
-		  <required>true</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -6519,6 +6495,24 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>large-screen</name>
 		  <required>false</required>
@@ -6539,42 +6533,6 @@
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>mediumScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>small-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tiny-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tinyScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
-		  <name>display</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
-		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -6633,14 +6591,50 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Severity of the Label, can be primary, success, info, warning, danger. Default is warning.]]></description>
+		  <name>severity</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
-		  <name>visible</name>
+		  <description><![CDATA[Label text.]]></description>
+		  <name>text</name>
+		  <required>true</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -6707,6 +6701,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -6931,6 +6931,12 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
+		  <name>redisplay</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
 		  <name>rendered</name>
 		  <required>false</required>
@@ -6969,12 +6975,6 @@
 		<attribute>
 		  <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
 		  <name>showSummary</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Flag indicating whether previously handled messages are redisplayed or not]]></description>
-		  <name>redisplay</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -7173,18 +7173,6 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
-		  <name>show-summary</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
-		  <name>showSummary</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
 		  <name>show-icon</name>
 		  <required>false</required>
@@ -7193,6 +7181,18 @@
 		<attribute>
 		  <description><![CDATA[If false, the icon of the message is not show. Default = true.]]></description>
 		  <name>showIcon</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+		  <name>show-summary</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies whether the summary information from the message should be shown. Defaults to true.]]></description>
+		  <name>showSummary</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -7549,12 +7549,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false").]]></description>
-		  <name>sticky</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
 		  <name>rendered</name>
 		  <required>false</required>
@@ -7563,6 +7557,12 @@
 		<attribute>
 		  <description><![CDATA[Deprecated (use position and sticky instead). If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false.]]></description>
 		  <name>static</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false").]]></description>
+		  <name>sticky</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -7695,6 +7695,54 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
 		  <name>content-class</name>
 		  <required>false</required>
@@ -7725,6 +7773,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
 		  <name>fragment</name>
 		  <required>false</required>
@@ -7733,6 +7787,12 @@
 		<attribute>
 		  <description><![CDATA[If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored.]]></description>
 		  <name>header</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7795,6 +7855,84 @@
 		  <name>includeViewParams</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -7905,6 +8043,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -7919,6 +8075,18 @@
 		<attribute>
 		  <description><![CDATA[CSS style class]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7997,174 +8165,6 @@
 		<attribute>
 		  <description><![CDATA[Navigation Link text.]]></description>
 		  <name>value</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-lg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colLg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-md</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colMd</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-sm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colSm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-xs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colXs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>large-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>largeScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>medium-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>mediumScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>small-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tiny-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tinyScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
-		  <name>display</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
-		  <name>hidden</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-lg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetLg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-md</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetMd</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-sm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetSm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-xs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetXs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>span</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -8219,6 +8219,54 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class]]></description>
 		  <name>content-class</name>
 		  <required>false</required>
@@ -8249,6 +8297,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included.]]></description>
 		  <name>fragment</name>
 		  <required>false</required>
@@ -8257,6 +8311,12 @@
 		<attribute>
 		  <description><![CDATA[If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored.]]></description>
 		  <name>header</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -8319,6 +8379,84 @@
 		  <name>includeViewParams</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -8429,6 +8567,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -8443,6 +8599,18 @@
 		<attribute>
 		  <description><![CDATA[CSS style class]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -8521,174 +8689,6 @@
 		<attribute>
 		  <description><![CDATA[Navigation Link text.]]></description>
 		  <name>value</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-lg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colLg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-md</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colMd</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-sm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colSm</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>col-xs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>colXs</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>large-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>largeScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>medium-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>mediumScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>small-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tiny-screen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>tinyScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
-		  <name>display</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
-		  <name>hidden</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-lg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetLg</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-md</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetMd</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-sm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetSm</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offset-xs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
-		  <name>offsetXs</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
-		  <name>span</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -8853,16 +8853,16 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
-		  <name>disabled</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
+		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -8889,26 +8889,26 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
-		  <name>oncomplete</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[JavaScript code or AJAX method to be executed when the panel starts to be collapsed.]]></description>
 		  <name>oncollapse</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
-		  <name>ondblclick</name>
+		  <description><![CDATA[JavaScript code or AJAX method to be executed when the panel has finished collapsing.]]></description>
+		  <name>oncollapsed</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript code or AJAX method to be executed when the panel has finished collapsing.]]></description>
-		  <name>oncollapsed</name>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
+		  <name>ondblclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -9407,14 +9407,74 @@
 			<component-type>net.bootsfaces.component.progressBar.ProgressBar</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false.]]></description>
+		  <name>animated</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent.]]></description>
+		  <name>caption</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered.]]></description>
+		  <name>look</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The maximum value of the ProgressBar. (default 100)]]></description>
+		  <name>max</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+		  <name>max-decimal-places</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
+		  <name>maxDecimalPlaces</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The minimum value of the ProgressBar. (default 0)]]></description>
+		  <name>min</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+		  <name>render-caption</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
+		  <name>renderCaption</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
 		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, stripes will be added to the ProgressBar's look. Default value: false.]]></description>
+		  <name>striped</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -9435,72 +9495,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
-		  <name>value</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The maximum value of the ProgressBar. (default 100)]]></description>
-		  <name>max</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The minimum value of the ProgressBar. (default 0)]]></description>
-		  <name>min</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent.]]></description>
-		  <name>caption</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
-		  <name>render-caption</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
-		  <name>renderCaption</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
-		  <name>max-decimal-places</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only.]]></description>
-		  <name>maxDecimalPlaces</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered.]]></description>
-		  <name>look</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, stripes will be added to the ProgressBar's look. Default value: false.]]></description>
-		  <name>striped</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false.]]></description>
-		  <name>animated</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -9565,6 +9559,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -9687,36 +9687,6 @@
 			<component-type>net.bootsfaces.component.scrollUp.ScrollUp</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Element ID]]></description>
-		  <name>name</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Distance from top/bottom before showing element (px)]]></description>
-		  <name>distance</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[scroll direction: 'top' or 'bottom']]></description>
-		  <name>from</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Speed back to top (ms).]]></description>
-		  <name>speed</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Animation type: Fade, slide, none.]]></description>
 		  <name>animation</name>
 		  <required>false</required>
@@ -9735,6 +9705,60 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Distance from top/bottom before showing element (px)]]></description>
+		  <name>distance</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Scroll easing (see http://easings.net/).]]></description>
+		  <name>easing</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[scroll direction: 'top' or 'bottom']]></description>
+		  <name>from</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set true to use image. (Must be set in related css).]]></description>
+		  <name>image</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Element ID]]></description>
+		  <name>name</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set CSS color to display scrollUp active point, e.g '#00FFFF']]></description>
+		  <name>overlay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Speed back to top (ms).]]></description>
+		  <name>speed</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set a custom target element for scrolling to. Can be element or number.]]></description>
+		  <name>target</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Text for element, can contain HTML.]]></description>
 		  <name>text</name>
 		  <required>false</required>
@@ -9747,32 +9771,8 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Set true to use image. (Must be set in related css).]]></description>
-		  <name>image</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Scroll easing (see http://easings.net/).]]></description>
-		  <name>easing</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Set a custom triggering element. Can be an HTML string or jQuery object]]></description>
 		  <name>trigger</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Set a custom target element for scrolling to. Can be element or number.]]></description>
-		  <name>target</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Set CSS color to display scrollUp active point, e.g '#00FFFF']]></description>
-		  <name>overlay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -9785,26 +9785,14 @@
 			<component-type>net.bootsfaces.component.scrollSpy.ScrollSpy</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Id of the element that is the scrollable container. If not specified, body is set by default.]]></description>
 		  <name>container</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set.]]></description>
-		  <name>target</name>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -9813,6 +9801,24 @@
 		  <name>offset</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Selection listener called on selection changed.]]></description>
+		  <name>selection-listener</name>
+		  <required>false</required>
+		  <type>ScrollSpyEventListener</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Selection listener called on selection changed.]]></description>
+		  <name>selectionListener</name>
+		  <required>false</required>
+		  <type>ScrollSpyEventListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enable smooth scroll]]></description>
@@ -9827,16 +9833,10 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Selection listener called on selection changed.]]></description>
-		  <name>selection-listener</name>
+		  <description><![CDATA[Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set.]]></description>
+		  <name>target</name>
 		  <required>false</required>
-		  <type>ScrollSpyEventListener</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Selection listener called on selection changed.]]></description>
-		  <name>selectionListener</name>
-		  <required>false</required>
-		  <type>ScrollSpyEventListener</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
@@ -10301,6 +10301,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Animate the switch. Default value: true.]]></description>
+		  <name>animate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -10343,6 +10349,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Is the switch disabled? Default value: false.]]></description>
+		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>field-size</name>
 		  <required>false</required>
@@ -10353,6 +10365,18 @@
 		  <name>fieldSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the left and right sides in pixels.]]></description>
+		  <name>handle-width</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the left and right sides in pixels.]]></description>
+		  <name>handleWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -10367,14 +10391,98 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Indeterminate state. Turned off by default.]]></description>
+		  <name>indeterminate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inverse switch direction. Default value: false]]></description>
+		  <name>inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The label above of the field .]]></description>
 		  <name>label</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Text of the center handle of the switch. Default value: a space (nbsp).]]></description>
+		  <name>label-text</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Text of the center handle of the switch. Default value: a space (nbsp).]]></description>
+		  <name>labelText</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the center handle in pixels.]]></description>
+		  <name>label-width</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the center handle in pixels.]]></description>
+		  <name>labelWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
 		  <name>lang</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+		  <name>off-color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+		  <name>offColor</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
+		  <name>off-text</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
+		  <name>offText</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+		  <name>on-color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
+		  <name>onColor</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional label of the active switch. The default value is 'on'.]]></description>
+		  <name>on-text</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional label of the active switch. The default value is 'on'.]]></description>
+		  <name>onText</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10463,31 +10571,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional label of the active switch. The default value is 'on'.]]></description>
-		  <name>on-text</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Optional label of the active switch. The default value is 'on'.]]></description>
-		  <name>onText</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
-		  <name>off-text</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
-		  <name>offText</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+		  <name>readonly</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Is the switch readonly? Default value: false.]]></description>
 		  <name>readonly</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -10531,6 +10621,12 @@
 		<attribute>
 		  <description><![CDATA[Style class of the input element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'.]]></description>
+		  <name>switchsize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10630,102 +10726,6 @@
 		  <required>false</required>
 		  <type>javax.faces.event.ValueChangeListener</type>
 		</attribute>
-		<attribute>
-		  <description><![CDATA[Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
-		  <name>on-color</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
-		  <name>onColor</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
-		  <name>off-color</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
-		  <name>offColor</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Indeterminate state. Turned off by default.]]></description>
-		  <name>indeterminate</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Inverse switch direction. Default value: false]]></description>
-		  <name>inverse</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'.]]></description>
-		  <name>switchsize</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Animate the switch. Default value: true.]]></description>
-		  <name>animate</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Is the switch disabled? Default value: false.]]></description>
-		  <name>disabled</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Is the switch readonly? Default value: false.]]></description>
-		  <name>readonly</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Text of the center handle of the switch. Default value: a space (nbsp).]]></description>
-		  <name>label-text</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Text of the center handle of the switch. Default value: a space (nbsp).]]></description>
-		  <name>labelText</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Width of the left and right sides in pixels.]]></description>
-		  <name>handle-width</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Width of the left and right sides in pixels.]]></description>
-		  <name>handleWidth</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Width of the center handle in pixels.]]></description>
-		  <name>label-width</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Width of the center handle in pixels.]]></description>
-		  <name>labelWidth</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
 	</tag>
 	
 	<!-- *********** b:selectMultiMenu ************************* -->
@@ -10739,6 +10739,18 @@
 		  <name>accesskey</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Text which is displayed if every option has been selected.]]></description>
+		  <name>all-selected-text</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Text which is displayed if every option has been selected.]]></description>
+		  <name>allSelectedText</name>
+		  <required>false</required>
+		  <type>String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternate textual description of the input element.]]></description>
@@ -10765,14 +10777,74 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The width of the multiselect button may be fixed using this option.]]></description>
+		  <name>button-width</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The width of the multiselect button may be fixed using this option.]]></description>
+		  <name>buttonWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS class of the button.]]></description>
+		  <name>buttonClass</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If true, the button is disabled if no options are given.]]></description>
+		  <name>disable-if-empty</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, the button is disabled if no options are given.]]></description>
+		  <name>disableIfEmpty</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
 		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Moves the drop-down-area from the left hand side to the right hand side.]]></description>
+		  <name>dropRight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set to true, the filter is case-insensitive.]]></description>
+		  <name>enable-case-insensitive-filtering</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set to true, the filter is case-insensitive.]]></description>
+		  <name>enableCaseInsensitiveFiltering</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options.]]></description>
+		  <name>enable-filtering</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options.]]></description>
+		  <name>enableFiltering</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -10789,6 +10861,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The placeholder used for the filter input.]]></description>
+		  <name>filter-placeholder</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The placeholder used for the filter input.]]></description>
+		  <name>filterPlaceholder</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
 		  <required>false</required>
@@ -10797,6 +10881,18 @@
 		<attribute>
 		  <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
 		  <name>immediate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, you can select every option with a single click.]]></description>
+		  <name>include-select-all-option</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, you can select every option with a single click.]]></description>
+		  <name>includeSelectAllOption</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -10831,18 +10927,6 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Text which is displayed if no option has been selected.]]></description>
-		  <name>non-selected-text</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Text which is displayed if no option has been selected.]]></description>
-		  <name>nonSelectedText</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Text which is displayed if more than numberDisplayed options have been selected.]]></description>
 		  <name>n-selected-text</name>
 		  <required>false</required>
@@ -10855,14 +10939,14 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Text which is displayed if every option has been selected.]]></description>
-		  <name>all-selected-text</name>
+		  <description><![CDATA[Text which is displayed if no option has been selected.]]></description>
+		  <name>non-selected-text</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Text which is displayed if every option has been selected.]]></description>
-		  <name>allSelectedText</name>
+		  <description><![CDATA[Text which is displayed if no option has been selected.]]></description>
+		  <name>nonSelectedText</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
@@ -10879,86 +10963,8 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[If true, you can select every option with a single click.]]></description>
-		  <name>include-select-all-option</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, you can select every option with a single click.]]></description>
-		  <name>includeSelectAllOption</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The text displayed for the select all option.]]></description>
-		  <name>select-all-text</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The text displayed for the select all option.]]></description>
-		  <name>selectAllText</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options.]]></description>
-		  <name>enable-filtering</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Set to true or false to enable or disable the filter. A filter input will be added to dynamically filter all options.]]></description>
-		  <name>enableFiltering</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The placeholder used for the filter input.]]></description>
-		  <name>filter-placeholder</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The placeholder used for the filter input.]]></description>
-		  <name>filterPlaceholder</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer.]]></description>
-		  <name>radiobuttons</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, the button is disabled if no options are given.]]></description>
-		  <name>disable-if-empty</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If true, the button is disabled if no options are given.]]></description>
-		  <name>disableIfEmpty</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Moves the drop-down-area from the left hand side to the right hand side.]]></description>
-		  <name>dropRight</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
 		  <name>onchange</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Client side callback called when the drop-down area is shown.]]></description>
-		  <name>ondropdownshow</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10969,52 +10975,22 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The CSS class of the button.]]></description>
-		  <name>buttonClass</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Style class of the input element. Is translated to the buttonContainer attribute.]]></description>
-		  <name>style-class</name>
+		  <description><![CDATA[Client side callback called when the drop-down area is shown.]]></description>
+		  <name>ondropdownshow</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Style class of the input element. Is translated to the buttonContainer attribute.]]></description>
-		  <name>styleClass</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The width of the multiselect button may be fixed using this option.]]></description>
-		  <name>button-width</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The width of the multiselect button may be fixed using this option.]]></description>
-		  <name>buttonWidth</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If set to true, the filter is case-insensitive.]]></description>
-		  <name>enable-case-insensitive-filtering</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[If set to true, the filter is case-insensitive.]]></description>
-		  <name>enableCaseInsensitiveFiltering</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 		  <name>placeholder</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer.]]></description>
+		  <name>radiobuttons</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
@@ -11059,6 +11035,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The text displayed for the select all option.]]></description>
+		  <name>select-all-text</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The text displayed for the select all option.]]></description>
+		  <name>selectAllText</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
 		  <name>size</name>
 		  <required>false</required>
@@ -11073,6 +11061,18 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the input element. Is translated to the buttonContainer attribute.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the input element. Is translated to the buttonContainer attribute.]]></description>
+		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12017,18 +12017,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Position of tabs. Legal values are: left, right, top, bottom. Default is top]]></description>
-		  <name>tabPosition</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Change the rendering of tab to pills mode. Default false]]></description>
-		  <name>pills</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -12059,6 +12047,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Change the rendering of tab to pills mode. Default false]]></description>
+		  <name>pills</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
 		  <name>process</name>
 		  <required>false</required>
@@ -12079,6 +12073,12 @@
 		<attribute>
 		  <description><![CDATA[Style class of the div surrounding this element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of tabs. Legal values are: left, right, top, bottom. Default is top]]></description>
+		  <name>tabPosition</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12163,106 +12163,16 @@
 			<component-type>net.bootsfaces.component.tree.Tree</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
-		  <name>id</name>
+		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
+		  <name>border-color</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
-		  <name>rendered</name>
+		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
+		  <name>borderColor</name>
 		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work.]]></description>
-		  <name>value</name>
-		  <required>false</required>
-		  <type>Node</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if the root node must be rendered.]]></description>
-		  <name>render-root</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if the root node must be rendered.]]></description>
-		  <name>renderRoot</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Selection listener called on selection changed.]]></description>
-		  <name>node-selection-listener</name>
-		  <required>false</required>
-		  <type>TreeNodeEventListener</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Selection listener called on selection changed.]]></description>
-		  <name>nodeSelectionListener</name>
-		  <required>false</required>
-		  <type>TreeNodeEventListener</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
-		  <name>show-tags</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
-		  <name>showTags</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
-		  <name>show-icon</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
-		  <name>showIcon</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
-		  <name>show-checkbox</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
-		  <name>showCheckbox</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
-		  <name>show-border</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
-		  <name>showBorder</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
-		  <name>enable-links</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
-		  <name>enableLinks</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Glyphicons of collapse.]]></description>
@@ -12277,6 +12187,24 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Hex value of text color.]]></description>
+		  <name>color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <name>enable-links</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <name>enableLinks</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Glyphicons of expand.]]></description>
 		  <name>expand-icon</name>
 		  <required>false</required>
@@ -12285,12 +12213,6 @@
 		<attribute>
 		  <description><![CDATA[Glyphicons of expand.]]></description>
 		  <name>expandIcon</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Hex value of text color.]]></description>
-		  <name>color</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12307,6 +12229,42 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Selection listener called on selection changed.]]></description>
+		  <name>node-selection-listener</name>
+		  <required>false</required>
+		  <type>TreeNodeEventListener</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Selection listener called on selection changed.]]></description>
+		  <name>nodeSelectionListener</name>
+		  <required>false</required>
+		  <type>TreeNodeEventListener</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if the root node must be rendered.]]></description>
+		  <name>render-root</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if the root node must be rendered.]]></description>
+		  <name>renderRoot</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Hex value of selected color.]]></description>
 		  <name>selected-color</name>
 		  <required>false</required>
@@ -12319,22 +12277,64 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
-		  <name>border-color</name>
+		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
+		  <name>show-border</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
-		  <name>borderColor</name>
+		  <description><![CDATA[Boolean value to specify if tree items has to display the border.]]></description>
+		  <name>showBorder</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
+		  <name>show-checkbox</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if checkbox is rendered or not.]]></description>
+		  <name>showCheckbox</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
+		  <name>show-icon</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if icons are rendered or not.]]></description>
+		  <name>showIcon</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
+		  <name>show-tags</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if tags was show or not.]]></description>
+		  <name>showTags</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>Node</type>
 		</attribute>
 	</tag>
 	
