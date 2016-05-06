@@ -88,7 +88,7 @@ public class Label extends UIComponentBase implements net.bootsfaces.render.IHas
 		} else {
 			sclass += "-default";
 		}
-		sclass += Responsive.getResponsiveStyleClass(this);
+		sclass += Responsive.getResponsiveStyleClass(this, false);
 
 		rw.writeAttribute("class", sclass, "class");
 		rw.writeText(txt, null);
