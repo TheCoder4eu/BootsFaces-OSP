@@ -1582,7 +1582,7 @@ widget scrollSpy
 	target																   "Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set."
 	offset				Integer											   "Scroll offset"
 	smooth				Boolean											   "Enable smooth scroll"
-	smoothSpeed			Integer											   "Speed of the smooth scroll (default 800)"
+	smoothSpeed			Integer	default "800"							   "Speed of the smooth scroll (default 800)"
 	selection-listener	ScrollSpyEventListener          				   "Selection listener called on selection changed."
     update																   "Component(s) to be updated with ajax."
 }

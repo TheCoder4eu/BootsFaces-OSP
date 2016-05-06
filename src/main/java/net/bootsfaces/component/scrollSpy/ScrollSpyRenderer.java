@@ -125,6 +125,7 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		if(smooth) {
 			rw.writeText("" +
 					"$('" + target + " a').on('click', function(event) { " +
+					"   console.log('click called'); " + 
 					"	var hash = this.hash; " +
 					"	$('" + ("body".equals(container) ? "html, body": container) + "').animate({ " +
 					"		scrollTop: $(hash).parent().scrollTop() + $(hash).offset().top - $(hash).parent().offset().top " +

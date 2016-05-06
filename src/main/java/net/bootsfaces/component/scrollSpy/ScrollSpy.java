@@ -55,30 +55,8 @@ public class ScrollSpy extends UIComponentBase {
 		super.setValueExpression(name, binding);
 	}
 
-	/**
-	 * Utility method to update the state helper
-	 *
-	 * @param propertyName
-	 * @param value
-	 */
-	private void updateStateHelper(final String propertyName, final Object value) {
-		this.getStateHelper().put(propertyName, value);
-
-		final ValueExpression ve = this.getValueExpression(propertyName);
-
-		if (ve != null) {
-			ve.setValue(this.getFacesContext().getELContext(), value);
-		}
-	}
-
 	protected enum PropertyKeys {
-		container,
-		offset,
-		selectionListener,
-		smooth,
-		smoothSpeed,
-		target,
-		update;
+		container, offset, selectionListener, smooth, smoothSpeed, target, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -162,7 +140,7 @@ public class ScrollSpy extends UIComponentBase {
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public int getSmoothSpeed() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.smoothSpeed, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.smoothSpeed, 800);
 	}
 
 	/**

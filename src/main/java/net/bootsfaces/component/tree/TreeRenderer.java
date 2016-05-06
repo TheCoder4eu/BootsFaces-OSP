@@ -52,6 +52,7 @@ public class TreeRenderer extends CoreRenderer {
 
 		final TreeNodeEventListener nodeSelectionListener = tree.getNodeSelectionListener();
 		String params = context.getExternalContext().getRequestParameterMap().get("params");
+
 		if (params != null && nodeSelectionListener != null) {
 			if (params != null) {
 				params = params.replace("BsFEvent=", "");
@@ -75,11 +76,6 @@ public class TreeRenderer extends CoreRenderer {
 					} else if ("nodeUnchecked".equals(key)) {
 						nodeSelectionListener.processValueUnchecked(new TreeNodeCheckedEvent(n, false));
 					}
-					/*
-					else {
-						throw new FacesException("Unexpected event when trying to decode the tree event: " + key);
-					}
-					*/
 				}
 			}
 		}

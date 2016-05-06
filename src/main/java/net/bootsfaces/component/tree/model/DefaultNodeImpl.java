@@ -20,7 +20,6 @@
 package net.bootsfaces.component.tree.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +91,15 @@ implements Node, Serializable {
 	}
 
 	public int getNodeId() {
-		if(nodeId <= 0) nodeId = new BigInteger(text.getBytes()).intValue();
+		if(nodeId <= 0) {
+			int rand = (int)(1 + (Math.random() * 9));
+			int txtHash = (text != null ? text.hashCode() : 1);
+			int icnHash = (icon != null ? icon.hashCode() : 2);
+			
+			nodeId = rand + txtHash + icnHash;
+			if(nodeId < 0) nodeId = nodeId * -1;
+		}
+		// if(nodeId <= 0) nodeId = new BigInteger(text.getBytes()).intValue();
 		return nodeId;
 	}
 
