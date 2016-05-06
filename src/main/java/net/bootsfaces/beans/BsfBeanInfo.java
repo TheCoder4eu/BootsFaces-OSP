@@ -129,7 +129,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 							alternative.setBound(true);
 							alternatives.add(alternative);
 						}
-						addAlternativeForScreenLayout(alternatives, camelCase, getter, setter);
+						// addAlternativeForScreenLayout(alternatives, camelCase, getter, setter);
 					}
 				}
 
@@ -148,7 +148,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 	 * @param getter
 	 * @param setter
 	 * @throws IntrospectionException
-	 */
+	 
 	private void addAlternativeForScreenLayout(List<PropertyDescriptor> alternatives, String camelCase, String getter,
 			String setter) throws IntrospectionException {
 		PropertyDescriptor alternative;
@@ -184,5 +184,5 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 			alternative.setBound(true);
 			alternatives.add(alternative);
 		}
-	}
+	}*/
 }
