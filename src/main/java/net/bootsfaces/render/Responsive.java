@@ -173,7 +173,6 @@ public class Responsive {
 	 * @param visibilityLevel (visible or hidden)
 	 * @param display (block, inline or inline-block. default block)
 	 * @return
-	 * @throws Exception
 	 */
 	public static String evaluateExpression(
 				List<String> expressionToken, String[] delimiters,
@@ -325,7 +324,6 @@ public class Responsive {
 	 *
 	 * @param tokenString
 	 * @param delimiters
-	 * @param validValues
 	 * @return
 	 */
 	public static List<String> wonderfulTokenizer(String tokenString, String[] delimiters) {
