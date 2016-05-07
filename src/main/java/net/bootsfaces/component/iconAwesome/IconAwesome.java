@@ -39,8 +39,6 @@ public class IconAwesome extends Icon {
 
 	public IconAwesome() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		// AddResourcesListener.addThemedCSSResource("font-awesome.css");
 		setRendererType(DEFAULT_RENDERER);

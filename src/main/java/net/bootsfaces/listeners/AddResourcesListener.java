@@ -20,6 +20,7 @@ package net.bootsfaces.listeners;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
@@ -361,7 +362,15 @@ public class AddResourcesListener implements SystemEventListener {
 	private void removeDuplicateResources(UIViewRoot root, FacesContext context) {
 		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
 		Map<String, UIComponent> alreadyThere = new HashMap<String, UIComponent>();
-		for (UIComponent resource : root.getComponentResources(context, "head")) {
+		List<UIComponent> components = new ArrayList<UIComponent>(
+				root.getComponentResources(context, "head"));
+		Collections.sort(components, new Comparator<UIComponent>() {
+			@Override
+			public int compare(UIComponent o1, UIComponent o2) {
+				return o1.getClientId().compareTo(o2.getClientId());
+			}
+		});
+		for (UIComponent resource : components) {
 			String name = (String) resource.getAttributes().get("name");
 			String library = (String) resource.getAttributes().get("library");
 			String key = library + "/" + name + "/" + resource.getClass().getName();

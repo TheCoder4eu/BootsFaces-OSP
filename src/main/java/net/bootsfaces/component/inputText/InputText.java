@@ -77,8 +77,6 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public InputText() {
 		setRendererType("net.bootsfaces.component.inputText.InputText");
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		renderLabel = BsfUtils.getInitParam("net.bootsfaces.defaults.renderLabel");

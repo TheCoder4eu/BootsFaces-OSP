@@ -77,8 +77,6 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 
 	public InputTextarea() {
 		setRendererType("net.bootsfaces.component.InputTextareaRenderer");
-		//		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
-		//		AddResourcesListener.addBasicJSResource("bsf", "js/bsf.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		Tooltip.addResourceFiles();

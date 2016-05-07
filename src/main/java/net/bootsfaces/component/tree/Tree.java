@@ -53,7 +53,6 @@ public class Tree extends UIComponentBase implements ClientBehaviorHolder {
 	 */
 	public Tree() {
 		setRendererType(DEFAULT_RENDERER);
-		AddResourcesListener.addBasicJSResource("javax.faces", "jsf.js");
 		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
