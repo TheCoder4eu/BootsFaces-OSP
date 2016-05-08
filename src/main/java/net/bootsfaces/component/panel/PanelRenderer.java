@@ -145,16 +145,7 @@ public class PanelRenderer extends CoreRenderer {
 					rw.writeAttribute("class", "panel-title", "class");
 				}
 				if (isCollapsible) {
-					rw.startElement("a", panel);
-					rw.writeAttribute("data-toggle", "collapse", "null");
-					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
-					rw.writeAttribute("href", "javascript:;", "null");
-					if (panel.isCollapsed()) {
-						rw.writeAttribute("class", "collapsed", null);
-					}
-					if(null != accordionParent) {
-						rw.writeAttribute("data-parent", "#" + accordionParent, null);
-					}
+					writeTitleLink(panel, rw, jQueryClientID, accordionParent);
 				}
 
 				rw.writeText(_title, null);
@@ -164,16 +155,7 @@ public class PanelRenderer extends CoreRenderer {
 				rw.endElement("h4");
 			} else {
 				if (isCollapsible) {
-					rw.startElement("a", panel);
-					rw.writeAttribute("data-toggle", "collapse", "null");
-					rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
-					rw.writeAttribute("href", "javascript:;", "null");
-					if (panel.isCollapsed()) {
-						rw.writeAttribute("class", "collapsed", null);
-					}
-					if(null != accordionParent) {
-						rw.writeAttribute("data-parent", "#" + accordionParent, null);
-					}
+					writeTitleLink(panel, rw, jQueryClientID, accordionParent);
 				}
 				head.encodeAll(context);
 				if (isCollapsible) {
@@ -206,6 +188,21 @@ public class PanelRenderer extends CoreRenderer {
 		// create the body
 		rw.startElement("div", panel);
 		rw.writeAttribute("class", "panel-body", "class");
+	}
+
+	private void writeTitleLink(Panel panel, ResponseWriter rw, String jQueryClientID, String accordionParent)
+			throws IOException {
+		rw.startElement("a", panel);
+		rw.writeAttribute("data-toggle", "collapse", "null");
+		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+		rw.writeAttribute("style", "display: block", "style"); //let the anchor
+		rw.writeAttribute("href", "javascript:;", "null");
+		if (panel.isCollapsed()) {
+			rw.writeAttribute("class", "collapsed", null);
+		}
+		if(null != accordionParent) {
+			rw.writeAttribute("data-parent", "#" + accordionParent, null);
+		}
 	}
 
 	/**
