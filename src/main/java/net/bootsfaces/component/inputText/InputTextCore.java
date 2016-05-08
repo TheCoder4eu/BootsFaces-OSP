@@ -25,47 +25,18 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class InputTextCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		accesskey,
 		ajax,
-		alt,
-		autocomplete,
 		binding,
 		converterMessage,
-		dir,
-		disabled,
 		fieldSize,
-		immediate,
 		inline,
-		label,
-		lang,
-		maxlength,
-		onblur,
-		onchange,
-		onclick,
 		oncomplete,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onselect,
 		placeholder,
 		process,
-		readonly,
 		renderLabel,
 		required,
 		requiredMessage,
-		size,
 		span,
-		style,
-		styleClass,
-		tabindex,
-		title,
 		tooltip,
 		tooltipContainer,
 		tooltipDelay,
@@ -89,22 +60,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * Access key to transfer focus to the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getAccesskey() {
-		return (String) getStateHelper().eval(PropertyKeys.accesskey);
-	}
-
-	/**
-	 * Access key to transfer focus to the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAccesskey(String _accesskey) {
-		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
-	}
-
-	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -118,38 +73,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
-	}
-
-	/**
-	 * Alternate textual description of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getAlt() {
-		return (String) getStateHelper().eval(PropertyKeys.alt);
-	}
-
-	/**
-	 * Alternate textual description of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAlt(String _alt) {
-		getStateHelper().put(PropertyKeys.alt, _alt);
-	}
-
-	/**
-	 * Controls browser autocomplete behavior. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getAutocomplete() {
-		return (String) getStateHelper().eval(PropertyKeys.autocomplete);
-	}
-
-	/**
-	 * Controls browser autocomplete behavior. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAutocomplete(String _autocomplete) {
-		getStateHelper().put(PropertyKeys.autocomplete, _autocomplete);
 	}
 
 	/**
@@ -185,38 +108,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getDir() {
-		return (String) getStateHelper().eval(PropertyKeys.dir);
-	}
-
-	/**
-	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDir(String _dir) {
-		getStateHelper().put(PropertyKeys.dir, _dir);
-	}
-
-	/**
-	 * Disables the input element, default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isDisabled() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
-	}
-
-	/**
-	 * Disables the input element, default is false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDisabled(boolean _disabled) {
-		getStateHelper().put(PropertyKeys.disabled, _disabled);
-	}
-
-	/**
 	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -230,22 +121,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setFieldSize(String _fieldSize) {
 		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isImmediate() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setImmediate(boolean _immediate) {
-		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
 	/**
@@ -265,102 +140,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * The label of the field. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLabel() {
-		return (String) getStateHelper().eval(PropertyKeys.label);
-	}
-
-	/**
-	 * The label of the field. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLabel(String _label) {
-		getStateHelper().put(PropertyKeys.label, _label);
-	}
-
-	/**
-	 * Code describing the language used in the generated markup for this component. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLang() {
-		return (String) getStateHelper().eval(PropertyKeys.lang);
-	}
-
-	/**
-	 * Code describing the language used in the generated markup for this component. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLang(String _lang) {
-		getStateHelper().put(PropertyKeys.lang, _lang);
-	}
-
-	/**
-	 * The maximum length of the input. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getMaxlength() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxlength, -1);
-	}
-
-	/**
-	 * The maximum length of the input. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMaxlength(int _maxlength) {
-		getStateHelper().put(PropertyKeys.maxlength, _maxlength);
-	}
-
-	/**
-	 * Client side callback to execute when input element loses focus. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnblur() {
-		return (String) getStateHelper().eval(PropertyKeys.onblur);
-	}
-
-	/**
-	 * Client side callback to execute when input element loses focus. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnblur(String _onblur) {
-		getStateHelper().put(PropertyKeys.onblur, _onblur);
-	}
-
-	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnchange() {
-		return (String) getStateHelper().eval(PropertyKeys.onchange);
-	}
-
-	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnchange(String _onchange) {
-		getStateHelper().put(PropertyKeys.onchange, _onchange);
-	}
-
-	/**
-	 * OnClick DHTML event . <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnclick() {
-		return (String) getStateHelper().eval(PropertyKeys.onclick);
-	}
-
-	/**
-	 * OnClick DHTML event . <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnclick(String _onclick) {
-		getStateHelper().put(PropertyKeys.onclick, _onclick);
-	}
-
-	/**
 	 * JavaScript to be executed when ajax completes with success. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -374,182 +153,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
-	}
-
-	/**
-	 * Client side callback to execute when input element is double clicked. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOndblclick() {
-		return (String) getStateHelper().eval(PropertyKeys.ondblclick);
-	}
-
-	/**
-	 * Client side callback to execute when input element is double clicked. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOndblclick(String _ondblclick) {
-		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
-	}
-
-	/**
-	 * Client side callback to execute when input element receives focus. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnfocus() {
-		return (String) getStateHelper().eval(PropertyKeys.onfocus);
-	}
-
-	/**
-	 * Client side callback to execute when input element receives focus. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnfocus(String _onfocus) {
-		getStateHelper().put(PropertyKeys.onfocus, _onfocus);
-	}
-
-	/**
-	 * Client side callback to execute when a key is pressed down over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnkeydown() {
-		return (String) getStateHelper().eval(PropertyKeys.onkeydown);
-	}
-
-	/**
-	 * Client side callback to execute when a key is pressed down over input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnkeydown(String _onkeydown) {
-		getStateHelper().put(PropertyKeys.onkeydown, _onkeydown);
-	}
-
-	/**
-	 * Client side callback to execute when a key is pressed and released over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnkeypress() {
-		return (String) getStateHelper().eval(PropertyKeys.onkeypress);
-	}
-
-	/**
-	 * Client side callback to execute when a key is pressed and released over input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnkeypress(String _onkeypress) {
-		getStateHelper().put(PropertyKeys.onkeypress, _onkeypress);
-	}
-
-	/**
-	 * Client side callback to execute when a key is released over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnkeyup() {
-		return (String) getStateHelper().eval(PropertyKeys.onkeyup);
-	}
-
-	/**
-	 * Client side callback to execute when a key is released over input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnkeyup(String _onkeyup) {
-		getStateHelper().put(PropertyKeys.onkeyup, _onkeyup);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmousedown() {
-		return (String) getStateHelper().eval(PropertyKeys.onmousedown);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmousedown(String _onmousedown) {
-		getStateHelper().put(PropertyKeys.onmousedown, _onmousedown);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmousemove() {
-		return (String) getStateHelper().eval(PropertyKeys.onmousemove);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved within input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmousemove(String _onmousemove) {
-		getStateHelper().put(PropertyKeys.onmousemove, _onmousemove);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseout() {
-		return (String) getStateHelper().eval(PropertyKeys.onmouseout);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved away from input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseout(String _onmouseout) {
-		getStateHelper().put(PropertyKeys.onmouseout, _onmouseout);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseover() {
-		return (String) getStateHelper().eval(PropertyKeys.onmouseover);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is moved onto input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseover(String _onmouseover) {
-		getStateHelper().put(PropertyKeys.onmouseover, _onmouseover);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnmouseup() {
-		return (String) getStateHelper().eval(PropertyKeys.onmouseup);
-	}
-
-	/**
-	 * Client side callback to execute when a pointer input element is released over input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnmouseup(String _onmouseup) {
-		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
-	}
-
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnselect() {
-		return (String) getStateHelper().eval(PropertyKeys.onselect);
-	}
-
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnselect(String _onselect) {
-		getStateHelper().put(PropertyKeys.onselect, _onselect);
 	}
 
 	/**
@@ -582,22 +185,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setProcess(String _process) {
 		getStateHelper().put(PropertyKeys.process, _process);
-	}
-
-	/**
-	 * Flag indicating that this input element will prevent changes by the user. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isReadonly() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.readonly, false);
-	}
-
-	/**
-	 * Flag indicating that this input element will prevent changes by the user. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setReadonly(boolean _readonly) {
-		getStateHelper().put(PropertyKeys.readonly, _readonly);
 	}
 
 	/**
@@ -650,22 +237,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * Number of characters used to determine the width of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.size, 0);
-	}
-
-	/**
-	 * Number of characters used to determine the width of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSize(int _size) {
-		getStateHelper().put(PropertyKeys.size, _size);
-	}
-
-	/**
 	 * The size of the input specified as number of grid columns. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -679,70 +250,6 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setSpan(int _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
-	}
-
-	/**
-	 * Inline style of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getStyle() {
-		return (String) getStateHelper().eval(PropertyKeys.style);
-	}
-
-	/**
-	 * Inline style of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStyle(String _style) {
-		getStateHelper().put(PropertyKeys.style, _style);
-	}
-
-	/**
-	 * Style class of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getStyleClass() {
-		return (String) getStateHelper().eval(PropertyKeys.styleClass);
-	}
-
-	/**
-	 * Style class of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStyleClass(String _styleClass) {
-		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
-	/**
-	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTabindex() {
-		return (String) getStateHelper().eval(PropertyKeys.tabindex);
-	}
-
-	/**
-	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTabindex(String _tabindex) {
-		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
-	}
-
-	/**
-	 * Advisory tooltip information. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTitle() {
-		return (String) getStateHelper().eval(PropertyKeys.title);
-	}
-
-	/**
-	 * Advisory tooltip information. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTitle(String _title) {
-		getStateHelper().put(PropertyKeys.title, _title);
 	}
 
 	/**

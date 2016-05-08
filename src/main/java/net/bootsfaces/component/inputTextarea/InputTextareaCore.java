@@ -38,7 +38,6 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 		inline,
 		label,
 		lang,
-		maxlength,
 		onblur,
 		onchange,
 		onclick,
@@ -61,7 +60,6 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 		required,
 		requiredMessage,
 		rows,
-		size,
 		span,
 		style,
 		styleClass,
@@ -295,22 +293,6 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 	 */
 	public void setLang(String _lang) {
 		getStateHelper().put(PropertyKeys.lang, _lang);
-	}
-
-	/**
-	 * The maximum length of the input. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getMaxlength() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxlength, -1);
-	}
-
-	/**
-	 * The maximum length of the input. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMaxlength(int _maxlength) {
-		getStateHelper().put(PropertyKeys.maxlength, _maxlength);
 	}
 
 	/**
@@ -664,22 +646,6 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 	 */
 	public void setRows(int _rows) {
 		getStateHelper().put(PropertyKeys.rows, _rows);
-	}
-
-	/**
-	 * Number of characters used to determine the width of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.size, 0);
-	}
-
-	/**
-	 * Number of characters used to determine the width of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSize(int _size) {
-		getStateHelper().put(PropertyKeys.size, _size);
 	}
 
 	/**
