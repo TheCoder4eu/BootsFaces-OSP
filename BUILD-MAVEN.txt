@@ -2,3 +2,11 @@
 Build instructions with Maven.
 ------------------------------
 
+To build the jar, run 
+
+mvn clean install
+
+on the command line.
+
+Most IDEs also offer decent support for Maven. 
+For instance, Eclipse users can import the project via "Import --> Maven --> Existing Maven project".
