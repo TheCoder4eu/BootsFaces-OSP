@@ -19,7 +19,6 @@
 package net.bootsfaces.component.commandButton;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -109,7 +108,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
-		Map<String, Object> attrs = component.getAttributes();
+		// Map<String, Object> attrs = component.getAttributes();
 
 		CommandButton commandButton = (CommandButton) component;
 

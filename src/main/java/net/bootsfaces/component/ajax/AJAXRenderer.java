@@ -34,6 +34,10 @@ import net.bootsfaces.render.CoreRenderer;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
+	
+	// local constants
+	public static final String BSF_EVENT_PREFIX = "BsFEvent=";
+	public static final String AJAX_EVENT_PREFIX = "ajax:";
 
 	public void decode(FacesContext context, UIComponent component) {
 		String id = component.getClientId(context);
@@ -66,8 +70,8 @@ public class AJAXRenderer extends CoreRenderer {
 		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
-			if (null != realEvent && realEvent.startsWith("BsFEvent=")) {
-				realEvent = realEvent.substring("BfFEvent=".length());
+			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
+				realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
 				if (!realEvent.equals(event)) {
 					// System.out.println("Difference between event and
 					// realEvent:" + event + " vs. " + realEvent
@@ -83,7 +87,7 @@ public class AJAXRenderer extends CoreRenderer {
 						if (m.getReturnType() == String.class) {
 							if (m.getName().equalsIgnoreCase(nameOfGetter)) {
 								String jsCallback = (String) m.invoke(component);
-								if (jsCallback != null && jsCallback.contains("ajax:")) {
+								if (jsCallback != null && jsCallback.contains(AJAX_EVENT_PREFIX)) {
 									if (component instanceof CommandButton && "action".equals(event)) {
 										component.queueEvent(new ActionEvent(component));
 									} else {
@@ -116,7 +120,6 @@ public class AJAXRenderer extends CoreRenderer {
 							}
 						}
 					}
-
 				}
 			}
 
@@ -149,15 +152,14 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param rw
 	 * @throws IOException
 	 */
-	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw) throws IOException {
+	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component, ResponseWriter rw) 
+	throws IOException {
 		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null, false);
-
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback)
-			throws IOException {
+	throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -204,15 +206,13 @@ public class AJAXRenderer extends CoreRenderer {
 					generateOnClickHandler(context, rw, (IAJAXComponent) component);
 				}
 			}
-			// TODO: what abount composite components?
-
+			// TODO: what about composite components?
 		}
 	}
 
 	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
-			throws IOException {
+	throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
-
 		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
 
 		rw.writeAttribute("onclick", cJS.toString(), null);
@@ -220,7 +220,8 @@ public class AJAXRenderer extends CoreRenderer {
 
 	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
-			String keyClientBehavior, StringBuilder generatedJSCode) throws IOException {
+			String keyClientBehavior, StringBuilder generatedJSCode) 
+	throws IOException {
 		boolean generatedAJAXCall = false;
 		String jsCallback = "";
 		String nameOfGetter = "getOn" + keyClientBehavior;
@@ -279,7 +280,6 @@ public class AJAXRenderer extends CoreRenderer {
 		// TODO end
 		if (jsCallback.contains("BsF.ajax.") || script.contains("BsF.ajax.")) {
 			generatedAJAXCall = true;
-
 		}
 		if (!isJQueryCallback) {
 			if (jsCallback.length() > 0 || script.length() > 0) {
@@ -309,7 +309,6 @@ public class AJAXRenderer extends CoreRenderer {
 			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
 					+ bean.getClass().getName(), e);
 		}
-
 	}
 
 	private static Collection<String> readBeanAttributeAsCollection(Object bean, String getter) {
@@ -329,7 +328,6 @@ public class AJAXRenderer extends CoreRenderer {
 			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
 					+ bean.getClass().getName(), e);
 		}
-
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
@@ -337,8 +335,8 @@ public class AJAXRenderer extends CoreRenderer {
 		if (jsCallback == null)
 			jsCallback = "";
 		else {
-			if (jsCallback.contains("ajax:")) {
-				int pos = jsCallback.indexOf("ajax:");
+			if (jsCallback.contains(AJAX_EVENT_PREFIX)) {
+				int pos = jsCallback.indexOf(AJAX_EVENT_PREFIX);
 				String rest = "";
 				int end = jsCallback.indexOf(";javascript:", pos);
 				if (end >= 0) {
@@ -498,7 +496,8 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) throws IOException {
+			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) 
+	throws IOException {
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
 		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
 		for (String event : events) {
@@ -520,7 +519,8 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String clientId, String event) throws IOException {
+			ResponseWriter rw, String clientId, String event) 
+	throws IOException {
 		StringBuilder code = new StringBuilder();
 		String additionalEventHandler = null;
 
@@ -528,5 +528,4 @@ public class AJAXRenderer extends CoreRenderer {
 				true, event, code);
 		return code.toString();
 	}
-
 }

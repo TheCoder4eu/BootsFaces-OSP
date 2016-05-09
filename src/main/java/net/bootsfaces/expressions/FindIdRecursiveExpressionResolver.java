@@ -5,10 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
 import javax.faces.component.NamingContainer;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
-import javax.faces.context.FacesContext;
 
 public class FindIdRecursiveExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,

@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.navBar;
 
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;

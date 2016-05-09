@@ -21,13 +21,13 @@ package net.bootsfaces.component.column;
 
 import java.io.IOException;
 
-import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:column /&gt;. */
@@ -65,24 +65,6 @@ public class ColumnRenderer extends CoreRenderer {
 		if (column.isRendered()) {
 			ResponseWriter rw = context.getResponseWriter();
 
-			int colxs = columnToInt(getColSize(column, ColSizes.xs)); //column.getColXs());
-			int colsm = columnToInt(getColSize(column, ColSizes.sm)); //column.getColSm());
-			int collg = columnToInt(getColSize(column, ColSizes.lg)); //column.getColLg());
-
-			int span = columnToInt(column.getSpan()); 
-
-			int colmd = (span > 0) ? span : columnToInt(getColSize(column, ColSizes.md)); //column.getColMd());
-			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
-				colmd = (colmd > 0) ? colmd : 0;
-			} else {
-				colmd = (colmd > 0) ? colmd : 12;
-			}
-
-			int offs = column.getOffset(); 
-			int offsmd = (offs > 0) ? offs : column.getOffsetMd();
-			int oxs = column.getOffsetXs(); 
-			int osm = column.getOffsetSm(); 
-			int olg = column.getOffsetLg();
 			String style = column.getStyle(); 
 			String sclass = column.getStyleClass();
 
@@ -96,98 +78,10 @@ public class ColumnRenderer extends CoreRenderer {
 				Tooltip.generateTooltip(FacesContext.getCurrentInstance(), column, rw);
 			}
 
-			StringBuilder sb = new StringBuilder();
-			if (colmd > 0 || offsmd > 0) {
-				if (colmd > 0) {
-					sb.append("col-md-").append(colmd);
-				}
-				if (offsmd > 0) {
-					if (colmd > 0) {
-						sb.append(" ");
-					}
-					sb.append("col-md-offset-" + offsmd);
-				}
-			}
-			if(colmd == 0) {
-				sb.append(" hidden-md");
-			}
-
-			if (colxs > 0) {
-				sb.append(" col-xs-").append(colxs);
-			}
-			if (colxs == 0) {
-				sb.append(" hidden-xs");
-			}  
-
-			if (colsm > 0) {
-				sb.append(" col-sm-").append(colsm);
-			}
-			if (colsm == 0) {
-				sb.append(" hidden-sm");
-			}
-
-			if (collg > 0) {
-				sb.append(" col-lg-").append(collg);
-			}
-			if (collg == 0) {
-				sb.append(" hidden-lg");
-			}
-			
-			if (column.getHidden() != null) {
-				if ("xs".equals(column.getHidden())) {
-					sb.append(" hidden-xs");
-				}
-				else if ("sm".equals(column.getHidden())) {
-					sb.append(" hidden-xs  hidden-sm");
-				}
-				else if ("md".equals(column.getHidden())) {
-					sb.append(" hidden-xs hidden-sm  hidden-md");
-				}
-				else throw new FacesException("Error rendering the \"hidden\" attribute of b:column: unexpected value found. Legal values are xs, sm, md.");
-			}
-			
-			if (column.getVisible() != null) {
-				if ("sm".equals(column.getVisible())) {
-					sb.append(" visible-sm-");
-					sb.append(column.getDisplay());
-					sb.append(" visible-md-");
-					sb.append(column.getDisplay());
-					sb.append(" visible-lg-");
-					sb.append(column.getDisplay());
-				}
-				else if ("md".equals(column.getVisible())) {
-					sb.append(" visible-md-");
-					sb.append(column.getDisplay());
-					sb.append(" visible-lg-");
-					sb.append(column.getDisplay());
-				}
-				else if ("lg".equals(column.getVisible())) {
-					sb.append(" visible-lg-");
-					sb.append(column.getDisplay());
-				}
-				else throw new FacesException("Error rendering the \"visible\" attribute of b:column: unexpected value found. Legal values are sm, md and lg.");
-			}
-			
-			if (oxs > 0) {
-				sb.append(" col-xs-offset-").append(oxs);
-			}
-			if (osm > 0) {
-				sb.append(" col-sm-offset-").append(osm);
-			}
-			if (olg > 0) {
-				sb.append(" col-lg-offset-").append(olg);
-			}
-
-			if (sclass != null) {
-				sb.append(" ").append(sclass);
-			}
-			rw.writeAttribute("class", sb.toString().trim(), "class");
+			sclass += Responsive.getResponsiveStyleClass(column);
+			rw.writeAttribute("class", sclass, "class");
 			if (style != null) {
 				rw.writeAttribute("style", style, "style");
-			}
-
-			if (null != this) {
-				
 			}
 		}
 	}
@@ -209,51 +103,4 @@ public class ColumnRenderer extends CoreRenderer {
 	        Tooltip.activateTooltips(FacesContext.getCurrentInstance(), column);
 		}
     }
-	
-	private String getColSize(Column col, ColSizes size) {
-		String colSize = "-1";
-		switch(size) {
-		case xs:
-			colSize = col.getColXs();
-			if(colSize.equals("-1")) colSize = col.getTinyScreen();
-			break;
-		case sm:
-			colSize = col.getColSm();
-			if(colSize.equals("-1")) colSize = col.getSmallScreen();
-			break;
-		case md:
-			colSize = col.getColMd();
-			if(colSize.equals("-1")) colSize = col.getMediumScreen();
-			break;
-		case lg:
-			colSize = col.getColLg();
-			if(colSize.equals("-1")) colSize = col.getLargeScreen();
-			break;
-		}
-		return colSize;
-	}
-	
-	private int columnToInt(String column) {
-		if (column==null) return -1;
-		if ("full".equals(column)) return 12;
-		if ("full-size".equals(column)) return 12;
-		if ("fullSize".equals(column)) return 12;
-		if ("full-width".equals(column)) return 12;
-		if ("fullWidth".equals(column)) return 12;
-		if ("half".equals(column)) return 6;
-		if ("one-third".equals(column)) return 4;
-		if ("oneThird".equals(column)) return 4;
-		if ("two-thirds".equals(column)) return 8;
-		if ("twoThirds".equals(column)) return 8;
-		if ("one-fourth".equals(column)) return 3;
-		if ("oneFourth".equals(column)) return 3;
-		if ("three-fourths".equals(column)) return 9;
-		if ("threeFourths".equals(column)) return 9;
-		if (column.length()>2) {
-			column=column.replace("columns", "");
-			column=column.replace("column", "");
-			column=column.trim();
-		}
-		return new Integer(column).intValue();
-	}
 }

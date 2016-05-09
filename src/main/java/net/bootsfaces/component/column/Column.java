@@ -24,12 +24,14 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IHasTooltip;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:column /&gt;. */
 @FacesComponent("net.bootsfaces.component.column.Column")
-public class Column extends UIOutput implements net.bootsfaces.render.IHasTooltip {
+public class Column extends UIOutput implements IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.column.Column";
 

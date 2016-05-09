@@ -18,7 +18,6 @@ package net.bootsfaces.decorator;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
@@ -36,7 +35,7 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	private static boolean active = false;
 
 	private static final String HTML_NAMESPACE = "http://www.w3.org/1999/xhtml";
-	private static final Logger LOGGER = Logger.getLogger(BootsFacesTagDecorator.class.getName());
+	// private static final Logger LOGGER = Logger.getLogger(BootsFacesTagDecorator.class.getName());
 	private static final String JSF_NAMESPACE = "http://xmlns.jcp.org/jsf/html";
 	private static final String JSF_CORE_NAMESPACE = "http://java.sun.com/jsf/core";
 	private static final String PASS_THROUGH_NAMESPACE = "http://xmlns.jcp.org/jsf/passthrough";

@@ -59,7 +59,7 @@ public class CoreRenderer extends Renderer {
 			if(shouldRenderDataAttributes && attribute.startsWith("data-")) {
 				attributeToRender = true;
 			}
-			if(!attributeToRender) {
+			if(!attributeToRender && attrs != null) {
 				for(String ca: attrs) {
 					if(attribute.equals(ca)) {
 						attributeToRender = true;

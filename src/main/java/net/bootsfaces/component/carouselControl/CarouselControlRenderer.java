@@ -84,7 +84,7 @@ public class CarouselControlRenderer extends CoreRenderer {
 		}
 		CarouselControl carouselControl = (CarouselControl) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = carouselControl.getClientId();
+		// String clientId = carouselControl.getClientId();
 
 		/**
 		 * <a class=

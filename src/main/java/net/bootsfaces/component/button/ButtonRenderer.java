@@ -37,6 +37,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -339,6 +340,9 @@ public class ButtonRenderer extends CoreRenderer {
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
+		
+		// add responsive style
+		sb.append(Responsive.getResponsiveStyleClass(button, false));
 
 		return sb.toString().trim();
 	}
@@ -377,5 +381,4 @@ public class ButtonRenderer extends CoreRenderer {
 
 		return true;
 	}
-	
 }

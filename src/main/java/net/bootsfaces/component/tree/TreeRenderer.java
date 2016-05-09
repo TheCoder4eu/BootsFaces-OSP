@@ -53,20 +53,20 @@ public class TreeRenderer extends CoreRenderer {
 		final TreeNodeEventListener nodeSelectionListener = tree.getNodeSelectionListener();
 		String params = context.getExternalContext().getRequestParameterMap().get("params");
 
-		if (params != null && nodeSelectionListener != null) {
-			if (params != null) {
-				params = params.replace("BsFEvent=", "");
-				String[] pair = params.split(":", 2);
-				String key = pair[0];
-				String value = null;
-				if (pair.length == 2) {
-					value = pair[1];
-				}
-				if (value != null && !"".equals(value.trim())) {
-					Node n = TreeModelUtils.mapDataToModel(value);
-					TreeModelUtils.updateNodeById(tree.getValue(), n.getNodeId(), n);
-					// tree.setSubmittedValue(tree.getValue());
+		if (params != null) {
+			params = params.replace("BsFEvent=", "");
+			String[] pair = params.split(":", 2);
+			String key = pair[0];
+			String value = null;
+			if (pair.length == 2) {
+				value = pair[1];
+			}
+			if (value != null && !"".equals(value.trim())) {
+				Node n = TreeModelUtils.mapDataToModel(value);
+				TreeModelUtils.updateNodeById(tree.getValue(), n.getNodeId(), n);
+				// tree.setSubmittedValue(tree.getValue());
 
+				if(nodeSelectionListener != null) {
 					// execute listener only for listened events
 					if ("nodeSelected".equals(key)) {
 						Node n2 = checkNodeIsSelected(tree.getValue(), tree);

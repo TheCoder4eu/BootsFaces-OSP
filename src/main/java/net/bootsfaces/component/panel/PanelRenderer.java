@@ -115,6 +115,9 @@ public class PanelRenderer extends CoreRenderer {
 		rw.startElement("div", panel);
 		rw.writeAttribute("id", clientId, "id");
 		writeAttribute(rw, "dir", panel.getDir(), "dir");
+		
+		// render all data-* attributes
+		renderPassThruAttributes(context, component, null, true);
 
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw);
 		Tooltip.generateTooltip(context, panel, rw);
@@ -195,7 +198,7 @@ public class PanelRenderer extends CoreRenderer {
 		rw.startElement("a", panel);
 		rw.writeAttribute("data-toggle", "collapse", "null");
 		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
-		rw.writeAttribute("style", "display: block", "style"); //let the anchor
+		rw.writeAttribute("style", "display: block;outline: none;", "style"); //let the anchor
 		rw.writeAttribute("href", "javascript:;", "null");
 		if (panel.isCollapsed()) {
 			rw.writeAttribute("class", "collapsed", null);

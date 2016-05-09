@@ -28,53 +28,53 @@ import javax.faces.context.FacesContext;
  * @author thecoder4.eu
  */
 public class BsfResWrapper extends ResourceWrapper {
-    
-    Resource resource;
-    
-    public BsfResWrapper(Resource r) {
-        this.resource=r;
-    }
-    
-    @Override
-            public String getRequestPath() {
-                ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-                String mapping = externalContext.getRequestServletPath();
 
-                if (externalContext.getRequestPathInfo() == null) {
-                    mapping = mapping.substring(mapping.lastIndexOf('.'));
-                }
+	Resource resource;
 
-                String path = super.getRequestPath();
+	public BsfResWrapper(Resource r) {
+		this.resource=r;
+	}
 
-                if (mapping.charAt(0) == '/') {
-                    return path.replaceFirst(mapping, "");
-                }
-                else if (path.contains("?")) {
-                    return path.replace(mapping + "?", "?");
-                }
-                else {
-                    return path.substring(0, path.length() - mapping.length());
-                }
-            }
+	@Override
+	public String getRequestPath() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		String mapping = externalContext.getRequestServletPath();
 
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getResourceName() {
-                return resource.getResourceName();
-            }
+		if (externalContext.getRequestPathInfo() == null) {
+			mapping = mapping.substring(mapping.lastIndexOf('.'));
+		}
 
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getLibraryName() {
-                return resource.getLibraryName();
-            }
+		String path = super.getRequestPath();
 
-            @Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
-            public String getContentType() {
-                return resource.getContentType();
-            }
+		if (mapping.charAt(0) == '/') {
+			return path.replaceFirst(mapping, "");
+		}
+		else if (path.contains("?")) {
+			return path.replace(mapping + "?", "?");
+		}
+		else {
+			return path.substring(0, path.length() - mapping.length());
+		}
+	}
 
-            @Override
-            public Resource getWrapped() {
-                return resource;
-            }
-        
+	@Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
+	public String getResourceName() {
+		return resource.getResourceName();
+	}
+
+	@Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
+	public String getLibraryName() {
+		return resource.getLibraryName();
+	}
+
+	@Override // Necessary because this is missing in ResourceWrapper (will be fixed in JSF 2.2).
+	public String getContentType() {
+		return resource.getContentType();
+	}
+
+	@Override
+	public Resource getWrapped() {
+		return resource;
+	}
+
 }

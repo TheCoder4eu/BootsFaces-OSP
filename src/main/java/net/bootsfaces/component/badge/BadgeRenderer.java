@@ -84,6 +84,4 @@ public class BadgeRenderer extends CoreRenderer {
 		rw.endElement("span");
 		Tooltip.activateTooltips(context, component);
 	}
-
-	
 }

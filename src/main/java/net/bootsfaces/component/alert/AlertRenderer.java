@@ -20,7 +20,6 @@
 package net.bootsfaces.component.alert;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -28,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:alert /&gt;. */
@@ -58,7 +58,7 @@ public class AlertRenderer extends CoreRenderer {
 		Alert alert = (Alert) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = alert.getClientId();
-		Map<String, Object> attrs = alert.getAttributes();
+		// Map<String, Object> attrs = alert.getAttributes();
 
 		String sev = alert.getSeverity();
 
@@ -78,6 +78,8 @@ public class AlertRenderer extends CoreRenderer {
 			styleClass = "";
 		else
 			styleClass = " " + styleClass;
+		
+		styleClass += Responsive.getResponsiveStyleClass(alert, false);
 
 		if (sev != null) {
 			rw.writeAttribute("class", "alert alert-" + sev + " fadein" + styleClass, "class");
