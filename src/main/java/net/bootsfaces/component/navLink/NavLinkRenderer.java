@@ -38,6 +38,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.dropMenu.DropMenu;
+import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.component.listLinks.ListLinks;
 import net.bootsfaces.component.navBar.NavBar;
@@ -108,7 +109,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (parent != null) {
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu) {
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
 				htmlTag = "li";
 			}
 		}
