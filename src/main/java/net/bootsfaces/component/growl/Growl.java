@@ -69,8 +69,7 @@ public class Growl extends UIMessages {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -270,7 +269,7 @@ public class Growl extends UIMessages {
 	}
 
 	/**
-	 * HTML: CSS styling instructions. <P>
+	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -278,7 +277,7 @@ public class Growl extends UIMessages {
 	}
 
 	/**
-	 * HTML: CSS styling instructions. <P>
+	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -286,7 +285,7 @@ public class Growl extends UIMessages {
 	}
 
 	/**
-	 * The CSS class for this element.  Corresponds to the HTML 'class' attribute. <P>
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -294,7 +293,7 @@ public class Growl extends UIMessages {
 	}
 
 	/**
-	 * The CSS class for this element.  Corresponds to the HTML 'class' attribute. <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

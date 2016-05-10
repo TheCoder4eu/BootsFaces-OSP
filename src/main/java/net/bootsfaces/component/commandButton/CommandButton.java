@@ -32,6 +32,7 @@ import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -40,7 +41,8 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent(CommandButton.COMPONENT_TYPE)
-public class CommandButton extends CommandButtonCore implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2 {
+public class CommandButton extends CommandButtonCore 
+implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive {
 
 	/**
 	 * <p>

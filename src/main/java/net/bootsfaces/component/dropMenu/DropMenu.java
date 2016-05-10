@@ -26,6 +26,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -33,7 +34,8 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
-public class DropMenu extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive {
+public class DropMenu extends UIComponentBase 
+implements IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dropMenu.DropMenu";
 
@@ -98,8 +100,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -459,7 +460,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style <P>
+	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -467,7 +468,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * Inline style <P>
+	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -475,7 +476,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * CSS style class <P>
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -483,7 +484,7 @@ public class DropMenu extends UIComponentBase implements net.bootsfaces.render.I
 	}
 
 	/**
-	 * CSS style class <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

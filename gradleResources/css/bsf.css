@@ -210,6 +210,10 @@
 .panel-heading a.collapsed:after {
     content:"\e080";
 }
+a.panel-title-link {
+	outline: thin dotted rgba(255, 255, 255, 0.3);
+    outline-offset: 3px;
+}
 
 /* required fields and displaying errors */
 label.bf-required:after { content:" *"; }

@@ -35,6 +35,10 @@ attribute_list responsive {
     visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
+attribute_list style {
+	style                                                                 "Inline style of the input element."
+    style-class                                                           "Style class of this element."
+}
 
 widget accordion
        implemented_by net.bootsfaces.component.accordion.Accordion
@@ -62,9 +66,8 @@ widget alert
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                              "Severity of the Alert, can be success, info, warning, danger. Default is warning."
-    style                                                                 "Inline style of the input element."
-    style-class                                                           "Style class of this element."
     title                                                                 "Bold Title displayed before your message."
+	+style
 	+tooltip
 	+responsive
 }
@@ -76,9 +79,8 @@ widget badge
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     value               mandatory inherited                                "Label text."
+    +style
 }
 
 widget button
@@ -117,11 +119,10 @@ widget button
     outcome                                                                "The outcome to navigate to."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                             "Style class of this element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               mandatory inherited                                "Button text."
+    +style
     +tooltip
 	+responsive
 }
@@ -139,14 +140,8 @@ widget buttonGroup
     pull                                                                  "Can be right or left. Pulls the element right or left."
     rendered             Boolean inherited                                "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                  "Size of the grouped Buttons, can be lg, sm or xs."
-    style                                                                 "Inline style of the input element."
-    style-class                                                           "Style class of this element."
-    tooltip                                                               "The text of the tooltip."
-    tooltip-container    default "body"                                   "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                          "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide   Integer                                          "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show   Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                      "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    +style
+    +tooltip
 }
 
 
@@ -155,19 +150,13 @@ widget buttonToolbar
        extends net.bootsfaces.component.GenContainerDiv
        has_children
        has_tooltip
- {
+{
     binding              javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                    "Can be right or left. Pulls the element right or left."
     rendered             Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                   "Inline style of the input element."
-    style-class                                                             "Style class of this element."
-    tooltip                                                                 "The text of the tooltip."
-    tooltip-container    default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide   Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show   Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                        "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    +style
+    +tooltip
 }
 
 widget canvas
@@ -178,16 +167,9 @@ widget canvas
     drawing             Drawing                                            "Optional description what to draw on this component."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     width               Integer default "600"                              "Width of the canvas in pixels. This is a mandatory field."
-
+	+style
+    +tooltip
 }
 
 widget carousel
@@ -221,16 +203,10 @@ widget carousel
     show-controls       Boolean default "true"                             "adds 'left' and 'right' buttons that allows the user to go back and forth between the slides manually"
     show-indicators     Boolean default "true"                             "The indicators are the little dots at the bottom of each slide (which indicates how many slides there are in the carousel, and which slide the user are currently viewing)."
     slide               Boolean default "true"                             "Tells Bootstrap to show new items by sliding them into view"
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
 
 widget carouselItem implemented_by net.bootsfaces.component.Carousel
@@ -255,16 +231,10 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
 
 widget carouselCaption implemented_by net.bootsfaces.component.Carousel
@@ -287,16 +257,10 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
 
 
@@ -321,16 +285,10 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
 
 widget colorPicker
@@ -383,22 +341,16 @@ widget colorPicker
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
     span                Integer                                            "The size of the input specified as number of grid columns."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container    default "body"                                    "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay        Integer                                           "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide   Integer                                           "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show   Integer                                           "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+style
+	+tooltip
 }
 
 widget column
@@ -410,10 +362,9 @@ widget column
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
-	+tooltip
-	+responsive
+    +style
+    +responsive
+    +tooltip
 }
 
 widget commandButton
@@ -421,6 +372,7 @@ widget commandButton
        processes_input
        extends UICommand
        has_tooltip
+       is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
@@ -452,19 +404,14 @@ widget commandButton
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "The button type, can be submit, button, reset ; default submit."
     value               mandatory inherited                                "Button text."
     +ajax
+    +style
+    +responsive
+    +tooltip
 }
 
 
@@ -477,14 +424,8 @@ widget container
     fluid               Boolean                                            "Boolean value default is false; when set to true, the container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+	+style
+	+tooltip
 }
 
 widget dataTable
@@ -492,22 +433,15 @@ widget dataTable
        has_children
        has_tooltip
  {
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
+    dataTable-properties Map<DataTablePropertyType, Object>                "Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of this element."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-    value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
-    var                 String  inherited                                  "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
-
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
+    multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -516,25 +450,25 @@ widget dataTable
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
-    update                                                                 "Component(s) to be updated with ajax."
-    dataTable-properties Map<DataTablePropertyType, Object>                "Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
-    multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     page-length          Integer default "10"                              "Sets the default page length for paginated dataTable. The default value is 10."
     page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
-	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
-	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
-	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
-	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
+	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
+    var                 String  inherited                                  "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
     widgetVar            String                                            "optional widget variable to access the datatable widget in JavaScript code."
+	+style
+	+tooltip
 }
 
 
 widget datepicker
        implemented_by net.bootsfaces.component.DatePicker
        has_tooltip
- {
+{
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
     change-year         Boolean                                            "Boolean value to specify if year selector should be shown."
@@ -547,13 +481,9 @@ widget datepicker
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     show-button-panel   Boolean                                            "Boolean value to specify if row Buttons to the bottom of calendar should be shown."
     show-week           Boolean                                            "Boolean value to specify if Week number should be shown."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
-    value               inherited                                          "Value."
+   	value               inherited                                          "Value."
+	+style
+	+tooltip
 }
 
 widget defaultCommand
@@ -570,6 +500,7 @@ widget dropButton
        extends UIComponentBase
        has_children
        has_tooltip
+       is_responsive
  {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
@@ -577,13 +508,10 @@ widget dropButton
     look                                                                   "Look of the Button, can be primary, info, success, warning, danger. If not specified, a standard gray button will be rendered."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "The size of the Button.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               mandatory inherited                                "The Label for the Button Dropdown."
+	+style
+	+responsive
+	+tooltip
 }
 
 
@@ -592,43 +520,21 @@ widget dropMenu
        extends UIComponentBase
        has_children
        has_tooltip
- {
+       is_responsive
+{
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                          "Inline style of the content area."
-    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
-    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style"
-    style-class                                                            "CSS style class"
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               mandatory inherited                                "The Label for the Dropdown."
-    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
-
-    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    offset              Integer                                            "Integer value to specify how many columns to offset."
-    offset-lg           Integer                                            "Integer value to specify how many columns to offset."
-    offset-md           Integer                                            "Integer value to specify how many columns to offset."
-    offset-sm           Integer                                            "Integer value to specify how many columns to offset."
-    offset-xs           Integer                                            "Integer value to specify how many columns to offset."
-    span                default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+	+style
+	+tooltip
+	+responsive
 }
 
 
@@ -645,15 +551,9 @@ widget flyOutMenu
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style"
-    style-class                                                            "CSS style class"
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
 	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."
+	+style
+	+tooltip
 }
 
 widget focus
@@ -676,8 +576,6 @@ widget growl
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
     show-detail         Boolean default "false"                            "Specifies whether the detailed information from the message should be shown. Default to false."
     show-summary        Boolean default "true"                             "Specifies whether the summary information from the message should be shown. Defaults to true."
-    style                                                                  "HTML: CSS styling instructions."
-    style-class                                                            "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
     icon																   "The glyphicon to display on message"
     placement-from		default "top"									   "Vertical position of the growl message. Valid values are 'top' or 'bottom'."
     placement-align		default "right"									   "Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'."
@@ -688,6 +586,7 @@ widget growl
     newest-on-top	    Boolean											   "Specifies if newest messages must be displayed on top of the others."
     allow-dismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape              Boolean     									   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
+	+style
 }
 
 widget gyroscope
@@ -734,23 +633,16 @@ widget icon
     rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
     size                                                                   "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                                            "Boolean value: if true the icon will spin."
-    style                                                                  "Inline style"
-    style-class                                                            "CSS style class"
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
-
 
 widget iconAwesome
        implemented_by net.bootsfaces.component.iconAwesome
        extends Icon
        has_tooltip
- {
+{
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
     ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
     binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
@@ -771,22 +663,16 @@ widget iconAwesome
     rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
     size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
-    style                                                   inherited      "Inline style"
-    style-class                                             inherited      "CSS style class"
-    tooltip                                                 inherited      "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                             inherited      "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                             inherited      "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                             inherited      "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                        inherited      "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                  inherited      "Component(s) to be updated with ajax."
+	+style
+	+tooltip
 }
 
 widget image
        implemented_by net.bootsfaces.component.Image
        extends UIComponentBase
        has_tooltip
- {
+{
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
 	alt																   	   "Alternate textual description of the element rendered by this component."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
@@ -810,18 +696,12 @@ widget image
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline style"
-    style-class                                                            "CSS style class"
     title																   "Advisory title information about markup elements generated for this component."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Component(s) to be updated with ajax."
     value				inherited										   "The local value of this component"
     width																   "Override for the width of this image."
+    +style
+    +tooltip
 }
 
 widget inputSecret
@@ -869,22 +749,16 @@ widget inputSecret
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
     span                Integer                                            "The size of the input specified as number of grid columns."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+style
+	+tooltip    
 }
 
 
@@ -935,22 +809,16 @@ widget inputText
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer inherited                                  "Number of characters used to determine the width of the input element."
     span                Integer                                            "The size of the input specified as number of grid columns."
-    style                             inherited                            "Inline style of the input element."
-    style-class                       inherited                            "Style class of the input element."
     tabindex                          inherited                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                             inherited                            "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+style
+	+tooltip
 }
 
 widget inputTextarea
@@ -1001,89 +869,54 @@ widget inputTextarea
     rows                  Integer default "5"                              "Number of rows"
     size                  Integer inherited                                "Number of characters used to determine the width of the input element."
     span                  Integer                                          "The size of the input specified as number of grid columns."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container     default "body"                                   "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay         Integer                                          "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide    Integer                                          "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show    Integer                                          "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
     validator             javax.faces.validator.Validator inherited        "A method expression referring to a method validationg the input."
     validator-message     inherited                                        "Message to display when validation fails."
     value                 inherited                                        "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+style
+	+tooltip
 }
 
 
 widget internalFALink
        implemented_by net.bootsfaces.component.InternalFALink
- {}
+{}
 
 
 widget internalIE8CompatibilityLink
        implemented_by net.bootsfaces.component.InternalIE8CompatibilityLink
- {}
+{}
 
 
 widget jumbotron
        implemented_by net.bootsfaces.layout.Jumbotron
        has_children
        has_tooltip
- {
+{
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    style                                                                  "Inline CSS of the tab."
-    style-class                                                            "Style class of the div surrounding the tab pane."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+	+style
+	+tooltip
 }
-
 
 widget label
        implemented_by net.bootsfaces.component.Label
        extends UIComponentBase
        has_tooltip
+       is_responsive
  {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
     text                mandatory                                          "Label text."
-
-    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
-    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
-    offset              Integer                                            "Integer value to specify how many columns to offset."
-    offset-lg           Integer                                            "Integer value to specify how many columns to offset."
-    offset-md           Integer                                            "Integer value to specify how many columns to offset."
-    offset-sm           Integer                                            "Integer value to specify how many columns to offset."
-    offset-xs           Integer                                            "Integer value to specify how many columns to offset."
-    span                default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
-
-
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+	+style 
+	+responsive
+	+tooltip
 }
 
 
@@ -1092,16 +925,11 @@ widget listLinks
        extends net.bootsfaces.component.LinksContainer
        has_children
        has_tooltip
- {
+{
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    tooltip                                                                "The text of the tooltip."
-    tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
-    tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
-    tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+	+tooltip
 }
 
 widget message

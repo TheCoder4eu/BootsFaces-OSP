@@ -102,8 +102,7 @@ public class Image extends UICommand
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -431,7 +430,7 @@ public class Image extends UICommand
 	}
 
 	/**
-	 * Inline style <P>
+	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -439,7 +438,7 @@ public class Image extends UICommand
 	}
 
 	/**
-	 * Inline style <P>
+	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -447,7 +446,7 @@ public class Image extends UICommand
 	}
 
 	/**
-	 * CSS style class <P>
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -455,7 +454,7 @@ public class Image extends UICommand
 	}
 
 	/**
-	 * CSS style class <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

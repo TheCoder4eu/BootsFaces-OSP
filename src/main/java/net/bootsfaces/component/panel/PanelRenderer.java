@@ -195,14 +195,16 @@ public class PanelRenderer extends CoreRenderer {
 
 	private void writeTitleLink(Panel panel, ResponseWriter rw, String jQueryClientID, String accordionParent)
 			throws IOException {
+		String sclass = "panel-title-link ";
 		rw.startElement("a", panel);
 		rw.writeAttribute("data-toggle", "collapse", "null");
 		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
-		rw.writeAttribute("style", "display: block;outline: none;", "style"); //let the anchor
+		rw.writeAttribute("style", "display: block;", "style"); //let the anchor
 		rw.writeAttribute("href", "javascript:;", "null");
 		if (panel.isCollapsed()) {
-			rw.writeAttribute("class", "collapsed", null);
+			sclass += " collapsed";
 		}
+		rw.writeAttribute("class", sclass, null);
 		if(null != accordionParent) {
 			rw.writeAttribute("data-parent", "#" + accordionParent, null);
 		}

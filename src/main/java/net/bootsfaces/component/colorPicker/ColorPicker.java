@@ -157,8 +157,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -822,7 +821,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -830,7 +829,7 @@ public class ColorPicker extends HtmlInputText implements IHasTooltip, IAJAXComp
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

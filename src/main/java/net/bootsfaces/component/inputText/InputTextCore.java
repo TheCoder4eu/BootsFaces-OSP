@@ -37,6 +37,8 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 		required,
 		requiredMessage,
 		span,
+		style,
+		styleClass,
 		tooltip,
 		tooltipContainer,
 		tooltipDelay,
@@ -51,8 +53,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -250,6 +251,38 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setSpan(int _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.style);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
 
 	/**

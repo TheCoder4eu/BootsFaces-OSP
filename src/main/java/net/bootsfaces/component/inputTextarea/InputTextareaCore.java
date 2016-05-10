@@ -79,8 +79,7 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -681,7 +680,7 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -689,7 +688,7 @@ public abstract class InputTextareaCore extends HtmlInputText implements net.boo
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

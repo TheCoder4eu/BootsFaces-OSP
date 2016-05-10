@@ -30,6 +30,7 @@ import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
+import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -37,7 +38,8 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:label /&gt;. */
 @FacesComponent("net.bootsfaces.component.label.Label")
-public class Label extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive {
+public class Label extends UIComponentBase 
+implements IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.label.Label";
 
@@ -85,12 +87,16 @@ public class Label extends UIComponentBase implements net.bootsfaces.render.IHas
 		String sclass = "label" + " " + "label";
 		if (sev != null) {
 			sclass += "-" + sev;
-		} else {
+		}
+		else {
 			sclass += "-default";
 		}
+		sclass += this.getStyleClass() != null ? " " + this.getStyleClass(): "";
 		sclass += Responsive.getResponsiveStyleClass(this, false);
 
 		rw.writeAttribute("class", sclass, "class");
+		if(this.getStyle() != null) rw.writeAttribute("style", this.getStyle(), "style");
+		
 		rw.writeText(txt, null);
 		rw.endElement("span");
 		Tooltip.activateTooltips(context, this);
@@ -114,6 +120,8 @@ public class Label extends UIComponentBase implements net.bootsfaces.render.IHas
 		severity,
 		smallScreen,
 		span,
+		style,
+		styleClass,
 		text,
 		tinyScreen,
 		tooltip,
@@ -129,8 +137,7 @@ public class Label extends UIComponentBase implements net.bootsfaces.render.IHas
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -407,6 +414,38 @@ public class Label extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setSpan(String _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.style);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
 
 	/**

@@ -31,6 +31,7 @@ import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:commandButton /&gt;. */
@@ -174,6 +175,9 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
+		
+		// add responsive style
+		sb.append(Responsive.getResponsiveStyleClass(component, false));
 
 		return sb.toString().trim();
 

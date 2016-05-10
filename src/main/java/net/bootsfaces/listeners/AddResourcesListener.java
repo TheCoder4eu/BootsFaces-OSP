@@ -74,7 +74,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String THEME_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ThemedResourceFiles";
 
 	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
-			CSS_RENDERER = "javax.faces.resource.Stylesheet";
+								CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
 	static {
 		LOGGER.info("This application is running on BootsFaces 0.8.5 .");
@@ -102,19 +102,6 @@ public class AddResourcesListener implements SystemEventListener {
 			addJavascript(root, context);
 			addMetaTags(root, context);
 		}
-	
-		/*
-		Object source = event.getSource();
-		if (source instanceof UIViewRoot) {
-			final FacesContext context = FacesContext.getCurrentInstance();
-
-			UIViewRoot root = (UIViewRoot) source;
-
-			if(ensureExistBootsfacesComponent(root, context)) {
-				addJavascript(root, context);
-				addMetaTags(root, context);
-			}
-		}*/
 	}
 
 	/**
