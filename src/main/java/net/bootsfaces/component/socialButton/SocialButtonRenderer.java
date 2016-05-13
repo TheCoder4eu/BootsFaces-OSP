@@ -60,7 +60,7 @@ public class SocialButtonRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, socialButton, rw);
 		
 		IconRenderer.encodeIcon(rw, socialButton, socialButton.getSocial(), true);
-		if(!socialButton.isOnlyIcon() && BsfUtils.isStringValued(socialButton.getValue())) {
+		if(!socialButton.isIconOnly() && BsfUtils.isStringValued(socialButton.getValue())) {
 			rw.writeText(socialButton.getValue(), null);
 		}
 		
@@ -79,7 +79,7 @@ public class SocialButtonRenderer extends CoreRenderer {
 		if(sClass == null) sClass = "";
 		
 		sClass += "btn btn-social";
-		if(sb.isOnlyIcon()) sClass += "-icon";
+		if(sb.isIconOnly()) sClass += "-icon";
 		
 		sClass += (" btn-" + sb.getSocial() );
 		

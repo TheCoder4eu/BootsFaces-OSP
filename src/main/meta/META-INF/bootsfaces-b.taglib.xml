@@ -13281,6 +13281,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
+		  <name>icon-only</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
+		  <name>iconOnly</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>large-screen</name>
 		  <required>false</required>
@@ -13357,18 +13369,6 @@
 		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
-		  <name>only-icon</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
-		  <name>onlyIcon</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>

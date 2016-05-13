@@ -1717,7 +1717,7 @@ widget socialButton
 	has_tooltip
 	is_responsive
 {
-    only-icon			Boolean											   "Determine if the button must display only icon. Default: false."
+    icon-only			Boolean											   "Determine if the button must display only icon. Default: false."
     href																   "Reference url for the social"
     social																   "Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo."
 	value																   "Text of the link"

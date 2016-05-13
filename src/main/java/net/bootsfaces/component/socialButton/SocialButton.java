@@ -23,12 +23,14 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:socialButton /&gt;. */
 @FacesComponent("net.bootsfaces.component.socialButton.SocialButton")
-public class SocialButton extends SocialButtonCore {
+public class SocialButton extends SocialButtonCore 
+implements IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.socialButton.SocialButton";
 

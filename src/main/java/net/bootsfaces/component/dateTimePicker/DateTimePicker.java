@@ -32,7 +32,6 @@ import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -41,7 +40,7 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
 @FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePicker extends DateTimePickerCore
-implements IHasTooltip, IResponsive {
+implements net.bootsfaces.render.IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 
