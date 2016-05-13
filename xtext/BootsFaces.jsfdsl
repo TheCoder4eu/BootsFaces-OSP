@@ -455,10 +455,10 @@ widget dataTable
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
-    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     update                                                                 "Component(s) to be updated with ajax."
-    value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
-    var                 String  inherited                                  "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
+    value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."
+    var                  String  inherited                                 "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
     widgetVar            String                                            "optional widget variable to access the datatable widget in JavaScript code."
 	+style
 	+tooltip
@@ -483,6 +483,44 @@ widget datepicker
     show-week           Boolean                                            "Boolean value to specify if Week number should be shown."
    	value               inherited                                          "Value."
 	+style
+	+tooltip
+}
+
+widget dateTimePicker
+		implemented_by net.bootsfaces.component.DateTimePicker
+		has_tooltip
+		is_responsive
+{
+    allow-input-toggle	     Boolean									   "If true, the picker will show on textbox focus and icon click when used in a button group. Default: false."
+	binding                  javax.faces.component.UIComponent             "An EL expression referring to a server side UIComponent instance in a backing bean."
+    collapse				 Boolean default "true"						   "Using a Bootstraps collapse to switch between date/time pickers."
+    day-view-header-format   default "MMMM YYYY"						   "Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'."
+	disabled-dates														   "Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]."
+    disable-time-interval   											   "Disables time selection between the given moments. Default: false."
+	enabled-dates														   "Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]."
+    focus-on-show			 Boolean default "true"						   "If false, the textbox will not be given focus when the picker is shown. Default: true."
+    format																   "See momentjs' docs for valid formats. Format also dictates what components are shown, e.g. MM/dd/YYYY will not display the time picker."
+    initial-date			 											   "Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string."
+    keep-invalid		     Boolean									   "Will cause the date picker to not revert or overwrite invalid dates. Default: false."
+    keep-open				 Boolean								       "Will cause the date picker to stay open after selecting a date if no time components are being used. Deafult: false."
+    locale															       "The desired locale. It uses the moment.js locales."
+    min-date															   "Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
+    max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
+    show-calendar-weeks	     Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
+    show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
+    show-close-button	     Boolean									   "Show the 'Close' button in the icon toolbar. Default: false."
+    show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false." 
+    side-by-side			 Boolean									   "Shows the picker side by side when using the time and date together. Default: false."
+    time-stepping			 Integer default "1"						   "Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1."
+    toolbar-placement		 default "default"  						   "Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'."
+    type					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'component' (text with icon) and 'plain' (only text). Default: 'component'."
+    use-current				 Boolean default "true"						   "On show, will set the picker to the current date/time. Default: true."						
+    use-strict			     Boolean 									   "Defines if moment should use strict date parsing when considering a date to be valid."
+   	value               	 inherited                                     "Value."
+    view-mode				 default "days"								   "The default view to display when the picker is shown. Note: To limit the picker to selecting, for instance the year and month, use format: MM/YYYY. Default: 'days'. Accepts: 'decades','years','months','days'."
+    week-days-disabled		         									   "Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6]."	
+    +style
+	+responsive
 	+tooltip
 }
 
@@ -681,7 +719,7 @@ widget image
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     lang                                                                   "Code describing the language used in the generated markup for this component."
-    name                mandatory                                          "Icon name, mandatory."
+    name                                                                   "Icon name, mandatory."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -1671,6 +1709,21 @@ widget slider
     tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     value               inherited                                          "Value."
+}
+
+widget socialButton
+	implemented_by net.bootsfaces.component.SocialButton
+	extends UIOutput
+	has_tooltip
+	is_responsive
+{
+    only-icon			Boolean											   "Determine if the button must display only icon. Default: false."
+    href																   "Reference url for the social"
+    social																   "Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo."
+	value																   "Text of the link"
+	+style
+	+responsive
+	+tooltip
 }
 
 

@@ -138,6 +138,7 @@ def copySpecCssResources = copySpec {
     from "css/bootstrap-multiselect.css"
     from 'css/bootstrap-switch.css'
     // from 'css/dataTables.bootstrap.min.css'
+    from 'css/bootstrap-social.css'
     from 'css/datatables.min.css'
     from 'css/bootstrap-tree.css'
     from 'css/bootstrap-treeview.min.css'
@@ -151,6 +152,7 @@ def copySpecCssResources = copySpec {
     from 'css/jq.ui.theme.css'
     from 'css/jquery.minicolors.css'
     from 'css/sticky-footer-navbar.css'
+    from 'css/bootstrap-datetimepicker.min.css'
 }
 task copyCssResources << {
     allThemes.each { dest ->
@@ -170,6 +172,8 @@ task copyJsResources(type: Copy) {
   	from 'js/bootstrap-tree.js'
   	from 'js/bootstrap-treeview.min.js'
   	from 'js/bootstrap-notify.min.js'
+  	from 'js/bootstrap-datetimepicker.min.js'
+  	from 'js/moment-with-locales.min.js'
   	from 'js/datatables.min.js'
   	// from 'js/jquery.dataTables.min.js'
   	from 'js/jquery.blockUI.js'

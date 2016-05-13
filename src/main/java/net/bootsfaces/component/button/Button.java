@@ -114,7 +114,6 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		tooltipDelayShow,
 		tooltipPosition,
 		visible;
-		
 		String toString;
 
 		PropertyKeys(String toString) {

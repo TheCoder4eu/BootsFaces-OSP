@@ -78,7 +78,7 @@ public class ButtonRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = button.getClientId();
 
-		Object value = button.getValue();
+		Object value = (button.getValue() != null ? button.getValue() : "");
 		String style = button.getStyle();
 
 		rw.startElement("button", button);
