@@ -121,7 +121,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	private void encodeHTML(FacesContext fc, ResponseWriter rw, DateTimePicker dtp) 
 	throws IOException {
 		String clientId = dtp.getClientId();
-		String type = dtp.getType();
+		String mode = dtp.getMode();
 		String styleClass = dtp.getStyleClass();
 		if(styleClass == null) styleClass = "";
 		styleClass += " " + Responsive.getResponsiveStyleClass(dtp, false);
@@ -131,7 +131,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			v = dtp.getValue();
 		}
 		
-		if ("plain".equals(type)) 
+		if ("plain".equals(mode)) 
 		{
 			// simple wrapper
 			rw.startElement("div", dtp);
@@ -144,6 +144,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId, null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
@@ -152,7 +153,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			
 			rw.endElement("div");
 		}
-		else if ("inline".equals(type)) 
+		else if ("inline".equals(mode)) 
 		{
 			// div
 			rw.startElement("div", dtp);
@@ -165,14 +166,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.startElement("input", dtp);
 			rw.writeAttribute("id", clientId, null);
 			rw.writeAttribute("name", clientId, null);
-			rw.writeAttribute("type", "hidden", "type");
+			rw.writeAttribute("type", "hidden", "type"); 
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
 			Tooltip.generateTooltip(fc, dtp, rw);
 			rw.endElement("input");
 		}
-		else // "component"
+		else // "popup"
 		{
 			// div
 			rw.startElement("div", dtp);
@@ -186,6 +187,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId, null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
@@ -214,11 +216,18 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	throws IOException {
 		String clientId = dtp.getClientId();
 		String fullSelector = "#";
-		String type = dtp.getType();
+		String mode = dtp.getMode();
 		
 		Object v = dtp.getSubmittedValue();
 		if (v == null) {
 			v = dtp.getValue();
+		}
+		
+		// show all buttons
+		if(dtp.isShowButtonPanel()) {
+			dtp.setShowClearButton(true);
+			dtp.setShowCloseButton(true);
+			dtp.setShowTodayButton(true);
 		}
 		
 		Locale sloc = BsfUtils.selectLocale(fc.getViewRoot().getLocale(), dtp.getLocale(), dtp);
@@ -227,8 +236,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String inlineDisplayDate = "'" + (dtp.getFormat() == null ? getDateAsString(v, format, sloc) : getDateAsString(v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 		
 		
-		if("plain".equals(type)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(clientId); }
-		else if("inline".equals(type)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(DTP_CONTAINER_ID + clientId); }
+		if("plain".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(clientId); }
+		else if("inline".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(DTP_CONTAINER_ID + clientId); }
 		else { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(DTP_CONTAINER_ID + clientId); }
 
 		rw.startElement("script", dtp);
@@ -247,25 +256,25 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(BsfUtils.isStringValued(dtp.getLocale()) ?					"locale: [" + dtp.getLocale() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getMinDate()) ?				"minDate: [" + dtp.getMinDate() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getMaxDate()) ?				"maxDate: [" + dtp.getMaxDate() + "], " : "") +
-					      	(dtp.isShowCalendarWeeks() ? 								"calendarWeeks: " + dtp.isShowCalendarWeeks() + ", ": "") +
+					      	(dtp.isShowWeek() ? 										"calendarWeeks: " + dtp.isShowWeek() + ", ": "") +
 					      	(dtp.isShowClearButton() ? 									"showClear: " + dtp.isShowClearButton() + ", ": "") +
 					      	(dtp.isShowCloseButton() ? 									"showClose: " + dtp.isShowCloseButton() + ", ": "") +
 					      	(dtp.isShowTodayButton() ? 									"showTodayButton: " + dtp.isShowTodayButton() + ", ": "") +
-					      	(dtp.isSideBySide() || "inline".equals(type) ? 				"sideBySide: true, ": "") +
+					      	(dtp.isSideBySide() || "inline".equals(mode) ? 				"sideBySide: true, ": "") +
 					      	(dtp.getTimeStepping() > 0 ?								"stepping: " + dtp.getTimeStepping() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getToolbarPlacement()) ?		"toolbarPlacement: '" + dtp.getToolbarPlacement() + "', " : "") +
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"useCurrent: " + dtp.isUseCurrent() + ", ": "") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
-					      	("inline".equals(type) ? 									"inline: true," : "" ) +
-					      	("inline".equals(type) ? 									"date: moment(" + inlineDisplayDate + ", " + displayFormat + ")," : "" ) +
+					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
+					      	("inline".equals(mode) ? 									"date: moment(" + inlineDisplayDate + ", " + displayFormat + ")," : "" ) +
 					      	"locale: '" + sloc.getLanguage() + "', " +
 					      	"format: " + displayFormat + 
 						  "});" +
 					      // ("inline".equals(type) ? "$('" + fullSelector + "').date(" + inlineDisplayDate + ")" : "") +
 					  "});", null);
 		
-		if("inline".equals(type)) {
+		if("inline".equals(mode)) {
 			
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').val( e.date.format(" + displayFormat + ") ); " +

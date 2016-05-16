@@ -59,7 +59,7 @@ public enum ComponentsEnum {
 	selectMultiMenu("<b:selectMultiMenu", "selectMultiMenu"),
 	selectOneMenu("<b:selectOneMenu", "selectOneMenu"),
 	slider("<b:slider", "slider"),
-	socialButton("<b:socialButton", "socialButton"),
+	socialShare("<b:socialShare", "socialShare"),
 	tab("<b:tab", "tab"),
 	tabLinks("<b:tabLinks", "tabLinks"),
 	tabView("<b:tabView", "tabView"),

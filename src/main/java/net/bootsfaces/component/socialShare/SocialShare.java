@@ -17,30 +17,30 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.socialButton;
+package net.bootsfaces.component.socialShare;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:socialButton /&gt;. */
-@FacesComponent("net.bootsfaces.component.socialButton.SocialButton")
-public class SocialButton extends SocialButtonCore 
-implements IResponsive {
+/** This class holds the attributes of &lt;b:socialShare /&gt;. */
+@FacesComponent("net.bootsfaces.component.socialShare.SocialShare")
+public class SocialShare extends SocialShareCore {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.socialButton.SocialButton";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.socialShare.SocialShare";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.socialButton.SocialButton";
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.socialShare.SocialShare";
 
-	public SocialButton() {
+	public SocialShare() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("bootstrap-social.css");
+		AddResourcesListener.addThemedCSSResource("jssocials.css");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jssocials.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -506,14 +506,17 @@ widget dateTimePicker
     locale															       "The desired locale. It uses the moment.js locales."
     min-date															   "Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
     max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
-    show-calendar-weeks	     Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
+    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
+    rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    show-button-panel        Boolean                                       "Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once)."
+    show-week	     		 Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
     show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
     show-close-button	     Boolean									   "Show the 'Close' button in the icon toolbar. Default: false."
     show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false." 
     side-by-side			 Boolean									   "Shows the picker side by side when using the time and date together. Default: false."
     time-stepping			 Integer default "1"						   "Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1."
     toolbar-placement		 default "default"  						   "Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'."
-    type					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'component' (text with icon) and 'plain' (only text). Default: 'component'."
+    mode					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'."
     use-current				 Boolean default "true"						   "On show, will set the picker to the current date/time. Default: true."						
     use-strict			     Boolean 									   "Defines if moment should use strict date parsing when considering a date to be valid."
    	value               	 inherited                                     "Value."
@@ -1711,19 +1714,20 @@ widget slider
     value               inherited                                          "Value."
 }
 
-widget socialButton
-	implemented_by net.bootsfaces.component.SocialButton
+widget socialShare
+	implemented_by net.bootsfaces.component.SocialShare
 	extends UIOutput
-	has_tooltip
 	is_responsive
 {
-    icon-only			Boolean											   "Determine if the button must display only icon. Default: false."
-    href																   "Reference url for the social"
-    social																   "Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo."
-	value																   "Text of the link"
+    shares																	"A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line."
+    share-in		default "popup"											"A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup."
+    show-label		Boolean													"A boolean specifying whether to show the text on the share button. Default false."
+    show-count																"A true, false or inside to specifying whether and how to show share count. Default false."
+    theme			default "flat"											"A string specifying the theme. Available themes are flat or minimal. Default flat."
+    text																	"A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default."
+    url																		"A string specifying url to share. Value of window.location.href is used by default."
 	+style
 	+responsive
-	+tooltip
 }
 
 

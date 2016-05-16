@@ -4439,6 +4439,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'.]]></description>
+		  <name>mode</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
@@ -4493,14 +4499,26 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether or not to show week numbers to the left of week rows. Default false.]]></description>
-		  <name>show-calendar-weeks</name>
+		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
+		  <name>placeholder</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether or not to show week numbers to the left of week rows. Default false.]]></description>
-		  <name>showCalendarWeeks</name>
+		  <description><![CDATA[Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once).]]></description>
+		  <name>show-button-panel</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once).]]></description>
+		  <name>showButtonPanel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -4537,6 +4555,18 @@
 		<attribute>
 		  <description><![CDATA[Show the 'Today' button in the icon toolbar. Default: false.]]></description>
 		  <name>showTodayButton</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Whether or not to show week numbers to the left of week rows. Default false.]]></description>
+		  <name>show-week</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Whether or not to show week numbers to the left of week rows. Default false.]]></description>
+		  <name>showWeek</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -4687,12 +4717,6 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'component' (text with icon) and 'plain' (only text). Default: 'component'.]]></description>
-		  <name>type</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13208,11 +13232,11 @@
 		</attribute>
 	</tag>
 	
-	<!-- *********** b:socialButton ************************* -->
+	<!-- *********** b:socialShare ************************* -->
 	<tag>
-		<tag-name>socialButton</tag-name>
+		<tag-name>socialShare</tag-name>
 		<component>
-			<component-type>net.bootsfaces.component.socialButton.SocialButton</component-type>
+			<component-type>net.bootsfaces.component.socialShare.SocialShare</component-type>
 		</component>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -13273,24 +13297,6 @@
 		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Reference url for the social]]></description>
-		  <name>href</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
-		  <name>icon-only</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Determine if the button must display only icon. Default: false.]]></description>
-		  <name>iconOnly</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -13371,6 +13377,48 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup.]]></description>
+		  <name>share-in</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup.]]></description>
+		  <name>shareIn</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line.]]></description>
+		  <name>shares</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A true, false or inside to specifying whether and how to show share count. Default false.]]></description>
+		  <name>show-count</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A true, false or inside to specifying whether and how to show share count. Default false.]]></description>
+		  <name>showCount</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A boolean specifying whether to show the text on the share button. Default false.]]></description>
+		  <name>show-label</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A boolean specifying whether to show the text on the share button. Default false.]]></description>
+		  <name>showLabel</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>small-screen</name>
 		  <required>false</required>
@@ -13379,12 +13427,6 @@
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>smallScreen</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo.]]></description>
-		  <name>social</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13413,6 +13455,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default.]]></description>
+		  <name>text</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[A string specifying the theme. Available themes are flat or minimal. Default flat.]]></description>
+		  <name>theme</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>tiny-screen</name>
 		  <required>false</required>
@@ -13425,74 +13479,8 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The text of the tooltip.]]></description>
-		  <name>tooltip</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
-		  <name>tooltip-container</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
-		  <name>tooltipContainer</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltip-delay</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltipDelay</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltip-delay-hide</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltipDelayHide</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltip-delay-show</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
-		  <name>tooltipDelayShow</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-		  <name>tooltip-position</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
-		  <name>tooltipPosition</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Text of the link]]></description>
-		  <name>value</name>
+		  <description><![CDATA[A string specifying url to share. Value of window.location.href is used by default.]]></description>
+		  <name>url</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

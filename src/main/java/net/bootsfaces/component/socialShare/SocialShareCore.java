@@ -17,22 +17,22 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.socialButton;
+package net.bootsfaces.component.socialShare;
 
 import javax.faces.component.UIOutput;
 
-/** This class holds the attributes of &lt;b:socialButton /&gt;. */
-public abstract class SocialButtonCore extends UIOutput implements net.bootsfaces.render.IHasTooltip {
+import net.bootsfaces.render.IResponsive;
+
+/** This class holds the attributes of &lt;b:socialShare /&gt;. */
+public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	protected enum PropertyKeys {
 		colLg,
-		colMd,
+		colMd,  
 		colSm,
 		colXs,
 		display,
 		hidden,
-		href,
-		iconOnly,
 		largeScreen,
 		mediumScreen,
 		offset,
@@ -40,19 +40,18 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 		offsetMd,
 		offsetSm,
 		offsetXs,
+		shareIn,
+		shares,
+		showCount,
+		showLabel,
 		smallScreen,
-		social,
 		span,
 		style,
 		styleClass,
+		text,
+		theme,
 		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		value,
+		url,
 		visible;
 		String toString;
 
@@ -161,38 +160,6 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
-	}
-
-	/**
-	 * Reference url for the social <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getHref() {
-		return (String) getStateHelper().eval(PropertyKeys.href);
-	}
-
-	/**
-	 * Reference url for the social <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setHref(String _href) {
-		getStateHelper().put(PropertyKeys.href, _href);
-	}
-
-	/**
-	 * Determine if the button must display only icon. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isIconOnly() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconOnly, false);
-	}
-
-	/**
-	 * Determine if the button must display only icon. Default: false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setIconOnly(boolean _iconOnly) {
-		getStateHelper().put(PropertyKeys.iconOnly, _iconOnly);
 	}
 
 	/**
@@ -308,6 +275,70 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 	}
 
 	/**
+	 * A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getShareIn() {
+		return (String) getStateHelper().eval(PropertyKeys.shareIn, "popup");
+	}
+
+	/**
+	 * A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShareIn(String _shareIn) {
+		getStateHelper().put(PropertyKeys.shareIn, _shareIn);
+	}
+
+	/**
+	 * A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getShares() {
+		return (String) getStateHelper().eval(PropertyKeys.shares);
+	}
+
+	/**
+	 * A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShares(String _shares) {
+		getStateHelper().put(PropertyKeys.shares, _shares);
+	}
+
+	/**
+	 * A true, false or inside to specifying whether and how to show share count. Default false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getShowCount() {
+		return (String) getStateHelper().eval(PropertyKeys.showCount);
+	}
+
+	/**
+	 * A true, false or inside to specifying whether and how to show share count. Default false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowCount(String _showCount) {
+		getStateHelper().put(PropertyKeys.showCount, _showCount);
+	}
+
+	/**
+	 * A boolean specifying whether to show the text on the share button. Default false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showLabel, false);
+	}
+
+	/**
+	 * A boolean specifying whether to show the text on the share button. Default false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowLabel(boolean _showLabel) {
+		getStateHelper().put(PropertyKeys.showLabel, _showLabel);
+	}
+
+	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -321,22 +352,6 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 	 */
 	public void setSmallScreen(String _smallScreen) {
 		getStateHelper().put(PropertyKeys.smallScreen, _smallScreen);
-	}
-
-	/**
-	 * Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getSocial() {
-		return (String) getStateHelper().eval(PropertyKeys.social);
-	}
-
-	/**
-	 * Enable the social-style button. With this attribute, the button has the space for additional text. Available values are: adn,bitbucket,dropbox,facebook,flickr,foursquare,github,google,instagram,linkedin,microsoft,odnoklassniki,openid,pinterest,reddit,soundcloud,tumblr,twitter,vimeo,vk,yahoo. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSocial(String _social) {
-		getStateHelper().put(PropertyKeys.social, _social);
 	}
 
 	/**
@@ -388,6 +403,38 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 	}
 
 	/**
+	 * A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getText() {
+		return (String) getStateHelper().eval(PropertyKeys.text);
+	}
+
+	/**
+	 * A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setText(String _text) {
+		getStateHelper().put(PropertyKeys.text, _text);
+	}
+
+	/**
+	 * A string specifying the theme. Available themes are flat or minimal. Default flat. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTheme() {
+		return (String) getStateHelper().eval(PropertyKeys.theme, "flat");
+	}
+
+	/**
+	 * A string specifying the theme. Available themes are flat or minimal. Default flat. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTheme(String _theme) {
+		getStateHelper().put(PropertyKeys.theme, _theme);
+	}
+
+	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -404,115 +451,19 @@ public abstract class SocialButtonCore extends UIOutput implements net.bootsface
 	}
 
 	/**
-	 * The text of the tooltip. <P>
+	 * A string specifying url to share. Value of window.location.href is used by default. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getTooltip() {
-		return (String) getStateHelper().eval(PropertyKeys.tooltip);
+	public String getUrl() {
+		return (String) getStateHelper().eval(PropertyKeys.url);
 	}
 
 	/**
-	 * The text of the tooltip. <P>
+	 * A string specifying url to share. Value of window.location.href is used by default. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setTooltip(String _tooltip) {
-		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
-	}
-
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipContainer() {
-		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
-	}
-
-	/**
-	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipContainer(String _tooltipContainer) {
-		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-	}
-
-	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getTooltipDelay() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
-	}
-
-	/**
-	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelay(int _tooltipDelay) {
-		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-	}
-
-	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getTooltipDelayHide() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
-	}
-
-	/**
-	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelayHide(int _tooltipDelayHide) {
-		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-	}
-
-	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getTooltipDelayShow() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
-	}
-
-	/**
-	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipDelayShow(int _tooltipDelayShow) {
-		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-	}
-
-	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTooltipPosition() {
-		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
-	}
-
-	/**
-	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTooltipPosition(String _tooltipPosition) {
-		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-	}
-
-	/**
-	 * Text of the link <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getValue() {
-		return (String) getStateHelper().eval(PropertyKeys.value);
-	}
-
-	/**
-	 * Text of the link <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(String _value) {
-		getStateHelper().put(PropertyKeys.value, _value);
+	public void setUrl(String _url) {
+		getStateHelper().put(PropertyKeys.url, _url);
 	}
 
 	/**

@@ -22,8 +22,7 @@ package net.bootsfaces.component.dateTimePicker;
 import javax.faces.component.html.HtmlInputText;
 
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
-public abstract class DateTimePickerCore extends HtmlInputText 
-implements net.bootsfaces.render.IHasTooltip  {
+public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
 		allowInputToggle,
@@ -49,15 +48,18 @@ implements net.bootsfaces.render.IHasTooltip  {
 		maxDate,
 		mediumScreen,
 		minDate,
+		mode,
 		offset,
 		offsetLg,
 		offsetMd,
 		offsetSm,
 		offsetXs,
-		showCalendarWeeks,
+		placeholder,
+		showButtonPanel,
 		showClearButton,
 		showCloseButton,
 		showTodayButton,
+		showWeek,
 		sideBySide,
 		smallScreen,
 		span,
@@ -72,13 +74,11 @@ implements net.bootsfaces.render.IHasTooltip  {
 		tooltipDelayHide,
 		tooltipDelayShow,
 		tooltipPosition,
-		type,
 		useCurrent,
 		useStrict,
 		viewMode,
 		visible,
 		weekDaysDisabled;
-		
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -461,6 +461,22 @@ implements net.bootsfaces.render.IHasTooltip  {
 	}
 
 	/**
+	 * Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMode() {
+		return (String) getStateHelper().eval(PropertyKeys.mode, "component");
+	}
+
+	/**
+	 * Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMode(String _mode) {
+		getStateHelper().put(PropertyKeys.mode, _mode);
+	}
+
+	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -541,19 +557,35 @@ implements net.bootsfaces.render.IHasTooltip  {
 	}
 
 	/**
-	 * Whether or not to show week numbers to the left of week rows. Default false. <P>
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isShowCalendarWeeks() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCalendarWeeks, false);
+	public String getPlaceholder() {
+		return (String) getStateHelper().eval(PropertyKeys.placeholder);
 	}
 
 	/**
-	 * Whether or not to show week numbers to the left of week rows. Default false. <P>
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setShowCalendarWeeks(boolean _showCalendarWeeks) {
-		getStateHelper().put(PropertyKeys.showCalendarWeeks, _showCalendarWeeks);
+	public void setPlaceholder(String _placeholder) {
+		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowButtonPanel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showButtonPanel, false);
+	}
+
+	/**
+	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowButtonPanel(boolean _showButtonPanel) {
+		getStateHelper().put(PropertyKeys.showButtonPanel, _showButtonPanel);
 	}
 
 	/**
@@ -602,6 +634,22 @@ implements net.bootsfaces.render.IHasTooltip  {
 	 */
 	public void setShowTodayButton(boolean _showTodayButton) {
 		getStateHelper().put(PropertyKeys.showTodayButton, _showTodayButton);
+	}
+
+	/**
+	 * Whether or not to show week numbers to the left of week rows. Default false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowWeek() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showWeek, false);
+	}
+
+	/**
+	 * Whether or not to show week numbers to the left of week rows. Default false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowWeek(boolean _showWeek) {
+		getStateHelper().put(PropertyKeys.showWeek, _showWeek);
 	}
 
 	/**
@@ -826,22 +874,6 @@ implements net.bootsfaces.render.IHasTooltip  {
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-	}
-
-	/**
-	 * Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'component' (text with icon) and 'plain' (only text). Default: 'component'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getType() {
-		return (String) getStateHelper().eval(PropertyKeys.type, "component");
-	}
-
-	/**
-	 * Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'component' (text with icon) and 'plain' (only text). Default: 'component'. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setType(String _type) {
-		getStateHelper().put(PropertyKeys.type, _type);
 	}
 
 	/**

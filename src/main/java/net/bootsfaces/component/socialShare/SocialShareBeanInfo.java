@@ -17,7 +17,7 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.socialButton;
+package net.bootsfaces.component.socialShare;
 
 import net.bootsfaces.beans.BsfBeanInfo;
 
@@ -27,14 +27,14 @@ import net.bootsfaces.beans.BsfBeanInfo;
  * 
  * @author Dario D'Urzo
  */
-public class SocialButtonBeanInfo extends BsfBeanInfo {
+public class SocialShareBeanInfo extends BsfBeanInfo {
 	
 	/**
 	 * Get the reference decorated class
 	 */
 	@Override
 	public Class<?> getDecoratedClass() {
-		return SocialButton.class;
+		return SocialShare.class;
 	}
 }
 
