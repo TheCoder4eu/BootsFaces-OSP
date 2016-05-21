@@ -5053,9 +5053,15 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon name, mandatory.]]></description>
+		  <description><![CDATA[The name of the folder in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute.]]></description>
+		  <name>library</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The name of the icon in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute.]]></description>
 		  <name>name</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -5239,7 +5245,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The local value of this component]]></description>
+		  <description><![CDATA[The file name of this image. Alternatively, you can use the attributes 'library' and 'name' to use the JSF resource library.]]></description>
 		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
