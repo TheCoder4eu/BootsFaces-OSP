@@ -12,7 +12,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.FacesMessages;
 
@@ -51,9 +50,9 @@ public class ImageRenderer extends CoreRenderer {
         rw.startElement("img", image);
         Tooltip.generateTooltip(context, image, rw);
         rw.writeAttribute("id", clientId, "id");
-        rw.writeURIAttribute("src", getImageSource(context, component, "value"), "value");
+        rw.writeURIAttribute("src", getImageSource(context, component), "value");
 
-        renderPassThruAttributes(context, image, H.IMAGE);
+        renderPassThruAttributes(context, image, new String[] { "alt", "height", "lang", "style", "title", "width"});
 
         writeAttribute(rw, "class", image.getStyleClass(), "styleClass");
 
@@ -75,11 +74,12 @@ public class ImageRenderer extends CoreRenderer {
      *
      * @return the encoded path to the image source
      */
-    public static String getImageSource(FacesContext context, UIComponent component, String attrName) {
-    	String resourceName = (String) component.getAttributes().get("name");
+    public static String getImageSource(FacesContext context, UIComponent component) {
+    	Image image = (Image)component;
+    	String resourceName =  image.getName();
     	ResourceHandler handler = context.getApplication().getResourceHandler();
     	if(resourceName != null) {
-    		String library = (String) component.getAttributes().get("library");
+    		String library = image.getLibrary();
     		Resource res = handler.createResource(resourceName, library);
     		if(res == null) {
     			if (context.isProjectStage(ProjectStage.Development)) {
@@ -91,11 +91,11 @@ public class ImageRenderer extends CoreRenderer {
     			return (context.getExternalContext().encodeResourceURL(res.getRequestPath()));
     		}
     	} else {
-	        String value = (String) component.getAttributes().get(attrName);
+	        String value = image.getValue();
 	        if (value == null || value.length() == 0) {
 	            return "";
 	        }
-	        
+
 	        if (handler.isResourceURL(value)) {
 	            return value;
 	        } else {

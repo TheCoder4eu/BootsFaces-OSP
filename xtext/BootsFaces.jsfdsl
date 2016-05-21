@@ -512,16 +512,16 @@ widget dateTimePicker
     show-week	     		 Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
     show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
     show-close-button	     Boolean									   "Show the 'Close' button in the icon toolbar. Default: false."
-    show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false." 
+    show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false."
     side-by-side			 Boolean									   "Shows the picker side by side when using the time and date together. Default: false."
     time-stepping			 Integer default "1"						   "Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1."
     toolbar-placement		 default "default"  						   "Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'."
     mode					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'."
-    use-current				 Boolean default "true"						   "On show, will set the picker to the current date/time. Default: true."						
+    use-current				 Boolean default "true"						   "On show, will set the picker to the current date/time. Default: true."
     use-strict			     Boolean 									   "Defines if moment should use strict date parsing when considering a date to be valid."
    	value               	 inherited                                     "Value."
     view-mode				 default "days"								   "The default view to display when the picker is shown. Note: To limit the picker to selecting, for instance the year and month, use format: MM/YYYY. Default: 'days'. Accepts: 'decades','years','months','days'."
-    week-days-disabled		         									   "Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6]."	
+    week-days-disabled		         									   "Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6]."
     +style
 	+responsive
 	+tooltip
@@ -720,10 +720,11 @@ widget image
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     height																   "Override for the height of this image."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     lang                                                                   "Code describing the language used in the generated markup for this component."
-    name                                                                   "Icon name, mandatory."
-    onclick                                                                "The onclick attribute."
+    library                                                                "The name of the folder in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute."
+    name                                                                   "The name of the icon in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute."
+    onclick                                                                "Client side callback to execute when input element is clicked."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
 	ondragstart                                                            "Client side callback when a drag-and-drop action starts. May also call an AJAX function."
@@ -739,7 +740,7 @@ widget image
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     title																   "Advisory title information about markup elements generated for this component."
     update                                                                 "Component(s) to be updated with ajax."
-    value				inherited										   "The local value of this component"
+    value				        										   "The file name of this image. Alternatively, you can use the attributes 'library' and 'name' to use the JSF resource library."
     width																   "Override for the width of this image."
     +style
     +tooltip
@@ -799,7 +800,7 @@ widget inputSecret
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+style
-	+tooltip    
+	+tooltip
 }
 
 
@@ -955,7 +956,7 @@ widget label
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
     text                mandatory                                          "Label text."
-	+style 
+	+style
 	+responsive
 	+tooltip
 }
