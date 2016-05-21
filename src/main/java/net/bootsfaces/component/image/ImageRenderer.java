@@ -76,9 +76,6 @@ public class ImageRenderer extends CoreRenderer {
 	 *            the {@link FacesContext} for the current request.
 	 * @param component
 	 *            the component to obtain the image information from
-	 * @param attrName
-	 *            the attribute name that needs to be queried if the name and
-	 *            library attributes are not specified
 	 *
 	 * @return the encoded path to the image source
 	 */
