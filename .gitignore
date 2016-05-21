@@ -18,3 +18,4 @@ src-gen
 .gradle
 .idea/
 *.iml
+/.externalToolBuilders
