@@ -34,7 +34,7 @@ import net.bootsfaces.render.CoreRenderer;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
-	
+
 	// local constants
 	public static final String BSF_EVENT_PREFIX = "BsFEvent=";
 	public static final String AJAX_EVENT_PREFIX = "ajax:";
@@ -115,7 +115,8 @@ public class AJAXRenderer extends CoreRenderer {
 						List<ClientBehavior> value = entry.getValue();
 						for (ClientBehavior bh : value) {
 							if (bh instanceof AjaxBehavior) {
-								// String delay = ((AjaxBehavior) bh).getDelay();
+								// String delay = ((AjaxBehavior)
+								// bh).getDelay();
 								bh.decode(context, component);
 							}
 						}
@@ -152,14 +153,14 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param rw
 	 * @throws IOException
 	 */
-	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component, ResponseWriter rw) 
-	throws IOException {
+	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
+			ResponseWriter rw) throws IOException {
 		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null, false);
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback)
-	throws IOException {
+			throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
 		for (String keyClientBehavior : eventNames) {
@@ -211,7 +212,7 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
-	throws IOException {
+			throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
 		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
 
@@ -220,8 +221,7 @@ public class AJAXRenderer extends CoreRenderer {
 
 	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
-			String keyClientBehavior, StringBuilder generatedJSCode) 
-	throws IOException {
+			String keyClientBehavior, StringBuilder generatedJSCode) throws IOException {
 		boolean generatedAJAXCall = false;
 		String jsCallback = "";
 		String nameOfGetter = "getOn" + keyClientBehavior;
@@ -358,7 +358,7 @@ public class AJAXRenderer extends CoreRenderer {
 	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
 		String complete = component.getOncomplete();
 		String onError = null;
-		String onSuccess=null;
+		String onSuccess = null;
 		if (component instanceof IAJAXComponent2) {
 			onError = ((IAJAXComponent2) component).getOnerror();
 			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
@@ -371,16 +371,15 @@ public class AJAXRenderer extends CoreRenderer {
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
 		String process = component.getProcess();
 		if (null == process) {
-			if (component.getClass().getName().contains("Command")) {
-				// CommandButton and CommandLink default to @form - see
-				// http://stackoverflow.com/questions/25339056/understanding-process-and-update-attributes-of-primefaces
-				process = "@form";
-			} else {
-				process = "@this";
-			}
+			// see https://github.com/TheCoder4eu/BootsFaces-OSP/issues/371
+			process = "@all";
 		}
 
-		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
+		if ("@all".equals(process) || "@none".equals(process)) {
+			// these expressions are evaluated on the client side
+		} else {
+			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
+		}
 		cJS.append("BsF.ajax.callAjax(this, event").append(",'" + update + "'").append(",'").append(process)
 				.append("'");
 		if (complete != null) {
@@ -411,7 +410,7 @@ public class AJAXRenderer extends CoreRenderer {
 		String process = component.getProcess();
 		String onevent = "";
 		String onError = null;
-		String onSuccess=null;
+		String onSuccess = null;
 		if (component instanceof IAJAXComponent2) {
 			onError = ((IAJAXComponent2) component).getOnerror();
 			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
@@ -421,7 +420,8 @@ public class AJAXRenderer extends CoreRenderer {
 			if (ajaxBehavior instanceof AjaxBehavior) {
 				boolean disabled = ((AjaxBehavior) ajaxBehavior).isDisabled();
 				if (!disabled) {
-					// String onerror = ((AjaxBehavior) ajaxBehavior).getOnerror(); // todo
+					// String onerror = ((AjaxBehavior)
+					// ajaxBehavior).getOnerror(); // todo
 					onevent = ((AjaxBehavior) ajaxBehavior).getOnevent();
 					if (onevent == null)
 						onevent = "";
@@ -433,6 +433,8 @@ public class AJAXRenderer extends CoreRenderer {
 							else
 								process += " " + u;
 						}
+					} else {
+						process = "@this";
 					}
 
 					Collection<String> render = ((AjaxBehavior) ajaxBehavior).getRender();
@@ -447,7 +449,11 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 
-		process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
+		if ("@all".equals(process) || "@none".equals(process) ) {
+			// these expressions are evaluated on the client side
+		} else {
+			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
+		}
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
 		cJS.append(encodeClick(component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
@@ -496,8 +502,7 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) 
-	throws IOException {
+			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) throws IOException {
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
 		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
 		for (String event : events) {
@@ -518,14 +523,12 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 	}
 
-	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String clientId, String event) 
-	throws IOException {
+	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context,
+			ClientBehaviorHolder component, ResponseWriter rw, String clientId, String event) throws IOException {
 		StringBuilder code = new StringBuilder();
 		String additionalEventHandler = null;
 
-		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler,
-				true, event, code);
+		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler, true, event, code);
 		return code.toString();
 	}
 }
