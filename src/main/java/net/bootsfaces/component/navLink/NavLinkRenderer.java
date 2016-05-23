@@ -109,7 +109,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (parent != null) {
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu) {
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
 				htmlTag = "li";
 			}
 		}

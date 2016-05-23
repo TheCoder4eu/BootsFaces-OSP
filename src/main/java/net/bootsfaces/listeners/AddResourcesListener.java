@@ -77,7 +77,7 @@ public class AddResourcesListener implements SystemEventListener {
 								CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
 	static {
-		LOGGER.info("This application is running on BootsFaces 0.8.5 .");
+		LOGGER.info("This application is running on BootsFaces 0.8.6.");
 		LOGGER.info("net.bootsfaces.listeners.AddResourcesListener ready for use.");
 	}
 

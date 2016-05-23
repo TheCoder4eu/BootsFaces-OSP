@@ -68,13 +68,14 @@ public class ImageRenderer extends CoreRenderer {
 	}
 
 	/**
+	 * <p>
 	 * Determine the path value of an image value.
+	 * </p>
 	 *
 	 * @param context
 	 *            the {@link FacesContext} for the current request.
 	 * @param component
 	 *            the component to obtain the image information from
-
 	 * @return the encoded path to the image source
 	 */
 	public static String getImageSource(FacesContext context, UIComponent component) {
