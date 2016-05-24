@@ -1,8 +1,8 @@
 /**
  *  Copyright 2015-2016 Stephan Rauh, http://www.beyondjava.net
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -49,7 +49,7 @@ import net.bootsfaces.utils.BsfUtils;
 /**
  * This class adds the resource needed by BootsFaces and ensures that they are
  * loaded in the correct order. It replaces the former HeadListener.
- * 
+ *
  * @author Stephan Rauh
  */
 public class AddResourcesListener implements SystemEventListener {
@@ -82,19 +82,19 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Returns true if the source is an instance of {@link UIViewRoot}. 
-	 */ 
-	@Override 
-	public boolean isListenerForSource(Object source) { 
-		return (source instanceof UIViewRoot); 
-	} 
+	 * Returns true if the source is an instance of {@link UIViewRoot}.
+	 */
+	@Override
+	public boolean isListenerForSource(Object source) {
+		return (source instanceof UIViewRoot);
+	}
 
 	/**
 	 * Trigger adding the resources if and only if the event has been fired by
 	 * UIViewRoot.
 	 */
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
-		FacesContext context = FacesContext.getCurrentInstance(); 
+		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		// render the resources only if there is at least one bsf component
@@ -107,10 +107,10 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Check if there is almost one bootsfaces component in page.
 	 * If yes, load the correct items.
-	 * 
+	 *
 	 * To ensure that, it checks first the viewMap to find specific bootsfaces key.
 	 * If it found nothing, it check for components that has as a resource lib, the "bsf" lib.
-	 * 
+	 *
 	 * @param root <- the UIViewRoot
 	 * @param context <- the faces context
 	 * @return
@@ -121,21 +121,21 @@ public class AddResourcesListener implements SystemEventListener {
 		// check explicit js request
 		if(viewMap.get(RESOURCE_KEY) != null) return true;
 		// check explicit css request
-		if(viewMap.get(THEME_RESOURCE_KEY) != null) return true; 
+		if(viewMap.get(THEME_RESOURCE_KEY) != null) return true;
 		// check referenced bsf request
 		if(findBsfComponent(root, "bsf") != null) return true;
 
 		return false;
 	}
-	
+
 	/**
 	 * Check all components in page to find one that
 	 * has as resource library the target library.
 	 * I use this method to check existence of a BsF component
 	 * because, at this level, the getComponentResource returns always null
-	 * 
-	 * @param parent <- the parent component 
-	 * @param targetLib <- the lib to search
+	 *
+	 * @param parent the parent component
+	 * @param targetLib the lib to search
 	 * @return
 	 */
 	public static UIComponent findBsfComponent(UIComponent parent, String targetLib) {
@@ -154,7 +154,7 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Add the viewport meta tag if not disabled from context-param
-	 * 
+	 *
 	 * @param root
 	 * @param context
 	 * @param isProduction
@@ -185,7 +185,7 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Add the required Javascript files and the FontAwesome CDN link.
-	 * 
+	 *
 	 * @param root
 	 *            The UIViewRoot of the JSF tree.
 	 * @param context
@@ -254,7 +254,7 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null != blockUI && isTrueOrYes(blockUI)) {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "js/jquery.blockUI.js", C.BSF_LIBRARY);
 		}
-		
+
 		removeDuplicateResources(root, context);
 		if (loadBootstrapFromCDN) {
 			removeBootstrapResources(root, context);
@@ -268,7 +268,7 @@ public class AddResourcesListener implements SystemEventListener {
 			String library = (String) ava.getAttributes().get("library");
 			if (library != null && library.equals("bsf")) {
 				String name = (String) ava.getAttributes().get("name");
-				if (null != name && name.endsWith(".css") && name.startsWith("css/") 
+				if (null != name && name.endsWith(".css") && name.startsWith("css/")
 						&& !name.equals("css/icons.css")) {
 					ava.getAttributes().remove("name");
 					int pos = name.lastIndexOf('/');
@@ -297,15 +297,15 @@ public class AddResourcesListener implements SystemEventListener {
 	private Map<String, Object> addMandatoryLibraries(
 			UIViewRoot root, FacesContext context, boolean loadJQuery, boolean loadJQueryUI) {
 
-		/* We used to check if a single component needs the bsf.js, jsf or jquery library. 
-		 * This can be an error prone approach so we add all of them (if not different specified) 
+		/* We used to check if a single component needs the bsf.js, jsf or jquery library.
+		 * This can be an error prone approach so we add all of them (if not different specified)
 		 */
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
 
 		if (loadJQuery)
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
-		
+
 		Map<String, Object> viewMap = root.getViewMap();
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
@@ -314,7 +314,7 @@ public class AddResourcesListener implements SystemEventListener {
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) || 
+				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
 						!file.startsWith("jq/ui") || loadJQueryUI)
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 			}
@@ -406,10 +406,10 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Remove duplicate resource files. For some reason, many resource files are
 	 * added more than once, especially when AJAX is used. The method removes
 	 * the duplicate files.
-	 * 
+	 *
 	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or
 	 * of the Mojarra library itself.
-	 * 
+	 *
 	 * @param root
 	 *            The current UIViewRoot
 	 * @param context
@@ -448,7 +448,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Remove Bootstrap CSS files (called if the context param
 	 * "net.bootsfaces.get_bootstrap_from_cdn" is set).
-	 * 
+	 *
 	 * @param root
 	 *            The current UIViewRoot
 	 * @param context
@@ -475,7 +475,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Javascript is loaded later. Also make sure that the BootsFaces resource
 	 * files are loaded prior to other resource files, giving the developer the
 	 * opportunity to overwrite a CSS or JS file.
-	 * 
+	 *
 	 * @param root
 	 *            The current UIViewRoot
 	 * @param context
@@ -546,7 +546,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Look whether a b:iconAwesome component is used. If so, the
 	 * font-awesome.css is removed from the resource list because it's loaded
 	 * from the CDN.
-	 * 
+	 *
 	 * @return true, if the font-awesome.css is found in the resource list. Note
 	 *         the side effect of this method!
 	 */
@@ -575,7 +575,7 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Looks for the header in the JSF tree.
-	 * 
+	 *
 	 * @param root
 	 *            The root of the JSF tree.
 	 * @return null, if the head couldn't be found.
@@ -598,7 +598,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Registers a JS file that needs to be included in the header of the HTML
 	 * file, but after jQuery and AngularJS.
-	 * 
+	 *
 	 * @param library
 	 *            The name of the sub-folder of the resources folder.
 	 * @param resource
@@ -611,7 +611,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Registers a core JS file that needs to be included in the header of the HTML
 	 * file, but after jQuery and AngularJS.
-	 * 
+	 *
 	 * @param library
 	 *            The name of the sub-folder of the resources folder.
 	 * @param resource
@@ -624,7 +624,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Registers a themed CSS file that needs to be included in the header of the HTML
 	 * file.
-	 * 
+	 *
 	 * @param resource
 	 *            The name of the resource file within the library folder.
 	 */
