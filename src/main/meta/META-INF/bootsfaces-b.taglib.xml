@@ -13467,7 +13467,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[A string specifying text to share. The content of &lt;<meta name='description'&gt;> or &lt;title&gt; (if first is missing) is used by default.]]></description>
+		  <description><![CDATA[A string specifying text to share. The content of &lt;meta name='description'&gt; or &lt;title&gt; (if first is missing) is used by default.]]></description>
 		  <name>text</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

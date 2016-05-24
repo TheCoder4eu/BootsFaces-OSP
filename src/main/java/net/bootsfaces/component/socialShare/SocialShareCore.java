@@ -412,7 +412,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 	}
 
 	/**
-	 * A string specifying text to share. The content of &lt;<meta name='description'&gt;> or &lt;title&gt; (if first is missing) is used by default. <P>
+	 * A string specifying text to share. The content of &lt;meta name='description'&gt; or &lt;title&gt; (if first is missing) is used by default. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setText(String _text) {
