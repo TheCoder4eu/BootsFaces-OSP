@@ -1727,7 +1727,7 @@ widget socialShare
     show-label		Boolean													"A boolean specifying whether to show the text on the share button. Default false."
     show-count																"A true, false or inside to specifying whether and how to show share count. Default false."
     theme			default "flat"											"A string specifying the theme. Available themes are flat or minimal. Default flat."
-    text																	"A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default."
+    text																	"A string specifying text to share. The content of &lt;<meta name='description'&gt;> or &lt;title&gt; (if first is missing) is used by default."
     url																		"A string specifying url to share. Value of window.location.href is used by default."
 	+style
 	+responsive

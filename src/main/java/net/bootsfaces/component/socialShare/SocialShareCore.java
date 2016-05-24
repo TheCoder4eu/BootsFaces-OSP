@@ -28,7 +28,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	protected enum PropertyKeys {
 		colLg,
-		colMd,  
+		colMd,
 		colSm,
 		colXs,
 		display,
@@ -59,7 +59,8 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -403,7 +404,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 	}
 
 	/**
-	 * A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default. <P>
+	 * A string specifying text to share. The content of &lt;meta name='description'&gt; or &lt;title&gt; (if first is missing) is used by default. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getText() {
@@ -411,7 +412,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 	}
 
 	/**
-	 * A string specifying text to share. The content of <meta name='description'> or <title> (if first is missing) is used by default. <P>
+	 * A string specifying text to share. The content of &lt;<meta name='description'&gt;> or &lt;title&gt; (if first is missing) is used by default. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setText(String _text) {
