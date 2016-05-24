@@ -308,10 +308,10 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	paging: " + dataTable.isPaginated() + ", " +
 					 "	pageLength: " + pageLength + ", " +
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " +
+					 "	searching: " + dataTable.isSearching() + ", " +
 					 "	order: " + orderString + ", " +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
-					 // "var table = " + widgetVar +".DataTable({fixedHeader: true, responsive: true});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
 		//# Use DataTable API to set initial state of the table display

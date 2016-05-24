@@ -3877,6 +3877,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API).]]></description>
+		  <name>searching</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
