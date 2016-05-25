@@ -124,8 +124,6 @@ public class ModalRenderer extends CoreRenderer {
 			rw.writeAttribute("id", component.getClientId(context) + "_Label", "id");
 			rw.writeText(title, null);
 			rw.endElement("h4");
-			rw.startElement("br", component);
-			rw.endElement("br");
 		}
 		rw.endElement("div"); // modal-header
 

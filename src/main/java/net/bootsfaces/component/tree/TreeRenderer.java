@@ -66,7 +66,7 @@ public class TreeRenderer extends CoreRenderer {
 				TreeModelUtils.updateNodeById(tree.getValue(), n.getNodeId(), n);
 				// tree.setSubmittedValue(tree.getValue());
 
-				if(nodeSelectionListener != null) {
+				if (nodeSelectionListener != null) {
 					// execute listener only for listened events
 					if ("nodeSelected".equals(key)) {
 						Node n2 = checkNodeIsSelected(tree.getValue(), tree);
