@@ -643,7 +643,7 @@ widget gyroscope
     id                  inherited      												"Unique identifier of the component in a namingContainer."
     interval            Integer default "500"                                       "Specifies the delay (in milliseconds) between each slide."
     oncomplete                                                            			"JavaScript to be executed when ajax completes with success."
-    onrotation          javax.faces.event.ValueChangeListener inherited             "A method binding expression referring to a method for handling a valuechangeevent."
+    onrotation                                                                      "A method binding expression referring to a method for handling a valuechangeevent."
 	process                                                                  		"Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     threshold           Integer default "15"                                        "Specifies the sensitivity of the skae detector."
     update                                                                			"Component(s) to be updated with ajax."

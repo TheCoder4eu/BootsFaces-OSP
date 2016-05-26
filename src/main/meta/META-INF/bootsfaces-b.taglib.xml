@@ -5856,7 +5856,7 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>onrotation</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>

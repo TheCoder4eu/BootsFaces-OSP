@@ -219,7 +219,7 @@ public class AJAXRenderer extends CoreRenderer {
 		rw.writeAttribute("onclick", cJS.toString(), null);
 	}
 
-	private static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
+	public static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
 			String keyClientBehavior, StringBuilder generatedJSCode) throws IOException {
 		boolean generatedAJAXCall = false;
