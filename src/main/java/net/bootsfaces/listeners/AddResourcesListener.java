@@ -258,7 +258,6 @@ public class AddResourcesListener implements SystemEventListener {
 		if (loadBootstrapFromCDN) {
 			removeBootstrapResources(root, context);
 		}
-		enforceCorrectLoadOrder(root, context);
 
 		addResourceIfNecessary(root, context, new InternalIE8CompatiblityLinks());
 
@@ -291,6 +290,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// Glyphicons
 		String name = "css/icons.css";
 		createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+		enforceCorrectLoadOrder(root, context);
 	}
 
 	private Map<String, Object> addMandatoryLibraries(
