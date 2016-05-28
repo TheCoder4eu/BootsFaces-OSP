@@ -27,6 +27,7 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -71,6 +72,10 @@ public class Gyroscope extends GyroscopeCore implements IAJAXComponent, ClientBe
 
 	public String getDefaultEventName() {
 		return "rotate";
+	}
+
+	public void processUpdates(FacesContext context) {
+		((GyroscopeRenderer) getRenderer(context)).processUpdates(context, this);
 	}
 
 	/**
