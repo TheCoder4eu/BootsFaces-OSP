@@ -1261,6 +1261,7 @@ widget panel
        processes_input
        has_children
        has_tooltip
+       is_responsive
  {
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
@@ -1299,6 +1300,7 @@ widget panel
     tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     update                                                                 "Which region of the screen is to be updated? Default value: @form"
+    +responsive
 }
 
 
