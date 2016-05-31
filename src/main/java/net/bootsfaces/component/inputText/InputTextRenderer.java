@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -35,6 +35,7 @@ import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
@@ -51,9 +52,9 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String name = "input_" + clientId; // clientId; // 
+		String name = "input_" + clientId; // clientId; //
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
-		
+
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
 		}
@@ -109,10 +110,10 @@ public class InputTextRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
 
-		int span = inputText.getSpan();
-		if (span > 0) {
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
+		if (responsiveStyleClass.length() > 0) {
 			rw.startElement("div", component);
-			rw.writeAttribute("class", "col-md-" + span, "class");
+			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
 
 		// "Prepend" facet
@@ -167,7 +168,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
 		}
-		
+
 		if (prepend) {
 			R.decorateFacetComponent(inputText, prep, context, rw);
 		}
@@ -215,7 +216,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("div");
 		} // input-group
 		rw.endElement("div"); // form-group
-		if (span > 0) {
+		if (responsiveStyleClass.length() > 0) {
 			rw.endElement("div"); // span
 		}
 
