@@ -94,14 +94,13 @@ public class LinksContainer extends UIComponentBase {
                 
 		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
                         if(containerStyles.contains("navbar")) {
-                            containerStyles.concat(" navbar-"+pull);
+                            containerStyles=containerStyles.concat(" navbar-"+pull);
                         } else {
-                            containerStyles.concat(" pull-"+pull);
+                            containerStyles=containerStyles.concat(" pull-"+pull);
                         }
 		} /*else {
 			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()), "class");
 		}*/
-                rw.write("<!--" + containerStyles.contains("navbar") + "-" + containerStyles + "-->");
                 rw.writeAttribute("class", containerStyles.concat(" ").concat(styleClass), "class");
 	}
 
