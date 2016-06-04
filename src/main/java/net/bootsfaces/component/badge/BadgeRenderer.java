@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -27,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:badge /&gt;. */
@@ -35,7 +36,7 @@ public class BadgeRenderer extends CoreRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:badge.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -62,7 +63,7 @@ public class BadgeRenderer extends CoreRenderer {
 		generateBadge(context, badge, rw, clientId, styleClass, style, val, null);
 	}
 
-	protected void generateBadge(FacesContext context, UIComponent component, ResponseWriter rw,
+	protected void generateBadge(FacesContext context, Badge component, ResponseWriter rw,
 			String clientId, String styleClass, String style, String val, String suffix) throws IOException {
 
 		rw.startElement("span", component);
@@ -75,7 +76,7 @@ public class BadgeRenderer extends CoreRenderer {
 		else
 			styleClass += " badge";
 		Tooltip.generateTooltip(context, component, rw);
-		rw.writeAttribute("class", styleClass, "class");
+		rw.writeAttribute("class", styleClass + Responsive.getResponsiveStyleClass(component, false), "class");
 		if (null != style)
 			rw.writeAttribute("style", style, "style");
 		if (val!=null) {
