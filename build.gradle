@@ -29,6 +29,23 @@ targetCompatibility = '1.6'
 
 archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
 
+apply plugin: 'maven'
+
+// Set the Artifact group ID
+group = 'net.bootsfaces'
+
+install {
+    repositories.mavenInstaller {
+        // only necessary if artifact ID diverges from project name
+        // the latter defaults to project directory name and can be
+        // configured in settings.gradle
+        pom.artifactId = 'bootsfaces'
+        // shouldn't be needed as this is the default anyway
+        pom.packaging = 'jar'
+        pom.version = "$BootsFacesVersion-SNAPSHOT"
+    }
+}
+
 repositories {
 mavenCentral()
 }
