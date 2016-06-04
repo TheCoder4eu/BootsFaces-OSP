@@ -27,6 +27,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
@@ -63,7 +64,7 @@ public class BadgeRenderer extends CoreRenderer {
 		generateBadge(context, badge, rw, clientId, styleClass, style, val, null);
 	}
 
-	protected void generateBadge(FacesContext context, Badge component, ResponseWriter rw,
+	protected void generateBadge(FacesContext context, UIComponent component, ResponseWriter rw,
 			String clientId, String styleClass, String style, String val, String suffix) throws IOException {
 
 		rw.startElement("span", component);
@@ -76,7 +77,10 @@ public class BadgeRenderer extends CoreRenderer {
 		else
 			styleClass += " badge";
 		Tooltip.generateTooltip(context, component, rw);
-		rw.writeAttribute("class", styleClass + Responsive.getResponsiveStyleClass(component, false), "class");
+		if (component instanceof IResponsive) {
+			styleClass += Responsive.getResponsiveStyleClass((IResponsive)component, false);
+		}
+		rw.writeAttribute("class", styleClass, "class");
 		if (null != style)
 			rw.writeAttribute("style", style, "style");
 		if (val!=null) {
