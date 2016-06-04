@@ -86,13 +86,17 @@ public class LinksContainer extends UIComponentBase {
 			rw.writeAttribute("style", style, "style");
 		}
 		Tooltip.generateTooltip(fc, this, rw);
+                String styles=getContainerStyles();
 		String styleClass = (String) attrs.get("styleClass");
 		if (null == styleClass) {
 			styleClass = "";
 		}
 		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
-			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()).concat(" ").concat("pull")
-					.concat("-").concat(pull), "class");
+                        if(styles.startsWith("nav")) {
+                            rw.writeAttribute("class", styleClass.concat(" "+styles+" navbar-"+pull), "class");
+                        } else {
+                            rw.writeAttribute("class", styleClass.concat(" "+styles+" pull-"+pull), "class");
+                        }		.concat("-").concat(pull), "class");
 		} else {
 			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()), "class");
 		}
