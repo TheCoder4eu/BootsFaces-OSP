@@ -96,7 +96,7 @@ public class LinksContainer extends UIComponentBase {
                             rw.writeAttribute("class", styleClass.concat(" "+styles+" navbar-"+pull), "class");
                         } else {
                             rw.writeAttribute("class", styleClass.concat(" "+styles+" pull-"+pull), "class");
-                        }		.concat("-").concat(pull), "class");
+                        }
 		} else {
 			rw.writeAttribute("class", styleClass.concat(" ").concat(getContainerStyles()), "class");
 		}
