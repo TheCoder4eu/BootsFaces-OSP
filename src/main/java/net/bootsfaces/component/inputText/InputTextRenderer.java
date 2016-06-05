@@ -52,7 +52,10 @@ public class InputTextRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String name = "input_" + clientId; // clientId; //
+		String name = inputText.getName();
+		if (null == name) {
+			name = "input_" + clientId;
+		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 
 		if (submittedValue != null) {
@@ -175,8 +178,17 @@ public class InputTextRenderer extends CoreRenderer {
 
 		// Input
 		rw.startElement("input", inputText);
-		rw.writeAttribute("id", "input_" + clientId, null); // "input_" + clientId
-		rw.writeAttribute("name", "input_" + clientId, null);
+		String fieldId = inputText.getFieldId();
+		if (null == fieldId) {
+			fieldId = "input_" + clientId;
+		}
+		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
+		String name = inputText.getName();
+		System.out.println(name);
+		if (null == name) {
+			name = "input_" + clientId;
+		}
+		rw.writeAttribute("name", name, null);
 		rw.writeAttribute("type", t, null);
 
 		generateStyleClass(inputText, rw);

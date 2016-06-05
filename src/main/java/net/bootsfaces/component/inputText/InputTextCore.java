@@ -33,11 +33,13 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 		colXs,
 		converterMessage,
 		display,
+		fieldId,
 		fieldSize,
 		hidden,
 		inline,
 		largeScreen,
 		mediumScreen,
+		name,
 		offset,
 		offsetLg,
 		offsetMd,
@@ -206,6 +208,22 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
+	 * Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFieldId() {
+		return (String) getStateHelper().eval(PropertyKeys.fieldId);
+	}
+
+	/**
+	 * Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFieldId(String _fieldId) {
+		getStateHelper().put(PropertyKeys.fieldId, _fieldId);
+	}
+
+	/**
 	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -283,6 +301,22 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setMediumScreen(String _mediumScreen) {
 		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
+	}
+
+	/**
+	 * The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getName() {
+		return (String) getStateHelper().eval(PropertyKeys.name);
+	}
+
+	/**
+	 * The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setName(String _name) {
+		getStateHelper().put(PropertyKeys.name, _name);
 	}
 
 	/**
