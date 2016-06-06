@@ -87,6 +87,9 @@ public final class JQ {
         StringBuilder sb = new StringBuilder(150); //optimize int
         
         String sel=DP_SEL_INPUT.replace(WID, dpId);
+        if(region!=null) //set region defaults first, so they can be overriden by custom options
+            sb.append(DP_REGION.replace(SEL, sel).replace("REGION", region));
+        
         if(!cId.equals(dpId)) { //Inline
             sel=DP_SEL_DIV.replace(WID, dpId);
             sb.append(DP_START.replace(SEL, sel)).append(opts);
@@ -97,8 +100,6 @@ public final class JQ {
             //sb.append(DP_START_INPUT.replace(CID, dpId)).append(opts);
         }
         sb.append(END_F);
-        if(region!=null) { sb.append(DP_REGION.replace(SEL, sel).replace("REGION", region)); }
-        
         rw.write(sb.toString());
         endInlineF(rw);
     }
