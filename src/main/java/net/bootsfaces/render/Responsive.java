@@ -35,11 +35,11 @@ public class Responsive {
 			colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
 		}
 
-		int offs = r.getOffset();
-		int offsmd = (offs > 0) ? offs : r.getOffsetMd();
-		int oxs = r.getOffsetXs();
-		int osm = r.getOffsetSm();
-		int olg = r.getOffsetLg();
+		int offs = sizeToInt(r.getOffset());
+		int offsmd = (offs > 0) ? offs : sizeToInt(r.getOffsetMd());
+		int oxs = sizeToInt(r.getOffsetXs());
+		int osm = sizeToInt(r.getOffsetSm());
+		int olg = sizeToInt(r.getOffsetLg());
 
 		StringBuilder sb = new StringBuilder();
 		if (colmd > 0 || offsmd > 0) {

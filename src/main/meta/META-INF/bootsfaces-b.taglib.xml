@@ -118,55 +118,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -390,55 +390,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -686,55 +686,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -1054,55 +1054,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -3124,55 +3124,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -3498,55 +3498,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -4694,55 +4694,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
@@ -5172,55 +5172,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -5528,55 +5528,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -7058,55 +7058,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -7660,55 +7660,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -8690,55 +8690,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -10052,55 +10052,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -10576,55 +10576,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus.]]></description>
@@ -11138,55 +11138,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The onclick attribute.]]></description>
@@ -14142,55 +14142,55 @@
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-lg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetLg</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-md</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetMd</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-sm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetSm</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset-xs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offsetXs</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup.]]></description>

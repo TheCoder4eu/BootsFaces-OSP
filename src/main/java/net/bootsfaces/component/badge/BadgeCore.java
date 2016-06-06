@@ -215,15 +215,15 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getOffset() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.offset, 0);
+	public String getOffset() {
+		return (String) getStateHelper().eval(PropertyKeys.offset);
 	}
 
 	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOffset(int _offset) {
+	public void setOffset(String _offset) {
 		getStateHelper().put(PropertyKeys.offset, _offset);
 	}
 
@@ -231,15 +231,15 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getOffsetLg() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.offsetLg, 0);
+	public String getOffsetLg() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetLg);
 	}
 
 	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOffsetLg(int _offsetLg) {
+	public void setOffsetLg(String _offsetLg) {
 		getStateHelper().put(PropertyKeys.offsetLg, _offsetLg);
 	}
 
@@ -247,15 +247,15 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getOffsetMd() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.offsetMd, 0);
+	public String getOffsetMd() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetMd);
 	}
 
 	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOffsetMd(int _offsetMd) {
+	public void setOffsetMd(String _offsetMd) {
 		getStateHelper().put(PropertyKeys.offsetMd, _offsetMd);
 	}
 
@@ -263,15 +263,15 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getOffsetSm() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.offsetSm, 0);
+	public String getOffsetSm() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetSm);
 	}
 
 	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOffsetSm(int _offsetSm) {
+	public void setOffsetSm(String _offsetSm) {
 		getStateHelper().put(PropertyKeys.offsetSm, _offsetSm);
 	}
 
@@ -279,15 +279,15 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * Integer value to specify how many columns to offset. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getOffsetXs() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.offsetXs, 0);
+	public String getOffsetXs() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetXs);
 	}
 
 	/**
 	 * Integer value to specify how many columns to offset. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setOffsetXs(int _offsetXs) {
+	public void setOffsetXs(String _offsetXs) {
 		getStateHelper().put(PropertyKeys.offsetXs, _offsetXs);
 	}
 
@@ -312,7 +312,7 @@ public abstract class BadgeCore extends UIOutput implements net.bootsfaces.rende
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSpan() {
-		return (String) getStateHelper().eval(PropertyKeys.span, "-1");
+		return (String) getStateHelper().eval(PropertyKeys.span);
 	}
 
 	/**
