@@ -44,6 +44,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>${project.build.sourceEncoding}</project.reporting.outputEncoding>
+		<maven.build.timestamp.format>yyyyMMdd-HH:mm:ss</maven.build.timestamp.format>
 
 		<!-- compiler plugin configuation -->
 		<maven.compiler.source>1.6</maven.compiler.source>
@@ -120,6 +121,21 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.5</version>
 				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By>BootsFaces OSP Gradle builder.</Built-By>
+							<Maven-Version>${maven.version}</Maven-Version>
+							<Created-By>${java.version} (${java.vendor} ${java.vm.version})</Created-By>
+							<Bundle-Name>BootsFaces</Bundle-Name>
+							<Bundle-Version>${project.version}</Bundle-Version>
+							<Bundle-Date>${maven.build.timestamp}</Bundle-Date>
+							<Implementation-Title>BootsFaces</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Vendor>TheCoder4.eu</Implementation-Vendor>
+							<Implementation-Vendor-Id>eu.thecoder4</Implementation-Vendor-Id>
+							<Implementation-URL>http://www.bootsfaces.net</Implementation-URL>
+						</manifestEntries>
+					</archive>
 					<excludes>
 						<exclude>rebel.xml</exclude>
 						<exclude>.gitignore</exclude>
