@@ -25,14 +25,28 @@ attribute_list responsive {
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
-    hidden				      											   "This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    hidden				      											   "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
     offset-md                                                              "Integer value to specify how many columns to offset."
     offset-sm                                                              "Integer value to specify how many columns to offset."
     offset-xs                                                              "Integer value to specify how many columns to offset."
     span                                                                   "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    visible				       											   "This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+    visible				       											   "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+}
+
+attribute_list responsiveContainer {
+	content-col-lg              default "-1"                               "List of integer values to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-col-md              default "-1"                               "List of integer values to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-col-sm              default "-1"                               "List of integer values to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-col-xs              default "-1"                               "List of integer values to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-large-screen        default "-1"                               "Alternative spelling to col-lg. List of integer values to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-medium-screen       default "-1"                               "Alternative spelling to col-md. List of integer values to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-small-screen        default "-1"                               "Alternative spelling to col-sm. List of integer values to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-tiny-screen         default "-1"                               "Alternative spelling to col-xs. List of integer values to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-hidden				      								       "Comma-separated list of values determining the visibility of the columns of the container. This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    content-span                                                           "List of integer values to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    content-visible				       									   "Comma-separated list of values determining the visibility of the columns of the container. This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
 attribute_list style {
@@ -137,6 +151,7 @@ widget buttonGroup
        extends net.bootsfaces.component.GenContainerDiv
        has_children
        has_tooltip
+       is_responsive
  {
     binding              javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                        "Unique identifier of the component in a namingContainer."
@@ -146,6 +161,7 @@ widget buttonGroup
     size                                                                  "Size of the grouped Buttons, can be lg, sm or xs."
     +style
     +tooltip
+    +responsive
 }
 
 
@@ -154,6 +170,7 @@ widget buttonToolbar
        extends net.bootsfaces.component.GenContainerDiv
        has_children
        has_tooltip
+       is_responsive
 {
     binding              javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                          "Unique identifier of the component in a namingContainer."
@@ -161,10 +178,12 @@ widget buttonToolbar
     rendered             Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +style
     +tooltip
+    +responsive
 }
 
 widget canvas
        has_tooltip
+       is_responsive
 {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     height              Integer default "600"                              "Height of the canvas in pixels. This is a mandatory field."
@@ -174,6 +193,7 @@ widget canvas
     width               Integer default "600"                              "Width of the canvas in pixels. This is a mandatory field."
 	+style
     +tooltip
+    +responsive
 }
 
 widget carousel
@@ -182,6 +202,7 @@ widget carousel
        extends UICommand
        has_children
        has_tooltip
+       is_responsive
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -211,6 +232,7 @@ widget carousel
     update                                                                 "Component(s) to be updated with ajax."
 	+style
 	+tooltip
+	+responsive
 }
 
 widget carouselItem implemented_by net.bootsfaces.component.Carousel

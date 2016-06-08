@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -27,18 +27,19 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:canvas /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.canvas.Canvas")
 public class CanvasRenderer extends CoreRenderer {
-	
+
 	/**
 	 * This methods generates the HTML code of the current b:canvas.
 	 * @param context the FacesContext.
 	 * @param component the current b:canvas.
 	 * @throws IOException thrown if something goes wrong when writing the HTML code.
-	 */  
+	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 	    if (!component.isRendered()) {
@@ -47,14 +48,19 @@ public class CanvasRenderer extends CoreRenderer {
 		Canvas canvas = (Canvas) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = canvas.getClientId();
-		
+
 		rw.startElement("canvas", canvas);
 		Tooltip.generateTooltip(context, canvas, rw);
-		
+
 //	    rw.writeAttribute("initial-drawing", canvas.getInitial-drawing(), "initial-drawing");
 	    rw.writeAttribute("id", clientId, "id");
 	    writeAttribute(rw, "style", canvas.getStyle(), "style");
-	    writeAttribute(rw, "class", canvas.getStyleClass(), "class");
+	    String styleClass = canvas.getStyleClass();
+	    if (null != styleClass)
+	    	styleClass += Responsive.getResponsiveStyleClass(canvas, false);
+	    else
+	    	styleClass = Responsive.getResponsiveStyleClass(canvas, false);
+		writeAttribute(rw, "class", styleClass, "class");
 	    writeAttribute(rw, "width", canvas.getWidth(), "width");
 	    writeAttribute(rw, "height", canvas.getHeight(), "height");
 		rw.endElement("canvas");
@@ -66,7 +72,7 @@ public class CanvasRenderer extends CoreRenderer {
 			rw.write("\nnew function(){\n");
 			rw.write("    var canvas=document.getElementById('" + clientId + "');\n");
 			rw.write("    var ctx = canvas.getContext('2d');\n");
-			
+
 			rw.write(script);
 			rw.write("\n}();\n");
 			rw.endElement("script");

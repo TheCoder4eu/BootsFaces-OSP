@@ -240,7 +240,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getHidden() {
@@ -248,7 +248,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * This row is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHidden(String _hidden) {
@@ -705,7 +705,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getVisible() {
@@ -713,7 +713,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * This row is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setVisible(String _visible) {
