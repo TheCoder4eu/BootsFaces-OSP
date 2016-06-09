@@ -4813,6 +4813,42 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Enable the row highlight css. Default: true.]]></description>
+		  <name>row-highlight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Enable the row highlight css. Default: true.]]></description>
+		  <name>rowHighlight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true.]]></description>
+		  <name>scroll-collapse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true.]]></description>
+		  <name>scrollCollapse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set, force the height of table to the size specified.]]></description>
+		  <name>scroll-size</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set, force the height of table to the size specified.]]></description>
+		  <name>scrollSize</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API).]]></description>
 		  <name>searching</name>
 		  <required>false</required>

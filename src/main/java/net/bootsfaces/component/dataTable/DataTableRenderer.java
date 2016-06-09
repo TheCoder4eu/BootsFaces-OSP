@@ -111,6 +111,7 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeAttribute("id", clientId, "id");
 
 		String styleClass = "table table-striped table-bordered";
+		if (dataTable.isRowHighlight()) styleClass += " table-hover ";
 		if (dataTable.getStyleClass() != null)
 			styleClass += " " + dataTable.getStyleClass();
 		styleClass += " " + clientId.replace(":", "") + "Table";
@@ -300,7 +301,7 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Enclosure-scoped variable initialization
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
-					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
+					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +  
 					 "wrapper.replaceWith(" + widgetVar +");" +
 					 "var table = " + widgetVar +".DataTable({" +
 					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +
@@ -310,6 +311,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " +
 					 "	searching: " + dataTable.isSearching() + ", " +
 					 "	order: " + orderString + ", " +
+					 (dataTable.getScrollSize() > 0 ? " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + "," : "") +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +

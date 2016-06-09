@@ -50,6 +50,9 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		paginated,
 		process,
 		responsive,
+		rowHighlight,
+		scrollCollapse,
+		scrollSize,
 		searching,
 		style,
 		styleClass,
@@ -67,8 +70,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -409,6 +411,54 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setResponsive(boolean _responsive) {
 		getStateHelper().put(PropertyKeys.responsive, _responsive);
+	}
+
+	/**
+	 * Enable the row highlight css. Default: true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRowHighlight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.rowHighlight, true);
+	}
+
+	/**
+	 * Enable the row highlight css. Default: true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowHighlight(boolean _rowHighlight) {
+		getStateHelper().put(PropertyKeys.rowHighlight, _rowHighlight);
+	}
+
+	/**
+	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isScrollCollapse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollCollapse, true);
+	}
+
+	/**
+	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollCollapse(boolean _scrollCollapse) {
+		getStateHelper().put(PropertyKeys.scrollCollapse, _scrollCollapse);
+	}
+
+	/**
+	 * If set, force the height of table to the size specified. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getScrollSize() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.scrollSize, 0);
+	}
+
+	/**
+	 * If set, force the height of table to the size specified. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollSize(int _scrollSize) {
+		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
 	}
 
 	/**
