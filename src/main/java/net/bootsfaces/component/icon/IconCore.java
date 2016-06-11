@@ -17,34 +17,30 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.dataTable;
+package net.bootsfaces.component.icon;
 
-import java.util.Map;
+import javax.faces.component.*;
+import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
-import javax.faces.component.UIData;
-
-import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
-
-/** This class holds the attributes of &lt;b:dataTable /&gt;. */
-public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
+/** This class holds the attributes of &lt;b:icon /&gt;. */
+public abstract class IconCore extends UICommand implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
+		addon,
 		ajax,
+		binding,
 		colLg,
 		colMd,
 		colSm,
 		colXs,
-		customLangUrl,
-		dataTableProperties,
 		disabled,
 		display,
-		fixedHeader,
+		flip,
 		hidden,
-		immediate,
-		lang,
 		largeScreen,
 		mediumScreen,
-		multiColumnSearch,
+		name,
 		offset,
 		offsetLg,
 		offsetMd,
@@ -58,17 +54,13 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		onmouseout,
 		onmouseover,
 		onmouseup,
-		pageLength,
-		pageLengthMenu,
-		paginated,
 		process,
-		responsive,
-		rowHighlight,
-		scrollCollapse,
-		scrollSize,
-		searching,
+		readonly,
+		rotate,
+		size,
 		smallScreen,
 		span,
+		spin,
 		style,
 		styleClass,
 		tinyScreen,
@@ -79,19 +71,35 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		tooltipDelayShow,
 		tooltipPosition,
 		update,
-		visible,
-		widgetVar;
+		visible;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Boolean value: if true the element is used as Addon. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAddon() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.addon, false);
+	}
+
+	/**
+	 * Boolean value: if true the element is used as Addon. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAddon(boolean _addon) {
+		getStateHelper().put(PropertyKeys.addon, _addon);
 	}
 
 	/**
@@ -108,6 +116,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 
 	/**
@@ -175,38 +199,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getCustomLangUrl() {
-		return (String) getStateHelper().eval(PropertyKeys.customLangUrl);
-	}
-
-	/**
-	 * Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCustomLangUrl(String _customLangUrl) {
-		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
-	}
-
-	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public Map<DataTablePropertyType, Object> getDataTableProperties() {
-		return (Map<DataTablePropertyType, Object>) getStateHelper().eval(PropertyKeys.dataTableProperties);
-	}
-
-	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
-		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
-	}
-
-	/**
 	 * Boolean value to specify if the button is disabled. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -239,19 +231,19 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. <P>
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isFixedHeader() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fixedHeader, false);
+	public String getFlip() {
+		return (String) getStateHelper().eval(PropertyKeys.flip);
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. <P>
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setFixedHeader(boolean _fixedHeader) {
-		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
+	public void setFlip(String _flip) {
+		getStateHelper().put(PropertyKeys.flip, _flip);
 	}
 
 	/**
@@ -268,38 +260,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isImmediate() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setImmediate(boolean _immediate) {
-		getStateHelper().put(PropertyKeys.immediate, _immediate);
-	}
-
-	/**
-	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLang() {
-		return (String) getStateHelper().eval(PropertyKeys.lang);
-	}
-
-	/**
-	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLang(String _lang) {
-		getStateHelper().put(PropertyKeys.lang, _lang);
 	}
 
 	/**
@@ -335,19 +295,19 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
+	 * Icon name, mandatory. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isMultiColumnSearch() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.multiColumnSearch, false);
+	public String getName() {
+		return (String) getStateHelper().eval(PropertyKeys.name);
 	}
 
 	/**
-	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
+	 * Icon name, mandatory. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMultiColumnSearch(boolean _multiColumnSearch) {
-		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
+	public void setName(String _name) {
+		getStateHelper().put(PropertyKeys.name, _name);
 	}
 
 	/**
@@ -559,54 +519,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getPageLength() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
-	}
-
-	/**
-	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPageLength(int _pageLength) {
-		getStateHelper().put(PropertyKeys.pageLength, _pageLength);
-	}
-
-	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getPageLengthMenu() {
-		return (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
-	}
-
-	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPageLengthMenu(String _pageLengthMenu) {
-		getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
-	}
-
-	/**
-	 * Activates the pagination of the dataTable. Default value is 'true'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isPaginated() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
-	}
-
-	/**
-	 * Activates the pagination of the dataTable. Default value is 'true'. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPaginated(boolean _paginated) {
-		getStateHelper().put(PropertyKeys.paginated, _paginated);
-	}
-
-	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -623,83 +535,51 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable <P>
+	 * Flag indicating that this input element will prevent changes by the user. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isResponsive() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
+	public boolean isReadonly() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.readonly, false);
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable <P>
+	 * Flag indicating that this input element will prevent changes by the user. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setResponsive(boolean _responsive) {
-		getStateHelper().put(PropertyKeys.responsive, _responsive);
+	public void setReadonly(boolean _readonly) {
+		getStateHelper().put(PropertyKeys.readonly, _readonly);
 	}
 
 	/**
-	 * Enable the row highlight css. Default: true. <P>
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isRowHighlight() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.rowHighlight, true);
+	public String getRotate() {
+		return (String) getStateHelper().eval(PropertyKeys.rotate);
 	}
 
 	/**
-	 * Enable the row highlight css. Default: true. <P>
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setRowHighlight(boolean _rowHighlight) {
-		getStateHelper().put(PropertyKeys.rowHighlight, _rowHighlight);
+	public void setRotate(String _rotate) {
+		getStateHelper().put(PropertyKeys.rotate, _rotate);
 	}
 
 	/**
-	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isScrollCollapse() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollCollapse, true);
+	public String getSize() {
+		return (String) getStateHelper().eval(PropertyKeys.size);
 	}
 
 	/**
-	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setScrollCollapse(boolean _scrollCollapse) {
-		getStateHelper().put(PropertyKeys.scrollCollapse, _scrollCollapse);
-	}
-
-	/**
-	 * If set, force the height of table to the size specified. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getScrollSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.scrollSize, 0);
-	}
-
-	/**
-	 * If set, force the height of table to the size specified. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setScrollSize(int _scrollSize) {
-		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
-	}
-
-	/**
-	 * If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isSearching() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.searching, true);
-	}
-
-	/**
-	 * If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API). <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setSearching(boolean _searching) {
-		getStateHelper().put(PropertyKeys.searching, _searching);
+	public void setSize(String _size) {
+		getStateHelper().put(PropertyKeys.size, _size);
 	}
 
 	/**
@@ -732,6 +612,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSpan(String _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSpin() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.spin, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpin(boolean _spin) {
+		getStateHelper().put(PropertyKeys.spin, _spin);
 	}
 
 	/**
@@ -908,22 +804,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setVisible(String _visible) {
 		getStateHelper().put(PropertyKeys.visible, _visible);
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getWidgetVar() {
-		return (String) getStateHelper().eval(PropertyKeys.widgetVar);
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setWidgetVar(String _widgetVar) {
-		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
 	}
 
 }

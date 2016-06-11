@@ -34,6 +34,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -114,6 +115,7 @@ public class DataTableRenderer extends CoreRenderer {
 		if (dataTable.isRowHighlight()) styleClass += " table-hover ";
 		if (dataTable.getStyleClass() != null)
 			styleClass += " " + dataTable.getStyleClass();
+		styleClass += Responsive.getResponsiveStyleClass(dataTable, false);
 		styleClass += " " + clientId.replace(":", "") + "Table";
 		rw.writeAttribute("class", styleClass, "class");
 		Tooltip.generateTooltip(context, dataTable, rw);
@@ -301,7 +303,7 @@ public class DataTableRenderer extends CoreRenderer {
 		//# Enclosure-scoped variable initialization
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
-					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +  
+					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
 					 "wrapper.replaceWith(" + widgetVar +");" +
 					 "var table = " + widgetVar +".DataTable({" +
 					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +

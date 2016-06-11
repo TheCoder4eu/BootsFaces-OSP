@@ -17,81 +17,110 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.dataTable;
+package net.bootsfaces.component.colorPicker;
 
-import java.util.Map;
+import javax.faces.component.html.HtmlInputText;
 
-import javax.faces.component.UIData;
-
-import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
-
-/** This class holds the attributes of &lt;b:dataTable /&gt;. */
-public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
+/** This class holds the attributes of &lt;b:colorPicker /&gt;. */
+public abstract class ColorPickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
+		accesskey,
 		ajax,
+		alt,
+		autocomplete,
+		binding,
 		colLg,
 		colMd,
 		colSm,
 		colXs,
-		customLangUrl,
-		dataTableProperties,
+		control,
+		converterMessage,
+		dir,
 		disabled,
 		display,
-		fixedHeader,
+		fieldSize,
+		format,
 		hidden,
 		immediate,
+		inline,
+		label,
 		lang,
 		largeScreen,
 		mediumScreen,
-		multiColumnSearch,
 		offset,
 		offsetLg,
 		offsetMd,
 		offsetSm,
 		offsetXs,
+		onblur,
+		onchange,
 		onclick,
 		oncomplete,
 		ondblclick,
+		onfocus,
+		onkeydown,
+		onkeypress,
+		onkeyup,
 		onmousedown,
 		onmousemove,
 		onmouseout,
 		onmouseover,
 		onmouseup,
-		pageLength,
-		pageLengthMenu,
-		paginated,
+		onselect,
+		opacity,
+		placeholder,
+		position,
 		process,
-		responsive,
-		rowHighlight,
-		scrollCollapse,
-		scrollSize,
-		searching,
+		readonly,
+		renderLabel,
+		required,
+		requiredMessage,
+		size,
 		smallScreen,
 		span,
 		style,
 		styleClass,
+		tabindex,
 		tinyScreen,
+		title,
 		tooltip,
 		tooltipContainer,
 		tooltipDelay,
 		tooltipDelayHide,
 		tooltipDelayShow,
 		tooltipPosition,
+		type,
 		update,
-		visible,
-		widgetVar;
+		visible;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Access key to transfer focus to the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAccesskey() {
+		return (String) getStateHelper().eval(PropertyKeys.accesskey);
+	}
+
+	/**
+	 * Access key to transfer focus to the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAccesskey(String _accesskey) {
+		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
 	}
 
 	/**
@@ -108,6 +137,54 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Alternate textual description of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAlt() {
+		return (String) getStateHelper().eval(PropertyKeys.alt);
+	}
+
+	/**
+	 * Alternate textual description of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAlt(String _alt) {
+		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Controls browser autocomplete behavior. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAutocomplete() {
+		return (String) getStateHelper().eval(PropertyKeys.autocomplete);
+	}
+
+	/**
+	 * Controls browser autocomplete behavior. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutocomplete(String _autocomplete) {
+		getStateHelper().put(PropertyKeys.autocomplete, _autocomplete);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 
 	/**
@@ -175,39 +252,55 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box. <P>
+	 * The type of control to display. Valid values: hue, brightness, saturation, and wheel. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getCustomLangUrl() {
-		return (String) getStateHelper().eval(PropertyKeys.customLangUrl);
+	public String getControl() {
+		return (String) getStateHelper().eval(PropertyKeys.control);
 	}
 
 	/**
-	 * Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box. <P>
+	 * The type of control to display. Valid values: hue, brightness, saturation, and wheel. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setCustomLangUrl(String _customLangUrl) {
-		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
+	public void setControl(String _control) {
+		getStateHelper().put(PropertyKeys.control, _control);
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
+	 * Message to display when conversion fails. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Map<DataTablePropertyType, Object> getDataTableProperties() {
-		return (Map<DataTablePropertyType, Object>) getStateHelper().eval(PropertyKeys.dataTableProperties);
+	public String getConverterMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.converterMessage);
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
+	 * Message to display when conversion fails. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
-		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
+	public void setConverterMessage(String _converterMessage) {
+		getStateHelper().put(PropertyKeys.converterMessage, _converterMessage);
 	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDir() {
+		return (String) getStateHelper().eval(PropertyKeys.dir);
+	}
+
+	/**
+	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDir(String _dir) {
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
+
+	/**
+	 * Disables the input element, default is false. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
@@ -215,7 +308,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Boolean value to specify if the button is disabled. <P>
+	 * Disables the input element, default is false. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabled(boolean _disabled) {
@@ -239,19 +332,35 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. <P>
+	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isFixedHeader() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fixedHeader, false);
+	public String getFieldSize() {
+		return (String) getStateHelper().eval(PropertyKeys.fieldSize);
 	}
 
 	/**
-	 * Activates the fixed header plugin of the dataTable. <P>
+	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setFixedHeader(boolean _fixedHeader) {
-		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
+	public void setFieldSize(String _fieldSize) {
+		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
+	}
+
+	/**
+	 * Type of returned data. Valid values: hex and rgb. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFormat() {
+		return (String) getStateHelper().eval(PropertyKeys.format);
+	}
+
+	/**
+	 * Type of returned data. Valid values: hex and rgb. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFormat(String _format) {
+		getStateHelper().put(PropertyKeys.format, _format);
 	}
 
 	/**
@@ -287,7 +396,39 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInline() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
+	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+		getStateHelper().put(PropertyKeys.inline, _inline);
+	}
+
+	/**
+	 * The label of the field. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabel() {
+		return (String) getStateHelper().eval(PropertyKeys.label);
+	}
+
+	/**
+	 * The label of the field. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabel(String _label) {
+		getStateHelper().put(PropertyKeys.label, _label);
+	}
+
+	/**
+	 * Code describing the language used in the generated markup for this component. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getLang() {
@@ -295,7 +436,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
+	 * Code describing the language used in the generated markup for this component. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLang(String _lang) {
@@ -332,22 +473,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setMediumScreen(String _mediumScreen) {
 		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
-	}
-
-	/**
-	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isMultiColumnSearch() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.multiColumnSearch, false);
-	}
-
-	/**
-	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMultiColumnSearch(boolean _multiColumnSearch) {
-		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
 	}
 
 	/**
@@ -431,7 +556,39 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * The onclick attribute. <P>
+	 * Client side callback to execute when input element loses focus. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnblur() {
+		return (String) getStateHelper().eval(PropertyKeys.onblur);
+	}
+
+	/**
+	 * Client side callback to execute when input element loses focus. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnblur(String _onblur) {
+		getStateHelper().put(PropertyKeys.onblur, _onblur);
+	}
+
+	/**
+	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnchange() {
+		return (String) getStateHelper().eval(PropertyKeys.onchange);
+	}
+
+	/**
+	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnchange(String _onchange) {
+		getStateHelper().put(PropertyKeys.onchange, _onchange);
+	}
+
+	/**
+	 * OnClick DHTML event . <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
@@ -439,7 +596,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * The onclick attribute. <P>
+	 * OnClick DHTML event . <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -476,6 +633,70 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * Client side callback to execute when input element receives focus. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnfocus() {
+		return (String) getStateHelper().eval(PropertyKeys.onfocus);
+	}
+
+	/**
+	 * Client side callback to execute when input element receives focus. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnfocus(String _onfocus) {
+		getStateHelper().put(PropertyKeys.onfocus, _onfocus);
+	}
+
+	/**
+	 * Client side callback to execute when a key is pressed down over input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnkeydown() {
+		return (String) getStateHelper().eval(PropertyKeys.onkeydown);
+	}
+
+	/**
+	 * Client side callback to execute when a key is pressed down over input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnkeydown(String _onkeydown) {
+		getStateHelper().put(PropertyKeys.onkeydown, _onkeydown);
+	}
+
+	/**
+	 * Client side callback to execute when a key is pressed and released over input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnkeypress() {
+		return (String) getStateHelper().eval(PropertyKeys.onkeypress);
+	}
+
+	/**
+	 * Client side callback to execute when a key is pressed and released over input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnkeypress(String _onkeypress) {
+		getStateHelper().put(PropertyKeys.onkeypress, _onkeypress);
+	}
+
+	/**
+	 * Client side callback to execute when a key is released over input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnkeyup() {
+		return (String) getStateHelper().eval(PropertyKeys.onkeyup);
+	}
+
+	/**
+	 * Client side callback to execute when a key is released over input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnkeyup(String _onkeyup) {
+		getStateHelper().put(PropertyKeys.onkeyup, _onkeyup);
 	}
 
 	/**
@@ -559,51 +780,67 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
+	 * Client side callback to execute when text within input element is selected by user. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getPageLength() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
+	public String getOnselect() {
+		return (String) getStateHelper().eval(PropertyKeys.onselect);
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
+	 * Client side callback to execute when text within input element is selected by user. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setPageLength(int _pageLength) {
-		getStateHelper().put(PropertyKeys.pageLength, _pageLength);
+	public void setOnselect(String _onselect) {
+		getStateHelper().put(PropertyKeys.onselect, _onselect);
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
+	 * True to enable opacity swatches. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getPageLengthMenu() {
-		return (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
+	public boolean isOpacity() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.opacity, false);
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
+	 * True to enable opacity swatches. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setPageLengthMenu(String _pageLengthMenu) {
-		getStateHelper().put(PropertyKeys.pageLengthMenu, _pageLengthMenu);
+	public void setOpacity(boolean _opacity) {
+		getStateHelper().put(PropertyKeys.opacity, _opacity);
 	}
 
 	/**
-	 * Activates the pagination of the dataTable. Default value is 'true'. <P>
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isPaginated() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
+	public String getPlaceholder() {
+		return (String) getStateHelper().eval(PropertyKeys.placeholder);
 	}
 
 	/**
-	 * Activates the pagination of the dataTable. Default value is 'true'. <P>
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setPaginated(boolean _paginated) {
-		getStateHelper().put(PropertyKeys.paginated, _paginated);
+	public void setPlaceholder(String _placeholder) {
+		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.position);
+	}
+
+	/**
+	 * Sets the position of the dropdown. Valid options are bottom left, bottom right, top left, and top right. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPosition(String _position) {
+		getStateHelper().put(PropertyKeys.position, _position);
 	}
 
 	/**
@@ -623,83 +860,83 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable <P>
+	 * Flag indicating that this input element will prevent changes by the user. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isResponsive() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
+	public boolean isReadonly() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.readonly, false);
 	}
 
 	/**
-	 * Activates the responsive plugin of the dataTable <P>
+	 * Flag indicating that this input element will prevent changes by the user. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setResponsive(boolean _responsive) {
-		getStateHelper().put(PropertyKeys.responsive, _responsive);
+	public void setReadonly(boolean _readonly) {
+		getStateHelper().put(PropertyKeys.readonly, _readonly);
 	}
 
 	/**
-	 * Enable the row highlight css. Default: true. <P>
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isRowHighlight() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.rowHighlight, true);
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
 	}
 
 	/**
-	 * Enable the row highlight css. Default: true. <P>
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setRowHighlight(boolean _rowHighlight) {
-		getStateHelper().put(PropertyKeys.rowHighlight, _rowHighlight);
+	public void setRenderLabel(boolean _renderLabel) {
+		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
 	}
 
 	/**
-	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * Boolean value Require input in the component when the form is submitted. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isScrollCollapse() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollCollapse, true);
+	public boolean isRequired() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
 	}
 
 	/**
-	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
+	 * Boolean value Require input in the component when the form is submitted. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setScrollCollapse(boolean _scrollCollapse) {
-		getStateHelper().put(PropertyKeys.scrollCollapse, _scrollCollapse);
+	public void setRequired(boolean _required) {
+		getStateHelper().put(PropertyKeys.required, _required);
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getScrollSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.scrollSize, 0);
+	public String getRequiredMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.requiredMessage);
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setScrollSize(int _scrollSize) {
-		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
+	public void setRequiredMessage(String _requiredMessage) {
+		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
 	}
 
 	/**
-	 * If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API). <P>
+	 * Number of characters used to determine the width of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isSearching() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.searching, true);
+	public int getSize() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.size, 0);
 	}
 
 	/**
-	 * If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API). <P>
+	 * Number of characters used to determine the width of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setSearching(boolean _searching) {
-		getStateHelper().put(PropertyKeys.searching, _searching);
+	public void setSize(int _size) {
+		getStateHelper().put(PropertyKeys.size, _size);
 	}
 
 	/**
@@ -767,6 +1004,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
+	}
+
+	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -780,6 +1033,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setTinyScreen(String _tinyScreen) {
 		getStateHelper().put(PropertyKeys.tinyScreen, _tinyScreen);
+	}
+
+	/**
+	 * Advisory tooltip information. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTitle() {
+		return (String) getStateHelper().eval(PropertyKeys.title);
+	}
+
+	/**
+	 * Advisory tooltip information. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTitle(String _title) {
+		getStateHelper().put(PropertyKeys.title, _title);
 	}
 
 	/**
@@ -879,6 +1148,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Type of the input. The default is text. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getType() {
+		return (String) getStateHelper().eval(PropertyKeys.type);
+	}
+
+	/**
+	 * Type of the input. The default is text. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setType(String _type) {
+		getStateHelper().put(PropertyKeys.type, _type);
+	}
+
+	/**
 	 * Component(s) to be updated with ajax. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -908,22 +1193,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setVisible(String _visible) {
 		getStateHelper().put(PropertyKeys.visible, _visible);
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getWidgetVar() {
-		return (String) getStateHelper().eval(PropertyKeys.widgetVar);
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setWidgetVar(String _widgetVar) {
-		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
 	}
 
 }

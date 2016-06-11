@@ -33,6 +33,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -41,7 +42,7 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
 public class DataTable extends DataTableCore
-		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip {
+		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dataTable.DataTable";
 

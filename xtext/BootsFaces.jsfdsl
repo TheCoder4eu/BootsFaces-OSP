@@ -323,6 +323,7 @@ widget colorPicker
        processes_input
        extends HtmlInputText
        has_tooltip
+       is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
@@ -366,7 +367,6 @@ widget colorPicker
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
-    span                Integer                                            "The size of the input specified as number of grid columns."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
@@ -377,6 +377,7 @@ widget colorPicker
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+style
 	+tooltip
+	+responsive
 }
 
 widget column
@@ -459,6 +460,7 @@ widget dataTable
        extends UIData
        has_children
        has_tooltip
+       is_responsive
  {
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
@@ -487,11 +489,12 @@ widget dataTable
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
     scroll-size 		 Integer default "0"	  						   "If set, force the height of table to the size specified."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
-    update                                                                 "Component(s) to be updated with ajax." 
+    update                                                                 "Component(s) to be updated with ajax."
     value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."
     var                  String  inherited                                 "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
     widgetVar            String                                            "optional widget variable to access the datatable widget in JavaScript code."
 	+style
+	+responsive
 	+tooltip
 }
 
@@ -684,8 +687,9 @@ widget gyroscope
 
 widget icon
        implemented_by net.bootsfaces.component.Icon
-       extends UIComponentBase
+       extends UICommand
        has_tooltip
+       is_responsive
  {
     addon               Boolean                                            "Boolean value: if true the element is used as Addon."
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
@@ -711,12 +715,14 @@ widget icon
     update                                                                 "Component(s) to be updated with ajax."
 	+style
 	+tooltip
+	+responsive
 }
 
 widget iconAwesome
        implemented_by net.bootsfaces.component.iconAwesome
        extends Icon
        has_tooltip
+       is_responsive
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
     ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
@@ -740,6 +746,7 @@ widget iconAwesome
     spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
     update                                                  inherited      "Component(s) to be updated with ajax."
 	+style
+	+responsive
 	+tooltip
 }
 

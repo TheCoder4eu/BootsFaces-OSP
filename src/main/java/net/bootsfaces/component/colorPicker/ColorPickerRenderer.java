@@ -16,6 +16,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -91,10 +92,10 @@ public class ColorPickerRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = colorPicker.getClientId();
 
-		int span = colorPicker.getSpan();
-		if (span > 0) {
+		String cssResponsiveClass = Responsive.getResponsiveStyleClass(colorPicker, false).trim();
+		if (cssResponsiveClass.length()>0) {
 			rw.startElement("div", component);
-			rw.writeAttribute("class", "col-md-" + span, "class");
+			rw.writeAttribute("class", cssResponsiveClass, "class");
 		}
 
 		// "Prepend" facet
@@ -192,12 +193,12 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.endElement("div");
 		} // input-group
 		rw.endElement("div"); // form-group
-		if (span > 0) {
+		if (cssResponsiveClass.length()>0) {
 			rw.endElement("div"); // span
 		}
 
 		Tooltip.activateTooltips(context, colorPicker);
-		
+
 		// create swatches array
 		String swatches = colorPicker.getAttributes().get("swatches") == null ? "" : ((String)colorPicker.getAttributes().get("swatches"));
 		if(!"".equals(swatches)) {
@@ -210,8 +211,8 @@ public class ColorPickerRenderer extends CoreRenderer {
 			swt = swt.replace(",]", "]");
 			swatches = swt;
 		}
-		
-		
+
+
 		// build color picker init script
 		rw.startElement("script", colorPicker);
 		rw.writeText("$(function() {" +
