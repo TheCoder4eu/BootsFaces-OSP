@@ -117,12 +117,10 @@ public class ModalRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("class", headerStyleClasses, "class");
 
-		String headerStyle = "";
 		if (modal.getHeaderStyle() != null) {
-			headerStyle += " " + modal.getHeaderStyle();
+			rw.writeAttribute("style", modal.getHeaderStyle(), "style");
 		}
 
-		rw.writeAttribute("style", headerStyle, "style");
 
 		if (modal.isClosable()) {
 			rw.startElement("button", component);
