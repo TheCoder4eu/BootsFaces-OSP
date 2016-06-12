@@ -49,7 +49,8 @@ public class ModalRenderer extends CoreRenderer {
 	 *             thrown if something goes wrong when writing the HTML code.
 	 */
 	@Override
-	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+	public void encodeBegin(FacesContext context, UIComponent component)
+			throws IOException {
 		if (!component.isRendered()) {
 			return;
 		}
@@ -94,7 +95,8 @@ public class ModalRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("role", "dialog", null);
 		rw.writeAttribute("tabindex", "-1", null);
-		rw.writeAttribute("aria-labelledby", component.getClientId(context) + "_Label", null);
+		rw.writeAttribute("aria-labelledby",
+				component.getClientId(context) + "_Label", null);
 		rw.writeAttribute("aria-hidden", "true", null);
 
 		rw.startElement("div", component); // modal-dialog
@@ -108,7 +110,19 @@ public class ModalRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "modal-content", "class");
 
 		rw.startElement("div", component); // modal-header
-		rw.writeAttribute("class", "modal-header", "class");
+
+		String headerStyleClasses = "modal-header";
+		if (modal.getHeaderStyleClass() != null) {
+			headerStyleClasses += " " + modal.getHeaderStyleClass();
+		}
+		rw.writeAttribute("class", headerStyleClasses, "class");
+
+		String headerStyle = "";
+		if (modal.getHeaderStyle() != null) {
+			headerStyle += " " + modal.getHeaderStyle();
+		}
+
+		rw.writeAttribute("style", headerStyle, "style");
 
 		if (modal.isClosable()) {
 			rw.startElement("button", component);
@@ -121,20 +135,24 @@ public class ModalRenderer extends CoreRenderer {
 
 		if (title != null) {
 			rw.startElement("h4", component);
-			rw.writeAttribute("id", component.getClientId(context) + "_Label", "id");
+			rw.writeAttribute("id", component.getClientId(context) + "_Label",
+					"id");
 			rw.writeText(title, null);
 			rw.endElement("h4");
 		}
 		rw.endElement("div"); // modal-header
 
 		rw.startElement("div", component); // modal-body
-		if (modal.getContentClass() != null)
-			rw.writeAttribute("class", "modal-body " + modal.getContentClass(), "class");
-		else
+		if (modal.getContentClass() != null) {
+			rw.writeAttribute("class", "modal-body " + modal.getContentClass(),
+					"class");
+		} else {
 			rw.writeAttribute("class", "modal-body", "class");
+		}
 
-		if (modal.getContentStyle() != null)
+		if (modal.getContentStyle() != null) {
 			rw.writeAttribute("style", modal.getContentStyle(), "style");
+		}
 	}
 
 	/**
@@ -154,7 +172,8 @@ public class ModalRenderer extends CoreRenderer {
 	 *             thrown if something goes wrong when writing the HTML code.
 	 */
 	@Override
-	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+	public void encodeEnd(FacesContext context, UIComponent component)
+			throws IOException {
 		if (!component.isRendered()) {
 			return;
 		}
@@ -181,7 +200,8 @@ public class ModalRenderer extends CoreRenderer {
 		rw.writeAttribute("id", cId.concat("_js"), null);
 		rw.writeAttribute("type", "text/javascript", null);
 		rw.write("$(function(){");
-		rw.write("$('#CID').modal({ show: false });".replace("CID", escapeClientId(cId)));
+		rw.write("$('#CID').modal({ show: false });".replace("CID",
+				escapeClientId(cId)));
 		rw.write("});");
 		rw.endElement("script");
 	}
