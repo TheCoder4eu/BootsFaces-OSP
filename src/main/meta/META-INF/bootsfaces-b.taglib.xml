@@ -10951,6 +10951,30 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The style class of the header is optional. If specified, it will add a CSS style class to the header.]]></description>
+		  <name>header-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The style class of the header is optional. If specified, it will add a CSS style class to the header.]]></description>
+		  <name>headerClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The style of the header is optional. If specified, it will add the CSS style to the header.]]></description>
+		  <name>header-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The style of the header is optional. If specified, it will add the CSS style to the header.]]></description>
+		  <name>headerStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
 		  <required>false</required>

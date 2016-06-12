@@ -1094,6 +1094,8 @@ widget modal
     close-on-escape     Boolean default "true"                             "By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape=\"false\" to disable this feature."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                          "Inline style of the content area."
+    header-class                                                           "The style class of the header is optional. If specified, it will add a CSS style class to the header."
+    header-style                                                           "The style of the header is optional. If specified, it will add the CSS style to the header."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Modal's size. Possible values modal-sm, modal-lg"
