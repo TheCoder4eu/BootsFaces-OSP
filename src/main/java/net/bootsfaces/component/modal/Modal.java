@@ -35,7 +35,16 @@ import net.bootsfaces.utils.BsfUtils;
 public class Modal extends UIComponentBase {
 
 	protected enum PropertyKeys {
-		backdrop, closable, closeOnEscape, contentClass, contentStyle, headerClass, headerStyle, size, style, styleClass, title;
+		backdrop, 
+		closable, 
+		closeOnEscape, 
+		contentClass, 
+		contentStyle, 
+		headerClass, 
+		headerStyle, 
+		size, style, 
+		styleClass, 
+		title;
 
 		String toString;
 
