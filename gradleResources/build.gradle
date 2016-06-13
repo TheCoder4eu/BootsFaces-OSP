@@ -173,7 +173,6 @@ task copyJsResources(type: Copy) {
   	from 'js/bootstrap-treeview.min.js'
   	from 'js/bootstrap-notify.min.js'
   	from 'js/bootstrap-datetimepicker.min.js'
-  	from 'js/bootstrap-transition.js'
   	from 'js/moment-with-locales.min.js'
   	from 'js/datatables.min.js'
   	// from 'js/jquery.dataTables.min.js'
