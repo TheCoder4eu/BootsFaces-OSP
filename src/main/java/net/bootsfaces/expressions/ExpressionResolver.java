@@ -37,7 +37,7 @@ import javax.faces.context.FacesContext;
  */
 public class ExpressionResolver {
 
-	private static IDExpressionResolver idExpressionResolver = new IDExpressionResolver();
+	private static InternalIDExpressionResolver idExpressionResolver = new InternalIDExpressionResolver();
 	private static Map<String, AbstractExpressionResolver> resolvers = new HashMap<String, AbstractExpressionResolver>();
 
 	public static String getComponentIDs(FacesContext context, UIComponent component, String update) {
