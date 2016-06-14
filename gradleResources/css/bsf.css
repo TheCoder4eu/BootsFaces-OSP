@@ -28,7 +28,7 @@
 .ui-widget {
     font-size: 0.85em;
 }
-span > .ui-datepicker-trigger {
+div > .ui-datepicker-trigger {
 	display:none;
 }
 
