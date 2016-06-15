@@ -265,7 +265,7 @@ public class PanelRenderer extends CoreRenderer {
 					+ "').value='false';");
 			eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
 					+ "').value='true';");
-			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryClientID+"content", eventHandlers);
+			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"content", eventHandlers);
 		}
 		Tooltip.activateTooltips(context, panel);
 	}

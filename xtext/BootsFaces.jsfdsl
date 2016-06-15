@@ -502,6 +502,7 @@ widget dataTable
 widget datepicker
        implemented_by net.bootsfaces.component.DatePicker
        has_tooltip
+       is_responsive
 {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
@@ -513,11 +514,14 @@ widget datepicker
     number-of-months    Integer                                            "Number of months to show."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel   Boolean                                            "Boolean value to specify if row Buttons to the bottom of calendar should be shown."
     show-week           Boolean                                            "Boolean value to specify if Week number should be shown."
    	value               inherited                                          "Value."
 	+style
 	+tooltip
+	+responsive
 }
 
 widget dateTimePicker
@@ -542,6 +546,8 @@ widget dateTimePicker
     max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel        Boolean                                       "Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once)."
     show-week	     		 Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
     show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
@@ -1733,6 +1739,10 @@ widget tabView
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "OnClick DHTML event ."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    onshow                                                                 "JavaScript and/or AJAX code to be executed just before bringing a tab to the front"
+    onshown                                                                "JavaScript and/or AJAX code to be executed just after bringing a tab to the front"
+    onhide                                                                 "JavaScript and/or AJAX code to be executed just before pushing a tab to the back"
+    onhidden                                                               "JavaScript and/or AJAX code to be executed just after pushing a tab to the back"
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     role                                                                   "The role can be used to provide information to screenreaders."
     style-class                                                            "Style class of the div surrounding this element."
