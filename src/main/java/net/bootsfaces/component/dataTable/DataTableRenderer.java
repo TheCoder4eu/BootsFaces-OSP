@@ -251,11 +251,12 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
-		Integer page = 0;
-		Integer pageLength = dataTable.getPageLength();
-		String searchTerm = "''";
-		String orderString = "[]";
+		Integer page = propertyBean == null ? 0 : propertyBean.getCurrentPage();
+		Integer pageLength = propertyBean == null ? dataTable.getPageLength() : propertyBean.getPageLength();
+		String searchTerm = propertyBean == null ? "''" : propertyBean.getSearchTerm();
+		String orderString = propertyBean == null ? "[]" : propertyBean.getOrderString();
 		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
@@ -367,6 +368,12 @@ public class DataTableRenderer extends CoreRenderer {
 						  "    }" +
 						  "} );" +
 						  "} );", null );
+		}
+		if (propertyBean != null) {
+			rw.writeText("table.on('drawCallback', function(settings){" +
+		// TODO: implement ajax call to update propertyBean
+						 "  updateDatatableProperties(table, settings);" +
+						 "});", null);
 		}
 		//# End enclosure
 		rw.writeText("} );",null );
