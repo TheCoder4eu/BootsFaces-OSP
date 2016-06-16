@@ -1,12 +1,11 @@
 package net.bootsfaces.component.dataTable;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
 
-import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -61,24 +60,34 @@ public class TestDataTableRenderer {
 
 		new DataTableRenderer().encodeEnd(context, component);
 
-		assertEquals(
-				"</table><script>$(document).ready(function() {a_bWidget = $(&apos;.a_bTable&apos;);var wrapper = $(&apos;#a_b_wrapper&apos;);wrapper.replaceWith(a_bWidget);"
+		assertEquals("</table><script>" + "$(document).ready(function() {" + "a_bWidget = $(&apos;.a_bTable&apos;);"
+				+ "var wrapper = $(&apos;#a_b_wrapper&apos;);" + "wrapper.replaceWith(a_bWidget);"
 				+ "var table = a_bWidget.DataTable({	fixedHeader: false,	responsive: false, 	paging: true, 	pageLength: 10, 	lengthMenu: [ 10, 25, 50, 100 ], 	searching: true, 	order: [], });"
-				+ "var workInProgressErrorMessage = &apos;Multiple DataTables on the same page are not yet supported when using dataTableProperties attribute; Could not save state&apos;;table.page(0);"
-				+ "table.search(&apos;&apos;);table.page.len(10).draw(&apos;page&apos;);"
-				+ "table.on(&apos;drawCallback&apos;, function(settings){  updateDatatableProperties(table, settings);});} );</script>",
+				+ "var workInProgressErrorMessage = &apos;Multiple DataTables on the same page are not yet supported when using dataTableProperties attribute; Could not save state&apos;;"
+				+ "table.page(0);" + "table.search(&apos;&apos;);" + "table.page.len(10).draw(&apos;page&apos;);"
+				+ "table.on('drawCallback', function(settings){"
+				+ "  var oldUserProperties = document.getElementById('a_b.userProperties').value;"
+				+ "  var s = JSON.stringify(settings);" + "  var newUserProperties = s;"
+				+ "  if (oldUserProperties == newUserProperties) return;"
+				+ "  document.getElementById('a_b.userProperties').value = newUserProperties;" + "});} );</script>",
 				stringWriter.getBuffer().toString());
 	}
 
 	@Test
 	public void testEncodeBegin() throws IOException {
 		FacesContext context = FacesContext.getCurrentInstance();
-		UIComponent component = new DataTable();
+		DataTable component = new DataTable();
 		component.setId("a_b");
+		component.setPropertyBean(new ADataTablePropertyBean(10, 0, "this is crap", null) {
+		});
 
 		new DataTableRenderer().encodeBegin(context, component);
 
-		assertEquals("<table id=\"a_b\" class=\"table table-striped table-bordered table-hover    a_bTable\" cellspacing=\"0\"><thead><tr/></thead><tbody/>", stringWriter.getBuffer().toString());
+		assertEquals(
+				"<input id=\"a_b.userProperties\" name=\"a_b.userProperties\" value=\"{&quot;searchTerm&quot;:&quot;this is crap&quot;,&quot;pageLength&quot;:10,&quot;currentPage&quot;:0,&quot;orderString&quot;:null}\" type=\"hidden\"/>"
+						+ "<table id=\"a_b\" class=\"table table-striped table-bordered table-hover    a_bTable\" cellspacing=\"0\">"
+						+ "<thead><tr/></thead><tbody/>",
+				stringWriter.getBuffer().toString());
 	}
 
 }

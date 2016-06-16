@@ -1,5 +1,9 @@
 package net.bootsfaces.component.dataTable;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 /**
  * 
  * @author jottyfan
@@ -48,5 +52,24 @@ public abstract class ADataTablePropertyBean {
 
 	public void setOrderString(String orderString) {
 		this.orderString = orderString;
+	}
+
+	public void setJson(String jsonString) throws ParseException{
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(jsonString);
+		pageLength = (Integer) json.get("pageLength");
+		currentPage = (Integer) json.get("currentPage");
+		searchTerm = (String) json.get("searchTerm");
+		orderString = (String) json.get("orderString");		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public String getJson() {
+		JSONObject json = new JSONObject();
+		json.put("pageLength", pageLength);
+		json.put("currentPage", currentPage);
+		json.put("searchTerm", searchTerm);
+		json.put("orderString", orderString);
+		return json.toJSONString();
 	}
 }

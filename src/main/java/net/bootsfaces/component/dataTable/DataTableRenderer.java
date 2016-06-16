@@ -31,6 +31,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import org.json.simple.parser.ParseException;
+
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import net.bootsfaces.render.CoreRenderer;
@@ -46,6 +48,7 @@ public class DataTableRenderer extends CoreRenderer {
 	public void decode(FacesContext context, UIComponent component) {
 		super.decode(context, component);
 		DataTable dataTable = (DataTable) component;
+		String clientId = dataTable.getClientId();
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		if (dataTableProperties != null) {
 			String params = context.getExternalContext().getRequestParameterMap().get("params");
@@ -76,6 +79,19 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 			}
 		}
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
+		if (propertyBean != null) {
+			String userProperties = context.getExternalContext().getRequestParameterMap().get(clientId + ".userProperties");
+			if (userProperties != null) {
+				try {
+					propertyBean.setJson(userProperties);
+				} catch (ParseException e) {
+					// TODO: log error at least, better inform user about failure json string
+					// for now, abuse npe to get the error to the log
+					throw new NullPointerException("ParseException: " + e.getMessage());
+				}
+			}
+		}
 	}
 
 
@@ -102,10 +118,20 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId();
 
+		if (propertyBean != null){
+			rw.startElement("input", component);
+			rw.writeAttribute("id", clientId + ".userProperties", null);
+			rw.writeAttribute("name", clientId + ".userProperties", null);
+			rw.writeAttribute("value", propertyBean.getJson(), null);
+			rw.writeAttribute("type", "hidden", null);
+			rw.endElement("input");
+		}
+		
 		// put custom code here
 		// Simple demo widget that simply renders every attribute value
 		rw.startElement("table", dataTable);
@@ -370,10 +396,23 @@ public class DataTableRenderer extends CoreRenderer {
 						  "} );", null );
 		}
 		if (propertyBean != null) {
-			rw.writeText("table.on('drawCallback', function(settings){" +
-		// TODO: implement ajax call to update propertyBean
-						 "  updateDatatableProperties(table, settings);" +
-						 "});", null);
+
+			StringBuilder jsCode = new StringBuilder();
+			AJAXRenderer.generateAJAXCallForASingleEvent(
+					FacesContext.getCurrentInstance(), dataTable, rw,
+					null, null, false, "changeProperty", jsCode);
+			String js = jsCode.toString().replace("callAjax(this,", "callAjax(document.getElementById('" + clientId + ".userProperties'),");
+			
+			
+			rw.write("table.on('drawCallback', function(settings){");
+			rw.write("  var oldUserProperties = document.getElementById('" + clientId + ".userProperties').value;");
+			// TODO: convert current javascript properties (settings) to newUserProperties in json format; ! JSON.stringify is browser dependent
+			rw.write("  var s = JSON.stringify(settings);");
+			rw.write("  var newUserProperties = s;");
+			rw.write("  if (oldUserProperties == newUserProperties) return;");
+			rw.write("  document.getElementById('" + clientId + ".userProperties').value = newUserProperties;");
+			rw.write(js);
+			rw.write("});");
 		}
 		//# End enclosure
 		rw.writeText("} );",null );
