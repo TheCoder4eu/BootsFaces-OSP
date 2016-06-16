@@ -32,3 +32,6 @@ To get up and running quickly, have a look at the [Quick Start](http://www.boots
 ###Development Snapshots
 See [this issue](https://github.com/TheCoder4eu/BootsFaces-OSP/issues/369) for instructions on how to get a current developer snapshot via Maven.  
 There's also a [Snapshot Showcase](http://www3.bootsfaces.net/Showcase/) with the newest upstream changes.
+
+###Contributing
+If you want to get your feet wet yourself, we suggest you to take a look at our [cheat-sheet](https://github.com/zhedar/BootsFaces-OSP/blob/docs/cheat-sheet.md) and the [contribution guidelines](https://github.com/zhedar/BootsFaces-OSP/blob/docs/CONTRIBUTING.md).
