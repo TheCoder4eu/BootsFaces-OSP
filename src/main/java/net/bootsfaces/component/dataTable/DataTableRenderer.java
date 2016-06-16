@@ -408,11 +408,13 @@ public class DataTableRenderer extends CoreRenderer {
 			String js = jsCode.toString().replace("callAjax(this,", "callAjax(" + jQueryElem.toString() + ",");
 			
 			
-			rw.write("table.on('drawCallback', function(settings){");
+			rw.write("table.on('draw.dt', function(e, settings){");
 			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();");
-			// TODO: convert current javascript properties (settings) to newUserProperties in json format; ! JSON.stringify is browser dependent
-			rw.write("  var s = JSON.stringify(settings);");
-			rw.write("  var newUserProperties = s;");
+			rw.write("  var oSearchTerm = settings.oPreviousSearch.sSearch;");
+			rw.write("  var oOrderString = settings.aaSorting;");
+			rw.write("  var oPageLength = parseInt(settings._iDisplayLength);");
+			rw.write("  var oCurrentPage = parseInt((settings._iDisplayStart + 1) / oPageLength);");
+			rw.write("  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});");
 			rw.write("  if (oldUserProperties == newUserProperties) return;");
 			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);");
 			rw.write(js);
