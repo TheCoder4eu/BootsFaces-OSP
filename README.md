@@ -34,4 +34,4 @@ See [this issue](https://github.com/TheCoder4eu/BootsFaces-OSP/issues/369) for i
 There's also a [Snapshot Showcase](http://www3.bootsfaces.net/Showcase/) with the newest upstream changes.
 
 ###Contributing
-If you want to get your feet wet yourself, we suggest you to take a look at our [cheat-sheet](https://github.com/zhedar/BootsFaces-OSP/blob/docs/cheat-sheet.md) and the [contribution guidelines](https://github.com/zhedar/BootsFaces-OSP/blob/docs/CONTRIBUTING.md).
+If you want to get your feet wet yourself, we suggest you to take a look at our [cheat-sheet](cheat-sheet.md) and the [contribution guidelines](CONTRIBUTING.md).
