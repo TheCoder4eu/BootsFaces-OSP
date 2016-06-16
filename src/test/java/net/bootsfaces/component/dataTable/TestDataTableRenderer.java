@@ -60,16 +60,26 @@ public class TestDataTableRenderer {
 
 		new DataTableRenderer().encodeEnd(context, component);
 
-		assertEquals("</table><script>" + "$(document).ready(function() {" + "a_bWidget = $(&apos;.a_bTable&apos;);"
-				+ "var wrapper = $(&apos;#a_b_wrapper&apos;);" + "wrapper.replaceWith(a_bWidget);"
+		assertEquals("</table><script>"
+				+ "$(document).ready(function() {"
+				+ "a_bWidget = $(&apos;"
+				+ ".a_bTable&apos;"
+				+ ");"
+				+ "var wrapper = $(&apos;#a_b_wrapper&apos;);"
+				+ "wrapper.replaceWith(a_bWidget);"
 				+ "var table = a_bWidget.DataTable({	fixedHeader: false,	responsive: false, 	paging: true, 	pageLength: 10, 	lengthMenu: [ 10, 25, 50, 100 ], 	searching: true, 	order: [], });"
 				+ "var workInProgressErrorMessage = &apos;Multiple DataTables on the same page are not yet supported when using dataTableProperties attribute; Could not save state&apos;;"
-				+ "table.page(0);" + "table.search(&apos;&apos;);" + "table.page.len(10).draw(&apos;page&apos;);"
+				+ "table.page(0);"
+				+ "table.search(&apos;&apos;);"
+				+ "table.page.len(10).draw(&apos;page&apos;);"
 				+ "table.on('drawCallback', function(settings){"
-				+ "  var oldUserProperties = document.getElementById('a_b.userProperties').value;"
-				+ "  var s = JSON.stringify(settings);" + "  var newUserProperties = s;"
+				+ "  var oldUserProperties = $(\"[id='a_b.userProperties']\").val();"
+				+ "  var s = JSON.stringify(settings);"
+				+ "  var newUserProperties = s;"
 				+ "  if (oldUserProperties == newUserProperties) return;"
-				+ "  document.getElementById('a_b.userProperties').value = newUserProperties;" + "});} );</script>",
+				+ "  $(\"[id='a_b.userProperties']\").val(newUserProperties);"
+				+ "});"
+				+ "} );</script>",
 				stringWriter.getBuffer().toString());
 	}
 

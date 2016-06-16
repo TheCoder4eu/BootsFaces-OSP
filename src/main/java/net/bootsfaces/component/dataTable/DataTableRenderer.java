@@ -398,19 +398,23 @@ public class DataTableRenderer extends CoreRenderer {
 		if (propertyBean != null) {
 
 			StringBuilder jsCode = new StringBuilder();
+			StringBuilder jQueryElem = new StringBuilder("$(\"[id='");
+			jQueryElem.append(clientId).append(".userProperties");
+			jQueryElem.append("']\")");
+			
 			AJAXRenderer.generateAJAXCallForASingleEvent(
 					FacesContext.getCurrentInstance(), dataTable, rw,
 					null, null, false, "changeProperty", jsCode);
-			String js = jsCode.toString().replace("callAjax(this,", "callAjax(document.getElementById('" + clientId + ".userProperties'),");
+			String js = jsCode.toString().replace("callAjax(this,", "callAjax(" + jQueryElem.toString() + ",");
 			
 			
 			rw.write("table.on('drawCallback', function(settings){");
-			rw.write("  var oldUserProperties = document.getElementById('" + clientId + ".userProperties').value;");
+			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();");
 			// TODO: convert current javascript properties (settings) to newUserProperties in json format; ! JSON.stringify is browser dependent
 			rw.write("  var s = JSON.stringify(settings);");
 			rw.write("  var newUserProperties = s;");
 			rw.write("  if (oldUserProperties == newUserProperties) return;");
-			rw.write("  document.getElementById('" + clientId + ".userProperties').value = newUserProperties;");
+			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);");
 			rw.write(js);
 			rw.write("});");
 		}
