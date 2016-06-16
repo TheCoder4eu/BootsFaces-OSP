@@ -54,15 +54,15 @@ public abstract class ADataTablePropertyBean {
 		this.orderString = orderString;
 	}
 
-	public void setJson(String jsonString) throws ParseException{
+	public void setJson(String jsonString) throws ParseException {
 		JSONParser parser = new JSONParser();
 		JSONObject json = (JSONObject) parser.parse(jsonString);
-		pageLength = (Integer) json.get("pageLength");
-		currentPage = (Integer) json.get("currentPage");
-		searchTerm = (String) json.get("searchTerm");
-		orderString = (String) json.get("orderString");		
+		pageLength = ensureInteger(json.get("pageLength"));
+		currentPage = ensureInteger(json.get("currentPage"));
+		searchTerm = ensureString(json.get("searchTerm"));
+		orderString = ensureString(json.get("orderString"));
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public String getJson() {
 		JSONObject json = new JSONObject();
@@ -71,5 +71,28 @@ public abstract class ADataTablePropertyBean {
 		json.put("searchTerm", searchTerm);
 		json.put("orderString", orderString);
 		return json.toJSONString();
+	}
+
+	private final Integer ensureInteger(Object o) throws ParseException {
+		if (o == null) {
+			return null;
+		} else if (o instanceof Integer) {
+			return (Integer) o;
+		} else if (o instanceof Long) {
+			return ((Long) o).intValue();
+		} else if (o instanceof String) {
+			return Integer.valueOf((String) o);
+		} else {
+			throw new ParseException(ParseException.ERROR_UNEXPECTED_CHAR,
+					"cannot convert " + o.getClass().getName() + " to Integer");
+		}
+	}
+
+	private final String ensureString(Object o) {
+		if (o == null) {
+			return null;
+		} else {
+			return o.toString();
+		}
 	}
 }
