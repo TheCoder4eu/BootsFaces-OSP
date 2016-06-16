@@ -81,7 +81,12 @@ public abstract class ADataTablePropertyBean {
 		} else if (o instanceof Long) {
 			return ((Long) o).intValue();
 		} else if (o instanceof String) {
-			return Integer.valueOf((String) o);
+			String s = (String) o;
+			if ("null".equalsIgnoreCase(s)) {
+				return null;
+			} else {
+				return Integer.valueOf(s);
+			}
 		} else {
 			throw new ParseException(ParseException.ERROR_UNEXPECTED_CHAR,
 					"cannot convert " + o.getClass().getName() + " to Integer");
@@ -92,7 +97,12 @@ public abstract class ADataTablePropertyBean {
 		if (o == null) {
 			return null;
 		} else {
-			return o.toString();
+			String s = o.toString();
+			if ("null".equalsIgnoreCase(s)) {
+				return null;
+			} else {
+				return s;
+			}
 		}
 	}
 }
