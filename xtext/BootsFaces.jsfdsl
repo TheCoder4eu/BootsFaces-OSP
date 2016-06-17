@@ -1754,6 +1754,7 @@ widget tabView
 widget tree
        implemented_by net.bootsfaces.component.tree.Tree
        extends UIComponentBase
+       is_responsive
 {
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1772,6 +1773,7 @@ widget tree
     selected-color																		"Hex value of selected color."
     border-color			default "#DDDDDD"											"Hex value of border color (default #DDDDDD)"
     update																   				"Component(s) to be updated with ajax."
+	+responsive
 }
 
 
@@ -1780,6 +1782,7 @@ widget thumbnail
        extends UIComponentBase
        has_children
        has_tooltip
+       is_responsive
  {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1787,6 +1790,7 @@ widget thumbnail
     style                                                                  "Inline CSS of the tab."
     style-class                                                             "Style class of the div surrounding the tab pane."
     +tooltip
+    +responsive
 }
 
 
@@ -1794,6 +1798,7 @@ widget well
        implemented_by net.bootsfaces.layout.Well
        has_children
        has_tooltip
+       is_responsive
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1801,4 +1806,5 @@ widget well
     style                                                                  "Inline CSS of the tab."
     style-class                                                            "Style class of the div surrounding the tab pane."
     +tooltip
+    +responsive
 }
