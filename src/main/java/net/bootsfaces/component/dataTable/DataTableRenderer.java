@@ -130,6 +130,7 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.writeAttribute("value", propertyBean.getJson(), null);
 			rw.writeAttribute("type", "hidden", null);
 			rw.endElement("input");
+			// TODO: bind this to ajax dataTable.onUpdatePropertyBean
 		}
 		
 		// put custom code here
@@ -397,18 +398,10 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		if (propertyBean != null) {
 
-			StringBuilder jsCode = new StringBuilder();
 			StringBuilder jQueryElem = new StringBuilder("$(\"[id='");
 			jQueryElem.append(clientId).append(".userProperties");
 			jQueryElem.append("']\")");
-			
-			AJAXRenderer.generateAJAXCallForASingleEvent(
-					FacesContext.getCurrentInstance(), dataTable, rw,
-					null, null, false, "changeProperty", jsCode);
-			String js = jsCode.toString().replace("callAjax(this,", "callAjax(" + jQueryElem.toString() + ",");
-			
-			
-			rw.write("table.on('draw.dt', function(e, settings){");
+			rw.write(widgetVar + ".on('draw.dt', function(e, settings){");
 			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();");
 			rw.write("  var oSearchTerm = settings.oPreviousSearch.sSearch;");
 			rw.write("  var oOrderString = settings.aaSorting;");
@@ -417,7 +410,7 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.write("  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});");
 			rw.write("  if (oldUserProperties == newUserProperties) return;");
 			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);");
-			rw.write(js);
+			rw.write("  " + jQueryElem.toString() + ".trigger(\"change\");");
 			rw.write("});");
 		}
 		//# End enclosure

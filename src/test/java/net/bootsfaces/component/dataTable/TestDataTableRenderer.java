@@ -55,7 +55,7 @@ public class TestDataTableRenderer {
 		FacesContext context = FacesContext.getCurrentInstance();
 		DataTable component = new DataTable();
 		component.setId("a_b");
-		component.setPropertyBean(new ADataTablePropertyBean(10, 0, "''", "[]") {
+		component.setPropertyBean(new ADataTablePropertyBean(10, 0, "", "[]") {
 		});
 
 		new DataTableRenderer().encodeEnd(context, component);
@@ -72,7 +72,7 @@ public class TestDataTableRenderer {
 				+ "table.page(0);"
 				+ "table.search(&apos;&apos;);"
 				+ "table.page.len(10).draw(&apos;page&apos;);"
-				+ "table.on('draw.dt', function(e, settings){"
+				+ "a_bWidget.on('draw.dt', function(e, settings){"
 				+ "  var oldUserProperties = $(\"[id='a_b.userProperties']\").val();"
 				+ "  var oSearchTerm = settings.oPreviousSearch.sSearch;"
 				+ "  var oOrderString = settings.aaSorting;"
@@ -81,6 +81,7 @@ public class TestDataTableRenderer {
 				+ "  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});"
 				+ "  if (oldUserProperties == newUserProperties) return;"
 				+ "  $(\"[id='a_b.userProperties']\").val(newUserProperties);"
+				+ "  $(\"[id='a_b.userProperties']\").trigger(\"change\");"
 				+ "});"
 				+ "} );</script>",
 				stringWriter.getBuffer().toString());

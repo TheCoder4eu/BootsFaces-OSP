@@ -560,6 +560,24 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Client side callback to execute when the property bean is updated
+	 * 
+	 * @return Returns the property bean (may be null)
+	 */
+	public String getOnUpdatePropertyBean() {
+		return (String) ((ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean)).getJson();
+	}
+	
+	/**
+	 * Client side callback to execute when a property bean is updated
+	 * 
+	 * @param _propertyBean the bean to be updated
+	 */
+	public void setOnUpdatePropertyBean(ADataTablePropertyBean _propertyBean) {
+		getStateHelper().put(PropertyKeys.propertyBean, _propertyBean);
+	}
+	
+	/**
 	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
