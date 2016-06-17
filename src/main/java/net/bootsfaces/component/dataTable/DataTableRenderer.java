@@ -281,7 +281,7 @@ public class DataTableRenderer extends CoreRenderer {
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
 		Integer page = propertyBean == null ? 0 : propertyBean.getCurrentPage();
 		Integer pageLength = propertyBean == null ? dataTable.getPageLength() : propertyBean.getPageLength();
-		String searchTerm = propertyBean == null ? "''" : propertyBean.getSearchTerm();
+		String searchTerm = propertyBean == null ? "''" : String.format("'%s'", propertyBean.getSearchTerm());
 		String orderString = propertyBean == null ? "[]" : propertyBean.getOrderString();
 		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
