@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *
+ *  
  *  This file is part of BootsFaces.
- *
+ *  
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -32,7 +32,6 @@ import net.bootsfaces.component.badge.BadgeRenderer;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
-import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:slider /&gt;. */
@@ -44,7 +43,7 @@ public class SliderRenderer extends BadgeRenderer {
 	 * b:slider. The default implementation simply stores the input value in the
 	 * list of submitted values. If the validation checks are passed, the values
 	 * in the <code>submittedValues</code> list are store in the backend bean.
-	 *
+	 * 
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -71,7 +70,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:slider.
-	 *
+	 * 
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -127,15 +126,16 @@ public class SliderRenderer extends BadgeRenderer {
 		}
 		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");
+                int span = slider.getSpan();
 
 		rw.startElement("div", null);// form-group
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
 
 		if (slider.isInline()) {
-			rw.writeAttribute("class", "form-inline" + Responsive.getResponsiveStyleClass(slider, true), "class");
+			rw.writeAttribute("class", "form-inline", "class");
 		} else {
-			rw.writeAttribute("class", "form-group" + Responsive.getResponsiveStyleClass(slider, true), "class");
+			rw.writeAttribute("class", "form-group", "class");
 		}
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
@@ -152,7 +152,7 @@ public class SliderRenderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderDiv(rw, isVertical, mode, 12, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
 				rw.endElement("div");/* Row */
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
@@ -163,7 +163,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeSliderDiv(rw, isVertical, mode, 12, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, clientId);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
@@ -195,7 +195,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderDiv(rw, isVertical, mode, 12, clientId);
+			encodeSliderDiv(rw, isVertical, mode, span, clientId);
 			rw.endElement("div");/* Row */
 
 		}
@@ -283,7 +283,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId) throws IOException {
 		int cols=span;
-        if (!mode.equals("basic")) { cols--; }
+                if (!mode.equals("basic")) { cols--; }
                 /*
 		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg
 		 */
@@ -293,7 +293,7 @@ public class SliderRenderer extends BadgeRenderer {
 		// Slider <div>
 		rw.startElement("div", null);
 		rw.writeAttribute("id", clientId + "_slider", null);// concat
-
+                
 		rw.endElement("div");
 		rw.endElement("div"); // Column
 	}
