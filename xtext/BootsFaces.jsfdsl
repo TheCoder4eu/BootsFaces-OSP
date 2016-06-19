@@ -1418,6 +1418,7 @@ widget selectBooleanCheckbox
        processes_input
        extends HtmlInputText
        has_tooltip
+       is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
@@ -1452,7 +1453,6 @@ widget selectBooleanCheckbox
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
@@ -1461,6 +1461,7 @@ widget selectBooleanCheckbox
     value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
     +tooltip
+    +responsive
 }
 
 widget shake
@@ -1486,6 +1487,7 @@ widget switch
        processes_input
        extends net.bootsfaces.component.SelectBooleanCheckbox
        has_tooltip
+       is_responsive
  {
     accesskey                                                        inherited      "Access key to transfer focus to the input element."
     alt                                                              inherited      "Alternate textual description of the input element."
@@ -1519,7 +1521,6 @@ widget switch
     readonly            Boolean                                      inherited      "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()"  inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean                                      inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    span                Integer                                      inherited      "The size of the input specified as number of grid columns."
     style                                                            inherited      "Inline style of the input element."
     style-class                                                      inherited      "Style class of the input element."
     tabindex                                                         inherited      "Advisory tooltip information."
@@ -1538,6 +1539,7 @@ widget switch
     handle-width        Integer                                                     "Width of the left and right sides in pixels."
     label-width         Integer                                                     "Width of the center handle in pixels."
     +tooltip
+    +responsive
 }
 
 
