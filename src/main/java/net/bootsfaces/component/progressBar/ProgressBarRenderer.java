@@ -28,7 +28,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.selectOneMenu.SelectOneMenu;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 
@@ -51,12 +53,13 @@ public class ProgressBarRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = progressBar.getClientId();
 
+        String span = startColSpanDiv(rw, progressBar);
 		rw.startElement("div", progressBar); // outer div
 		rw.writeAttribute("class", "progress", "class");
+		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, progressBar, rw);
 
 		rw.startElement("div", progressBar); // inner div, responsible for the actual bar
-		rw.writeAttribute("id", clientId, "id");
 
 		int max = progressBar.getMax();
 		int min = progressBar.getMin();
@@ -93,6 +96,7 @@ public class ProgressBarRenderer extends CoreRenderer {
 
 		rw.endElement("div");
 		rw.endElement("div");
+        closeColSpanDiv(rw, span);
 		Tooltip.activateTooltips(context, progressBar);
 	}
 
@@ -120,4 +124,41 @@ public class ProgressBarRenderer extends CoreRenderer {
 		rw.writeText(labelText, null);
 		rw.endElement("span");
 	}
+
+    /**
+     * Terminate the column span div (if there's one). This method is protected
+     * in order to allow third-party frameworks to derive from it.
+     *
+     * @param rw
+     *            the response writer
+     * @param span
+     *            the width of the components (in BS columns).
+     * @throws IOException
+     *             may be thrown by the response writer
+     */
+    protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
+        if (span != null && span.trim().length()>0) {
+            rw.endElement("div");
+        }
+    }
+
+
+    /**
+     * Start the column span div (if there's one). This method is protected in
+     * order to allow third-party frameworks to derive from it.
+     *
+     * @param rw
+     *            the response writer
+     * @throws IOException
+     *             may be thrown by the response writer
+     */
+    protected String startColSpanDiv(ResponseWriter rw, ProgressBar progressBar) throws IOException {
+        String clazz = Responsive.getResponsiveStyleClass(progressBar, false);
+        if (clazz!= null && clazz.trim().length()>0) {
+            rw.startElement("div", progressBar);
+            rw.writeAttribute("class", clazz, "class");
+        }
+        return clazz;
+    }
+
 }
