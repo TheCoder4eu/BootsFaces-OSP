@@ -126,6 +126,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		String span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
+		writeAttribute(rw, "id", clientId);
 
 		Tooltip.generateTooltip(context, menu, rw);
 		if (menu.isInline()) {
@@ -134,7 +135,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "form-group", "class");
 		}
 
-		addLabel(rw, clientId, menu);
+		addLabel(rw, clientId+"Inner", menu);
 
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
@@ -142,7 +143,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				(appendingAddOnFacet != null), menu);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
-		renderSelectTag(context, rw, clientId, menu);
+		renderSelectTag(context, rw, clientId+"Inner", clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
 		closeInputGroupForAddOn(rw, hasAddon);
@@ -257,7 +258,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options = "{" + options.substring(1, options.length()) + "}";
 		}
 
-		String js = "$(document).ready(function() {$('#" + clientId + "').multiselect(" + options + ");});\n";
+		String js = "$(document).ready(function() {$('#" + clientId + "Inner').multiselect(" + options + ");});\n";
 		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
 
 	}
@@ -415,10 +416,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	}
 
 	/** Renders the select tag. */
-	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectMultiMenu menu)
+	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, String name, SelectMultiMenu menu)
 			throws IOException {
 		renderSelectTag(rw, menu);
-		renderSelectTagAttributes(rw, clientId, menu);
+		renderSelectTagAttributes(rw, clientId, name, menu);
 		Object selectedOption = getValue2Render(context, menu);
 		String[] optionList;
 		if (selectedOption == null) {
@@ -674,10 +675,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectMultiMenu menu)
+	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, String name, SelectMultiMenu menu)
 			throws IOException {
 		rw.writeAttribute("id", clientId, null);
-		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("name", name, null);
 
 		StringBuilder sb;
 		String s;
