@@ -1198,6 +1198,7 @@ widget navLink
        implemented_by net.bootsfaces.component.NavLink
        extends UICommand
        has_tooltip
+       is_responsive
  {
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
@@ -1584,7 +1585,6 @@ widget selectMultiMenu
     button-width        Integer                                            "The width of the multiselect button may be fixed using this option."
     enable-case-insensitive-filtering  Boolean default "false"             "If set to true, the filter is case-insensitive."
 
-    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."

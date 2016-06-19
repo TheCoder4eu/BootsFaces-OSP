@@ -65,7 +65,6 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 		onchange,
 		ondropdownhide,
 		ondropdownshow,
-		placeholder,
 		radiobuttons,
 		readonly,
 		renderLabel,
@@ -739,22 +738,6 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	 */
 	public void setOndropdownshow(String _ondropdownshow) {
 		getStateHelper().put(PropertyKeys.ondropdownshow, _ondropdownshow);
-	}
-
-	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getPlaceholder() {
-		return (String) getStateHelper().eval(PropertyKeys.placeholder);
-	}
-
-	/**
-	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPlaceholder(String _placeholder) {
-		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
 	}
 
 	/**
