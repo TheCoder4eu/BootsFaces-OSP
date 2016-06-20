@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -37,6 +37,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -182,7 +183,7 @@ public class DatePicker extends HtmlInputText {
 		 * <script id="form:popCal_js" type="text/javascript"> $(function(){
 		 * $('form:popCal').datepicker({id:'form:popupCal',popup:true,locale:'
 		 * en_US',dateFormat:'m/d/y'}); }); </script>
-		 * 
+		 *
 		 * Inline Adds a Div and Uses a Hidden Input
 		 */
 
@@ -196,7 +197,7 @@ public class DatePicker extends HtmlInputText {
 	 * implemented in the HeadRenderer, this code has been moved here to provide
 	 * better compatibility to PrimeFaces. If multiple date pickers are on the
 	 * page, the script is generated redundantly, but this shouldn't do no harm.
-	 * 
+	 *
 	 * @param fc
 	 *            The current FacesContext
 	 * @throws IOException
@@ -211,7 +212,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Encodes the HTML for this context
-	 * 
+	 *
 	 * @param fc
 	 * @throws IOException
 	 */
@@ -410,7 +411,7 @@ public class DatePicker extends HtmlInputText {
 	/**
 	 * Selects the Date Pattern to use based on the given Locale if the input
 	 * format is null
-	 * 
+	 *
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
 	 * @param format
@@ -438,7 +439,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Implementation from Apache Commons Lang
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -482,7 +483,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Converts a java Date format to a jQuery date format
-	 * 
+	 *
 	 * @param format
 	 *            Format to be converted
 	 * @return converted format
@@ -602,4 +603,40 @@ public class DatePicker extends HtmlInputText {
 		}
 		return (String) o;
 	}
+
+	/**
+	 * Yields the value of the required and error level CSS class.
+	 *
+	 * @param input
+	 * @param clientId
+	 * @return
+	 */
+	public String getErrorAndRequiredClass(UIInput input, String clientId) {
+		String[] levels = { "bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal" };
+		int level = 0;
+		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
+		if (null != messages) {
+			while (messages.hasNext()) {
+				FacesMessage message = messages.next();
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
+					if (level < 1)
+						level = 1;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
+					if (level < 2)
+						level = 2;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
+					if (level < 3)
+						level = 3;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
+					if (level < 4)
+						level = 4;
+			}
+		}
+		String styleClass = levels[level];
+		if (input.isRequired()) {
+			styleClass += " bf-required";
+		}
+		return styleClass;
+	}
+
 }
