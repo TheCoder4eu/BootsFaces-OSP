@@ -129,8 +129,14 @@ public class DataTableRenderer extends CoreRenderer {
 			rw.writeAttribute("name", clientId + ".userProperties", null);
 			rw.writeAttribute("value", propertyBean.getJson(), null);
 			rw.writeAttribute("type", "hidden", null);
+
+			// TODO: bind this to ajax dataTable.getOnUpdatePropertyBean
+			StringBuilder jsCode = new StringBuilder();
+			AJAXRenderer.generateAJAXCallForASingleEvent(FacesContext.getCurrentInstance(), dataTable, rw, null, null, false, "UpdatePropertyBean", jsCode);
+			
+			System.out.println(jsCode.toString());
+			
 			rw.endElement("input");
-			// TODO: bind this to ajax dataTable.onUpdatePropertyBean
 		}
 		
 		// put custom code here

@@ -23,8 +23,6 @@ import java.util.Map;
 
 import javax.faces.component.UIData;
 
-import org.json.simple.parser.ParseException;
-
 import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
@@ -565,15 +563,18 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 * Client side callback to execute when the property bean is updated
 	 * 
 	 */
-	public void onUpdatePropertyBean(String jsonString) {
-		ADataTablePropertyBean bean = (ADataTablePropertyBean) getStateHelper().get(PropertyKeys.propertyBean);
-		if (bean != null) {
-			try {
-				bean.setJson(jsonString);
-			} catch (ParseException e) {
-				e.printStackTrace(); // TODO: use a logger instead or better throw an exception? This method is called by ajax...
-			}
-		}
+	public String getOnUpdatePropertyBean() {
+		return (String) ((ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean)).getJson();
+
+//		ADataTablePropertyBean bean = (ADataTablePropertyBean) getStateHelper().get(PropertyKeys.propertyBean);
+//		if (bean != null) {
+//			try {
+//				bean.setJson(jsonString);
+//			} catch (ParseException e) {
+//				e.printStackTrace(); // TODO: use a logger instead or better throw an exception? This method is called by ajax...
+//			}
+//		}
+//		return jsonString;
 	}
 
 	/**
