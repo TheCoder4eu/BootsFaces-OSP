@@ -88,7 +88,8 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -560,24 +561,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Client side callback to execute when the property bean is updated
-	 * 
-	 */
-	public String getOnUpdatePropertyBean() {
-		return (String) ((ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean)).getJson();
-
-//		ADataTablePropertyBean bean = (ADataTablePropertyBean) getStateHelper().get(PropertyKeys.propertyBean);
-//		if (bean != null) {
-//			try {
-//				bean.setJson(jsonString);
-//			} catch (ParseException e) {
-//				e.printStackTrace(); // TODO: use a logger instead or better throw an exception? This method is called by ajax...
-//			}
-//		}
-//		return jsonString;
-	}
-
-	/**
 	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -642,23 +625,21 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * data table property bean containing it's current display state values
-	 * 
-	 * @return Returns the properties of the current display values
+	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public ADataTablePropertyBean getPropertyBean() {
 		return (ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean);
 	}
-	
+
 	/**
-	 * data table property bean to keep the display state values
-	 * 
-	 * @param _propertyBean
+	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPropertyBean(ADataTablePropertyBean _propertyBean) {
 		getStateHelper().put(PropertyKeys.propertyBean, _propertyBean);
 	}
-	
+
 	/**
 	 * Activates the responsive plugin of the dataTable <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.

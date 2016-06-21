@@ -126,22 +126,24 @@ public class DataTableRenderer extends CoreRenderer {
 		if (propertyBean != null){
 			String userPropertiesId = new StringBuilder(clientId).append(".userProperties").toString();
 			rw.startElement("input", component);
-			rw.writeAttribute("id", userPropertiesId, null);
+			rw.writeAttribute("id", userPropertiesId.replace(":", ""), null);
 			rw.writeAttribute("name", userPropertiesId, null);
 			rw.writeAttribute("value", propertyBean.getJson(), null);
-			rw.writeAttribute("type", "hidden", null);
+			rw.writeAttribute("size", "160", null);  // TODO this is debug code
+//			rw.writeAttribute("type", "hidden", null);
 
 			StringBuilder jsCode = new StringBuilder();
+			jsCode.append("console.log('input change');");
 			jsCode.append("BsF.ajax.callAjax(this, event, null, '"); // 3rd param render not needed
 			// execute
 			jsCode.append(userPropertiesId);
-			jsCode.append("', null, null, null);;");
-			
-			rw.writeAttribute("onchange", jsCode.toString(), null);
-			
+			jsCode.append("', null, null, null);");
+
+//			rw.writeAttribute("onchange", jsCode.toString(), null);
+
 			rw.endElement("input");
 		}
-		
+
 		// put custom code here
 		// Simple demo widget that simply renders every attribute value
 		rw.startElement("table", dataTable);
@@ -304,6 +306,7 @@ public class DataTableRenderer extends CoreRenderer {
 				pageLength = (Integer)currentPageLength;
 			}
 			if(currentSearchTerm != null){
+				// TODO maybe using a simple string concatenation is cheaper
 				searchTerm = String.format("'%s'", (String)currentSearchTerm);
 			}
 		}
@@ -339,26 +342,44 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText("$(document).ready(function() {", null);
 		//# Enclosure-scoped variable initialization
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
+		             "\n" +
 					 //# Get instance of wrapper, and replace it with the unwrapped table.
 					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
+		             "\n" +
 					 "wrapper.replaceWith(" + widgetVar +");" +
+		             "\n" +
 					 "var table = " + widgetVar +".DataTable({" +
+		             "\n" +
 					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +
+		             "\n" +
 					 "	responsive: " + dataTable.isResponsive() + ", " +
+		             "\n" +
 					 "	paging: " + dataTable.isPaginated() + ", " +
+		             "\n" +
 					 "	pageLength: " + pageLength + ", " +
+		             "\n" +
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " +
+		             "\n" +
 					 "	searching: " + dataTable.isSearching() + ", " +
-					 "	order: " + orderString + ", " +
+		             "\n" +
+					 addIfNotNull("order", orderString) +
 					 (dataTable.getScrollSize() > 0 ? " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + "," : "") +
+		             "\n" +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
+		             "\n" +
 					 "});" +
+		             "\n" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
 		//# Use DataTable API to set initial state of the table display
 		if(dataTable.isPaginated()) {
-			rw.writeText("table.page("+page+");" +
+			rw.writeText("\n" +
+						"table.page("+page+");" +
+						"\n" +
+
 						 "table.search("+searchTerm+");" +
+			             "\n" +
+
 						 "table.page.len("+pageLength+").draw('page');", null);
 		}
 
@@ -407,25 +428,32 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		if (propertyBean != null) {
 
-			StringBuilder jQueryElem = new StringBuilder("$(\"[id='");
-			jQueryElem.append(clientId).append(".userProperties");
-			jQueryElem.append("']\")");
-			rw.write(widgetVar + ".on('draw.dt', function(e, settings){");
-			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();");
-			rw.write("  var oSearchTerm = settings.oPreviousSearch.sSearch;");
-			rw.write("  var oOrderString = settings.aaSorting;");
-			rw.write("  var oPageLength = parseInt(settings._iDisplayLength);");
-			rw.write("  var oCurrentPage = parseInt((settings._iDisplayStart + 1) / oPageLength);");
-			rw.write("  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});");
-			rw.write("  if (oldUserProperties == newUserProperties) return;");
-			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);");
-			rw.write("  " + jQueryElem.toString() + ".trigger(\"change\");");
-			rw.write("});");
+			StringBuilder jQueryElem = new StringBuilder("$(\'[name=\"");
+			jQueryElem.append(clientIdRaw).append(".userProperties\"]");
+			jQueryElem.append("')");
+			rw.write(widgetVar + ".on('draw.dt', function(e, settings){\n");
+			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();\n");
+			rw.write("  var oSearchTerm = settings.oPreviousSearch.sSearch;\n");
+			rw.write("  var oOrderString = settings.aaSorting;\n");
+			rw.write("  var oPageLength = parseInt(settings._iDisplayLength);\n");
+			rw.write("  var oCurrentPage = parseInt((settings._iDisplayStart + 1) / oPageLength);\n");
+			rw.write("  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});\n");
+			rw.write("  if (oldUserProperties == newUserProperties) return;\n");
+			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);\n");
+			rw.write("  " + jQueryElem.toString() + ".trigger(\"change\");\n");
+			rw.write("});\n");
 		}
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
 	}
+
+	private String addIfNotNull(String string, String orderString) {
+		if (null == orderString)
+			return "";
+		return string + ":" + orderString + ",\n";
+	}
+
 
 	/**
 	 * Determine if the user specify a lang
