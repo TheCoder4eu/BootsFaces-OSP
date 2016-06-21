@@ -124,17 +124,20 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = dataTable.getClientId();
 
 		if (propertyBean != null){
+			String userPropertiesId = new StringBuilder(clientId).append(".userProperties").toString();
 			rw.startElement("input", component);
-			rw.writeAttribute("id", clientId + ".userProperties", null);
-			rw.writeAttribute("name", clientId + ".userProperties", null);
+			rw.writeAttribute("id", userPropertiesId, null);
+			rw.writeAttribute("name", userPropertiesId, null);
 			rw.writeAttribute("value", propertyBean.getJson(), null);
 			rw.writeAttribute("type", "hidden", null);
 
-			// TODO: bind this to ajax dataTable.getOnUpdatePropertyBean
 			StringBuilder jsCode = new StringBuilder();
-			AJAXRenderer.generateAJAXCallForASingleEvent(FacesContext.getCurrentInstance(), dataTable, rw, null, null, false, "UpdatePropertyBean", jsCode);
+			jsCode.append("BsF.ajax.callAjax(this, event, null, '"); // 3rd param render not needed
+			// execute
+			jsCode.append(userPropertiesId);
+			jsCode.append("', null, null, null);;");
 			
-			System.out.println(jsCode.toString());
+			rw.writeAttribute("onchange", jsCode.toString(), null);
 			
 			rw.endElement("input");
 		}

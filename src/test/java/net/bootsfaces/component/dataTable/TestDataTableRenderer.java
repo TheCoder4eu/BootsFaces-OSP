@@ -98,7 +98,10 @@ public class TestDataTableRenderer {
 		new DataTableRenderer().encodeBegin(context, component);
 
 		assertEquals(
-				"<input id=\"a_b.userProperties\" name=\"a_b.userProperties\" value=\"{&quot;searchTerm&quot;:&quot;this is crap&quot;,&quot;pageLength&quot;:10,&quot;currentPage&quot;:0,&quot;orderString&quot;:null}\" type=\"hidden\"/>"
+				"<input id=\"a_b.userProperties\" name=\"a_b.userProperties\" "
+				+ "value=\"{&quot;searchTerm&quot;:&quot;this is crap&quot;,&quot;pageLength&quot;:10,&quot;currentPage&quot;:0,&quot;orderString&quot;:null}\" "
+				+ "type=\"hidden\" "
+				+ "onchange=\"BsF.ajax.callAjax(this, event, null, &apos;a_b.userProperties&apos;, null, null, null);;\"/>"
 						+ "<table id=\"a_b\" class=\"table table-striped table-bordered table-hover    a_bTable\" cellspacing=\"0\">"
 						+ "<thead><tr/></thead><tbody/>",
 				stringWriter.getBuffer().toString());
