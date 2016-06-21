@@ -31,6 +31,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import org.json.simple.parser.ParseException;
+
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import net.bootsfaces.render.CoreRenderer;
@@ -46,6 +48,7 @@ public class DataTableRenderer extends CoreRenderer {
 	public void decode(FacesContext context, UIComponent component) {
 		super.decode(context, component);
 		DataTable dataTable = (DataTable) component;
+		String clientId = dataTable.getClientId();
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		if (dataTableProperties != null) {
 			String params = context.getExternalContext().getRequestParameterMap().get("params");
@@ -76,6 +79,19 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 			}
 		}
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
+		if (propertyBean != null) {
+			String userProperties = context.getExternalContext().getRequestParameterMap().get(clientId + ".userProperties");
+			if (userProperties != null) {
+				try {
+					propertyBean.setJson(userProperties);
+				} catch (ParseException e) {
+					// TODO: log error at least, better inform user about failure json string
+					// for now, abuse npe to get the error to the log
+					throw new NullPointerException("ParseException: " + e.getMessage());
+				}
+			}
+		}
 	}
 
 
@@ -102,10 +118,30 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId();
 
+		if (propertyBean != null){
+			String userPropertiesId = new StringBuilder(clientId).append(".userProperties").toString();
+			rw.startElement("input", component);
+			rw.writeAttribute("id", userPropertiesId, null);
+			rw.writeAttribute("name", userPropertiesId, null);
+			rw.writeAttribute("value", propertyBean.getJson(), null);
+			rw.writeAttribute("type", "hidden", null);
+
+			StringBuilder jsCode = new StringBuilder();
+			jsCode.append("BsF.ajax.callAjax(this, event, null, '"); // 3rd param render not needed
+			// execute
+			jsCode.append(userPropertiesId);
+			jsCode.append("', null, null, null);;");
+			
+			rw.writeAttribute("onchange", jsCode.toString(), null);
+			
+			rw.endElement("input");
+		}
+		
 		// put custom code here
 		// Simple demo widget that simply renders every attribute value
 		rw.startElement("table", dataTable);
@@ -251,11 +287,12 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
+		ADataTablePropertyBean propertyBean = dataTable.getPropertyBean();
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
-		Integer page = 0;
-		Integer pageLength = dataTable.getPageLength();
-		String searchTerm = "''";
-		String orderString = "[]";
+		Integer page = propertyBean == null ? 0 : propertyBean.getCurrentPage();
+		Integer pageLength = propertyBean == null ? dataTable.getPageLength() : propertyBean.getPageLength();
+		String searchTerm = propertyBean == null ? "''" : String.format("'%s'", propertyBean.getSearchTerm());
+		String orderString = propertyBean == null ? "[]" : propertyBean.getOrderString();
 		if(dataTableProperties != null) {
 			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
 			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
@@ -367,6 +404,23 @@ public class DataTableRenderer extends CoreRenderer {
 						  "    }" +
 						  "} );" +
 						  "} );", null );
+		}
+		if (propertyBean != null) {
+
+			StringBuilder jQueryElem = new StringBuilder("$(\"[id='");
+			jQueryElem.append(clientId).append(".userProperties");
+			jQueryElem.append("']\")");
+			rw.write(widgetVar + ".on('draw.dt', function(e, settings){");
+			rw.write("  var oldUserProperties = " + jQueryElem.toString() + ".val();");
+			rw.write("  var oSearchTerm = settings.oPreviousSearch.sSearch;");
+			rw.write("  var oOrderString = settings.aaSorting;");
+			rw.write("  var oPageLength = parseInt(settings._iDisplayLength);");
+			rw.write("  var oCurrentPage = parseInt((settings._iDisplayStart + 1) / oPageLength);");
+			rw.write("  var newUserProperties = JSON.stringify({\"searchTerm\": oSearchTerm, \"orderString\": oOrderString, \"currentPage\": oCurrentPage, \"pageLength\": oPageLength});");
+			rw.write("  if (oldUserProperties == newUserProperties) return;");
+			rw.write("  " + jQueryElem.toString() + ".val(newUserProperties);");
+			rw.write("  " + jQueryElem.toString() + ".trigger(\"change\");");
+			rw.write("});");
 		}
 		//# End enclosure
 		rw.writeText("} );",null );
