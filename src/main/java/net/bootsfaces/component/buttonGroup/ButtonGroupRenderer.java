@@ -60,7 +60,11 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		String clientId = buttonGroup.getClientId();
 		rw.startElement("div", buttonGroup);
 		rw.writeAttribute("id", clientId, "id");
-		String styleClasses = "btn-group " + Responsive.getResponsiveStyleClass(buttonGroup, false);
+		String styleClasses = "btn-group";
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false);
+		if (responsive.trim().length() > 0){
+			styleClasses += responsive;
+		}
 		String o = buttonGroup.getOrientation();
 		String s = buttonGroup.getSize();
 		if (o != null && o.equals("vertical")) {
