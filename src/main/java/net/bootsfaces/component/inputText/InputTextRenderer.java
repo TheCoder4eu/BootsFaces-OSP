@@ -229,7 +229,7 @@ public class InputTextRenderer extends CoreRenderer {
 		} // input-group
 		rw.endElement("div"); // form-group
 		if (responsiveStyleClass.length() > 0) {
-			rw.endElement("div"); // span
+			rw.endElement("div");
 		}
 
 		Tooltip.activateTooltips(context, inputText);
