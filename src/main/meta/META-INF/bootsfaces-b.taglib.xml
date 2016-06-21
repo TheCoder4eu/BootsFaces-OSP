@@ -4874,7 +4874,7 @@
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTable-properties</name>
+		  <name>data-table-properties</name>
 		  <required>false</required>
 		  <type>java.util.Map</type>
 		</attribute>
@@ -5105,6 +5105,12 @@
 		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component.]]></description>
+		  <name>propertyBean</name>
+		  <required>false</required>
+		  <type>ADataTablePropertyBean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>

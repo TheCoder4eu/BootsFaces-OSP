@@ -115,4 +115,23 @@ public class DataTable extends DataTableCore
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
 	}
+
+	/**
+	 * Client side callback to execute when the property bean is updated
+	 *
+	 */
+	public String getOnUpdatePropertyBean() {
+		return (String) (getPropertyBean()).getJson();
+
+//		ADataTablePropertyBean bean = (ADataTablePropertyBean) getStateHelper().get(PropertyKeys.propertyBean);
+//		if (bean != null) {
+//			try {
+//				bean.setJson(jsonString);
+//			} catch (ParseException e) {
+//				e.printStackTrace(); // TODO: use a logger instead or better throw an exception? This method is called by ajax...
+//			}
+//		}
+//		return jsonString;
+	}
+
 }
