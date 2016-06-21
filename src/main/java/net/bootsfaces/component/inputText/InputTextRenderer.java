@@ -184,7 +184,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
 		String name = inputText.getName();
-		System.out.println(name);
+//		System.out.println(name);
 		if (null == name) {
 			name = "input_" + clientId;
 		}

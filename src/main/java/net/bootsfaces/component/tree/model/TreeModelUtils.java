@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Dario D'Urzo
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -27,14 +27,14 @@ import java.util.regex.Pattern;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
- * Utility class that transform a Tree Model to 
+ * Utility class that transform a Tree Model to
  * relative JSON structure
- * 
+ *
  * @author durzod
  *
  */
 public class TreeModelUtils {
-	
+
 	/**
 	 * Debug method to print tree node structure
 	 * @param rootNode
@@ -43,16 +43,16 @@ public class TreeModelUtils {
 	public static void printNodeData(Node rootNode, String tab) {
 		if(tab == null) tab = "";
 		else tab = tab + "  ";
-		
-		System.out.println(tab + "NODE: " + rootNode.getNodeId() + " CHECKED: " + rootNode.isChecked());
+
+//		System.out.println(tab + "NODE: " + rootNode.getNodeId() + " CHECKED: " + rootNode.isChecked());
 		for(Node n: rootNode.getChilds()) {
 			printNodeData(n, tab);
 		}
 	}
-	
+
 	/**
-	 * Update the node with the new state, if node is found 
-	 * 
+	 * Update the node with the new state, if node is found
+	 *
 	 * @param rootNode
 	 * @param nodeId
 	 * @param nodeState
@@ -67,7 +67,7 @@ public class TreeModelUtils {
 			refNode.setExpanded(nodeState.isExpanded());
 		}
 	}
-	
+
 	/**
 	 * Basic implementation of recursive node search by id
 	 * It works only on a DefaultNodeImpl
@@ -83,25 +83,25 @@ public class TreeModelUtils {
 		}
 		return foundNode;
 	}
-	
+
 	/**
 	 * dataString structure is the following
-	 * 
+	 *
 	 * (0) nodeId
 	 * (1) text
 	 * (2) checked
 	 * (3) disabled
 	 * (4) expanded
 	 * (5) selected
-	 * 
+	 *
 	 * the separator is |#*#|
-	 * 
+	 *
 	 * @param dataString see above
 	 * @return
 	 */
 	public static Node mapDataToModel(String dataString) {
 		String[] dataMap = dataString.split(Pattern.quote("|#*#|"));
-		
+
 		DefaultNodeImpl n = new DefaultNodeImpl();
 		try {
 			n.setNodeId(Integer.parseInt(dataMap[0]));
@@ -113,32 +113,32 @@ public class TreeModelUtils {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return n;
 	}
-	
+
 	/**
 	 * Render the node model as JSON
 	 * @return
 	 */
 	public static String renderModelAsJson (Node rootNode, boolean renderRoot) {
-		if(renderRoot) 
+		if(renderRoot)
 			return renderSubnodes(new ArrayList<Node>(Arrays.asList(rootNode)));
 		else {
 			if(rootNode.hasChild()) return renderSubnodes(rootNode.getChilds());
 		}
-		
+
 		return "";
 	}
-	
+
 	private static String renderNode(Node node) {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append("{");
 		// NODE ID
 		if(node.getNodeId() != -1) {
 			// i have to map the generated node id to an internal value that is not related to the original structure
-			sb.append("\"nodeInternalId\": " + node.getNodeId() + ", "); 
+			sb.append("\"nodeInternalId\": " + node.getNodeId() + ", ");
 		}
 		// TEXT
 		if(BsfUtils.isStringValued(node.getText())) {
@@ -163,7 +163,7 @@ public class TreeModelUtils {
 		// HREF
 		if(BsfUtils.isStringValued(node.getHRef())) {
 			sb.append("\"href\": \"" + node.getHRef() + "\", ");
-		}	
+		}
 		// TAGS
 		if(node.getTags() != null && node.getTags().size() > 0) {
 			sb.append("\"tags\": [");
@@ -178,7 +178,7 @@ public class TreeModelUtils {
 			sb.append(renderSubnodes(node.getChilds()));
 			sb.append(",");
 		}
-		
+
 		sb.append("\"selectable\": " + node.isSelectable() + ", ");
 		sb.append("\"state\": {");
 		sb.append("\"checked\": " + node.isChecked() + ", ");
@@ -187,10 +187,10 @@ public class TreeModelUtils {
 		sb.append("\"selected\": " + node.isSelected() + " ");
 		sb.append("}");
 		sb.append("}");
-		
+
 		return sb.toString();
 	}
-	
+
 	private static String renderSubnodes(List<Node> nodeList) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("[");
@@ -203,7 +203,7 @@ public class TreeModelUtils {
 			sb.append(renderNode(n));
 		}
 		sb.append("]");
-		
+
 		return sb.toString();
 	}
 }

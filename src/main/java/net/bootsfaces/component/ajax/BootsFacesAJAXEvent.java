@@ -20,13 +20,13 @@ public class BootsFacesAJAXEvent extends AjaxBehaviorEvent {
 
 	@Override
 	public boolean isAppropriateListener(FacesListener faceslistener) {
-		System.out.println("BootsFacesAJAXListener - isAppropriate - " + (faceslistener.getClass().getName()));
+//		System.out.println("BootsFacesAJAXListener - isAppropriate - " + (faceslistener.getClass().getName()));
 		return false;
 	}
 
 	@Override
 	public void processListener(FacesListener faceslistener) {
-		System.out.println("BootsFacesAJAXListener - process");
+//		System.out.println("BootsFacesAJAXListener - process");
 		// ((BootsFacesAJAXListener)
 		// faceslistener).processAjaxBehavior(getComponent());
 	}
