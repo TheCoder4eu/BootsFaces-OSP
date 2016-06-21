@@ -60,28 +60,27 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		String clientId = buttonGroup.getClientId();
 		rw.startElement("div", buttonGroup);
 		rw.writeAttribute("id", clientId, "id");
-		String styleClasses = "btn-group";
+		
+		StringBuilder styleClasses = new StringBuilder("btn-group");
 		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false);
-		if (responsive.trim().length() > 0){
-			styleClasses += responsive;
-		}
-		String o = buttonGroup.getOrientation();
+		styleClasses.append(responsive.trim().length() > 0 ? responsive : "");
+		styleClasses.append("vertical".equals(buttonGroup.getOrientation()) ? "-vertical" : "");
 		String s = buttonGroup.getSize();
-		if (o != null && o.equals("vertical")) {
-			styleClasses += "-vertical";
-		}
 		if (s != null) {
-			styleClasses += " btn-group-" + s;
+			styleClasses.append(" btn-group-").append(s);
 		}
-		if (null != buttonGroup.getStyleClass()) {
-			styleClasses += " " + buttonGroup.getStyleClass();
+		String sc = buttonGroup.getStyleClass();
+		if (null != sc) {
+			styleClasses.append(" ").append(sc);
 		}
+		
 		String pull = buttonGroup.getPull();
-		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
-			rw.writeAttribute("class", styleClasses + " pull-" + pull, "class");
-		} else {
-			rw.writeAttribute("class", styleClasses, "class");
+		if ("right".equals(pull) || "left".equals(pull)){
+			styleClasses.append(" pull-").append(pull);
 		}
+		
+		rw.writeAttribute("class", styleClasses.toString(), "class");
+
 		if (null != buttonGroup.getStyle()) {
 			rw.writeAttribute("style", buttonGroup.getStyle(), "style");
 		}
