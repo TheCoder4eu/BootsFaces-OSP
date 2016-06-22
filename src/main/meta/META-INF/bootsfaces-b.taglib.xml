@@ -7008,6 +7008,19 @@
 		<component>
 			<component-type>net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos</component-type>
 		</component>
+
+		<attribute>
+			<description><![CDATA[Boolean value to validation FacesContext Severity.]]></description>
+			<name>validationSeverity</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[validation FacesContext Severity Level.]]></description>
+			<name>severityLevel</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:flyOutMenu ************************* -->
