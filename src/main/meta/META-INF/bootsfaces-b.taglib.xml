@@ -5071,13 +5071,13 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
 		  <name>page-length-menu</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
+		  <description><![CDATA[Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details.]]></description>
 		  <name>pageLengthMenu</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -5303,6 +5303,44 @@
 		  <name>widgetVar</name>
 		  <required>false</required>
 		  <type>String</type>
+		</attribute>
+	</tag>
+	
+	<!-- *********** b:dataTableColumn ************************* -->
+	<tag>
+		<tag-name>dataTableColumn</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.dataTableColumn.DataTableColumn</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[Label in the header of the colum.]]></description>
+		  <name>label</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Is the table to be sorted by this column? Legal values are 'asc' and 'desc'.]]></description>
+		  <name>order</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
 	

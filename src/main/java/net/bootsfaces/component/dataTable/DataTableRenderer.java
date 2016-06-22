@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -180,14 +181,23 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.writeText("Column #" + index, null);
 				}
 			}
+			String order = null;
 			if (column.getFacet("order") != null) {
+				UIComponent facet = column.getFacet("order");
+				order = facet.toString();
+			} else if (column.getAttributes().get("order") != null) {
+				order = (String)column.getAttributes().get("order");
+			}
+			if (null != order) {
+				order = order.trim();
+				if ((!"asc".equals(order)) && (!"desc".equals(order))) {
+					throw new FacesException("Invalid column order. Legal values are 'asc' and 'desc'.");
+				}
 				Map<Integer, String> columnSortOrder;
 				if (dataTable.getColumnSortOrderMap() == null) {
 					dataTable.initColumnSortOrderMap();
 				}
 				columnSortOrder = dataTable.getColumnSortOrderMap();
-				UIComponent facet = column.getFacet("order");
-				String order = facet.toString();
 				columnSortOrder.put(index, order);
 			}
 			rw.endElement("th");
@@ -220,9 +230,7 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		DataTable dataTable = (DataTable) component;
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
-		Integer page = 0;
-		Integer pageLength = dataTable.getPageLength();
-		String searchTerm = "''";
+		int pageLength = dataTable.getPageLength();
 		String orderString = "[]";
 		if ( columnSortOrder != null ) {
 			StringBuilder sb = new StringBuilder();
@@ -264,7 +272,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	responsive: " + dataTable.isResponsive() + ", " +
 					 "	paging: " + dataTable.isPaginated() + ", " +
 					 "	pageLength: " + pageLength + ", " +
-					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " +
+					 "	lengthMenu: " + getPageLengthMenu(dataTable) + ", " +
 					 "	searching: " + dataTable.isSearching() + ", " +
 					 "	order: " + orderString + ", " +
 					 "  stateSave: " + dataTable.isSaveState() + ", " +
@@ -294,6 +302,20 @@ public class DataTableRenderer extends CoreRenderer {
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
+	}
+
+	private String getPageLengthMenu(DataTable dataTable) {
+		String menu=dataTable.getPageLengthMenu();
+		if (menu!=null) {
+			menu=menu.trim();
+			if (!menu.startsWith("[")) {
+				menu = "["+menu;
+			}
+			if (!menu.endsWith("]")) {
+				menu  =menu + "]";
+			}
+		}
+		return menu;
 	}
 
 	/**

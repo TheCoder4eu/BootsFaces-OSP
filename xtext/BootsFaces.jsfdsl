@@ -479,7 +479,7 @@ widget dataTable
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     page-length          Integer default "10"                              "Sets the default page length for paginated dataTable. The default value is 10."
-    page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
+    page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
@@ -498,6 +498,12 @@ widget dataTable
 	+tooltip
 }
 
+widget dataTableColumn {
+    label                                                                  "Label in the header of the colum."
+    order                                                                  "Is the table to be sorted by this column? Legal values are 'asc' and 'desc'."
+	+style
+
+}
 
 widget datepicker
        implemented_by net.bootsfaces.component.DatePicker
