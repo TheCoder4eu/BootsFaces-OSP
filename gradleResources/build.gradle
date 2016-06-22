@@ -196,7 +196,8 @@ task copyImageResources(type: Copy) {
 
 task copyJqResources(type: Copy) {
   	description 'BootsFaces task: copies the jQuery JS files to the target folder.'
-  	from 'jq'
+    from 'jq/'+jqversion
+  	from 'jq/assets'
   	into "${buildDir}/resources/META-INF/resources/bsf/jq"
 }
 
