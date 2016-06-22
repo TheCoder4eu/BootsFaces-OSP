@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -49,6 +50,8 @@ public class DataTableRenderer extends CoreRenderer {
 //		DataTable dataTable = (DataTable) component;
 //	}
 
+
+	private static final Pattern NUMERIC_PATTERN = Pattern.compile("[0-9]+");
 
 	/**
 	 * This methods generates the HTML code of the current b:dataTable.
@@ -100,24 +103,61 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	private void generateFooter(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
+		boolean hasFooter=false;
+		boolean hasSearchbar = false;
 		if(dataTable.isMultiColumnSearch()) {
-			rw.startElement( "tfoot", dataTable );
-			rw.startElement( "tr", dataTable );
-			List<UIComponent> columns = dataTable.getChildren();
-			for ( UIComponent column : columns ) {
-				if (!column.isRendered()) {
-					continue;
-				}
-				rw.startElement( "th", dataTable );
-				if ( column.getFacet( "header" ) != null ) {
-					UIComponent facet = column.getFacet( "header" );
-					facet.encodeAll( context );
-				}
-				rw.endElement( "th" );
+			String position = dataTable.getMultiColumnSearchPosition();
+			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
+				hasSearchbar=true;
 			}
-			rw.endElement( "tr" );
+		}
+		for (UIComponent column : dataTable.getChildren()) {
+			if (!column.isRendered()) {
+		        continue;
+		    }
+		    hasFooter |= column.getFacet("footer") != null;
+		}
+		if (hasFooter || hasSearchbar) {
+			rw.startElement( "tfoot", dataTable );
+			if (hasSearchbar) {
+				generateMultiColumnSearchRow(context, dataTable, rw);
+			}
+			if (hasFooter) {
+				for (UIComponent column : dataTable.getChildren()) {
+				    if (!column.isRendered()) {
+				        continue;
+				    }
+					rw.startElement("th", dataTable);
+					if (column.getFacet("footer") != null) {
+						UIComponent facet = column.getFacet("footer");
+						facet.encodeAll(context);
+					}
+					rw.endElement("th");
+				}
+			}
 			rw.endElement( "tfoot" );
 		}
+	}
+
+	private void generateMultiColumnSearchRow(FacesContext context, DataTable dataTable, ResponseWriter rw)
+			throws IOException {
+		rw.startElement( "tr", dataTable );
+		List<UIComponent> columns = dataTable.getChildren();
+		for ( UIComponent column : columns ) {
+			if (!column.isRendered()) {
+				continue;
+			}
+			rw.startElement( "th", dataTable );
+			rw.writeAttribute("class", "bf-multisearch", null);
+			if (column.getFacet("header") != null) {
+				UIComponent facet = column.getFacet("header");
+				facet.encodeAll(context);
+			} else if (column.getAttributes().get("label") != null) {
+				rw.writeText(column.getAttributes().get("label"), null);
+			}
+			rw.endElement( "th" );
+		}
+		rw.endElement( "tr" );
 	}
 
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
@@ -235,10 +275,38 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 				else infos.set(index, s + ",'type': '" + type + "'");
 			}
+			if (column.getAttributes().get("orderable") != null) {
+				String orderable = column.getAttributes().get("orderable").toString();
+				if ("false".equalsIgnoreCase(orderable)) {
+					if (dataTable.getColumnInfo()==null) {
+						List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
+						for (int k = 0; k < dataTable.getChildren().size(); k++) {
+							infos.add(null);
+						}
+						dataTable.setColumnInfo(infos);
+					}
+					List<String> infos = dataTable.getColumnInfo();
+					String s = infos.get(index);
+					if (s==null) {
+						infos.set(index, "'orderable': false");
+					}
+					else infos.set(index, s + ",'orderable': false");
+				}
+			}
 			rw.endElement("th");
 			index++;
 		}
 		rw.endElement("tr");
+		if (false) {
+			// Putting input fields into the header doesn't work yet
+			if(dataTable.isMultiColumnSearch()) {
+				String position = dataTable.getMultiColumnSearchPosition();
+				if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
+					generateMultiColumnSearchRow(context, dataTable, rw);
+				}
+			}
+		}
+
 		rw.endElement("thead");
 	}
 
@@ -311,33 +379,51 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	searching: " + dataTable.isSearching() + ", " +
 					 "	order: " + orderString + ", " +
 					 "  stateSave: " + dataTable.isSaveState() + ", " +
-					 (dataTable.getScrollSize() > 0 ? " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + "," : "") +
+					 generateScrollOptions(dataTable) +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 generateColumnInfos(dataTable.getColumnInfo()) +
-					 "});" +
-					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
-					 "dataTableProperties attribute; Could not save state';", null);
+					 "});"
+					 , null);
 
 		if(dataTable.isMultiColumnSearch())	{
 			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
 			//# Convert footer column text to input textfields
-			rw.writeText( widgetVar + ".find('tfoot th').each(function() {" +
+			rw.writeText("\n" + widgetVar + ".find('.bf-multisearch').each(function() {" +
 						  "var title = $(this).text();" +
 						  "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
-						  "});", null );
-			//# Add event listeners for each input
-			rw.writeText( "table.columns().every( function () {" +
-						  "var that = this;" +
-						  "$( 'input', this.footer() ).on( 'keyup change', function () {" +
+						  "});\n", null );
+			//# Add event listeners for each multisearch input
+			rw.writeText( "table.columns().every( function (col) {" +
+						  "var that = this;\ndebugger;\n" +
+					      "var inputs = $(" + widgetVar + ".find('.bf-multisearch input'));\n" +
+						  "$(inputs[col]).on( 'keyup change', function () {" +
 						  "    if ( that.search() !== this.value ) {" +
+						  "console.log(this.value);" +
+						  "console.log(that);" +
 						  "        that.search( this.value ).draw('page');" +
 						  "    }" +
 						  "} );" +
+
 						  "} );", null );
 		}
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
+	}
+
+	private String generateScrollOptions(DataTable dataTable) {
+		String scrollY=dataTable.getScrollSize();
+		if (null==scrollY) {
+			return "";
+		}
+		if (!NUMERIC_PATTERN.matcher(scrollY).matches()) {
+			// you can pass the scrollY either as a numeric value (in which case it is the height in px)
+			// or as a String containing the unit. If it's a String, it has to be surround be ticks.
+			scrollY = "'" + scrollY + "'";
+		};
+
+
+		return " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + ",";
 	}
 
 	private String generateColumnInfos(List<String> columnInfo) {

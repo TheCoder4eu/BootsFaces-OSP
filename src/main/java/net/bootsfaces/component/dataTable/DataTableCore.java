@@ -44,6 +44,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		largeScreen,
 		mediumScreen,
 		multiColumnSearch,
+		multiColumnSearchPosition,
 		offset,
 		offsetLg,
 		offsetMd,
@@ -333,6 +334,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
+	}
+
+	/**
+	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMultiColumnSearchPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.multiColumnSearchPosition, "top");
+	}
+
+	/**
+	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMultiColumnSearchPosition(String _multiColumnSearchPosition) {
+		getStateHelper().put(PropertyKeys.multiColumnSearchPosition, _multiColumnSearchPosition);
 	}
 
 	/**
@@ -672,18 +689,18 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getScrollSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.scrollSize, 0);
+	public String getScrollSize() {
+		return (String) getStateHelper().eval(PropertyKeys.scrollSize);
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setScrollSize(int _scrollSize) {
+	public void setScrollSize(String _scrollSize) {
 		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
 	}
 

@@ -462,14 +462,15 @@ widget dataTable
        has_tooltip
        is_responsive
  {
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+    ajax                 Boolean                                           "Activates AJAX. The default value is false (no AJAX)."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
-    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    disabled             Boolean                                           "Boolean value to specify if the button is disabled."
 	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
-    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    id                   inherited                                         "Unique identifier of the component in a namingContainer."
+    immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
+    multi-column-search-position default "top"                             "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -487,7 +488,7 @@ widget dataTable
     row-highlight		 Boolean default "true"							   "Enable the row highlight css. Default: true."
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
-    scroll-size 		 Integer default "0"	  						   "If set, force the height of table to the size specified."
+    scroll-size 		 String    						                   "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
     update                                                                 "Component(s) to be updated with ajax."
     value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."
@@ -502,13 +503,14 @@ widget dataTableColumn {
     label                                                                  "Label in the header of the colum."
     order                                                                  "Is the table to be sorted by this column? Legal values are 'asc' and 'desc'."
     order-by                                                               "Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox."
-    column-type                                                            "Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'."
+    data-type                                                              "Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'."
 	content-style                                                          "Inline style of the cells in the content area."
     content-style-class                                                    "Style class of cells in the content area.."
 	footer-style                                                           "Inline style of the footer cell."
     footer-style-class                                                     "Style class of this footer cell."
 	header-style                                                           "Inline style of the header cell."
     header-style-class                                                     "Style class of this header cell."
+    orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
 	+style
 
 }

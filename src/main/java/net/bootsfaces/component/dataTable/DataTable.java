@@ -41,7 +41,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 @ResourceDependencies({
 		@ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "js/datatables-bf-extensions.js", target = "body"),
+//		@ResourceDependency(library = "bsf", name = "js/datatables-bf-extensions.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
 public class DataTable extends DataTableCore

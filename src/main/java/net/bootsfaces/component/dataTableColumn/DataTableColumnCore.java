@@ -26,9 +26,9 @@ import net.bootsfaces.utils.BsfUtils;
 public abstract class DataTableColumnCore extends UIOutput {
 
 	protected enum PropertyKeys {
-		columnType,
 		contentStyle,
 		contentStyleClass,
+		dataType,
 		footerStyle,
 		footerStyleClass,
 		headerStyle,
@@ -36,6 +36,7 @@ public abstract class DataTableColumnCore extends UIOutput {
 		label,
 		order,
 		orderBy,
+		orderable,
 		style,
 		styleClass;
 		String toString;
@@ -50,22 +51,6 @@ public abstract class DataTableColumnCore extends UIOutput {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
-	}
-
-	/**
-	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getColumnType() {
-		return (String) getStateHelper().eval(PropertyKeys.columnType);
-	}
-
-	/**
-	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setColumnType(String _columnType) {
-		getStateHelper().put(PropertyKeys.columnType, _columnType);
 	}
 
 	/**
@@ -98,6 +83,22 @@ public abstract class DataTableColumnCore extends UIOutput {
 	 */
 	public void setContentStyleClass(String _contentStyleClass) {
 		getStateHelper().put(PropertyKeys.contentStyleClass, _contentStyleClass);
+	}
+
+	/**
+	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDataType() {
+		return (String) getStateHelper().eval(PropertyKeys.dataType);
+	}
+
+	/**
+	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDataType(String _dataType) {
+		getStateHelper().put(PropertyKeys.dataType, _dataType);
 	}
 
 	/**
@@ -210,6 +211,22 @@ public abstract class DataTableColumnCore extends UIOutput {
 	 */
 	public void setOrderBy(String _orderBy) {
 		getStateHelper().put(PropertyKeys.orderBy, _orderBy);
+	}
+
+	/**
+	 * Disables or enables the sort button for this column. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isOrderable() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.orderable, true);
+	}
+
+	/**
+	 * Disables or enables the sort button for this column. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOrderable(boolean _orderable) {
+		getStateHelper().put(PropertyKeys.orderable, _orderable);
 	}
 
 	/**
