@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -37,6 +37,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -48,7 +49,9 @@ import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.JQ;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -57,7 +60,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
-public class DatePicker extends HtmlInputText {
+public class DatePicker extends HtmlInputText implements IResponsive {
 
 	/**
 	 * <p>
@@ -110,7 +113,7 @@ public class DatePicker extends HtmlInputText {
 			final String jsl = "jq/ui/i18n/datepicker-" + language + ".js";
 			rdp = rh.createResource(jsl, C.BSF_LIBRARY);
 			if (rdp != null) { // rdp is null if the language .js is not present
-								// in jar
+									// in jar
 				AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, jsl);
 				break;
 			}
@@ -182,7 +185,7 @@ public class DatePicker extends HtmlInputText {
 		 * <script id="form:popCal_js" type="text/javascript"> $(function(){
 		 * $('form:popCal').datepicker({id:'form:popupCal',popup:true,locale:'
 		 * en_US',dateFormat:'m/d/y'}); }); </script>
-		 * 
+		 *
 		 * Inline Adds a Div and Uses a Hidden Input
 		 */
 
@@ -196,7 +199,7 @@ public class DatePicker extends HtmlInputText {
 	 * implemented in the HeadRenderer, this code has been moved here to provide
 	 * better compatibility to PrimeFaces. If multiple date pickers are on the
 	 * page, the script is generated redundantly, but this shouldn't do no harm.
-	 * 
+	 *
 	 * @param fc
 	 *            The current FacesContext
 	 * @throws IOException
@@ -211,7 +214,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Encodes the HTML for this context
-	 * 
+	 *
 	 * @param fc
 	 * @throws IOException
 	 */
@@ -219,6 +222,11 @@ public class DatePicker extends HtmlInputText {
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(fc);
 		ResponseWriter rw = fc.getResponseWriter();
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(this, false).trim();
+		if (responsiveStyleClass.length() > 0) {
+			rw.startElement("div", this);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+		}
 		// stz = selectTimeZone(attrs.get(A.TZ));
 
 		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(JQ.LOCALE)));
@@ -251,7 +259,7 @@ public class DatePicker extends HtmlInputText {
 			dpId = clientId;
 
 			if (!mode.equals("popup")) { // with icon => div with prepend/append
-											// style
+												// style
 				rw.startElement("div", this);
 				rw.writeAttribute("class", "input-group", "class");
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
@@ -306,6 +314,10 @@ public class DatePicker extends HtmlInputText {
 			JQ.datePickerToggler(rw, clientId, clientId + "_" + ADDON);
 
 		} // Closes the popup prepend/append style div
+
+		if (responsiveStyleClass.length() > 0) {
+			rw.endElement("div");
+		}
 	}
 
 	private void encodeJS(FacesContext fc, ResponseWriter rw, String cId, String dpId) throws IOException {
@@ -410,7 +422,7 @@ public class DatePicker extends HtmlInputText {
 	/**
 	 * Selects the Date Pattern to use based on the given Locale if the input
 	 * format is null
-	 * 
+	 *
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
 	 * @param format
@@ -438,7 +450,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Implementation from Apache Commons Lang
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -482,7 +494,7 @@ public class DatePicker extends HtmlInputText {
 
 	/**
 	 * Converts a java Date format to a jQuery date format
-	 * 
+	 *
 	 * @param format
 	 *            Format to be converted
 	 * @return converted format
@@ -602,4 +614,684 @@ public class DatePicker extends HtmlInputText {
 		}
 		return (String) o;
 	}
+
+	/**
+	 * Yields the value of the required and error level CSS class.
+	 *
+	 * @param input
+	 * @param clientId
+	 * @return
+	 */
+	public String getErrorAndRequiredClass(UIInput input, String clientId) {
+		String[] levels = { "bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal" };
+		int level = 0;
+		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
+		if (null != messages) {
+			while (messages.hasNext()) {
+				FacesMessage message = messages.next();
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
+					if (level < 1)
+						level = 1;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
+					if (level < 2)
+						level = 2;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
+					if (level < 3)
+						level = 3;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
+					if (level < 4)
+						level = 4;
+			}
+		}
+		String styleClass = levels[level];
+		if (input.isRequired()) {
+			styleClass += " bf-required";
+		}
+		return styleClass;
+	}
+
+	protected enum PropertyKeys {
+		binding,
+		changeMonth,
+		changeYear,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		display,
+		firstDay,
+		hidden,
+		lang,
+		largeScreen,
+		mediumScreen,
+		mode,
+		numberOfMonths,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		placeholder,
+		required,
+		requiredMessage,
+		showButtonPanel,
+		showWeek,
+		smallScreen,
+		span,
+		style,
+		styleClass,
+		tinyScreen,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		visible;
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
+
+	/**
+	 * Boolean value to specify if month selector should be shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isChangeMonth() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.changeMonth, false);
+	}
+
+	/**
+	 * Boolean value to specify if month selector should be shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setChangeMonth(boolean _changeMonth) {
+		getStateHelper().put(PropertyKeys.changeMonth, _changeMonth);
+	}
+
+	/**
+	 * Boolean value to specify if year selector should be shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isChangeYear() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.changeYear, false);
+	}
+
+	/**
+	 * Boolean value to specify if year selector should be shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setChangeYear(boolean _changeYear) {
+		getStateHelper().put(PropertyKeys.changeYear, _changeYear);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColLg() {
+		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColLg(String _colLg) {
+		getStateHelper().put(PropertyKeys.colLg, _colLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColMd() {
+		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColMd(String _colMd) {
+		getStateHelper().put(PropertyKeys.colMd, _colMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColSm() {
+		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColSm(String _colSm) {
+		getStateHelper().put(PropertyKeys.colSm, _colSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColXs() {
+		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColXs(String _colXs) {
+		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDisplay() {
+		return (String) getStateHelper().eval(PropertyKeys.display, "block");
+	}
+
+	/**
+	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisplay(String _display) {
+		getStateHelper().put(PropertyKeys.display, _display);
+	}
+
+	/**
+	 * Set the first day of the week: Sunday is 0, Monday is 1, etc. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getFirstDay() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.firstDay, 0);
+	}
+
+	/**
+	 * Set the first day of the week: Sunday is 0, Monday is 1, etc. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFirstDay(int _firstDay) {
+		getStateHelper().put(PropertyKeys.firstDay, _firstDay);
+	}
+
+	/**
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHidden() {
+		return (String) getStateHelper().eval(PropertyKeys.hidden);
+	}
+
+	/**
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHidden(String _hidden) {
+		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+
+	/**
+	 * This option allows you to localize the DatePicker, specifying the language code (eg. it, fr, es, nl). The datepicker uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes. The Datepicker is localized with the language specified by the ViewRoot Locale. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLang() {
+		return (String) getStateHelper().eval(PropertyKeys.lang);
+	}
+
+	/**
+	 * This option allows you to localize the DatePicker, specifying the language code (eg. it, fr, es, nl). The datepicker uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes. The Datepicker is localized with the language specified by the ViewRoot Locale. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLang(String _lang) {
+		getStateHelper().put(PropertyKeys.lang, _lang);
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLargeScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLargeScreen(String _largeScreen) {
+		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMediumScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMediumScreen(String _mediumScreen) {
+		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
+	}
+
+	/**
+	 * Controls how the Calendar is showed, can be inline or popup. Default is popup. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMode() {
+		return (String) getStateHelper().eval(PropertyKeys.mode);
+	}
+
+	/**
+	 * Controls how the Calendar is showed, can be inline or popup. Default is popup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMode(String _mode) {
+		getStateHelper().put(PropertyKeys.mode, _mode);
+	}
+
+	/**
+	 * Number of months to show. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getNumberOfMonths() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.numberOfMonths, 0);
+	}
+
+	/**
+	 * Number of months to show. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setNumberOfMonths(int _numberOfMonths) {
+		getStateHelper().put(PropertyKeys.numberOfMonths, _numberOfMonths);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffset() {
+		return (String) getStateHelper().eval(PropertyKeys.offset);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffset(String _offset) {
+		getStateHelper().put(PropertyKeys.offset, _offset);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetLg() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetLg(String _offsetLg) {
+		getStateHelper().put(PropertyKeys.offsetLg, _offsetLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetMd() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetMd(String _offsetMd) {
+		getStateHelper().put(PropertyKeys.offsetMd, _offsetMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetSm() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetSm(String _offsetSm) {
+		getStateHelper().put(PropertyKeys.offsetSm, _offsetSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetXs() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetXs);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetXs(String _offsetXs) {
+		getStateHelper().put(PropertyKeys.offsetXs, _offsetXs);
+	}
+
+	/**
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getPlaceholder() {
+		return (String) getStateHelper().eval(PropertyKeys.placeholder);
+	}
+
+	/**
+	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPlaceholder(String _placeholder) {
+		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRequired() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
+	}
+
+	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequired(boolean _required) {
+		getStateHelper().put(PropertyKeys.required, _required);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRequiredMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.requiredMessage);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequiredMessage(String _requiredMessage) {
+		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
+	}
+
+	/**
+	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowButtonPanel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showButtonPanel, false);
+	}
+
+	/**
+	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowButtonPanel(boolean _showButtonPanel) {
+		getStateHelper().put(PropertyKeys.showButtonPanel, _showButtonPanel);
+	}
+
+	/**
+	 * Boolean value to specify if Week number should be shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowWeek() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showWeek, false);
+	}
+
+	/**
+	 * Boolean value to specify if Week number should be shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowWeek(boolean _showWeek) {
+		getStateHelper().put(PropertyKeys.showWeek, _showWeek);
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSmallScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSmallScreen(String _smallScreen) {
+		getStateHelper().put(PropertyKeys.smallScreen, _smallScreen);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSpan() {
+		return (String) getStateHelper().eval(PropertyKeys.span);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpan(String _span) {
+		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.style);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTinyScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTinyScreen(String _tinyScreen) {
+		getStateHelper().put(PropertyKeys.tinyScreen, _tinyScreen);
+	}
+
+	/**
+	 * The text of the tooltip. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltip() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
+	}
+
+	/**
+	 * The text of the tooltip. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltip(String _tooltip) {
+		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipContainer() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+	}
+
+	/**
+	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipContainer(String _tooltipContainer) {
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelay() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+	}
+
+	/**
+	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelay(int _tooltipDelay) {
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelayHide() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+	}
+
+	/**
+	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayHide(int _tooltipDelayHide) {
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTooltipDelayShow() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+	}
+
+	/**
+	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipDelayShow(int _tooltipDelayShow) {
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
+
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
+	}
+
+	/**
+	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipPosition(String _tooltipPosition) {
+		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+
+	/**
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getVisible() {
+		return (String) getStateHelper().eval(PropertyKeys.visible);
+	}
+
+	/**
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setVisible(String _visible) {
+		getStateHelper().put(PropertyKeys.visible, _visible);
+	}
+
 }

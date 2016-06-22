@@ -75,7 +75,8 @@ public class ModalRenderer extends CoreRenderer {
 
 		String title = modal.getTitle();
 		rw.startElement("div", component); // modal
-		rw.writeAttribute("id", component.getClientId(context), "id");
+                String cid=component.getClientId(context);
+		rw.writeAttribute("id", cid, "id");
 
 		String styleClasses = "modal";
 		if (modal.getStyleClass() != null) {
@@ -95,8 +96,7 @@ public class ModalRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("role", "dialog", null);
 		rw.writeAttribute("tabindex", "-1", null);
-		rw.writeAttribute("aria-labelledby",
-				component.getClientId(context) + "_Label", null);
+		rw.writeAttribute("aria-labelledby", cid + "_Label", null);
 		rw.writeAttribute("aria-hidden", "true", null);
 
 		rw.startElement("div", component); // modal-dialog
@@ -110,6 +110,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "modal-content", "class");
 
 		rw.startElement("div", component); // modal-header
+                rw.writeAttribute("id", cid+"_header", "id");
 
 		String headerStyleClasses = "modal-header";
 		if (modal.getHeaderClass() != null) {
@@ -133,7 +134,7 @@ public class ModalRenderer extends CoreRenderer {
 
 		if (title != null) {
 			rw.startElement("h4", component);
-			rw.writeAttribute("id", component.getClientId(context) + "_Label",
+			rw.writeAttribute("id", cid + "_Label",
 					"id");
 			rw.writeText(title, null);
 			rw.endElement("h4");
@@ -141,6 +142,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.endElement("div"); // modal-header
 
 		rw.startElement("div", component); // modal-body
+                rw.writeAttribute("id", cid+"_body", "id");
 		if (modal.getContentClass() != null) {
 			rw.writeAttribute("class", "modal-body " + modal.getContentClass(),
 					"class");
@@ -178,10 +180,13 @@ public class ModalRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 
 		rw.endElement("div"); // modal-body
+                
+                String cid=component.getClientId(context);
 
 		UIComponent foot = component.getFacet("footer");
 		if (foot != null) {
 			rw.startElement("div", component); // modal-footer
+                        rw.writeAttribute("id", cid+"_footer", "id");
 			rw.writeAttribute("class", "modal-footer", "class");
 			foot.encodeAll(context);
 
@@ -190,7 +195,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.endElement("div"); // modal-content
 		rw.endElement("div"); // modal-dialog
 		rw.endElement("div"); // modal
-		initModal(rw, component.getClientId(context));
+		initModal(rw, cid);
 	}
 
 	private void initModal(ResponseWriter rw, String cId) throws IOException {

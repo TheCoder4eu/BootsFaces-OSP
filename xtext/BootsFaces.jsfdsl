@@ -464,7 +464,7 @@ widget dataTable
  {
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
-    dataTable-properties Map<DataTablePropertyType, Object>                "Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
+    data-table-properties Map<DataTablePropertyType, Object>                "Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
 	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -483,6 +483,7 @@ widget dataTable
     page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    propertyBean         ADataTablePropertyBean                            "Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
     rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     row-highlight		 Boolean default "true"							   "Enable the row highlight css. Default: true."
@@ -502,6 +503,7 @@ widget dataTable
 widget datepicker
        implemented_by net.bootsfaces.component.DatePicker
        has_tooltip
+       is_responsive
 {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
@@ -513,11 +515,14 @@ widget datepicker
     number-of-months    Integer                                            "Number of months to show."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel   Boolean                                            "Boolean value to specify if row Buttons to the bottom of calendar should be shown."
     show-week           Boolean                                            "Boolean value to specify if Week number should be shown."
    	value               inherited                                          "Value."
 	+style
 	+tooltip
+	+responsive
 }
 
 widget dateTimePicker
@@ -542,6 +547,8 @@ widget dateTimePicker
     max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel        Boolean                                       "Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once)."
     show-week	     		 Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
     show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
@@ -1192,6 +1199,7 @@ widget navLink
        implemented_by net.bootsfaces.component.NavLink
        extends UICommand
        has_tooltip
+       is_responsive
  {
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
@@ -1340,6 +1348,7 @@ widget poll
 widget progressBar
        implemented_by net.bootsfaces.component.ProgressBar
        has_tooltip
+       is_responsive
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1355,6 +1364,7 @@ widget progressBar
     striped             Boolean default "false"                            "If true, stripes will be added to the ProgressBar's look. Default value: false."
     animated            Boolean default "false"                            "If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false."
     +tooltip
+    +responsive
 }
 
 
@@ -1412,6 +1422,7 @@ widget selectBooleanCheckbox
        processes_input
        extends HtmlInputText
        has_tooltip
+       is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
@@ -1446,7 +1457,6 @@ widget selectBooleanCheckbox
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
@@ -1455,6 +1465,7 @@ widget selectBooleanCheckbox
     value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
     +tooltip
+    +responsive
 }
 
 widget shake
@@ -1480,6 +1491,7 @@ widget switch
        processes_input
        extends net.bootsfaces.component.SelectBooleanCheckbox
        has_tooltip
+       is_responsive
  {
     accesskey                                                        inherited      "Access key to transfer focus to the input element."
     alt                                                              inherited      "Alternate textual description of the input element."
@@ -1513,7 +1525,6 @@ widget switch
     readonly            Boolean                                      inherited      "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()"  inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean                                      inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    span                Integer                                      inherited      "The size of the input specified as number of grid columns."
     style                                                            inherited      "Inline style of the input element."
     style-class                                                      inherited      "Style class of the input element."
     tabindex                                                         inherited      "Advisory tooltip information."
@@ -1532,12 +1543,14 @@ widget switch
     handle-width        Integer                                                     "Width of the left and right sides in pixels."
     label-width         Integer                                                     "Width of the center handle in pixels."
     +tooltip
+    +responsive
 }
 
 
 widget selectMultiMenu
        extends HtmlInputText
        has_tooltip
+       is_responsive
        description "Similar to a traditional combobox, but with the option to select multiple values."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
@@ -1573,25 +1586,25 @@ widget selectMultiMenu
     button-width        Integer                                            "The width of the multiselect button may be fixed using this option."
     enable-case-insensitive-filtering  Boolean default "false"             "If set to true, the filter is case-insensitive."
 
-    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
-    span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Value."
     +tooltip
+    +responsive
 }
 
 
 widget selectOneMenu
        extends HtmlInputText
        has_tooltip
+       is_responsive
        description "This component is also known as combobox or drop-down-menu."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
@@ -1621,7 +1634,6 @@ widget selectOneMenu
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
-    placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
@@ -1629,7 +1641,6 @@ widget selectOneMenu
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
-    span                Integer                                            "The size of the input specified as number of grid columns."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
@@ -1637,6 +1648,7 @@ widget selectOneMenu
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Value."
     +tooltip
+    +responsive
 }
 
 
@@ -1733,6 +1745,10 @@ widget tabView
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     onclick                                                                "OnClick DHTML event ."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    onshow                                                                 "JavaScript and/or AJAX code to be executed just before bringing a tab to the front"
+    onshown                                                                "JavaScript and/or AJAX code to be executed just after bringing a tab to the front"
+    onhide                                                                 "JavaScript and/or AJAX code to be executed just before pushing a tab to the back"
+    onhidden                                                               "JavaScript and/or AJAX code to be executed just after pushing a tab to the back"
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     role                                                                   "The role can be used to provide information to screenreaders."
     style-class                                                            "Style class of the div surrounding this element."
@@ -1743,6 +1759,7 @@ widget tabView
 widget tree
        implemented_by net.bootsfaces.component.tree.Tree
        extends UIComponentBase
+       is_responsive
 {
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1761,6 +1778,7 @@ widget tree
     selected-color																		"Hex value of selected color."
     border-color			default "#DDDDDD"											"Hex value of border color (default #DDDDDD)"
     update																   				"Component(s) to be updated with ajax."
+	+responsive
 }
 
 
@@ -1769,6 +1787,7 @@ widget thumbnail
        extends UIComponentBase
        has_children
        has_tooltip
+       is_responsive
  {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1776,6 +1795,7 @@ widget thumbnail
     style                                                                  "Inline CSS of the tab."
     style-class                                                             "Style class of the div surrounding the tab pane."
     +tooltip
+    +responsive
 }
 
 
@@ -1783,6 +1803,7 @@ widget well
        implemented_by net.bootsfaces.layout.Well
        has_children
        has_tooltip
+       is_responsive
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1790,4 +1811,5 @@ widget well
     style                                                                  "Inline CSS of the tab."
     style-class                                                            "Style class of the div surrounding the tab pane."
     +tooltip
+    +responsive
 }

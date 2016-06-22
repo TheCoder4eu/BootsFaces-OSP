@@ -75,7 +75,10 @@ public class TabView extends UIOutput
 	 */
 	public Map<String, String> getJQueryEvents() {
 		Map<String, String> result = new HashMap<String, String>();
-		result.put("click", "click");
+		result.put("show", "shown.bs.tab");
+		result.put("shown", "shown.bs.tab");
+		result.put("hide", "hide.bs.tab");
+		result.put("hidden", "hidden.bs.tab");
 		return result;
 	}
 
@@ -112,6 +115,10 @@ public class TabView extends UIOutput
 		immediate,
 		onclick,
 		oncomplete,
+		onhidden,
+		onhide,
+		onshow,
+		onshown,
 		pills,
 		process,
 		role,
@@ -280,6 +287,70 @@ public class TabView extends UIOutput
 	 */
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just after pushing a tab to the back <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnhidden() {
+		return (String) getStateHelper().eval(PropertyKeys.onhidden);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just after pushing a tab to the back <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnhidden(String _onhidden) {
+		getStateHelper().put(PropertyKeys.onhidden, _onhidden);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just before pushing a tab to the back <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnhide() {
+		return (String) getStateHelper().eval(PropertyKeys.onhide);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just before pushing a tab to the back <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnhide(String _onhide) {
+		getStateHelper().put(PropertyKeys.onhide, _onhide);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just before bringing a tab to the front <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnshow() {
+		return (String) getStateHelper().eval(PropertyKeys.onshow);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just before bringing a tab to the front <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnshow(String _onshow) {
+		getStateHelper().put(PropertyKeys.onshow, _onshow);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just after bringing a tab to the front <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnshown() {
+		return (String) getStateHelper().eval(PropertyKeys.onshown);
+	}
+
+	/**
+	 * JavaScript and/or AJAX code to be executed just after bringing a tab to the front <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnshown(String _onshown) {
+		getStateHelper().put(PropertyKeys.onshown, _onshown);
 	}
 
 	/**

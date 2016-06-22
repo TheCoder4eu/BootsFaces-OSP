@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -38,7 +38,7 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:tabView /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tabView.TabView")
 public class TabViewRenderer extends CoreRenderer {
-	
+
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// TODO Auto-generated method stub
@@ -52,7 +52,7 @@ public class TabViewRenderer extends CoreRenderer {
 	 * default implementation simply stores the input value in the list of
 	 * submitted values. If the validation checks are passed, the values in the
 	 * <code>submittedValues</code> list are store in the backend bean.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -82,7 +82,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:tabView.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -112,14 +112,14 @@ public class TabViewRenderer extends CoreRenderer {
 		final String tabPosition = tabView.getTabPosition();
 		String wrapperClass = "tab-panel";
 		if("bottom".equalsIgnoreCase(tabPosition)) wrapperClass += " tabs-below";
-		
+
 		writer.startElement("div", tabView);
 		writer.writeAttribute("class", wrapperClass, "class");
 		writer.writeAttribute("role", "tabpanel", "class");
 		writer.writeAttribute("dir", tabView.getDir(), "dir");
-		
+
 		final List<UIComponent> tabs = getTabs(tabView);
-		
+
 		if("bottom".equalsIgnoreCase(tabPosition)) {
 			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
 			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
@@ -147,27 +147,28 @@ public class TabViewRenderer extends CoreRenderer {
 			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
 			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
 		}
-		
+
 		writer.endElement("div");
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer, "#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
 		Tooltip.activateTooltips(context, tabView);
 	}
-	
+
 	/**
 	 * Draw a clear div
 	 * @param writer
 	 * @param tabView
 	 * @throws IOException
 	 */
-	private static void drawClearDiv(ResponseWriter writer, UIComponent tabView) 
+	private static void drawClearDiv(ResponseWriter writer, UIComponent tabView)
 	throws IOException {
 		writer.startElement("div", tabView);
 		writer.writeAttribute("style", "clear:both;", "style");
 		writer.endElement("div");
 	}
-	
+
 	/**
 	 * Encode the list of links that render the tabs
-	 * 
+	 *
 	 * @param context
 	 * @param writer
 	 * @param tabView
@@ -178,7 +179,7 @@ public class TabViewRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	private static void encodeTabLinks(FacesContext context, ResponseWriter writer, TabView tabView,
-			int currentlyActiveIndex, List<UIComponent> tabs, String clientId, String hiddenInputFieldID) 
+			int currentlyActiveIndex, List<UIComponent> tabs, String clientId, String hiddenInputFieldID)
 	throws IOException {
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
@@ -189,7 +190,7 @@ public class TabViewRenderer extends CoreRenderer {
 		} else {
 			classes = classes + (tabView.isPills() ? " nav-pills" : " nav-tabs");
 		}
-		
+
 		if (tabView.getStyleClass() != null) {
 			classes += " ";
 			classes += tabView.getStyleClass();
@@ -214,7 +215,7 @@ public class TabViewRenderer extends CoreRenderer {
 	 * Essentially, getTabs() does the same as getChildren(), but it filters
 	 * everything that's not a tab. In particular, comments are ignored. See
 	 * issue 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
-	 * 
+	 *
 	 * @return
 	 */
 	private List<UIComponent> getTabs(TabView tabView) {
@@ -229,7 +230,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the HTML of the tab panes.
-	 * 
+	 *
 	 * @param context
 	 *            the current FacesContext
 	 * @param writer
@@ -315,7 +316,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the HTML of the tabs.
-	 * 
+	 *
 	 * @param context
 	 *            the current FacesContext
 	 * @param writer
@@ -363,7 +364,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("role", "presentation", "role");
 
 		Tooltip.generateTooltip(context, tab, writer);
-		
+
 		String classes = isActive ? "active" : "";
 		if (tab.getStyleClass() != null) {
 			classes += " ";
@@ -372,7 +373,7 @@ public class TabViewRenderer extends CoreRenderer {
 		if (classes.length() > 0) {
 			writer.writeAttribute("class", classes, "class");
 		}
-		
+
 		if (tab.getStyle() != null) {
 			writer.writeAttribute("style", tab.getStyle(), "style");
 		}

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -41,7 +41,7 @@ public class MessageRenderer extends CoreRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:message.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -70,9 +70,9 @@ public class MessageRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = message.getClientId();
 
+		rw.startElement("div", message);
+		writeAttribute(rw, "id", clientId);
 		if (null != messageList && (!messageList.isEmpty())) {
-			rw.startElement("div", message);
-			writeAttribute(rw, "id", clientId);
 			if (null != message.getDir()) {
 				rw.writeAttribute("dir", message.getDir(), "dir");
 			}
@@ -86,11 +86,11 @@ public class MessageRenderer extends CoreRenderer {
 			String severityClass = findHighestSeverityClass(messageList, message);
 			// alert-danger
 			styleClass += "alert " + severityClass + " bf-message";
-			
+
 			writeAttribute(rw, "class", styleClass);
 			writeAttribute(rw, "style", findHighestSeverityStyle(messageList, message));
 			writeAttribute(rw, "role", "alert");
-			
+
 			boolean firstMessage=true;
 
 			for (FacesMessage msg : messageList) {
@@ -107,7 +107,7 @@ public class MessageRenderer extends CoreRenderer {
 					writeAttribute(rw, "aria-hidden", "true");
 					rw.endElement("span");
 				}
-				
+
 				if (message.isShowSummary() && msg.getSummary() != null &&
 						!msg.getSummary().equals(msg.getDetail()) ) {
 					rw.startElement("span", component);
@@ -120,7 +120,7 @@ public class MessageRenderer extends CoreRenderer {
 					}
 					rw.endElement("span");
 				}
-				
+
 				if (message.isShowDetail() && msg.getDetail() != null) {
 					rw.startElement("span", component);
 					writeAttribute(rw, "class", "bf-message-detail");
@@ -130,12 +130,12 @@ public class MessageRenderer extends CoreRenderer {
 						warnOnFirstUse();
 						rw.write(msg.getDetail());
 					}
-					
+
 					rw.endElement("span");
 				}
 			}
-			rw.endElement("div");
 		}
+		rw.endElement("div");
 	}
 
 	public static void warnOnFirstUse() {
@@ -171,7 +171,7 @@ public class MessageRenderer extends CoreRenderer {
 
 		return ("alert-info " + message.getInfoClass());
 	}
-	
+
 	private String findHighestSeverityStyle(List<FacesMessage> messageList, Message message) {
 		boolean hasFatal = false;
 		boolean hasError = false;
@@ -197,7 +197,7 @@ public class MessageRenderer extends CoreRenderer {
 			return message.getWarnStyle();
 		return message.getInfoStyle();
 	}
-	
+
 	private String findHighestSeverityIcon(List<FacesMessage> messageList, Message message) {
 		boolean hasFatal = false;
 		boolean hasError = false;

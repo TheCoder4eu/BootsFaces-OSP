@@ -79,7 +79,7 @@ public class ColumnRenderer extends CoreRenderer {
 			}
 
 			if (sclass == null) {
-				sclass = Responsive.getResponsiveStyleClass(column, false).trim();
+				sclass = Responsive.getResponsiveStyleClass(column).trim();
 				if (sclass.length()==0) sclass=null;
 			} else {
 				sclass += Responsive.getResponsiveStyleClass(column);

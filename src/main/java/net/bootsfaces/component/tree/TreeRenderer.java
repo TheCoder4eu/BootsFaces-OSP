@@ -36,6 +36,7 @@ import net.bootsfaces.component.tree.model.TreeModelUtils;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class provide the rendering logic of the &lt;b:tree /&gt;. */
@@ -116,6 +117,10 @@ public class TreeRenderer extends CoreRenderer {
 		rw.startElement("div", tree);
 		rw.writeAttribute("id", "tree_" + clientId, "id");
 		renderPassThruAttributes(context, component, H.HTML5_DATA_ATTRIBUTES, true);
+		String clazz = Responsive.getResponsiveStyleClass(tree, false);
+		if (clazz.trim().length()>0) {
+			rw.writeAttribute("class", clazz, "class");
+		}
 		rw.endElement("div");
 	}
 

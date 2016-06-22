@@ -4874,7 +4874,7 @@
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTable-properties</name>
+		  <name>data-table-properties</name>
 		  <required>false</required>
 		  <type>java.util.Map</type>
 		</attribute>
@@ -5105,6 +5105,12 @@
 		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component.]]></description>
+		  <name>propertyBean</name>
+		  <required>false</required>
+		  <type>ADataTablePropertyBean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -5343,6 +5349,60 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Set the first day of the week: Sunday is 0, Monday is 1, etc.]]></description>
 		  <name>first-day</name>
 		  <required>false</required>
@@ -5355,6 +5415,12 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
 		  <required>false</required>
@@ -5363,6 +5429,30 @@
 		<attribute>
 		  <description><![CDATA[This option allows you to localize the DatePicker, specifying the language code (eg. it, fr, es, nl). The datepicker uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes. The Datepicker is localized with the language specified by the ViewRoot Locale.]]></description>
 		  <name>lang</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5385,6 +5475,60 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 		  <name>placeholder</name>
 		  <required>false</required>
@@ -5395,6 +5539,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
+		  <name>required</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>required-message</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>requiredMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if row Buttons to the bottom of calendar should be shown.]]></description>
@@ -5421,6 +5583,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -5435,6 +5615,18 @@
 		<attribute>
 		  <description><![CDATA[Style class of this element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5507,6 +5699,12 @@
 		<attribute>
 		  <description><![CDATA[Value.]]></description>
 		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5829,6 +6027,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
+		  <name>required</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>required-message</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>requiredMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once).]]></description>
@@ -13207,8 +13423,80 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13237,10 +13525,76 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The minimum value of the ProgressBar. (default 0)]]></description>
 		  <name>min</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true]]></description>
@@ -13259,6 +13613,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, stripes will be added to the ProgressBar's look. Default value: false.]]></description>
@@ -13281,6 +13653,18 @@
 		<attribute>
 		  <description><![CDATA[Style class of the input element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13353,6 +13737,12 @@
 		<attribute>
 		  <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
 		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13671,6 +14061,54 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]></description>
 		  <name>converter</name>
 		  <required>false</required>
@@ -13701,6 +14139,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>field-size</name>
 		  <required>false</required>
@@ -13709,6 +14153,12 @@
 		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>fieldSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13733,6 +14183,84 @@
 		<attribute>
 		  <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
 		  <name>lang</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13857,10 +14385,22 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
@@ -13883,6 +14423,18 @@
 		<attribute>
 		  <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
 		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13981,6 +14533,12 @@
 		  <name>valueChangeListener</name>
 		  <required>false</required>
 		  <type>javax.faces.event.ValueChangeListener</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
 	
@@ -14107,6 +14665,54 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]></description>
 		  <name>converter</name>
 		  <required>false</required>
@@ -14143,6 +14749,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>field-size</name>
 		  <required>false</required>
@@ -14165,6 +14777,12 @@
 		  <name>handleWidth</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -14227,6 +14845,30 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'.]]></description>
 		  <name>off-color</name>
 		  <required>false</required>
@@ -14247,6 +14889,60 @@
 		<attribute>
 		  <description><![CDATA[Optional label of the inactive switch. The default value is 'off'.]]></description>
 		  <name>offText</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14389,10 +15085,22 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
@@ -14421,6 +15129,18 @@
 		<attribute>
 		  <description><![CDATA[Advisory tooltip information.]]></description>
 		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14514,6 +15234,12 @@
 		  <required>false</required>
 		  <type>javax.faces.event.ValueChangeListener</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:selectMultiMenu ************************* -->
@@ -14583,6 +15309,54 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -14605,6 +15379,12 @@
 		  <name>disabled</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Moves the drop-down-area from the left hand side to the right hand side.]]></description>
@@ -14661,6 +15441,12 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
 		  <required>false</required>
@@ -14703,6 +15489,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Maximum height of the options panel.]]></description>
 		  <name>max-height</name>
 		  <required>false</required>
@@ -14713,6 +15511,18 @@
 		  <name>maxHeight</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Text which is displayed if more than numberDisplayed options have been selected.]]></description>
@@ -14751,6 +15561,60 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
 		  <name>onchange</name>
 		  <required>false</required>
@@ -14765,12 +15629,6 @@
 		<attribute>
 		  <description><![CDATA[Client side callback called when the drop-down area is shown.]]></description>
 		  <name>ondropdownshow</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
-		  <name>placeholder</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14841,10 +15699,22 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
@@ -14867,6 +15737,18 @@
 		<attribute>
 		  <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
 		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14948,6 +15830,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:selectOneMenu ************************* -->
@@ -14981,6 +15869,54 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -14993,6 +15929,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>field-size</name>
 		  <required>false</required>
@@ -15001,6 +15943,12 @@
 		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>fieldSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -15031,6 +15979,84 @@
 		<attribute>
 		  <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
 		  <name>lang</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -15125,12 +16151,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
-		  <name>placeholder</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
 		  <name>process</name>
 		  <required>false</required>
@@ -15185,10 +16205,22 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The size of the input specified as number of grid columns.]]></description>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
@@ -15211,6 +16243,18 @@
 		<attribute>
 		  <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
 		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -15295,6 +16339,12 @@
 		<attribute>
 		  <description><![CDATA[Value.]]></description>
 		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16095,6 +17145,30 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[JavaScript and/or AJAX code to be executed just after pushing a tab to the back]]></description>
+		  <name>onhidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript and/or AJAX code to be executed just before pushing a tab to the back]]></description>
+		  <name>onhide</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript and/or AJAX code to be executed just before bringing a tab to the front]]></description>
+		  <name>onshow</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript and/or AJAX code to be executed just after bringing a tab to the front]]></description>
+		  <name>onshown</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Change the rendering of tab to pills mode. Default false]]></description>
 		  <name>pills</name>
 		  <required>false</required>
@@ -16223,6 +17297,54 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Glyphicons of collapse.]]></description>
 		  <name>collapse-icon</name>
 		  <required>false</required>
@@ -16237,6 +17359,12 @@
 		<attribute>
 		  <description><![CDATA[Hex value of text color.]]></description>
 		  <name>color</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16265,6 +17393,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Hex value of hover color.]]></description>
 		  <name>hover-color</name>
 		  <required>false</required>
@@ -16283,6 +17417,30 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Selection listener called on selection changed.]]></description>
 		  <name>node-selection-listener</name>
 		  <required>false</required>
@@ -16293,6 +17451,60 @@
 		  <name>nodeSelectionListener</name>
 		  <required>false</required>
 		  <type>TreeNodeEventListener</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if the root node must be rendered.]]></description>
@@ -16373,6 +17585,36 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
 		  <required>false</required>
@@ -16383,6 +17625,12 @@
 		  <name>value</name>
 		  <required>false</required>
 		  <type>Node</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
 	
@@ -16399,8 +17647,146 @@
 		  <type>javax.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16409,6 +17795,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline CSS of the tab.]]></description>
@@ -16425,6 +17829,18 @@
 		<attribute>
 		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16494,6 +17910,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:well ************************* -->
@@ -16503,8 +17925,146 @@
 			<component-type>net.bootsfaces.component.well.Well</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>col-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>
+		  <name>display</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs.]]></description>
+		  <name>hidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
 		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>large-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>medium-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>mediumScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-lg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetLg</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-md</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetMd</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-sm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetSm</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offset-xs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
+		  <name>offsetXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16521,6 +18081,24 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>small-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>smallScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline CSS of the tab.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -16535,6 +18113,18 @@
 		<attribute>
 		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tiny-screen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
+		  <name>tinyScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16601,6 +18191,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
+		  <name>visible</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

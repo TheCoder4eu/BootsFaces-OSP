@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -17,48 +17,17 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.progressBar;
+package net.bootsfaces.component.thumbnail;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIOutput;
-
-import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.IResponsive;
+import javax.faces.component.*;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:progressBar /&gt;. */
-@FacesComponent("net.bootsfaces.component.progressBar.ProgressBar")
-public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasTooltip, IResponsive {
-
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.progressBar.ProgressBar";
-
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
-
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.progressBar.ProgressBar";
-
-	public ProgressBar() {
-		AddResourcesListener.addThemedCSSResource("progress-bars.css");
-		Tooltip.addResourceFiles();
-		setRendererType(DEFAULT_RENDERER);
-	}
-
-	public String getFamily() {
-		return COMPONENT_FAMILY;
-	}
-
-	/**
-	 * Manage EL-expression for snake-case attributes
-	 */
-	public void setValueExpression(String name, ValueExpression binding) {
-		name = BsfUtils.snakeCaseToCamelCase(name);
-		super.setValueExpression(name, binding);
-	}
+/** This class holds the attributes of &lt;b:thumbnail /&gt;. */
+public abstract class ThumbnailCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		animated,
-		caption,
+		binding,
 		colLg,
 		colMd,
 		colSm,
@@ -66,20 +35,14 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 		display,
 		hidden,
 		largeScreen,
-		look,
-		max,
-		maxDecimalPlaces,
 		mediumScreen,
-		min,
 		offset,
 		offsetLg,
 		offsetMd,
 		offsetSm,
 		offsetXs,
-		renderCaption,
 		smallScreen,
 		span,
-		striped,
 		style,
 		styleClass,
 		tinyScreen,
@@ -89,7 +52,6 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 		tooltipDelayHide,
 		tooltipDelayShow,
 		tooltipPosition,
-		value,
 		visible;
 		String toString;
 
@@ -106,35 +68,19 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false. <P>
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isAnimated() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.animated, false);
+	public javax.faces.component.UIComponent getBinding() {
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
-	 * If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false. <P>
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAnimated(boolean _animated) {
-		getStateHelper().put(PropertyKeys.animated, _animated);
-	}
-
-	/**
-	 * Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getCaption() {
-		return (String) getStateHelper().eval(PropertyKeys.caption);
-	}
-
-	/**
-	 * Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCaption(String _caption) {
-		getStateHelper().put(PropertyKeys.caption, _caption);
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 
 	/**
@@ -250,54 +196,6 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getLook() {
-		return (String) getStateHelper().eval(PropertyKeys.look);
-	}
-
-	/**
-	 * Look of the ProgressBar, can be info, success, warning, or danger. If not specified, a blue bar will be rendered. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setLook(String _look) {
-		getStateHelper().put(PropertyKeys.look, _look);
-	}
-
-	/**
-	 * The maximum value of the ProgressBar. (default 100) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getMax() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
-	}
-
-	/**
-	 * The maximum value of the ProgressBar. (default 100) <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMax(int _max) {
-		getStateHelper().put(PropertyKeys.max, _max);
-	}
-
-	/**
-	 * The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getMaxDecimalPlaces() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxDecimalPlaces, 2);
-	}
-
-	/**
-	 * The maximal number of fraction digits, which should be used to show the default caption. Set to 0 to show integer numbers only. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMaxDecimalPlaces(int _maxDecimalPlaces) {
-		getStateHelper().put(PropertyKeys.maxDecimalPlaces, _maxDecimalPlaces);
-	}
-
-	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -311,22 +209,6 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	 */
 	public void setMediumScreen(String _mediumScreen) {
 		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
-	}
-
-	/**
-	 * The minimum value of the ProgressBar. (default 0) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public int getMin() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
-	}
-
-	/**
-	 * The minimum value of the ProgressBar. (default 0) <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMin(int _min) {
-		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
 	/**
@@ -410,22 +292,6 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isRenderCaption() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderCaption, true);
-	}
-
-	/**
-	 * If true, the caption will be shown. Set this to false if you don't want the progress bar to show any value or text. Default value: true <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRenderCaption(boolean _renderCaption) {
-		getStateHelper().put(PropertyKeys.renderCaption, _renderCaption);
-	}
-
-	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -458,23 +324,7 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * If true, stripes will be added to the ProgressBar's look. Default value: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isStriped() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.striped, false);
-	}
-
-	/**
-	 * If true, stripes will be added to the ProgressBar's look. Default value: false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStriped(boolean _striped) {
-		getStateHelper().put(PropertyKeys.striped, _striped);
-	}
-
-	/**
-	 * Inline style of the input element. <P>
+	 * Inline CSS of the tab. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -482,7 +332,7 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline CSS of the tab. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -490,7 +340,7 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the div surrounding the tab pane. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -498,7 +348,7 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the div surrounding the tab pane. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
@@ -615,22 +465,6 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-	}
-
-	/**
-	 * The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getValue() {
-		return (String) getStateHelper().eval(PropertyKeys.value);
-	}
-
-	/**
-	 * The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(String _value) {
-		getStateHelper().put(PropertyKeys.value, _value);
 	}
 
 	/**

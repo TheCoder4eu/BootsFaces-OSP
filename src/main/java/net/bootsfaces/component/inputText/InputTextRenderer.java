@@ -184,7 +184,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
 		String name = inputText.getName();
-		System.out.println(name);
+//		System.out.println(name);
 		if (null == name) {
 			name = "input_" + clientId;
 		}
@@ -229,7 +229,7 @@ public class InputTextRenderer extends CoreRenderer {
 		} // input-group
 		rw.endElement("div"); // form-group
 		if (responsiveStyleClass.length() > 0) {
-			rw.endElement("div"); // span
+			rw.endElement("div");
 		}
 
 		Tooltip.activateTooltips(context, inputText);

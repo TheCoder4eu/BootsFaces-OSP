@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -30,6 +30,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.FacesMessages;
 
@@ -50,7 +51,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 * input value in the list of submitted values. If the validation checks are
 	 * passed, the values in the <code>submittedValues</code> list are store in
 	 * the backend bean.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -96,7 +97,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	/**
 	 * This methods generates the HTML code of the current
 	 * b:selectBooleanCheckbox.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -113,7 +114,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
 
-		int span = startColSpanDiv(rw, selectBooleanCheckbox);
+		String span = startColSpanDiv(rw, selectBooleanCheckbox);
 		rw.startElement("div", component);
 		writeAttribute(rw, "class", "form-group");
 		addLabel(rw, clientId, selectBooleanCheckbox);
@@ -169,15 +170,15 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
-		if (span > 0) {
-			rw.endElement("div");
-		}
+	protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
+        if (span != null && span.trim().length()>0) {
+            rw.endElement("div");
+        }
 	}
 
 	/**
 	 * Renders the input tag.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext
 	 * @param rw
@@ -299,7 +300,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	/**
 	 * The b:switch and the b:selectBooleanCheckbox share most of their code.
 	 * This method allows to add extra attributes for the switch.
-	 * 
+	 *
 	 * @param rw
 	 * @param selectBooleanCheckbox
 	 * @throws IOException
@@ -360,16 +361,13 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected int startColSpanDiv(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
-		int span = selectBooleanCheckbox.getSpan();
-		if (span > 0) {
-			rw.startElement("div", selectBooleanCheckbox);
-			rw.writeAttribute("class", "col-md-" + span, "class");
-			if (null != selectBooleanCheckbox.getDir()) {
-				rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
-			}
-		}
-		return span;
+	protected String startColSpanDiv(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
+        String clazz = Responsive.getResponsiveStyleClass(selectBooleanCheckbox, false);
+        if (clazz!= null && clazz.trim().length()>0) {
+            rw.startElement("div", selectBooleanCheckbox);
+            rw.writeAttribute("class", clazz, "class");
+        }
+        return clazz;
 	}
 
 	/**
