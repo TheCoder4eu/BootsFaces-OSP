@@ -4873,18 +4873,6 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTable-properties</name>
-		  <required>false</required>
-		  <type>java.util.Map</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering.]]></description>
-		  <name>dataTableProperties</name>
-		  <required>false</required>
-		  <type>java.util.Map</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -5127,6 +5115,18 @@
 		<attribute>
 		  <description><![CDATA[Enable the row highlight css. Default: true.]]></description>
 		  <name>rowHighlight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc.]]></description>
+		  <name>save-state</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc.]]></description>
+		  <name>saveState</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>

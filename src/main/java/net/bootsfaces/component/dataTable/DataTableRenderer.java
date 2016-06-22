@@ -32,7 +32,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -42,41 +41,11 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
 public class DataTableRenderer extends CoreRenderer {
 
-	@Override
-	public void decode(FacesContext context, UIComponent component) {
-		super.decode(context, component);
-		DataTable dataTable = (DataTable) component;
-		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
-		if (dataTableProperties != null) {
-			String params = context.getExternalContext().getRequestParameterMap().get("params");
-			if (params != null) {
-				params = params.replace("BsFEvent=", "");
-				String[] paramArray = params.split(",");
-				for (String keyValuePair : paramArray) {
-					String[] pair = keyValuePair.split(":", 2);
-					String key = pair[0];
-					Object value = null;
-					if (pair.length == 2) {
-						value = pair[1];
-					}
-					if (value != null) {
-						switch (DataTablePropertyType.valueOf(key)) {
-						case pageLength:
-							dataTableProperties.put(DataTablePropertyType.currentPage, 0);
-						case currentPage:
-							value = Integer.parseInt(value.toString());
-							break;
-						case searchTerm:
-							dataTableProperties.put(DataTablePropertyType.currentPage, 0);
-							value = value.toString();
-							break;
-						}
-					}
-					dataTableProperties.put(DataTablePropertyType.valueOf(key), value);
-				}
-			}
-		}
-	}
+//	@Override
+//	public void decode(FacesContext context, UIComponent component) {
+//		super.decode(context, component);
+//		DataTable dataTable = (DataTable) component;
+//	}
 
 
 	/**
@@ -250,26 +219,11 @@ public class DataTableRenderer extends CoreRenderer {
 			return;
 		}
 		DataTable dataTable = (DataTable) component;
-		Map<DataTablePropertyType, Object> dataTableProperties = dataTable.getDataTableProperties();
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
 		Integer page = 0;
 		Integer pageLength = dataTable.getPageLength();
 		String searchTerm = "''";
 		String orderString = "[]";
-		if(dataTableProperties != null) {
-			Object currentPage = dataTableProperties.get( DataTablePropertyType.currentPage );
-			Object currentPageLength = dataTableProperties.get( DataTablePropertyType.pageLength );
-			Object currentSearchTerm = dataTableProperties.get( DataTablePropertyType.searchTerm );
-			if(currentPage != null){
-				page = (Integer)currentPage;
-			}
-			if(currentPageLength != null){
-				pageLength = (Integer)currentPageLength;
-			}
-			if(currentSearchTerm != null){
-				searchTerm = String.format("'%s'", (String)currentSearchTerm);
-			}
-		}
 		if ( columnSortOrder != null ) {
 			StringBuilder sb = new StringBuilder();
 			int i = 0;
@@ -313,44 +267,13 @@ public class DataTableRenderer extends CoreRenderer {
 					 "	lengthMenu: " + dataTable.getPageLengthMenu() + ", " +
 					 "	searching: " + dataTable.isSearching() + ", " +
 					 "	order: " + orderString + ", " +
+					 "  stateSave: " + dataTable.isSaveState() + ", " +
 					 (dataTable.getScrollSize() > 0 ? " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + "," : "") +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 "});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
-		//# Use DataTable API to set initial state of the table display
-		if(dataTable.isPaginated()) {
-			rw.writeText("table.page("+page+");" +
-						 "table.search("+searchTerm+");" +
-						 "table.page.len("+pageLength+").draw('page');", null);
-		}
 
-		if(dataTableProperties != null) {
-			// NB. we need to define function signature with explicit parameter to have the
-			//     event defined and so, enable the mapping state saving.
-			//# Event setup: http://datatables.net/reference/event/page
-			rw.writeText(widgetVar +".on('page.dt', function(event, settings, len){" +
-				"var info = table.page.info();" +
-				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
-				"'" + DataTablePropertyType.currentPage + ":'+info.page);" +
-				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
-				"});", null);
-			//# Event setup: https://datatables.net/reference/event/length
-			rw.writeText(widgetVar +".on('length.dt', function(event, settings, len) {" +
-				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
-				"'" + DataTablePropertyType.pageLength + ":'+len);" +
-				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
-				"});", null);
-			//# Event setup: https://datatables.net/reference/event/search
-			rw.writeText(widgetVar +".on('search.dt', function(event, settings, len) {" +
-				"try {" +
-				"	BsF.ajax.callAjax(this, event, null, null, null, null, null," +
-				"'" + DataTablePropertyType.searchTerm + ":'+table.search());" +
-				"} catch(e) { console.warn(workInProgressErrorMessage, e); }" +
-				"});", null);
-                }
 		if(dataTable.isMultiColumnSearch())	{
 			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
 			//# Convert footer column text to input textfields
