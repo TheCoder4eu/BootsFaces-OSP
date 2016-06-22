@@ -19,6 +19,7 @@ ext.BootstrapVersion = props['bootstrap.version']
 
 ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
 ext.BootswatchFolder = "${projectDir}"+'/Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
+ext.jqversion = props['jquery.version']
 
 if(System.getProperty("BSF-THEME", "") != "") {
    ext.themes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
