@@ -19,6 +19,8 @@ public enum ComponentsEnum {
 	commandButton("<b:commandButton", "commandButton", "net.bootsfaces.component.commandButton.CommandButton"),
 	container("<b:container", "container", "net.bootsfaces.component.container.Container"),
 	dataTable("<b:dataTable", "dataTable", "net.bootsfaces.component.dataTable.DataTable"),
+	dataTableColumn("<b:dataTableColumn", "dataTableColumn",
+			"net.bootsfaces.component.dataTableColumn.DataTableColumn"),
 	datepicker("<b:datepicker", "datepicker", "net.bootsfaces.component.datepicker.Datepicker"),
 	dateTimePicker("<b:dateTimePicker", "dateTimePicker", "net.bootsfaces.component.dateTimePicker.DateTimePicker"),
 	defaultCommand("<b:defaultCommand", "defaultCommand", "net.bootsfaces.component.defaultCommand.DefaultCommand"),
