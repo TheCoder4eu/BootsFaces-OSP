@@ -35,7 +35,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		colSm,
 		colXs,
 		customLangUrl,
-		dataTableProperties,
 		disabled,
 		display,
 		fixedHeader,
@@ -62,9 +61,9 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		pageLengthMenu,
 		paginated,
 		process,
-		propertyBean,
 		responsive,
 		rowHighlight,
+		saveState,
 		scrollCollapse,
 		scrollSize,
 		searching,
@@ -190,22 +189,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setCustomLangUrl(String _customLangUrl) {
 		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
-	}
-
-	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public Map<DataTablePropertyType, Object> getDataTableProperties() {
-		return (Map<DataTablePropertyType, Object>) getStateHelper().eval(PropertyKeys.dataTableProperties);
-	}
-
-	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
-		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
 	}
 
 	/**
@@ -625,22 +608,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public ADataTablePropertyBean getPropertyBean() {
-		return (ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean);
-	}
-
-	/**
-	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPropertyBean(ADataTablePropertyBean _propertyBean) {
-		getStateHelper().put(PropertyKeys.propertyBean, _propertyBean);
-	}
-
-	/**
 	 * Activates the responsive plugin of the dataTable <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -670,6 +637,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setRowHighlight(boolean _rowHighlight) {
 		getStateHelper().put(PropertyKeys.rowHighlight, _rowHighlight);
+	}
+
+	/**
+	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSaveState() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.saveState, true);
+	}
+
+	/**
+	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSaveState(boolean _saveState) {
+		getStateHelper().put(PropertyKeys.saveState, _saveState);
 	}
 
 	/**
