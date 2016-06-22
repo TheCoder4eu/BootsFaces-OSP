@@ -26,8 +26,16 @@ import net.bootsfaces.utils.BsfUtils;
 public abstract class DataTableColumnCore extends UIOutput {
 
 	protected enum PropertyKeys {
+		columnType,
+		contentStyle,
+		contentStyleClass,
+		footerStyle,
+		footerStyleClass,
+		headerStyle,
+		headerStyleClass,
 		label,
 		order,
+		orderBy,
 		style,
 		styleClass;
 		String toString;
@@ -42,6 +50,118 @@ public abstract class DataTableColumnCore extends UIOutput {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColumnType() {
+		return (String) getStateHelper().eval(PropertyKeys.columnType);
+	}
+
+	/**
+	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColumnType(String _columnType) {
+		getStateHelper().put(PropertyKeys.columnType, _columnType);
+	}
+
+	/**
+	 * Inline style of the cells in the content area. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getContentStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.contentStyle);
+	}
+
+	/**
+	 * Inline style of the cells in the content area. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentStyle(String _contentStyle) {
+		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * Style class of cells in the content area.. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getContentStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.contentStyleClass);
+	}
+
+	/**
+	 * Style class of cells in the content area.. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentStyleClass(String _contentStyleClass) {
+		getStateHelper().put(PropertyKeys.contentStyleClass, _contentStyleClass);
+	}
+
+	/**
+	 * Inline style of the footer cell. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFooterStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.footerStyle);
+	}
+
+	/**
+	 * Inline style of the footer cell. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFooterStyle(String _footerStyle) {
+		getStateHelper().put(PropertyKeys.footerStyle, _footerStyle);
+	}
+
+	/**
+	 * Style class of this footer cell. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFooterStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.footerStyleClass);
+	}
+
+	/**
+	 * Style class of this footer cell. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFooterStyleClass(String _footerStyleClass) {
+		getStateHelper().put(PropertyKeys.footerStyleClass, _footerStyleClass);
+	}
+
+	/**
+	 * Inline style of the header cell. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHeaderStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.headerStyle);
+	}
+
+	/**
+	 * Inline style of the header cell. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHeaderStyle(String _headerStyle) {
+		getStateHelper().put(PropertyKeys.headerStyle, _headerStyle);
+	}
+
+	/**
+	 * Style class of this header cell. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHeaderStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.headerStyleClass);
+	}
+
+	/**
+	 * Style class of this header cell. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHeaderStyleClass(String _headerStyleClass) {
+		getStateHelper().put(PropertyKeys.headerStyleClass, _headerStyleClass);
 	}
 
 	/**
@@ -74,6 +194,22 @@ public abstract class DataTableColumnCore extends UIOutput {
 	 */
 	public void setOrder(String _order) {
 		getStateHelper().put(PropertyKeys.order, _order);
+	}
+
+	/**
+	 * Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOrderBy() {
+		return (String) getStateHelper().eval(PropertyKeys.orderBy);
+	}
+
+	/**
+	 * Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOrderBy(String _orderBy) {
+		getStateHelper().put(PropertyKeys.orderBy, _orderBy);
 	}
 
 	/**

@@ -501,6 +501,14 @@ widget dataTable
 widget dataTableColumn {
     label                                                                  "Label in the header of the colum."
     order                                                                  "Is the table to be sorted by this column? Legal values are 'asc' and 'desc'."
+    order-by                                                               "Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox."
+    column-type                                                            "Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'."
+	content-style                                                          "Inline style of the cells in the content area."
+    content-style-class                                                    "Style class of cells in the content area.."
+	footer-style                                                           "Inline style of the footer cell."
+    footer-style-class                                                     "Style class of this footer cell."
+	header-style                                                           "Inline style of the header cell."
+    header-style-class                                                     "Style class of this header cell."
 	+style
 
 }

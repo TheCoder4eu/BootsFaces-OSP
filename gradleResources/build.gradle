@@ -118,6 +118,7 @@ task copyBootsFacesFiles(type: Copy) {
   	description 'BootsFaces task: copies the BootsFaces resource files to the process folder and adds the license.'
   	from 'css/bsf.css'
   	from 'js/bsf.js'
+  	from 'js/datatables-bf-extensions.js'
   	filter{String line -> line.startsWith('/*!') ? line.replace('/*!', '/** @license ') : line }
 
   	into "${buildDir}/process/bsf"
@@ -281,6 +282,7 @@ task copyBsfCss << {
 task copyBsfJs(type: Copy) {
   	description 'BootsFaces task: copies the bsf.js file. bsf.js contains the AJAX JS engine of BootsFaces.'
   	from "${buildDir}/assets/bsf.js"
+  	from 'js/datatables-bf-extensions.js'
   	into "${buildDir}/resources/META-INF/resources/bsf/js"
 }
 

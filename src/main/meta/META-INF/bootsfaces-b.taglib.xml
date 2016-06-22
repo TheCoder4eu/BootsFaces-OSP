@@ -5313,6 +5313,90 @@
 			<component-type>net.bootsfaces.component.dataTableColumn.DataTableColumn</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'.]]></description>
+		  <name>column-type</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'.]]></description>
+		  <name>columnType</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the cells in the content area.]]></description>
+		  <name>content-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the cells in the content area.]]></description>
+		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of cells in the content area..]]></description>
+		  <name>content-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of cells in the content area..]]></description>
+		  <name>contentStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the footer cell.]]></description>
+		  <name>footer-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the footer cell.]]></description>
+		  <name>footerStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this footer cell.]]></description>
+		  <name>footer-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this footer cell.]]></description>
+		  <name>footerStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the header cell.]]></description>
+		  <name>header-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the header cell.]]></description>
+		  <name>headerStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this header cell.]]></description>
+		  <name>header-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this header cell.]]></description>
+		  <name>headerStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Label in the header of the colum.]]></description>
 		  <name>label</name>
 		  <required>false</required>
@@ -5321,6 +5405,18 @@
 		<attribute>
 		  <description><![CDATA[Is the table to be sorted by this column? Legal values are 'asc' and 'desc'.]]></description>
 		  <name>order</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox.]]></description>
+		  <name>order-by</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox.]]></description>
+		  <name>orderBy</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

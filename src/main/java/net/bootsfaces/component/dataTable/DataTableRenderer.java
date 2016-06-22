@@ -20,6 +20,7 @@
 package net.bootsfaces.component.dataTable;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -200,6 +201,40 @@ public class DataTableRenderer extends CoreRenderer {
 				columnSortOrder = dataTable.getColumnSortOrderMap();
 				columnSortOrder.put(index, order);
 			}
+			if (column.getAttributes().get("orderBy") != null) {
+				String orderBy = (String)column.getAttributes().get("orderBy");
+				if (dataTable.getColumnInfo()==null) {
+					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
+					for (int k = 0; k < dataTable.getChildren().size(); k++) {
+						infos.add(null);
+					}
+					dataTable.setColumnInfo(infos);
+				}
+				List<String> infos = dataTable.getColumnInfo();
+				String s = infos.get(index);
+				if (s==null) {
+					infos.set(index, "'orderDataType': '" + orderBy + "', type: 'string'");
+				} else {
+					infos.set(index, s+",'orderDataType': '" + orderBy + "', type: 'string'");
+				}
+
+			}
+			if (column.getAttributes().get("dataType") != null) {
+				String type = (String)column.getAttributes().get("dataType");
+				if (dataTable.getColumnInfo()==null) {
+					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
+					for (int k = 0; k < dataTable.getChildren().size(); k++) {
+						infos.add(null);
+					}
+					dataTable.setColumnInfo(infos);
+				}
+				List<String> infos = dataTable.getColumnInfo();
+				String s = infos.get(index);
+				if (s==null) {
+					infos.set(index, "'type': '" + type + "'");
+				}
+				else infos.set(index, s + ",'type': '" + type + "'");
+			}
 			rw.endElement("th");
 			index++;
 		}
@@ -278,6 +313,7 @@ public class DataTableRenderer extends CoreRenderer {
 					 "  stateSave: " + dataTable.isSaveState() + ", " +
 					 (dataTable.getScrollSize() > 0 ? " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + "," : "") +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
+					 generateColumnInfos(dataTable.getColumnInfo()) +
 					 "});" +
 					 "var workInProgressErrorMessage = 'Multiple DataTables on the same page are not yet supported when using " +
 					 "dataTableProperties attribute; Could not save state';", null);
@@ -302,6 +338,28 @@ public class DataTableRenderer extends CoreRenderer {
 		//# End enclosure
 		rw.writeText("} );",null );
 		rw.endElement("script");
+	}
+
+	private String generateColumnInfos(List<String> columnInfo) {
+		if (columnInfo==null) {
+			return "";
+		}
+		String result=", columns: [";
+		for (String col: columnInfo) {
+			if (null == col) {
+				result += "null,";
+			} else {
+				result += "{" + col + "},";
+				if (col.contains("dom-text")) {
+					if (!col.contains("type")) {
+						throw new FacesException("You have to specify the data type of the column if you want to sort it using order-by.");
+					}
+				}
+			}
+		}
+		result = result.substring(0, result.length()-1); // remove the trailing comma
+		result += "]";
+		return result;
 	}
 
 	private String getPageLengthMenu(DataTable dataTable) {

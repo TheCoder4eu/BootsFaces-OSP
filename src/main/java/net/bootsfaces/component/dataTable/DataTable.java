@@ -23,6 +23,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.el.ValueExpression;
@@ -38,7 +39,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
+@ResourceDependencies({
+		@ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
+		@ResourceDependency(library = "bsf", name = "js/datatables-bf-extensions.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.dataTable.DataTable")
 public class DataTable extends DataTableCore
@@ -52,7 +55,13 @@ public class DataTable extends DataTableCore
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+
+	/** This map is used to store the column sort information gathered during rendering. */
 	private Map<Integer, String> columnSortOrder;
+
+	/** This array ist used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net */
+	private List<String> columnInfo;
 
 	public enum DataTablePropertyType {
 		pageLength,
@@ -101,7 +110,8 @@ public class DataTable extends DataTableCore
 	}
 
 	/**
-	 * This map contains all of the default sorting for each column
+	 * This map contains all of the default sorting for each column.
+	 * This map is used to store the column sort information gathered during rendering.
 	 *
 	 * @return The map containing the column / sort type pairs
 	 */
@@ -111,8 +121,21 @@ public class DataTable extends DataTableCore
 
 	/**
 	 * Called in order to lazily initialize the map.
+	 * This map is used to store the column sort information gathered during rendering.
 	 */
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
+	}
+
+	/** This array ist used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net */
+	public List<String> getColumnInfo() {
+		return columnInfo;
+	}
+
+	/** This array ist used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net */
+	public void setColumnInfo(List<String> columnInfo) {
+		this.columnInfo = columnInfo;
 	}
 }
