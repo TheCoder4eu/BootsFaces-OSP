@@ -62,7 +62,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		pageLengthMenu,
 		paginated,
 		process,
-		propertyBean,
 		responsive,
 		rowHighlight,
 		scrollCollapse,
@@ -88,8 +87,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -622,22 +620,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setProcess(String _process) {
 		getStateHelper().put(PropertyKeys.process, _process);
-	}
-
-	/**
-	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public ADataTablePropertyBean getPropertyBean() {
-		return (ADataTablePropertyBean) getStateHelper().eval(PropertyKeys.propertyBean);
-	}
-
-	/**
-	 * Optional DataTable property bean containing its current display state values. By default, these values are stored in a private data structure of the component. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setPropertyBean(ADataTablePropertyBean _propertyBean) {
-		getStateHelper().put(PropertyKeys.propertyBean, _propertyBean);
 	}
 
 	/**
