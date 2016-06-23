@@ -54,11 +54,16 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		onclick,
 		oncomplete,
 		ondblclick,
+		ondeselect,
 		onmousedown,
 		onmousemove,
 		onmouseout,
 		onmouseover,
 		onmouseup,
+		onorder,
+		onpage,
+		onsearch,
+		onselect,
 		pageLength,
 		pageLengthMenu,
 		paginated,
@@ -500,6 +505,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Client side and/or AJAX callback to execute when a row is deselected. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndeselect() {
+		return (String) getStateHelper().eval(PropertyKeys.ondeselect);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is deselected. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndeselect(String _ondeselect) {
+		getStateHelper().put(PropertyKeys.ondeselect, _ondeselect);
+	}
+
+	/**
 	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -577,6 +598,70 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the table is sorted. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnorder() {
+		return (String) getStateHelper().eval(PropertyKeys.onorder);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the table is sorted. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnorder(String _onorder) {
+		getStateHelper().put(PropertyKeys.onorder, _onorder);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the current table page changes. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnpage() {
+		return (String) getStateHelper().eval(PropertyKeys.onpage);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the current table page changes. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnpage(String _onpage) {
+		getStateHelper().put(PropertyKeys.onpage, _onpage);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the user starts a search. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsearch() {
+		return (String) getStateHelper().eval(PropertyKeys.onsearch);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the user starts a search. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsearch(String _onsearch) {
+		getStateHelper().put(PropertyKeys.onsearch, _onsearch);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is selected. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnselect() {
+		return (String) getStateHelper().eval(PropertyKeys.onselect);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is selected. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnselect(String _onselect) {
+		getStateHelper().put(PropertyKeys.onselect, _onselect);
 	}
 
 	/**

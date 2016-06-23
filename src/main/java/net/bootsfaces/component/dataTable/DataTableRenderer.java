@@ -105,11 +105,12 @@ public class DataTableRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, dataTable, rw);
 		rw.writeAttribute("cellspacing", "0", "cellspacing");
 		rw.writeAttribute("style", dataTable.getStyle(), "style");
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw);
 
 		generateHeader(context, dataTable, rw);
 		generateBody(context, dataTable, rw);
 		generateFooter(context, dataTable, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw);
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "."+clientId.replace(":", "") + "Table", null);
 	}
 
 	private void generateFooter(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
@@ -438,6 +439,7 @@ public class DataTableRenderer extends CoreRenderer {
 				+ "	searching: " + dataTable.isSearching() + ", "
 				+ "	order: " + orderString + ", "
 				+ " stateSave: " + dataTable.isSaveState() + ", "
+				+ " select: true,"
 				+ generateScrollOptions(dataTable)
 				+ (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "")
 				+ generateColumnInfos(dataTable.getColumnInfo()) + "});", null);

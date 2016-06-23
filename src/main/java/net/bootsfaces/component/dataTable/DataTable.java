@@ -94,7 +94,13 @@ public class DataTable extends DataTableCore
 	 * @return
 	 */
 	public Map<String, String> getJQueryEvents() {
-		return null;
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("order", "order.dt");
+		result.put("page", "page.dt");
+		result.put("search", "search.dt");
+		result.put("select", "select.dt");
+		result.put("deselect", "deselect.dt");
+		return result;
 	}
 
 	public Collection<String> getEventNames() {

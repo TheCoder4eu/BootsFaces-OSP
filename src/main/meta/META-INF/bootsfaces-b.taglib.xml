@@ -5047,6 +5047,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Client side and/or AJAX callback to execute when a row is deselected.]]></description>
+		  <name>ondeselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is pressed down over input element.]]></description>
 		  <name>onmousedown</name>
 		  <required>false</required>
@@ -5073,6 +5079,30 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side and/or AJAX callback to execute when the table is sorted.]]></description>
+		  <name>onorder</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side and/or AJAX callback to execute when the current table page changes.]]></description>
+		  <name>onpage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side and/or AJAX callback to execute when the user starts a search.]]></description>
+		  <name>onsearch</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Client side and/or AJAX callback to execute when a row is selected.]]></description>
+		  <name>onselect</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
