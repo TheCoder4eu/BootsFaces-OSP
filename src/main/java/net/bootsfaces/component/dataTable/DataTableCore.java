@@ -30,6 +30,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	protected enum PropertyKeys {
 		ajax,
+		border,
 		colLg,
 		colMd,
 		colSm,
@@ -70,6 +71,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		searching,
 		smallScreen,
 		span,
+		striped,
 		style,
 		styleClass,
 		tinyScreen,
@@ -110,6 +112,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * If set, this will surround the table by a border. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isBorder() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.border, true);
+	}
+
+	/**
+	 * If set, this will surround the table by a border. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBorder(boolean _border) {
+		getStateHelper().put(PropertyKeys.border, _border);
 	}
 
 	/**
@@ -337,15 +355,15 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. <P>
+	 * Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMultiColumnSearchPosition() {
-		return (String) getStateHelper().eval(PropertyKeys.multiColumnSearchPosition, "top");
+		return (String) getStateHelper().eval(PropertyKeys.multiColumnSearchPosition, "bottom");
 	}
 
 	/**
-	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. <P>
+	 * Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMultiColumnSearchPosition(String _multiColumnSearchPosition) {
@@ -750,6 +768,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSpan(String _span) {
 		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isStriped() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.striped, true);
+	}
+
+	/**
+	 * If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStriped(boolean _striped) {
+		getStateHelper().put(PropertyKeys.striped, _striped);
 	}
 
 	/**

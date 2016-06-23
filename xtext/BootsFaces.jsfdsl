@@ -463,6 +463,7 @@ widget dataTable
        is_responsive
  {
     ajax                 Boolean                                           "Activates AJAX. The default value is false (no AJAX)."
+	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
     disabled             Boolean                                           "Boolean value to specify if the button is disabled."
 	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
@@ -470,7 +471,7 @@ widget dataTable
     immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
-    multi-column-search-position default "top"                             "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'."
+    multi-column-search-position default "bottom"                          "Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -490,6 +491,7 @@ widget dataTable
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
     scroll-size 		 String    						                   "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
+	striped              Boolean default "true"                            "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
     update                                                                 "Component(s) to be updated with ajax."
     value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."
     var                  String  inherited                                 "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
@@ -1319,6 +1321,7 @@ widget panel
 widget panelGrid
        implemented_by net.bootsfaces.component.PanelGrid
        has_tooltip
+       is_responsive
  {
     col-spans                                                              "Comma-separated list of the column spans"
     column-classes                                                         "Comma-separated list of the CSS classes assigned to each column."
@@ -1331,6 +1334,7 @@ widget panelGrid
     style                                                                  "CSS inline style of the div surrounding the panel grid."
     style-class                                                            "Style class of the div surrounding the panel grid."
     +tooltip
+    +responsive
 }
 
 widget pillLinks

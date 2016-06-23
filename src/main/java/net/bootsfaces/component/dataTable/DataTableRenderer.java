@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -80,16 +81,26 @@ public class DataTableRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId();
 
-		// put custom code here
-		// Simple demo widget that simply renders every attribute value
+
+		String responsiveStyle= Responsive.getResponsiveStyleClass(dataTable, false);
+		if (null != responsiveStyle && responsiveStyle.trim().length()>0) {
+			rw.startElement("div", dataTable);
+			rw.writeAttribute("class", responsiveStyle.trim(), null);
+		}
+
 		rw.startElement("table", dataTable);
 		rw.writeAttribute("id", clientId, "id");
 
-		String styleClass = "table table-striped table-bordered";
-		if (dataTable.isRowHighlight()) styleClass += " table-hover ";
+		String styleClass = "table ";
+		if (dataTable.isBorder()) {
+			styleClass += "table-bordered ";
+		}
+		if (dataTable.isStriped()) {
+			styleClass += "table-striped ";
+		}
+		if (dataTable.isRowHighlight()) styleClass += "table-hover ";
 		if (dataTable.getStyleClass() != null)
-			styleClass += " " + dataTable.getStyleClass();
-		styleClass += Responsive.getResponsiveStyleClass(dataTable, false);
+			styleClass += dataTable.getStyleClass();
 		styleClass += " " + clientId.replace(":", "") + "Table";
 		rw.writeAttribute("class", styleClass, "class");
 		Tooltip.generateTooltip(context, dataTable, rw);
@@ -128,6 +139,14 @@ public class DataTableRenderer extends CoreRenderer {
 				        continue;
 				    }
 					rw.startElement("th", dataTable);
+					Object footerStyle = column.getAttributes().get("footerStyle");
+					if (footerStyle != null) {
+						rw.writeAttribute("style", footerStyle, null);
+					}
+					Object footerStyleClass = column.getAttributes().get("footerStyleClass");
+					if (footerStyleClass != null) {
+						rw.writeAttribute("class", footerStyleClass, null);
+					}
 					if (column.getFacet("footer") != null) {
 						UIComponent facet = column.getFacet("footer");
 						facet.encodeAll(context);
@@ -148,7 +167,16 @@ public class DataTableRenderer extends CoreRenderer {
 				continue;
 			}
 			rw.startElement( "th", dataTable );
-			rw.writeAttribute("class", "bf-multisearch", null);
+			Object footerStyle = column.getAttributes().get("footerStyle");
+			if (footerStyle != null) {
+				rw.writeAttribute("style", footerStyle, null);
+			}
+			Object footerStyleClass = column.getAttributes().get("footerStyleClass");
+			if (footerStyleClass != null) {
+				rw.writeAttribute("class", "bf-multisearch " + footerStyleClass, null);
+			} else {
+				rw.writeAttribute("class", "bf-multisearch", null);
+			}
 			if (column.getFacet("header") != null) {
 				UIComponent facet = column.getFacet("header");
 				facet.encodeAll(context);
@@ -174,6 +202,19 @@ public class DataTableRenderer extends CoreRenderer {
 				        continue;
 				    }
 					rw.startElement("td", dataTable);
+					Object contentStyle = column.getAttributes().get("contentStyle");
+					if (contentStyle != null) {
+						rw.writeAttribute("style", contentStyle, null);
+					}
+					Object contentStyleClass = column.getAttributes().get("contentStyleClass");
+					if (contentStyleClass != null) {
+						rw.writeAttribute("class", contentStyleClass, null);
+					}
+					Object value = column.getAttributes().get("value");
+					if (value != null) {
+						rw.writeText(value, null);
+					}
+
 					column.encodeChildren(context);
 					rw.endElement("td");
 				}
@@ -194,6 +235,14 @@ public class DataTableRenderer extends CoreRenderer {
 		        continue;
 		    }
 			rw.startElement("th", dataTable);
+			Object headerStyle = column.getAttributes().get("headerStyle");
+			if (headerStyle != null) {
+				rw.writeAttribute("style", headerStyle, null);
+			}
+			Object headerStyleClass = column.getAttributes().get("headerStyleClass");
+			if (headerStyleClass != null) {
+				rw.writeAttribute("class", headerStyleClass, null);
+			}
 			if (column.getFacet("header") != null) {
 				UIComponent facet = column.getFacet("header");
 				facet.encodeAll(context);
@@ -217,6 +266,18 @@ public class DataTableRenderer extends CoreRenderer {
 						}
 					}
 
+				}
+				if (!labelHasBeenRendered) {
+					ValueExpression ve = column.getValueExpression("value");
+					if (null != ve) {
+						String exp = ve.getExpressionString();
+						int pos = exp.lastIndexOf('.');
+						if (pos >0) {
+							exp=exp.substring(pos+1);
+						}
+						rw.writeText(exp.substring(0,exp.length()-1),null);
+						labelHasBeenRendered=true;
+					}
 				}
 				if (!labelHasBeenRendered) {
 					rw.writeText("Column #" + index, null);
@@ -361,6 +422,10 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
+		String responsiveStyle= Responsive.getResponsiveStyleClass(dataTable, false);
+		if (null != responsiveStyle && responsiveStyle.trim().length()>0) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
 		//# Start enclosure
@@ -382,7 +447,8 @@ public class DataTableRenderer extends CoreRenderer {
 					 generateScrollOptions(dataTable) +
 					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
 					 generateColumnInfos(dataTable.getColumnInfo()) +
-					 "});"
+					 "});" +
+					 "console.log('rerender');"
 					 , null);
 
 		if(dataTable.isMultiColumnSearch())	{
