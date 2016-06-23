@@ -490,6 +490,7 @@ widget dataTable
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
     scroll-size 		 String    						                   "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
+    scroll-x 		     Boolean    						               "If set, the table can scroll horizontally. Defaults to false."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
 	striped              Boolean default "true"                            "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
     update                                                                 "Component(s) to be updated with ajax."

@@ -5173,6 +5173,18 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If set, the table can scroll horizontally. Defaults to false.]]></description>
+		  <name>scroll-x</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set, the table can scroll horizontally. Defaults to false.]]></description>
+		  <name>scrollX</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API).]]></description>
 		  <name>searching</name>
 		  <required>false</required>

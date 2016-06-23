@@ -45,12 +45,11 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
 public class DataTableRenderer extends CoreRenderer {
 
-//	@Override
-//	public void decode(FacesContext context, UIComponent component) {
-//		super.decode(context, component);
-//		DataTable dataTable = (DataTable) component;
-//	}
-
+	// @Override
+	// public void decode(FacesContext context, UIComponent component) {
+	// super.decode(context, component);
+	// DataTable dataTable = (DataTable) component;
+	// }
 
 	private static final Pattern NUMERIC_PATTERN = Pattern.compile("[0-9]+");
 
@@ -81,9 +80,8 @@ public class DataTableRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId();
 
-
-		String responsiveStyle= Responsive.getResponsiveStyleClass(dataTable, false);
-		if (null != responsiveStyle && responsiveStyle.trim().length()>0) {
+		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
+		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.startElement("div", dataTable);
 			rw.writeAttribute("class", responsiveStyle.trim(), null);
 		}
@@ -98,7 +96,8 @@ public class DataTableRenderer extends CoreRenderer {
 		if (dataTable.isStriped()) {
 			styleClass += "table-striped ";
 		}
-		if (dataTable.isRowHighlight()) styleClass += "table-hover ";
+		if (dataTable.isRowHighlight())
+			styleClass += "table-hover ";
 		if (dataTable.getStyleClass() != null)
 			styleClass += dataTable.getStyleClass();
 		styleClass += " " + clientId.replace(":", "") + "Table";
@@ -114,30 +113,30 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	private void generateFooter(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
-		boolean hasFooter=false;
+		boolean hasFooter = false;
 		boolean hasSearchbar = false;
-		if(dataTable.isMultiColumnSearch()) {
+		if (dataTable.isMultiColumnSearch()) {
 			String position = dataTable.getMultiColumnSearchPosition();
 			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
-				hasSearchbar=true;
+				hasSearchbar = true;
 			}
 		}
 		for (UIComponent column : dataTable.getChildren()) {
 			if (!column.isRendered()) {
-		        continue;
-		    }
-		    hasFooter |= column.getFacet("footer") != null;
+				continue;
+			}
+			hasFooter |= column.getFacet("footer") != null;
 		}
 		if (hasFooter || hasSearchbar) {
-			rw.startElement( "tfoot", dataTable );
+			rw.startElement("tfoot", dataTable);
 			if (hasSearchbar) {
 				generateMultiColumnSearchRow(context, dataTable, rw);
 			}
 			if (hasFooter) {
 				for (UIComponent column : dataTable.getChildren()) {
-				    if (!column.isRendered()) {
-				        continue;
-				    }
+					if (!column.isRendered()) {
+						continue;
+					}
 					rw.startElement("th", dataTable);
 					Object footerStyle = column.getAttributes().get("footerStyle");
 					if (footerStyle != null) {
@@ -154,19 +153,19 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.endElement("th");
 				}
 			}
-			rw.endElement( "tfoot" );
+			rw.endElement("tfoot");
 		}
 	}
 
 	private void generateMultiColumnSearchRow(FacesContext context, DataTable dataTable, ResponseWriter rw)
 			throws IOException {
-		rw.startElement( "tr", dataTable );
+		rw.startElement("tr", dataTable);
 		List<UIComponent> columns = dataTable.getChildren();
-		for ( UIComponent column : columns ) {
+		for (UIComponent column : columns) {
 			if (!column.isRendered()) {
 				continue;
 			}
-			rw.startElement( "th", dataTable );
+			rw.startElement("th", dataTable);
 			Object footerStyle = column.getAttributes().get("footerStyle");
 			if (footerStyle != null) {
 				rw.writeAttribute("style", footerStyle, null);
@@ -183,9 +182,9 @@ public class DataTableRenderer extends CoreRenderer {
 			} else if (column.getAttributes().get("label") != null) {
 				rw.writeText(column.getAttributes().get("label"), null);
 			}
-			rw.endElement( "th" );
+			rw.endElement("th");
 		}
-		rw.endElement( "tr" );
+		rw.endElement("tr");
 	}
 
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
@@ -198,9 +197,9 @@ public class DataTableRenderer extends CoreRenderer {
 				rw.startElement("tr", dataTable);
 				List<UIComponent> columns = dataTable.getChildren();
 				for (UIComponent column : columns) {
-				    if (!column.isRendered()) {
-				        continue;
-				    }
+					if (!column.isRendered()) {
+						continue;
+					}
 					rw.startElement("td", dataTable);
 					Object contentStyle = column.getAttributes().get("contentStyle");
 					if (contentStyle != null) {
@@ -231,9 +230,9 @@ public class DataTableRenderer extends CoreRenderer {
 		int index = 0;
 		List<UIComponent> columns = dataTable.getChildren();
 		for (UIComponent column : columns) {
-		    if (!column.isRendered()) {
-		        continue;
-		    }
+			if (!column.isRendered()) {
+				continue;
+			}
 			rw.startElement("th", dataTable);
 			Object headerStyle = column.getAttributes().get("headerStyle");
 			if (headerStyle != null) {
@@ -272,11 +271,12 @@ public class DataTableRenderer extends CoreRenderer {
 					if (null != ve) {
 						String exp = ve.getExpressionString();
 						int pos = exp.lastIndexOf('.');
-						if (pos >0) {
-							exp=exp.substring(pos+1);
+						if (pos > 0) {
+							exp = exp.substring(pos + 1);
 						}
-						rw.writeText(exp.substring(0,exp.length()-1),null);
-						labelHasBeenRendered=true;
+						exp = exp.substring(0, 1).toUpperCase() + exp.substring(1);
+						rw.writeText(exp.substring(0, exp.length() - 1), null);
+						labelHasBeenRendered = true;
 					}
 				}
 				if (!labelHasBeenRendered) {
@@ -288,7 +288,7 @@ public class DataTableRenderer extends CoreRenderer {
 				UIComponent facet = column.getFacet("order");
 				order = facet.toString();
 			} else if (column.getAttributes().get("order") != null) {
-				order = (String)column.getAttributes().get("order");
+				order = (String) column.getAttributes().get("order");
 			}
 			if (null != order) {
 				order = order.trim();
@@ -303,8 +303,8 @@ public class DataTableRenderer extends CoreRenderer {
 				columnSortOrder.put(index, order);
 			}
 			if (column.getAttributes().get("orderBy") != null) {
-				String orderBy = (String)column.getAttributes().get("orderBy");
-				if (dataTable.getColumnInfo()==null) {
+				String orderBy = (String) column.getAttributes().get("orderBy");
+				if (dataTable.getColumnInfo() == null) {
 					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
 					for (int k = 0; k < dataTable.getChildren().size(); k++) {
 						infos.add(null);
@@ -313,16 +313,16 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 				List<String> infos = dataTable.getColumnInfo();
 				String s = infos.get(index);
-				if (s==null) {
+				if (s == null) {
 					infos.set(index, "'orderDataType': '" + orderBy + "', type: 'string'");
 				} else {
-					infos.set(index, s+",'orderDataType': '" + orderBy + "', type: 'string'");
+					infos.set(index, s + ",'orderDataType': '" + orderBy + "', type: 'string'");
 				}
 
 			}
 			if (column.getAttributes().get("dataType") != null) {
-				String type = (String)column.getAttributes().get("dataType");
-				if (dataTable.getColumnInfo()==null) {
+				String type = (String) column.getAttributes().get("dataType");
+				if (dataTable.getColumnInfo() == null) {
 					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
 					for (int k = 0; k < dataTable.getChildren().size(); k++) {
 						infos.add(null);
@@ -331,15 +331,15 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 				List<String> infos = dataTable.getColumnInfo();
 				String s = infos.get(index);
-				if (s==null) {
+				if (s == null) {
 					infos.set(index, "'type': '" + type + "'");
-				}
-				else infos.set(index, s + ",'type': '" + type + "'");
+				} else
+					infos.set(index, s + ",'type': '" + type + "'");
 			}
 			if (column.getAttributes().get("orderable") != null) {
 				String orderable = column.getAttributes().get("orderable").toString();
 				if ("false".equalsIgnoreCase(orderable)) {
-					if (dataTable.getColumnInfo()==null) {
+					if (dataTable.getColumnInfo() == null) {
 						List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
 						for (int k = 0; k < dataTable.getChildren().size(); k++) {
 							infos.add(null);
@@ -348,10 +348,10 @@ public class DataTableRenderer extends CoreRenderer {
 					}
 					List<String> infos = dataTable.getColumnInfo();
 					String s = infos.get(index);
-					if (s==null) {
+					if (s == null) {
 						infos.set(index, "'orderable': false");
-					}
-					else infos.set(index, s + ",'orderable': false");
+					} else
+						infos.set(index, s + ",'orderable': false");
 				}
 			}
 			rw.endElement("th");
@@ -360,7 +360,7 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("tr");
 		if (false) {
 			// Putting input fields into the header doesn't work yet
-			if(dataTable.isMultiColumnSearch()) {
+			if (dataTable.isMultiColumnSearch()) {
 				String position = dataTable.getMultiColumnSearchPosition();
 				if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
 					generateMultiColumnSearchRow(context, dataTable, rw);
@@ -396,19 +396,13 @@ public class DataTableRenderer extends CoreRenderer {
 		Map<Integer, String> columnSortOrder = dataTable.getColumnSortOrderMap();
 		int pageLength = dataTable.getPageLength();
 		String orderString = "[]";
-		if ( columnSortOrder != null ) {
+		if (columnSortOrder != null) {
 			StringBuilder sb = new StringBuilder();
 			int i = 0;
-			for ( Map.Entry<Integer, String> entry : columnSortOrder.entrySet() ) {
-				String separator = ( i > 0 ) ? "," : "";
-				sb.append( separator )
-				  .append( "[" )
-				  .append( entry.getKey() )
-				  .append( "," )
-				  .append( "'" )
-				  .append( entry.getValue() )
-				  .append( "'" )
-				  .append( "]" );
+			for (Map.Entry<Integer, String> entry : columnSortOrder.entrySet()) {
+				String separator = (i > 0) ? "," : "";
+				sb.append(separator).append("[").append(entry.getKey()).append(",").append("'").append(entry.getValue())
+						.append("'").append("]");
 				i++;
 			}
 			orderString = sb.toString();
@@ -418,143 +412,145 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
 		if (null == widgetVar) {
-			widgetVar = clientId+"Widget";
+			widgetVar = clientId + "Widget";
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
-		String responsiveStyle= Responsive.getResponsiveStyleClass(dataTable, false);
-		if (null != responsiveStyle && responsiveStyle.trim().length()>0) {
+		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
+		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.endElement("div");
 		}
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
-		//# Start enclosure
+		// # Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
-		//# Enclosure-scoped variable initialization
+		// # Enclosure-scoped variable initialization
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
-					 //# Get instance of wrapper, and replace it with the unwrapped table.
-					 "var wrapper = $('#" + clientIdRaw.replace( ":","\\\\:" ) + "_wrapper');" +
-					 "wrapper.replaceWith(" + widgetVar +");" +
-					 "var table = " + widgetVar +".DataTable({" +
-					 "	fixedHeader: " + dataTable.isFixedHeader() + "," +
-					 "	responsive: " + dataTable.isResponsive() + ", " +
-					 "	paging: " + dataTable.isPaginated() + ", " +
-					 "	pageLength: " + pageLength + ", " +
-					 "	lengthMenu: " + getPageLengthMenu(dataTable) + ", " +
-					 "	searching: " + dataTable.isSearching() + ", " +
-					 "	order: " + orderString + ", " +
-					 "  stateSave: " + dataTable.isSaveState() + ", " +
-					 generateScrollOptions(dataTable) +
-					 (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "") +
-					 generateColumnInfos(dataTable.getColumnInfo()) +
-					 "});" +
-					 "console.log('rerender');"
-					 , null);
+		// # Get instance of wrapper, and replace it with the unwrapped table.
+				"var wrapper = $('#" + clientIdRaw.replace(":", "\\\\:") + "_wrapper');" + "wrapper.replaceWith("
+				+ widgetVar + ");"
+				+ "var table = " + widgetVar + ".DataTable({"
+				+ "	fixedHeader: " + dataTable.isFixedHeader() + ","
+				+ "	responsive: " + dataTable.isResponsive() + ", "
+				+ "	paging: " + dataTable.isPaginated() + ", "
+				+ "	pageLength: " + pageLength + ", "
+				+ "	lengthMenu: " + getPageLengthMenu(dataTable) + ", "
+				+ "	searching: " + dataTable.isSearching() + ", "
+				+ "	order: " + orderString + ", "
+				+ " stateSave: " + dataTable.isSaveState() + ", "
+				+ generateScrollOptions(dataTable)
+				+ (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "")
+				+ generateColumnInfos(dataTable.getColumnInfo()) + "});", null);
 
-		if(dataTable.isMultiColumnSearch())	{
-			//# Footer stuff: https://datatables.net/examples/api/multi_filter.html
-			//# Convert footer column text to input textfields
-			rw.writeText("\n" + widgetVar + ".find('.bf-multisearch').each(function() {" +
-						  "var title = $(this).text();" +
-						  "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');" +
-						  "});\n", null );
-			//# Add event listeners for each multisearch input
-			rw.writeText( "table.columns().every( function (col) {" +
-						  "var that = this;\ndebugger;\n" +
-					      "var inputs = $(" + widgetVar + ".find('.bf-multisearch input'));\n" +
-						  "$(inputs[col]).on( 'keyup change', function () {" +
-						  "    if ( that.search() !== this.value ) {" +
-						  "console.log(this.value);" +
-						  "console.log(that);" +
-						  "        that.search( this.value ).draw('page');" +
-						  "    }" +
-						  "} );" +
+		if (dataTable.isMultiColumnSearch()) {
+			// # Footer stuff:
+			// https://datatables.net/examples/api/multi_filter.html
+			// # Convert footer column text to input textfields
+			rw.writeText("\n" + widgetVar + ".find('.bf-multisearch').each(function() {" + "var title = $(this).text();"
+					+ "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
+					+ "});\n", null);
+			// # Add event listeners for each multisearch input
+			rw.writeText("table.columns().every( function (col) {" + "var that = this;\ndebugger;\n" + "var inputs = $("
+					+ widgetVar + ".find('.bf-multisearch input'));\n"
+					+ "$(inputs[col]).on( 'keyup change', function () {" + "    if ( that.search() !== this.value ) {"
+					+ "console.log(this.value);" + "console.log(that);"
+					+ "        that.search( this.value ).draw('page');" + "    }" + "} );" +
 
-						  "} );", null );
+					"} );", null);
 		}
-		//# End enclosure
-		rw.writeText("} );",null );
+		// # End enclosure
+		rw.writeText("} );", null);
 		rw.endElement("script");
 	}
 
 	private String generateScrollOptions(DataTable dataTable) {
-		String scrollY=dataTable.getScrollSize();
-		if (null==scrollY) {
+		String scrollY = dataTable.getScrollSize();
+		boolean scrollX = dataTable.isScrollX();
+		if (null == scrollY && (!scrollX)) {
 			return "";
 		}
-		if (!NUMERIC_PATTERN.matcher(scrollY).matches()) {
-			// you can pass the scrollY either as a numeric value (in which case it is the height in px)
-			// or as a String containing the unit. If it's a String, it has to be surround be ticks.
-			scrollY = "'" + scrollY + "'";
-		};
+		String result = "";
+		if (null != scrollY) {
+			if (!NUMERIC_PATTERN.matcher(scrollY).matches()) {
+				// you can pass the scrollY either as a numeric value (in which
+				// case it is the height in px)
+				// or as a String containing the unit. If it's a String, it has
+				// to be surround be ticks.
+				scrollY = "'" + scrollY + "'";
+			}
+			result += " scrollY: " + scrollY + ",";
+		}
+		if (scrollX) {
+			result += "scrollX: true,";
+		}
 
-
-		return " scrollY: " + dataTable.getScrollSize() + ", scrollCollapse: " + dataTable.isScrollCollapse() + ",";
+		return result +  "scrollCollapse: " + dataTable.isScrollCollapse() + ",";
 	}
 
 	private String generateColumnInfos(List<String> columnInfo) {
-		if (columnInfo==null) {
+		if (columnInfo == null) {
 			return "";
 		}
-		String result=", columns: [";
-		for (String col: columnInfo) {
+		String result = "columns: [";
+		for (String col : columnInfo) {
 			if (null == col) {
 				result += "null,";
 			} else {
 				result += "{" + col + "},";
 				if (col.contains("dom-text")) {
 					if (!col.contains("type")) {
-						throw new FacesException("You have to specify the data type of the column if you want to sort it using order-by.");
+						throw new FacesException(
+								"You have to specify the data type of the column if you want to sort it using order-by.");
 					}
 				}
 			}
 		}
-		result = result.substring(0, result.length()-1); // remove the trailing comma
-		result += "]";
+		result = result.substring(0, result.length() - 1); // remove the
+															// trailing comma
+		result += "],";
 		return result;
 	}
 
 	private String getPageLengthMenu(DataTable dataTable) {
-		String menu=dataTable.getPageLengthMenu();
-		if (menu!=null) {
-			menu=menu.trim();
+		String menu = dataTable.getPageLengthMenu();
+		if (menu != null) {
+			menu = menu.trim();
 			if (!menu.startsWith("[")) {
-				menu = "["+menu;
+				menu = "[" + menu;
 			}
 			if (!menu.endsWith("]")) {
-				menu  =menu + "]";
+				menu = menu + "]";
 			}
 		}
 		return menu;
 	}
 
 	/**
-	 * Determine if the user specify a lang
-	 * Otherwise return null to avoid language settings.
+	 * Determine if the user specify a lang Otherwise return null to avoid
+	 * language settings.
 	 *
 	 * @param fc
 	 * @param dataTable
 	 * @return
 	 */
 	private String determineLanguage(FacesContext fc, DataTable dataTable) {
-		final Set<String> availableLanguages = new HashSet<String>(Arrays.asList(
-		     new String[] {"de", "en", "es", "fr", "hu", "it", "pl", "ru"}
-		));
-		if(BsfUtils.isStringValued(dataTable.getCustomLangUrl())) {
+		final Set<String> availableLanguages = new HashSet<String>(
+				Arrays.asList(new String[] { "de", "en", "es", "fr", "hu", "it", "pl", "ru" }));
+		if (BsfUtils.isStringValued(dataTable.getCustomLangUrl())) {
 			return dataTable.getCustomLangUrl();
-		} else if(BsfUtils.isStringValued(dataTable.getLang())) {
+		} else if (BsfUtils.isStringValued(dataTable.getLang())) {
 			String lang = dataTable.getLang();
-			if(availableLanguages.contains(lang)) return determineLanguageUrl(fc, lang);
+			if (availableLanguages.contains(lang))
+				return determineLanguageUrl(fc, lang);
 		}
 		return null;
 	}
 
 	/**
-	 * Determine the locale to set-up to dataTable component.
-	 * The locale is determined in this order:
-	 * - if customLangUrl is specified, it is the value set up
-	 * - otherwise, the system check if locale is explicit specified
-	 * - otherwise it takes from the ViewRoot
+	 * Determine the locale to set-up to dataTable component. The locale is
+	 * determined in this order: - if customLangUrl is specified, it is the
+	 * value set up - otherwise, the system check if locale is explicit
+	 * specified - otherwise it takes from the ViewRoot
 	 *
 	 * @param fc
 	 * @param dataTable
@@ -562,7 +558,8 @@ public class DataTableRenderer extends CoreRenderer {
 	 */
 	private String determineLanguageUrl(FacesContext fc, String lang) {
 		// Build resource url
-		return fc.getApplication().getResourceHandler().createResource("jq/ui/i18n/dt/datatable-" + lang + ".json", "bsf").getRequestPath();
+		return fc.getApplication().getResourceHandler()
+				.createResource("jq/ui/i18n/dt/datatable-" + lang + ".json", "bsf").getRequestPath();
 	}
 
 	@Override

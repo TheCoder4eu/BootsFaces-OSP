@@ -68,6 +68,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		saveState,
 		scrollCollapse,
 		scrollSize,
+		scrollX,
 		searching,
 		smallScreen,
 		span,
@@ -720,6 +721,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setScrollSize(String _scrollSize) {
 		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
+	}
+
+	/**
+	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isScrollX() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollX, false);
+	}
+
+	/**
+	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollX(boolean _scrollX) {
+		getStateHelper().put(PropertyKeys.scrollX, _scrollX);
 	}
 
 	/**
