@@ -11,13 +11,14 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:image /&gt;. */
 @FacesComponent("net.bootsfaces.component.image.Image")
 public class Image extends ImageCore
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
+		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.image.Image";
 

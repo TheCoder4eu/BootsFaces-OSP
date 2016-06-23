@@ -779,6 +779,7 @@ widget image
        implemented_by net.bootsfaces.component.Image
        extends UIComponentBase
        has_tooltip
+       is_responsive
 {
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
 	alt																   	   "Alternate textual description of the element rendered by this component."
@@ -810,6 +811,7 @@ widget image
     width																   "Override for the width of this image."
     +style
     +tooltip
+    +responsive
 }
 
 widget inputSecret
