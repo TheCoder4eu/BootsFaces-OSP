@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -32,6 +32,7 @@ import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextareaRenderer")
@@ -65,11 +66,12 @@ public class InputTextareaRenderer extends CoreRenderer {
 		InputTextarea inputText = (InputTextarea) component;
 
 		ResponseWriter rw = context.getResponseWriter();
-		int span = inputText.getSpan();
-		if (span > 0) {
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
+		if (responsiveStyleClass.length() > 0) {
 			rw.startElement("div", component);
-			rw.writeAttribute("class", "col-md-" + span, "class");
+			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
+
 		String clientId = inputText.getClientId();
 
 		// "Prepend" facet
@@ -135,7 +137,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 		rw.writeAttribute("name", "input_" + clientId, null);
 		rw.writeAttribute("type", t, null);
 		rw.writeAttribute("rows", inputText.getRows(), "rows");
-		
+
 
 		generateStyleClass(inputText, rw);
 
@@ -176,8 +178,9 @@ public class InputTextareaRenderer extends CoreRenderer {
 			rw.endElement("div");
 		} // input-group
 		rw.endElement("div"); // form-group
-		if (span > 0) {
-			rw.endElement("div"); // span
+
+		if (responsiveStyleClass.length() > 0) {
+			rw.endElement("div");
 		}
 
 		Tooltip.activateTooltips(context, inputText);

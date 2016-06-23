@@ -943,6 +943,7 @@ widget inputTextarea
        processes_input
        extends HtmlInputText
        has_tooltip
+       is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     ajax                  Boolean                                          "Activates AJAX. The default value is false (no AJAX)."
@@ -984,7 +985,6 @@ widget inputTextarea
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     rows                  Integer default "5"                              "Number of rows"
     size                  Integer inherited                                "Number of characters used to determine the width of the input element."
-    span                  Integer                                          "The size of the input specified as number of grid columns."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
@@ -995,6 +995,7 @@ widget inputTextarea
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+style
 	+tooltip
+	+responsive
 }
 
 
