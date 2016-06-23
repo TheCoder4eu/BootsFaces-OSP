@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -29,13 +29,14 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 
 /** This class generates the HTML code of &lt;b:panelGrid /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.panelGrid.PanelGrid")
 public class PanelGridRenderer extends CoreRenderer {
-	
+
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// suppress generation of children
@@ -58,6 +59,11 @@ public class PanelGridRenderer extends CoreRenderer {
         PanelGrid panelGrid = (PanelGrid) component;
 		ResponseWriter writer = context.getResponseWriter();
 
+		String responsiveStyle= Responsive.getResponsiveStyleClass(panelGrid, false);
+		if (null != responsiveStyle) {
+			writer.startElement("div", panelGrid);
+			writer.writeAttribute("class", responsiveStyle.trim(), null);
+		}
 		generateContainerStart(writer, panelGrid);
 
 		int[] columns = getColSpanArray(panelGrid);
@@ -83,12 +89,15 @@ public class PanelGridRenderer extends CoreRenderer {
 		}
 
 		generateContainerEnd(writer);
+		if (null != responsiveStyle) {
+			writer.endElement("div");
+		}
         Tooltip.activateTooltips(context, panelGrid);
 	}
 
 	/**
 	 * Extract the option row classes from the JSF file.
-	 * 
+	 *
 	 * @return null or a String array.
 	 */
 	protected String[] getRowClasses(PanelGrid grid) {
@@ -101,7 +110,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Read the colSpans attribute.
-	 * 
+	 *
 	 * @return a integer array
 	 * @throws FacesException
 	 *             if the attribute is missing or invalid.
@@ -150,7 +159,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Merge the column span information and the optional columnClasses attribute.
-	 * 
+	 *
 	 * @param colSpans
 	 *            the integer array returned by getColSpans().
 	 * @return null or an array of String consisting of the CSS classes.
@@ -192,7 +201,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the end of the Bootstrap column.
-	 * 
+	 *
 	 * @param writer
 	 *            the current response writer.
 	 * @param span
@@ -206,7 +215,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the end of the Bootstrap rows.
-	 * 
+	 *
 	 * @param writer
 	 *            the current response writer.
 	 * @param row
@@ -222,7 +231,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generated the end of the entire Bootstrap container.
-	 * 
+	 *
 	 * @param writer
 	 *            the current response writer.
 	 * @throws IOException
@@ -234,7 +243,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the start of each Bootstrap column.
-	 * 
+	 *
 	 * @param child
 	 *            the child component to be drawn within the column.
 	 * @param colStyleClass
@@ -251,7 +260,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the start of each Bootstrap row.
-	 * 
+	 *
 	 * @param writer
 	 *            the current response writer.
 	 * @param row
@@ -271,7 +280,7 @@ public class PanelGridRenderer extends CoreRenderer {
 
 	/**
 	 * Generates the start of the entire Bootstrap container.
-	 * 
+	 *
 	 * @param writer
 	 *            the current response writer.
 	 * @throws IOException
@@ -299,5 +308,5 @@ public class PanelGridRenderer extends CoreRenderer {
 		String style = panelGrid.getStyle();
 		if (null != style && style.trim().length()>0)
 			writer.writeAttribute("style", style, "style");
-	}	
+	}
 }
