@@ -6055,7 +6055,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[See momentjs' docs for valid formats. Format also dictates what components are shown, e.g. MM/dd/YYYY will not display the time picker.]]></description>
+		  <description><![CDATA[See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker.]]></description>
 		  <name>format</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -6279,6 +6279,30 @@
 		<attribute>
 		  <description><![CDATA[Show the 'Close' button in the icon toolbar. Default: false.]]></description>
 		  <name>showCloseButton</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used..]]></description>
+		  <name>show-date</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used..]]></description>
+		  <name>showDate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By setting this to false you can deactivate the time part of the dateTimePicker. Is ignored if the attribute 'format' is used.]]></description>
+		  <name>show-time</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By setting this to false you can deactivate the time part of the dateTimePicker. Is ignored if the attribute 'format' is used.]]></description>
+		  <name>showTime</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
