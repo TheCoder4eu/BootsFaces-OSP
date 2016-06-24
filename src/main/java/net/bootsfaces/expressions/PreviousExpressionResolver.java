@@ -7,8 +7,8 @@ import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 
 public class PreviousExpressionResolver implements AbstractExpressionResolver {
-	private static final String ERROR_MESSAGE = "Invalid search expression - there's no predecessor to the component ";
-	
+	private static final String ERROR_MESSAGE = "Invalid search expression - there's no predecessor to the ";
+
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
@@ -24,8 +24,17 @@ public class PreviousExpressionResolver implements AbstractExpressionResolver {
 				}
 			}
 		}
-		
-		throw new FacesException(ERROR_MESSAGE + originalExpression);
+
+		String componentList=" component(s): ";
+		for (UIComponent parent : parentComponents) {
+			componentList += parent.getClass().getSimpleName() + " id= " + parent.getId()+ ", ";
+		}
+
+		if (componentList.endsWith(", ")) {
+			throw new FacesException(ERROR_MESSAGE + componentList.substring(0, componentList.length()-2) + " complete search expression: " + originalExpression);
+		}
+
+		throw new FacesException(ERROR_MESSAGE + "component " + " complete search expression: " + originalExpression);
 	}
 
 }
