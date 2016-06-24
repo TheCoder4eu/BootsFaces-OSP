@@ -45,7 +45,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		largeScreen,
 		mediumScreen,
 		multiColumnSearch,
-		multiColumnSearchPosition,
 		offset,
 		offsetLg,
 		offsetMd,
@@ -358,22 +357,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
-	}
-
-	/**
-	 * Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getMultiColumnSearchPosition() {
-		return (String) getStateHelper().eval(PropertyKeys.multiColumnSearchPosition, "bottom");
-	}
-
-	/**
-	 * Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMultiColumnSearchPosition(String _multiColumnSearchPosition) {
-		getStateHelper().put(PropertyKeys.multiColumnSearchPosition, _multiColumnSearchPosition);
 	}
 
 	/**

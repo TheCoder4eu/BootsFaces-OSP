@@ -117,10 +117,10 @@ public class DataTableRenderer extends CoreRenderer {
 		boolean hasFooter = false;
 		boolean hasSearchbar = false;
 		if (dataTable.isMultiColumnSearch()) {
-			String position = dataTable.getMultiColumnSearchPosition();
-			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
+//			String position = dataTable.getMultiColumnSearchPosition();
+//			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
 				hasSearchbar = true;
-			}
+//			}
 		}
 		for (UIComponent column : dataTable.getChildren()) {
 			if (!column.isRendered()) {
@@ -361,12 +361,12 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("tr");
 		if (false) {
 			// Putting input fields into the header doesn't work yet
-			if (dataTable.isMultiColumnSearch()) {
-				String position = dataTable.getMultiColumnSearchPosition();
-				if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
-					generateMultiColumnSearchRow(context, dataTable, rw);
-				}
-			}
+//			if (dataTable.isMultiColumnSearch()) {
+//				String position = dataTable.getMultiColumnSearchPosition();
+//				if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
+//					generateMultiColumnSearchRow(context, dataTable, rw);
+//				}
+//			}
 		}
 
 		rw.endElement("thead");
