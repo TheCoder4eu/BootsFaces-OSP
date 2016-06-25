@@ -315,9 +315,9 @@ public class DataTableRenderer extends CoreRenderer {
 				List<String> infos = dataTable.getColumnInfo();
 				String s = infos.get(index);
 				if (s == null) {
-					infos.set(index, "'orderDataType': '" + orderBy + "', type: 'string'");
+					infos.set(index, "'orderDataType': '" + orderBy+"'");
 				} else {
-					infos.set(index, s + ",'orderDataType': '" + orderBy + "', type: 'string'");
+					infos.set(index, s + ",'orderDataType': '" + orderBy+"'");
 				}
 
 			}
@@ -353,6 +353,24 @@ public class DataTableRenderer extends CoreRenderer {
 						infos.set(index, "'orderable': false");
 					} else
 						infos.set(index, s + ",'orderable': false");
+				}
+			}
+			if (column.getAttributes().get("customOptions") != null) {
+				String customOptions = column.getAttributes().get("customOptions").toString();
+				if (customOptions !=null && customOptions.length()>0) {
+					if (dataTable.getColumnInfo() == null) {
+						List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
+						for (int k = 0; k < dataTable.getChildren().size(); k++) {
+							infos.add(null);
+						}
+						dataTable.setColumnInfo(infos);
+					}
+					List<String> infos = dataTable.getColumnInfo();
+					String s = infos.get(index);
+					if (s == null) {
+						infos.set(index, customOptions);
+					} else
+						infos.set(index, s + "," +customOptions);
 				}
 			}
 			rw.endElement("th");
@@ -426,23 +444,26 @@ public class DataTableRenderer extends CoreRenderer {
 		// # Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
 		// # Enclosure-scoped variable initialization
+		String options = "";
+		options = addOptions("	fixedHeader: " + dataTable.isFixedHeader(), options);
+		options = addOptions( "	responsive: " + dataTable.isResponsive(), options);
+		options = addOptions( "	paging: " + dataTable.isPaginated(), options);
+		options = addOptions( "	pageLength: " + pageLength, options);
+		options = addOptions( "	lengthMenu: " + getPageLengthMenu(dataTable), options);
+		options = addOptions( "	searching: " + dataTable.isSearching() , options);
+		options = addOptions( "	order: " + orderString, options);
+		options = addOptions( " stateSave: " + dataTable.isSaveState(), options);
+		options = addOptions( " select: true", options);
+		options = addOptions( generateScrollOptions(dataTable), options);
+		options = addOptions( (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
+		options = addOptions( generateColumnInfos(dataTable.getColumnInfo()), options);
+		options = addOptions( dataTable.getCustomOptions(), options);
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.
 				"var wrapper = $('#" + clientIdRaw.replace(":", "\\\\:") + "_wrapper');" + "wrapper.replaceWith("
 				+ widgetVar + ");"
 				+ "var table = " + widgetVar + ".DataTable({"
-				+ "	fixedHeader: " + dataTable.isFixedHeader() + ","
-				+ "	responsive: " + dataTable.isResponsive() + ", "
-				+ "	paging: " + dataTable.isPaginated() + ", "
-				+ "	pageLength: " + pageLength + ", "
-				+ "	lengthMenu: " + getPageLengthMenu(dataTable) + ", "
-				+ "	searching: " + dataTable.isSearching() + ", "
-				+ "	order: " + orderString + ", "
-				+ " stateSave: " + dataTable.isSaveState() + ", "
-				+ " select: true,"
-				+ generateScrollOptions(dataTable)
-				+ (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : "")
-				+ generateColumnInfos(dataTable.getColumnInfo()) + "});", null);
+				+ options + "});", null);
 
 		if (dataTable.isMultiColumnSearch()) {
 			// # Footer stuff:
@@ -452,10 +473,9 @@ public class DataTableRenderer extends CoreRenderer {
 					+ "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
 					+ "});\n", null);
 			// # Add event listeners for each multisearch input
-			rw.writeText("table.columns().every( function (col) {" + "var that = this;\ndebugger;\n" + "var inputs = $("
+			rw.writeText("table.columns().every( function (col) {" + "var that = this;\n" + "var inputs = $("
 					+ widgetVar + ".find('.bf-multisearch input'));\n"
 					+ "$(inputs[col]).on( 'keyup change', function () {" + "    if ( that.search() !== this.value ) {"
-					+ "console.log(this.value);" + "console.log(that);"
 					+ "        that.search( this.value ).draw('page');" + "    }" + "} );" +
 
 					"} );", null);
@@ -463,6 +483,15 @@ public class DataTableRenderer extends CoreRenderer {
 		// # End enclosure
 		rw.writeText("} );", null);
 		rw.endElement("script");
+	}
+
+	private String addOptions(String newOption, String options) {
+		if (newOption!=null && newOption.length()>0) {
+			if (options.length()>0)
+				options += ",";
+			options += newOption;
+		}
+		return options;
 	}
 
 	private String generateScrollOptions(DataTable dataTable) {
@@ -486,7 +515,7 @@ public class DataTableRenderer extends CoreRenderer {
 			result += "scrollX: true,";
 		}
 
-		return result +  "scrollCollapse: " + dataTable.isScrollCollapse() + ",";
+		return result +  "scrollCollapse: " + dataTable.isScrollCollapse();
 	}
 
 	private String generateColumnInfos(List<String> columnInfo) {
@@ -509,7 +538,7 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		result = result.substring(0, result.length() - 1); // remove the
 															// trailing comma
-		result += "],";
+		result += "]";
 		return result;
 	}
 

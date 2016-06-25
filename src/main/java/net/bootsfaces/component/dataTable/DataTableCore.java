@@ -36,6 +36,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		colSm,
 		colXs,
 		customLangUrl,
+		customOptions,
 		disabled,
 		display,
 		fixedHeader,
@@ -213,6 +214,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setCustomLangUrl(String _customLangUrl) {
 		getStateHelper().put(PropertyKeys.customLangUrl, _customLangUrl);
+	}
+
+	/**
+	 * Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getCustomOptions() {
+		return (String) getStateHelper().eval(PropertyKeys.customOptions);
+	}
+
+	/**
+	 * Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCustomOptions(String _customOptions) {
+		getStateHelper().put(PropertyKeys.customOptions, _customOptions);
 	}
 
 	/**

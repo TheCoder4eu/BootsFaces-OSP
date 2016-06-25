@@ -4879,6 +4879,18 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk.]]></description>
+		  <name>custom-options</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk.]]></description>
+		  <name>customOptions</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -5389,6 +5401,18 @@
 		  <name>contentStyleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk.]]></description>
+		  <name>custom-options</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk.]]></description>
+		  <name>customOptions</name>
+		  <required>false</required>
+		  <type>String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'.]]></description>
