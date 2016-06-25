@@ -651,7 +651,10 @@ widget dropMenu
 widget fetchBeanInfos
        implemented_by net.bootsfaces.component.FetchBeanInfos
        extends UIComponentBase
- {}
+ {
+ 	    id                                                                 "Unique identifier of the component in a namingContainer."
+
+ }
 
 widget flyOutMenu
        implemented_by net.bootsfaces.component.FlyOutMenu
