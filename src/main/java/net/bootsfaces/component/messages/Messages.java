@@ -58,11 +58,13 @@ public class Messages extends javax.faces.component.UIMessages {
 		escape,
 		fatalClass,
 		fatalStyle,
+		_for,
 		globalOnly,
 		infoClass,
 		infoStyle,
 		lineBreak,
 		lineBreakTag,
+		recursive,
 		showDetail,
 		showIcon,
 		showSummary,
@@ -187,6 +189,22 @@ public class Messages extends javax.faces.component.UIMessages {
 	}
 
 	/**
+	 * Optional id or search expression. Only the messages of the component defined by the id and its children are shown. By default, the algorithm checks the ids, which means the the 'for' component has to be a NamingContainer. Note that this algorithm fails if you use the prependId='false'. Alternatively, you can activate a slower but more flexible algorithm by setting 'recursive' to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFor() {
+		return (String) getStateHelper().eval(PropertyKeys._for);
+	}
+
+	/**
+	 * Optional id or search expression. Only the messages of the component defined by the id and its children are shown. By default, the algorithm checks the ids, which means the the 'for' component has to be a NamingContainer. Note that this algorithm fails if you use the prependId='false'. Alternatively, you can activate a slower but more flexible algorithm by setting 'recursive' to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFor(String _for) {
+		getStateHelper().put(PropertyKeys._for, _for);
+	}
+
+	/**
 	 * Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -264,6 +282,22 @@ public class Messages extends javax.faces.component.UIMessages {
 	 */
 	public void setLineBreakTag(String _lineBreakTag) {
 		getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
+	}
+
+	/**
+	 * If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRecursive() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.recursive, false);
+	}
+
+	/**
+	 * If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRecursive(boolean _recursive) {
+		getStateHelper().put(PropertyKeys.recursive, _recursive);
 	}
 
 	/**

@@ -11449,6 +11449,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional id or search expression. Only the messages of the component defined by the id and its children are shown. By default, the algorithm checks the ids, which means the the 'for' component has to be a NamingContainer. Note that this algorithm fails if you use the prependId='false'. Alternatively, you can activate a slower but more flexible algorithm by setting 'recursive' to true.]]></description>
+		  <name>for</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false.]]></description>
 		  <name>global-only</name>
 		  <required>false</required>
@@ -11513,6 +11519,18 @@
 		  <name>lineBreakTag</name>
 		  <required>false</required>
 		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer.]]></description>
+		  <name>recursive</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set the flag indicating whether the <code>detail</code> property of the associated message(s) should be displayed]]></description>
+		  <name>redisplay</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A boolean value that indicates whether this component should be rendered. Default value: true.]]></description>
