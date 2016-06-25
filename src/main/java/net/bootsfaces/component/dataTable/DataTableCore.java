@@ -75,6 +75,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		scrollSize,
 		scrollX,
 		searching,
+		select,
 		smallScreen,
 		span,
 		striped,
@@ -838,6 +839,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSearching(boolean _searching) {
 		getStateHelper().put(PropertyKeys.searching, _searching);
+	}
+
+	/**
+	 * Allows the user to select rows. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSelect() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.select, false);
+	}
+
+	/**
+	 * Allows the user to select rows. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelect(boolean _select) {
+		getStateHelper().put(PropertyKeys.select, _select);
 	}
 
 	/**

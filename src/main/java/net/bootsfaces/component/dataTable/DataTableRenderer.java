@@ -445,15 +445,15 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeText("$(document).ready(function() {", null);
 		// # Enclosure-scoped variable initialization
 		String options = "";
-		options = addOptions("	fixedHeader: " + dataTable.isFixedHeader(), options);
-		options = addOptions( "	responsive: " + dataTable.isResponsive(), options);
-		options = addOptions( "	paging: " + dataTable.isPaginated(), options);
-		options = addOptions( "	pageLength: " + pageLength, options);
-		options = addOptions( "	lengthMenu: " + getPageLengthMenu(dataTable), options);
-		options = addOptions( "	searching: " + dataTable.isSearching() , options);
-		options = addOptions( "	order: " + orderString, options);
-		options = addOptions( " stateSave: " + dataTable.isSaveState(), options);
-		options = addOptions( " select: true", options);
+		options = addOptions("fixedHeader: " + dataTable.isFixedHeader(), options);
+		options = addOptions( "responsive: " + dataTable.isResponsive(), options);
+		options = addOptions( "paging: " + dataTable.isPaginated(), options);
+		options = addOptions( "pageLength: " + pageLength, options);
+		options = addOptions( "lengthMenu: " + getPageLengthMenu(dataTable), options);
+		options = addOptions( "searching: " + dataTable.isSearching() , options);
+		options = addOptions( "order: " + orderString, options);
+		options = addOptions( "stateSave: " + dataTable.isSaveState(), options);
+		options = addOptions( "select: " + dataTable.isSelect(), options);
 		options = addOptions( generateScrollOptions(dataTable), options);
 		options = addOptions( (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions( generateColumnInfos(dataTable.getColumnInfo()), options);
