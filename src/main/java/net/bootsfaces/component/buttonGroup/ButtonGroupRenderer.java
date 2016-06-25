@@ -61,6 +61,13 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		rw.startElement("div", buttonGroup);
 		rw.writeAttribute("id", clientId, "id");
 
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false).trim();
+		if(responsive.length() > 0) {
+			rw.writeAttribute("class", responsive, null);
+			rw.startElement("div", buttonGroup);
+		}
+
+
 		StringBuilder styleClasses = new StringBuilder("btn-group");
 		styleClasses.append("vertical".equals(buttonGroup.getOrientation()) ? "-vertical" : "");
 		String s = buttonGroup.getSize();
@@ -71,8 +78,6 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		if (null != sc) {
 			styleClasses.append(" ").append(sc);
 		}
-		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false);
-		styleClasses.append(responsive.trim().length() > 0 ? responsive : "");
 
 		String pull = buttonGroup.getPull();
 		if ("right".equals(pull) || "left".equals(pull)){
@@ -112,6 +117,10 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		ButtonGroup buttonGroup = (ButtonGroup) component;
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div");
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false).trim();
+		if(responsive.length() > 0) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, buttonGroup);
 	}
 }
