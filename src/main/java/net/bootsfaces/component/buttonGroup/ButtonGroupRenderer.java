@@ -60,10 +60,8 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		String clientId = buttonGroup.getClientId();
 		rw.startElement("div", buttonGroup);
 		rw.writeAttribute("id", clientId, "id");
-		
+
 		StringBuilder styleClasses = new StringBuilder("btn-group");
-		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false);
-		styleClasses.append(responsive.trim().length() > 0 ? responsive : "");
 		styleClasses.append("vertical".equals(buttonGroup.getOrientation()) ? "-vertical" : "");
 		String s = buttonGroup.getSize();
 		if (s != null) {
@@ -73,12 +71,14 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		if (null != sc) {
 			styleClasses.append(" ").append(sc);
 		}
-		
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false);
+		styleClasses.append(responsive.trim().length() > 0 ? responsive : "");
+
 		String pull = buttonGroup.getPull();
 		if ("right".equals(pull) || "left".equals(pull)){
 			styleClasses.append(" pull-").append(pull);
 		}
-		
+
 		rw.writeAttribute("class", styleClasses.toString(), "class");
 
 		if (null != buttonGroup.getStyle()) {
