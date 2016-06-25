@@ -503,6 +503,11 @@ public class AJAXRenderer extends CoreRenderer {
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
 			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers) throws IOException {
+		if (jQueryExpressionOfTargetElement.contains(":")) {
+			if (!jQueryExpressionOfTargetElement.contains("\\\\:")) { // avoid escaping twice
+				jQueryExpressionOfTargetElement=jQueryExpressionOfTargetElement.replace(":", "\\\\:");
+			}
+		}
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
 		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
 		for (String event : events) {
