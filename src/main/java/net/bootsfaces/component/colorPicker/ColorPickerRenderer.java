@@ -135,7 +135,8 @@ public class ColorPickerRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
-			generateErrorAndRequiredClass(colorPicker, rw, clientId);
+			generateErrorAndRequiredClass(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			writeAttribute(rw, "style", colorPicker.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");

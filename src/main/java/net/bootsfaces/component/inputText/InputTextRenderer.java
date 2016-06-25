@@ -161,7 +161,8 @@ public class InputTextRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClass(inputText, rw, clientId);
+			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass());
+			writeAttribute(rw, "style", inputText.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");

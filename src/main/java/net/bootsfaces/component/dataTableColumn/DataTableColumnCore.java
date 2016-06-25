@@ -35,6 +35,8 @@ public abstract class DataTableColumnCore extends UIOutput {
 		headerStyle,
 		headerStyleClass,
 		label,
+		labelStyle,
+		labelStyleClass,
 		order,
 		orderBy,
 		orderable,
@@ -196,6 +198,38 @@ public abstract class DataTableColumnCore extends UIOutput {
 	 */
 	public void setLabel(String _label) {
 		getStateHelper().put(PropertyKeys.label, _label);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyle);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyle(String _labelStyle) {
+		getStateHelper().put(PropertyKeys.labelStyle, _labelStyle);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyleClass);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyleClass(String _labelStyleClass) {
+		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
 	}
 
 	/**

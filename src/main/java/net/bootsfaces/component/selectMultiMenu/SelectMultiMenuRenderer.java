@@ -311,7 +311,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", menu);
 			rw.writeAttribute("for", clientId, "for");
-			generateErrorAndRequiredClass(menu, rw, clientId);
+			generateErrorAndRequiredClass(menu, rw, clientId, menu.getLabelStyleClass());
+			writeAttribute(rw, "style", menu.getLabelStyle());
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}

@@ -247,25 +247,35 @@ public class DataTableRenderer extends CoreRenderer {
 				UIComponent facet = column.getFacet("header");
 				facet.encodeAll(context);
 			} else if (column.getAttributes().get("label") != null) {
+				String labelStyleClass = (String)column.getAttributes().get("labelStyleClass");
+				String labelStyle = (String)column.getAttributes().get("labelStyle");
+				if (null != labelStyle || null != labelStyleClass) {
+					rw.startElement("span", null);
+					writeAttribute(rw, "style", labelStyle);
+					writeAttribute(rw, "class", labelStyleClass);
+				}
 				rw.writeText(column.getAttributes().get("label"), null);
+				if (null != labelStyle || null != labelStyleClass) {
+					rw.endElement("span");
+				}
 			} else {
 				boolean labelHasBeenRendered = false;
 				for (UIComponent c : column.getChildren()) {
 					if (c.getAttributes().get("label") != null) {
+						String labelStyleClass = (String)c.getAttributes().get("labelStyleClass");
+						String labelStyle = (String)c.getAttributes().get("labelStyle");
+						if (null != labelStyle || null != labelStyleClass) {
+							rw.startElement("span", null);
+							writeAttribute(rw, "style", labelStyle);
+							writeAttribute(rw, "class", labelStyleClass);
+						}
 						rw.writeText(c.getAttributes().get("label"), null);
+						if (null != labelStyle || null != labelStyleClass) {
+							rw.endElement("span");
+						}
 						labelHasBeenRendered = true;
 						break;
 					}
-				}
-				if (!labelHasBeenRendered) {
-					for (UIComponent c : column.getChildren()) {
-						if (c.getAttributes().get("value") != null) {
-							rw.writeText(c.getAttributes().get("value"), null);
-							labelHasBeenRendered = true;
-							break;
-						}
-					}
-
 				}
 				if (!labelHasBeenRendered) {
 					ValueExpression ve = column.getValueExpression("value");
@@ -276,7 +286,17 @@ public class DataTableRenderer extends CoreRenderer {
 							exp = exp.substring(pos + 1);
 						}
 						exp = exp.substring(0, 1).toUpperCase() + exp.substring(1);
+						String labelStyleClass = (String)column.getAttributes().get("labelStyleClass");
+						String labelStyle = (String)column.getAttributes().get("labelStyle");
+						if (null != labelStyle || null != labelStyleClass) {
+							rw.startElement("span", null);
+							writeAttribute(rw, "style", labelStyle);
+							writeAttribute(rw, "class", labelStyleClass);
+						}
 						rw.writeText(exp.substring(0, exp.length() - 1), null);
+						if (null != labelStyle || null != labelStyleClass) {
+							rw.endElement("span");
+						}
 						labelHasBeenRendered = true;
 					}
 				}
