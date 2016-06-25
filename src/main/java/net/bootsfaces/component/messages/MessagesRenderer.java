@@ -78,7 +78,7 @@ public class MessagesRenderer extends CoreRenderer {
 
 				} else {
 					for (String parentId: parentIds) {
-						if (currentId.startsWith(parentId)) {
+						if (currentId.equals(parentId)) {
 							showIt=true;
 						}
 					}
