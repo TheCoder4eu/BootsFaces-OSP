@@ -65,8 +65,8 @@ public class InputTextRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * This method is called by the JSF framework to get the type-safe value of
-	 * the attribute. Do not delete this method.
+	 * This method is called by the JSF framework to get the type-safe value of the attribute. Do not delete this
+	 * method.
 	 */
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
@@ -185,7 +185,7 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
 		String name = inputText.getName();
-//		System.out.println(name);
+		// System.out.println(name);
 		if (null == name) {
 			name = "input_" + clientId;
 		}
@@ -213,6 +213,9 @@ public class InputTextRenderer extends CoreRenderer {
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
+		if (inputText.isTags()) {
+			rw.writeAttribute("data-role", "tagsinput", null);
+		}
 
 		String v = getValue2Render(context, component);
 		rw.writeAttribute("value", v, null);
@@ -234,6 +237,13 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, inputText);
+		if (inputText.isTags()) {
+//			String id = component.getClientId();
+//			id = id.replace(":", "\\\\:"); // we need to escape the id for jQuery
+//			rw.startElement("script", component);
+//			rw.endElement("script");
+
+		}
 	}
 
 	private void generateStyleClass(InputText inputText, ResponseWriter rw) throws IOException {

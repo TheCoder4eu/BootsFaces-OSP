@@ -57,6 +57,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 		span,
 		style,
 		styleClass,
+		tags,
 		tinyScreen,
 		tooltip,
 		tooltipContainer,
@@ -592,6 +593,22 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isTags() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.tags, false);
+	}
+
+	/**
+	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTags(boolean _tags) {
+		getStateHelper().put(PropertyKeys.tags, _tags);
 	}
 
 	/**

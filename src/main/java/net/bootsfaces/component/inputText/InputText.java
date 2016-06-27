@@ -24,6 +24,7 @@ import javax.faces.component.FacesComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.inputText.InputTextCore.PropertyKeys;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
@@ -95,4 +96,20 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+
+	/**
+	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTags(boolean _tags) {
+		if (_tags) {
+			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
+			AddResourcesListener.addThemedCSSResource("labels.css");
+			AddResourcesListener.addThemedCSSResource("bootstrap-tagsinput.css");
+
+		}
+		super.setTags(_tags);
+	}
+
+
 }

@@ -946,6 +946,7 @@ widget inputText
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     size                Integer inherited                                  "Number of characters used to determine the width of the input element."
     tabindex                          inherited                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
     title                             inherited                            "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
     update                                                                 "Component(s) to be updated with ajax."
