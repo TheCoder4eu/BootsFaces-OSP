@@ -138,6 +138,7 @@ task lesscss(type: GradleBuild) {
 def copySpecCssResources = copySpec {
     from "css/bootstrap-multiselect.css"
     from 'css/bootstrap-switch.css'
+    from 'css/bootstrap-tagsinput.min.css'
     // from 'css/dataTables.bootstrap.min.css'
     from 'css/jssocials.css'
     from 'css/datatables.min.css'
@@ -170,6 +171,7 @@ task copyJsResources(type: Copy) {
   	from 'js/bootstrap-multiselect-collapsible-groups.js'
   	from 'js/bootstrap-multiselect.js'
   	from 'js/bootstrap-switch.js'
+  	from 'js/bootstrap-tagsinput.min.js'
   	from 'js/bootstrap-tree.js'
   	from 'js/bootstrap-treeview.min.js'
   	from 'js/bootstrap-notify.min.js'
@@ -181,6 +183,7 @@ task copyJsResources(type: Copy) {
   	// from 'js/dataTables.bootstrap.min.js'
   	from 'js/jquery.scrollUp.min.js'
   	from 'js/jquery.minicolors.min.js'
+  	from 'js/typeahead.js'
   	from 'ie8support/respond.js'
   	from 'ie8support/html5shiv.js'
   	from 'js/jssocials.min.js'
