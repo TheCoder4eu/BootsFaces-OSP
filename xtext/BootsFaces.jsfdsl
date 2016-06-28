@@ -724,7 +724,6 @@ widget gyroscope
 	process                                                                  		"Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     threshold           Integer default "15"                                        "Specifies the sensitivity of the skae detector."
     update                                                                			"Component(s) to be updated with ajax."
-    widgetVar           String  default "bfGyroscope"                               "optional widget variable to access the datatable widget in JavaScript code."
 }
 
 widget icon
@@ -1541,7 +1540,6 @@ widget shake
 	process                                                                  		"Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     threshold           Integer default "15"                                        "Specifies the sensitivity of the skae detector."
     update                                                                 			"Component(s) to be updated with ajax."
-    widgetVar           String  default "bfShakeDetector"                           "optional widget variable to access the datatable widget in JavaScript code."
 }
 
 widget switch

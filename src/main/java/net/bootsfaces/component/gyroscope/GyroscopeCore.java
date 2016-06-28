@@ -35,8 +35,7 @@ public abstract class GyroscopeCore extends UICommand {
 		onrotation,
 		process,
 		threshold,
-		update,
-		widgetVar;
+		update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -225,22 +224,6 @@ public abstract class GyroscopeCore extends UICommand {
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getWidgetVar() {
-		return (String) getStateHelper().eval(PropertyKeys.widgetVar, "bfGyroscope");
-	}
-
-	/**
-	 * optional widget variable to access the datatable widget in JavaScript code. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setWidgetVar(String _widgetVar) {
-		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
 	}
 
 }
