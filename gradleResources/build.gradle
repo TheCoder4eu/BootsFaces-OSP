@@ -138,7 +138,7 @@ task lesscss(type: GradleBuild) {
 def copySpecCssResources = copySpec {
     from "css/bootstrap-multiselect.css"
     from 'css/bootstrap-switch.css'
-    from 'css/bootstrap-tagsinput.min.css'
+    from 'css/bootstrap-tagsinput.css'
     // from 'css/dataTables.bootstrap.min.css'
     from 'css/jssocials.css'
     from 'css/datatables.min.css'
