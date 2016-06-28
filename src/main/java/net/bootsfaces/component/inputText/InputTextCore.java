@@ -66,6 +66,12 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 		tooltipDelayShow,
 		tooltipPosition,
 		type,
+		typeahead,
+		typeaheadHighlight,
+		typeaheadHint,
+		typeaheadLimit,
+		typeaheadMinLength,
+		typeaheadValues,
 		update,
 		visible;
 		String toString;
@@ -737,6 +743,102 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setType(String _type) {
 		getStateHelper().put(PropertyKeys.type, _type);
+	}
+
+	/**
+	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isTypeahead() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeahead, false);
+	}
+
+	/**
+	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeahead(boolean _typeahead) {
+		getStateHelper().put(PropertyKeys.typeahead, _typeahead);
+	}
+
+	/**
+	 * Highlights the part of the suggestions that has already been entered. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isTypeaheadHighlight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeaheadHighlight, true);
+	}
+
+	/**
+	 * Highlights the part of the suggestions that has already been entered. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeaheadHighlight(boolean _typeaheadHighlight) {
+		getStateHelper().put(PropertyKeys.typeaheadHighlight, _typeaheadHighlight);
+	}
+
+	/**
+	 * If set to false, the typeahead will not show a hint. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isTypeaheadHint() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeaheadHint, true);
+	}
+
+	/**
+	 * If set to false, the typeahead will not show a hint. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeaheadHint(boolean _typeaheadHint) {
+		getStateHelper().put(PropertyKeys.typeaheadHint, _typeaheadHint);
+	}
+
+	/**
+	 * Maximum number of suggestions to be shown. Defaults to 5. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTypeaheadLimit() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.typeaheadLimit, 5);
+	}
+
+	/**
+	 * Maximum number of suggestions to be shown. Defaults to 5. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeaheadLimit(int _typeaheadLimit) {
+		getStateHelper().put(PropertyKeys.typeaheadLimit, _typeaheadLimit);
+	}
+
+	/**
+	 * Minimum number of characters to be entered before a suggestion is shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getTypeaheadMinLength() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.typeaheadMinLength, 1);
+	}
+
+	/**
+	 * Minimum number of characters to be entered before a suggestion is shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeaheadMinLength(int _typeaheadMinLength) {
+		getStateHelper().put(PropertyKeys.typeaheadMinLength, _typeaheadMinLength);
+	}
+
+	/**
+	 * Comma-separated list of values that can be used for the typeahead list. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTypeaheadValues() {
+		return (String) getStateHelper().eval(PropertyKeys.typeaheadValues);
+	}
+
+	/**
+	 * Comma-separated list of values that can be used for the typeahead list. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTypeaheadValues(String _typeaheadValues) {
+		getStateHelper().put(PropertyKeys.typeaheadValues, _typeaheadValues);
 	}
 
 	/**

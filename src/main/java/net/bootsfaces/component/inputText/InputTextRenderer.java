@@ -213,7 +213,7 @@ public class InputTextRenderer extends CoreRenderer {
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
-		if (inputText.isTags()) {
+		if (inputText.isTags() && (!inputText.isTypeahead())) {
 			rw.writeAttribute("data-role", "tagsinput", null);
 		}
 
@@ -237,14 +237,100 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, inputText);
-		if (inputText.isTags()) {
-//			String id = component.getClientId();
-//			id = id.replace(":", "\\\\:"); // we need to escape the id for jQuery
-//			rw.startElement("script", component);
-//			rw.endElement("script");
+		if (inputText.isTypeahead()) {
+			String id = component.getClientId();
+			id = id.replace(":", "_"); // we need to escape the id for jQuery
+			rw.startElement("script", component);
+			String typeaheadname = id + "_typeahead";
+			if (inputText.isTags()) {
+				String js = "var engine = new Bloodhound({" + //
+						"name: '" + typeaheadname + "'," + //
+						"local: " + getTypeaheadObjectArray(inputText) + "," + //
+						"datumTokenizer: function(d) {" + //
+						"  return Bloodhound.tokenizers.whitespace(d.val);" + //
+						"}," + //
+						"queryTokenizer: Bloodhound.tokenizers.whitespace" + //
+						"});";
+				js += "$('." + id + "').tagsinput({" + //
+						"typeaheadjs: {" + //
+						"  name: 'animals'," + //
+						"  displayKey: 'val'," + //
+						"  valueKey: 'val'," + //
+						"  source: engine.ttAdapter()" + //
+						"}" + //
+						"});";//
+				rw.writeText(js, null);
 
+			} else {
+
+				String options = "";
+				options = addOption(options, "hint:" + inputText.isTypeaheadHint());
+				options = addOption(options, "highlight:" + inputText.isTypeaheadHighlight());
+				options = addOption(options, "minLength:" + inputText.getTypeaheadMinLength());
+				String options2 = "";
+				options2 = addOption(options2, "limit:" + inputText.getTypeaheadLimit());
+				options2 = addOption(options2, "name:'" + typeaheadname + "'");
+				options2 = addOption(options2, "source: substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
+
+				rw.writeText("$('." + id + "').typeahead({" + options + "},{" + options2 + "});", null);
+			}
+			rw.endElement("script");
 		}
 	}
+
+	private String addOption(String options, String newOption) {
+		if (options.length() > 0) {
+			options += ",";
+		}
+		return options + newOption;
+	}
+
+	private String getTypeaheadValueArray(InputText inputText) {
+		String s = inputText.getTypeaheadValues();
+		if (null == s)
+			return null;
+		s = s.trim();
+		if (!s.contains("\'")) {
+			String[] parts = s.split(",");
+			StringBuilder b = new StringBuilder(s.length() * 2);
+			for (String p : parts) {
+				if (b.length() > 0) {
+					b.append(',');
+				}
+				b.append('\'');
+				b.append(p.trim());
+				b.append('\'');
+			}
+			s = b.toString();
+
+		}
+		return "[" + s + "]";
+	}
+
+	private String getTypeaheadObjectArray(InputText inputText) {
+		String s = inputText.getTypeaheadValues();
+		if (null == s)
+			return null;
+		s = s.trim();
+		if (!s.contains("\'")) {
+			String[] parts = s.split(",");
+			StringBuilder b = new StringBuilder(s.length() * 2);
+			for (String p : parts) {
+				if (b.length() > 0) {
+					b.append(',');
+				}
+				b.append("{val:");
+				b.append('\'');
+				b.append(p.trim());
+				b.append('\'');
+				b.append('}');
+			}
+			s = b.toString();
+
+		}
+		return "[" + s + "]";
+	}
+
 
 	private void generateStyleClass(InputText inputText, ResponseWriter rw) throws IOException {
 		StringBuilder sb;
@@ -265,6 +351,9 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		sb.append(" ").append(getErrorAndRequiredClass(inputText, inputText.getClientId()));
+		if (inputText.isTypeahead()) {
+			sb.append(" ").append(inputText.getClientId().replace(":","_"));
+		}
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {
 			rw.writeAttribute("class", s, "class");

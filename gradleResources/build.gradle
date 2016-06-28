@@ -155,6 +155,7 @@ def copySpecCssResources = copySpec {
     from 'css/jquery.minicolors.css'
     from 'css/sticky-footer-navbar.css'
     from 'css/bootstrap-datetimepicker.min.css'
+    from 'css/typeahead.css'
 }
 task copyCssResources << {
     allThemes.each { dest ->

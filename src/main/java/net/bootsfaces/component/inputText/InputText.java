@@ -111,5 +111,24 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		super.setTags(_tags);
 	}
 
+	/**
+	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	@Override
+	public void setTypeahead(boolean _typeahead) {
+		if (_typeahead) {
+			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
+			AddResourcesListener.addThemedCSSResource("typeahead.css");
+		}
+		super.setTypeahead(_typeahead);
+	}
+
+	@Override
+	public void setTypeaheadValues(String _typeaheadValues) {
+		setTypeahead(true);
+		super.setTypeaheadValues(_typeaheadValues);
+	}
+
 
 }

@@ -10155,6 +10155,72 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values.]]></description>
+		  <name>typeahead</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Highlights the part of the suggestions that has already been entered. Defaults to true.]]></description>
+		  <name>typeahead-highlight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Highlights the part of the suggestions that has already been entered. Defaults to true.]]></description>
+		  <name>typeaheadHighlight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set to false, the typeahead will not show a hint. Defaults to true.]]></description>
+		  <name>typeahead-hint</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If set to false, the typeahead will not show a hint. Defaults to true.]]></description>
+		  <name>typeaheadHint</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Maximum number of suggestions to be shown. Defaults to 5.]]></description>
+		  <name>typeahead-limit</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Maximum number of suggestions to be shown. Defaults to 5.]]></description>
+		  <name>typeaheadLimit</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Minimum number of characters to be entered before a suggestion is shown.]]></description>
+		  <name>typeahead-minLength</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Minimum number of characters to be entered before a suggestion is shown.]]></description>
+		  <name>typeaheadMinLength</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma-separated list of values that can be used for the typeahead list.]]></description>
+		  <name>typeahead-values</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma-separated list of values that can be used for the typeahead list.]]></description>
+		  <name>typeaheadValues</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
 		  <required>false</required>
