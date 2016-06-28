@@ -7720,12 +7720,6 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
-		<attribute>
-		  <description><![CDATA[optional widget variable to access the datatable widget in JavaScript code.]]></description>
-		  <name>widgetVar</name>
-		  <required>false</required>
-		  <type>String</type>
-		</attribute>
 	</tag>
 	
 	<!-- *********** b:icon ************************* -->
@@ -15617,12 +15611,6 @@
 		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[optional widget variable to access the datatable widget in JavaScript code.]]></description>
-		  <name>widgetVar</name>
-		  <required>false</required>
-		  <type>String</type>
 		</attribute>
 	</tag>
 	
