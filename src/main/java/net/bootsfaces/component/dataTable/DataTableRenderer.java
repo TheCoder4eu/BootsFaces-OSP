@@ -451,7 +451,7 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
 		if (null == widgetVar) {
-			widgetVar = clientId + "Widget";
+			widgetVar = BsfUtils.snakeCaseToCamelCase(clientId + "Widget");
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
@@ -478,7 +478,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions( (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions( generateColumnInfos(dataTable.getColumnInfo()), options);
 		options = addOptions( dataTable.getCustomOptions(), options);
-		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
+		rw.writeText(widgetVar + " = $('." + BsfUtils.snakeCaseToCamelCase(clientId + "Table") + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.
 				"var wrapper = $('#" + clientIdRaw.replace(":", "\\\\:") + "_wrapper');" + "wrapper.replaceWith("
 				+ widgetVar + ");"
