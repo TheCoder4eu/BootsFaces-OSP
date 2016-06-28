@@ -270,7 +270,7 @@ public class InputTextRenderer extends CoreRenderer {
 				String options2 = "";
 				options2 = addOption(options2, "limit:" + inputText.getTypeaheadLimit());
 				options2 = addOption(options2, "name:'" + typeaheadname + "'");
-				options2 = addOption(options2, "source: substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
+				options2 = addOption(options2, "source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
 
 				rw.writeText("$('." + id + "').typeahead({" + options + "},{" + options2 + "});", null);
 			}

@@ -170,7 +170,7 @@ function treeDataMapper(data) {
 	return "";
 }
 
-var substringMatcher = function(strs) {
+BsF.substringMatcher = function(strs) {
 	  return function findMatches(q, cb) {
 	    var matches, substringRegex;
 

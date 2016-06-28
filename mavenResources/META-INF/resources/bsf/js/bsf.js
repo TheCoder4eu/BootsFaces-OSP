@@ -12,7 +12,7 @@ BsF.ajax.resolveJQuery=function(a){if("undefined"==typeof a||null==a)return"";va
 if($.datepicker){var generateHTML_orig=$.datepicker._generateHTML;$.datepicker._generateHTML=function(){var a=generateHTML_orig.apply(this,arguments),a=a.replace(/<span\s+class='ui-icon\s+ui-icon-circle-triangle-w'\s*>[^<]+<\/span>/,'<span class="glyphicon glyphicon-chevron-left"></span>');return a=a.replace(/<span\s+class='ui-icon\s+ui-icon-circle-triangle-e'\s*>[^<]+<\/span>/,'<span class="glyphicon glyphicon-chevron-right"></span>')}}
 function jq(a){return"#"+a.replace(/(:|\.|\[|\]|,)/g,"\\$1")}function treeDataMapper(a){return a&&"undefined"!==a?a.nodeInternalId+"|#*#|"+a.text+"|#*#|"+a.state.checked+"|#*#|"+a.state.disabled+"|#*#|"+a.state.expanded+"|#*#|"+a.state.selected:""};
 
-var substringMatcher = function(strs) {
+BsF.substringMatcher = function(strs) {
 	  return function findMatches(q, cb) {
 	    var matches, substringRegex;
 
