@@ -181,7 +181,6 @@ public class PanelRenderer extends CoreRenderer {
 			if (!panel.isCollapsed())
 				_contentClass += " in";
 		}
-		// _contentClass = "panel-body" + " " + _contentClass;
 		_contentClass = _contentClass.trim();
 		if (_contentClass.length() > 0)
 			rw.writeAttribute("class", _contentClass, "class");
@@ -236,7 +235,6 @@ public class PanelRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = panel.getClientId();
 		rw.endElement("div"); // panel-body
-		rw.endElement("div"); // panel-body
 		UIComponent foot = panel.getFacet("footer");
 		if (foot != null) {
 			rw.startElement("div", panel); // modal-footer
@@ -247,6 +245,7 @@ public class PanelRenderer extends CoreRenderer {
 		}
 
 		rw.endElement("div");
+		rw.endElement("div"); // panel-body
 		boolean isCollapsible = panel.isCollapsible();
 		String accordionParent = panel.getAccordionParent();
 
