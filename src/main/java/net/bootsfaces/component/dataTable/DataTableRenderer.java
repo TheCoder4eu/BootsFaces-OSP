@@ -451,7 +451,7 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
 		if (null == widgetVar) {
-			widgetVar = BsfUtils.snakeCaseToCamelCase(clientId + "Widget");
+			widgetVar = BsfUtils.snakeCaseToCamelCase(clientIdRaw.replace(":", "-") + "Widget");
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
