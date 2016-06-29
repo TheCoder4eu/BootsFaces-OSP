@@ -91,9 +91,24 @@ public class MessageRenderer extends CoreRenderer {
 			writeAttribute(rw, "style", findHighestSeverityStyle(messageList, message));
 			writeAttribute(rw, "role", "alert");
 
+			boolean onlyMostSevere = message.isOnlyMostSevere();
+			FacesMessage mostSevere = null;
+			if (onlyMostSevere) {
+				for (FacesMessage msg : messageList) {
+					if (null==mostSevere) {
+						mostSevere=msg;
+					} else if (msg.getSeverity().getOrdinal()>mostSevere.getSeverity().getOrdinal()) {
+						mostSevere=msg;
+					}
+				}
+			}
+
 			boolean firstMessage=true;
 
 			for (FacesMessage msg : messageList) {
+				if (onlyMostSevere && msg!=mostSevere) {
+					continue;
+				}
 				if (!firstMessage) {
 					if (message.isLineBreak()) {
 						rw.append(message.getLineBreakTag());
