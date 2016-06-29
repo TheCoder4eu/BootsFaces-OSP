@@ -159,7 +159,6 @@ public class NavLinkRenderer extends CoreRenderer {
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
 		if (parent != null) {
-			System.out.println(parent.getClass().getName());
 			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
 				parent = parent.getParent();
 			}
