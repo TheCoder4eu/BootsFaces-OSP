@@ -150,6 +150,10 @@ public class BootsFacesTagDecorator implements TagDecorator {
 				return convertDivTagToPanelGroup(tag, modifiedAttributes, true);
 			}
 
+			if ("span".equals(tag.getLocalName())) {
+				return convertDivTagToPanelGroup(tag, modifiedAttributes, false);
+			}
+
 			if ("option".equals(tag.getLocalName())) {
 				return convertTofSelectItemText(tag, modifiedAttributes);
 			}
