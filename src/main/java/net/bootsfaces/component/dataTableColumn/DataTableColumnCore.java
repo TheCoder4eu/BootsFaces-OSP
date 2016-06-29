@@ -40,6 +40,7 @@ public abstract class DataTableColumnCore extends UIOutput {
 		order,
 		orderBy,
 		orderable,
+		sortable,
 		style,
 		styleClass;
 		String toString;
@@ -278,6 +279,22 @@ public abstract class DataTableColumnCore extends UIOutput {
 	 */
 	public void setOrderable(boolean _orderable) {
 		getStateHelper().put(PropertyKeys.orderable, _orderable);
+	}
+
+	/**
+	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSortable() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.sortable, true);
+	}
+
+	/**
+	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSortable(boolean _sortable) {
+		getStateHelper().put(PropertyKeys.sortable, _sortable);
 	}
 
 	/**

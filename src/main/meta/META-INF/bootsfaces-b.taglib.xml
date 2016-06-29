@@ -5559,6 +5559,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true.]]></description>
+		  <name>sortable</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>

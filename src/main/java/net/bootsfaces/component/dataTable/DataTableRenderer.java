@@ -171,17 +171,21 @@ public class DataTableRenderer extends CoreRenderer {
 			if (footerStyle != null) {
 				rw.writeAttribute("style", footerStyle, null);
 			}
-			Object footerStyleClass = column.getAttributes().get("footerStyleClass");
-			if (footerStyleClass != null) {
-				rw.writeAttribute("class", "bf-multisearch " + footerStyleClass, null);
-			} else {
-				rw.writeAttribute("class", "bf-multisearch", null);
-			}
-			if (column.getFacet("header") != null) {
-				UIComponent facet = column.getFacet("header");
-				facet.encodeAll(context);
-			} else if (column.getAttributes().get("label") != null) {
-				rw.writeText(column.getAttributes().get("label"), null);
+			Object searchable = column.getAttributes().get("searchable");
+			if (searchable==null || ((searchable instanceof Boolean) && ((Boolean)searchable).equals(Boolean.TRUE))
+					            || ((searchable instanceof String) && ((String)searchable).equalsIgnoreCase("true"))) {
+				Object footerStyleClass = column.getAttributes().get("footerStyleClass");
+				if (footerStyleClass != null) {
+					rw.writeAttribute("class", "bf-multisearch " + footerStyleClass, null);
+				} else {
+					rw.writeAttribute("class", "bf-multisearch", null);
+				}
+				if (column.getFacet("header") != null) {
+					UIComponent facet = column.getFacet("header");
+					facet.encodeAll(context);
+				} else if (column.getAttributes().get("label") != null) {
+					rw.writeText(column.getAttributes().get("label"), null);
+				}
 			}
 			rw.endElement("th");
 		}
