@@ -24,8 +24,8 @@ public class BsfUtils {
 	 * This is a trick method to provide navigation from an ajax request (credit by Ryan Lubke)
 	 * In fact, you can map an action to an UICommand that calls this method and return null.
 	 * Once the bean sends the redirect, the ajax client receives a message from the server telling the client to redirect to a new page.
-	 * 
-	 * 
+	 *
+	 *
 	 * @param outcome
 	 * @throws FacesException
 	 */
@@ -49,7 +49,7 @@ public class BsfUtils {
 	// BsfUtils.navigateInAjax("/pages/newPage.xhtml"); return null; }
 	// }
 
-	public static String navigateInAjax(String outcome) 
+	public static String navigateInAjax(String outcome)
 			throws FacesException {
 		FacesContext ctx = FacesContext.getCurrentInstance();
 		ExternalContext extContext = ctx.getExternalContext();
@@ -156,7 +156,7 @@ public class BsfUtils {
 			if (c == ' ') {
 				// blank gets extra work,
 				// this solves the problem you get if you replace all
-				// blanks with &nbsp;, if you do that you loss 
+				// blanks with &nbsp;, if you do that you loss
 				// word breaking
 				if (lastWasBlankChar) {
 					lastWasBlankChar = false;
@@ -179,7 +179,7 @@ public class BsfUtils {
 					sb.append("&lt;");
 				else if (c == '>')
 					sb.append("&gt;");
-				else if (c == '/') 
+				else if (c == '/')
 					sb.append("-");
 				else if (c == '\\')
 					sb.append("-");
@@ -276,7 +276,7 @@ public class BsfUtils {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Shortcut for getting context parameters.
 	 * @param param context parameter name
@@ -285,7 +285,7 @@ public class BsfUtils {
 	public static String getInitParam(String param) {
 		return getInitParam(param, FacesContext.getCurrentInstance());
 	}
-	
+
 	/**
 	 * Shortcut for getting context parameters using an already obtained FacesContext.
 	 * @param param context parameter name
@@ -294,7 +294,7 @@ public class BsfUtils {
 	public static String getInitParam(String param, FacesContext context) {
 		return context.getExternalContext().getInitParameter(param);
 	}
-	
+
 	/**
 	 * <p>
 	 * Creates and returns a FacesMessage for the specified Locale.
@@ -360,11 +360,11 @@ public class BsfUtils {
 		ret.setSeverity(FacesMessage.SEVERITY_ERROR);
 		return ret;
 	}
-	
+
 
 	/**
 	 * Implementation from Apache Commons Lang
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -405,7 +405,7 @@ public class BsfUtils {
 			}
 		}
 	}
-	
+
 	// Pass the attrs timezone value
 	// Pass facesContext.getViewRoot().getLocale() and attrs locale value
 	public static Locale selectLocale(Locale vrloc, Object loc, UIComponent comp) {
@@ -424,11 +424,11 @@ public class BsfUtils {
 
 		return selLocale;
 	}
-	
+
 	/**
 	 * Selects the Date Pattern to use based on the given Locale if the input
 	 * format is null
-	 * 
+	 *
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
 	 * @param format
@@ -452,7 +452,41 @@ public class BsfUtils {
 
 		return selFormat;
 	}
-	
+
+	/**
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
+	 *
+	 * @param locale
+	 *            Locale (may be the result of a call to selectLocale)
+	 * @param format
+	 *            Input format String
+	 * @return Date Pattern eg. dd/MM/yyyy
+	 */
+	public static String selectDateTimeFormat(Locale locale, String format, boolean withDate, boolean withTime) {
+		if (format == null) {
+			String dateFormat = "";
+			if (withDate) {
+				dateFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
+			}
+			String timeFormat = "";
+			if (withTime) {
+				timeFormat = ((SimpleDateFormat)DateFormat.getTimeInstance(DateFormat.MEDIUM, locale)).toPattern();
+			}
+			// Since DateFormat.SHORT is silly, return a smart format
+			if (dateFormat.equals("M/d/yy")) {
+				dateFormat = "MM/dd/yyyy";
+			}
+			else if (dateFormat.equals("d/M/yy")) {
+				dateFormat = "dd/MM/yyyy";
+			}
+			return (dateFormat + " " + timeFormat).trim();
+		} else {
+			return format;
+		}
+	}
+
+
 	/**
 	 * <p>
 	 * Returns the <code>label</code> property from the specified component.

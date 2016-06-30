@@ -24,6 +24,7 @@ import javax.faces.component.FacesComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.inputText.InputTextCore.PropertyKeys;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
@@ -95,4 +96,39 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+
+	/**
+	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTags(boolean _tags) {
+		if (_tags) {
+			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
+			AddResourcesListener.addThemedCSSResource("labels.css");
+			AddResourcesListener.addThemedCSSResource("bootstrap-tagsinput.css");
+
+		}
+		super.setTags(_tags);
+	}
+
+	/**
+	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	@Override
+	public void setTypeahead(boolean _typeahead) {
+		if (_typeahead) {
+			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
+			AddResourcesListener.addThemedCSSResource("typeahead.css");
+		}
+		super.setTypeahead(_typeahead);
+	}
+
+	@Override
+	public void setTypeaheadValues(String _typeaheadValues) {
+		setTypeahead(true);
+		super.setTypeaheadValues(_typeaheadValues);
+	}
+
+
 }

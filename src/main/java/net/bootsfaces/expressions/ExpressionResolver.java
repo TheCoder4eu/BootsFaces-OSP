@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -31,13 +31,13 @@ import javax.faces.context.FacesContext;
 
 /**
  * The ExpressionResolver converts search expressions to component ids.
- * 
+ *
  * @author Stephan Rauh, http://www.beyondjava.net
  *
  */
 public class ExpressionResolver {
 
-	private static IDExpressionResolver idExpressionResolver = new IDExpressionResolver();
+	private static InternalIDExpressionResolver idExpressionResolver = new InternalIDExpressionResolver();
 	private static Map<String, AbstractExpressionResolver> resolvers = new HashMap<String, AbstractExpressionResolver>();
 
 	public static String getComponentIDs(FacesContext context, UIComponent component, String update) {
@@ -93,7 +93,7 @@ public class ExpressionResolver {
 				throw new FacesException("Invalid search expression: " + originalExpression);
 		}
 
-		
+
 		for (UIComponent c : roots) {
 			result += c.getClientId() + " ";
 		}
@@ -133,8 +133,12 @@ public class ExpressionResolver {
 
 			return result;
 		} catch (Exception e) {
+			String msg ="";
+			if (e.getMessage()!=null) {
+				msg += " Additional information: " + e.getMessage();
+			}
 			throw new FacesException("Invalid search expression: " + originalExpression + " The subexpression "
-					+ currentId + " doesn't exist");
+					+ currentId + " doesn't exist, or it can't be resolved." + msg);
 		}
 	}
 

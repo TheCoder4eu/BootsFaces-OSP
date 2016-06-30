@@ -497,12 +497,17 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param context
 	 * @param component
 	 * @param rw
-	 * @param clientId
+	 * @param jQueryExpressionOfTargetElement
 	 * @param additionalEventHandlers
 	 * @throws IOException
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String clientId, Map<String, String> additionalEventHandlers) throws IOException {
+			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers) throws IOException {
+		if (jQueryExpressionOfTargetElement.contains(":")) {
+			if (!jQueryExpressionOfTargetElement.contains("\\\\:")) { // avoid escaping twice
+				jQueryExpressionOfTargetElement=jQueryExpressionOfTargetElement.replace(":", "\\\\:");
+			}
+		}
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
 		Set<String> events = ajaxComponent.getJQueryEvents().keySet();
 		for (String event : events) {
@@ -515,8 +520,8 @@ public class AJAXRenderer extends CoreRenderer {
 					additionalEventHandler, true, event, code);
 			if (code.length() > 0) {
 				rw.startElement("script", component);
-				String js = "$('#" + clientId + "').on('" + ajaxComponent.getJQueryEvents().get(event)
-						+ "', function(){" + code.toString() + "});";
+				String js = "$('" + jQueryExpressionOfTargetElement + "').on('" + ajaxComponent.getJQueryEvents().get(event)
+						+ "', function(e){" + code.toString() + "});";
 				rw.writeText(js, null);
 				rw.endElement("script");
 			}

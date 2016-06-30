@@ -99,7 +99,7 @@ public class AccordionRenderer extends CoreRenderer {
 						_childPane.setCollapsed(true);
 					_childPane.encodeAll(context);
 				} else {
-					throw new FacesException("Accordion must contains only collapsible panel components", null);
+					throw new FacesException("Accordion must contain only collapsible panel components", null);
 				}
 			}
 		}

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -52,7 +52,7 @@ public class CoreRenderer extends Renderer {
 		ResponseWriter writer = context.getResponseWriter();
 
 		if((attrs == null || attrs.length <= 0) && shouldRenderDataAttributes == false) return;
-		
+
 		// pre-defined attributes
 		for(String attribute: component.getAttributes().keySet()) {
 			boolean attributeToRender = false;
@@ -64,12 +64,12 @@ public class CoreRenderer extends Renderer {
 					if(attribute.equals(ca)) {
 						attributeToRender = true;
 						break;
-					} 
+					}
 				}
 			}
 			if(attributeToRender) {
 				Object value = component.getAttributes().get(attribute);
-				
+
 				if (shouldRenderAttribute(value))
 					writer.writeAttribute(attribute, value.toString(), attribute);
 			}
@@ -93,7 +93,7 @@ public class CoreRenderer extends Renderer {
 	/**
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
-	 * 
+	 *
 	 * @param input
 	 * @param rw
 	 * @param clientId
@@ -101,13 +101,29 @@ public class CoreRenderer extends Renderer {
 	 */
 	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
+		generateErrorAndRequiredClass(input, rw, clientId, null);
+	}
 
+	/**
+	 * Renders the CSS pseudo classes for required fields and for the error
+	 * levels.
+	 *
+	 * @param input
+	 * @param rw
+	 * @param clientId
+	 * @throws IOException
+	 */
+	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
+		String styleClass = getErrorAndRequiredClass(input, clientId);
+		if (null != additionalClass) {
+			styleClass += " " + additionalClass;
+		}
 		rw.writeAttribute("class", styleClass, "class");
 	}
 
 	/**
 	 * Yields the value of the required and error level CSS class.
-	 * 
+	 *
 	 * @param input
 	 * @param clientId
 	 * @return
@@ -375,12 +391,12 @@ public class CoreRenderer extends Renderer {
 				/* OLD
 				Converter converter = getConverter(fc, vh);
 				*/
-				
+
 				/* NEW */
                 Converter converter = vh.getConverter();
                 if (converter == null) {
                     Class<?> valueType = val.getClass();
-                    if(valueType == String.class) {                        
+                    if(valueType == String.class) {
                         return (String) val;
                     }
 
@@ -406,7 +422,7 @@ public class CoreRenderer extends Renderer {
 
 	/**
 	 * Finds the appropriate converter for a given value holder
-	 * 
+	 *
 	 * @param fc
 	 *            FacesContext instance
 	 * @param vh

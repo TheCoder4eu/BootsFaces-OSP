@@ -107,6 +107,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
 		if (parent != null) {
+			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
+				parent = parent.getParent();
+			}
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
 					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
@@ -156,6 +159,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
 		if (parent != null) {
+			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
+				parent = parent.getParent();
+			}
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
 					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {

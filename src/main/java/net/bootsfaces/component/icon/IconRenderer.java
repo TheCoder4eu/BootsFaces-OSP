@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -30,6 +30,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.iconAwesome.IconAwesome;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:icon /&gt;. */
@@ -43,7 +44,7 @@ public class IconRenderer extends AJAXRenderer {
 	 * input value in the list of submitted values. If the validation checks are
 	 * passed, the values in the <code>submittedValues</code> list are store in
 	 * the backend bean.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -63,7 +64,7 @@ public class IconRenderer extends AJAXRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:icon.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -77,9 +78,15 @@ public class IconRenderer extends AJAXRenderer {
 			return;
 		}
 		Icon icon = (Icon) component;
+		ResponseWriter writer = context.getResponseWriter();
 
 		String nameOfIcon = icon.getName();
 		String styleClass = icon.getStyleClass();
+		String responsiveCSS= Responsive.getResponsiveStyleClass(icon, false).trim();
+		if (responsiveCSS.length()>0) {
+			writer.startElement("div", component);
+			writer.writeAttribute("class", responsiveCSS, null);
+		}
 		String style = icon.getStyle();
 		String size = icon.getSize();
 		String rotate = icon.getRotate();
@@ -88,12 +95,16 @@ public class IconRenderer extends AJAXRenderer {
 
 		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
 			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true);
+		if (responsiveCSS.length()>0) {
+			writer.endElement("div");
+		}
+
 		Tooltip.activateTooltips(context, icon);
 	}
 
 	/**
 	 * Renders an Icon
-	 * 
+	 *
 	 * @param rw
 	 *            ResponseWriter
 	 * @param c
@@ -185,7 +196,7 @@ public class IconRenderer extends AJAXRenderer {
 
 	/**
 	 * Renders an Icon - simple version without options and without features (no AJAX, no tooltip, no id etc.)
-	 * 
+	 *
 	 * @param rw
 	 *            ResponseWriter
 	 * @param c

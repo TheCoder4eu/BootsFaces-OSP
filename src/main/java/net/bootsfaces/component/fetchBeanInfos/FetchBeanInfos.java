@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -20,51 +20,32 @@ package net.bootsfaces.component.fetchBeanInfos;
 
 import java.io.IOException;
 
+import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import javax.faces.render.Renderer;
 
 import net.bootsfaces.C;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
- * The &lt;alert&gt; tag generates a colored box that can be used to display
- * error messages, warnings, informations or simply success messages.
- * 
- * @author thecoder4eu
+ * &lt;b:fetchBeanInfos&gt; brings information about the outcome of the last validation to the client.
+ * So you can ask from JavaScript whether the validation has failed, and which classes of messages
+ * have been generated..
+ *
+ * @author Stephan Rauh
  */
 
 @FacesComponent("net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos")
-public class FetchBeanInfos extends UIComponentBase {
+public class FetchBeanInfos extends FetchBeanInfosCore {
 
 	/**
-	 * <p>
-	 * The standard component type for this component.
-	 * </p>
-	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos";
-	/**
-	 * <p>
 	 * The component family for this component.
-	 * </p>
 	 */
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public FetchBeanInfos() {
-		setRendererType(null); // this component renders itself
-	}
-
-	@Override
-	public void encodeBegin(FacesContext fc) throws IOException {
-		ResponseWriter rw = fc.getResponseWriter();
-		rw.startElement("script", this);
-		if (fc.isValidationFailed()) {
-			rw.writeText("validationFailed=true;", null);
-		} else {
-			rw.writeText("validationFailed=false;", null);
-		}
-		rw.endElement("script");
-
+		setRendererType("net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos");
 	}
 
 	@Override
@@ -72,4 +53,17 @@ public class FetchBeanInfos extends UIComponentBase {
 		return COMPONENT_FAMILY;
 	}
 
+	/**
+	 * Provide support to snake-case attribute in EL-expression items
+	 */
+	@Override
+	public void setValueExpression(String name, ValueExpression binding) {
+		name = BsfUtils.snakeCaseToCamelCase(name);
+		super.setValueExpression(name, binding);
+	}
+
+	@Override
+	public void encodeBegin(FacesContext context) throws IOException {
+		super.encodeBegin(context);
+	}
 }

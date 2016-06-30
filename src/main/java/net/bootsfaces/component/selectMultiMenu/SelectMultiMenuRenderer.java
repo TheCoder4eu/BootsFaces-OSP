@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -40,6 +40,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:selectMultiMenu /&gt;. */
@@ -122,10 +123,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context).replace(":", "-");
-		;
-		int span = startColSpanDiv(rw, menu);
+		String span = startColSpanDiv(rw, menu);
 		rw.startElement("div", menu);
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
+		writeAttribute(rw, "id", clientId);
 
 		Tooltip.generateTooltip(context, menu, rw);
 		if (menu.isInline()) {
@@ -134,7 +135,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "form-group", "class");
 		}
 
-		addLabel(rw, clientId, menu);
+		addLabel(rw, clientId+"Inner", menu);
 
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
@@ -142,7 +143,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				(appendingAddOnFacet != null), menu);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
-		renderSelectTag(context, rw, clientId, menu);
+		renderSelectTag(context, rw, clientId+"Inner", clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
 		closeInputGroupForAddOn(rw, hasAddon);
@@ -228,7 +229,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options += "," + "onDropdownHide:" + onDropdownHide;
 		}
 
-		
 		String buttonClass = menu.getButtonClass();
 		if (buttonClass != null) {
 			options += "," + "buttonClass:'" + buttonClass + "'";
@@ -237,8 +237,9 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		String buttonContainer = menu.getButtonContainer();
 		if (buttonContainer != null) {
 			options += "," + "buttonContainer:'" + buttonClass + "'";
-			if (menu.getStyleClass()!=null)
-				throw new FacesException("b:selectMultiMenu can't process the styleClass attribute if the buttonContainer attribute is set.");
+			if (menu.getStyleClass() != null)
+				throw new FacesException(
+						"b:selectMultiMenu can't process the styleClass attribute if the buttonContainer attribute is set.");
 		} else {
 			String styleClass = menu.getStyleClass();
 			if (styleClass != null) {
@@ -257,14 +258,14 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options = "{" + options.substring(1, options.length()) + "}";
 		}
 
-		String js = "$(document).ready(function() {$('#" + clientId + "').multiselect(" + options + ");});\n";
+		String js = "$(document).ready(function() {$('#" + clientId + "Inner').multiselect(" + options + ");});\n";
 		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
 
 	}
 
 	/**
 	 * Renders components added seamlessly behind the input field.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext
 	 * @param rw
@@ -297,7 +298,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the optional label. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -310,7 +311,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", menu);
 			rw.writeAttribute("for", clientId, "for");
-			generateErrorAndRequiredClass(menu, rw, clientId);
+			generateErrorAndRequiredClass(menu, rw, clientId, menu.getLabelStyleClass());
+			writeAttribute(rw, "style", menu.getLabelStyle());
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
@@ -318,7 +320,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 	/**
 	 * Renders components added seamlessly in front of the input field.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext
 	 * @param rw
@@ -350,7 +352,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Terminate the column span div (if there's one). This method is protected
 	 * in order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param span
@@ -358,16 +360,16 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void closeColSpanDiv(ResponseWriter rw, int span) throws IOException {
-		if (span > 0) {
-			rw.endElement("div");
-		}
-	}
+    protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
+        if (span != null && span.trim().length()>0) {
+            rw.endElement("div");
+        }
+    }
 
 	/**
 	 * Terminates the input field group (if there's one). This method is
 	 * protected in order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param hasAddon
@@ -415,10 +417,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	}
 
 	/** Renders the select tag. */
-	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectMultiMenu menu)
+	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, String name, SelectMultiMenu menu)
 			throws IOException {
 		renderSelectTag(rw, menu);
-		renderSelectTagAttributes(rw, clientId, menu);
+		renderSelectTagAttributes(rw, clientId, name, menu);
 		Object selectedOption = getValue2Render(context, menu);
 		String[] optionList;
 		if (selectedOption == null) {
@@ -435,7 +437,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 	/**
 	 * Copied from the InputRenderer class of PrimeFaces 5.1.
-	 * 
+	 *
 	 * @param context
 	 * @param uiSelectItems
 	 * @param value
@@ -482,7 +484,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Parts of this class are an adapted version of
 	 * InputRenderer#getSelectItems() of PrimeFaces 5.1.
-	 * 
+	 *
 	 * @param rw
 	 * @param selectedOption
 	 * @throws IOException
@@ -560,7 +562,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * Renders a single &lt;option&gt; tag. For some reason,
 	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
 	 * common interface, so this method is repeated twice.
-	 * 
+	 *
 	 * @param rw
 	 *            The response writer
 	 * @param selectItem
@@ -584,7 +586,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * Renders a single &lt;option&gt; tag. For some reason,
 	 * <code>SelectItem</code> and <code>UISelectItem</code> don't share a
 	 * common interface, so this method is repeated twice.
-	 * 
+	 *
 	 * @param rw
 	 *            The response writer
 	 * @param selectItem
@@ -630,8 +632,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		} else if (isInList(itemLabel, selectedOption)) {
 			rw.writeAttribute("selected", "true", "selected");
 		}
-                
-                rw.write(itemLabel);
+
+		rw.write(itemLabel);
 
 		rw.endElement("option");
 	}
@@ -652,7 +654,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the start of the input tag. This method is protected in order to
 	 * allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
@@ -666,7 +668,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Renders the attributes of the input tag. This method is protected in
 	 * order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param clientId
@@ -674,10 +676,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectMultiMenu menu)
+	protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, String name, SelectMultiMenu menu)
 			throws IOException {
 		rw.writeAttribute("id", clientId, null);
-		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("name", name, null);
 
 		StringBuilder sb;
 		String s;
@@ -718,7 +720,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Closes the input tag. This method is protected in order to allow
 	 * third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
@@ -731,26 +733,26 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	/**
 	 * Start the column span div (if there's one). This method is protected in
 	 * order to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected int startColSpanDiv(ResponseWriter rw, SelectMultiMenu menu) throws IOException {
-		int span = menu.getSpan();
-		if (span > 0) {
+	protected String startColSpanDiv(ResponseWriter rw, SelectMultiMenu menu) throws IOException {
+		String clazz = Responsive.getResponsiveStyleClass(menu, false);
+		if (clazz != null && clazz.trim().length() > 0) {
 			rw.startElement("div", menu);
-			rw.writeAttribute("class", "col-md-" + span, "class");
+			rw.writeAttribute("class", clazz, "class");
 		}
-		return span;
+		return clazz;
 	}
 
 	/**
 	 * Starts the input field group (if needed to display a component seamlessly
 	 * in front of or behind the input field). This method is protected in order
 	 * to allow third-party frameworks to derive from it.
-	 * 
+	 *
 	 * @param rw
 	 *            the response writer
 	 * @param hasPrependingAddOn

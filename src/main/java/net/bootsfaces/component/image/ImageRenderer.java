@@ -13,6 +13,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.FacesMessages;
 
@@ -59,7 +60,14 @@ public class ImageRenderer extends CoreRenderer {
 
 		renderPassThruAttributes(context, image, new String[] { "alt", "height", "lang", "style", "title", "width" });
 
-		writeAttribute(rw, "class", image.getStyleClass(), "styleClass");
+		String styleClass = image.getStyleClass();
+		if (null == styleClass)
+			styleClass = Responsive.getResponsiveStyleClass(image, false);
+		else
+			styleClass += Responsive.getResponsiveStyleClass(image, false);
+		if (styleClass != null && styleClass.trim().length() > 0) {
+			writeAttribute(rw, "class", styleClass, "styleClass");
+		}
 
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), image, rw);
 

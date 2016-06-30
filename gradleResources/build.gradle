@@ -19,6 +19,7 @@ ext.BootstrapVersion = props['bootstrap.version']
 
 ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
 ext.BootswatchFolder = "${projectDir}"+'/Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
+ext.jqversion = props['jquery.version']
 
 if(System.getProperty("BSF-THEME", "") != "") {
    ext.themes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
@@ -43,30 +44,30 @@ task getBootswatchTheme(type: GradleBuild) {
 }
 getBootswatchTheme.onlyIf { themes.size() > 0}
 
-themes.each { 
+themes.each {
     //create a dynamic task for each theme (in the config phase)
     def themeName ->
-    tasks.create(name: "copyDefaultTheme2$themeName", type: Copy) { 
+    tasks.create(name: "copyDefaultTheme2$themeName", type: Copy) {
         println "Theme copyDefaultTheme2$themeName"
-        
+
         from 'Bootstrap/bootstrap-'+BootstrapVersion+'/less' //Bootstrap less
         from 'less' //BootsFaces less
         include '**/*.less'
         exclude 'extra-theme.less'
-        
+
         into "${buildDir}/process/less/"+themeName
     }
 }
 
-themes.each { 
+themes.each {
     //create a dynamic task for each theme (in the config phase)
     def themeName ->
-    tasks.create(name: "copyBootswatchTheme2$themeName", dependsOn: getBootswatchTheme, type: Copy) { 
+    tasks.create(name: "copyBootswatchTheme2$themeName", dependsOn: getBootswatchTheme, type: Copy) {
         println "Theme copyBootswatchTheme2$themeName from "+BootswatchFolder+'/'+themeName
-        
+
         from BootswatchFolder+'/'+themeName //Bootswatch Theme less
         into "${buildDir}/process/less/"+themeName
-        
+
         rename 'bootswatch.less', 'extra-theme.less'
     }
 }
@@ -84,7 +85,7 @@ copyBootswatchLess4Themes.mustRunAfter getBootswatchTheme
 copyBootswatchLess4Themes.mustRunAfter cloneDefaultLess4Themes
 
 /*
- * Tasks to copy files to the process directory 
+ * Tasks to copy files to the process directory
  */
 //Copy the less files for Bootstrap(default) Theme
 task copyOriginalLess(type: Copy) {
@@ -137,6 +138,7 @@ task lesscss(type: GradleBuild) {
 def copySpecCssResources = copySpec {
     from "css/bootstrap-multiselect.css"
     from 'css/bootstrap-switch.css'
+    from 'css/bootstrap-tagsinput.css'
     // from 'css/dataTables.bootstrap.min.css'
     from 'css/jssocials.css'
     from 'css/datatables.min.css'
@@ -153,6 +155,7 @@ def copySpecCssResources = copySpec {
     from 'css/jquery.minicolors.css'
     from 'css/sticky-footer-navbar.css'
     from 'css/bootstrap-datetimepicker.min.css'
+    from 'css/typeahead.css'
 }
 task copyCssResources << {
     allThemes.each { dest ->
@@ -169,6 +172,7 @@ task copyJsResources(type: Copy) {
   	from 'js/bootstrap-multiselect-collapsible-groups.js'
   	from 'js/bootstrap-multiselect.js'
   	from 'js/bootstrap-switch.js'
+  	from 'js/bootstrap-tagsinput.min.js'
   	from 'js/bootstrap-tree.js'
   	from 'js/bootstrap-treeview.min.js'
   	from 'js/bootstrap-notify.min.js'
@@ -180,6 +184,7 @@ task copyJsResources(type: Copy) {
   	// from 'js/dataTables.bootstrap.min.js'
   	from 'js/jquery.scrollUp.min.js'
   	from 'js/jquery.minicolors.min.js'
+  	from 'js/typeahead.js'
   	from 'ie8support/respond.js'
   	from 'ie8support/html5shiv.js'
   	from 'js/jssocials.min.js'
@@ -196,7 +201,8 @@ task copyImageResources(type: Copy) {
 
 task copyJqResources(type: Copy) {
   	description 'BootsFaces task: copies the jQuery JS files to the target folder.'
-  	from 'jq'
+    from 'jq/'+jqversion
+  	from 'jq/assets'
   	into "${buildDir}/resources/META-INF/resources/bsf/jq"
 }
 
@@ -210,7 +216,7 @@ task copyBootsFacesResources(dependsOn: ['copyCssResources', 'copyJsResources', 
 
 }
 
-themes.each { 
+themes.each {
     //create a dynamic task for each theme
     def themeName ->
     tasks.create(name: "cleanAssetThemesDir$themeName", type: Delete) {
@@ -223,15 +229,15 @@ task cleanAssetThemeDirs(dependsOn: tasks.matching { Task task -> task.name.star
 }
 cleanAssetThemeDirs.mustRunAfter lesscss
 
-allThemes.each { 
+allThemes.each {
     //create a dynamic task for each theme (in the config phase)
     def themeName ->
-    tasks.create(name: "copyAssetCssTheme2$themeName", type: Copy) { 
+    tasks.create(name: "copyAssetCssTheme2$themeName", type: Copy) {
         println "Theme copyAssetCssTheme2$themeName from ${buildDir}/assets/"+themeName
         from "${buildDir}/assets/"+themeName
-        
+
         into "${buildDir}/resources/META-INF/resources/bsf/css/"+themeName
-        
+
         exclude 'bs-icons*'
         // Use a closure to map the file name
         rename { String fileName ->
@@ -240,7 +246,7 @@ allThemes.each {
     }
 }
 task copyAssetCss2Resources(dependsOn: [tasks.matching { Task task -> task.name.startsWith("copyAssetCssTheme2")}]) {
-    
+
 }
 copyAssetCss2Resources.mustRunAfter cleanAssetThemeDirs
 

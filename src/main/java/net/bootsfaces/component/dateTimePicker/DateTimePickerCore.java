@@ -55,9 +55,13 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		offsetSm,
 		offsetXs,
 		placeholder,
+		required,
+		requiredMessage,
 		showButtonPanel,
 		showClearButton,
 		showCloseButton,
+		showDate,
+		showTime,
 		showTodayButton,
 		showWeek,
 		sideBySide,
@@ -302,7 +306,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * See momentjs' docs for valid formats. Format also dictates what components are shown, e.g. MM/dd/YYYY will not display the time picker. <P>
+	 * See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getFormat() {
@@ -310,7 +314,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * See momentjs' docs for valid formats. Format also dictates what components are shown, e.g. MM/dd/YYYY will not display the time picker. <P>
+	 * See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFormat(String _format) {
@@ -574,6 +578,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRequired() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
+	}
+
+	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequired(boolean _required) {
+		getStateHelper().put(PropertyKeys.required, _required);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRequiredMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.requiredMessage);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequiredMessage(String _requiredMessage) {
+		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
+	}
+
+	/**
 	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -619,6 +655,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setShowCloseButton(boolean _showCloseButton) {
 		getStateHelper().put(PropertyKeys.showCloseButton, _showCloseButton);
+	}
+
+	/**
+	 * By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used.. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowDate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDate, true);
+	}
+
+	/**
+	 * By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used.. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowDate(boolean _showDate) {
+		getStateHelper().put(PropertyKeys.showDate, _showDate);
+	}
+
+	/**
+	 * By setting this to false you can deactivate the time part of the dateTimePicker. Is ignored if the attribute 'format' is used. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowTime() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showTime, true);
+	}
+
+	/**
+	 * By setting this to false you can deactivate the time part of the dateTimePicker. Is ignored if the attribute 'format' is used. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowTime(boolean _showTime) {
+		getStateHelper().put(PropertyKeys.showTime, _showTime);
 	}
 
 	/**

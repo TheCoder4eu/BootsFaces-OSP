@@ -30,32 +30,58 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	protected enum PropertyKeys {
 		ajax,
+		border,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
 		customLangUrl,
-		dataTableProperties,
+		customOptions,
 		disabled,
+		display,
 		fixedHeader,
+		hidden,
 		immediate,
 		lang,
+		largeScreen,
+		mediumScreen,
 		multiColumnSearch,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
 		onclick,
 		oncomplete,
 		ondblclick,
+		ondeselect,
 		onmousedown,
 		onmousemove,
 		onmouseout,
 		onmouseover,
 		onmouseup,
+		onorder,
+		onpage,
+		onsearch,
+		onselect,
 		pageLength,
 		pageLengthMenu,
 		paginated,
 		process,
 		responsive,
 		rowHighlight,
+		saveState,
 		scrollCollapse,
 		scrollSize,
+		scrollX,
 		searching,
+		select,
+		smallScreen,
+		span,
+		striped,
 		style,
 		styleClass,
+		tinyScreen,
 		tooltip,
 		tooltipContainer,
 		tooltipDelay,
@@ -63,6 +89,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		tooltipDelayShow,
 		tooltipPosition,
 		update,
+		visible,
 		widgetVar;
 		String toString;
 
@@ -70,7 +97,8 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -94,6 +122,86 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * If set, this will surround the table by a border. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isBorder() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.border, true);
+	}
+
+	/**
+	 * If set, this will surround the table by a border. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBorder(boolean _border) {
+		getStateHelper().put(PropertyKeys.border, _border);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColLg() {
+		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColLg(String _colLg) {
+		getStateHelper().put(PropertyKeys.colLg, _colLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColMd() {
+		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColMd(String _colMd) {
+		getStateHelper().put(PropertyKeys.colMd, _colMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColSm() {
+		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColSm(String _colSm) {
+		getStateHelper().put(PropertyKeys.colSm, _colSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getColXs() {
+		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColXs(String _colXs) {
+		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
 	 * Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -110,19 +218,19 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
+	 * Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Map<DataTablePropertyType, Object> getDataTableProperties() {
-		return (Map<DataTablePropertyType, Object>) getStateHelper().eval(PropertyKeys.dataTableProperties);
+	public String getCustomOptions() {
+		return (String) getStateHelper().eval(PropertyKeys.customOptions);
 	}
 
 	/**
-	 * Activates Multi-column search inputs. The default value is false (no multi-column searching). A java.util.Map&lt;net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType, Object&gt; map on the backing bean where the state of the DataTable can be saved, and retrieved after re-rendering. <P>
+	 * Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDataTableProperties(Map<DataTablePropertyType, Object> _dataTableProperties) {
-		getStateHelper().put(PropertyKeys.dataTableProperties, _dataTableProperties);
+	public void setCustomOptions(String _customOptions) {
+		getStateHelper().put(PropertyKeys.customOptions, _customOptions);
 	}
 
 	/**
@@ -142,6 +250,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDisplay() {
+		return (String) getStateHelper().eval(PropertyKeys.display, "block");
+	}
+
+	/**
+	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisplay(String _display) {
+		getStateHelper().put(PropertyKeys.display, _display);
+	}
+
+	/**
 	 * Activates the fixed header plugin of the dataTable. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -155,6 +279,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setFixedHeader(boolean _fixedHeader) {
 		getStateHelper().put(PropertyKeys.fixedHeader, _fixedHeader);
+	}
+
+	/**
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHidden() {
+		return (String) getStateHelper().eval(PropertyKeys.hidden);
+	}
+
+	/**
+	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHidden(String _hidden) {
+		getStateHelper().put(PropertyKeys.hidden, _hidden);
 	}
 
 	/**
@@ -190,6 +330,38 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLargeScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLargeScreen(String _largeScreen) {
+		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMediumScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMediumScreen(String _mediumScreen) {
+		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
+	}
+
+	/**
 	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -203,6 +375,86 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffset() {
+		return (String) getStateHelper().eval(PropertyKeys.offset);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffset(String _offset) {
+		getStateHelper().put(PropertyKeys.offset, _offset);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetLg() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetLg(String _offsetLg) {
+		getStateHelper().put(PropertyKeys.offsetLg, _offsetLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetMd() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetMd(String _offsetMd) {
+		getStateHelper().put(PropertyKeys.offsetMd, _offsetMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetSm() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetSm(String _offsetSm) {
+		getStateHelper().put(PropertyKeys.offsetSm, _offsetSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOffsetXs() {
+		return (String) getStateHelper().eval(PropertyKeys.offsetXs);
+	}
+
+	/**
+	 * Integer value to specify how many columns to offset. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOffsetXs(String _offsetXs) {
+		getStateHelper().put(PropertyKeys.offsetXs, _offsetXs);
 	}
 
 	/**
@@ -251,6 +503,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is deselected. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndeselect() {
+		return (String) getStateHelper().eval(PropertyKeys.ondeselect);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is deselected. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndeselect(String _ondeselect) {
+		getStateHelper().put(PropertyKeys.ondeselect, _ondeselect);
 	}
 
 	/**
@@ -334,6 +602,70 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Client side and/or AJAX callback to execute when the table is sorted. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnorder() {
+		return (String) getStateHelper().eval(PropertyKeys.onorder);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the table is sorted. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnorder(String _onorder) {
+		getStateHelper().put(PropertyKeys.onorder, _onorder);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the current table page changes. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnpage() {
+		return (String) getStateHelper().eval(PropertyKeys.onpage);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the current table page changes. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnpage(String _onpage) {
+		getStateHelper().put(PropertyKeys.onpage, _onpage);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the user starts a search. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsearch() {
+		return (String) getStateHelper().eval(PropertyKeys.onsearch);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when the user starts a search. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsearch(String _onsearch) {
+		getStateHelper().put(PropertyKeys.onsearch, _onsearch);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is selected. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnselect() {
+		return (String) getStateHelper().eval(PropertyKeys.onselect);
+	}
+
+	/**
+	 * Client side and/or AJAX callback to execute when a row is selected. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnselect(String _onselect) {
+		getStateHelper().put(PropertyKeys.onselect, _onselect);
+	}
+
+	/**
 	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -350,7 +682,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
+	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPageLengthMenu() {
@@ -358,7 +690,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
+	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPageLengthMenu(String _pageLengthMenu) {
@@ -430,6 +762,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSaveState() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.saveState, true);
+	}
+
+	/**
+	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSaveState(boolean _saveState) {
+		getStateHelper().put(PropertyKeys.saveState, _saveState);
+	}
+
+	/**
 	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -446,19 +794,35 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public int getScrollSize() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.scrollSize, 0);
+	public String getScrollSize() {
+		return (String) getStateHelper().eval(PropertyKeys.scrollSize);
 	}
 
 	/**
-	 * If set, force the height of table to the size specified. <P>
+	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setScrollSize(int _scrollSize) {
+	public void setScrollSize(String _scrollSize) {
 		getStateHelper().put(PropertyKeys.scrollSize, _scrollSize);
+	}
+
+	/**
+	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isScrollX() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollX, false);
+	}
+
+	/**
+	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollX(boolean _scrollX) {
+		getStateHelper().put(PropertyKeys.scrollX, _scrollX);
 	}
 
 	/**
@@ -475,6 +839,70 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSearching(boolean _searching) {
 		getStateHelper().put(PropertyKeys.searching, _searching);
+	}
+
+	/**
+	 * Allows the user to select rows. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSelect() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.select, false);
+	}
+
+	/**
+	 * Allows the user to select rows. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelect(boolean _select) {
+		getStateHelper().put(PropertyKeys.select, _select);
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSmallScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSmallScreen(String _smallScreen) {
+		getStateHelper().put(PropertyKeys.smallScreen, _smallScreen);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSpan() {
+		return (String) getStateHelper().eval(PropertyKeys.span);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpan(String _span) {
+		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isStriped() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.striped, true);
+	}
+
+	/**
+	 * If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStriped(boolean _striped) {
+		getStateHelper().put(PropertyKeys.striped, _striped);
 	}
 
 	/**
@@ -507,6 +935,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTinyScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTinyScreen(String _tinyScreen) {
+		getStateHelper().put(PropertyKeys.tinyScreen, _tinyScreen);
 	}
 
 	/**
@@ -619,6 +1063,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
+	}
+
+	/**
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getVisible() {
+		return (String) getStateHelper().eval(PropertyKeys.visible);
+	}
+
+	/**
+	 * This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setVisible(String _visible) {
+		getStateHelper().put(PropertyKeys.visible, _visible);
 	}
 
 	/**

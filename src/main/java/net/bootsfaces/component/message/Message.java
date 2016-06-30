@@ -65,6 +65,7 @@ public class Message extends UIMessage {
 		infoStyle,
 		lineBreak,
 		lineBreakTag,
+		onlyMostSevere,
 		redisplay,
 		showDetail,
 		showIcon,
@@ -245,6 +246,22 @@ public class Message extends UIMessage {
 	 */
 	public void setLineBreakTag(String _lineBreakTag) {
 		getStateHelper().put(PropertyKeys.lineBreakTag, _lineBreakTag);
+	}
+
+	/**
+	 * By default, b:message shows every message reported for the component. You can limit it to one message by setting this flag to true. In this case, BootsFaces shows only the most important message (measured by the severity level). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isOnlyMostSevere() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.onlyMostSevere, false);
+	}
+
+	/**
+	 * By default, b:message shows every message reported for the component. You can limit it to one message by setting this flag to true. In this case, BootsFaces shows only the most important message (measured by the severity level). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnlyMostSevere(boolean _onlyMostSevere) {
+		getStateHelper().put(PropertyKeys.onlyMostSevere, _onlyMostSevere);
 	}
 
 	/**

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -43,7 +43,7 @@ public class SliderRenderer extends BadgeRenderer {
 	 * b:slider. The default implementation simply stores the input value in the
 	 * list of submitted values. If the validation checks are passed, the values
 	 * in the <code>submittedValues</code> list are store in the backend bean.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -70,7 +70,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:slider.
-	 * 
+	 *
 	 * @param context
 	 *            the FacesContext.
 	 * @param component
@@ -126,7 +126,7 @@ public class SliderRenderer extends BadgeRenderer {
 		}
 		boolean isVertical = o.startsWith("vertical");
 		boolean bottom = o.endsWith("bottom");
-                int span = slider.getSpan();
+		int span = slider.getSpan();
 
 		rw.startElement("div", null);// form-group
 		rw.writeAttribute("id", clientId, "id");
@@ -145,7 +145,13 @@ public class SliderRenderer extends BadgeRenderer {
 		if (isVertical) {
 			if (label != null && !bottom) {
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+				String lsc = slider.getLabelStyleClass();
+				if (lsc == null)
+					lsc = "";
+				else
+					lsc = " " + lsc;
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId) + lsc, "class");
+				writeAttribute(rw, "style", slider.getLabelStyle());
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div");/* Row */
 			}
@@ -168,7 +174,13 @@ public class SliderRenderer extends BadgeRenderer {
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
 				rw.startElement("div", null);
-				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
+				String lsc = slider.getLabelStyleClass();
+				if (lsc == null)
+					lsc = "";
+				else
+					lsc = " " + lsc;
+				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId) + lsc, "class");
+				writeAttribute(rw, "style", slider.getLabelStyle());
 				encodeVLabel(slider, rw, label);
 				rw.endElement("div"); /* Row */
 			}
@@ -183,6 +195,8 @@ public class SliderRenderer extends BadgeRenderer {
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);
 				rw.writeAttribute("for", clientId, null);
+				writeAttribute(rw, "class", slider.getLabelStyleClass());
+				writeAttribute(rw, "style", slider.getLabelStyle());
 				rw.write(label);
 				rw.endElement("label"); // Label
 
@@ -281,19 +295,25 @@ public class SliderRenderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId) throws IOException {
-		int cols=span;
-                if (!mode.equals("basic")) { cols--; }
-                /*
-		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm, int olg
+	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId)
+			throws IOException {
+		int cols = span;
+		if (!mode.equals("basic")) {
+			cols--;
+		}
+		/*
+		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,
+		 * int olg
 		 */
-                //For Horizontal, we keep one column for the input/badge
-		R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0, null, null); //Issue #172
-                //R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4), 0, 0, 0, 0, null, null);
+		// For Horizontal, we keep one column for the input/badge
+		R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0,
+				null, null); // Issue #172
+		// R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4),
+		// (vo ? 12 : 4), 0, 0, 0, 0, null, null);
 		// Slider <div>
 		rw.startElement("div", null);
 		rw.writeAttribute("id", clientId + "_slider", null);// concat
-                
+
 		rw.endElement("div");
 		rw.endElement("div"); // Column
 	}

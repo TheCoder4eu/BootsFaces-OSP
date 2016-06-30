@@ -8,7 +8,7 @@ import javax.faces.component.NamingContainer;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIViewRoot;
 
-public class IDExpressionResolver implements AbstractExpressionResolver {
+public class InternalIDExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 		List<UIComponent> result = new ArrayList<UIComponent>();

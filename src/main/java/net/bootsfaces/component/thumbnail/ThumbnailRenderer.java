@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -27,12 +27,13 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:thumbnail /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.thumbnail.Thumbnail")
 public class ThumbnailRenderer extends CoreRenderer {
-	
+
 	/**
 	 * This methods generates the HTML code of the current b:thumbnail.
 	* <code>encodeBegin</code> generates the start of the component. After the, the JSF framework calls <code>encodeChildren()</code>
@@ -42,7 +43,7 @@ public class ThumbnailRenderer extends CoreRenderer {
 	 * @param context the FacesContext.
 	 * @param component the current b:thumbnail.
 	 * @throws IOException thrown if something goes wrong when writing the HTML code.
-	 */  
+	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
 	    if (!component.isRendered()) {
@@ -51,10 +52,9 @@ public class ThumbnailRenderer extends CoreRenderer {
 		Thumbnail thumbnail = (Thumbnail) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = thumbnail.getClientId();
-		
-		rw.startElement("thumbnail", thumbnail);
+
 		Tooltip.generateTooltip(context, thumbnail, rw);
-		
+
         rw.startElement("div", thumbnail);
         rw.writeAttribute("id", clientId, "id");
         Tooltip.generateTooltip(context, thumbnail, rw);
@@ -62,15 +62,16 @@ public class ThumbnailRenderer extends CoreRenderer {
 		if (null != style) {
 			rw.writeAttribute("style", style, null);
 		}
-		String styleClass = thumbnail.getStyleClass(); 
+		String styleClass = thumbnail.getStyleClass();
 		if (null == styleClass)
 			styleClass = "thumbnail";
 		else
 			styleClass = "thumbnail " + styleClass;
+		styleClass += Responsive.getResponsiveStyleClass(thumbnail, false);
 
 		rw.writeAttribute("class",  styleClass, "class");
 	}
-	
+
 	/**
 	 * This methods generates the HTML code of the current b:thumbnail.
 	* <code>encodeBegin</code> generates the start of the component. After the, the JSF framework calls <code>encodeChildren()</code>
@@ -80,7 +81,7 @@ public class ThumbnailRenderer extends CoreRenderer {
 	 * @param context the FacesContext.
 	 * @param component the current b:thumbnail.
 	 * @throws IOException thrown if something goes wrong when writing the HTML code.
-	 */  
+	 */
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 	    if (!component.isRendered()) {

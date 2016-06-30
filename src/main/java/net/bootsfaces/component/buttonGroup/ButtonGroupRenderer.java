@@ -60,24 +60,32 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		String clientId = buttonGroup.getClientId();
 		rw.startElement("div", buttonGroup);
 		rw.writeAttribute("id", clientId, "id");
-		String styleClasses = "btn-group " + Responsive.getResponsiveStyleClass(buttonGroup, false);
-		String o = buttonGroup.getOrientation();
+
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false).trim();
+		if(responsive.length() > 0) {
+			rw.writeAttribute("class", responsive, null);
+			rw.startElement("div", buttonGroup);
+		}
+
+
+		StringBuilder styleClasses = new StringBuilder("btn-group");
+		styleClasses.append("vertical".equals(buttonGroup.getOrientation()) ? "-vertical" : "");
 		String s = buttonGroup.getSize();
-		if (o != null && o.equals("vertical")) {
-			styleClasses += "-vertical";
-		}
 		if (s != null) {
-			styleClasses += " btn-group-" + s;
+			styleClasses.append(" btn-group-").append(s);
 		}
-		if (null != buttonGroup.getStyleClass()) {
-			styleClasses += " " + buttonGroup.getStyleClass();
+		String sc = buttonGroup.getStyleClass();
+		if (null != sc) {
+			styleClasses.append(" ").append(sc);
 		}
+
 		String pull = buttonGroup.getPull();
-		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
-			rw.writeAttribute("class", styleClasses + " pull-" + pull, "class");
-		} else {
-			rw.writeAttribute("class", styleClasses, "class");
+		if ("right".equals(pull) || "left".equals(pull)){
+			styleClasses.append(" pull-").append(pull);
 		}
+
+		rw.writeAttribute("class", styleClasses.toString(), "class");
+
 		if (null != buttonGroup.getStyle()) {
 			rw.writeAttribute("style", buttonGroup.getStyle(), "style");
 		}
@@ -109,6 +117,10 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		ButtonGroup buttonGroup = (ButtonGroup) component;
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div");
+		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false).trim();
+		if(responsive.length() > 0) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, buttonGroup);
 	}
 }

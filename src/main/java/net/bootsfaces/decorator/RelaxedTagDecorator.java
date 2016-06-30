@@ -37,7 +37,8 @@ public class RelaxedTagDecorator implements TagDecorator {
 		head("h:head"),
 		label("h:outputLabel"),
 		form("h:form"),
-		button(new ElementConverter("h:button", "jsf:outcome"), new ElementConverter("h:commandButton"));
+		select("b:selectOneMenu"),
+		button(new ElementConverter("b:commandButton", "jsf:outcome"), new ElementConverter("b:navLink"));
 
 		private ElementConverter elementConverter;
 
@@ -66,7 +67,8 @@ public class RelaxedTagDecorator implements TagDecorator {
 	}
 
 	private static enum Namespace {
-		p("http://xmlns.jcp.org/jsf/passthrough"), jsf("http://xmlns.jcp.org/jsf"), h("http://java.sun.com/jsf/html");
+		p("http://xmlns.jcp.org/jsf/passthrough"), jsf("http://xmlns.jcp.org/jsf"), h("http://java.sun.com/jsf/html"),
+		b("http://bootsfaces.net/ui");
 
 		private String uri;
 
@@ -130,12 +132,14 @@ public class RelaxedTagDecorator implements TagDecorator {
 
 			TagAttribute arbiterAttribute = tag.getAttributes().get(arbiterAttributeNamespace, arbiterAttributeName);
 
+			String myLocalName=null;
 			if (arbiterAttribute == null) {
 				// no arbiter
-				return null;
-			}
+//				return null;
+			} else {
 
-			String myLocalName = additionalMappings.get(arbiterAttribute.getValue());
+			myLocalName = additionalMappings.get(arbiterAttribute.getValue());
+			}
 
 			if (myLocalName == null) {
 				myLocalName = this.localName;
@@ -208,8 +212,8 @@ public class RelaxedTagDecorator implements TagDecorator {
 					myLocalName = "id";
 				} else {
 					// make this a pass through attribute
-					qName = "p:" + myLocalName;
-					ns = Namespace.p.uri;
+					qName = "h:" + myLocalName;
+					ns = Namespace.h.uri;
 				}
 			}
 			return TagAttributeUtilities.createTagAttribute(location, ns, myLocalName, qName, value);

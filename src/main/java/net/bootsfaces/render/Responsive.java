@@ -202,7 +202,7 @@ public class Responsive {
 			// validation:
 			if(!_valid.contains(expressionToken.get(0)))
 				throw new FacesException("Expression not valid. Valid sizes are [ xs, sm, md, lg ]");
-			finalExpr = visibilityLevel + "-" + translateSize(expressionToken.get(0)) + display;
+			finalExpr = " " + visibilityLevel + "-" + translateSize(expressionToken.get(0)) + display;
 		}
 		// 2. Expression contains comma, so is a list of sizes
 		else if (expressionToken.contains(","))
