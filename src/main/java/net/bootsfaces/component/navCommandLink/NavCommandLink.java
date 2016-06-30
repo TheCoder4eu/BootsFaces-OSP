@@ -485,9 +485,6 @@ public class NavCommandLink extends UICommand
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconSize() {
-		if (null != getStateHelper().eval(PropertyKeys.iconSize)) {
-			Object o = getStateHelper().eval(PropertyKeys.iconSize);
-		}
 		return (String) getStateHelper().eval(PropertyKeys.iconSize);
 	}
 

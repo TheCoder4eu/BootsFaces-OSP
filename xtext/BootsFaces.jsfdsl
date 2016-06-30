@@ -73,6 +73,7 @@ widget accordion
 	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
 	+tooltip
 	+responsive
+	+style
 }
 
 widget alert
@@ -1088,6 +1089,7 @@ widget listLinks
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+tooltip
+	+style
 }
 
 widget message
@@ -1322,6 +1324,7 @@ widget navbarLinks
     pull                                                                   "Can be right or left. Pulls the element right or left."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
+	+style
 }
 
 
@@ -1397,6 +1400,7 @@ widget pillLinks
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
+	+style
 }
 
 widget poll
@@ -1804,6 +1808,7 @@ widget tabLinks
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
+	+style
 }
 
 widget tabView
@@ -1857,6 +1862,7 @@ widget tree
     border-color			default "#DDDDDD"											"Hex value of border color (default #DDDDDD)"
     update																   				"Component(s) to be updated with ajax."
 	+responsive
+    +style
 }
 
 

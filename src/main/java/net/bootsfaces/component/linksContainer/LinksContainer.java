@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -86,12 +86,12 @@ public class LinksContainer extends UIComponentBase {
 			rw.writeAttribute("style", style, "style");
 		}
 		Tooltip.generateTooltip(fc, this, rw);
-                String containerStyles=getContainerStyles();
+        String containerStyles=getContainerStyles();
 		String styleClass = (String) attrs.get("styleClass");
 		if (null == styleClass) {
 			styleClass = "";
 		}
-                
+
 		if (pull != null && (pull.equals("right") || pull.equals("left"))) {
                         if(containerStyles.contains("navbar")) {
                             containerStyles=containerStyles.concat(" navbar-"+pull);
@@ -107,7 +107,7 @@ public class LinksContainer extends UIComponentBase {
 	/**
 	 * every container must override this method returning the specific
 	 * class(es) for its rendering
-	 * 
+	 *
 	 * @return the specific class
 	 */
 	protected String getContainerStyles() {

@@ -84,7 +84,14 @@ public class AccordionRenderer extends CoreRenderer {
 				? Arrays.asList(accordion.getExpandedPanels().split(",")) : null;
 
 		rw.startElement("div", accordion);
-		rw.writeAttribute("class", "panel-group" + Responsive.getResponsiveStyleClass(accordion), null);
+		String styleClass = accordion.getStyleClass();
+		if (null == styleClass) {
+			styleClass="panel-group";
+		} else {
+			styleClass += " panel-group";
+		}
+		rw.writeAttribute("class", (styleClass + Responsive.getResponsiveStyleClass(accordion, false)).trim(), null);
+		writeAttribute(rw, "style", accordion.getStyle());
 		rw.writeAttribute("id", accordionClientId, "id");
 		Tooltip.generateTooltip(context, component, rw);
 

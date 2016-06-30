@@ -193,6 +193,24 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>tiny-screen</name>
 		  <required>false</required>
@@ -11469,6 +11487,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
 		  <name>tooltip</name>
 		  <required>false</required>
@@ -13613,6 +13649,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
 		  <name>tooltip</name>
 		  <required>false</required>
@@ -14499,6 +14553,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
@@ -18333,6 +18405,24 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
 		  <name>tooltip</name>
 		  <required>false</required>
@@ -18939,6 +19029,24 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

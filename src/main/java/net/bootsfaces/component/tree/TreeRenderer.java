@@ -119,9 +119,15 @@ public class TreeRenderer extends CoreRenderer {
 		rw.writeAttribute("id", "tree_" + clientId, "id");
 		renderPassThruAttributes(context, component, H.HTML5_DATA_ATTRIBUTES, true);
 		String clazz = Responsive.getResponsiveStyleClass(tree, false);
-		if (clazz.trim().length()>0) {
+		String styleClass = tree.getStyleClass();
+		if (null != styleClass) {
+			clazz = styleClass + clazz;
+		}
+		clazz=clazz.trim();
+		if (clazz.length()>0) {
 			rw.writeAttribute("class", clazz, "class");
 		}
+		writeAttribute(rw, "style", tree.getStyle());
 		rw.endElement("div");
 	}
 
