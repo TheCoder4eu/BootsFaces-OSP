@@ -733,4 +733,29 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 
 	public boolean isRendered();
 
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSpin();
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconFlip();
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconRotate();
+
+	/**
+	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconSize();
+
+
 }

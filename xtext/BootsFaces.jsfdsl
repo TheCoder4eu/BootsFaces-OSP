@@ -6,6 +6,13 @@ attribute_list ajax {
     update                                                                "Component(s) to be updated with ajax."
 }
 
+attribute_list iconAwesome {
+    icon-flip                                                             "Flip the icon: can be H (horizontal) or V (vertical)."
+    icon-rotate                                                           "Rotate 90 degrees the icon: Can be L,R."
+    icon-size                                                             "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    icon-spin                Boolean                                      "Boolean value: if true the icon will spin."
+}
+
 attribute_list tooltip {
     tooltip                                                                "The text of the tooltip."
     tooltip-container    default "body"                                    "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
@@ -143,6 +150,7 @@ widget button
     +style
     +tooltip
 	+responsive
+	+iconAwesome
 }
 
 
@@ -441,6 +449,7 @@ widget commandButton
     +style
     +responsive
     +tooltip
+    +iconAwesome
 }
 
 
@@ -651,6 +660,7 @@ widget dropMenu
 	+style
 	+tooltip
 	+responsive
+	+iconAwesome
 }
 
 
@@ -1249,6 +1259,7 @@ widget navCommandLink
     value               inherited                                          "Navigation Link text."
     +responsive
     +tooltip
+    +iconAwesome
 }
 
 widget navLink
@@ -1296,9 +1307,9 @@ widget navLink
     style-class                                                            "CSS style class"
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
-
     +responsive
     +tooltip
+    +iconAwesome
 }
 
 

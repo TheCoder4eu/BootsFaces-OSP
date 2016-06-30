@@ -193,23 +193,4 @@ public class IconRenderer extends AJAXRenderer {
 
 		rw.endElement("span");
 	}
-
-	/**
-	 * Renders an Icon - simple version without options and without features (no AJAX, no tooltip, no id etc.)
-	 *
-	 * @param rw
-	 *            ResponseWriter
-	 * @param c
-	 *            UIComponent
-	 * @param icon
-	 *            Icon Name
-	 * @param isFontAwesome
-	 *            Icon set: false for Bootstrap Glyphicons, true for Font
-	 *            Awesome
-	 * @throws IOException
-	 */
-	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome)
-			throws IOException {
-		encodeIcon(rw, c, icon, isFontAwesome, null, null, null, false, null, null, false, false, false, false);
-	}
 }

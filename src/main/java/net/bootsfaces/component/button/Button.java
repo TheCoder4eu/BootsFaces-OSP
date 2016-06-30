@@ -74,6 +74,10 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		icon,
 		iconAlign,
 		iconAwesome,
+		iconFlip,
+		iconRotate,
+		iconSize,
+		iconSpin,
 		immediate,
 		lang,
 		largeScreen,
@@ -366,6 +370,70 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setIconAwesome(String _iconAwesome) {
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconFlip() {
+		return (String) getStateHelper().eval(PropertyKeys.iconFlip);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconFlip(String _iconFlip) {
+		getStateHelper().put(PropertyKeys.iconFlip, _iconFlip);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconRotate() {
+		return (String) getStateHelper().eval(PropertyKeys.iconRotate);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRotate(String _iconRotate) {
+		getStateHelper().put(PropertyKeys.iconRotate, _iconRotate);
+	}
+
+	/**
+	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconSize() {
+		return (String) getStateHelper().eval(PropertyKeys.iconSize);
+	}
+
+	/**
+	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSize(String _iconSize) {
+		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSpin() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSpin, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSpin(boolean _iconSpin) {
+		getStateHelper().put(PropertyKeys.iconSpin, _iconSpin);
 	}
 
 	/**

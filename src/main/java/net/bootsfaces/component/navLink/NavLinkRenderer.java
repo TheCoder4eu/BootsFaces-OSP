@@ -218,7 +218,8 @@ public class NavLinkRenderer extends CoreRenderer {
 			fa = true;
 		}
 		if (icon != null) {
-			Object ialign = ((AbstractNavLink) navlink).getIconAlign(); // Default
+			AbstractNavLink link = (AbstractNavLink) navlink;
+			Object ialign = link.getIconAlign(); // Default
 																		// Left
 			if (ialign != null && ialign.equals("right")) {
 				if (value != null)
@@ -228,9 +229,9 @@ public class NavLinkRenderer extends CoreRenderer {
 						c.encodeAll(context);
 					}
 				}
-				IconRenderer.encodeIcon(rw, navlink, icon, fa);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
 			} else {
-				IconRenderer.encodeIcon(rw, navlink, icon, fa);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
 				if (navlink.getChildCount() > 0) {
 					for (UIComponent c : navlink.getChildren()) {
 						c.encodeAll(context);

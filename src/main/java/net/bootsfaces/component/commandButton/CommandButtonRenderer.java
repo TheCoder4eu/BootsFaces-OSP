@@ -131,9 +131,9 @@ public class CommandButtonRenderer extends CoreRenderer {
 			if (ialign != null && ialign.equals("right")) {
 				value = value != null ? value + " " : null;
 				writeText(rw, value, null);
-				IconRenderer.encodeIcon(rw, component, icon, fa);
+				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false);
 			} else {
-				IconRenderer.encodeIcon(rw, component, icon, fa);
+				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false);
 				value = value != null ? " " + value : null;
 				writeText(rw, value, null);
 			}
@@ -175,7 +175,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
-		
+
 		// add responsive style
 		sb.append(Responsive.getResponsiveStyleClass(component, false));
 

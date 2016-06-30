@@ -107,9 +107,9 @@ public class DropMenuRenderer extends CoreRenderer {
 					Object ialign = dropMenu.getIconAlign();
 					if (ialign != null && ialign.equals("right")) {
 						rw.writeText(value + " ", null);
-						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
+						IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(), dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false);
 					} else {
-						IconRenderer.encodeIcon(rw, dropMenu, icon, fa);
+						IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(), dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false);
 						// !//R.encodeIcon(rw, this, icon, white);
 						rw.writeText(" " + value, null);
 					}
