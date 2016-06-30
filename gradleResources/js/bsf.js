@@ -162,6 +162,7 @@ function treeDataMapper(data) {
 	if(data && data !== "undefined") {
 		return data.nodeInternalId + sep +
 			   data.text + sep +
+			   ((typeof data.data == "undefined") ? "" : data.data) + sep +
 			   data.state.checked + sep +
 			   data.state.disabled + sep +
 			   data.state.expanded + sep +

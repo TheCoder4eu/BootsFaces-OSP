@@ -106,10 +106,11 @@ public class TreeModelUtils {
 		try {
 			n.setNodeId(Integer.parseInt(dataMap[0]));
 			n.setText(dataMap[1]);
-			n.setChecked(("true".equalsIgnoreCase(dataMap[2]) ? true: false));
-			n.setDisabled(("true".equalsIgnoreCase(dataMap[3]) ? true: false));
-			n.setExpanded(("true".equalsIgnoreCase(dataMap[4]) ? true: false));
-			n.setSelected(("true".equalsIgnoreCase(dataMap[5]) ? true: false));
+			n.setData(dataMap[2]);
+			n.setChecked(("true".equalsIgnoreCase(dataMap[3]) ? true: false));
+			n.setDisabled(("true".equalsIgnoreCase(dataMap[4]) ? true: false));
+			n.setExpanded(("true".equalsIgnoreCase(dataMap[5]) ? true: false));
+			n.setSelected(("true".equalsIgnoreCase(dataMap[6]) ? true: false));
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -163,6 +164,10 @@ public class TreeModelUtils {
 		// HREF
 		if(BsfUtils.isStringValued(node.getHRef())) {
 			sb.append("\"href\": \"" + node.getHRef() + "\", ");
+		}
+		// DATA
+		if(BsfUtils.isStringValued(node.getData())) {
+			sb.append("\"data\": \"" + node.getData() + "\", ");
 		}
 		// TAGS
 		if(node.getTags() != null && node.getTags().size() > 0) {
