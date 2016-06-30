@@ -63,7 +63,8 @@ public class TreeRenderer extends CoreRenderer {
 				value = pair[1];
 			}
 			if (value != null && !"".equals(value.trim())) {
-				Node n = TreeModelUtils.mapDataToModel(value);
+				// Node n = TreeModelUtils.mapDataToModel(value);
+				Node n = (Node) BsfUtils.fromString(value);
 				TreeModelUtils.updateNodeById(tree.getValue(), n.getNodeId(), n);
 				// tree.setSubmittedValue(tree.getValue());
 
@@ -167,27 +168,33 @@ public class TreeRenderer extends CoreRenderer {
 						"   data: getTreeData(),   " +
 						// enable nodeSelected event callback
 						"	onNodeSelected: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeSelected:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeSelected:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeSelected:' + data.serialize);" + // @all
 						"	}," +
 						// enable nodeUnselected event callback
 						"	onNodeUnselected: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnselected:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnselected:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnselected:' + data.serialize);" + // @all
 						"	}," +
 						//enable nodeChecked event callback
 						"	onNodeChecked: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeChecked:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeChecked:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeChecked:' + data.serialize);" + // @all
 						"	}," +
 						//enable nodeUnchecked event callback
 						"	onNodeUnchecked: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnchecked:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnchecked:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeUnchecked:' + data.serialize);" + // @all
 						"	}," +
 						// enable nodeCollapsed event callback
 						"	onNodeCollapsed: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeCollapsed:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeCollapsed:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeCollapsed:' + data.serialize);" + // @all
 						"	}," +
 						// enable nodeExpanded event callback
 						"	onNodeExpanded: function(event, data) { " +
-						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeExpanded:' + treeDataMapper(data));" + // @all
+						//"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeExpanded:' + treeDataMapper(data));" + // @all
+						"   	BsF.ajax.callAjax(this, event, '" + updateItems + "', '" + clientId + "', null, null, null, 'nodeExpanded:' + data.serialize);" + // @all
 						"	}" +
 					 "}); ", null);
 		rw.writeText("});", null);

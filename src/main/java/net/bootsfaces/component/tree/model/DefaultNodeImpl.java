@@ -38,7 +38,7 @@ public class DefaultNodeImpl
 implements Node, Serializable {
 	private static final long serialVersionUID = -6742025921003033215L;
 	
-	private final List<Node> childs = new ArrayList<Node>();
+	private final transient List<Node> childs = new ArrayList<Node>();
     private String data;
     private int nodeId;
     private String text;

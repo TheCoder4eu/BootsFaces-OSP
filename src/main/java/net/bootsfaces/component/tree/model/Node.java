@@ -19,9 +19,11 @@
 
 package net.bootsfaces.component.tree.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface Node {
+public interface Node 
+extends Serializable {
 	/**
 	 * @return the node id
 	 */

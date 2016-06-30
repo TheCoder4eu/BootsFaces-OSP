@@ -156,7 +156,7 @@ function jq( myid ) {
     return "#" + myid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
 }
 
-/* tree support method to convert data object to state string */
+/* tree support method to convert data object to state string 
 function treeDataMapper(data) {
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
@@ -169,7 +169,7 @@ function treeDataMapper(data) {
 			   data.state.selected;
 	}
 	return "";
-}
+}*/
 
 BsF.substringMatcher = function(strs) {
 	  return function findMatches(q, cb) {

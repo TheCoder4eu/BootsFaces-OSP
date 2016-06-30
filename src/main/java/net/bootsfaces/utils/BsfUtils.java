@@ -1,8 +1,14 @@
 package net.bootsfaces.utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -511,5 +517,44 @@ public class BsfUtils {
 			o = comp.getClientId(context);
 		}
 		return (String) o;
+	}
+
+	/**
+	 * Read an object from a base64 string
+	 * @param s
+	 * @return
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
+	public static Object fromString(String s) {
+		try {
+			byte [] data = Base64.getDecoder().decode( s );
+			ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
+			Object o  = ois.readObject();
+			ois.close();
+			return o;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	/**
+	 * Write an object to base64 string
+	 * @param o
+	 * @return
+	 * @throws IOException
+	 */
+	public static String toString(Serializable o) {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(o);
+			oos.close();
+			return Base64.getEncoder().encodeToString(baos.toByteArray()); 
+		} catch (IOException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 }

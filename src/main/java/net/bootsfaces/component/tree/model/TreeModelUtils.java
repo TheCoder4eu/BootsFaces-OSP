@@ -183,6 +183,8 @@ public class TreeModelUtils {
 			sb.append(renderSubnodes(node.getChilds()));
 			sb.append(",");
 		}
+		// SERIALIZE
+		sb.append("\"serialize\": \"" + BsfUtils.toString(node) + "\", ");
 
 		sb.append("\"selectable\": " + node.isSelectable() + ", ");
 		sb.append("\"state\": {");
