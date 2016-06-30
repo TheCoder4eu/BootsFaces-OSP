@@ -1,9 +1,14 @@
 build
+java6/build
+java7/build
+java8/build
+/gradleResources/build/
 /dist
 /optimized
 /nbproject/
 /nbproject/private/
 .nb-gradle/
+/gradleResources/.nb-gradle/
 /.settings
 .classpath
 .project
@@ -13,7 +18,6 @@ build
 /meta/.faces-config.xml.jsfdia
 src-gen
 /target-grunt/
-/gradleResources/.nb-gradle/
 .DS_Store
 .gradle
 .idea/
