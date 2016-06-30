@@ -40,7 +40,7 @@ public abstract class DataTableColumnCore extends UIOutput {
 		order,
 		orderBy,
 		orderable,
-		sortable,
+		searchable,
 		style,
 		styleClass;
 		String toString;
@@ -282,19 +282,19 @@ public abstract class DataTableColumnCore extends UIOutput {
 	}
 
 	/**
-	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. <P>
+	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public boolean isSortable() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.sortable, true);
+	public boolean isSearchable() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.searchable, true);
 	}
 
 	/**
-	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. <P>
+	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setSortable(boolean _sortable) {
-		getStateHelper().put(PropertyKeys.sortable, _sortable);
+	public void setSearchable(boolean _searchable) {
+		getStateHelper().put(PropertyKeys.searchable, _searchable);
 	}
 
 	/**
