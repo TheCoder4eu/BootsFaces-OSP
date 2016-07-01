@@ -36,6 +36,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.message.MessageRenderer;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 
 /**
  * @author duncan
@@ -127,7 +128,7 @@ public class MessagesRenderer extends CoreRenderer {
 		if (null != uiMessages.getDir()) {
 			writer.writeAttribute("dir", uiMessages.getDir(), "dir");
 		}
-		writeAttribute(writer, "class", "bf-messages");
+		writeAttribute(writer, "class", "bf-messages" + Responsive.getResponsiveStyleClass(uiMessages, false));
 		writeAttribute(writer, "role", "alert");
 
 		writer.writeAttribute("id", clientId, "id");

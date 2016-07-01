@@ -1095,6 +1095,7 @@ widget message
        implemented_by net.bootsfaces.component.Message
        rendered_by net.bootsfaces.component.MessageRenderer
        extends UIMessage
+       is_responsive
  {
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
@@ -1118,6 +1119,7 @@ widget message
     style-class                                                            "The CSS class for this element.  Corresponds to the HTML 'class' attribute."
     warn-class                                                             "CSS class to be used for messages with severity \"WARN\"."
     warn-style                                                             "CSS style to be used for messages with severity \"WARN\"."
+	+responsive
 }
 
 widget messages
@@ -1125,6 +1127,7 @@ widget messages
        rendered_by net.bootsfaces.component.MessagesRenderer
        extends UIMessages
        has_tooltip
+       is_responsive
  {
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
@@ -1155,6 +1158,7 @@ widget messages
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     warn-class                                                             "CSS class to be used for messages with severity \"WARN\"."
     warn-style                                                             "CSS style to be used for messages with severity \"WARN\"."
+    +responsive
 }
 
 
@@ -1359,6 +1363,7 @@ widget panel
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    show-collapse-link  Boolean default "true"                             "Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'."
     style                                                                  "Inline style of the entire panel area."
     style-class                                                            "Style class of the input element."
     title                                                                  "Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title."

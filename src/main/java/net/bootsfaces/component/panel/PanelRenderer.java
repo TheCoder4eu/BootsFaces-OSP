@@ -202,7 +202,14 @@ public class PanelRenderer extends CoreRenderer {
 		rw.startElement("a", panel);
 		rw.writeAttribute("data-toggle", "collapse", "null");
 		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
-		rw.writeAttribute("style", "display: block;", "style"); //let the anchor
+		String style = "display:block;";
+		if (!panel.isShowCollapseLink()) {
+			style += "outline: none";
+		} else {
+			style += "outline: none;text-decoration: underline;";
+
+		}
+		rw.writeAttribute("style", style, "style"); //let the anchor
 		rw.writeAttribute("href", "javascript:;", "null");
 		if (panel.isCollapsed()) {
 			sclass += " collapsed";

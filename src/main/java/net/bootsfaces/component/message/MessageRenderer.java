@@ -33,6 +33,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.Responsive;
 
 /** This class generates the HTML code of &lt;b:message /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.message.Message")
@@ -86,8 +87,9 @@ public class MessageRenderer extends CoreRenderer {
 			String severityClass = findHighestSeverityClass(messageList, message);
 			// alert-danger
 			styleClass += "alert " + severityClass + " bf-message";
+			styleClass += Responsive.getResponsiveStyleClass(message, false);
 
-			writeAttribute(rw, "class", styleClass);
+			writeAttribute(rw, "class", styleClass.trim());
 			writeAttribute(rw, "style", findHighestSeverityStyle(messageList, message));
 			writeAttribute(rw, "role", "alert");
 

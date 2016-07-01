@@ -153,6 +153,7 @@ public class Panel extends UIComponentBase
 		onmouseover,
 		onmouseup,
 		process,
+		showCollapseLink,
 		smallScreen,
 		span,
 		style,
@@ -757,6 +758,22 @@ public class Panel extends UIComponentBase
 	 */
 	public void setProcess(String _process) {
 		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
+	/**
+	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowCollapseLink() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCollapseLink, true);
+	}
+
+	/**
+	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowCollapseLink(boolean _showCollapseLink) {
+		getStateHelper().put(PropertyKeys.showCollapseLink, _showCollapseLink);
 	}
 
 	/**
