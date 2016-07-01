@@ -100,7 +100,7 @@ public class PanelRenderer extends CoreRenderer {
 
 		if (isCollapsible && null == accordionParent) {
 			rw.startElement("div", panel);
-			rw.writeAttribute("class", "panel-group" + Responsive.getResponsiveStyleClass(panel), null);
+			rw.writeAttribute("class", ("panel-group" + Responsive.getResponsiveStyleClass(panel, false)).trim(), null);
 			rw.writeAttribute("id", clientId, "id");
 		}
 
