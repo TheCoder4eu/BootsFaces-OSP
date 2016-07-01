@@ -27,12 +27,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.el.ELException;
+import javax.el.ExpressionFactory;
+import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
@@ -274,45 +278,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
     }
 
-    /**
-     * Algorithm works as follows; - If it's an input component, submitted value
-     * is checked first since it'd be the value to be used in case validation
-     * errors terminates jsf lifecycle - Finally the value of the component is
-     * retrieved from backing bean and if there's a converter, converted value
-     * is returned
-     *
-     * @param context
-     *            FacesContext instance
-     * @return End text
-     */
-    public Object getValue2Render(FacesContext context, SelectOneMenu menu) {
-        Object sv = menu.getSubmittedValue();
-        if (sv != null) {
-            return sv;
-        }
-
-        Object val = menu.getValue();
-        if (val != null) {
-            Converter converter = menu.getConverter();
-
-            if (converter != null)
-                return converter.getAsString(context, menu, val);
-            else
-                return val;
-
-        } else {
-            // component is a value holder but has no value
-            return null;
-        }
-    }
-
     /** Renders the select tag. */
     protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectOneMenu menu)
             throws IOException {
         renderSelectTag(rw, menu);
         renderSelectTagAttributes(rw, clientId, menu);
-        Object selectedOption = getValue2Render(context, menu);
-        renderOptions(context, rw, selectedOption, menu);
+        renderOptions(context, rw, menu);
 
         renderInputTagEnd(rw);
     }
@@ -368,19 +339,18 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      * InputRenderer#getSelectItems() of PrimeFaces 5.1.
      *
      * @param rw
-     * @param selectedOption
      * @throws IOException
      */
-    protected void renderOptions(FacesContext context, ResponseWriter rw, Object selectedOption, SelectOneMenu menu)
+    protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu)
             throws IOException {
         List<Object> items = collectOptions(context, menu);
 
         for (int index = 0; index < items.size(); index++) {
             Object option = items.get(index);
             if (option instanceof SelectItem) {
-                renderOption(rw, (SelectItem) option, selectedOption, index);
+                renderOption(context,menu, rw, (SelectItem) option, index);
             } else {
-                renderOption(rw, (UISelectItem) option, selectedOption, index);
+                renderOption(context,menu, rw, (UISelectItem) option, index);
             }
         }
     }
@@ -449,19 +419,17 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      *            The response writer
      * @param selectItem
      *            The current SelectItem
-     * @param selectedOption
-     *            the currently selected option
      * @throws IOException
      *             thrown if something's wrong with the response writer
      */
-    protected void renderOption(ResponseWriter rw, SelectItem selectItem, Object selectedOption, int index)
+    protected void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, SelectItem selectItem, int index)
             throws IOException {
 
         String itemLabel = selectItem.getLabel();
         final String description = selectItem.getDescription();
         final Object itemValue = selectItem.getValue();
 
-        renderOption(rw, selectedOption, index, itemLabel, description, itemValue, selectItem.isDisabled());
+        renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled());
     }
 
     /**
@@ -473,23 +441,104 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      *            The response writer
      * @param selectItem
      *            The current SelectItem
-     * @param selectedOption
-     *            the currently selected option
      * @throws IOException
      *             thrown if something's wrong with the response writer
      */
-    protected void renderOption(ResponseWriter rw, UISelectItem selectItem, Object selectedOption, int index)
+    protected void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, UISelectItem selectItem, int index)
             throws IOException {
 
         String itemLabel = selectItem.getItemLabel();
         final String itemDescription = selectItem.getItemDescription();
         final Object itemValue = selectItem.getItemValue();
 
-        renderOption(rw, selectedOption, index, itemLabel, itemDescription, itemValue, selectItem.isItemDisabled());
+        renderOption(context, menu, rw, index, itemLabel, itemDescription, itemValue, selectItem.isItemDisabled());
     }
 
-    private void renderOption(ResponseWriter rw, Object selectedOption, int index, String itemLabel,
+    private Converter findImplicitConverter(FacesContext context, UIComponent component) {
+        ValueExpression ve = component.getValueExpression("value");
+
+        if (ve != null) {
+            Class<?> valueType = ve.getType(context.getELContext());
+
+            if (valueType != null)
+                return context.getApplication().createConverter(valueType);
+        }
+
+        return null;
+    }
+
+    private String getOptionAsString(FacesContext context, SelectOneMenu menu, Object value, Converter converter) throws ConverterException {
+
+        if (converter == null) {
+            if (value == null) {
+                return "";
+            } else if (value instanceof String) {
+                return (String) value;
+            } else {
+                Converter implicitConverter = findImplicitConverter(context, menu);
+
+                return implicitConverter == null ? value.toString() : implicitConverter.getAsString(context, menu, value);
+            }
+        } else {
+            return converter.getAsString(context, menu, value);
+        }
+    }
+
+    private Object coerceToModelType(FacesContext ctx, Object value, Class itemValueType) {
+        Object newValue;
+        try {
+            ExpressionFactory ef = ctx.getApplication().getExpressionFactory();
+            newValue = ef.coerceToType(value, itemValueType);
+        } catch (ELException ele) {
+            newValue = value;
+        } catch (IllegalArgumentException iae) {
+            newValue = value;
+        }
+
+        return newValue;
+    }
+
+    private boolean isSelected(FacesContext context, SelectOneMenu menu, Object value, Object itemValue, Converter converter) {
+        if (itemValue == null && value == null) {
+            return true;
+        }
+
+        if (value != null) {
+            Object compareValue;
+            if (converter == null) {
+                compareValue = coerceToModelType(context, itemValue, value.getClass());
+            } else {
+                compareValue = itemValue;
+
+                if (compareValue instanceof String && !(value instanceof String)) {
+                    compareValue = converter.getAsObject(context, menu, (String) compareValue);
+                }
+            }
+
+            if (value.equals(compareValue)) {
+                return true;
+            }
+
+
+        }
+        return false;
+    }
+
+    private void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, int index, String itemLabel,
             final String description, final Object itemValue, boolean isDisabled) throws IOException {
+        Object submittedValue = menu.getSubmittedValue();
+        Object selectedOption;
+        Object optionValue;
+        Converter converter = menu.getConverter();
+        String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
+        if (submittedValue != null) {
+            selectedOption = submittedValue;
+            optionValue = itemValueAsString;
+        } else {
+            selectedOption = menu.getValue();
+            optionValue = itemValue;
+        }
+
         boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
         itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
@@ -505,7 +554,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             } else
                 value = String.valueOf(index);
             rw.writeAttribute("value", value, "value");
-            if (itemValue.equals(selectedOption)) {
+            if (isSelected(context, menu, selectedOption, optionValue, converter)) {
                 rw.writeAttribute("selected", "true", "selected");
             }
         } else if (itemLabel.equals(selectedOption)) {
