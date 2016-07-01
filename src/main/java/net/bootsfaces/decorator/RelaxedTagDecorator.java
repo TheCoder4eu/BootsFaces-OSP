@@ -37,7 +37,6 @@ public class RelaxedTagDecorator implements TagDecorator {
 		head("h:head"),
 		label("h:outputLabel"),
 		form("h:form"),
-		select("b:selectOneMenu"),
 		button(new ElementConverter("b:commandButton", "jsf:outcome"), new ElementConverter("b:navLink"));
 
 		private ElementConverter elementConverter;

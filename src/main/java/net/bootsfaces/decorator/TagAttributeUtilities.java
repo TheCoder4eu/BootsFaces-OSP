@@ -17,6 +17,7 @@ package net.bootsfaces.decorator;
 
 
 import java.lang.reflect.Constructor;
+import java.util.Map;
 
 import javax.faces.view.Location;
 import javax.faces.view.facelets.TagAttribute;

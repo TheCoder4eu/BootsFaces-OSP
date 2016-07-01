@@ -57,18 +57,33 @@ public class BootsFacesTagDecorator implements TagDecorator {
 
 	private final RelaxedTagDecorator relaxedDecorator = new RelaxedTagDecorator();
 
-	private Tag convertElementToInputText(Tag tag, TagAttributes modifiedAttributes) {
+	private Tag convertElementToInputTag(Tag tag, TagAttributes modifiedAttributes) {
 		TagAttribute[] attributes = modifiedAttributes.getAll();
 		TagAttribute[] lessAttributes = Arrays.copyOf(attributes, attributes.length - 1);
 		TagAttributes less = new AFTagAttributes(lessAttributes);
-		Tag t = new Tag(tag.getLocation(), JSF_NAMESPACE, "inputText", "h:inputText", less);
+		Tag t = new Tag(tag.getLocation(), BOOTSFACES_NAMESPACE, "inputText", "b:inputText", less);
 		return t;
 	}
 
-	private Tag convertToInputText(Tag tag, TagAttributes attributeList) {
+	private Tag convertElementToSelectOneMenuTag(Tag tag, TagAttributes modifiedAttributes) {
+		TagAttribute[] attributes = modifiedAttributes.getAll();
+		TagAttribute[] lessAttributes = Arrays.copyOf(attributes, attributes.length - 1);
+		TagAttributes less = new AFTagAttributes(lessAttributes);
+		Tag t = new Tag(tag.getLocation(), BOOTSFACES_NAMESPACE, "selectOneMenu", "b:selectOneMenu", less);
+		return t;
+	}
+
+	private Tag convertToInputTag(Tag tag, TagAttributes attributeList) {
 		TagAttribute[] attributes = attributeList.getAll();
 		TagAttributes more = new AFTagAttributes(attributes);
-		Tag t = new Tag(tag.getLocation(), JSF_NAMESPACE, "inputText", "inputText", more);
+		Tag t = new Tag(tag.getLocation(), BOOTSFACES_NAMESPACE, "inputText", "b:inputText", more);
+		return t;
+	}
+
+	private Tag convertToSelectOneMenuTag(Tag tag, TagAttributes attributeList) {
+		TagAttribute[] attributes = attributeList.getAll();
+		TagAttributes more = new AFTagAttributes(attributes);
+		Tag t = new Tag(tag.getLocation(), BOOTSFACES_NAMESPACE, "selectOneMenu", "b:selectOneMenu", more);
 		return t;
 	}
 
@@ -106,6 +121,8 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	private Tag convertTofSelectItemText(Tag tag, TagAttributes attributeList) {
 		TagAttribute[] attributes = attributeList.getAll();
 		AFTagAttributes more = new AFTagAttributes(attributes);
+		more.replaceAttribute("value", "itemValue");
+		more.replaceAttribute("label", "itemLabel");
 		Tag t = new Tag(tag.getLocation(), JSF_CORE_NAMESPACE, "selectItem", "selectItem", more);
 		return t;
 	}
@@ -130,7 +147,10 @@ public class BootsFacesTagDecorator implements TagDecorator {
 			if ("element".equals(tag.getLocalName())) {
 				TagAttribute tagAttribute = modifiedAttributes.get(PASS_THROUGH_NAMESPACE, "elementName");
 				if ("input".equals(tagAttribute.getValue())) {
-					return convertElementToInputText(tag, modifiedAttributes);
+					return convertElementToInputTag(tag, modifiedAttributes);
+				}
+				if ("select".equals(tagAttribute.getValue())) {
+					return convertElementToSelectOneMenuTag(tag, modifiedAttributes);
 				}
 				if ("div".equals(tagAttribute.getValue())) {
 					return convertDivElementToPanelGroup(tag, modifiedAttributes, true);
@@ -143,7 +163,11 @@ public class BootsFacesTagDecorator implements TagDecorator {
 			}
 
 			if ("input".equals(tag.getLocalName())) {
-				return convertToInputText(tag, modifiedAttributes);
+				return convertToInputTag(tag, modifiedAttributes);
+			}
+
+			if ("select".equals(tag.getLocalName())) {
+				return convertToSelectOneMenuTag(tag, modifiedAttributes);
 			}
 
 			if ("div".equals(tag.getLocalName())) {

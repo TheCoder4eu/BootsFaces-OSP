@@ -32,6 +32,8 @@ import javax.faces.view.facelets.TagAttributes;
  */
 public final class AFTagAttributes extends TagAttributes {
 
+	private static final String JSF_NAMESPACE = "http://xmlns.jcp.org/jsf/html";
+
     private TagAttribute[] attrs;
 
     private Tag tag;
@@ -43,16 +45,26 @@ public final class AFTagAttributes extends TagAttributes {
 	private void init(TagAttribute[] attrs) {
 		this.attrs = attrs;
 	}
-	
+
 	public void addAttribute(Location location, String ns, String myLocalName, String qName, String value) {
 		TagAttribute[] newAttrs = Arrays.copyOf(attrs, attrs.length+1);
 		newAttrs[attrs.length] = TagAttributeUtilities.createTagAttribute(location, ns, myLocalName, qName, value);
 		init(newAttrs);
 	}
 
+	public void replaceAttribute(String old, String replacement) {
+		for (int i = 0; i < attrs.length;i++) {
+			TagAttribute a = attrs[i];
+			if (a.getLocalName().equals(old)) {
+				a = TagAttributeUtilities.createTagAttribute(a.getLocation(), JSF_NAMESPACE, replacement, replacement, a.getValue());
+				attrs[i] = a;
+			}
+		}
+	}
+
     /**
      * Return an array of all TagAttributesImpl in this set
-     * 
+     *
      * @return a non-null array of TagAttributesImpl
      */
     @Override
@@ -62,7 +74,7 @@ public final class AFTagAttributes extends TagAttributes {
 
     /**
      * Using no namespace, find the TagAttribute
-     * 
+     *
      * @see #get(String, String)
      * @param localName
      *            tag attribute name
@@ -75,7 +87,7 @@ public final class AFTagAttributes extends TagAttributes {
 
     /**
      * Find a TagAttribute that matches the passed namespace and local name.
-     * 
+     *
      * @param ns
      *            namespace of the desired attribute
      * @param localName
@@ -96,7 +108,7 @@ public final class AFTagAttributes extends TagAttributes {
      * This method is used exclusively to get the pass through attributes!
      * Namespaces http://xmlns.jcp.org/jsf/passthrough and http://xmlns.jcp.org/jsf/passthrough
      * Get all TagAttributesImpl for the passed namespace
-     * 
+     *
      * @param namespace
      *            namespace to search
      * @return a non-null array of TagAttributesImpl
@@ -133,7 +145,7 @@ public final class AFTagAttributes extends TagAttributes {
     public Tag getTag() {
         return this.tag;
     }
-    
+
     public void setTag(Tag tag) {
         this.tag = tag;
         for (TagAttribute a : attrs) {
