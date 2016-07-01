@@ -101,6 +101,7 @@ public class PanelRenderer extends CoreRenderer {
 		if (isCollapsible && null == accordionParent) {
 			rw.startElement("div", panel);
 			rw.writeAttribute("class", "panel-group" + Responsive.getResponsiveStyleClass(panel), null);
+			rw.writeAttribute("id", clientId, "id");
 		}
 
 		String _look = panel.getLook();
@@ -114,7 +115,9 @@ public class PanelRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", panel);
-		rw.writeAttribute("id", clientId, "id");
+		if (!(isCollapsible && null == accordionParent)) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		writeAttribute(rw, "dir", panel.getDir(), "dir");
 
 		// render all data-* attributes
