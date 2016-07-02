@@ -13,126 +13,60 @@
  * If not, see http://www.gnu.org/licenses/gpl-3.0.html
  */
 
+//This is the main Project file where all Configurations are handled
 Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
+//Bootstrap
 ext.BootstrapVersion = props['bootstrap.version']
+
 ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
+ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
+//ext.BootswatchFolder = "${projectDir}"+'/Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
 
+if(System.getProperty("BSF-THEME", "") != "") {
+   ext.themes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
+   ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
+} else {
+   ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
+   ext.allThemes= ('default,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
+   println 'Themes('+themes.size+'):'+props['bootswatch.theme']
+}
 
-// Apply the java plugin to add support for Java
-apply plugin: 'java'
+//jQuery options
+ext.jqversion = props['jquery.version']
+//Java options
+ext.buildJava6 = ( ( props['java6']!=null) && props['java6'].toUpperCase().contains("YES") )
+ext.buildJava7 = ( ( props['java7']!=null) && props['java7'].toUpperCase().contains("YES") )
+ext.buildJava8 = ( ( props['java8']!=null) && props['java8'].toUpperCase().contains("YES") )
 
-//Configurations
-sourceCompatibility = '1.6'
-targetCompatibility = '1.6'
-
-archivesBaseName = 'BootsFaces-OSP-'+BootsFacesVersion
-
-apply plugin: 'maven'
+// Javac Compilation properties
+ext.buildOptsJava6=["-g"]
+ext.buildOptsJava7=["-g"]
+ext.buildOptsJava8=["-g"]
+if( props['java6opts']!=null) { ext.buildOptsJava6 = props['java6opts'].replaceAll("\\s","").tokenize(',') }
+if( props['java7opts']!=null) { ext.buildOptsJava7 = props['java7opts'].replaceAll("\\s","").tokenize(',') }
+if( props['java8opts']!=null) { ext.buildOptsJava8 = props['java8opts'].replaceAll("\\s","").tokenize(',') }
 
 // Set the Artifact group ID
 group = 'net.bootsfaces'
+version = BootsFacesVersion
 
-install {
-    repositories.mavenInstaller {
-        // only necessary if artifact ID diverges from project name
-        // the latter defaults to project directory name and can be
-        // configured in settings.gradle
-        pom.artifactId = 'bootsfaces'
-        // shouldn't be needed as this is the default anyway
-        pom.packaging = 'jar'
-        pom.version = "$BootsFacesVersion-SNAPSHOT"
-    }
+task showConfig << {
+  println "Main Configurations."
+  println "--------------------"
+  println "BootsFacesVersion="+BootsFacesVersion
+  println "BootstrapVersion="+BootstrapVersion
+  println "BootswatchFullVersion="+BootswatchFullVersion
+  println "allThemes="+allThemes
+  println "jqversion="+jqversion
+  println "buildJava6:"+buildJava6
+  println "buildJava7:"+buildJava7
+  println "buildJava8:"+buildJava8
+  println "buildOptsJava6="+buildOptsJava6
+  println "buildOptsJava7="+buildOptsJava7
+  println "buildOptsJava8="+buildOptsJava8
+  println "--------------------"
 }
 
-repositories {
-mavenCentral()
-}
-
-dependencies {
-compile 'javax.servlet:servlet-api:3.+'
-compile 'com.sun.faces:jsf-api:2.2.+'
-compile 'javax.el:javax.el-api:3.0.0'
-testCompile 'junit:junit:4.11'
-testCompile 'org.mockito:mockito-core:2.0.17-beta'
-// testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
-// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.1.1'
-// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.1.1'
-// testCompile 'org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-javaee:2.0.0-alpha-7'
-// testCompile 'org.jboss.arquillian.extension:arquillian-drone-webdriver-depchain:2.0.0.Alpha4'
-// testCompile 'org.jboss.arquillian.graphene:graphene-webdriver-impl:2.1.0.Alpha2'
-// testCompile 'org.jboss.arquillian.extension:arquillian-warp:1.0.0.Alpha4'
-// testCompile 'org.jboss.arquillian.extension:arquillian-warp-jsf:1.0.0.Alpha4'
-// testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.8.Final'
-}
-
-sourceSets {
-    main {
-    	resources {
-    	srcDirs = ["gradleResources/build/resources","src/main/meta"]
-    	}
-    }
-}
-
-jar {
-   manifest {
-      attributes(
-                 "Built-By": "BootsFaces OSP Gradle builder.",
-                 "Gradle-Version": project.gradle.gradleVersion,
-                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
-                 "Bundle-Name": "BootsFaces",
-                 "Bundle-Version": BootsFacesVersion,
-                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
-                 "Implementation-Title": "BootsFaces",
-                 "Implementation-Version": BootsFacesVersion,
-                 "Implementation-Vendor": "TheCoder4.eu",
-                 "Implementation-Vendor-Id": "eu.thecoder4",
-                 "Implementation-URL":"http://www.bootsfaces.net"
-                )
-   }
-}
-
-task defaultJar(type: Jar) { 
-   baseName='BootsFaces-OSP-'+BootsFacesVersion+'-default'
-   from(sourceSets.main.output.classesDir) {
-        include "**"
-   }
-   from(sourceSets.main.output.resourcesDir) {
-        include "META-INF/LICENSE"
-        include "META-INF/*.xml"
-        include "META-INF/resources/fonts/"
-        include "META-INF/resources/bsf/images/"
-        include "META-INF/resources/bsf/jq/"
-        include "META-INF/resources/bsf/js/"
-        include "META-INF/resources/bsf/css/default/"
-        include "META-INF/resources/bsf/css/icons.css"
-   }
-   
-   manifest {
-      attributes(
-                 "Built-By": "BootsFaces OSP Gradle builder.",
-                 "Gradle-Version": project.gradle.gradleVersion,
-                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
-                 "Bundle-Name": "BootsFaces",
-                 "Bundle-Version": BootsFacesVersion,
-                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
-                 "Implementation-Title": "BootsFaces",
-                 "Implementation-Version": BootsFacesVersion,
-                 "Implementation-Vendor": "TheCoder4.eu",
-                 "Implementation-Vendor-Id": "eu.thecoder4",
-                 "Implementation-URL":"http://www.bootsfaces.net"
-                )
-   }
-}
-defaultJar.dependsOn(jar)
-defaultJar.onlyIf { themes.size() > 0}
-task buildJars (dependsOn: ['jar', 'defaultJar'])
-
-task copyToLib(type: Copy) {
-    into "$buildDir/proguard/libs"
-    from configurations.runtime
-}
-compileJava.dependsOn(copyToLib)
-
-defaultTasks 'gradleResources:buildResources', 'jar'
+defaultTasks 'showConfig', ':java6:defaultJar', ':java7:jar', ':java8:jar'

@@ -13,23 +13,8 @@
  * If not, see http://www.gnu.org/licenses/gpl-3.0.html
  */
 
-Properties props = new Properties()
-props.load(new FileInputStream("${projectDir}/../build.properties"))
-ext.BootstrapVersion = props['bootstrap.version']
 
-ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
 ext.BootswatchFolder = "${projectDir}"+'/Bootswatch/bootswatch-'+BootswatchFullVersion.replace('+','-')
-ext.jqversion = props['jquery.version']
-
-if(System.getProperty("BSF-THEME", "") != "") {
-   ext.themes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
-   ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
-} else {
-   ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
-   ext.allThemes= ('default,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
-   println 'Themes('+themes.size+'):'+props['bootswatch.theme']
-}
-ext.themeFolder= 'default' //ext.theme?.length()>0?ext.theme:"default"
 
 task getBootstrap(type: GradleBuild) {
     description 'BootsFaces task: downloads and unzips Bootstrap.'
@@ -127,6 +112,7 @@ task copyBootsFacesFiles(type: Copy) {
 //Compiles the assets
 task lesscss(type: GradleBuild) {
     description 'BootsFaces task: compiles the bs*.less files to *.css files.'
+
     buildFile = 'lessc.gradle'
     tasks = ['assetCompile']
 }
@@ -172,7 +158,7 @@ task copyJsResources(type: Copy) {
   	from 'js/bootstrap-multiselect-collapsible-groups.js'
   	from 'js/bootstrap-multiselect.js'
   	from 'js/bootstrap-switch.js'
-  	from 'js/bootstrap-tagsinput.min.js'
+    from 'js/bootstrap-tagsinput.min.js'
   	from 'js/bootstrap-tree.js'
   	from 'js/bootstrap-treeview.min.js'
   	from 'js/bootstrap-notify.min.js'
@@ -298,9 +284,7 @@ task copyAssetResources(dependsOn: ['copyAssetCss2Resources','copyIconsCss2Resou
 task cleanMavenResources(type: Delete) {
   	description 'BootsFaces task: deletes every file in the mavenResource folder.'
   	delete fileTree(dir: "${projectDir}/../mavenResources/fonts")
-  	//delete fileTree(dir: "${projectDir}/../mavenResources/bsf/css/${themeFolder}")
-        delete fileTree(dir: "${projectDir}/../mavenResources/bsf/css")
-        //delete fileTree(dir: "${projectDir}/../mavenResources/bsf/css/default")
+    delete fileTree(dir: "${projectDir}/../mavenResources/bsf/css")
   	delete fileTree(dir: "${projectDir}/../mavenResources/bsf/jq")
   	delete fileTree(dir: "${projectDir}/../mavenResources/bsf/js")
 }
@@ -349,6 +333,7 @@ task buildResources(dependsOn: ['cleanBuildFolder', 'copyBootsFacesResources', '
                                 'cleanMavenResources', 'updateMavenResources',
                                 'updateGradleResources']) { //updateGradleResources just copies "other" Theme
    description 'BootsFaces task: downloads Bootstrap from the internet and generates both the mavenResource folder and the Gradle resource folder from scratch.'
+
 }
 
 //defaultTasks 'buildResources'
