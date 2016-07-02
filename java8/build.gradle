@@ -1,0 +1,153 @@
+/*
+ * Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ * BootsFaces is free software: you can redistribute it and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation, version 3 of the License.
+ *
+ * BootsFaces is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with BootsFaces.
+ * If not, see http://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
+
+//Configurations for Target Java 8 runtime.
+sourceCompatibility = '1.6'
+targetCompatibility = '1.8'
+
+archivesBaseName = 'BootsFaces-OSP-jre8'
+
+apply plugin: 'maven'
+
+// Set the Artifact group ID
+group = 'net.bootsfaces'
+version = BootsFacesVersion
+
+install {
+    repositories.mavenInstaller {
+        // only necessary if artifact ID diverges from project name
+        // the latter defaults to project directory name and can be
+        // configured in settings.gradle
+        pom.artifactId = 'bootsfaces'
+        // shouldn't be needed as this is the default anyway
+        pom.packaging = 'jar'
+        pom.version = "$BootsFacesVersion-SNAPSHOT"
+    }
+}
+
+repositories {
+mavenCentral()
+}
+
+dependencies {
+compile 'javax.servlet:servlet-api:3.+'
+compile 'com.sun.faces:jsf-api:2.2.+'
+compile 'javax.el:javax.el-api:3.0.0'
+testCompile 'junit:junit:4.11'
+testCompile 'org.mockito:mockito-core:2.0.17-beta'
+// testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
+// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.1.1'
+// testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.1.1'
+// testCompile 'org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-javaee:2.0.0-alpha-7'
+// testCompile 'org.jboss.arquillian.extension:arquillian-drone-webdriver-depchain:2.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.graphene:graphene-webdriver-impl:2.1.0.Alpha2'
+// testCompile 'org.jboss.arquillian.extension:arquillian-warp:1.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.extension:arquillian-warp-jsf:1.0.0.Alpha4'
+// testCompile 'org.jboss.arquillian.junit:arquillian-junit-container:1.1.8.Final'
+}
+
+
+compileJava {
+    options.compilerArgs.addAll(0,buildOptsJava8)
+}
+compileJava.onlyIf { buildJava8==true }
+
+sourceSets {
+    main {
+      java {
+            srcDir '../src/main/java'
+          }
+    	resources {
+    	   srcDirs = ["../gradleResources/build/resources","../src/main/meta"]
+    	}
+    }
+}
+
+jar {
+   manifest {
+      attributes(
+                 "Built-By": "BootsFaces OSP Gradle builder.",
+                 "Gradle-Version": project.gradle.gradleVersion,
+                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
+                 "Bundle-Name": "BootsFaces",
+                 "Bundle-Version": BootsFacesVersion,
+                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
+                 "Implementation-Title": "BootsFaces",
+                 "Implementation-Version": BootsFacesVersion,
+                 "Implementation-Vendor": "TheCoder4.eu",
+                 "Implementation-Vendor-Id": "eu.thecoder4",
+                 "Implementation-URL":"http://www.bootsfaces.net"
+                )
+   }
+}
+jar.dependsOn(":gradleResources:buildResources")
+jar.onlyIf { buildJava8==true }
+
+task defaultJar(type: Jar) {
+   baseName='BootsFaces-OSP-jre8-default'
+   from(sourceSets.main.output.classesDir) {
+        include "**"
+   }
+   from(sourceSets.main.output.resourcesDir) {
+        include "META-INF/LICENSE"
+        include "META-INF/*.xml"
+        include "META-INF/resources/fonts/"
+        include "META-INF/resources/bsf/images/"
+        include "META-INF/resources/bsf/jq/"
+        include "META-INF/resources/bsf/js/"
+        include "META-INF/resources/bsf/css/default/"
+        include "META-INF/resources/bsf/css/icons.css"
+   }
+
+   manifest {
+      attributes(
+                 "Built-By": "BootsFaces OSP Gradle builder.",
+                 "Gradle-Version": project.gradle.gradleVersion,
+                 "Created-By": org.gradle.internal.jvm.Jvm.current(),
+                 "Bundle-Name": "BootsFaces",
+                 "Bundle-Version": BootsFacesVersion,
+                 "Bundle-Date": (new Date()).format('yyyyMMdd-HH:mm:ss'),
+                 "Implementation-Title": "BootsFaces",
+                 "Implementation-Version": BootsFacesVersion,
+                 "Implementation-Vendor": "TheCoder4.eu",
+                 "Implementation-Vendor-Id": "eu.thecoder4",
+                 "Implementation-URL":"http://www.bootsfaces.net"
+                )
+   }
+}
+defaultJar.dependsOn(jar,":gradleResources:buildResources")
+defaultJar.onlyIf { (themes.size() > 0) && buildJava8==true }
+
+/*task copyToLib(type: Copy) {
+    into "$buildDir/proguard/libs"
+    from configurations.runtime
+}
+compileJava.dependsOn(copyToLib)*/
+compileJava.doFirst {
+    println "Compiling Java Sources:"
+    println "source compatibility  :" + sourceCompatibility
+    println "target compatibility  :" + targetCompatibility
+    println "Java Build Options  :" + buildOptsJava8
+    println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
+    println "sourceSets.main.output.classesDir :" + sourceSets.main.output.classesDir
+    println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
+
+}
+
+defaultTasks 'defaultJar'
