@@ -2,8 +2,8 @@
 Build instructions with Gradle.
 -------------------------------
 
-Building BootsFaces with Gradle is very straightforward, the only prerequisite is having java installed (JDK 7 or later),
-there is no need to have Gradle installed.
+Building BootsFaces with Gradle is very straightforward, the only prerequisite is having Java installed (JDK 7 or later),
+there is no need to have Gradle installed, thanks to the Gradle wrapper.
 
 Just change your directory to the root directory of the project (where you found this file) and execute:
 
@@ -15,6 +15,13 @@ gradlew.bat
 
 on Windows systems.
 
-After few seconds you should see the "BUILD SUCCESSFUL" message and will find the library
-in the subdirectory build/libs .
+After few seconds you should see the "BUILD SUCCESSFUL" message.
+The Gradle build defaults to a Java 6 target, therefore you will find the built library in the subdirectory java6/build/libs .
 
+You can configure your preferred target JVM version in the build.properties file,
+where you can also configure the compilation arguments.
+
+You can run the build for multiple targets at a time, in this case you will find the built library in the corresponding path:
+java6/build/libs for Java 6,
+java7/build/libs for Java 7,
+java8/build/libs for Java 8.
