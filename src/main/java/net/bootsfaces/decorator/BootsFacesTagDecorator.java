@@ -19,20 +19,23 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
 import javax.faces.view.facelets.TagDecorator;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ComponentsEnum;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
- * This is one of the most important classes of AngularFaces. It converts
- * attributes to pass-through parameters, adds them to the list of JSF bean to
- * be synchronized with the client and implements a couple of pseudo JSF tags.
+ * This is one of the most important classes of AngularFaces. It converts attributes to pass-through parameters, adds
+ * them to the list of JSF bean to be synchronized with the client and implements a couple of pseudo JSF tags.
  */
 public class BootsFacesTagDecorator implements TagDecorator {
 	private static boolean active = false;
+	private boolean activeByDefault=true;
 
 	private static final String HTML_NAMESPACE = "http://www.w3.org/1999/xhtml";
 	// private static final Logger LOGGER = Logger.getLogger(BootsFacesTagDecorator.class.getName());
@@ -42,13 +45,25 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	private static final String BOOTSFACES_NAMESPACE = "http://bootsfaces.net/ui";
 	private static final Map<String, String> bootsfacesTags;
 
+	private static final Map<String, Boolean> activePages = new HashMap<String, Boolean>();
+
 	static {
 		ComponentsEnum[] components = ComponentsEnum.values();
 		bootsfacesTags = new HashMap<String, String>();
-		for (ComponentsEnum component:components) {
+		for (ComponentsEnum component : components) {
 			bootsfacesTags.put(component.tagname(), component.tagname());
 		}
-		System.out.println("The simplified HTML-like syntax of BootsFaces is available with " + bootsfacesTags.size() + " components");
+		System.out.println("The simplified HTML-like syntax of BootsFaces is available with " + bootsfacesTags.size()
+				+ " components. You can switch it off globally using the context parameter net.bootsfaces.defaults.decorator in the web.xml or on a per-page basis by adding the attribute bootsFacesDecorator='false'.");
+	}
+
+	public BootsFacesTagDecorator() {
+		String isActive = BsfUtils.getInitParam("net.bootsfaces.defaults.decorator", FacesContext.getCurrentInstance());
+		if ("false".equalsIgnoreCase(isActive)) {
+			activeByDefault=false;
+		} else {
+			activeByDefault=true;
+		}
 	}
 
 	public static boolean isActive() {
@@ -115,8 +130,7 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	}
 
 	/**
-	 * Converts &lt;option&gt;firstComboboxItem&lt;/option&gt; to
-	 * &lt;f:selectItem itemValue="firstComboxItem"&gt;.
+	 * Converts &lt;option&gt;firstComboboxItem&lt;/option&gt; to &lt;f:selectItem itemValue="firstComboxItem"&gt;.
 	 */
 	private Tag convertTofSelectItemText(Tag tag, TagAttributes attributeList) {
 		TagAttribute[] attributes = attributeList.getAll();
@@ -129,8 +143,29 @@ public class BootsFacesTagDecorator implements TagDecorator {
 
 	@Override
 	public Tag decorate(Tag tag) {
-		Tag newTag = createTags(tag);
-		return newTag;
+		TagAttribute decorator = tag.getAttributes().get("bootsFacesDecorator");
+		String page = tag.getLocation().getPath();
+		if (decorator != null) {
+			boolean decoratorActive = "true".equalsIgnoreCase(decorator.getValue());
+			Boolean isActive = activePages.get(page);
+			if (isActive == null) {
+				activePages.put(page, decoratorActive);
+			} else if (isActive.booleanValue() != decoratorActive) {
+				activePages.remove(page);
+				activePages.put(page, decoratorActive);
+			}
+		}
+		Boolean isActive = activePages.get(page);
+		if (isActive == null) {
+			isActive=activeByDefault;
+		}
+		if (isActive == Boolean.TRUE) {
+			Tag newTag = createTags(tag);
+			return newTag;
+		} else {
+			return tag;
+		}
+
 	}
 
 	private Tag createTags(Tag tag) {
