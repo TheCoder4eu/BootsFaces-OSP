@@ -5698,6 +5698,20 @@
 		</attribute>
 	</tag>
 	
+	<!-- *********** b:fullCalendar *********************** -->
+	<tag>
+		<tag-name>fullCalendar</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.fullCalendar.FullCalendar</component-type>
+		</component>
+		<attribute>
+			<description><![CDATA[Data for this component.]]></description>
+			<name>data</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
 	<!-- *********** b:datepicker ************************* -->
 	<tag>
 		<tag-name>datepicker</tag-name>
