@@ -125,7 +125,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		styleClass = "dropdown-header " + styleClass + " "
 				+ Responsive.getResponsiveStyleClass((AbstractNavLink) navlink, false);
 
-		writeAttribute(rw, "class", styleClass, "class");
+		writeAttribute(rw, "class", styleClass.trim(), "class");
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getStyle(), "style");
 		writeAttribute(rw, "role", "presentation", null);
 		rw.writeText(h, null);
@@ -267,7 +267,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		c += " "
 				+ Responsive.getResponsiveStyleClass((AbstractNavLink) navlink, false);
-		return c;
+		return c.trim();
 	}
 
 	private String encodeHref(FacesContext context, AbstractNavLink navlink) {
