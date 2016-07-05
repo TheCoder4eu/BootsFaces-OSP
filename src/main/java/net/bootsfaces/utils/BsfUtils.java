@@ -523,8 +523,6 @@ public class BsfUtils {
 	 * Read an object from a base64 string
 	 * @param s
 	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
 	 */
 	public static Object fromString(String s) {
 		try {
@@ -543,7 +541,6 @@ public class BsfUtils {
 	 * Write an object to base64 string
 	 * @param o
 	 * @return
-	 * @throws IOException
 	 */
 	public static String toString(Serializable o) {
 		try {
@@ -551,7 +548,7 @@ public class BsfUtils {
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
 			oos.writeObject(o);
 			oos.close();
-			return Base64.getEncoder().encodeToString(baos.toByteArray()); 
+			return Base64.getEncoder().encodeToString(baos.toByteArray());
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "";
