@@ -68,6 +68,9 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		onerror, onsuccess,
 		eventType) {
 	var argn = arguments.length;
+	if (source.id==null || source.id=="") {
+		source=source.parentNode;
+	}
 	var oid = source.id;
 	var cid = oid.replace(/[^a-zA-Z0-9]+/g, '_');
 	var opts = {};
@@ -168,7 +171,7 @@ function jq( myid ) {
     return "#" + myid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
 }
 
-/* tree support method to convert data object to state string 
+/* tree support method to convert data object to state string
 function treeDataMapper(data) {
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
