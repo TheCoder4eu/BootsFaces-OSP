@@ -24,15 +24,11 @@ public class FullCalendarRenderer extends Renderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = fullCalendar.getClientId();
 
-rw.startElement("a", fullCalendar);
-rw.writeAttribute("href", "#", null);
-rw.endElement("a");
-		
 		// create div to be used as calendar; the calendar itself is added in encodeEnd's jquery function
-//		rw.startElement("div", fullCalendar);
-//		rw.writeAttribute("id", clientId, "id");
+		rw.startElement("div", fullCalendar);
+		rw.writeAttribute("id", clientId, "id");
 //rw.writeText("here comes the calendar", null);
-//		rw.endElement("div");
+		rw.endElement("div");
 	}
 
 	@Override
@@ -49,21 +45,17 @@ rw.endElement("a");
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = fullCalendar.getClientId();
 		
-rw.startElement("div", null); // debugging only	
-rw.writeText("now javascript definition follows", null);
-rw.endElement("div");
-		
 		// activate the jquery plugin on that div
-//		rw.startElement("script", null);
-//		
-//		rw.writeText("$(document).ready(function() {", null);
-//		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
-//		// TODO: add options and callbacks here
-//		// TODO: fill by content from fullCalendar.getData()
-//		// TODO: add event listeners to update fullCalendar.getData()
-//		rw.writeText("  });", null);
-//		rw.writeText("});", null);
-//		
-//		rw.endElement("script");
+		rw.startElement("script", null);
+		
+		rw.writeText("$(document).ready(function() {", null);
+		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
+		// TODO: add options and callbacks here
+		// TODO: fill by content from fullCalendar.getData()
+		// TODO: add event listeners to update fullCalendar.getData()
+		rw.writeText("  });", null);
+		rw.writeText("});", null);
+		
+		rw.endElement("script");
 	}
 }

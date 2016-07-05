@@ -1,9 +1,13 @@
 package net.bootsfaces.component.fullCalendar;
 
+import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIData;
+
+import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /**
  * 
@@ -14,15 +18,30 @@ import javax.faces.component.UIData;
 		@ResourceDependency(library = "bsf", name = "js/fullcalendar.min.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/fullcalendar.min.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.fullCalendar.FullCalendar")
-public class FullCalendar extends UIData {
+public class FullCalendar extends FullCalendarCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
 
-	private String data;
+    public static final String COMPONENT_TYPE = "net.bootsfaces.component.fullCalendar.FullCalendar";
 
-	public String getData() {
-		return data;
-	}
+    public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
-	public void setData(String data) {
-		this.data = data;
-	}
+    public static final String DEFAULT_RENDERER = "net.bootsfaces.component.fullCalendar.FullCalendar";
+
+    public FullCalendar() {
+        Tooltip.addResourceFiles();
+        AddResourcesListener.addThemedCSSResource("core.css");
+        AddResourcesListener.addThemedCSSResource("bsf.css");
+        setRendererType(DEFAULT_RENDERER);
+    }
+
+    public String getFamily() {
+        return COMPONENT_FAMILY;
+    }
+
+    /**
+     * Manage EL-expression for snake-case attributes
+     */
+    public void setValueExpression(String name, ValueExpression binding) {
+        name = BsfUtils.snakeCaseToCamelCase(name);
+        super.setValueExpression(name, binding);
+    }
 }
