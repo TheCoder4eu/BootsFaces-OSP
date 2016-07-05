@@ -10,8 +10,8 @@ import javax.faces.component.UIData;
  * @author jottyfan
  *
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/fullcalendar.min.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/moment.min.js", target = "head"),
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/moment.min.js", target = "head"),
+		@ResourceDependency(library = "bsf", name = "js/fullcalendar.min.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "css/fullcalendar.min.css", target = "head") })
 @FacesComponent("net.bootsfaces.component.fullCalendar.FullCalendar")
 public class FullCalendar extends UIData {
