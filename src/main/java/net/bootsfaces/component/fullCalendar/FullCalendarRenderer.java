@@ -27,7 +27,6 @@ public class FullCalendarRenderer extends Renderer {
 		// create div to be used as calendar; the calendar itself is added in encodeEnd's jquery function
 		rw.startElement("div", fullCalendar);
 		rw.writeAttribute("id", clientId, "id");
-//rw.writeText("here comes the calendar", null);
 		rw.endElement("div");
 	}
 
@@ -50,9 +49,28 @@ public class FullCalendarRenderer extends Renderer {
 		
 		rw.writeText("$(document).ready(function() {", null);
 		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
-		// TODO: add options and callbacks here
-		// TODO: fill by content from fullCalendar.getData()
-		// TODO: add event listeners to update fullCalendar.getData()
+		
+		// TODO: currently fixed header; may be made configurable later
+		rw.writeText("    header: {left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'},", null);
+		// TODO: put this to configuration later
+		rw.writeText("    businessHours: {start: '8:00', end: '18:00', dow: [1, 2, 3, 4, 5]},", null);
+		// TODO: put this to configuration later
+		rw.writeText("    height: 480,", null);
+		
+		if (fullCalendar.getLang() != null) {
+			rw.writeText("    lang: '" + fullCalendar.getLang() + "',", null);
+		}
+		if (fullCalendar.getWeekNumbers() != null) {
+			rw.writeText("    weekNumbers: " + fullCalendar.getWeekNumbers() + ",", null);
+		}
+		if (fullCalendar.getWeekends() != null) {
+			rw.writeText("    weekends: " + fullCalendar.getWeekends() + ",", null);
+		}
+		if (fullCalendar.getEditable() != null) {
+			rw.writeText("    editable: " + fullCalendar.getEditable() + ",", null);
+		}
+		rw.writeText("    weekMode: '" + fullCalendar.getWeekMode() + "',", null);
+		rw.writeText("    events: " + fullCalendar.getEvents(), null);
 		rw.writeText("  });", null);
 		rw.writeText("});", null);
 		
