@@ -8,7 +8,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Base64;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
@@ -23,6 +22,7 @@ import javax.faces.component.UIForm;
 import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.xml.bind.DatatypeConverter;
 
 public class BsfUtils {
 
@@ -526,7 +526,8 @@ public class BsfUtils {
 	 */
 	public static Object fromString(String s) {
 		try {
-			byte [] data = Base64.getDecoder().decode( s );
+			byte[] data = DatatypeConverter.parseBase64Binary(s);
+//			byte [] data = Base64.getDecoder().decode( s );
 			ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
 			Object o  = ois.readObject();
 			ois.close();
@@ -548,7 +549,9 @@ public class BsfUtils {
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
 			oos.writeObject(o);
 			oos.close();
-			return Base64.getEncoder().encodeToString(baos.toByteArray());
+//			return Base64.getEncoder().encodeToString(baos.toByteArray());
+
+			return DatatypeConverter.printBase64Binary(baos.toByteArray());
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "";
