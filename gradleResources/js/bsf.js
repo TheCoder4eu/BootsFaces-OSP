@@ -1,7 +1,19 @@
 /*!
- * Copyright 2014 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2013-2016 Riccardo Massera (TheCoder4.Eu)
  * BootsFaces JS
- * author: TheonSuccessCallbackCoder4.eu
+ * author: TheCoder4.eu
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 BsF = {};
@@ -56,6 +68,9 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		onerror, onsuccess,
 		eventType) {
 	var argn = arguments.length;
+	if (source.id==null || source.id=="") {
+		source=source.parentNode;
+	}
 	var oid = source.id;
 	var cid = oid.replace(/[^a-zA-Z0-9]+/g, '_');
 	var opts = {};
@@ -156,7 +171,7 @@ function jq( myid ) {
     return "#" + myid.replace( /(:|\.|\[|\]|,)/g, "\\$1" );
 }
 
-/* tree support method to convert data object to state string 
+/* tree support method to convert data object to state string
 function treeDataMapper(data) {
 	var sep = "|#*#|";
 	if(data && data !== "undefined") {
