@@ -5735,7 +5735,7 @@
 			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-			<description><![CDATA[String value that contains events of this calendar in json notation; see http:\/\/fullcalendar.io/docs/event_data/Event_Object/ for details]]></description>
+			<description><![CDATA[String value that contains events of this calendar in json notation; see http:\/\/fullcalendar.io/docs/event_data/Event_Object/ for details; also, use net.bootsfaces.component.fullCalendar.FullCalendarEventList to generate a json string from java beans]]></description>
 			<name>events</name>
 			<required>true</required>
 			<type>java.lang.String</type>
