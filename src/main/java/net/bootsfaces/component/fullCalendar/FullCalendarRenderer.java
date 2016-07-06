@@ -73,6 +73,7 @@ public class FullCalendarRenderer extends Renderer {
 		}
 		rw.writeText("    weekMode: '" + fullCalendar.getWeekMode() + "',", null);
 		rw.writeText("    events: " + fullCalendar.getEvents(), null);
+		// TODO: add onchange listener that updates a hidden input field with $([\"id='" + clientId + "'\"]).fullCalendar('getEventSources') that contains the events
 		rw.writeText("  });", null);
 		rw.writeText("});", null);
 		
