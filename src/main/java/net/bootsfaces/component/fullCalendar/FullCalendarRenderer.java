@@ -50,13 +50,15 @@ public class FullCalendarRenderer extends Renderer {
 		rw.writeText("$(document).ready(function() {", null);
 		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
 		
-		// TODO: currently fixed header; may be made configurable later
-		rw.writeText("    header: {left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'},", null);
-		// TODO: put this to configuration later
-		rw.writeText("    businessHours: {start: '8:00', end: '18:00', dow: [1, 2, 3, 4, 5]},", null);
-		// TODO: put this to configuration later
-		rw.writeText("    height: 480,", null);
-		
+		if (fullCalendar.getCalendarHeader() != null){
+			rw.writeText("    header: " + fullCalendar.getCalendarHeader() + ",", null);
+		}
+		if (fullCalendar.getBusinessHours() != null){
+			rw.writeText("    businessHours: " + fullCalendar.getBusinessHours() + ",", null);
+		}
+		if (fullCalendar.getHeight() != null){
+			rw.writeText("    height: " + fullCalendar.getHeight() + ",", null);
+		}
 		if (fullCalendar.getLang() != null) {
 			rw.writeText("    lang: '" + fullCalendar.getLang() + "',", null);
 		}

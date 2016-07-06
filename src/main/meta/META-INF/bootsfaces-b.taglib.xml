@@ -5705,6 +5705,24 @@
 			<component-type>net.bootsfaces.component.fullCalendar.FullCalendar</component-type>
 		</component>
 		<attribute>
+			<description><![CDATA[String value that contains the calendar header, for example: {left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'}]]></description>
+			<name>calendarHeader</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[String value that contains the business hours and the days of week, for example: {start: '8:00', end: '18:00', dow: \[1, 2, 3, 4, 5\]}]]></description>
+			<name>businessHours</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[Integer value to specify the height of the calender]]></description>
+			<name>height</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[String value to specify the calendar language]]></description>
 			<name>lang</name>
 			<required>false</required>

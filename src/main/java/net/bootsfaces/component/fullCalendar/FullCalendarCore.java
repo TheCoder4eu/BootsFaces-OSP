@@ -10,7 +10,7 @@ import javax.faces.component.UIData;
 public class FullCalendarCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		colLg, colMd, colSm, colXs, data, display, editable, events, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
+		businessHours, calendarHeader, colLg, colMd, colSm, colXs, data, display, editable, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -23,6 +23,32 @@ public class FullCalendarCore extends UIData implements net.bootsfaces.render.IH
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	public String getBusinessHours() {
+		return (String) getStateHelper().eval(PropertyKeys.businessHours,
+				"{start: '8:00', end: '18:00', dow: [1, 2, 3, 4, 5]}");
+	}
+
+	public void setBusinessHours(String businessHours) {
+		getStateHelper().put(PropertyKeys.businessHours, businessHours);
+	}
+
+	public String getCalendarHeader() {
+		return (String) getStateHelper().eval(PropertyKeys.calendarHeader,
+				"{left: 'prev,next today', center: 'title', right: 'month,agendaWeek,agendaDay'}");
+	}
+
+	public void setCalendarHeader(String header) {
+		getStateHelper().put(PropertyKeys.calendarHeader, header);
+	}
+
+	public Integer getHeight() {
+		return (Integer) getStateHelper().eval(PropertyKeys.height, "480");
+	}
+
+	public void setHeight(Integer height) {
+		getStateHelper().put(PropertyKeys.height, height);
 	}
 
 	public Boolean getWeekNumbers() {
