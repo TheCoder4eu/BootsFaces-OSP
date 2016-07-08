@@ -1484,8 +1484,8 @@ widget scrollSpy
 {
  	id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    container															   "Id of the element that is the scrollable container. If not specified, body is set by default."
-	target																   "Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set."
+    container															   "Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default."
+	target																   "Id of the navigation target. Usually the id of the NavBar component. Search expressions are allowed if they yield only one result. If not specified, component with .navbar class is set."
 	offset				Integer											   "Scroll offset"
 	smooth				Boolean											   "Enable smooth scroll"
 	smoothSpeed			Integer	default "800"							   "Speed of the smooth scroll (default 800)"
