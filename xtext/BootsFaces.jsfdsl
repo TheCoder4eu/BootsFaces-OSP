@@ -691,7 +691,7 @@ widget focus
 {
  	id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    target																   "Id of the element to focus."
+    target																   "Id of the element to focus. May be omitted if you put the b:focus element inside the element."
 }
 
 widget growl

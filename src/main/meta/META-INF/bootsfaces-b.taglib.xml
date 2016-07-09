@@ -7609,7 +7609,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Id of the element to focus.]]></description>
+		  <description><![CDATA[Id of the element to focus. May be omitted if you put the b:focus element inside the element.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
