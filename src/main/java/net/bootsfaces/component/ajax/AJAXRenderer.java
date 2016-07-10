@@ -94,6 +94,10 @@ public class AJAXRenderer extends CoreRenderer {
 										FacesEvent ajaxEvent = new BootsFacesAJAXEvent(
 												new AJAXBroadcastComponent(component), event, jsCallback);
 										ajaxEvent.setPhaseId(PhaseId.INVOKE_APPLICATION);
+										if (component instanceof ActionSource) {
+											if (((ActionSource) component).isImmediate())
+												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+										}
 										component.queueEvent(ajaxEvent);
 									}
 								}
@@ -139,7 +143,15 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 			if (addEventToQueue) {
-				component.queueEvent(new ActionEvent(component));
+				ActionEvent ae = new ActionEvent(component);
+				if (component instanceof ActionSource) {
+		            if (((ActionSource) component).isImmediate()) {
+		                ae.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+		            } else {
+		                ae.setPhaseId(PhaseId.INVOKE_APPLICATION);
+		            }
+				}
+				component.queueEvent(ae );
 			}
 		}
 	}
