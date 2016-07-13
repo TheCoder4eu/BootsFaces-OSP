@@ -7623,6 +7623,12 @@
 			<component-type>net.bootsfaces.component.fullCalendar.FullCalendar</component-type>
 		</component>
 		<attribute>
+			<description><![CDATA[String value to bind a javascript function to the on click event on a date; javascript signature is function(calEvent, jsEvent, view){ ... }]]></description>
+			<name>eventClick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[String value to determine which view to display on page load; use one of month, basicDay, basicWeek, agendaDay, agendaWeek]]></description>
 			<name>defaultView</name>
 			<required>false</required>
@@ -7632,13 +7638,13 @@
 			<description><![CDATA[String value to define the duration of a slot; default is 00:30:00 for 30 minutes]]></description>
 			<name>slotDuration</name>
 			<required>false</required>
-			<type>java.lang.</type>
+			<type>java.lang.String</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String value to determine if the "all-day" slot is displayed at the top of the calendar in agenda views]]></description>
 			<name>allDaySlot</name>
 			<required>false</required>
-			<type>java.lang.</type>
+			<type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 			<description><![CDATA[String value that contains the hour where weekly and daily calendars start, for example: 06:00:00 (default), 12:00:00, 09:00:00]]></description>

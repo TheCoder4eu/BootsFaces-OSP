@@ -85,11 +85,13 @@ public class FullCalendarRenderer extends Renderer {
 			rw.writeText("    editable: " + fullCalendar.getEditable() + ",", null);
 		}
 		rw.writeText("    weekMode: '" + fullCalendar.getWeekMode() + "',", null);
+		if (fullCalendar.getEventClick() != null) {
+			rw.writeText("    eventClick: " + fullCalendar.getEventClick() + ",", null);
+		}
 		rw.writeText("    events: " + fullCalendar.getEvents(), null);
 		// TODO: add onchange listener that updates a hidden input field with $([\"id='" + clientId + "'\"]).fullCalendar('getEventSources') that contains the events
 		rw.writeText("  });", null);
 		rw.writeText("});", null);
-		
 		rw.endElement("script");
 	}
 }

@@ -21,6 +21,7 @@ public class FullCalendarEventBean implements Serializable {
 	private Boolean startEditable;
 	private Boolean durationEditable;
 	private String color;
+	private String url;
 
 	public FullCalendarEventBean(String title, Date start) {
 		super();
@@ -63,12 +64,23 @@ public class FullCalendarEventBean implements Serializable {
 		if (end != null) {
 			buf.append("end:").append(toJavascriptDate(end)).append(",");
 		}
+		if (url != null) {
+			buf.append("url:'").append(url).append("',");
+		}
 		// this is the last element, we need no trailing ,
 		buf.append("start:").append(toJavascriptDate(start));
 		buf.append("}");
 		return buf.toString();
 	}
 
+	public String getUrl() {
+		return url;
+	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	public String getTitle() {
 		return title;
 	}

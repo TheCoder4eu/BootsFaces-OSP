@@ -10,7 +10,7 @@ import javax.faces.component.UIData;
 public class FullCalendarCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		allDaySlot, businessHours, calendarHeader, colLg, colMd, colSm, colXs, data, defaultView, display, editable, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, scrollTime, slotDuration, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
+		allDaySlot, businessHours, calendarHeader, colLg, colMd, colSm, colXs, data, defaultView, display, editable, eventClick, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, scrollTime, slotDuration, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -23,6 +23,14 @@ public class FullCalendarCore extends UIData implements net.bootsfaces.render.IH
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+	
+	public String getEventClick() {
+		return (String) getStateHelper().eval(PropertyKeys.eventClick, "function(calEvent, jsEvent, view){ $(this).css('background', 'yellow'); }");
+	}
+
+	public void setEventClick(String eventClick) {
+		getStateHelper().put(PropertyKeys.eventClick, eventClick);
 	}
 	
 	public String getScrollTime() {
