@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
  * @author henkej
  *
  */
-public class FullCalendarEventBean implements Serializable {
+public abstract class FullCalendarEventBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String title;
@@ -43,6 +43,13 @@ public class FullCalendarEventBean implements Serializable {
 		return buf.toString();
 	}
 	
+	/**
+	 * add fields to json string
+	 * 
+	 * @param buf
+	 */
+	public abstract void addExtendedFields(StringBuilder buf);
+	
 	public String toJson() {
 		StringBuilder buf = new StringBuilder("{");
 		buf.append("title:'").append(title).append("',");
@@ -67,6 +74,7 @@ public class FullCalendarEventBean implements Serializable {
 		if (url != null) {
 			buf.append("url:'").append(url).append("',");
 		}
+		addExtendedFields(buf);
 		// this is the last element, we need no trailing ,
 		buf.append("start:").append(toJavascriptDate(start));
 		buf.append("}");
