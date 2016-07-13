@@ -10,7 +10,7 @@ import javax.faces.component.UIData;
 public class FullCalendarCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		businessHours, calendarHeader, colLg, colMd, colSm, colXs, data, display, editable, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
+		allDaySlot, businessHours, calendarHeader, colLg, colMd, colSm, colXs, data, defaultView, display, editable, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, scrollTime, slotDuration, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekends, weekMode, weekNumbers;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -23,6 +23,38 @@ public class FullCalendarCore extends UIData implements net.bootsfaces.render.IH
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+	
+	public String getScrollTime() {
+		return (String) getStateHelper().eval(PropertyKeys.scrollTime, "06:00:00");
+	}
+	
+	public void setScrollTime(String scrollTime) {
+		getStateHelper().put(PropertyKeys.scrollTime, scrollTime);
+	}
+	
+	public Boolean getAllDaySlot() {
+		return (Boolean) getStateHelper().eval(PropertyKeys.allDaySlot, true);
+	}
+	
+	public void setAllDaySlot(Boolean allDaySlot) {
+		getStateHelper().put(PropertyKeys.allDaySlot, allDaySlot);
+	}
+	
+	public String getSlotDuration() {
+		return (String) getStateHelper().eval(PropertyKeys.slotDuration, "00:30:00");
+	}
+	
+	public void setSlotDuration(String slotDuration) {
+		getStateHelper().put(PropertyKeys.slotDuration, slotDuration);
+	}
+	
+	public String getDefaultView() {
+		return (String) getStateHelper().eval(PropertyKeys.defaultView, "month");
+	}
+
+	public void setDefaultView(String defaultView) {
+		getStateHelper().put(PropertyKeys.defaultView, defaultView);
 	}
 
 	public String getBusinessHours() {

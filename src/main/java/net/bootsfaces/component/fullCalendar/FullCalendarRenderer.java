@@ -43,24 +43,37 @@ public class FullCalendarRenderer extends Renderer {
 		FullCalendar fullCalendar = (FullCalendar) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = fullCalendar.getClientId();
+		String lang = fullCalendar.getLang();
+		if (lang == null) {
+			lang = "en"; // ensure to have a value for lang; on loaded language files, lang must be specified
+		}
 		
 		// activate the jquery plugin on that div
 		rw.startElement("script", null);
 		
 		rw.writeText("$(document).ready(function() {", null);
 		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
-		
-		if (fullCalendar.getCalendarHeader() != null){
+		rw.writeText("    lang: '" + lang + "',", null);
+		if (fullCalendar.getScrollTime() != null) {
+			rw.writeText("    scrollTime: '" + fullCalendar.getScrollTime() + "',", null);
+		}
+		if (fullCalendar.getAllDaySlot() != null) {
+			rw.writeText("    allDaySlot: " + fullCalendar.getAllDaySlot() + ",", null);
+		}
+		if (fullCalendar.getSlotDuration() != null) {
+			rw.writeText("    slotDuration: '" +  fullCalendar.getSlotDuration() + "',", null);
+		}
+		if (fullCalendar.getDefaultView() != null) {
+			rw.writeText("    defaultView: '" + fullCalendar.getDefaultView() + "',", null);
+		}
+		if (fullCalendar.getCalendarHeader() != null) {
 			rw.writeText("    header: " + fullCalendar.getCalendarHeader() + ",", null);
 		}
-		if (fullCalendar.getBusinessHours() != null){
+		if (fullCalendar.getBusinessHours() != null) {
 			rw.writeText("    businessHours: " + fullCalendar.getBusinessHours() + ",", null);
 		}
-		if (fullCalendar.getHeight() != null){
+		if (fullCalendar.getHeight() != null) {
 			rw.writeText("    height: " + fullCalendar.getHeight() + ",", null);
-		}
-		if (fullCalendar.getLang() != null) {
-			rw.writeText("    lang: '" + fullCalendar.getLang() + "',", null);
 		}
 		if (fullCalendar.getWeekNumbers() != null) {
 			rw.writeText("    weekNumbers: " + fullCalendar.getWeekNumbers() + ",", null);
