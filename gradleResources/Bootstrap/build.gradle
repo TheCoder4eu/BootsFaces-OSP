@@ -15,69 +15,70 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 // Apply the plugin to add support for Bootstrap download
 plugins {
-    id "de.undercouch.download" version "2.0.0"
+    id "de.undercouch.download" version "3.1.0"
 }
 
 import de.undercouch.gradle.tasks.download.Download
 
-//Configuration
-Properties props = new Properties()
-props.load(new FileInputStream("${projectDir}/../build.properties"))
+ext.downloadBootstrapURL = 'https://github.com/twbs/bootstrap/archive/v'+BootstrapVersion+'.zip'
 
-ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
+def bootstrapZip = new File(buildDir, 'bootstrap'+BootstrapVersion+'.zip')
 
-ext.downloadURL = 'https://github.com/thomaspark/bootswatch/archive/v'+BootswatchFullVersion+'.zip'
-ext.zipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
-ext.zipFile = zipFolder+'.zip'
-if(System.getProperty("BSF-THEME", "") != "") {
-   //ext.theme = System.getProperty("BSF-THEME", "")
-   ext.themes = System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
-} else {
-   //ext.theme = props['bootswatch.theme']
-   ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
-}
+ext.downloadBootswatchURL = 'https://github.com/thomaspark/bootswatch/archive/v'+BootswatchFullVersion+'.zip'
+ext.bootswatchZipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
+//ext.zipFile = zipFolder+'.zip'
 
-def bootswatchZip = new File(buildDir, zipFile)
+def bootswatchZip = new File(buildDir, 'bootswatch-'+BootswatchFullVersion.replace('+','-')+'.zip')
 
-     
+
 task themesTask {
+   println "Bootstrap: Configured themes:"
    themes.each {
    println "Theme ${it}"
-}
+   }
 }
 
 /**
- * The following two tasks download a ZIP file and extract its
+ * The following two tasks downloads a ZIP file and extracts its
+ * contents to the build directory
+ */
+task downloadBootstrapZipFile(type: Download) {
+    src downloadBootstrapURL
+    dest bootstrapZip //new File(buildDir, 'bootstrap'+BootstrapVersion+'.zip')
+}
+downloadBootstrapZipFile.onlyIf { !bootstrapZip.exists() }
+
+task downloadAndUnzipBootstrap(dependsOn: downloadBootstrapZipFile, type: Copy) {
+    from zipTree(bootstrapZip)
+    into "${buildDir}/extracted"
+}
+
+/**
+ * The following two tasks downloads a ZIP file and extracts its
  * contents to the build directory
  */
 task downloadBootswatchZipFile(type: Download) {
-    src downloadURL
-    dest new File(buildDir, zipFile)
+    src downloadBootswatchURL
+    dest bootswatchZip //new File(buildDir, zipFile)
 }
 downloadBootswatchZipFile.onlyIf { !bootswatchZip.exists() }
 
-/*
-task downloadAndUnzipBootswatch(dependsOn: downloadBootswatchZipFile, type: Copy) {
-    from zipTree(bootswatchZip)
-    into 'Bootswatch'
-    include zipFolder+"/"+theme+"/*.less"
-}*/
 
-themes.each { 
+themes.each {
     //create a dynamic task for each theme
     def targetName ->
-    tasks.create(name: "themeTask$targetName", dependsOn: downloadBootswatchZipFile, type: Copy) { 
-        println "Copy bootswatch Theme themeTask$targetName"
+    tasks.create(name: "themeTask$targetName", dependsOn: downloadBootswatchZipFile, type: Copy) {
+        println "${project.name}: extracting bootswatch Theme themeTask$targetName"
         from zipTree(bootswatchZip)
-        into "${projectDir}/Bootswatch"
-        include zipFolder+"/"+targetName+"/*.less"
+        into "${buildDir}/extracted"
+        include bootswatchZipFolder+"/"+targetName+"/*.less"
         doLast {
-            
+
             //Patch for Font URL in Bootswatch v3.3.5+3 and later
-            def lessfile="${projectDir}/Bootswatch/"+zipFolder+"/"+targetName+"/bootswatch.less"
+            def lessfile="${buildDir}/extracted/"+bootswatchZipFolder+"/"+targetName+"/bootswatch.less"
             println 'INFO - patching:'+lessfile
             def bswFile = new File( lessfile )
             String contents = bswFile.getText( 'UTF-8' )
@@ -98,6 +99,10 @@ themes.each {
 }
 
 task themesTaskAll (dependsOn: ['downloadBootswatchZipFile',tasks.matching { Task task -> task.name.startsWith("themeTask")}]) {
-println "Processing Themes"
+println "${project.name}: INFO: Processing Bootswatch Themes:"
 }
+themesTaskAll.onlyIf { themes.size() > 0 }
 
+task downloadResources(dependsOn: ['downloadAndUnzipBootstrap', 'themesTaskAll']) {
+  description 'downloadResources task: downloads and unzips Bootstrap and Bootswatch(if needed).'
+}
