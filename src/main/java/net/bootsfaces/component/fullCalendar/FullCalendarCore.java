@@ -44,7 +44,7 @@ public class FullCalendarCore extends UIData implements net.bootsfaces.render.IH
 	}
 
 	public Integer getHeight() {
-		return (Integer) getStateHelper().eval(PropertyKeys.height, "480");
+		return (Integer) getStateHelper().eval(PropertyKeys.height, 480);
 	}
 
 	public void setHeight(Integer height) {
