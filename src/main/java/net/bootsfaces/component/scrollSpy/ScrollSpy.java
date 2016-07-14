@@ -55,7 +55,13 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	protected enum PropertyKeys {
-		container, offset, selectionListener, smooth, smoothSpeed, target, update;
+		container,
+		offset,
+		selectionListener,
+		smooth,
+		smoothSpeed,
+		target,
+		update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -71,7 +77,7 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	/**
-	 * Id of the element that is the scrollable container. If not specified, body is set by default. <P>
+	 * Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getContainer() {
@@ -79,7 +85,7 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	/**
-	 * Id of the element that is the scrollable container. If not specified, body is set by default. <P>
+	 * Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setContainer(String _container) {
@@ -151,7 +157,7 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	/**
-	 * Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set. <P>
+	 * Id of the navigation target. Usually the id of the NavBar component. Search expressions are allowed if they yield only one result. If not specified, component with .navbar class is set. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTarget() {
@@ -159,7 +165,7 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	/**
-	 * Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set. <P>
+	 * Id of the navigation target. Usually the id of the NavBar component. Search expressions are allowed if they yield only one result. If not specified, component with .navbar class is set. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTarget(String _target) {

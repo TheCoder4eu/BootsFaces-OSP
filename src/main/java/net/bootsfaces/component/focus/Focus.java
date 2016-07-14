@@ -6,11 +6,13 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.focus.Focus")
@@ -49,10 +51,10 @@ public class Focus extends UIComponentBase {
 		String target = (String) attrs.get("target");
 		if(!BsfUtils.isStringValued(target) && this.getParent() != null)
 			target = this.getParent().getId();
-		
+
 		if(BsfUtils.isStringValued(target)) {
 			ResponseWriter rw = context.getResponseWriter();
-			String itemToFocusID = BsfUtils.getComponentClientId(target);
+			String itemToFocusID = ExpressionResolver.getComponentIDs(context, this, target);
 
 			rw.startElement("script", this);
 			rw.writeText("" + "$(document).ready(function() { " + "   var item = $(jq('" + itemToFocusID + "')); "

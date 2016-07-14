@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.defaultCommand.DefaultCommand")
@@ -56,7 +57,7 @@ public class DefaultCommand extends UIComponentBase {
 			if(BsfUtils.isStringValued(target)) {
 				ResponseWriter rw = context.getResponseWriter();
 				String formId = form.getClientId();
-				String actionCommandId = BsfUtils.getComponentClientId(target);
+				String actionCommandId = ExpressionResolver.getComponentIDs(context, this, target);
 
 				rw.startElement("script", this);
 

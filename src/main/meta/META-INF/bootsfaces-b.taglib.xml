@@ -7609,7 +7609,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Id of the element to focus.]]></description>
+		  <description><![CDATA[Id of the element to focus. May be omitted if you put the b:focus element inside the element.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -15621,7 +15621,7 @@
 			<component-type>net.bootsfaces.component.scrollSpy.ScrollSpy</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Id of the element that is the scrollable container. If not specified, body is set by default.]]></description>
+		  <description><![CDATA[Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default.]]></description>
 		  <name>container</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -15669,7 +15669,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Id of the navigation target. Usually the id of the NavBar component. If not specified, component with .navbar class is set.]]></description>
+		  <description><![CDATA[Id of the navigation target. Usually the id of the NavBar component. Search expressions are allowed if they yield only one result. If not specified, component with .navbar class is set.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

@@ -1,0 +1,193 @@
+/*
+ * Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu)
+ *
+ * This file is part of BootsFaces.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+//Compile BootsFaces Less files to CSS and Minify
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.7.4'
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.7.4'
+    }
+}
+
+apply plugin: 'com.bertramlabs.asset-pipeline'
+
+println 'compileLess:Themes('+themes.size+'):'+themes
+
+assets {
+  minifyJs = true
+  minifyCss = true
+  enableSourceMaps = false
+  configOptions = [:]
+
+  includes = ['default/bs-*.less']
+  themes.each() { name -> includes.add(name+'/bs-*.less') }
+
+  excludes = ['**/*.less','**/mixins/*.less'] //Exclude mixins
+
+  // Can add custom asset locations (directories or individual jar files)
+  from "${buildDir}/process/less"
+  from "${buildDir}/process/bootstrap"
+  from "${buildDir}/process/bsf"
+}
+
+assetCompile.dependsOn assetClean
+
+themes.each {
+    //create a dynamic task for each theme (in the config phase)
+    def themeName ->
+    tasks.create(name: "copyDefaultTheme2$themeName", type: Copy) {
+        println "compileLess:Configure Task copyDefaultTheme2$themeName"
+
+        from BootstrapFolder+'/less' //Bootstrap less
+        from staticResourcesDir+'/less' //BootsFaces less
+        include '**/*.less'
+        exclude 'extra-theme.less'
+
+        into "${buildDir}/process/less/"+themeName
+    }
+}
+
+themes.each {
+    //create a dynamic task for each theme (in the config phase)
+    def themeName ->
+    tasks.create(name: "copyBootswatchTheme2$themeName", type: Copy) {
+        println "compileLess:Configure Task copyBootswatchTheme2$themeName from "+BootswatchFolder+'/'+themeName
+
+        from BootswatchFolder+'/'+themeName //Bootswatch Theme less
+        into "${buildDir}/process/less/"+themeName
+
+        rename 'bootswatch.less', 'extra-theme.less'
+    }
+}
+
+task copyBootswatchLess4Themes (dependsOn: ['cloneDefaultLess4Themes',tasks.matching { Task task -> task.name.startsWith("copyBootswatchTheme2")}]) {
+    description 'BootsFaces task: copies the Bootswatch less files to the process folder for all the included Themes.'
+    println "Task copyBootswatchLess4Themes"
+}
+
+
+task cloneDefaultLess4Themes (dependsOn: [tasks.matching { Task task -> task.name.startsWith("copyDefaultTheme2")}]) {
+    description 'BootsFaces task: copies the Bootstrap less files to the process folder for all the included Themes.'
+    println "Task cloneDefaultLess4Themes"
+}
+copyBootswatchLess4Themes.mustRunAfter cloneDefaultLess4Themes
+
+
+/*
+ * Tasks to copy files to the process directory
+ */
+//Copy the less files for Bootstrap(default) Theme
+task copyOriginalLess(type: Copy) {
+  	description 'BootsFaces task: copies the Bootstrap less folders to the process folder.'
+  	from BootstrapFolder+'/less'
+  	into "${buildDir}/process/less/default"
+}
+//Copy the less files for Bootstrap(default) Theme
+task copyBootsFacesLess(type: Copy) {
+  	description 'BootsFaces task: copies the BootsFaces bs-*.less files to the process folder.'
+  	from staticResourcesDir+'/less'
+  	into "${buildDir}/process/less/default"
+}
+
+//Common for all themes
+task copyBootstrapJs(type: Copy) {
+  	description 'BootsFaces task: copies the Bootstrap JavaScript files to the process folder.'
+  	from BootstrapFolder+'/js'
+  	include '*.js'
+  	exclude 'affix.js', 'popover.js'
+        //, 'scrollspy.js'
+  	filter{String line -> line.startsWith('/* ') ? line.replace('/* ', '/** @license ') : line }
+  	into "${buildDir}/process/bootstrap/js"
+}
+
+task copyBootsFacesFiles(type: Copy) {
+  	description 'BootsFaces task: copies the BootsFaces resource files to the process folder and adds the license.'
+  	from staticResourcesDir+'/css/bsf.css'
+  	from staticResourcesDir+'/js/bsf.js'
+  	filter{String line -> line.startsWith('/*!') ? line.replace('/*!', '/** @license ') : line }
+
+  	into "${buildDir}/process/bsf"
+}
+
+task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapJs','copyBootswatchLess4Themes']) { //, 'copyBootswatchLess']) {
+
+}
+/* END Tasks to copy files to the process directory */
+
+/*
+ Tasks AFTER assetCompile
+ */
+
+themes.each {
+    //create a dynamic task for each theme
+    def themeName ->
+    tasks.create(name: "cleanAssetThemesDir$themeName", type: Delete) {
+        println 'compileLess:Configure Task clean Themes Asset: '+themeName
+        delete fileTree(dir: "${buildDir}/assets/"+themeName, includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'],
+                                                              excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
+    }
+}
+task cleanAssetThemeDirs(dependsOn: tasks.matching { Task task -> task.name.startsWith("cleanAssetThemesDir")}) {
+    println "compileLess: Cleaning Themes Asset"
+}
+
+task cleanAssetDir(type: Delete) {
+     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', '*-*.js'])
+     delete fileTree(dir: "${buildDir}/assets/default", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'],
+                                                        excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
+     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', 'bsf-*.*'])
+}
+
+/* END Tasks AFTER assetCompile */
+
+assetCompile.doLast {
+   //cleanAssetDir.execute()
+   String license = "/*! Bootstrap v"+BootstrapVersion+" (http://getbootstrap.com) | Copyright 2011-2016 Twitter, Inc. | Licensed under MIT */\n"
+   println license
+
+   FileTree tree = fileTree("${buildDir}/assets/default") {
+     include '**/*.css'
+   }
+   // Iterate over the contents of the tree
+   tree.each {
+     File css -> println 'Adding license to '+css
+     String file = css
+     String contents = css.getText( 'UTF-8' )
+     contents = license+contents
+     new File( file ).write( contents, 'UTF-8' )
+   }
+}
+
+task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile', 'cleanAssetDir', 'cleanAssetThemeDirs']) {
+  println "compileLess: Compile and Minify"
+}
+assetCompile.mustRunAfter copyFiles2Process
+cleanAssetDir.mustRunAfter assetCompile
+cleanAssetThemeDirs.mustRunAfter cleanAssetDir
+/*
+task hello {
+  println 'Hello '+extractedResources
+  println 'BootstrapFolder:'+BootstrapFolder
+  println 'BootswatchFolder:'+BootswatchFolder
+  println 'staticResourcesDir:'+staticResourcesDir
+}
+*/

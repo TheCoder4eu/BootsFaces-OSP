@@ -68,6 +68,14 @@ testCompile 'org.mockito:mockito-core:2.0.17-beta'
 
 compileJava {
     options.compilerArgs.addAll(0,buildOptsJava7)
+    if (sourceCompatibility == '1.7' && useBootClasspath==true && System.env.JDK7_HOME != null) {
+        //options.fork = true //Should be not necessary for recent Gradle builds
+        options.bootClasspath = "$System.env.JDK7_HOME/jre/lib/rt.jar"
+        options.bootClasspath += "$File.pathSeparator$System.env.JDK7_HOME/jre/lib/jsse.jar"
+        // use the line above as an example to add jce.jar
+        // and other specific JDK jars
+        println "INFO: using bootClasspath="+options.bootClasspath
+        }
 }
 compileJava.onlyIf { buildJava7==true }
 

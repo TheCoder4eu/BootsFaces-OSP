@@ -3,6 +3,8 @@ java6/build
 java7/build
 java8/build
 /gradleResources/build/
+/gradleResources/Bootstrap/build
+/gradleResources/compileLess/build
 /dist
 /optimized
 /nbproject/
