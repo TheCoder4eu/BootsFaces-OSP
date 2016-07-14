@@ -7623,6 +7623,18 @@
 			<component-type>net.bootsfaces.component.fullCalendar.FullCalendar</component-type>
 		</component>
 		<attribute>
+			<description><![CDATA[String value of default date in iso 8601 format; this is the date where the calendar position is set on loading]]></description>
+			<name>defaultDate</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
+			<description><![CDATA[String value to bind a javascript function to the on click event of a day; javascript signature is function(calEvent, jsEvent, view){ ... }; calEvent contains a day when clicked on the month's calendar, a day time of a slot otherwise]]></description>
+			<name>dayClick</name>
+			<required>false</required>
+			<type>java.lang.String</type>
+		</attribute>
+		<attribute>
 			<description><![CDATA[String value to bind a javascript function to the on click event on a date; javascript signature is function(calEvent, jsEvent, view){ ... }]]></description>
 			<name>eventClick</name>
 			<required>false</required>
