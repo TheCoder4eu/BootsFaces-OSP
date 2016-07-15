@@ -149,6 +149,7 @@ public class MessageRenderer extends CoreRenderer {
 
 					rw.endElement("span");
 				}
+				msg.rendered();
 			}
 		}
 		rw.endElement("div");

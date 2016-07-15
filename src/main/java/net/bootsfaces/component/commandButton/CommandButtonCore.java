@@ -42,7 +42,6 @@ public abstract class CommandButtonCore extends UICommand implements net.bootsfa
 		iconRotate,
 		iconSize,
 		iconSpin,
-		immediate,
 		lang,
 		largeScreen,
 		look,
@@ -387,22 +386,6 @@ public abstract class CommandButtonCore extends UICommand implements net.bootsfa
 	 */
 	public void setIconSpin(boolean _iconSpin) {
 		getStateHelper().put(PropertyKeys.iconSpin, _iconSpin);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isImmediate() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setImmediate(boolean _immediate) {
-		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
 	/**
