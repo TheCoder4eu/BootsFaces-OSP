@@ -80,6 +80,7 @@
    	// from 'staticResources/js/dataTables.bootstrap.min.js'
    	from 'staticResources/js/jquery.scrollUp.min.js'
    	from 'staticResources/js/jquery.minicolors.min.js'
+   	from 'staticResources/js/moment.min.js'
    	from 'staticResources/js/typeahead.js'
    	from 'staticResources/ie8support/respond.js'
    	from 'staticResources/ie8support/html5shiv.js'
