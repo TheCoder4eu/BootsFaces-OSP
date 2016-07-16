@@ -47,19 +47,17 @@ public class FullCalendarRenderer extends Renderer {
 		if (lang == null) {
 			lang = "en"; // ensure to have a value for lang; on loaded language files, lang must be specified
 		}
-		
+
 		// activate the jquery plugin on that div
 		rw.startElement("script", null);
-		
+
 		rw.writeText("$(document).ready(function() {", null);
 		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
 		rw.writeText("    lang: '" + lang + "',", null);
 		if (fullCalendar.getScrollTime() != null) {
 			rw.writeText("    scrollTime: '" + fullCalendar.getScrollTime() + "',", null);
 		}
-		if (fullCalendar.getAllDaySlot() != null) {
-			rw.writeText("    allDaySlot: " + fullCalendar.getAllDaySlot() + ",", null);
-		}
+		rw.writeText("    allDaySlot: " + fullCalendar.isAllDaySlot() + ",", null);
 		if (fullCalendar.getSlotDuration() != null) {
 			rw.writeText("    slotDuration: '" +  fullCalendar.getSlotDuration() + "',", null);
 		}
@@ -72,18 +70,10 @@ public class FullCalendarRenderer extends Renderer {
 		if (fullCalendar.getBusinessHours() != null) {
 			rw.writeText("    businessHours: " + fullCalendar.getBusinessHours() + ",", null);
 		}
-		if (fullCalendar.getHeight() != null) {
-			rw.writeText("    height: " + fullCalendar.getHeight() + ",", null);
-		}
-		if (fullCalendar.getWeekNumbers() != null) {
-			rw.writeText("    weekNumbers: " + fullCalendar.getWeekNumbers() + ",", null);
-		}
-		if (fullCalendar.getWeekends() != null) {
-			rw.writeText("    weekends: " + fullCalendar.getWeekends() + ",", null);
-		}
-		if (fullCalendar.getEditable() != null) {
-			rw.writeText("    editable: " + fullCalendar.getEditable() + ",", null);
-		}
+		rw.writeText("    height: " + fullCalendar.getHeight() + ",", null);
+		rw.writeText("    weekNumbers: " + fullCalendar.isWeekNumbers() + ",", null);
+		rw.writeText("    weekends: " + fullCalendar.isWeekends() + ",", null);
+		rw.writeText("    editable: " + fullCalendar.isEditable() + ",", null);
 		if (fullCalendar.getDefaultDate() != null) {
 			rw.writeText("    defaultDate: '" + fullCalendar.getDefaultDate() + "',", null);
 		}

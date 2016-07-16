@@ -10,7 +10,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
- * 
+ *
  * @author jottyfan
  *
  */
@@ -45,4 +45,14 @@ public class FullCalendar extends FullCalendarCore implements net.bootsfaces.ren
         name = BsfUtils.snakeCaseToCamelCase(name);
         super.setValueExpression(name, binding);
     }
+
+	public void setWeekMode(String weekMode) {
+		if ("liquid".equals(weekMode) || "fixed".equals(weekMode) || "variable".equals(weekMode)) {
+			getStateHelper().put(PropertyKeys.weekMode, weekMode);
+		} else {
+			getStateHelper().put(PropertyKeys.weekMode, "liquid");
+		}
+	}
+
+
 }

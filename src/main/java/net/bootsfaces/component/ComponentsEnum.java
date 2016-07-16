@@ -29,6 +29,7 @@ public enum ComponentsEnum {
 	fetchBeanInfos("<b:fetchBeanInfos", "fetchBeanInfos", "net.bootsfaces.component.fetchBeanInfos.FetchBeanInfos"),
 	flyOutMenu("<b:flyOutMenu", "flyOutMenu", "net.bootsfaces.component.flyOutMenu.FlyOutMenu"),
 	focus("<b:focus", "focus", "net.bootsfaces.component.focus.Focus"),
+	fullCalendar("<b:fullCalendar", "fullCalendar", "net.bootsfaces.component.fullCalendar.FullCalendar"),
 	growl("<b:growl", "growl", "net.bootsfaces.component.growl.Growl"),
 	gyroscope("<b:gyroscope", "gyroscope", "net.bootsfaces.component.gyroscope.Gyroscope"),
 	icon("<b:icon", "icon", "net.bootsfaces.component.icon.Icon"),
