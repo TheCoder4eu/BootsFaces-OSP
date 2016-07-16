@@ -1,9 +1,17 @@
 build
+java6/bin
 java6/build
+java6/.settings
+java7/bin
 java7/build
+java7/.settings
+java8/bin
 java8/build
+java8/.settings
 /gradleResources/build/
 /gradleResources/Bootstrap/build
+/gradleResources/Bootswatch
+/gradleResources/compileLess/.settings
 /gradleResources/compileLess/build
 /dist
 /optimized
