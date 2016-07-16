@@ -4,6 +4,7 @@ import javax.el.ELContext;
 import javax.el.ExpressionFactory;
 import javax.el.PropertyNotFoundException;
 import javax.el.ValueExpression;
+import javax.faces.FacesException;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
@@ -75,7 +76,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 
 	/**
 	 * Execute the ajax call when ajax syntax was found ajax:<command>
-	 * 
+	 *
 	 * @param context
 	 * @param command
 	 * @return
@@ -97,7 +98,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 			}
 
 			if (context.isProjectStage(ProjectStage.Development)) {
-				evaluateThouroughly(el, context.getELContext());
+				checkELSyntax(el, context.getELContext());
 			}
 			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
 			result = vex.getValue(context.getELContext());
@@ -110,12 +111,15 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 
 	/**
 	 * Evaluate the expression syntax
-	 * 
+	 *
 	 * @param el
 	 * @param context
 	 */
-	private void evaluateThouroughly(String el, ELContext context) {
+	private void checkELSyntax(String el, ELContext context) {
 		int pos = el.indexOf('.');
+		if (pos<0) {
+			throw new FacesException("The EL expression doesn't contain a method call: " + el);
+		}
 		int end = el.indexOf('(');
 		if (end < 0)
 			end = el.length();
