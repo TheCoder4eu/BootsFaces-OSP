@@ -10,9 +10,11 @@ java8/build
 java8/.settings
 /gradleResources/build/
 /gradleResources/Bootstrap/build
+/gradleResources/Bootstrap/.settings
 /gradleResources/Bootswatch
 /gradleResources/compileLess/.settings
 /gradleResources/compileLess/build
+/gradleResources/.settings
 /dist
 /optimized
 /nbproject/
