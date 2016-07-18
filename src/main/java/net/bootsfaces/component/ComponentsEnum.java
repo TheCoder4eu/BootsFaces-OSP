@@ -56,6 +56,7 @@ public enum ComponentsEnum {
 	pillLinks("<b:pillLinks", "pillLinks", "net.bootsfaces.component.pillLinks.PillLinks"),
 	poll("<b:poll", "poll", "net.bootsfaces.component.poll.Poll"),
 	progressBar("<b:progressBar", "progressBar", "net.bootsfaces.component.progressBar.ProgressBar"),
+	radiobutton("<b:radiobutton", "radiobutton", "net.bootsfaces.component.radiobutton.Radiobutton"),
 	row("<b:row", "row", "net.bootsfaces.component.row.Row"),
 	scrollUp("<b:scrollUp", "scrollUp", "net.bootsfaces.component.scrollUp.ScrollUp"),
 	scrollSpy("<b:scrollSpy", "scrollSpy", "net.bootsfaces.component.scrollSpy.ScrollSpy"),

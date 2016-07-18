@@ -1,4 +1,6 @@
 attribute_list ajax {
+    ajax                Boolean                                           "Whether the Button submits the form with AJAX."
+    onclick                                                                "The onclick attribute."
     oncomplete                                                            "JavaScript to be executed when ajax completes."
     onerror                                                               "JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions)."
     onsuccess                                                             "JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception)."
@@ -415,7 +417,6 @@ widget commandButton
     accesskey                                                              "Access key to transfer focus to the input element."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
-    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -428,7 +429,6 @@ widget commandButton
     look                                                                   "Look of the Button, can be primary, block, info, success, warning, important, danger. If not specified, Standard gray button with gradient is rendered."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "The onclick attribute."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1473,6 +1473,23 @@ widget progressBar
     +responsive
 }
 
+widget radiobutton implemented_by net.bootsfaces.component.radiobutton
+       has_children
+       has_tooltip
+ {
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    item-label                                                                  "The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using <f:selectItem /> or <f:selectItems />."
+    value               inherited                                          "EL expression denoting the property of the backend bean. This expression is also used to determine which radiobuttons belong together."
+    item-value           String                                             "Value of the item. Must be omitted if you use the traditional JSF approach using <f:selectItem /> or <f:selectItems />."
+    +ajax
+    +style
+    +tooltip
+    +responsive
+}
 
 widget row
        implemented_by net.bootsfaces.layout.Row
