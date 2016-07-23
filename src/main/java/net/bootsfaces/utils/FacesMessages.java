@@ -125,7 +125,7 @@ public class FacesMessages {
 
 	private static String resolveSearchExpressions(String refItem) {
 		if (refItem != null) {
-			if (refItem.contains("@")) {
+			if (refItem.contains("@") || refItem.contains("*")) {
 				refItem = ExpressionResolver.getComponentIDs(FacesContext.getCurrentInstance(),
 						FacesContext.getCurrentInstance().getViewRoot(), refItem);
 			}

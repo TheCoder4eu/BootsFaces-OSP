@@ -40,7 +40,9 @@ public class BootsFacesTagDecorator implements TagDecorator {
 	private static final String HTML_NAMESPACE = "http://www.w3.org/1999/xhtml";
 	// private static final Logger LOGGER = Logger.getLogger(BootsFacesTagDecorator.class.getName());
 	private static final String JSF_NAMESPACE = "http://xmlns.jcp.org/jsf/html";
-	private static final String JSF_CORE_NAMESPACE = "http://java.sun.com/jsf/core";
+	private static final String JSF_NAMESPACE_OLD = "http://java.sun.com/jsf/html";
+	private static final String JSF_CORE_NAMESPACE = "http://xmlns.jcp.org/jsf/core";
+	private static final String JSF_CORE_NAMESPACE_OLD = "http://java.sun.com/jsf/core";
 	private static final String PASS_THROUGH_NAMESPACE = "http://xmlns.jcp.org/jsf/passthrough";
 	private static final String BOOTSFACES_NAMESPACE = "http://bootsfaces.net/ui";
 	private static final Map<String, String> bootsfacesTags;
@@ -161,11 +163,56 @@ public class BootsFacesTagDecorator implements TagDecorator {
 		}
 		if (isActive == Boolean.TRUE) {
 			Tag newTag = createTags(tag);
+			newTag = addSearchExpressionResolver(newTag);
 			return newTag;
 		} else {
 			return tag;
 		}
 
+	}
+
+	private Tag addSearchExpressionResolver(Tag tag) {
+		if (tag.getNamespace().equals(JSF_CORE_NAMESPACE) ||tag.getNamespace().equals(JSF_CORE_NAMESPACE_OLD) ||tag.getNamespace().equals(JSF_NAMESPACE_OLD) || tag.getNamespace().equals(JSF_NAMESPACE)) {
+			boolean changeFor = containsAdvancesSearchExpression(tag, "for");
+//			boolean changeRender = containsAdvancesSearchExpression(tag, "render");
+//			boolean changeExecute = containsAdvancesSearchExpression(tag, "execute");
+
+			if (changeFor /* || changeRender || changeExecute */) {
+				TagAttribute[] attributes = tag.getAttributes().getAll();
+				AFTagAttributes more = new AFTagAttributes(attributes);
+				if (changeFor) {
+					String old = tag.getAttributes().get("for").getValue();
+					more.replaceAttributeValue("for", "#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
+				}
+//				if (changeRender) {
+//					String old = tag.getAttributes().get("render").getValue();
+//					more.replaceAttributeValue("render", "#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
+//				}
+//				if (changeExecute) {
+//					String old = tag.getAttributes().get("execute").getValue();
+//					more.replaceAttributeValue("execute", "#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
+//				}
+				tag = new Tag(tag.getLocation(), tag.getNamespace(), tag.getLocalName(), tag.getQName(), more);
+			}
+		}
+		return tag;
+	}
+
+	private boolean containsAdvancesSearchExpression(Tag tag, String attribute) {
+		boolean changeIt=false;
+		TagAttribute forAttribute = tag.getAttributes().get(attribute);
+		if (null != forAttribute) {
+			String value = forAttribute.getValue();
+			if (value.contains("*"))
+				changeIt=true;
+			if (value.contains("@"))
+				changeIt=true;
+			if (value.equals("@form") || value.equals("@none") || value.equals("@this") || value.equals("@all"))
+				changeIt=false;
+			if (value.startsWith("#{"))
+				changeIt=false;
+		}
+		return changeIt;
 	}
 
 	private Tag createTags(Tag tag) {

@@ -15,29 +15,34 @@ public class StyleClassExpressionResolver implements AbstractExpressionResolver 
 		if (null==parameters || parameters.length!=1) {
 			throw new FacesException("The @styleClass search expression requires parameter! " + originalExpression);
 		}
-		List<UIComponent> result = new ArrayList<UIComponent>(1);
-		UIComponent r = findStyleClassRecursively(component, parameters[0]);
-		if (null != r)
-			result.add(r);
+		List<UIComponent> result = findStyleClassRecursively(component, parameters[0]);
 		return result;
-
-
 	}
 
-	public UIComponent findStyleClassRecursively(UIComponent parent, String styleClass) {
+	public List<UIComponent> findStyleClassRecursively(UIComponent parent, String styleClass) {
 		if (null==parent)
 			return null;
 		String sc = getStyleClass(parent);
 		if (sc != null && sc.contains(styleClass)) {
-			return parent;
+			List<UIComponent> result = new ArrayList<UIComponent>(3);
+			result.add(parent);
+			return result;
 		}
 		Iterator<UIComponent> facetsAndChildren = parent.getFacetsAndChildren();
+		List<UIComponent> result = null;
+
 		while (facetsAndChildren.hasNext()) {
 			UIComponent child = facetsAndChildren.next();
-			UIComponent result = findStyleClassRecursively(child, styleClass);
-			if (null != result) return result;
+			List<UIComponent> hit = findStyleClassRecursively(child, styleClass);
+			if (null != hit) {
+				if (null==result) {
+					result = hit;
+				} else {
+					result.addAll(hit);
+				}
+			}
 		}
-		return null;
+		return result;
 	}
 
 	public String getStyleClass(Object component) {

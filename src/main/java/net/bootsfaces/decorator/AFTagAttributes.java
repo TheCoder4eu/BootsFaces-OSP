@@ -62,6 +62,16 @@ public final class AFTagAttributes extends TagAttributes {
 		}
 	}
 
+	public void replaceAttributeValue(String name, String newValue) {
+		for (int i = 0; i < attrs.length;i++) {
+			TagAttribute a = attrs[i];
+			if (a.getLocalName().equals(name)) {
+				a = TagAttributeUtilities.createTagAttribute(a.getLocation(), JSF_NAMESPACE, name, a.getQName(), newValue);
+				attrs[i] = a;
+			}
+		}
+	}
+
     /**
      * Return an array of all TagAttributesImpl in this set
      *
