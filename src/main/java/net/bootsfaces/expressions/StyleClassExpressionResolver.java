@@ -13,7 +13,7 @@ public class StyleClassExpressionResolver implements AbstractExpressionResolver 
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,
 			String originalExpression, String[] parameters) {
 		if (null==parameters || parameters.length!=1) {
-			throw new FacesException("The @styleClass search expression requires parameter! " + originalExpression);
+			throw new FacesException("The @styleClass search expression requires a parameter! " + originalExpression);
 		}
 		List<UIComponent> result = findStyleClassRecursively(component, parameters[0]);
 		return result;
