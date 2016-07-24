@@ -1,4 +1,4 @@
-package net.bootsfaces.decorator;
+package net.bootsfaces.expressions.decorator;
 /**
  *  (C) 2013-2015 Stephan Rauh http://www.beyondjava.net
  *
@@ -26,6 +26,8 @@ import javax.faces.view.Location;
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
+
+import net.bootsfaces.decorator.TagAttributeUtilities;
 
 /**
  * Alternative - simpler, more flexible, less optimized - version of TagAttributesImpl.
