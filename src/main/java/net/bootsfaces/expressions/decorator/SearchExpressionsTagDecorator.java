@@ -15,14 +15,12 @@
  */
 package net.bootsfaces.expressions.decorator;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
 import javax.faces.view.facelets.TagDecorator;
 
 /**
@@ -92,10 +90,10 @@ public class SearchExpressionsTagDecorator implements TagDecorator {
 		if (tag.getNamespace().equals(JSF_CORE_NAMESPACE) || tag.getNamespace().equals(JSF_CORE_NAMESPACE_OLD)
 				|| tag.getNamespace().equals(JSF_NAMESPACE_OLD) || tag.getNamespace().equals(JSF_NAMESPACE)) {
 			boolean changeFor = containsAdvancesSearchExpression(tag, "for");
-			// boolean changeRender = containsAdvancesSearchExpression(tag, "render");
-			// boolean changeExecute = containsAdvancesSearchExpression(tag, "execute");
+			boolean changeRender = containsAdvancesSearchExpression(tag, "render");
+			boolean changeExecute = containsAdvancesSearchExpression(tag, "execute");
 
-			if (changeFor /* || changeRender || changeExecute */) {
+			if (changeFor || changeRender || changeExecute) {
 				TagAttribute[] attributes = tag.getAttributes().getAll();
 				AFTagAttributes more = new AFTagAttributes(attributes);
 				if (changeFor) {
@@ -103,16 +101,16 @@ public class SearchExpressionsTagDecorator implements TagDecorator {
 					more.replaceAttributeValue("for",
 							"#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
 				}
-				// if (changeRender) {
-				// String old = tag.getAttributes().get("render").getValue();
-				// more.replaceAttributeValue("render", "#{searchExpressionResolverBean.resolve(component, '" + old +
-				// "')}");
-				// }
-				// if (changeExecute) {
-				// String old = tag.getAttributes().get("execute").getValue();
-				// more.replaceAttributeValue("execute", "#{searchExpressionResolverBean.resolve(component, '" + old +
-				// "')}");
-				// }
+				if (changeRender) {
+					String old = tag.getAttributes().get("render").getValue();
+					more.replaceAttributeValue("render",
+							"#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
+				}
+				if (changeExecute) {
+					String old = tag.getAttributes().get("execute").getValue();
+					more.replaceAttributeValue("execute",
+							"#{searchExpressionResolverBean.resolve(component, '" + old + "')}");
+				}
 				tag = new Tag(tag.getLocation(), tag.getNamespace(), tag.getLocalName(), tag.getQName(), more);
 			}
 		}
