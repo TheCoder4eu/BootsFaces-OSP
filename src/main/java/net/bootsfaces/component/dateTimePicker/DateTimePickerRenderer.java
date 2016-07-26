@@ -126,13 +126,34 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		styleClass = styleClass.trim();
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
+		String label = dtp.getLabel();
+		{
+			if (!dtp.isRenderLabel()) {
+				label = null;
+			}
+		}
 		String divPrefix="";
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, null);
 			divPrefix=DTP_CONTAINER_ID;
+		} else if (label != null) {
+			rw.startElement("div", dtp);
+			rw.writeAttribute("id", clientId, null);
+			divPrefix=DTP_CONTAINER_ID;
 		}
+
+		if (label != null) {
+			rw.startElement("label", dtp);
+			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
+			generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass());
+			writeAttribute(rw, "style", dtp.getLabelStyle());
+
+			rw.writeText(label, null);
+			rw.endElement("label");
+		}
+
 
 		Object v = dtp.getSubmittedValue();
 		if (v == null) {
@@ -213,6 +234,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// end
 			rw.endElement("div");
 			if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+				rw.endElement("div");
+			} else if (label != null) {
 				rw.endElement("div");
 			}
 		}

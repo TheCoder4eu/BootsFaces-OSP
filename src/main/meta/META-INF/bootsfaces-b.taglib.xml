@@ -6289,6 +6289,36 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages.]]></description>
+		  <name>label</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS inline style of the label.]]></description>
+		  <name>label-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS inline style of the label.]]></description>
+		  <name>labelStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS class of the label.]]></description>
+		  <name>label-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS class of the label.]]></description>
+		  <name>labelStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>large-screen</name>
 		  <required>false</required>
@@ -6407,6 +6437,18 @@
 		  <name>placeholder</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <name>render-label</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <name>renderLabel</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>

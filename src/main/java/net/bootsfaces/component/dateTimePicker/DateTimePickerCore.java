@@ -42,6 +42,8 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		initialDate,
 		keepInvalid,
 		keepOpen,
+		labelStyle,
+		labelStyleClass,
 		largeScreen,
 		locale,
 		maxDate,
@@ -54,6 +56,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		offsetSm,
 		offsetXs,
 		placeholder,
+		renderLabel,
 		required,
 		requiredMessage,
 		showButtonPanel,
@@ -385,6 +388,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * The CSS inline style of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyle);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyle(String _labelStyle) {
+		getStateHelper().put(PropertyKeys.labelStyle, _labelStyle);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyleClass);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyleClass(String _labelStyleClass) {
+		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
+	}
+
+	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -574,6 +609,23 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setPlaceholder(String _placeholder) {
 		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
+				net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderLabel(boolean _renderLabel) {
+		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
 	}
 
 	/**
