@@ -27,6 +27,7 @@ import javax.faces.view.facelets.TagDecorator;
 
 import net.bootsfaces.component.ComponentsEnum;
 import net.bootsfaces.expressions.decorator.AFTagAttributes;
+import net.bootsfaces.expressions.decorator.TagAttributeUtilities;
 import net.bootsfaces.utils.BsfUtils;
 
 /**

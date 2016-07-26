@@ -27,8 +27,6 @@ import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
 
-import net.bootsfaces.decorator.TagAttributeUtilities;
-
 /**
  * Alternative - simpler, more flexible, less optimized - version of TagAttributesImpl.
  */

@@ -1,4 +1,4 @@
-package net.bootsfaces.decorator;
+package net.bootsfaces.expressions.decorator;
 
 
 public class Configuration {
