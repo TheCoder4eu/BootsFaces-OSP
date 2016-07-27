@@ -125,7 +125,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if(styleClass == null) styleClass = "";
 		styleClass = styleClass.trim();
 
-		String responsiveStyleClass = ("form-group" + Responsive.getResponsiveStyleClass(dtp, false)).trim();
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		String label = dtp.getLabel();
 		{
 			if (!dtp.isRenderLabel()) {
@@ -133,10 +133,16 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			}
 		}
 		String divPrefix="";
-		rw.startElement("div", dtp);
-		rw.writeAttribute("class", responsiveStyleClass, "class");
-		rw.writeAttribute("id", clientId, null);
-		divPrefix=DTP_CONTAINER_ID;
+		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+			rw.startElement("div", dtp);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+			rw.writeAttribute("id", clientId, null);
+			divPrefix=DTP_CONTAINER_ID;
+		} else if (label != null) {
+			rw.startElement("div", dtp);
+			rw.writeAttribute("id", clientId, null);
+			divPrefix=DTP_CONTAINER_ID;
+		}
 
 		if (label != null) {
 			rw.startElement("label", dtp);
@@ -227,7 +233,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			// end
 			rw.endElement("div");
-			rw.endElement("div"); // form-group
+			if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+				rw.endElement("div");
+			} else if (label != null) {
+				rw.endElement("div");
+			}
 		}
 		return divPrefix;
 	}
