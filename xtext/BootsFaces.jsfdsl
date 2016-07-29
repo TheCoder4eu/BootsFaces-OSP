@@ -1486,9 +1486,9 @@ widget radiobutton implemented_by net.bootsfaces.component.radiobutton
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    item-label                                                                  "The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using <f:selectItem /> or <f:selectItems />."
+    item-label                                                                  "The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using &lt;f:f:selectItem /&gt; or &lt;f:selectItems /&gt;."
     value               inherited                                          "EL expression denoting the property of the backend bean. This expression is also used to determine which radiobuttons belong together."
-    item-value           String                                             "Value of the item. Must be omitted if you use the traditional JSF approach using <f:selectItem /> or <f:selectItems />."
+    item-value           String                                             "Value of the item. Must be omitted if you use the traditional JSF approach using &lt;f:selectItem /&gt; or &lt;f:selectItems /&gt;."
     +ajax
     +style
     +tooltip

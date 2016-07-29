@@ -149,21 +149,43 @@ public class MessagesRenderer extends CoreRenderer {
 		String stylePrefix = "";
 		String iconStyleClass = "";
 		if ("warn".equals(severity)) {
-			styleClassPrefix = "alert-warning " + uiMessages.getWarnClass();
+			String warnClass = uiMessages.getWarnClass();
+			if (null == warnClass)
+				styleClassPrefix = "alert-warning";
+			else
+				styleClassPrefix = "alert-warning " + warnClass;
 			iconStyleClass = "fa fa-exclamation-triangle";
 			stylePrefix = uiMessages.getWarnStyle();
 		} else if ("fatal".equals(severity)) {
-			styleClassPrefix = "alert-danger " + uiMessages.getFatalClass();
+			String fatalClass = uiMessages.getFatalClass();
+			if (null == fatalClass) {
+				styleClassPrefix = "alert-danger";
+			} else {
+				styleClassPrefix = "alert-danger " + fatalClass;
+			}
 			stylePrefix = uiMessages.getFatalStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("error".equals(severity)) {
-			styleClassPrefix = "alert-danger " + uiMessages.getErrorClass();
+			String errorClass = uiMessages.getErrorClass();
+			if (null == errorClass) {
+				styleClassPrefix = "alert-danger";
+			} else {
+				styleClassPrefix = "alert-danger " + errorClass;
+			}
 			stylePrefix = uiMessages.getErrorStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("info".equals(severity)) {
-			styleClassPrefix = "alert-info " + uiMessages.getInfoClass();
+			String infoClass = uiMessages.getInfoClass();
+			if (infoClass==null) {
+				styleClassPrefix = "alert-info";
+			} else {
+				styleClassPrefix = "alert-info " + infoClass;
+			}
 			stylePrefix = uiMessages.getInfoStyle();
 			iconStyleClass = "fa fa-info-circle";
+		}
+		if (stylePrefix==null) {
+			stylePrefix="";
 		}
 
 		writer.startElement("div", null);
