@@ -15,7 +15,16 @@ public class StyleClassExpressionResolver implements AbstractExpressionResolver 
 		if (null==parameters || parameters.length!=1) {
 			throw new FacesException("The @styleClass search expression requires a parameter! " + originalExpression);
 		}
-		List<UIComponent> result = findStyleClassRecursively(component, parameters[0]);
+		List<UIComponent> result = null;
+		for (UIComponent p:parentComponents) {
+			List<UIComponent> r = findStyleClassRecursively(p, parameters[0]);
+			if (result==null) {
+				result=r;
+			} else if (r!=null) {
+				result.addAll(r);
+			}
+			
+		}
 		return result;
 	}
 

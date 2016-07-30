@@ -15,7 +15,16 @@ public class PropertyExpressionResolver implements AbstractExpressionResolver {
 			throw new FacesException("The @property search expression requires a parameter! " + originalExpression);
 		}
 		String propertyName = "#{" + parameters[0] + "}";
-		List<UIComponent> result = findPropertyRecursively(component, propertyName);
+		List<UIComponent> result = null;
+		for (UIComponent p:parentComponents) {
+			List<UIComponent> r = findPropertyRecursively(p, propertyName);
+			if (result==null) {
+				result=r;
+			} else if (r!=null) {
+				result.addAll(r);
+			}
+			
+		}
 		return result;
 	}
 

@@ -146,7 +146,12 @@ public class MessagesRenderer extends CoreRenderer {
 			List<FacesMessage> messages) throws IOException {
 		ResponseWriter writer = facesContext.getResponseWriter();
 		String styleClassPrefix = "";
-		String stylePrefix = "";
+		String stylePrefix = uiMessages.getStyle();
+		if (null == stylePrefix) {
+			stylePrefix="";
+		} else if (!styleClassPrefix.endsWith(";")) {
+			stylePrefix += ";";
+		}
 		String iconStyleClass = "";
 		if ("warn".equals(severity)) {
 			String warnClass = uiMessages.getWarnClass();
@@ -155,7 +160,7 @@ public class MessagesRenderer extends CoreRenderer {
 			else
 				styleClassPrefix = "alert-warning " + warnClass;
 			iconStyleClass = "fa fa-exclamation-triangle";
-			stylePrefix = uiMessages.getWarnStyle();
+			stylePrefix += uiMessages.getWarnStyle();
 		} else if ("fatal".equals(severity)) {
 			String fatalClass = uiMessages.getFatalClass();
 			if (null == fatalClass) {
@@ -163,7 +168,7 @@ public class MessagesRenderer extends CoreRenderer {
 			} else {
 				styleClassPrefix = "alert-danger " + fatalClass;
 			}
-			stylePrefix = uiMessages.getFatalStyle();
+			stylePrefix += uiMessages.getFatalStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("error".equals(severity)) {
 			String errorClass = uiMessages.getErrorClass();
@@ -172,7 +177,7 @@ public class MessagesRenderer extends CoreRenderer {
 			} else {
 				styleClassPrefix = "alert-danger " + errorClass;
 			}
-			stylePrefix = uiMessages.getErrorStyle();
+			stylePrefix += uiMessages.getErrorStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("info".equals(severity)) {
 			String infoClass = uiMessages.getInfoClass();
@@ -181,11 +186,8 @@ public class MessagesRenderer extends CoreRenderer {
 			} else {
 				styleClassPrefix = "alert-info " + infoClass;
 			}
-			stylePrefix = uiMessages.getInfoStyle();
+			stylePrefix += uiMessages.getInfoStyle();
 			iconStyleClass = "fa fa-info-circle";
-		}
-		if (stylePrefix==null) {
-			stylePrefix="";
 		}
 
 		writer.startElement("div", null);
