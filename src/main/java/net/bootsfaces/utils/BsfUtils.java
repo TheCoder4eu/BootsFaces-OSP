@@ -24,6 +24,8 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
 
+import net.bootsfaces.expressions.ExpressionResolver;
+
 public class BsfUtils {
 
 	/**
@@ -556,5 +558,20 @@ public class BsfUtils {
 			e.printStackTrace();
 			return "";
 		}
+	}
+	
+	/**
+	 * Resolve the search expression 
+	 * @param refItem
+	 * @return
+	 */
+	public static String resolveSearchExpressions(String refItem) {
+		if (refItem != null) {
+			if (refItem.contains("@") || refItem.contains("*")) {
+				refItem = ExpressionResolver.getComponentIDs(FacesContext.getCurrentInstance(),
+						FacesContext.getCurrentInstance().getViewRoot(), refItem);
+			}
+		}
+		return refItem;
 	}
 }

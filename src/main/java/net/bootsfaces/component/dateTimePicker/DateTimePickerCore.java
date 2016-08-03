@@ -39,6 +39,8 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		focusOnShow,
 		format,
 		hidden,
+		icon,
+		iconAwesome,
 		initialDate,
 		keepInvalid,
 		keepOpen,
@@ -84,15 +86,15 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		useStrict,
 		viewMode,
 		visible,
-		weekDaysDisabled;
+		weekDaysDisabled,
+		widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -337,6 +339,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+
+	/**
+	 * Picker Icon, can be one of the Bootstrap icon names.  <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.icon);
+	}
+
+	/**
+	 * Picker Icon, can be one of the Bootstrap icon names.  <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIcon(String _icon) {
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
+
+	/**
+	 * Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAwesome() {
+		return (String) getStateHelper().eval(PropertyKeys.iconAwesome);
+	}
+
+	/**
+	 * Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAwesome(String _iconAwesome) {
+		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
 	}
 
 	/**
@@ -1074,6 +1108,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setWeekDaysDisabled(String _weekDaysDisabled) {
 		getStateHelper().put(PropertyKeys.weekDaysDisabled, _weekDaysDisabled);
+	}
+
+	/**
+	 * Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidgetParent() {
+		return (String) getStateHelper().eval(PropertyKeys.widgetParent);
+	}
+
+	/**
+	 * Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidgetParent(String _widgetParent) {
+		getStateHelper().put(PropertyKeys.widgetParent, _widgetParent);
 	}
 
 }

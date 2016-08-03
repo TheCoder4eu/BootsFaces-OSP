@@ -580,6 +580,8 @@ widget dateTimePicker
 	enabled-dates														   "Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]."
     focus-on-show			 Boolean default "true"						   "If false, the textbox will not be given focus when the picker is shown. Default: true."
     format																   "See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker."
+    icon                                                                   "Picker Icon, can be one of the Bootstrap icon names. "
+    icon-awesome                                                           "Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names."
     initial-date			 											   "Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string."
     keep-invalid		     Boolean									   "Will cause the date picker to not revert or overwrite invalid dates. Default: false."
     keep-open				 Boolean								       "Will cause the date picker to stay open after selecting a date if no time components are being used. Deafult: false."
@@ -610,6 +612,7 @@ widget dateTimePicker
    	value               	 inherited                                     "Value."
     view-mode				 default "days"								   "The default view to display when the picker is shown. Note: To limit the picker to selecting, for instance the year and month, use format: MM/YYYY. Default: 'days'. Accepts: 'decades','years','months','days'."
     week-days-disabled		         									   "Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6]."
+    widgetParent														   "Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container."
     +style
 	+responsive
 	+tooltip

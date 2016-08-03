@@ -6253,6 +6253,24 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Picker Icon, can be one of the Bootstrap icon names. ]]></description>
+		  <name>icon</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names.]]></description>
+		  <name>icon-awesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names.]]></description>
+		  <name>iconAwesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string.]]></description>
 		  <name>initial-date</name>
 		  <required>false</required>
@@ -6765,6 +6783,12 @@
 		<attribute>
 		  <description><![CDATA[Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6].]]></description>
 		  <name>weekDaysDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container.]]></description>
+		  <name>widgetParent</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

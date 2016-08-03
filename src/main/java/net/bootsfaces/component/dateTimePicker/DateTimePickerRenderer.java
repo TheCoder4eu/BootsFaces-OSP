@@ -37,7 +37,7 @@ import net.bootsfaces.utils.LocaleUtils;
 
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
-public class DateTimePickerRenderer extends CoreRenderer {
+public class DateTimePickerRenderer extends CoreRenderer{
 	private static final String DTP_CONTAINER_ID = "dtp_container_";
 
 	@Override
@@ -159,6 +159,19 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (v == null) {
 			v = dtp.getValue();
 		}
+		
+		// Icon
+		String icon = dtp.getIcon();
+		String faicon = dtp.getIconAwesome();
+		boolean fa = false; 
+		if (BsfUtils.isStringValued(faicon)) {
+			icon = faicon;
+			fa = true;
+		}
+		if(!BsfUtils.isStringValued(icon)) {
+			icon = "calendar";
+			fa = false;
+		}
 
 		if ("plain".equals(mode))
 		{
@@ -228,7 +241,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// span
 			rw.startElement("span", dtp);
 			rw.writeAttribute("class", "input-group-addon", "class");
-			IconRenderer.encodeIcon(rw, dtp, "calendar", false, null, null, null, false, null, null, dtp.isDisabled(), true, true, true);
+			IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true);
 			rw.endElement("span");
 
 			// end
@@ -300,6 +313,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"useCurrent: " + dtp.isUseCurrent() + ", ": "") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
+					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', forceElementPosition: true, " : "" ) + 
 					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
 					      	("inline".equals(mode) ? 									"date: moment(" + inlineDisplayDate + ", " + displayFormat + ")," : "" ) +
 					      	"locale: '" + sloc.getLanguage() + "', " +
@@ -309,7 +323,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					  "});", null);
 
 		if("inline".equals(mode)) {
-
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
