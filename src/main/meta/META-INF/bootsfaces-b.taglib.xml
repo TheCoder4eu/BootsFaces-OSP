@@ -6103,6 +6103,12 @@
 			<component-type>net.bootsfaces.component.dateTimePicker.DateTimePicker</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If true, the picker will show on textbox focus and icon click when used in a button group. Default: false.]]></description>
 		  <name>allow-input-toggle</name>
 		  <required>false</required>
@@ -6269,6 +6275,12 @@
 		  <name>iconAwesome</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
+		  <name>immediate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string.]]></description>
@@ -6451,8 +6463,26 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript event to manage date time change.]]></description>
+		  <name>ondtchange</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The placeholder attribute shows text in a field until the field is focused upon, then hides the text.]]></description>
 		  <name>placeholder</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -6723,6 +6753,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

@@ -28,6 +28,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
@@ -37,19 +38,20 @@ import net.bootsfaces.utils.LocaleUtils;
 
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
-public class DateTimePickerRenderer extends CoreRenderer{
+public class DateTimePickerRenderer extends CoreRenderer {
 	private static final String DTP_CONTAINER_ID = "dtp_container_";
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		DateTimePicker dtp = (DateTimePicker) component;
 		String subVal = context.getExternalContext().getRequestParameterMap().get(dtp.getClientId());
-
+		
 		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
+		new AJAXRenderer().decode(context, dtp);
 	}
 
 	/**
@@ -328,5 +330,6 @@ public class DateTimePickerRenderer extends CoreRenderer{
 						 "});", null);
 		}
 		rw.endElement("script");
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null);
 	}
 }

@@ -21,7 +21,9 @@ package net.bootsfaces.component.dateTimePicker;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
@@ -30,6 +32,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
@@ -39,7 +42,7 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
 @FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePicker extends DateTimePickerCore
-implements net.bootsfaces.render.IHasTooltip, IResponsive {
+implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 
@@ -58,6 +61,14 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive {
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+	
+
+	@Override
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("dtchange", "dp.change");
+		return result;
 	}
 
 	/**

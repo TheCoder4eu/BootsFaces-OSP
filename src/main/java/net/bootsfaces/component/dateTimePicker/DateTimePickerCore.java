@@ -24,6 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
+		ajax,
 		allowInputToggle,
 		binding,
 		colLg,
@@ -41,6 +42,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		hidden,
 		icon,
 		iconAwesome,
+		immediate,
 		initialDate,
 		keepInvalid,
 		keepOpen,
@@ -57,7 +59,10 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		offsetMd,
 		offsetSm,
 		offsetXs,
+		oncomplete,
+		ondtchange,
 		placeholder,
+		process,
 		renderLabel,
 		required,
 		requiredMessage,
@@ -82,6 +87,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		tooltipDelayHide,
 		tooltipDelayShow,
 		tooltipPosition,
+		update,
 		useCurrent,
 		useStrict,
 		viewMode,
@@ -99,6 +105,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
 	/**
@@ -374,6 +396,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isImmediate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setImmediate(boolean _immediate) {
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
+
+	/**
 	 * Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -630,6 +668,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * JavaScript to be executed when ajax completes with success. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOncomplete() {
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * JavaScript event to manage date time change. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndtchange() {
+		return (String) getStateHelper().eval(PropertyKeys.ondtchange);
+	}
+
+	/**
+	 * JavaScript event to manage date time change. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndtchange(String _ondtchange) {
+		getStateHelper().put(PropertyKeys.ondtchange, _ondtchange);
+	}
+
+	/**
 	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -643,6 +713,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setPlaceholder(String _placeholder) {
 		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		return (String) getStateHelper().eval(PropertyKeys.process);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
 	}
 
 	/**
@@ -1028,6 +1114,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getUpdate() {
+		return (String) getStateHelper().eval(PropertyKeys.update);
+	}
+
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
 	}
 
 	/**
