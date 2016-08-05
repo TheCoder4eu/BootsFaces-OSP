@@ -20,7 +20,10 @@ package net.bootsfaces.component.dateTimePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -49,6 +52,10 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
+	
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown",
+					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public DateTimePicker() {
 		Tooltip.addResourceFiles();
@@ -69,6 +76,14 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 		Map<String, String> result = new HashMap<String, String>();
 		result.put("dtchange", "dp.change");
 		return result;
+	}
+	
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "click";
 	}
 
 	/**

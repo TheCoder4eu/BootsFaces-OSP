@@ -566,7 +566,7 @@ widget datepicker
 	+responsive
 }
 
-widget dateTimePicker
+widget dateTimePicker 
 		implemented_by net.bootsfaces.component.DateTimePicker
 		has_tooltip
 		is_responsive
@@ -583,23 +583,37 @@ widget dateTimePicker
     format																   "See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker."
     icon                                                                   "Picker Icon, can be one of the Bootstrap icon names. "
     icon-awesome                                                           "Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names."
-    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    immediate                Boolean                                        "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     initial-date			 											   "Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string."
     keep-invalid		     Boolean									   "Will cause the date picker to not revert or overwrite invalid dates. Default: false."
     keep-open				 Boolean								       "Will cause the date picker to stay open after selecting a date if no time components are being used. Deafult: false."
-    label                            inherited                             "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
+    label                    inherited                             "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     locale															       "The desired locale. It uses the moment.js locales."
     min-date															   "Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
     max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
-    ondtchange															   "JavaScript event to manage date time change."
+    onblur                           inherited                             "Client side callback to execute when input element loses focus."
+    onchange                         inherited                             "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                          inherited                             "OnClick DHTML event ."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                       inherited                             "Client side callback to execute when input element is double clicked."
+    ondtchange															   "JavaScript event to manage date time change."
+    onfocus                          inherited                             "Client side callback to execute when input element receives focus."
+    onkeydown                        inherited                             "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                       inherited                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                          inherited                             "Client side callback to execute when a key is released over input element."
+    onmousedown                      inherited                             "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                      inherited                             "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                       inherited                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                      inherited                             "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
+    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user." 
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
-    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    render-label             Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    required                 Boolean                                       "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel        Boolean                                       "Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once)."
     show-date                Boolean default "true"                        "By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used.."

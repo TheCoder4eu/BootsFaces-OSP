@@ -99,7 +99,7 @@ public class CoreRenderer extends Renderer {
 	 * @throws IOException
 	 */
 	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
-		String styleClass = getErrorAndRequiredClass(input, clientId);
+		getErrorAndRequiredClass(input, clientId);
 		generateErrorAndRequiredClass(input, rw, clientId, null);
 	}
 
@@ -185,7 +185,7 @@ public class CoreRenderer extends Renderer {
 		if (!(component instanceof ClientBehaviorHolder)) {
 			return;
 		}
-
+		
 		Map<String, List<ClientBehavior>> behaviors = ((ClientBehaviorHolder) component).getClientBehaviors();
 		if (behaviors.isEmpty()) {
 			return;

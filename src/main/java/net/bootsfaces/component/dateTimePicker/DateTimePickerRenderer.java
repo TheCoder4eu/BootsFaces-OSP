@@ -44,14 +44,20 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		DateTimePicker dtp = (DateTimePicker) component;
+		String clientId = dtp.getClientId();
 		String subVal = context.getExternalContext().getRequestParameterMap().get(dtp.getClientId());
+		
+		if (dtp.isDisabled() || dtp.isReadonly()) {
+			return;
+		}
 		
 		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
-		new AJAXRenderer().decode(context, dtp);
+		new AJAXRenderer().decode(context, dtp, clientId + "_Input");
+		new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
@@ -148,7 +154,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		if (label != null) {
 			rw.startElement("label", dtp);
-			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
+			rw.writeAttribute("for", clientId + "_Input", "for"); // "input_" + clientId
 			generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass());
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
@@ -187,7 +193,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// input
 			rw.startElement("input", dtp);
 			rw.writeAttribute("type", "text", null);
-			rw.writeAttribute("id", clientId, null);
+			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
@@ -195,6 +201,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
 			Tooltip.generateTooltip(fc, dtp, rw);
+			// Render Ajax Capabilities
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw);
 			rw.endElement("input");
 
 			rw.endElement("div");
@@ -210,7 +218,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			// write the input item
 			rw.startElement("input", dtp);
-			rw.writeAttribute("id", clientId+"Input", null);
+			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("type", "hidden", "type");
 			if (v != null) {
@@ -230,7 +238,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// input
 			rw.startElement("input", dtp);
 			rw.writeAttribute("type", "text", null);
-			rw.writeAttribute("id", clientId+"input", null);
+			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
@@ -238,6 +246,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
 			Tooltip.generateTooltip(fc, dtp, rw);
+			// Render Ajax Capabilities
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw);
 			rw.endElement("input");
 
 			// span
@@ -328,6 +338,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
+		}
+		if(dtp.isDisabled()) {
+			rw.writeText("$('" + fullSelector + "').disable(); ", null);
 		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null);
