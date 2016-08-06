@@ -190,6 +190,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			}
 			rw.writeAttribute("id", divPrefix + clientId, null);
 
+			rw.writeAttribute("class", "input-group date " + styleClass, "class");
+			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
 			// input
 			rw.startElement("input", dtp);
 			rw.writeAttribute("type", "text", null);
@@ -204,6 +206,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// Render Ajax Capabilities
 			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw);
 			rw.endElement("input");
+			// span
+			rw.startElement("span", dtp);
+			rw.writeAttribute("class", "input-group-addon", "class");
+			IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true);
+			rw.endElement("span");
 
 			rw.endElement("div");
 		}
@@ -295,15 +302,20 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String inlineDisplayDate = "'" + (dtp.getFormat() == null ? getDateAsString(v, format, sloc) : getDateAsString(v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
 
-		if("plain".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(clientId+"Input"); }
+		boolean openOnClick=false;
+		if("plain".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
 		else if("inline".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
-		else { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
+		else { 
+			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
+			openOnClick=true;
+		}
+		
 
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
 					      "$('" + fullSelector + "').datetimepicker({  " +
-					        (dtp.isAllowInputToggle() ? 								"collapse: " + dtp.isAllowInputToggle() + ", ": "") +
-					      	(dtp.isCollapse() ? 										"allowInputToggle: " + dtp.isCollapse() + ", ": "") +
+					        (dtp.isAllowInputToggle() || openOnClick  ?         		"allowInputToggle: true, ": "") +
+					      	(dtp.isCollapse() ? 										"collapse: " + dtp.isCollapse() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getDayViewHeaderFormat()) ? 	"dayViewHeaderFormat: '" + dtp.getDayViewHeaderFormat() + "', " : "") +
 					      	(BsfUtils.isStringValued(dtp.getDisabledDates()) ?			"disabledDates: [" + dtp.getDisabledDates() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getDisableTimeInterval()) ?	"disabledTimeIntervals: [" + dtp.getDisableTimeInterval() + "], " : "") +
