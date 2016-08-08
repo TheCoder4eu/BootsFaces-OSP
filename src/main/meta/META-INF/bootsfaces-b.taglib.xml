@@ -6175,7 +6175,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Using a Bootstraps collapse to switch between date/time pickers.]]></description>
+		  <description><![CDATA[Using a Bootstraps collapse animation to switch between date/time pickers.]]></description>
 		  <name>collapse</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>

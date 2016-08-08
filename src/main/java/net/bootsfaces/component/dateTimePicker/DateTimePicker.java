@@ -106,7 +106,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 		if (val.trim().length() == 0) {
 			return null;
 		}
-		// System.out.println("CV: " + val);
+		//System.out.println("CV: " + val);
 
 		Converter converter = this.getConverter();
 
@@ -116,9 +116,9 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 		}
 		// Else we use our own converter
 		Locale sloc = BsfUtils.selectLocale(context.getViewRoot().getLocale(), this.getLocale(), this);
-		String sdf = BsfUtils.selectDateFormat(sloc, this.getFormat());
+		String componentFormat = BsfUtils.selectDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
+		String sdf = BsfUtils.selectDateFormat(sloc, componentFormat);
 		sdf = LocaleUtils.momentToJavaFormat(sdf);
-		// System.out.println("Date format: " + sdf);
 
 		Calendar cal = Calendar.getInstance(sloc);
 		SimpleDateFormat format = new SimpleDateFormat(sdf, sloc);
@@ -126,7 +126,6 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
 		try {
 			cal.setTime(format.parse(val));
-			cal.set(Calendar.HOUR_OF_DAY, 12);
 
 			return cal.getTime();
 		} catch (ParseException e) {

@@ -220,7 +220,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse to switch between date/time pickers. <P>
+	 * Using a Bootstraps collapse animation to switch between date/time pickers. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isCollapse() {
@@ -228,7 +228,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse to switch between date/time pickers. <P>
+	 * Using a Bootstraps collapse animation to switch between date/time pickers. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapse(boolean _collapse) {

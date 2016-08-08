@@ -309,7 +309,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
 			openOnClick=true;
 		}
-		
+		System.out.println("View date format: " + displayFormat);
 
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
