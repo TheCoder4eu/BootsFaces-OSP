@@ -18,9 +18,15 @@
 
 package net.bootsfaces.component.radiobutton;
 
+import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.component.inputText.InputText;
 
-/** This class holds the attributes of &lt;b:radiobutton /&gt;. */
+/** This class holds the attributes of &lt;b:radiobutton /&gt;. 
+ * The annotation is necessary to prevent Mojarra from confusing b:inputText with b:radioButtonCore.
+ * The latter doesn't exist, making Mojarra crash. */
+
+@FacesComponent("net.bootsfaces.component.radiobuttonCore.RadiobuttonCore")
 public abstract class RadiobuttonCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
