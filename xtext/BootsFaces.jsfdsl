@@ -1518,6 +1518,22 @@ widget radiobutton implemented_by net.bootsfaces.component.radiobutton
     +responsive
 }
 
+widget remoteCommand
+       implemented_by net.bootsfaces.component.remoteCommand.RemoteCommand
+       processes_input
+       extends UICommand
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    name                mandatory                                          "Name of the JavaScript function."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    +ajax
+}
+
 widget row
        implemented_by net.bootsfaces.layout.Row
        has_children
