@@ -42,16 +42,16 @@ public class RemoteCommandRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-		RemoteCommand remoteCommand = (RemoteCommand) component;
+//		RemoteCommand remoteCommand = (RemoteCommand) component;
 
-		if (remoteCommand.isDisabled() ) {
-			return;
-		}
+//		if (component.isDisabled() ) {
+//			return;
+//		}
 
-		decodeBehaviors(context, remoteCommand);
+		decodeBehaviors(context, component);
 
-		String clientId = remoteCommand.getClientId(context);
-		new AJAXRenderer().decode(context, remoteCommand, clientId);
+		String clientId = component.getClientId(context);
+		new AJAXRenderer().decode(context, component, clientId);
 	}
 
 	/**
