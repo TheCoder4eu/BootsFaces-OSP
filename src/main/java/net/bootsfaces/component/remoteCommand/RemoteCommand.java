@@ -61,4 +61,9 @@ public class RemoteCommand extends RemoteCommandCore implements ClientBehaviorHo
 	public Map<String, String> getJQueryEvents() {
 		return null;
 	}
+	
+	@Override
+	public String getDefaultEventName() {
+		return null;
+	}
 }
