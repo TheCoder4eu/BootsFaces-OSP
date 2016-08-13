@@ -24,83 +24,15 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		allowInputToggle,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapse,
-		dayViewHeaderFormat,
-		disableTimeInterval,
-		disabledDates,
-		display,
-		enabledDates,
-		focusOnShow,
-		format,
-		hidden,
-		icon,
-		iconAwesome,
-		immediate,
-		initialDate,
-		keepInvalid,
-		keepOpen,
-		labelStyle,
-		labelStyleClass,
-		largeScreen,
-		locale,
-		maxDate,
-		mediumScreen,
-		minDate,
-		mode,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		oncomplete,
-		ondtchange,
-		placeholder,
-		process,
-		renderLabel,
-		required,
-		requiredMessage,
-		showButtonPanel,
-		showClearButton,
-		showCloseButton,
-		showDate,
-		showTime,
-		showTodayButton,
-		showWeek,
-		sideBySide,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		timeStepping,
-		tinyScreen,
-		toolbarPlacement,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		useCurrent,
-		useStrict,
-		viewMode,
-		visible,
-		weekDaysDisabled,
-		widgetParent;
+		ajax, allowInputToggle, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, disableTimeInterval, disabledDates, display, enabledDates, focusOnShow, format, hidden, icon, iconAwesome, immediate, initialDate, keepInvalid, keepOpen, labelStyle, labelStyleClass, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, oncomplete, ondtchange, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -220,7 +152,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse animation to switch between date/time pickers. <P>
+	 * If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isCollapse() {
@@ -228,7 +160,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse animation to switch between date/time pickers. <P>
+	 * If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapse(boolean _collapse) {
