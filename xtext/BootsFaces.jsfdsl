@@ -1713,6 +1713,7 @@ widget switch
     label-width         Integer                                                     "Width of the center handle in pixels."
     +tooltip
     +responsive
+    +ajax
 }
 
 

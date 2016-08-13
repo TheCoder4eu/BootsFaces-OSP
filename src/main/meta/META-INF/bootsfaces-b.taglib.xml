@@ -17349,6 +17349,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
+		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternate textual description of the input element.]]></description>
 		  <name>alt</name>
 		  <required>false</required>
@@ -17721,8 +17727,26 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The onclick attribute.]]></description>
+		  <name>onclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
+		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17783,6 +17807,18 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17945,6 +17981,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
