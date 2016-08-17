@@ -214,7 +214,7 @@ div > .ui-datepicker-trigger {
 }
 
 
-/* Collapsible panels */
+/* Collapsible panels
 .panel-heading a:after {
     font-family:'Glyphicons Halflings';
     content:"\e114";
@@ -227,7 +227,7 @@ div > .ui-datepicker-trigger {
 a.panel-title-link {
 	outline: thin dotted rgba(255, 255, 255, 0.3);
     outline-offset: 3px;
-}
+} */
 
 /* required fields and displaying errors */
 label.bf-required:after { content:" *"; }
@@ -300,4 +300,3 @@ label.bf-fatal { color: red; }
 .tabs-below > .nav-pills > .active > a:focus {
   border-color: transparent #ddd #ddd #ddd;
 }
-
