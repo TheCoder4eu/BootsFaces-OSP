@@ -112,8 +112,18 @@ public class InputTextRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
 
+		String responsiveLabelClass=null;
+		String label = inputText.getLabel();
+		{
+			if (!inputText.isRenderLabel()) {
+				label = null;
+			}
+		}
+		if (null != label) {
+			responsiveLabelClass = Responsive.getResponsiveLabelClass(inputText);
+		}
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
-		if (responsiveStyleClass.length() > 0) {
+		if (responsiveStyleClass.length() > 0 && responsiveLabelClass == null) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
@@ -125,12 +135,6 @@ public class InputTextRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-		String label = inputText.getLabel();
-		{
-			if (!inputText.isRenderLabel()) {
-				label = null;
-			}
-		}
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -160,11 +164,16 @@ public class InputTextRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass());
+			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass, "control-label");
 			writeAttribute(rw, "style", inputText.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");
+		}
+		
+		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
 
 		if (append || prepend) {

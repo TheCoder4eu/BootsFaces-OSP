@@ -28,10 +28,10 @@ import javax.faces.component.FacesComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
-import net.bootsfaces.component.inputText.InputTextCore.PropertyKeys;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -40,7 +40,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent("net.bootsfaces.component.inputText.InputText")
-public class InputText extends InputTextCore implements IHasTooltip, IAJAXComponent, IResponsive {
+public class InputText extends InputTextCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
 
