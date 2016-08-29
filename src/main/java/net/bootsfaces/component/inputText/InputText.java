@@ -108,7 +108,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public void setTags(boolean _tags) {
 		if (_tags) {
 			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
-			AddResourcesListener.addThemedCSSResource("labels.css");
+			//!bs-less//AddResourcesListener.addThemedCSSResource("labels.css");
 			AddResourcesListener.addThemedCSSResource("bootstrap-tagsinput.css");
 
 		}

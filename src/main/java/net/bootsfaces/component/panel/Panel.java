@@ -53,7 +53,7 @@ public class Panel extends UIComponentBase
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("panels.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

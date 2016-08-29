@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -41,7 +41,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	public DropButton() {
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");
-		AddResourcesListener.addThemedCSSResource("dropdowns.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "js/dropdown.js");

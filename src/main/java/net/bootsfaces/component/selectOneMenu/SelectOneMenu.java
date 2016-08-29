@@ -45,9 +45,9 @@ public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.r
 
 	public SelectOneMenu() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("dropdowns.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -40,7 +40,7 @@ public class Messages extends javax.faces.component.UIMessages implements IRespo
 	public Messages() {
 		super();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("alerts.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("alerts.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/alert.js");
 		setRendererType("net.bootsfaces.component.messages.MessagesRenderer");

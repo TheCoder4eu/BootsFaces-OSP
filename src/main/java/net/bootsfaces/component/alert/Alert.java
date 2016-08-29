@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ public class Alert extends UIComponentBase implements IHasTooltip, IResponsive {
 	public Alert() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("alerts.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("alerts.css");
 
 		setRendererType(DEFAULT_RENDERER);
 	}

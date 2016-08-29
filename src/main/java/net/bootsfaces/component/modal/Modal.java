@@ -27,7 +27,7 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/modal.js", target = "body"), })
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/modal.js", target = "body") })
 @FacesComponent("net.bootsfaces.component.modal.Modal")
 public class Modal extends ModalCore {
 
@@ -40,7 +40,7 @@ public class Modal extends ModalCore {
 	public Modal() {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("modals.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("modals.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

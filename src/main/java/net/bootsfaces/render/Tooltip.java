@@ -130,7 +130,7 @@ public class Tooltip {
 	 */
 	public static void addResourceFiles() {
 		// if (null != getAttributes().get("tooltip")) {
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/tooltip.js");
 		// }
 	}

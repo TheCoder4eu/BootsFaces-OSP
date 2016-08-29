@@ -39,7 +39,7 @@ public class Well extends WellCore implements net.bootsfaces.render.IHasTooltip,
 	public Well() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("wells.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("wells.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
