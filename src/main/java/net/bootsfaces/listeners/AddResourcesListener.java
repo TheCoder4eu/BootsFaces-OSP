@@ -286,9 +286,9 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		// Glyphicons
-		String name = "css/icons.css";
-		createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+		// Glyphicons now icons are in core.css
+		//String name = "css/icons.css";
+		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 		enforceCorrectLoadOrder(root, context);
 	}
 
