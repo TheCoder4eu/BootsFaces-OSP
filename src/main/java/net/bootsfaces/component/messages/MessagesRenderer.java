@@ -146,23 +146,47 @@ public class MessagesRenderer extends CoreRenderer {
 			List<FacesMessage> messages) throws IOException {
 		ResponseWriter writer = facesContext.getResponseWriter();
 		String styleClassPrefix = "";
-		String stylePrefix = "";
+		String stylePrefix = uiMessages.getStyle();
+		if (null == stylePrefix) {
+			stylePrefix="";
+		} else if (!styleClassPrefix.endsWith(";")) {
+			stylePrefix += ";";
+		}
 		String iconStyleClass = "";
 		if ("warn".equals(severity)) {
-			styleClassPrefix = "alert-warning " + uiMessages.getWarnClass();
+			String warnClass = uiMessages.getWarnClass();
+			if (null == warnClass)
+				styleClassPrefix = "alert-warning";
+			else
+				styleClassPrefix = "alert-warning " + warnClass;
 			iconStyleClass = "fa fa-exclamation-triangle";
-			stylePrefix = uiMessages.getWarnStyle();
+			stylePrefix += uiMessages.getWarnStyle();
 		} else if ("fatal".equals(severity)) {
-			styleClassPrefix = "alert-danger " + uiMessages.getFatalClass();
-			stylePrefix = uiMessages.getFatalStyle();
+			String fatalClass = uiMessages.getFatalClass();
+			if (null == fatalClass) {
+				styleClassPrefix = "alert-danger";
+			} else {
+				styleClassPrefix = "alert-danger " + fatalClass;
+			}
+			stylePrefix += uiMessages.getFatalStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("error".equals(severity)) {
-			styleClassPrefix = "alert-danger " + uiMessages.getErrorClass();
-			stylePrefix = uiMessages.getErrorStyle();
+			String errorClass = uiMessages.getErrorClass();
+			if (null == errorClass) {
+				styleClassPrefix = "alert-danger";
+			} else {
+				styleClassPrefix = "alert-danger " + errorClass;
+			}
+			stylePrefix += uiMessages.getErrorStyle();
 			iconStyleClass = "fa fa-exclamation-circle";
 		} else if ("info".equals(severity)) {
-			styleClassPrefix = "alert-info " + uiMessages.getInfoClass();
-			stylePrefix = uiMessages.getInfoStyle();
+			String infoClass = uiMessages.getInfoClass();
+			if (infoClass==null) {
+				styleClassPrefix = "alert-info";
+			} else {
+				styleClassPrefix = "alert-info " + infoClass;
+			}
+			stylePrefix += uiMessages.getInfoStyle();
 			iconStyleClass = "fa fa-info-circle";
 		}
 

@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -48,7 +48,7 @@ public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 	public Label() {
 		setRendererType(null); // this component renders itself
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("labels.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("labels.css");
 		Tooltip.addResourceFiles();
 	}
 
@@ -56,7 +56,7 @@ public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 		return COMPONENT_FAMILY;
 	}
 
-	/** 
+	/**
 	 * Manage EL-expression for snake-case attributes
 	 */
 	public void setValueExpression(String name, ValueExpression binding) {

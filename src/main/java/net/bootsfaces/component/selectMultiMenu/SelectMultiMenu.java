@@ -29,7 +29,8 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:selectMultiMenu /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
+@ResourceDependencies({
+	  @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
@@ -43,9 +44,10 @@ public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfac
 
 	public SelectMultiMenu() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("dropdowns.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-multiselect.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addThemedCSSResource("bootstrap-multiselect.css");
+
 		setRendererType(DEFAULT_RENDERER);
 	}
 

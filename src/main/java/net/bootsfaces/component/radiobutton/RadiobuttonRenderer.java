@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-2016 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -19,14 +19,17 @@
 package net.bootsfaces.component.radiobutton;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -71,9 +74,33 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 //			rw.endElement("input");
 		}
 
+		List<SelectItem> options = SelectItemUtils.collectOptions(context, component);
+		if (options.size()>0) {
+			// traditional JSF approach using f:selectItem[s]
+			int counter=0;
+			for (SelectItem option:options) {
+				generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue,
+						option.getValue(),
+						option.getLabel(), clientId+(counter++));
 
+			}
+
+		} else {
+			// BootsFaces approach using b:radioButtons for each radiobutton item
+			String itemValue = radiobutton.getItemValue();
+			String itemLabel = radiobutton.getItemLabel();
+			String itemId = clientId;
+
+			generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue, itemValue,
+					itemLabel, itemId);
+		}
+	}
+
+	private void generateASingleRadioButton(FacesContext context, UIComponent component, Radiobutton radiobutton,
+			ResponseWriter rw, String propertyName, Object beanValue, Object itemValue, String itemLabel, String itemId)
+			throws IOException {
 		rw.startElement("div", radiobutton);
-		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("id", itemId, null);
 		String styleClass=Responsive.getResponsiveStyleClass(radiobutton, false);
 		String styleClass2 = radiobutton.getStyleClass();
 		if (styleClass2!=null) {
@@ -84,22 +111,25 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		writeAttribute(rw, "style", radiobutton.getStyle());
 		Tooltip.generateTooltip(context, radiobutton, rw);
 		rw.startElement("label", component);
-		rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + radiobutton.getItemValue() + "')", null);
+		rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + itemValue + "')", null);
 		rw.startElement("input", component);
 		rw.writeAttribute("type", "radio", null);
 		rw.writeAttribute("name", propertyName.replace('.','_'), null);
 		if (beanValue!=null) {
-			if (beanValue.toString().equals(radiobutton.getItemValue())) {
+			if (beanValue.toString().equals(itemValue)) {
 				rw.writeAttribute("checked", "checked", null);
 			}
-		} else if (radiobutton.getItemValue()==null){
+		} else if (itemValue==null){
 			rw.writeAttribute("checked", "checked", null);
 		}
 		rw.endElement("input");
-		String label = radiobutton.getItemLabel();
-		if (label!=null) {
-			rw.writeText(label, null);
+		if (itemLabel!=null) {
+			rw.writeText(itemLabel, null);
 		}
+		encodeChildren(context, component);
+		rw.endElement("label");
+		rw.endElement("div");
+		Tooltip.activateTooltips(context, component, itemId);
 	}
 
 	/**
@@ -114,15 +144,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 	 */
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-		if (!component.isRendered()) {
-			return;
-		}
-		Radiobutton radiobutton = (Radiobutton) component;
-		ResponseWriter rw = context.getResponseWriter();
-		String clientId = radiobutton.getClientId();
-		rw.endElement("label");
-		rw.endElement("div");
-		Tooltip.activateTooltips(context, component);
+		// already rendered in encodeBegin
 	}
 
 }

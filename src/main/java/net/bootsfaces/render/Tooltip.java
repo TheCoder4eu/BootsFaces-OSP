@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -31,7 +31,7 @@ import net.bootsfaces.listeners.AddResourcesListener;
 
 /**
  * Renders a tooltip.
- * 
+ *
  * @author Stephan Rauh
  */
 public class Tooltip {
@@ -76,7 +76,7 @@ public class Tooltip {
 		}
 		rw.writeAttribute("data-toggle", "tooltip", null);
 		rw.writeAttribute("data-placement", position, "data-placement");
-		rw.writeAttribute("data-container", container, "data-container"); 
+		rw.writeAttribute("data-container", container, "data-container");
 		rw.writeAttribute("title", tooltip, null);
 	}
 
@@ -100,7 +100,7 @@ public class Tooltip {
 		}
 		return null;
 	}
-	
+
 	private static String getAndCheckDelayAttribute(String attributeName, Map<String, Object> attrs,
 			String htmlAttributeName) throws FacesException {
 		Object value = attrs.get(attributeName);
@@ -116,12 +116,12 @@ public class Tooltip {
 			else if (value instanceof Integer) {
 				return htmlAttributeName + ":" + value;
 			}
-			
+
 			//if we reach this point, the value wasn't accepted as Integer
 			throw new FacesException("The attribute " + attributeName + " has to be numeric. The value '"
 					+ value + "' is invalid.");
 		}
-		
+
 		return null;
 	}
 
@@ -130,16 +130,20 @@ public class Tooltip {
 	 */
 	public static void addResourceFiles() {
 		// if (null != getAttributes().get("tooltip")) {
-		AddResourcesListener.addThemedCSSResource("tooltip.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("tooltip.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/tooltip.js");
 		// }
 	}
 
 	public static void activateTooltips(FacesContext context, UIComponent component)
 			throws IOException {
+		String id = component.getClientId();
+		activateTooltips(context, component, id);
+	}
+
+	public static void activateTooltips(FacesContext context, UIComponent component, String id) throws IOException {
 		Map<String, Object> attributes = component.getAttributes();
 		if (attributes.get("tooltip") != null) {
-			String id = component.getClientId();
 			id = id.replace(":", "\\\\:"); // we need to escape the id for
 											// jQuery
 			String delayOptions = generateDelayAttributes(attributes);

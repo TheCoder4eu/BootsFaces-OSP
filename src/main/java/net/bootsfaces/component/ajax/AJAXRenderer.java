@@ -66,7 +66,6 @@ public class AJAXRenderer extends CoreRenderer {
 				source = componentId;
 			}
 		}
-
 		if (source != null && source.equals(componentId)) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
@@ -175,13 +174,14 @@ public class AJAXRenderer extends CoreRenderer {
 			throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
-		for (String keyClientBehavior : eventNames) {
-			if (null != ((IAJAXComponent) component).getJQueryEvents())
-				if (((IAJAXComponent) component).getJQueryEvents().containsKey(keyClientBehavior))
-					continue;
-			generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
-					specialEventHandler, isJQueryCallback, keyClientBehavior, null);
-
+		if (null != eventNames) {
+			for (String keyClientBehavior : eventNames) {
+				if (null != ((IAJAXComponent) component).getJQueryEvents())
+					if (((IAJAXComponent) component).getJQueryEvents().containsKey(keyClientBehavior))
+						continue;
+				generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
+						specialEventHandler, isJQueryCallback, keyClientBehavior, null);
+			}
 		}
 		if (!generatedAJAXCall) {
 			// should we generate AJAX nonetheless?
@@ -533,7 +533,7 @@ public class AJAXRenderer extends CoreRenderer {
 			if (code.length() > 0) {
 				rw.startElement("script", component);
 				String js = "$('" + jQueryExpressionOfTargetElement + "').on('" + ajaxComponent.getJQueryEvents().get(event)
-						+ "', function(e){" + code.toString() + "});";
+						+ "', function(event){" + code.toString() + "});";
 				rw.writeText(js, null);
 				rw.endElement("script");
 			}

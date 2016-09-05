@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -218,7 +219,7 @@ public class DataTableRenderer extends CoreRenderer {
 						rw.writeText(value, null);
 					}
 
-					column.encodeChildren(context);
+					renderChildrenOfColumn(column, context);
 					rw.endElement("td");
 				}
 				rw.endElement("tr");
@@ -227,7 +228,27 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("tbody");
 		dataTable.setRowIndex(-1);
 	}
+	
+	private void renderChildrenOfColumn(UIComponent column, FacesContext context) throws IOException {
+		resetClientIdCacheRecursively(column);
+		column.encodeChildren(context);
+	}
 
+	private void resetClientIdCacheRecursively(UIComponent c) {
+		String id=c.getId();
+		if (null != id) {
+			c.setId(id); // this strange operation clears the cache of the clientId
+		}
+		Iterator<UIComponent> children = c.getFacetsAndChildren();
+		if (children != null) {
+			while (children.hasNext()) {
+				UIComponent kid = children.next();
+				resetClientIdCacheRecursively(kid);
+			}
+		}
+	}
+
+	
 	private void generateHeader(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
 		rw.startElement("thead", dataTable);
 		rw.startElement("tr", dataTable);

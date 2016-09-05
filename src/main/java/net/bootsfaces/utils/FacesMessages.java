@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-2016 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -25,10 +25,11 @@ import javax.faces.application.Application;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import net.bootsfaces.expressions.ExpressionResolver;
+
 /**
- * Simplified reporting of errors, warning or informations to the user of our
- * JSF application.
- * 
+ * Simplified reporting of errors, warning or informations to the user of our JSF application.
+ *
  * @author stephan
  *
  */
@@ -36,71 +37,102 @@ public class FacesMessages {
 	/**
 	 * Adds a FATAL message.
 	 *
-	 * @param detail The message.
+	 * @param detail
+	 *            The message.
 	 */
 	public static void fatal(String detail) {
 		fatal("", detail);
 	}
+
 	public static void fatal(String summary, String detail) {
 		fatal(null, summary, detail);
 	}
+
 	public static void fatal(String refItem, String summary, String detail) {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_FATAL, summary, detail);
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(refItem, facesMsg);
+		reportMessage(refItem, facesMsg);
 	}
-	
+
 	/**
 	 * Adds a ERROR message.
 	 *
-	 * @param detail The message.
+	 * @param detail
+	 *            The message.
 	 */
 	public static void error(String detail) {
 		error("", detail);
 	}
+
 	public static void error(String summary, String detail) {
 		error(null, summary, detail);
 	}
+
 	public static void error(String refItem, String summary, String detail) {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, summary, detail);
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(refItem, facesMsg);
+		reportMessage(refItem, facesMsg);
 	}
-	
+
 	/**
 	 * Adds a WARNING message.
 	 *
-	 * @param detail The message.
+	 * @param detail
+	 *            The message.
 	 */
 	public static void warning(String detail) {
 		warning("", detail);
 	}
+
 	public static void warning(String summary, String detail) {
 		warning(null, summary, detail);
 	}
+
 	public static void warning(String refItem, String summary, String detail) {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_WARN, summary, detail);
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(refItem, facesMsg);
+		reportMessage(refItem, facesMsg);
 	}
-	
+
 	/**
 	 * Adds an INFO message.
 	 *
-	 * @param detail The message.
+	 * @param detail
+	 *            The message.
 	 */
 	public static void info(String detail) {
 		info("", detail);
 	}
+
 	public static void info(String summary, String detail) {
 		info(null, summary, detail);
 	}
+
 	public static void info(String refItem, String summary, String detail) {
 		FacesMessage facesMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage(refItem, facesMsg);
+		reportMessage(refItem, facesMsg);
 	}
-	
+
+	private static void reportMessage(String refItem, FacesMessage facesMsg) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		refItem = resolveSearchExpressions(refItem);
+		if (null != refItem) {
+			String[] refItems = refItem.split(" ");
+			for (String r : refItems) {
+				context.addMessage(r, facesMsg);
+			}
+		} else {
+			context.addMessage(null, facesMsg);
+		}
+	}
+
+	private static String resolveSearchExpressions(String refItem) {
+		if (refItem != null) {
+			if (refItem.contains("@") || refItem.contains("*")) {
+				refItem = ExpressionResolver.getComponentIDs(FacesContext.getCurrentInstance(),
+						FacesContext.getCurrentInstance().getViewRoot(), refItem);
+			}
+		}
+		return refItem;
+	}
+
 	/** copied from the JSF API (because the original method is not publicly visible) */
 	protected static ClassLoader getCurrentLoader(Class<?> fallbackClass) {
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
@@ -109,11 +141,15 @@ public class FacesMessages {
 		}
 		return loader;
 	}
-	
-	/** slightly simplified version of the corresponding method of the JSF API (because the original method
-	 * is not publicly visible)
-	 * @param messageId The id of the error message in the message bundle
-	 * @param label The label of the input field
+
+	/**
+	 * slightly simplified version of the corresponding method of the JSF API (because the original method is not
+	 * publicly visible)
+	 *
+	 * @param messageId
+	 *            The id of the error message in the message bundle
+	 * @param label
+	 *            The label of the input field
 	 */
 	public static void createErrorMessageFromResourceBundle(String clientId, String messageId, String label) {
 		String summary = null;
@@ -159,5 +195,5 @@ public class FacesMessages {
 		// At this point, we have a summary and a bundle.
 		FacesMessages.error(clientId, summary, detail);
 	}
-	
+
 }

@@ -37,7 +37,7 @@ import net.bootsfaces.render.Responsive;
 /** This class generates the HTML code of &lt;b:message /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.message.Message")
 public class MessageRenderer extends CoreRenderer {
-	private static boolean escapeWarningHasBeenShown=false;
+	private static boolean escapeWarningHasBeenShown = false;
 
 	/**
 	 * This methods generates the HTML code of the current b:message.
@@ -89,25 +89,33 @@ public class MessageRenderer extends CoreRenderer {
 			styleClass += Responsive.getResponsiveStyleClass(message, false);
 
 			writeAttribute(rw, "class", styleClass.trim());
-			writeAttribute(rw, "style", findHighestSeverityStyle(messageList, message));
+			String style = message.getStyle();
+			if (null == style)
+				style = "";
+			else if (!style.endsWith(";"))
+				style += ";";
+			String severityStyle = findHighestSeverityStyle(messageList, message);
+			if (null==severityStyle) severityStyle=""; else if (!severityStyle.endsWith(";")) severityStyle+=";";
+			
+			writeAttribute(rw, "style", style+severityStyle);
 			writeAttribute(rw, "role", "alert");
 
 			boolean onlyMostSevere = message.isOnlyMostSevere();
 			FacesMessage mostSevere = null;
 			if (onlyMostSevere) {
 				for (FacesMessage msg : messageList) {
-					if (null==mostSevere) {
-						mostSevere=msg;
-					} else if (msg.getSeverity().getOrdinal()>mostSevere.getSeverity().getOrdinal()) {
-						mostSevere=msg;
+					if (null == mostSevere) {
+						mostSevere = msg;
+					} else if (msg.getSeverity().getOrdinal() > mostSevere.getSeverity().getOrdinal()) {
+						mostSevere = msg;
 					}
 				}
 			}
 
-			boolean firstMessage=true;
+			boolean firstMessage = true;
 
 			for (FacesMessage msg : messageList) {
-				if (onlyMostSevere && msg!=mostSevere) {
+				if (onlyMostSevere && msg != mostSevere) {
 					continue;
 				}
 				if (!firstMessage) {
@@ -115,7 +123,7 @@ public class MessageRenderer extends CoreRenderer {
 						rw.append(message.getLineBreakTag());
 					}
 				}
-				firstMessage=false;
+				firstMessage = false;
 
 				if (message.isShowIcon()) {
 					rw.startElement("span", component);
@@ -124,8 +132,7 @@ public class MessageRenderer extends CoreRenderer {
 					rw.endElement("span");
 				}
 
-				if (message.isShowSummary() && msg.getSummary() != null &&
-						!msg.getSummary().equals(msg.getDetail()) ) {
+				if (message.isShowSummary() && msg.getSummary() != null && !msg.getSummary().equals(msg.getDetail())) {
 					rw.startElement("span", component);
 					writeAttribute(rw, "class", "bf-message-summary");
 					if (message.isEscape()) {
@@ -157,8 +164,9 @@ public class MessageRenderer extends CoreRenderer {
 
 	public static void warnOnFirstUse() {
 		if (!escapeWarningHasBeenShown) {
-			System.out.println("One of your application's component deactivates HTML and JavaScript escaping. This is discouraged because it might be a security issue if not used carefully. Use at own risk.");
-			escapeWarningHasBeenShown=true;
+			System.out.println(
+					"One of your application's component deactivates HTML and JavaScript escaping. This is discouraged because it might be a security issue if not used carefully. Use at own risk.");
+			escapeWarningHasBeenShown = true;
 		}
 	}
 

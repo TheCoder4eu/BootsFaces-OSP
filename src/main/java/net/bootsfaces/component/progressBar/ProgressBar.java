@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-2016 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -38,7 +38,7 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.progressBar.ProgressBar";
 
 	public ProgressBar() {
-		AddResourcesListener.addThemedCSSResource("progress-bars.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("progress-bars.css");
 		Tooltip.addResourceFiles();
 		setRendererType(DEFAULT_RENDERER);
 	}

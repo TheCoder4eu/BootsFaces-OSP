@@ -39,7 +39,8 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:carousel /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
+@ResourceDependencies({
+	@ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
 	@ResourceDependency(library = "bsf", name = "js/transition.js", target = "head")
 })
 @FacesComponent("net.bootsfaces.component.carousel.Carousel")
@@ -55,7 +56,7 @@ public class Carousel extends UICommand
 	public Carousel() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("carousel.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("carousel.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		setRendererType(DEFAULT_RENDERER);

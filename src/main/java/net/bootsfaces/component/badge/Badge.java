@@ -38,7 +38,7 @@ public class Badge extends BadgeCore implements net.bootsfaces.render.IHasToolti
 
 	public Badge() {
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("badges.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("badges.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

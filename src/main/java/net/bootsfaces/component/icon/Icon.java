@@ -48,7 +48,7 @@ public class Icon extends IconCore implements net.bootsfaces.render.IHasTooltip,
 	public Icon() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("icons.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("icons.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

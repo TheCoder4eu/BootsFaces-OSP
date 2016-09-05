@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -39,7 +39,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider.Slider";
 
 	public Slider() {
-		AddResourcesListener.addThemedCSSResource("badges.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("badges.css");
 		AddResourcesListener.addThemedCSSResource("jq.ui.core.css");
 		AddResourcesListener.addThemedCSSResource("jq.ui.theme.css");
 		AddResourcesListener.addThemedCSSResource("jq.ui.slider.css");
@@ -70,7 +70,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * Method added to prevent AngularFaces from setting the type
-	 * 
+	 *
 	 * @param type
 	 *            this parameter is ignored
 	 */

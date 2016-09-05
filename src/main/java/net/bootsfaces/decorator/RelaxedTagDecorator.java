@@ -27,6 +27,9 @@ import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
 import javax.faces.view.facelets.TagDecorator;
 
+import net.bootsfaces.expressions.decorator.AFTagAttributes;
+import net.bootsfaces.expressions.decorator.TagAttributeUtilities;
+
 /**
  * A simple tag decorator to enable jsf: syntax
  */

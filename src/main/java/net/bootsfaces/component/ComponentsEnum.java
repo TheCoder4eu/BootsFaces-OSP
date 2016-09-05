@@ -57,6 +57,7 @@ public enum ComponentsEnum {
 	poll("<b:poll", "poll", "net.bootsfaces.component.poll.Poll"),
 	progressBar("<b:progressBar", "progressBar", "net.bootsfaces.component.progressBar.ProgressBar"),
 	radiobutton("<b:radiobutton", "radiobutton", "net.bootsfaces.component.radiobutton.Radiobutton"),
+	remoteCommand("<b:remoteCommand", "remoteCommand", "net.bootsfaces.component.remoteCommand.RemoteCommand"),
 	row("<b:row", "row", "net.bootsfaces.component.row.Row"),
 	scrollUp("<b:scrollUp", "scrollUp", "net.bootsfaces.component.scrollUp.ScrollUp"),
 	scrollSpy("<b:scrollSpy", "scrollSpy", "net.bootsfaces.component.scrollSpy.ScrollSpy"),

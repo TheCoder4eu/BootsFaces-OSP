@@ -112,6 +112,29 @@ public class Responsive {
 	 * @param size
 	 * @return
 	 */
+	private static String getSize(IResponsiveLabel r, Sizes size) {
+		String colSize = "-1";
+		switch(size) {
+		case xs:
+			colSize = r.getLabelColXs();
+			if(colSize.equals("-1")) colSize = r.getLabelTinyScreen();
+			break;
+		case sm:
+			colSize = r.getLabelColSm();
+			if(colSize.equals("-1")) colSize = r.getLabelSmallScreen();
+			break;
+		case md:
+			colSize = r.getLabelColMd();
+			if(colSize.equals("-1")) colSize = r.getLabelMediumScreen();
+			break;
+		case lg:
+			colSize = r.getLabelColLg();
+			if(colSize.equals("-1")) colSize = r.getLabelLargeScreen();
+			break;
+		}
+		return colSize;
+	}
+	
 	private static String getSize(IResponsive r, Sizes size) {
 		String colSize = "-1";
 		switch(size) {
@@ -358,6 +381,35 @@ public class Responsive {
 
 		return tokens;
 	}
+	
+	/**
+	 * Create the responsive class combination
+	 * @param r the component bearing the responsiveness attributes
+	 * @return null, if there's no label-col-xx attribute
+	 */
+	public static String getResponsiveLabelClass(IResponsiveLabel r) {
+		int colxs = sizeToInt(getSize(r, Sizes.xs));
+		int colsm = sizeToInt(getSize(r, Sizes.sm));
+		int colmd = sizeToInt(getSize(r, Sizes.md));
+		int collg = sizeToInt(getSize(r, Sizes.lg));
+
+		if (colmd > 0) {
+			return "col-md-"+ colmd;
+		}
+
+		if (colxs > 0) {
+			return "col-xs-"+ colxs;
+		}
+		if (colsm > 0) {
+			return "col-sm-"+ colsm;
+		}
+		if (collg > 0) {
+			return "col-lg-"+ collg;
+		}
+
+		return null;
+	}
+
 
 	// TEST METHOD
 	public static void main(String[] args)

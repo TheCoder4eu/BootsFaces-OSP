@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -52,7 +52,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		// "jq/jquery.js");
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("navbar.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("navbar.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
@@ -62,7 +62,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 * Dynamically add custom css to manage non-sticky footer. In this way, only
 	 * if fixed attribute is "non-sticky" the system load the correct css that
 	 * manages all style aspect of this functionlity.
-	 * 
+	 *
 	 * This is also cross-theme.
 	 */
 	@Override

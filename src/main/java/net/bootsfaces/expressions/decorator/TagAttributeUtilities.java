@@ -1,4 +1,4 @@
-package net.bootsfaces.decorator;
+package net.bootsfaces.expressions.decorator;
 /**
  *  (C) 2013-2015 Stephan Rauh http://www.beyondjava.net
  *

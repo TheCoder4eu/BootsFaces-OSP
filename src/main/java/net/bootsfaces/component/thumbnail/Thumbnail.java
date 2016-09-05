@@ -42,7 +42,7 @@ public class Thumbnail extends ThumbnailCore implements net.bootsfaces.render.IH
 
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("thumbnails.css");
+		//!bs-less//AddResourcesListener.addThemedCSSResource("thumbnails.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

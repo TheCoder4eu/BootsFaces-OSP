@@ -24,64 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		allowInputToggle,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapse,
-		dayViewHeaderFormat,
-		disableTimeInterval,
-		disabledDates,
-		display,
-		enabledDates,
-		focusOnShow,
-		format,
-		hidden,
-		initialDate,
-		keepInvalid,
-		keepOpen,
-		largeScreen,
-		locale,
-		maxDate,
-		mediumScreen,
-		minDate,
-		mode,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		placeholder,
-		required,
-		requiredMessage,
-		showButtonPanel,
-		showClearButton,
-		showCloseButton,
-		showDate,
-		showTime,
-		showTodayButton,
-		showWeek,
-		sideBySide,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		timeStepping,
-		tinyScreen,
-		toolbarPlacement,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		useCurrent,
-		useStrict,
-		viewMode,
-		visible,
-		weekDaysDisabled;
+		ajax, allowInputToggle, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, disableTimeInterval, disabledDates, display, enabledDates, focusOnShow, format, hidden, icon, iconAwesome, immediate, initialDate, keepInvalid, keepOpen, labelStyle, labelStyleClass, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, oncomplete, ondtchange, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -94,6 +37,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+	}
+
+	/**
+	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
 	/**
@@ -193,7 +152,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse to switch between date/time pickers. <P>
+	 * If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isCollapse() {
@@ -201,7 +160,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Using a Bootstraps collapse to switch between date/time pickers. <P>
+	 * If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCollapse(boolean _collapse) {
@@ -337,6 +296,54 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * Picker Icon, can be one of the Bootstrap icon names.  <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.icon);
+	}
+
+	/**
+	 * Picker Icon, can be one of the Bootstrap icon names.  <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIcon(String _icon) {
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
+
+	/**
+	 * Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAwesome() {
+		return (String) getStateHelper().eval(PropertyKeys.iconAwesome);
+	}
+
+	/**
+	 * Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAwesome(String _iconAwesome) {
+		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isImmediate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
+	}
+
+	/**
+	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setImmediate(boolean _immediate) {
+		getStateHelper().put(PropertyKeys.immediate, _immediate);
+	}
+
+	/**
 	 * Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -382,6 +389,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setKeepOpen(boolean _keepOpen) {
 		getStateHelper().put(PropertyKeys.keepOpen, _keepOpen);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyle);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyle(String _labelStyle) {
+		getStateHelper().put(PropertyKeys.labelStyle, _labelStyle);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyleClass);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyleClass(String _labelStyleClass) {
+		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
 	}
 
 	/**
@@ -561,6 +600,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * JavaScript to be executed when ajax completes with success. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOncomplete() {
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * JavaScript event to manage date time change. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndtchange() {
+		return (String) getStateHelper().eval(PropertyKeys.ondtchange);
+	}
+
+	/**
+	 * JavaScript event to manage date time change. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndtchange(String _ondtchange) {
+		getStateHelper().put(PropertyKeys.ondtchange, _ondtchange);
+	}
+
+	/**
 	 * The placeholder attribute shows text in a field until the field is focused upon, then hides the text. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -574,6 +645,39 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setPlaceholder(String _placeholder) {
 		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		return (String) getStateHelper().eval(PropertyKeys.process);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
+				net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderLabel(boolean _renderLabel) {
+		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
 	}
 
 	/**
@@ -945,6 +1049,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getUpdate() {
+		return (String) getStateHelper().eval(PropertyKeys.update);
+	}
+
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
+	}
+
+	/**
 	 * On show, will set the picker to the current date/time. Default: true. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -1022,6 +1142,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setWeekDaysDisabled(String _weekDaysDisabled) {
 		getStateHelper().put(PropertyKeys.weekDaysDisabled, _weekDaysDisabled);
+	}
+
+	/**
+	 * Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidgetParent() {
+		return (String) getStateHelper().eval(PropertyKeys.widgetParent);
+	}
+
+	/**
+	 * Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidgetParent(String _widgetParent) {
+		getStateHelper().put(PropertyKeys.widgetParent, _widgetParent);
 	}
 
 }

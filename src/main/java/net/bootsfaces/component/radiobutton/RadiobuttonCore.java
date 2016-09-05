@@ -18,9 +18,15 @@
 
 package net.bootsfaces.component.radiobutton;
 
+import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.component.inputText.InputText;
 
-/** This class holds the attributes of &lt;b:radiobutton /&gt;. */
+/** This class holds the attributes of &lt;b:radiobutton /&gt;. 
+ * The annotation is necessary to prevent Mojarra from confusing b:inputText with b:radioButtonCore.
+ * The latter doesn't exist, making Mojarra crash. */
+
+@FacesComponent("net.bootsfaces.component.radiobuttonCore.RadiobuttonCore")
 public abstract class RadiobuttonCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
@@ -236,7 +242,7 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	}
 
 	/**
-	 * The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using <f:selectItem /> or <f:selectItems />. <P>
+	 * The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using &lt;f:f:selectItem /&gt; or &lt;f:selectItems /&gt;. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getItemLabel() {
@@ -244,7 +250,7 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	}
 
 	/**
-	 * The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using <f:selectItem /> or <f:selectItems />. <P>
+	 * The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using &lt;f:f:selectItem /&gt; or &lt;f:selectItems /&gt;. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setItemLabel(String _itemLabel) {
@@ -252,7 +258,7 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	}
 
 	/**
-	 * Value of the item. Must be omitted if you use the traditional JSF approach using <f:selectItem /> or <f:selectItems />. <P>
+	 * Value of the item. Must be omitted if you use the traditional JSF approach using &lt;f:selectItem /&gt; or &lt;f:selectItems /&gt;. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getItemValue() {
@@ -260,7 +266,7 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	}
 
 	/**
-	 * Value of the item. Must be omitted if you use the traditional JSF approach using <f:selectItem /> or <f:selectItems />. <P>
+	 * Value of the item. Must be omitted if you use the traditional JSF approach using &lt;f:selectItem /&gt; or &lt;f:selectItems /&gt;. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setItemValue(String _itemValue) {

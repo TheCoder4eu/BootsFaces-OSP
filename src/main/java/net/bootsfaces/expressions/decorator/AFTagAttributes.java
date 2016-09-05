@@ -1,4 +1,4 @@
-package net.bootsfaces.decorator;
+package net.bootsfaces.expressions.decorator;
 /**
  *  (C) 2013-2015 Stephan Rauh http://www.beyondjava.net
  *
@@ -57,6 +57,16 @@ public final class AFTagAttributes extends TagAttributes {
 			TagAttribute a = attrs[i];
 			if (a.getLocalName().equals(old)) {
 				a = TagAttributeUtilities.createTagAttribute(a.getLocation(), JSF_NAMESPACE, replacement, replacement, a.getValue());
+				attrs[i] = a;
+			}
+		}
+	}
+
+	public void replaceAttributeValue(String name, String newValue) {
+		for (int i = 0; i < attrs.length;i++) {
+			TagAttribute a = attrs[i];
+			if (a.getLocalName().equals(name)) {
+				a = TagAttributeUtilities.createTagAttribute(a.getLocation(), JSF_NAMESPACE, name, a.getQName(), newValue);
 				attrs[i] = a;
 			}
 		}

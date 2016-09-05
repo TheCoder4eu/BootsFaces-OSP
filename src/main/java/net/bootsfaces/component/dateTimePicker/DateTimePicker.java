@@ -20,8 +20,13 @@ package net.bootsfaces.component.dateTimePicker;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
@@ -30,6 +35,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
@@ -39,13 +45,17 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
 @FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePicker extends DateTimePickerCore
-implements net.bootsfaces.render.IHasTooltip, IResponsive {
+implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
+	
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown",
+					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public DateTimePicker() {
 		Tooltip.addResourceFiles();
@@ -58,6 +68,22 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive {
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+	
+
+	@Override
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("dtchange", "dp.change");
+		return result;
+	}
+	
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "click";
 	}
 
 	/**
@@ -80,7 +106,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive {
 		if (val.trim().length() == 0) {
 			return null;
 		}
-		// System.out.println("CV: " + val);
+		//System.out.println("CV: " + val);
 
 		Converter converter = this.getConverter();
 
@@ -90,9 +116,9 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive {
 		}
 		// Else we use our own converter
 		Locale sloc = BsfUtils.selectLocale(context.getViewRoot().getLocale(), this.getLocale(), this);
-		String sdf = BsfUtils.selectDateFormat(sloc, this.getFormat());
+		String componentFormat = BsfUtils.selectDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
+		String sdf = BsfUtils.selectDateFormat(sloc, componentFormat);
 		sdf = LocaleUtils.momentToJavaFormat(sdf);
-		// System.out.println("Date format: " + sdf);
 
 		Calendar cal = Calendar.getInstance(sloc);
 		SimpleDateFormat format = new SimpleDateFormat(sdf, sloc);
@@ -100,7 +126,6 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive {
 
 		try {
 			cal.setTime(format.parse(val));
-			cal.set(Calendar.HOUR_OF_DAY, 12);
 
 			return cal.getTime();
 		} catch (ParseException e) {

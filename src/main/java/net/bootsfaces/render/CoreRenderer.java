@@ -99,7 +99,7 @@ public class CoreRenderer extends Renderer {
 	 * @throws IOException
 	 */
 	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
-		String styleClass = getErrorAndRequiredClass(input, clientId);
+		getErrorAndRequiredClass(input, clientId);
 		generateErrorAndRequiredClass(input, rw, clientId, null);
 	}
 
@@ -115,10 +115,46 @@ public class CoreRenderer extends Renderer {
 	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass) {
-			styleClass += " " + additionalClass;
+			additionalClass = additionalClass.trim();
+			if (additionalClass.trim().length()>0) {
+				styleClass += " " + additionalClass;
+			}
 		}
 		rw.writeAttribute("class", styleClass, "class");
 	}
+	
+	/**
+	 * Renders the CSS pseudo classes for required fields and for the error
+	 * levels.
+	 *
+	 * @param input
+	 * @param rw
+	 * @param clientId
+	 * @throws IOException
+	 */
+	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass1, String additionalClass2, String additionalClass3) throws IOException {
+		String styleClass = getErrorAndRequiredClass(input, clientId);
+		if (null != additionalClass1) {
+			additionalClass1 = additionalClass1.trim();
+			if (additionalClass1.trim().length()>0) {
+				styleClass += " " + additionalClass1;
+			}
+		}
+		if (null != additionalClass2) {
+			additionalClass2 = additionalClass2.trim();
+			if (additionalClass2.trim().length()>0) {
+				styleClass += " " + additionalClass2;
+			}
+		}
+		if (null != additionalClass3) {
+			additionalClass3 = additionalClass3.trim();
+			if (additionalClass3.trim().length()>0) {
+				styleClass += " " + additionalClass3;
+			}
+		}
+		rw.writeAttribute("class", styleClass, "class");
+	}
+
 
 	/**
 	 * Yields the value of the required and error level CSS class.
@@ -128,7 +164,7 @@ public class CoreRenderer extends Renderer {
 	 * @return
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String[] levels = { "bf-no-message", "bf-info", "bf-warning", "bf-error", "bf-fatal" };
+		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error", "bf-fatal has-error" };
 		int level = 0;
 		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
 		if (null != messages) {
@@ -185,7 +221,7 @@ public class CoreRenderer extends Renderer {
 		if (!(component instanceof ClientBehaviorHolder)) {
 			return;
 		}
-
+		
 		Map<String, List<ClientBehavior>> behaviors = ((ClientBehaviorHolder) component).getClientBehaviors();
 		if (behaviors.isEmpty()) {
 			return;
