@@ -33,6 +33,9 @@ ext.bootswatchZipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
 
 def bootswatchZip = new File(buildDir, 'bootswatch-'+BootswatchFullVersion.replace('+','-')+'.zip')
 
+ext.downloadPatternFlyURL = 'https://github.com/patternfly/patternfly/archive/v'+PatternFlyVersion+'.zip'
+
+def PatternFlyZip = new File(buildDir, 'patternfly-'+PatternFlyVersion+'.zip')
 
 task themesTask {
    println "Bootstrap: Configured themes:"
@@ -102,7 +105,22 @@ task themesTaskAll (dependsOn: ['downloadBootswatchZipFile',tasks.matching { Tas
 println "${project.name}: INFO: Processing Bootswatch Themes:"
 }
 themesTaskAll.onlyIf { themes.size() > 0 }
+/**
+ * The following two tasks downloads a ZIP file and extracts its
+ * contents to the build directory
+ */
+task downloadPatternFlyZipFile(type: Download) {
+    src downloadPatternFlyURL
+    dest PatternFlyZip //new File(buildDir, 'bootstrap'+BootstrapVersion+'.zip')
+}
+downloadPatternFlyZipFile.onlyIf { !PatternFlyZip.exists() }
 
-task downloadResources(dependsOn: ['downloadAndUnzipBootstrap', 'themesTaskAll']) {
+task downloadAndUnzipPatternFly(dependsOn: downloadPatternFlyZipFile, type: Copy) {
+    from zipTree(PatternFlyZip)
+    into "${buildDir}/extracted"
+}
+downloadAndUnzipPatternFly.onlyIf { (PatternFlyVersion!=null) && (PatternFlyVersion.length()>0) }
+
+task downloadResources(dependsOn: ['downloadAndUnzipBootstrap', 'themesTaskAll', 'downloadAndUnzipPatternFly']) {
   description 'downloadResources task: downloads and unzips Bootstrap and Bootswatch(if needed).'
 }

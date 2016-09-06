@@ -19,6 +19,7 @@
  ext.extractedResources=project(':gradleResources:Bootstrap').buildDir.toString()+'/extracted'
  ext.BootstrapFolder = extractedResources+'/bootstrap-'+BootstrapVersion
  ext.BootswatchFolder = extractedResources+'/bootswatch-'+BootswatchFullVersion.replace('+','-')
+ ext.PatternFlyFolder = extractedResources+'/patternfly-'+PatternFlyVersion
 
  ext.staticResourcesDir = "${projectDir}/staticResources"
 
