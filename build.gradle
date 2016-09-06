@@ -22,6 +22,8 @@ props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
 //Bootstrap
 ext.BootstrapVersion = props['bootstrap.version']
+//PatternFly
+ext.PatternFlyVersion = props['patternfly.version']
 
 ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
 ext.BootswatchFullVersion = props['bootstrap.version']+props['bootswatch.subversion']
@@ -32,7 +34,7 @@ if(System.getProperty("BSF-THEME", "") != "") {
    ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
 } else {
    ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
-   ext.allThemes= ('default,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
+   ext.allThemes= ('default,patternfly,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
    println 'Themes('+themes.size+'):'+props['bootswatch.theme']
 }
 
