@@ -1130,6 +1130,17 @@ widget jumbotron
 	+tooltip
 }
 
+widget kebab 
+       implemented_by net.bootsfaces.component.Kebab
+       extends UIComponentBase
+       has_children
+ {
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	+style
+}
+
 widget label
        implemented_by net.bootsfaces.component.Label
        extends UIComponentBase

@@ -42,6 +42,7 @@ public enum ComponentsEnum {
 	internalIE8CompatibilityLink("<b:internalIE8CompatibilityLink", "internalIE8CompatibilityLink",
 			"net.bootsfaces.component.internalIE8CompatibilityLink.InternalIE8CompatibilityLink"),
 	jumbotron("<b:jumbotron", "jumbotron", "net.bootsfaces.component.jumbotron.Jumbotron"),
+	kebab("<b:kebab","kebab","net.bootsfaces.component.kebab.Kebab"),
 	label("<b:label", "label", "net.bootsfaces.component.label.Label"),
 	listLinks("<b:listLinks", "listLinks", "net.bootsfaces.component.listLinks.ListLinks"),
 	message("<b:message", "message", "net.bootsfaces.component.message.Message"),

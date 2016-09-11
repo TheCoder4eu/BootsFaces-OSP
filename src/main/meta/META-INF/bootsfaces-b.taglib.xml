@@ -11972,6 +11972,50 @@
 		</attribute>
 	</tag>
 	
+	<!-- *********** b:kebab ************************* -->
+	<tag>
+		<tag-name>kebab</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.kebab.Kebab</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
+		  <name>binding</name>
+		  <required>false</required>
+		  <type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
 	<!-- *********** b:label ************************* -->
 	<tag>
 		<tag-name>label</tag-name>
