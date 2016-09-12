@@ -111,7 +111,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
 				htmlTag = "li";
 			}
 		}
