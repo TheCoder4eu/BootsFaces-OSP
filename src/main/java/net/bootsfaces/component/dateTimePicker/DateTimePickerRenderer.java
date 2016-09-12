@@ -265,12 +265,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			// end
 			rw.endElement("div");
-			if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
-				rw.endElement("div");
-			} else if (label != null) {
-				rw.endElement("div");
-			}
 		}
+
+		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+			rw.endElement("div");
+		} else if (label != null) {
+			rw.endElement("div");
+		}
+
 		return divPrefix;
 	}
 
@@ -309,7 +311,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
 			openOnClick=true;
 		}
-		System.out.println("View date format: " + displayFormat);
 
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
