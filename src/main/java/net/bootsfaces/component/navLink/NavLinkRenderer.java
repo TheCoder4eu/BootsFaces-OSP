@@ -38,6 +38,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.dropMenu.DropMenu;
 import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
+import net.bootsfaces.component.kebab.Kebab;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.component.listLinks.ListLinks;
 import net.bootsfaces.component.navBar.NavBar;
