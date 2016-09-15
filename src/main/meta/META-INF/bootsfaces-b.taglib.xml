@@ -19680,12 +19680,314 @@
 		</attribute>
 	</tag>
 	
+	<!-- *********** b:slider2 ************************* -->
+	<tag>
+		<tag-name>slider2</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.slider2.Slider2</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
+		  <name>binding</name>
+		  <required>false</required>
+		  <type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, you can't move the slider, nor can you edit the number.]]></description>
+		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Focus the appropriate slider handle after a value change.]]></description>
+		  <name>focus</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Javascript function that returns the plain value to be displayed in the tooltip]]></description>
+		  <name>formatter</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom']]></description>
+		  <name>handle-shape</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom']]></description>
+		  <name>handleShape</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide.]]></description>
+		  <name>inline</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Label for the widget field.]]></description>
+		  <name>label</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS inline style of the label.]]></description>
+		  <name>label-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS inline style of the label.]]></description>
+		  <name>labelStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS class of the label.]]></description>
+		  <name>label-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The CSS class of the label.]]></description>
+		  <name>labelStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Labels for the slider handle's, Use array for multiple values in a range slider.]]></description>
+		  <name>labelled-by</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Labels for the slider handle's, Use array for multiple values in a range slider.]]></description>
+		  <name>labelledBy</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Maximum possible value]]></description>
+		  <name>max</name>
+		  <required>false</required>
+		  <type>Float</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Minimum possible value]]></description>
+		  <name>min</name>
+		  <required>false</required>
+		  <type>Float</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field.]]></description>
+		  <name>mode</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value.]]></description>
+		  <name>natural_arrow_keys</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set the orientation. Accepts 'vertical' or 'horizontal']]></description>
+		  <name>orientation</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The number of digits shown after the decimal. Defaults to the number of digits after the decimal of step value.]]></description>
+		  <name>precision</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value.]]></description>
+		  <name>range</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}].]]></description>
+		  <name>range-highlights</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}].]]></description>
+		  <name>rangeHighlights</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Whether or not the slider should be reversed]]></description>
+		  <name>reversed</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set to 'logarithmic' to use a logarithmic scale.]]></description>
+		  <name>scale</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles.]]></description>
+		  <name>selection</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the slider.]]></description>
+		  <name>span</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Increment step]]></description>
+		  <name>step</name>
+		  <required>false</required>
+		  <type>Float</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options.]]></description>
+		  <name>ticks</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines the labels below the tick marks. Accepts HTML input.]]></description>
+		  <name>ticks-labels</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines the labels below the tick marks. Accepts HTML input.]]></description>
+		  <name>ticksLabels</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent.]]></description>
+		  <name>ticks-positions</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent.]]></description>
+		  <name>ticksPositions</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds.]]></description>
+		  <name>ticks-snap-bounds</name>
+		  <required>false</required>
+		  <type>Float</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds.]]></description>
+		  <name>ticksSnapBounds</name>
+		  <required>false</required>
+		  <type>Float</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider.]]></description>
+		  <name>tooltip-slider-position</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider.]]></description>
+		  <name>tooltipSliderPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If false show one tootip if true show two tooltips one for each handler.]]></description>
+		  <name>tooltip-split</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If false show one tootip if true show two tooltips one for each handler.]]></description>
+		  <name>tooltipSplit</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'.]]></description>
+		  <name>tooltip-visibility</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'.]]></description>
+		  <name>tooltipVisibility</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Initial value float mode.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
 	<!-- *********** b:socialShare ************************* -->
 	<tag>
 		<tag-name>socialShare</tag-name>
 		<component>
 			<component-type>net.bootsfaces.component.socialShare.SocialShare</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Message of the block overaly.]]></description>
+		  <name>block-message</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message of the block overaly.]]></description>
+		  <name>blockMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
@@ -19733,6 +20035,18 @@
 		  <name>colXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk.]]></description>
+		  <name>disable-block</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk.]]></description>
+		  <name>disableBlock</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block.]]></description>

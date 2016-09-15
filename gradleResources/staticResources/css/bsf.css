@@ -55,6 +55,23 @@ div > .ui-datepicker-trigger {
     border: 0 none;
     padding: 0.7em 0.3em;
 }
+/* Slider2 */
+.row .slider2 { margin-left: 0px; }
+.slider2 .badge { min-width: 30px; }
+.slider2 input { width: auto; }
+.slider2-vertical input { margin: 5px auto; width: auto; padding: 5px; }
+.slider2-vertical .badge { margin: 10px auto; display: block; width: 66%; max-width: 50px; padding-left:0px; padding-right:0px;}
+.row .slider2-vertical { padding-bottom: 5px; margin-left: 0px;}
+.slider2-vertical p { font-weight: bold; margin: 0px; text-align: center;}
+.slider2 .tooltip-inner { width: auto !important; }
+
+@media (min-width: 992px) { .slider2 .col-md-1 { width: 6%; } }
+@media (min-width: 1200px) { .slider2 .col-lg-1 { width: 5%; } }
+@media (max-width: 768px) { .slider2 .col-xs-1 { width: 10%; } }
+@media (max-width: 640px) { .slider2 .col-xs-1 { width: 12.5%; } }
+@media (max-width: 480px) { .slider2 .col-xs-1 { width: 15%; } }
+@media (max-width: 320px) { .slider2 .col-xs-1 { width: 20%; } }
+
 /* Slider */
 .row .slider { margin-left: 0px; }
 .slider input { width: auto; }

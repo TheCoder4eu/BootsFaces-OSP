@@ -33,6 +33,7 @@
      from "staticResources/css/bootstrap-multiselect.css"
      from 'staticResources/css/bootstrap-switch.css'
      from 'staticResources/css/bootstrap-tagsinput.css'
+     from 'staticResources/css/bootstrap-slider.min.css'
      // from 'staticResources/css/dataTables.bootstrap.min.css'
      from 'staticResources/css/jssocials.css'
      from 'staticResources/css/datatables.min.css'
@@ -67,6 +68,7 @@
    	from 'staticResources/js/bootstrap-multiselect-collapsible-groups.js'
    	from 'staticResources/js/bootstrap-multiselect.js'
    	from 'staticResources/js/bootstrap-switch.js'
+   	from 'staticResources/js/bootstrap-slider.min.js'
     from 'staticResources/js/bootstrap-tagsinput.min.js'
    	from 'staticResources/js/bootstrap-tree.js'
    	from 'staticResources/js/bootstrap-treeview.min.js'

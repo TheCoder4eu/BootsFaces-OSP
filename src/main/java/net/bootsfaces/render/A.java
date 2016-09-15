@@ -42,6 +42,17 @@ public final class A {
         
         throw new IllegalArgumentException("Cannot convert " + val);
     }
+    public static float toFloat(Object val) {
+        if (val == null) { return 0; }
+        if (val instanceof Number) {
+            return ((Number) val).floatValue();
+        }
+        if (val instanceof String) {
+            return Float.parseFloat((String) val);
+        }
+        
+        throw new IllegalArgumentException("Cannot convert " + val);
+    }
         
     public static boolean toBool(Object val) {
         if (val == null) { return false; }

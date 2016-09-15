@@ -87,7 +87,6 @@ public class SliderRenderer extends BadgeRenderer {
 		encodeHTML(slider, context, rw);
 
 		Tooltip.activateTooltips(context, slider);
-
 	}
 
 	private void encodeHTML(Slider slider, FacesContext context, ResponseWriter rw) throws IOException {

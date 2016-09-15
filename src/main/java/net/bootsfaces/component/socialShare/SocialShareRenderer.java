@@ -89,9 +89,35 @@ public class SocialShareRenderer extends CoreRenderer {
 						      (socialShare.isShowLabel() ? 								"showLabel: true, ": "showLabel: false,") +
 						      "shares: [" + shares + "] " +
 						  "});" +
-						  // overlay
-						  "$('" + scriptId + "_wrapper').block({ message: 'Click to enable sharing links', css: {color: '#fff', fontSize: '12px', backgroundColor: 'transparent', border: '2px solid gray', left: '40%'} }); " + 
-						  "$('" + scriptId + "_wrapper').click(function() { $('" + scriptId + "_wrapper').unblock(); }); " +
+						  (
+						      socialShare.isDisableBlock() ? 
+						    		  // no block
+						    		  "" : 
+									  // overlay
+									  "$('" + scriptId + "_wrapper').block({"
+									  		+ "	message: '" + socialShare.getBlockMessage() + "',"
+									  		+ "	css: { "
+									  		+ "		border: 'none', "
+									  		+ "     padding: '8px', "	
+									  		+ "		backgroundColor: '#000', "
+									  		+ "		'-webkit-border-radius': '10px', "
+									  		+ "		'-moz-border-radius': '10px', "
+									  		+ " 	'border-radius': '10px', "
+									  		+ "		opacity: 1, "
+									  		+ "		color: '#fff', "
+									  		+ "		fontSize: '12px', "
+									  		+ "		cursor: 'default', "
+									  		+ "		top: '40%', "
+									  		+ "		left: '35%' "
+									  		+ "	}, "
+									  		+ " overlayCSS: { "
+									  	    + "     backgroundColor: '#000', "
+									  	    + "     opacity: 0.6, "
+									  	    + "     cursor: 'default' "
+									  	    + " } "  
+									  		+ "}); " + 
+									  "$('" + scriptId + "_wrapper').click(function() { $('" + scriptId + "_wrapper').unblock(); }); "
+						  ) +
 					  "});", null);
 		
 		rw.endElement("script");
