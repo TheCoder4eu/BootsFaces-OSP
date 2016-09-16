@@ -633,5 +633,5 @@ public class BsfUtils {
 	
 	public static int getIntSliderValue(String value) {
 		return (int)getSliderValue(value);
-	}
+	}  
 }
