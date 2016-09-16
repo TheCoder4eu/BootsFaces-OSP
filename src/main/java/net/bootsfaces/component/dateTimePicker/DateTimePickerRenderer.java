@@ -311,6 +311,13 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
 			openOnClick=true;
 		}
+		
+		String minDate = BsfUtils.isStringValued(dtp.getMinDate()) ? 
+							dtp.getMinDate().contains("moment") ? dtp.getMinDate() : "'" + dtp.getMinDate() + "'" :
+							"";
+		String maxDate = BsfUtils.isStringValued(dtp.getMaxDate()) ? 
+							dtp.getMinDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
+							"";
 
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
@@ -326,8 +333,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(dtp.isKeepInvalid() ? 										"keepInvalid: " + dtp.isKeepInvalid() + ", ": "") +
 					      	(dtp.isKeepOpen() ? 										"keepOpen: " + dtp.isKeepOpen() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getLocale()) ?					"locale: [" + dtp.getLocale() + "], " : "") +
-					      	(BsfUtils.isStringValued(dtp.getMinDate()) ?				"minDate: [" + dtp.getMinDate() + "], " : "") +
-					      	(BsfUtils.isStringValued(dtp.getMaxDate()) ?				"maxDate: [" + dtp.getMaxDate() + "], " : "") +
+					      	(BsfUtils.isStringValued(minDate) ?							"minDate: [" + minDate + "], " : "") +
+					      	(BsfUtils.isStringValued(maxDate) ?							"maxDate: [" + maxDate + "], " : "") +
 					      	(dtp.isShowWeek() ? 										"calendarWeeks: " + dtp.isShowWeek() + ", ": "") +
 					      	(dtp.isShowClearButton() ? 									"showClear: " + dtp.isShowClearButton() + ", ": "") +
 					      	(dtp.isShowCloseButton() ? 									"showClose: " + dtp.isShowCloseButton() + ", ": "") +
