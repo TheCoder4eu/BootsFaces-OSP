@@ -333,8 +333,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(dtp.isKeepInvalid() ? 										"keepInvalid: " + dtp.isKeepInvalid() + ", ": "") +
 					      	(dtp.isKeepOpen() ? 										"keepOpen: " + dtp.isKeepOpen() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getLocale()) ?					"locale: [" + dtp.getLocale() + "], " : "") +
-					      	(BsfUtils.isStringValued(minDate) ?							"minDate: [" + minDate + "], " : "") +
-					      	(BsfUtils.isStringValued(maxDate) ?							"maxDate: [" + maxDate + "], " : "") +
+					      	(BsfUtils.isStringValued(minDate) ?							"minDate: " + minDate + ", " : "") +
+					      	(BsfUtils.isStringValued(maxDate) ?							"maxDate: " + maxDate + ", " : "") +
 					      	(dtp.isShowWeek() ? 										"calendarWeeks: " + dtp.isShowWeek() + ", ": "") +
 					      	(dtp.isShowClearButton() ? 									"showClear: " + dtp.isShowClearButton() + ", ": "") +
 					      	(dtp.isShowCloseButton() ? 									"showClose: " + dtp.isShowCloseButton() + ", ": "") +
