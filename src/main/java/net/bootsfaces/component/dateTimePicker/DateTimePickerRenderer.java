@@ -249,6 +249,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
+			if(dtp.isDisabled())
+                rw.writeAttribute("disabled", "disabled", null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
