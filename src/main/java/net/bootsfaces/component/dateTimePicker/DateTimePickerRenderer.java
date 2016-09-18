@@ -360,7 +360,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		if("inline".equals(mode)) {
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
-						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').val( e.date.format(" + displayFormat + ") ); " +
+						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId + "_Input") + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
 		if(dtp.isDisabled() && !"inline".equals(mode)) {
