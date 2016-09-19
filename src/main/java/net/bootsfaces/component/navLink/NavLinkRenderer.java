@@ -180,7 +180,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		rw.startElement("a", navlink);
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getContentStyle(), "style");
-		writeAttribute(rw, "class", ((AbstractNavLink) navlink).getContentClass(), "class");
+		writeAttribute(rw, "class", (navlink instanceof NavCommandLink ? "commandLink " : "") + (((AbstractNavLink) navlink).getContentClass() != null ? ((AbstractNavLink) navlink).getContentClass() : ""), "class");
 		boolean hasActionExpression = false;
 		if (navlink instanceof NavCommandLink)
 			if (((NavCommandLink) navlink).getActionExpression() != null)
