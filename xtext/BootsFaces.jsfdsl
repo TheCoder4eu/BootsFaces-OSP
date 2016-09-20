@@ -548,8 +548,8 @@ widget dataTableColumn {
     header-style-class                                                     "Style class of this header cell."
     orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
     searchable         Boolean default "true"                              "If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable."
+    value              inherited                                           "EL expression referring to the back-end bean attribute providing the value of the field."
 	+style
-
 }
 
 widget datepicker
@@ -1128,6 +1128,17 @@ widget jumbotron
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
 	+tooltip
+}
+
+widget kebab 
+       implemented_by net.bootsfaces.component.Kebab
+       extends UIComponentBase
+       has_children
+ {
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	+style
 }
 
 widget label
@@ -1867,11 +1878,54 @@ widget slider
     +tooltip
 }
 
+widget slider2
+	implemented_by net.bootsfaces.component.Slider2
+	processes_input
+	extends HtmlInputText
+{
+	binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+	disabled			Boolean default	"false"							   "If true, you can't move the slider, nor can you edit the number."
+	focus				Boolean default "false"							   "Focus the appropriate slider handle after a value change."
+	formatter															   "Javascript function that returns the plain value to be displayed in the tooltip"
+	handle-shape		default "round"									   "Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom'"
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
+    label                                                                  "Label for the widget field."
+    label-style                                                            "The CSS inline style of the label."
+    label-style-class                                                      "The CSS class of the label."
+    labelled-by															   "Labels for the slider handle's, Use array for multiple values in a range slider."
+	max					Float default "100f"							   "Maximum possible value"
+	min					Float default "0f"								   "Minimum possible value"
+	mode                default "badge"                                    "Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field."
+    natural_arrow_keys	Boolean	default "false"							   "The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value."
+	orientation			default "horizontal"							   "Set the orientation. Accepts 'vertical' or 'horizontal'"
+	precision			Integer											   "The number of digits shown after the decimal. Defaults to the number of digits after the decimal of step value."
+	rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    range				Boolean	default "false"							   "Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value."
+	range-highlights													   "Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}]."
+	reversed			Boolean default "false"							   "Whether or not the slider should be reversed"
+	scale				default "linear"								   "Set to 'logarithmic' to use a logarithmic scale."
+	selection			default "before"								   "Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles."
+	span                Integer default "12"                               "The column span of the slider."
+    step				Float default "1f"								   "Increment step"
+	ticks																   "Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options."
+	ticks-positions														   "Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent."
+	ticks-labels														   "Defines the labels below the tick marks. Accepts HTML input."
+	ticks-snap-bounds	Float default "0f"								   "Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds."
+	tooltip-visibility	default "show"									   "Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'."
+	tooltip-split		Boolean default "false"							   "If false show one tootip if true show two tooltips one for each handler."
+	tooltip-slider-position												   "Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider."
+	value				default "5"								   		   "Initial value float mode."
+	+style
+}
+
 widget socialShare
 	implemented_by net.bootsfaces.component.SocialShare
 	extends UIOutput
 	is_responsive
 {
+    block-message   default "Click to enable sharing links"				    "Message of the block overaly."
+    disable-block	Boolean default "false"									"Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk."
     shares																	"A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line."
     share-in		default "popup"											"A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup."
     show-label		Boolean													"A boolean specifying whether to show the text on the share button. Default false."

@@ -40,6 +40,7 @@ assets {
 
   includes = ['default/bs-*.less']
   themes.each() { name -> includes.add(name+'/bs-*.less') }
+  includes.add('patternfly/bs-*.less')
 
   excludes = ['**/*.less','**/mixins/*.less'] //Exclude mixins
 
@@ -106,7 +107,35 @@ task copyBootsFacesLess(type: Copy) {
   	description 'BootsFaces task: copies the BootsFaces bs-*.less files to the process folder.'
   	from staticResourcesDir+'/less'
   	into "${buildDir}/process/less/default"
+
+    exclude 'bs-patternfly.less'
 }
+
+//Copy the Bootstrap less files for PatternFly Theme
+task copyOriginalLess4PatternFly(type: Copy) {
+  	description 'BootsFaces task: copies the Bootstrap less folders to the process folder.'
+  	from BootstrapFolder+'/less'
+  	into "${buildDir}/process/less/patternfly/lib/bootstrap"
+}
+
+//Copy the less files for PatternFly Theme
+task copyBootsFacesLess4PatternFly(type: Copy) {
+  	description 'BootsFaces task: copies the BootsFaces bs-*.less files to the process folder.'
+  	from staticResourcesDir+'/less/pf'
+  	into "${buildDir}/process/less/patternfly"
+    exclude 'extra-theme.less'
+    rename 'bs-patternfly.less', 'extra-theme.less'
+}
+
+//Copy the less files for PatternFly Theme
+task copyPatternFlyLessFiles(type: Copy) {
+  	description 'BootsFaces task: copies the Bootstrap and PatternFly less folders to the process folder.'
+  	from PatternFlyFolder+'/less'
+  	into "${buildDir}/process/less/patternfly"
+}
+task copyPatternFlyLess(dependsOn: ['copyPatternFlyLessFiles','copyOriginalLess4PatternFly','copyBootsFacesLess4PatternFly']) {
+}
+copyOriginalLess4PatternFly.mustRunAfter copyPatternFlyLessFiles
 
 //Common for all themes
 task copyBootstrapJs(type: Copy) {
@@ -128,7 +157,7 @@ task copyBootsFacesFiles(type: Copy) {
   	into "${buildDir}/process/bsf"
 }
 
-task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapJs','copyBootswatchLess4Themes']) { //, 'copyBootswatchLess']) {
+task copyFiles2Process(dependsOn: ['copyOriginalLess', 'copyBootsFacesLess', 'copyBootsFacesFiles', 'copyBootstrapJs','copyBootswatchLess4Themes', 'copyPatternFlyLess']) {
 
 }
 /* END Tasks to copy files to the process directory */
@@ -151,10 +180,13 @@ task cleanAssetThemeDirs(dependsOn: tasks.matching { Task task -> task.name.star
 }
 
 task cleanAssetDir(type: Delete) {
-     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', '*-*.js'])
+     //delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', '*-*.js'])
      delete fileTree(dir: "${buildDir}/assets/default", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'],
                                                         excludes: ['bs-progress-bars.css', 'bs-list-group.css'])
-     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', 'bsf-*.*'])
+     delete fileTree(dir: "${buildDir}/assets/patternfly", includes: ['*.gz', 'bs-*-*.css', 'bsf-*.css', '*-*.js'],
+                                                           excludes: ['bs-progress-bars.css', 'bs-list-group.css', 'bs-bootstrap-switch.css'])
+     delete "${buildDir}/assets/patternfly/lib/"
+     delete fileTree(dir: "${buildDir}/assets", includes: ['*.gz', '*-*.js', 'bsf-*.*'])
 }
 
 /* END Tasks AFTER assetCompile */

@@ -8,7 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -71,6 +73,17 @@ public class BsfUtils {
 			throw new FacesException(ioe);
 		}
 		return null;
+	}
+	
+	/**
+	 * Check if a generic object is valued
+	 * @param obj
+	 * @return
+	 */
+	public static boolean isValued(Object obj) {
+		if (obj == null) return false;
+		if (obj instanceof String) return isStringValued((String) obj);
+		return true;
 	}
 
 	/**
@@ -574,4 +587,51 @@ public class BsfUtils {
 		}
 		return refItem;
 	}
+	
+	/**
+	 * Support method to convert String slider value to float values
+	 * @param value
+	 * @return
+	 */
+	public static Float[] getSliderValues(String value) { return getSliderValues(value, false); }
+	public static Float[] getSliderValues(String value, boolean isArray) {
+		List<Float> floatList = new ArrayList<Float>();
+		if(value != null) {
+			// is an array
+			if (value.trim().startsWith("[") || value.contains(",") || isArray) {
+				if(value.trim().startsWith("["))
+					value = value.substring(1, value.length() -1);
+				
+				String[] values = value.split(",");
+				for(int i = 0; i < values.length; i++) {
+					try {
+						if(BsfUtils.isStringValued(values[i])) 
+							floatList.add(Float.parseFloat(values[i]));
+					} catch(NumberFormatException nfe) {
+						nfe.printStackTrace();
+					}
+				}
+			// is a single value
+			} else {
+				try {
+					floatList.add(Float.parseFloat(value));
+				} catch(NumberFormatException nfe) {
+					nfe.printStackTrace();
+				}
+			}
+		}
+
+		Float[] values = new Float[floatList.size()];
+		return floatList.toArray(values);
+	}
+	
+	public static float getSliderValue(String value) {
+		Float[] values = getSliderValues(value);
+		if(values != null) return values[0];
+		return -1f;
+	}
+	
+	public static int getIntSliderValue(String value) {
+		return (int)getSliderValue(value);
+	}  
 }

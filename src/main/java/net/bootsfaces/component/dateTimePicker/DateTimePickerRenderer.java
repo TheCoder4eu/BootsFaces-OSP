@@ -46,11 +46,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		DateTimePicker dtp = (DateTimePicker) component;
 		String clientId = dtp.getClientId();
 		String subVal = context.getExternalContext().getRequestParameterMap().get(dtp.getClientId());
-		
+
 		if (dtp.isDisabled() || dtp.isReadonly()) {
 			return;
 		}
-		
+
 		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
@@ -167,11 +167,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (v == null) {
 			v = dtp.getValue();
 		}
-		
+
 		// Icon
 		String icon = dtp.getIcon();
 		String faicon = dtp.getIconAwesome();
-		boolean fa = false; 
+		boolean fa = false;
 		if (BsfUtils.isStringValued(faicon)) {
 			icon = faicon;
 			fa = true;
@@ -219,7 +219,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// div
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", "input-group date " + styleClass, "class");
-			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
+			if(dtp.getStyle() != null) rw.writeAttribute("style", (dtp.isDisabled() ? "opacity: 0.65; pointer-events: none;" : "") + dtp.getStyle(), "style");
+			else if(dtp.isDisabled()) rw.writeAttribute("style", "opacity: 0.65; pointer-events: none;", null);
 			rw.writeAttribute("id", divPrefix + clientId, null);
 			rw.endElement("div");
 
@@ -265,12 +266,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			// end
 			rw.endElement("div");
-			if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
-				rw.endElement("div");
-			} else if (label != null) {
-				rw.endElement("div");
-			}
 		}
+
+		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+			rw.endElement("div");
+		} else if (label != null) {
+			rw.endElement("div");
+		}
+
 		return divPrefix;
 	}
 
@@ -305,11 +308,20 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		boolean openOnClick=false;
 		if("plain".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
 		else if("inline".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
-		else { 
+		else {
 			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
 			openOnClick=true;
 		}
-		System.out.println("View date format: " + displayFormat);
+
+        String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
+                dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" :
+                "";
+		String minDate = BsfUtils.isStringValued(dtp.getMinDate()) ?
+							dtp.getMinDate().contains("moment") ? dtp.getMinDate() : "'" + dtp.getMinDate() + "'" :
+							"";
+		String maxDate = BsfUtils.isStringValued(dtp.getMaxDate()) ?
+							dtp.getMinDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
+							"";
 
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
@@ -321,12 +333,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(BsfUtils.isStringValued(dtp.getDisableTimeInterval()) ?	"disabledTimeIntervals: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getEnabledDates()) ?			"enabledDates: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(dtp.isFocusOnShow() ? 										"focusOnShow: " + dtp.isFocusOnShow() + ", ": "") +
-					      	(BsfUtils.isStringValued(dtp.getInitialDate()) ?			"defaultDate: [" + dtp.getInitialDate() + "], " : "") +
+					      	(BsfUtils.isStringValued(dtp.getInitialDate()) ?			"defaultDate: " + defaultDate + ", " : "") +
 					      	(dtp.isKeepInvalid() ? 										"keepInvalid: " + dtp.isKeepInvalid() + ", ": "") +
 					      	(dtp.isKeepOpen() ? 										"keepOpen: " + dtp.isKeepOpen() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getLocale()) ?					"locale: [" + dtp.getLocale() + "], " : "") +
-					      	(BsfUtils.isStringValued(dtp.getMinDate()) ?				"minDate: [" + dtp.getMinDate() + "], " : "") +
-					      	(BsfUtils.isStringValued(dtp.getMaxDate()) ?				"maxDate: [" + dtp.getMaxDate() + "], " : "") +
+					      	(BsfUtils.isStringValued(minDate) ?							"minDate: " + minDate + ", " : "") +
+					      	(BsfUtils.isStringValued(maxDate) ?							"maxDate: " + maxDate + ", " : "") +
 					      	(dtp.isShowWeek() ? 										"calendarWeeks: " + dtp.isShowWeek() + ", ": "") +
 					      	(dtp.isShowClearButton() ? 									"showClear: " + dtp.isShowClearButton() + ", ": "") +
 					      	(dtp.isShowCloseButton() ? 									"showClose: " + dtp.isShowCloseButton() + ", ": "") +
@@ -337,9 +349,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"useCurrent: " + dtp.isUseCurrent() + ", ": "") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
-					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', forceElementPosition: true, " : "" ) + 
+					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', forceElementPosition: true, " : "" ) +
 					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
-					      	("inline".equals(mode) ? 									"date: moment(" + inlineDisplayDate + ", " + displayFormat + ")," : "" ) +
+					      	"date: moment(" + inlineDisplayDate + ", " + displayFormat + "), " +
 					      	"locale: '" + sloc.getLanguage() + "', " +
 					      	"format: " + displayFormat +
 						  "});" +
@@ -348,11 +360,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		if("inline".equals(mode)) {
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
-						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').val( e.date.format(" + displayFormat + ") ); " +
+						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId + "_Input") + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
-		if(dtp.isDisabled()) {
-			rw.writeText("$('" + fullSelector + "').disable(); ", null);
+		if(dtp.isDisabled() && !"inline".equals(mode)) {
+			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
 		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null);

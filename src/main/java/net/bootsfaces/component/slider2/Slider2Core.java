@@ -1,0 +1,570 @@
+/**
+ *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *
+ *  This file is part of BootsFaces.
+ *
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+ */
+
+package net.bootsfaces.component.slider2;
+
+import javax.faces.component.html.HtmlInputText;
+
+/** This class holds the attributes of &lt;b:slider2 /&gt;. */
+public abstract class Slider2Core extends HtmlInputText {
+
+	protected enum PropertyKeys {
+		binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, range, rangeHighlights, reversed, scale, selection, span, step, style, styleClass, ticks, ticksLabels, ticksPositions, ticksSnapBounds, tooltipSliderPosition, tooltipSplit, tooltipVisibility, value;
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public javax.faces.component.UIComponent getBinding() {
+		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	}
+
+	/**
+	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBinding(javax.faces.component.UIComponent _binding) {
+		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
+
+	/**
+	 * If true, you can't move the slider, nor can you edit the number. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
+	}
+
+	/**
+	 * If true, you can't move the slider, nor can you edit the number. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisabled(boolean _disabled) {
+		getStateHelper().put(PropertyKeys.disabled, _disabled);
+	}
+
+	/**
+	 * Focus the appropriate slider handle after a value change. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isFocus() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.focus, false);
+	}
+
+	/**
+	 * Focus the appropriate slider handle after a value change. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFocus(boolean _focus) {
+		getStateHelper().put(PropertyKeys.focus, _focus);
+	}
+
+	/**
+	 * Javascript function that returns the plain value to be displayed in the tooltip <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFormatter() {
+		return (String) getStateHelper().eval(PropertyKeys.formatter);
+	}
+
+	/**
+	 * Javascript function that returns the plain value to be displayed in the tooltip <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFormatter(String _formatter) {
+		getStateHelper().put(PropertyKeys.formatter, _formatter);
+	}
+
+	/**
+	 * Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom' <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHandleShape() {
+		return (String) getStateHelper().eval(PropertyKeys.handleShape, "round");
+	}
+
+	/**
+	 * Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom' <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHandleShape(String _handleShape) {
+		getStateHelper().put(PropertyKeys.handleShape, _handleShape);
+	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInline() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
+	}
+
+	/**
+	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInline(boolean _inline) {
+		getStateHelper().put(PropertyKeys.inline, _inline);
+	}
+
+	/**
+	 * Label for the widget field. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabel() {
+		return (String) getStateHelper().eval(PropertyKeys.label);
+	}
+
+	/**
+	 * Label for the widget field. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabel(String _label) {
+		getStateHelper().put(PropertyKeys.label, _label);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyle);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyle(String _labelStyle) {
+		getStateHelper().put(PropertyKeys.labelStyle, _labelStyle);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyleClass);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyleClass(String _labelStyleClass) {
+		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
+	}
+
+	/**
+	 * Labels for the slider handle's, Use array for multiple values in a range slider. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelledBy() {
+		return (String) getStateHelper().eval(PropertyKeys.labelledBy);
+	}
+
+	/**
+	 * Labels for the slider handle's, Use array for multiple values in a range slider. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelledBy(String _labelledBy) {
+		getStateHelper().put(PropertyKeys.labelledBy, _labelledBy);
+	}
+
+	/**
+	 * Maximum possible value <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public Float getMax() {
+		return (Float) getStateHelper().eval(PropertyKeys.max, 100f);
+	}
+
+	/**
+	 * Maximum possible value <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMax(Float _max) {
+		getStateHelper().put(PropertyKeys.max, _max);
+	}
+
+	/**
+	 * Minimum possible value <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public Float getMin() {
+		return (Float) getStateHelper().eval(PropertyKeys.min, 0f);
+	}
+
+	/**
+	 * Minimum possible value <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMin(Float _min) {
+		getStateHelper().put(PropertyKeys.min, _min);
+	}
+
+	/**
+	 * Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMode() {
+		return (String) getStateHelper().eval(PropertyKeys.mode, "badge");
+	}
+
+	/**
+	 * Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMode(String _mode) {
+		getStateHelper().put(PropertyKeys.mode, _mode);
+	}
+
+	/**
+	 * The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isNatural_arrow_keys() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.natural_arrow_keys, false);
+	}
+
+	/**
+	 * The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setNatural_arrow_keys(boolean _natural_arrow_keys) {
+		getStateHelper().put(PropertyKeys.natural_arrow_keys, _natural_arrow_keys);
+	}
+
+	/**
+	 * Set the orientation. Accepts 'vertical' or 'horizontal' <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOrientation() {
+		return (String) getStateHelper().eval(PropertyKeys.orientation, "horizontal");
+	}
+
+	/**
+	 * Set the orientation. Accepts 'vertical' or 'horizontal' <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOrientation(String _orientation) {
+		getStateHelper().put(PropertyKeys.orientation, _orientation);
+	}
+
+	/**
+	 * The number of digits shown after the decimal. Defaults to the number of digits after the decimal of step value. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getPrecision() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.precision, 0);
+	}
+
+	/**
+	 * The number of digits shown after the decimal. Defaults to the number of digits after the decimal of step value. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPrecision(int _precision) {
+		getStateHelper().put(PropertyKeys.precision, _precision);
+	}
+
+	/**
+	 * Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRange() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.range, false);
+	}
+
+	/**
+	 * Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRange(boolean _range) {
+		getStateHelper().put(PropertyKeys.range, _range);
+	}
+
+	/**
+	 * Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}]. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRangeHighlights() {
+		return (String) getStateHelper().eval(PropertyKeys.rangeHighlights);
+	}
+
+	/**
+	 * Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}]. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRangeHighlights(String _rangeHighlights) {
+		getStateHelper().put(PropertyKeys.rangeHighlights, _rangeHighlights);
+	}
+
+	/**
+	 * Whether or not the slider should be reversed <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isReversed() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.reversed, false);
+	}
+
+	/**
+	 * Whether or not the slider should be reversed <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setReversed(boolean _reversed) {
+		getStateHelper().put(PropertyKeys.reversed, _reversed);
+	}
+
+	/**
+	 * Set to 'logarithmic' to use a logarithmic scale. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getScale() {
+		return (String) getStateHelper().eval(PropertyKeys.scale, "linear");
+	}
+
+	/**
+	 * Set to 'logarithmic' to use a logarithmic scale. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScale(String _scale) {
+		getStateHelper().put(PropertyKeys.scale, _scale);
+	}
+
+	/**
+	 * Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelection() {
+		return (String) getStateHelper().eval(PropertyKeys.selection, "before");
+	}
+
+	/**
+	 * Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelection(String _selection) {
+		getStateHelper().put(PropertyKeys.selection, _selection);
+	}
+
+	/**
+	 * The column span of the slider. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public int getSpan() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.span, 12);
+	}
+
+	/**
+	 * The column span of the slider. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSpan(int _span) {
+		getStateHelper().put(PropertyKeys.span, _span);
+	}
+
+	/**
+	 * Increment step <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public Float getStep() {
+		return (Float) getStateHelper().eval(PropertyKeys.step, 1f);
+	}
+
+	/**
+	 * Increment step <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStep(Float _step) {
+		getStateHelper().put(PropertyKeys.step, _step);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.style);
+	}
+
+	/**
+	 * Inline style of the input element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyle(String _style) {
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
+	}
+
+	/**
+	 * Style class of this element. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStyleClass(String _styleClass) {
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTicks() {
+		return (String) getStateHelper().eval(PropertyKeys.ticks);
+	}
+
+	/**
+	 * Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTicks(String _ticks) {
+		getStateHelper().put(PropertyKeys.ticks, _ticks);
+	}
+
+	/**
+	 * Defines the labels below the tick marks. Accepts HTML input. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTicksLabels() {
+		return (String) getStateHelper().eval(PropertyKeys.ticksLabels);
+	}
+
+	/**
+	 * Defines the labels below the tick marks. Accepts HTML input. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTicksLabels(String _ticksLabels) {
+		getStateHelper().put(PropertyKeys.ticksLabels, _ticksLabels);
+	}
+
+	/**
+	 * Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTicksPositions() {
+		return (String) getStateHelper().eval(PropertyKeys.ticksPositions);
+	}
+
+	/**
+	 * Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTicksPositions(String _ticksPositions) {
+		getStateHelper().put(PropertyKeys.ticksPositions, _ticksPositions);
+	}
+
+	/**
+	 * Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public Float getTicksSnapBounds() {
+		return (Float) getStateHelper().eval(PropertyKeys.ticksSnapBounds, 0f);
+	}
+
+	/**
+	 * Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTicksSnapBounds(Float _ticksSnapBounds) {
+		getStateHelper().put(PropertyKeys.ticksSnapBounds, _ticksSnapBounds);
+	}
+
+	/**
+	 * Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipSliderPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipSliderPosition);
+	}
+
+	/**
+	 * Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipSliderPosition(String _tooltipSliderPosition) {
+		getStateHelper().put(PropertyKeys.tooltipSliderPosition, _tooltipSliderPosition);
+	}
+
+	/**
+	 * If false show one tootip if true show two tooltips one for each handler. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isTooltipSplit() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.tooltipSplit, false);
+	}
+
+	/**
+	 * If false show one tootip if true show two tooltips one for each handler. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipSplit(boolean _tooltipSplit) {
+		getStateHelper().put(PropertyKeys.tooltipSplit, _tooltipSplit);
+	}
+
+	/**
+	 * Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTooltipVisibility() {
+		return (String) getStateHelper().eval(PropertyKeys.tooltipVisibility, "show");
+	}
+
+	/**
+	 * Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTooltipVisibility(String _tooltipVisibility) {
+		getStateHelper().put(PropertyKeys.tooltipVisibility, _tooltipVisibility);
+	}
+
+	/**
+	 * Initial value float mode. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getValue() {
+		return (String) getStateHelper().eval(PropertyKeys.value, "5");
+	}
+
+	/**
+	 * Initial value float mode. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setValue(String _value) {
+		getStateHelper().put(PropertyKeys.value, _value);
+	}
+
+}

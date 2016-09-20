@@ -26,10 +26,12 @@ import net.bootsfaces.render.IResponsive;
 public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	protected enum PropertyKeys {
+		blockMessage,
 		colLg,
 		colMd,
 		colSm,
 		colXs,
+		disableBlock,
 		display,
 		hidden,
 		largeScreen,
@@ -58,12 +60,27 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Message of the block overaly. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBlockMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.blockMessage, "Click to enable sharing links");
+	}
+
+	/**
+	 * Message of the block overaly. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBlockMessage(String _blockMessage) {
+		getStateHelper().put(PropertyKeys.blockMessage, _blockMessage);
 	}
 
 	/**
@@ -128,6 +145,22 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDisableBlock() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disableBlock, false);
+	}
+
+	/**
+	 * Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDisableBlock(boolean _disableBlock) {
+		getStateHelper().put(PropertyKeys.disableBlock, _disableBlock);
 	}
 
 	/**

@@ -38,6 +38,7 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.dropMenu.DropMenu;
 import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
+import net.bootsfaces.component.kebab.Kebab;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.component.listLinks.ListLinks;
 import net.bootsfaces.component.navBar.NavBar;
@@ -111,7 +112,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
 				htmlTag = "li";
 			}
 		}
@@ -179,7 +180,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		rw.startElement("a", navlink);
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getContentStyle(), "style");
-		writeAttribute(rw, "class", ((AbstractNavLink) navlink).getContentClass(), "class");
+		writeAttribute(rw, "class", (navlink instanceof NavCommandLink ? "commandLink " : "") + (((AbstractNavLink) navlink).getContentClass() != null ? ((AbstractNavLink) navlink).getContentClass() : ""), "class");
 		boolean hasActionExpression = false;
 		if (navlink instanceof NavCommandLink)
 			if (((NavCommandLink) navlink).getActionExpression() != null)
