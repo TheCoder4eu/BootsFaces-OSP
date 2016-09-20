@@ -1937,6 +1937,97 @@ widget socialShare
 	+responsive
 }
 
+widget spinner
+       implemented_by net.bootsfaces.component.Spinner
+       rendered_by net.bootsfaces.component.InputTextRenderer
+       processes_input
+       extends InputText
+       has_tooltip
+       is_responsive
+ {
+    accesskey                        inherited                             "Access key to transfer focus to the input element."
+    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+    alt                              inherited                             "Alternate textual description of the input element."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    booster				Boolean default "true"							   "If enabled, the the spinner is continually becoming faster as holding the button."
+    boostat				Integer default "10"							   "Boost at every nth step."
+    button-down-class	default "btn btn-default"						   "Class(es) of down button."
+    button-up-class	  	default "btn btn-default"						   "Class(es) of up button."
+    converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
+    converter-message                                                      "Message to display when conversion fails."
+    decimals			Integer default "0"								   "Number of decimal points."
+    dir                              inherited                             "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    disabled            Boolean      inherited                             "Disables the input element, default is false."
+    field-size                                                             "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+    field-id                                                               "Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id."
+    force-step-divisibility default "round"								   "How to force the value to be divisible by step value: 'none' | 'round' | 'floor' | 'ceil'"
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean      inherited                             "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+ 	initval				default ""										   "Applied when no explicit value is set on the input with the value attribute. Empty string means that the value remains empty on initialization."
+ 	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
+    label                            inherited                             "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
+    label-style                                                            "The CSS inline style of the label."
+    label-style-class                                                      "The CSS class of the label."
+    lang                             inherited                             "Code describing the language used in the generated markup for this component."
+    min					Float default "0f"								   "Minimum value."
+    max					Float default "100f"							   "Maximum value."
+    max-boosted-step	Integer default "0"								   "Maximum step when boosted."
+    maxlength           Integer inherited                                  "The maximum length of the input."
+    mousewheel			Boolean default "true"							   "Enables the mouse wheel to change the value of the input."
+    name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
+    onblur                           inherited                             "Client side callback to execute when input element loses focus."
+    onclick                          inherited                             "OnClick DHTML event ."
+    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                       inherited                             "Client side callback to execute when input element is double clicked."
+    onfocus                          inherited                             "Client side callback to execute when input element receives focus."
+    onkeydown                        inherited                             "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                       inherited                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                          inherited                             "Client side callback to execute when a key is released over input element."
+    onmousedown                      inherited                             "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                      inherited                             "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                       inherited                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                      inherited                             "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
+    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user."
+    onstartspin															   "Client side callback to execute when the spinner starts spinning upwards or downwards."
+	onstartupspin														   "Client side callback to execute when the spinner starts spinning upwards."
+	onstartdownspin														   "Client side callback to execute when the spinner starts spinning downwards."
+	onstopspin															   "Client side callback to execute when the spinner stops spinning."
+	onstopupspin														   "Client side callback to execute when the spinner stops upspinning."
+	onstopdownspin														   "Client side callback to execute when the spinner stops downspinning."
+	onchange															   "Client side callback to execute when the value is changed with one of the buttons (but not triggered when the spinner hits the limit set by min or max."
+    prefix																   "Text before the input."
+    prefix-extra-class													   "Text after the input."
+    postfix																   "Extra class(es) for prefix."
+    postfix-extra-class													   "Extra class(es) for postfix."
+    process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    readonly            Boolean      inherited                             "Flag indicating that this input element will prevent changes by the user."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
+    size                Integer inherited                                  "Number of characters used to determine the width of the input element."
+    step			    Float default "1f"								   "Incremental/decremental step on up/down change."
+    step-interval		Integer default "100"							   "Refresh rate of the spinner in milliseconds."
+	step-interval-delay Integer default "500" 							   "Time in milliseconds before the spinner starts to spin."   
+    tabindex                          inherited                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
+    title                             inherited                            "Advisory tooltip information."
+    type                                                                   "Type of the input. The default is text."
+    update                                                                 "Component(s) to be updated with ajax."
+    validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
+    validator-message   inherited                                          "Message to display when validation fails."
+    value               Float                                          	   "Value."
+    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    vertical-buttons	Boolean default "false"							   "Enables the traditional up/down buttons."
+	vertical-up-class	default "glyphicon glyphicon-chevron-up"		   "Class of the up button with vertical buttons mode enabled."
+	vertical-down-class default "glyphicon glyphicon-chevron-down"		   "Class of the down button with vertical buttons mode enabled."
+	+style
+	+tooltip
+	+responsive
+	+responsiveLabel
+}
+
 
 widget tab
        processes_input

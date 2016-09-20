@@ -66,6 +66,7 @@ public enum ComponentsEnum {
 	slider("<b:slider", "slider"),
 	slider2("<b:slider2", "slider2"),
 	socialShare("<b:socialShare", "socialShare"),
+	spinner("<b:spinner", "spinner"),
 	tab("<b:tab", "tab"),
 	tabLinks("<b:tabLinks", "tabLinks"),
 	tabView("<b:tabView", "tabView"),
