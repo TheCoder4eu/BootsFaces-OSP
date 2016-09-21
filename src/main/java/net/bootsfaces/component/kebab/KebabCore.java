@@ -18,8 +18,7 @@
 
 package net.bootsfaces.component.kebab;
 
-import javax.faces.component.*;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIComponentBase;
 
 /** This class holds the attributes of &lt;b:kebab /&gt;. */
 public abstract class KebabCore extends UIComponentBase {

@@ -19,25 +19,17 @@
 
 package net.bootsfaces.component.spinner;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.behavior.ClientBehaviorHolder;
 
-import net.bootsfaces.C;
-import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.IHasTooltip;
-import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
 @FacesComponent("net.bootsfaces.component.spinner.Spinner")
 public class Spinner extends SpinnerCore
-implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
+		implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.spinner.Spinner";
 
@@ -47,10 +39,11 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 
 	public Spinner() {
 		Tooltip.addResourceFiles();
+		
+		setSpin(true);
+		
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-touchspin.min.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-touchspin.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -64,49 +57,5 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
-	}
-
-	@Override
-	public Map<String, String> getJQueryEvents() {
-		Map<String, String> result = new HashMap<String, String>();
-		result.put("startspin", "touchspin.on.startspin");
-		result.put("startupspin", "touchspin.on.startupspin");
-		result.put("startdownspin", "touchspin.on.startdownspin");
-		result.put("stopspin", "touchspin.on.stopspin");
-		result.put("stopupspin", "touchspin.on.stopupspin");
-		result.put("stopdownspin", "touchspin.on.stopdownspin");
-		result.put("change", "change");
-		return result;
-	}
-	
-	@Override
-	public String getValue() {
-		Object val = getStateHelper().eval(PropertyKeys.value);
-		if(val instanceof Double) return val.toString();
-		else return (String) val;
-	}
-
-	@Override
-	public Double getMax() {
-		Object max = getStateHelper().eval(PropertyKeys.max, 100);
-		if(max instanceof Integer) return ((Integer) max).doubleValue();
-		else if(max instanceof String) return Double.parseDouble((String)max);
-		return (Double) max;
-	}
-
-	@Override
-	public Double getMin() {
-		Object min = getStateHelper().eval(PropertyKeys.min, 0);
-		if(min instanceof Integer) return ((Integer) min).doubleValue();
-		else if(min instanceof String) return Double.parseDouble((String)min);
-		return (Double) min;
-	}
-
-	@Override
-	public Double getStep() {
-		Object step = getStateHelper().eval(PropertyKeys.step, 1);
-		if(step instanceof Integer) return ((Integer) step).doubleValue();
-		else if(step instanceof String) return Double.parseDouble((String)step);
-		return (Double) step;
 	}
 }

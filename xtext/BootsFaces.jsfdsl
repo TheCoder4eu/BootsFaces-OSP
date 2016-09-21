@@ -1677,6 +1677,37 @@ widget shake
     update                                                                 			"Component(s) to be updated with ajax."
 }
 
+widget spinner
+	   implemented_by net.bootsfaces.component.spinner
+	   extends IconAwesome
+	   has_tooltip
+	   is_responsive
+{
+    addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
+    ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
+    binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
+    disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
+    flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
+    id                                                      inherited      "Unique identifier of the component in a namingContainer."
+    name                default "circle-o-notch" 			      		   "Icon name: default 'circle-o-notch'."
+    onclick                                                 inherited      "The onclick attribute."
+    oncomplete                                              inherited      "JavaScript to be executed when ajax completes with success."
+    ondblclick                                              inherited      "Client side callback to execute when input element is double clicked."
+    onmousedown                                             inherited      "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                             inherited      "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                              inherited      "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                             inherited      "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                               inherited      "Client side callback to execute when a pointer input element is released over input element."
+    readonly            Boolean                             inherited      "Flag indicating that this input element will prevent changes by the user."
+    rendered            Boolean                             inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
+    size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    update                                                  inherited      "Component(s) to be updated with ajax."
+	+style
+	+responsive
+	+tooltip
+}
+
 widget switch
        implemented_by net.bootsfaces.component.Switch
        processes_input
@@ -1931,8 +1962,8 @@ widget socialShare
 	+responsive
 }
 
-widget spinner
-       implemented_by net.bootsfaces.component.Spinner
+widget touchSpin
+       implemented_by net.bootsfaces.component.TouchSpin
        rendered_by net.bootsfaces.component.InputTextRenderer
        processes_input
        extends InputText

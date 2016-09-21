@@ -1,8 +1,8 @@
 /**
  *  Copyright 2014-15 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *
+ *  
  *  This file is part of BootsFaces.
- *
+ *  
  *  BootsFaces is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU Lesser General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
@@ -17,14 +17,24 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.spinner;
+package net.bootsfaces.component.touchSpin;
 
-import javax.faces.render.FacesRenderer;
+import net.bootsfaces.beans.BsfBeanInfo;
 
-import net.bootsfaces.component.iconAwesome.IconAwesomeRenderer;
-
-/** This class generates the HTML code of &lt;b:spinner /&gt;. */
-@FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.spinner.Spinner")
-public class SpinnerRenderer extends IconAwesomeRenderer {
-
+/** 
+ * BeanInfo class to provide mapping
+ * of snake-case attributes to camelCase ones 
+ * 
+ * @author Dario D'Urzo
+ */
+public class TouchSpinBeanInfo extends BsfBeanInfo {
+	
+	/**
+	 * Get the reference decorated class
+	 */
+	@Override
+	public Class<?> getDecoratedClass() {
+		return TouchSpin.class;
+	}
 }
+
