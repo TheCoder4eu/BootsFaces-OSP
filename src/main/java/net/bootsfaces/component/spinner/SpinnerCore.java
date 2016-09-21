@@ -601,15 +601,15 @@ public abstract class SpinnerCore extends InputText implements net.bootsfaces.re
 	 * Maximum value. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getMax() {
-		return (Float) getStateHelper().eval(PropertyKeys.max, 100f);
+	public Double getMax() {
+		return (Double) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
 	 * Maximum value. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(Float _max) {
+	public void setMax(Double _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
@@ -649,15 +649,15 @@ public abstract class SpinnerCore extends InputText implements net.bootsfaces.re
 	 * Minimum value. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getMin() {
-		return (Float) getStateHelper().eval(PropertyKeys.min, 0f);
+	public Double getMin() {
+		return (Double) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
 	 * Minimum value. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(Float _min) {
+	public void setMin(Double _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
@@ -1066,15 +1066,15 @@ public abstract class SpinnerCore extends InputText implements net.bootsfaces.re
 	 * Incremental/decremental step on up/down change. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getStep() {
-		return (Float) getStateHelper().eval(PropertyKeys.step, 1f);
+	public Double getStep() {
+		return (Double) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Incremental/decremental step on up/down change. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(Float _step) {
+	public void setStep(Double _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
@@ -1306,15 +1306,15 @@ public abstract class SpinnerCore extends InputText implements net.bootsfaces.re
 	 * Value. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getValue() {
-		return (Float) getStateHelper().eval(PropertyKeys.value);
+	public String getValue() {
+		return (String) getStateHelper().eval(PropertyKeys.value);
 	}
 
 	/**
 	 * Value. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setValue(Float _value) {
+	public void setValue(String _value) {
 		getStateHelper().put(PropertyKeys.value, _value);
 	}
 

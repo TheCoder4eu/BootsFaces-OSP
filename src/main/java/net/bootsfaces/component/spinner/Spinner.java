@@ -78,4 +78,35 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 		result.put("change", "change");
 		return result;
 	}
+	
+	@Override
+	public String getValue() {
+		Object val = getStateHelper().eval(PropertyKeys.value);
+		if(val instanceof Double) return val.toString();
+		else return (String) val;
+	}
+
+	@Override
+	public Double getMax() {
+		Object max = getStateHelper().eval(PropertyKeys.max, 100);
+		if(max instanceof Integer) return ((Integer) max).doubleValue();
+		else if(max instanceof String) return Double.parseDouble((String)max);
+		return (Double) max;
+	}
+
+	@Override
+	public Double getMin() {
+		Object min = getStateHelper().eval(PropertyKeys.min, 0);
+		if(min instanceof Integer) return ((Integer) min).doubleValue();
+		else if(min instanceof String) return Double.parseDouble((String)min);
+		return (Double) min;
+	}
+
+	@Override
+	public Double getStep() {
+		Object step = getStateHelper().eval(PropertyKeys.step, 1);
+		if(step instanceof Integer) return ((Integer) step).doubleValue();
+		else if(step instanceof String) return Double.parseDouble((String)step);
+		return (Double) step;
+	}
 }

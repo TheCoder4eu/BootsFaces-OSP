@@ -19,8 +19,6 @@
 
 package net.bootsfaces.component.slider2;
 
-import java.util.Arrays;
-
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
@@ -59,49 +57,36 @@ public class Slider2 extends Slider2Core {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-
-	public Float[] getFloatValues() {
-		String value = this.getValue(); 
-		return BsfUtils.getSliderValues(value);
-	}
-
-	public void setFloatValues(Float ... values) {
-		String value = null;
-		if(values != null) {
-			if(values.length > 1) {
-				value = Arrays.toString(values);
-			} else value = values[0].toString();
-		}
-		this.setValue(value);
-	}
 	
-	/**
-	 * Initial value float mode. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(Float[] _values) {
-		setFloatValues(_values);
-	}
-	
-	public void setValue(Float _value) {
-		setFloatValues(_value);
-	}
-	
-	public void setValue(Integer _value) {
-		setFloatValues(_value.floatValue());
-	}
-	
-	/**
-	 * Override the GetValue to manage multiple type of inputs
-	 */
+	@Override
 	public String getValue() {
 		Object val = getStateHelper().eval(PropertyKeys.value, "5");
-		if(val instanceof Float) 
+		if(val instanceof Double) 
 			return val.toString();
-		else if (val instanceof Float[]) 
-			return Arrays.toString((Float[])val);
-		else if (val instanceof Integer)
-			return val.toString();
-		return (String) getStateHelper().eval(PropertyKeys.value, "5");
+		return (String) val;
+	}
+
+	@Override
+	public Double getMax() {
+		Object max = getStateHelper().eval(PropertyKeys.max, 100);
+		if(max instanceof Integer) return ((Integer) max).doubleValue();
+		else if(max instanceof String) return Double.parseDouble((String)max);
+		return (Double) max;
+	}
+
+	@Override
+	public Double getMin() {
+		Object min = getStateHelper().eval(PropertyKeys.min, 0);
+		if(min instanceof Integer) return ((Integer) min).doubleValue();
+		else if(min instanceof String) return Double.parseDouble((String)min);
+		return (Double) min;
+	}
+
+	@Override
+	public Double getStep() {
+		Object step = getStateHelper().eval(PropertyKeys.step, 1);
+		if(step instanceof Integer) return ((Integer) step).doubleValue();
+		else if(step instanceof String) return Double.parseDouble((String)step);
+		return (Double) step;
 	}
 }

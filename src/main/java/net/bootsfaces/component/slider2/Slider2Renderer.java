@@ -26,9 +26,14 @@ import java.util.Map;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
+import javax.faces.convert.DoubleConverter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.badge.BadgeRenderer;
+import net.bootsfaces.render.A;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -56,12 +61,17 @@ public class Slider2Renderer extends BadgeRenderer {
 
 		String clientId = slider.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-
+		
 		if (submittedValue != null) {
 			slider.setSubmittedValue(submittedValue);
-			slider.setValue(submittedValue);
-			slider.setValid(true);
 		}
+		new AJAXRenderer().decode(context, component, clientId);
+	}
+	
+	@Override
+	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
+		Converter cnv = new DoubleConverter();
+		return cnv.getAsObject(fc, c, (String) sval);
 	}
 
 	/**
@@ -87,9 +97,12 @@ public class Slider2Renderer extends BadgeRenderer {
 		String mode = slider.getMode();
 		String label = slider.getLabel();
 
-		float min = slider.getMin();
-		float max = slider.getMax();
+		double min = slider.getMin();
+		double max = slider.getMax(); 
 		Object v = slider.getSubmittedValue();
+		if (v == null) {
+			v = slider.getValue();
+		}
 		if (v == null) {
 			v = slider.getValue();
 			slider.setValue(v);
@@ -98,14 +111,14 @@ public class Slider2Renderer extends BadgeRenderer {
 			v = max / 2;
 			slider.setValue(v);
 		}
-		Float[] fval = slider.getFloatValues();
-		for(int i = 0; i < fval.length; i++) {
-			if(fval[i] > max) fval[i] = max;
-			if(fval[i] < min) fval[i] = min;
+		double val = A.toDouble(v);
+		if (val > max) {
+			val = max;
 		}
-		slider.setFloatValues(fval);
-		String val = slider.getValue();
-		
+		if (val < min) {
+			val = min;
+		}
+		String valS = Double.toString(val);
 		String o;
 		if (slider.getOrientation() != null) {
 			o = slider.getOrientation();
@@ -146,18 +159,18 @@ public class Slider2Renderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderInput(slider, rw, isVertical, span, clientId);
+				encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
 				rw.endElement("div");/* Row */
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
 			}
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, valS, clientId, isVertical, min, max);
 			if (!bottom) {
 				rw.endElement("div"); /* Row */
 
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeSliderInput(slider, rw, isVertical, span, clientId);
+				encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
@@ -195,9 +208,9 @@ public class Slider2Renderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, valS, clientId, isVertical, min, max);
 
-			encodeSliderInput(slider, rw, isVertical, span, clientId);
+			encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
 			rw.endElement("div");/* Row */
 
 		}
@@ -221,7 +234,7 @@ public class Slider2Renderer extends BadgeRenderer {
 	}
 	
 	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, String val,
-			String clientId, boolean vo, float min, float max) throws IOException {
+			String clientId, boolean vo, double min, double max) throws IOException {
 		int cols = (vo ? 12 : 1);
 		if (!mode.equals("basic")) {
 			/*
@@ -284,7 +297,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId)
+	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId, String val)
 	throws IOException {
 		int cols = span;
 		if (!slider.getMode().equals("basic")) {
@@ -309,7 +322,7 @@ public class Slider2Renderer extends BadgeRenderer {
 		
 		if(BsfUtils.isValued(slider.getMin())) rw.writeAttribute("data-slider-min", slider.getMin(), null);
 		if(BsfUtils.isValued(slider.getMax())) rw.writeAttribute("data-slider-max", slider.getMax(), null);
-		if(BsfUtils.isValued(slider.getValue())) rw.writeAttribute("data-slider-value", slider.getValue(), null);
+		if(BsfUtils.isValued(slider.getValue())) rw.writeAttribute("data-slider-value", val, null);
 		if(BsfUtils.isValued(slider.getStep())) rw.writeAttribute("data-slider-step", slider.getStep(), null);
 		if(BsfUtils.isValued(slider.getHandleShape())) rw.writeAttribute("data-slider-handle", slider.getHandleShape(), null);
 		if(BsfUtils.isValued(slider.getTooltipVisibility())) rw.writeAttribute("data-slider-tooltip", slider.getTooltipVisibility(), null);
@@ -318,14 +331,9 @@ public class Slider2Renderer extends BadgeRenderer {
 		if(BsfUtils.isValued(slider.getOrientation())) rw.writeAttribute("data-slider-orientation", slider.getOrientation().startsWith("vertical") ? "vertical" : "horizontal", null);
 		if(BsfUtils.isValued(slider.isDisabled())) rw.writeAttribute("data-slider-enabled", !slider.isDisabled(), null);
 		if(BsfUtils.isValued(slider.getPrecision())) rw.writeAttribute("data-slider-precision", slider.getPrecision(), null);
-		if(BsfUtils.isValued(slider.getTicks())) rw.writeAttribute("data-slider-ticks", slider.getTicks(), null);
-		if(BsfUtils.isValued(slider.getTicksSnapBounds())) rw.writeAttribute("data-slider-ticks-snap-bounds", slider.getTicksSnapBounds(), null);
-		if(BsfUtils.isValued(slider.getTicksLabels())) rw.writeAttribute("data-slider-ticks-labels", slider.getTicksLabels(), null);
-		if(BsfUtils.isValued(slider.getTicksPositions())) rw.writeAttribute("data-slider-ticks-positions", slider.getTicksPositions(), null);
 		if(BsfUtils.isValued(slider.getScale())) rw.writeAttribute("data-slider-ticks-scale", slider.getScale(), null);
 		if(BsfUtils.isValued(slider.isFocus())) rw.writeAttribute("data-slider-focus", slider.isFocus(), null);
 		if(BsfUtils.isValued(slider.getLabelledBy())) rw.writeAttribute("data-slider-labelledby", slider.getLabelledBy(), null);
-		if(BsfUtils.isValued(slider.getRangeHighlights())) rw.writeAttribute("data-slider-rangeHighlights", slider.getRangeHighlights(), null);
 
 		rw.endElement("input");
 		
@@ -335,6 +343,7 @@ public class Slider2Renderer extends BadgeRenderer {
 	private void encodeJS(Slider2 slider, ResponseWriter rw, String clientId) throws IOException {
 
 		String fClientId = BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
+		String VarName = clientId.replace(":", "_");
 		
 		rw.startElement("script", slider);
 		//# Start enclosure
@@ -342,22 +351,19 @@ public class Slider2Renderer extends BadgeRenderer {
 		
 			rw.writeText(
 					 // build slider structure
-					 "$('#" + fClientId + "_slider').slider({ " +
+					 "var " + VarName + "_sv = new Slider('#" + fClientId + "_slider', { " +
 					 	(BsfUtils.isStringValued(slider.getFormatter()) ? "formatter: " + slider.getFormatter() + "," : "") +
-					 	
 					 "}); ", null);	
 			rw.writeText(
 					 "$('#" + fClientId + "_slider').on('slide', function(slideEvt) { " +
-						 "console.log('slide run'); " + 
 					 	 "$('#" + fClientId + "').val(slideEvt.value); "+
 					 	 "$('#" + fClientId + "_badge').text(slideEvt.value); "+
 					 "}); ", null);	
 			rw.writeText(
-					 "$('#" + fClientId + "').keypress(function() { " +
-						 "   var val = $(this).val(); " +
+					 "$('#" + fClientId + "').keyup(function(event) { " +
+						 "   var val = this.value; " +
 						 "   if(typeof val === 'string') val = Number(val); " + 
-						 "   console.log(val); " +
-					 	 "   $('#" + fClientId + "_slider').slider('setValue', val); " +
+					 	 "   " + VarName + "_sv.setValue(val, true, true); " +
 					 "}); ", null);	
 
 		rw.writeText("});", null);

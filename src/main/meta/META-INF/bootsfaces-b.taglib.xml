@@ -19786,13 +19786,13 @@
 		  <description><![CDATA[Maximum possible value]]></description>
 		  <name>max</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Minimum possible value]]></description>
 		  <name>min</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field.]]></description>
@@ -19817,24 +19817,6 @@
 		  <name>precision</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value.]]></description>
-		  <name>range</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}].]]></description>
-		  <name>range-highlights</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}].]]></description>
-		  <name>rangeHighlights</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -19870,7 +19852,7 @@
 		  <description><![CDATA[Increment step]]></description>
 		  <name>step</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
@@ -19889,48 +19871,6 @@
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options.]]></description>
-		  <name>ticks</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines the labels below the tick marks. Accepts HTML input.]]></description>
-		  <name>ticks-labels</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines the labels below the tick marks. Accepts HTML input.]]></description>
-		  <name>ticksLabels</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent.]]></description>
-		  <name>ticks-positions</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent.]]></description>
-		  <name>ticksPositions</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds.]]></description>
-		  <name>ticks-snap-bounds</name>
-		  <required>false</required>
-		  <type>Float</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds.]]></description>
-		  <name>ticksSnapBounds</name>
-		  <required>false</required>
-		  <type>Float</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider.]]></description>
@@ -20630,7 +20570,7 @@
 		  <description><![CDATA[Maximum value.]]></description>
 		  <name>max</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Maximum step when boosted.]]></description>
@@ -20666,7 +20606,7 @@
 		  <description><![CDATA[Minimum value.]]></description>
 		  <name>min</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables the mouse wheel to change the value of the input.]]></description>
@@ -20972,7 +20912,7 @@
 		  <description><![CDATA[Incremental/decremental step on up/down change.]]></description>
 		  <name>step</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>Double</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Refresh rate of the spinner in milliseconds.]]></description>
@@ -21146,7 +21086,7 @@
 		  <description><![CDATA[Value.]]></description>
 		  <name>value</name>
 		  <required>false</required>
-		  <type>Float</type>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>

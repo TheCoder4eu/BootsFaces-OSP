@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import javax.faces.convert.FloatConverter;
+import javax.faces.convert.DoubleConverter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
@@ -69,7 +69,7 @@ public class SpinnerRenderer extends InputTextRenderer {
 	
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = new FloatConverter();
+		Converter cnv = new DoubleConverter();
 		return cnv.getAsObject(fc, c, (String) sval);
 	}
 
