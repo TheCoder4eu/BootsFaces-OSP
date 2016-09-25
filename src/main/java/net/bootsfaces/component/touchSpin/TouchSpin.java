@@ -87,7 +87,7 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	}
 
 	@Override
-	public Double getMax() {
+	public double getMax() {
 		Object max = getStateHelper().eval(PropertyKeys.max, 100);
 		if(max instanceof Integer) return ((Integer) max).doubleValue();
 		else if(max instanceof String) return Double.parseDouble((String)max);
@@ -95,7 +95,7 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	}
 
 	@Override
-	public Double getMin() {
+	public double getMin() {
 		Object min = getStateHelper().eval(PropertyKeys.min, 0);
 		if(min instanceof Integer) return ((Integer) min).doubleValue();
 		else if(min instanceof String) return Double.parseDouble((String)min);
@@ -103,7 +103,7 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	}
 
 	@Override
-	public Double getStep() {
+	public double getStep() {
 		Object step = getStateHelper().eval(PropertyKeys.step, 1);
 		if(step instanceof Integer) return ((Integer) step).doubleValue();
 		else if(step instanceof String) return Double.parseDouble((String)step);

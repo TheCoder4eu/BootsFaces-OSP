@@ -24,40 +24,15 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class Slider2Core extends HtmlInputText {
 
 	protected enum PropertyKeys {
-		binding,
-		disabled,
-		focus,
-		formatter,
-		handleShape,
-		inline,
-		label,
-		labelStyle,
-		labelStyleClass,
-		labelledBy,
-		max,
-		min,
-		mode,
-		natural_arrow_keys,
-		orientation,
-		precision,
-		reversed,
-		scale,
-		selection,
-		span,
-		step,
-		style,
-		styleClass,
-		tooltipSliderPosition,
-		tooltipSplit,
-		tooltipVisibility,
-		value;
+		binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit, tooltipVisibility, value;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -228,15 +203,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Maximum possible value <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Double getMax() {
-		return (Double) getStateHelper().eval(PropertyKeys.max, 100);
+	public double getMax() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
 	 * Maximum possible value <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(Double _max) {
+	public void setMax(double _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
@@ -244,15 +219,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Minimum possible value <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Double getMin() {
-		return (Double) getStateHelper().eval(PropertyKeys.min, 0);
+	public double getMin() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
 	 * Minimum possible value <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(Double _min) {
+	public void setMin(double _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
@@ -388,15 +363,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Double getStep() {
-		return (Double) getStateHelper().eval(PropertyKeys.step, 1);
+	public double getStep() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(Double _step) {
+	public void setStep(double _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
