@@ -42,6 +42,7 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectMultiMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
@@ -89,6 +90,11 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 						currentOptionValueAsString = (String) currentOptionValue;
 					} else
 						currentOptionValueAsString = String.valueOf(index);
+					if ("".equals(currentOptionValueAsString) && submittedOptionValue.equalsIgnoreCase("on")) {
+						// this is a special case which occurs when the value is set to "".
+						// In this case, the browser sends "on" instead of the empty string.
+						submittedOptionValue="";
+					}
 					if (submittedOptionValue.equals(currentOptionValueAsString)) {
 						if (null == result)
 							result = currentOptionValueAsString;
@@ -99,6 +105,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 					}
 				}
 				if (!found) {
+					FacesMessages.error(clientId, "Invalid data", "Couldn't set the value of the b:selectMultiMenu because an option that wasn't defined by the JSF source code was passed.");
 					menu.setSubmittedValue(result);
 					menu.setValid(false);
 					return;
