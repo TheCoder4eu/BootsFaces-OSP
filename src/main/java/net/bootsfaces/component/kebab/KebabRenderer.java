@@ -70,7 +70,7 @@ public class KebabRenderer extends CoreRenderer {
 		//<div class="dropdown dropdown-kebab dropdown-kebab-pf">
 		rw.startElement("div", kebab);
 		rw.writeAttribute("id", kebab.getId(), "id");
-	    String s="dropdown dropdown-kebab dropdown-kebab-pf";
+	    String s="dropdown dropdown-kebab dropdown-kebab-bf dropdown-kebab-pf";
 	    if(kebab.getStyleClass()!=null){
 	    	s=s.concat(" ").concat(kebab.getStyleClass());
 	    }
