@@ -25,6 +25,7 @@ import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -200,70 +201,80 @@ public final class R {
 			a.put("styleClass", aclass);
 		}
 	}
-	
+
 	/**
-	 * Decorate the facet children with a class to render
-	 * bootstrap like "prepend" and "append" sections
+	 * Decorate the facet children with a class to render bootstrap like
+	 * "prepend" and "append" sections
+	 * 
 	 * @param parent
 	 * @param comp
 	 * @param ctx
 	 * @param rw
 	 * @throws IOException
 	 */
-	public static void decorateFacetComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw) 
-	throws IOException {
+	public static void decorateFacetComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw)
+			throws IOException {
 		/*
-		System.out.println("COMPONENT CLASS = " + comp.getClass().getName());
-		System.out.println("FAMILY = " + comp.getFamily());
-		System.out.println("CHILD COUNT = " + comp.getChildCount());
-		System.out.println("PARENT CLASS = " + comp.getParent().getClass());
-		
-			
-			if (app.getClass().getName().endsWith("Button")
-					|| (app.getChildCount() > 0 && app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-				rw.startElement("div", inputText);
-				rw.writeAttribute("class", "input-group-btn", "class");
-				app.encodeAll(context);
-				rw.endElement("div");
-			} else {
-				if (app instanceof Icon)
-					((Icon) app).setAddon(true);
-				rw.startElement("span", inputText);
-				rw.writeAttribute("class", "input-group-addon", "class");
-				app.encodeAll(context);
-				rw.endElement("span");
-			}
-		*/
-		if(comp.getChildCount() >= 1 && comp.getClass().getName().endsWith("Panel")) {
-			for(UIComponent child: comp.getChildren()) {
+		 * System.out.println("COMPONENT CLASS = " + comp.getClass().getName());
+		 * System.out.println("FAMILY = " + comp.getFamily());
+		 * System.out.println("CHILD COUNT = " + comp.getChildCount());
+		 * System.out.println("PARENT CLASS = " + comp.getParent().getClass());
+		 * 
+		 * 
+		 * if (app.getClass().getName().endsWith("Button") ||
+		 * (app.getChildCount() > 0 &&
+		 * app.getChildren().get(0).getClass().getName().endsWith("Button"))) {
+		 * rw.startElement("div", inputText); rw.writeAttribute("class",
+		 * "input-group-btn", "class"); app.encodeAll(context);
+		 * rw.endElement("div"); } else { if (app instanceof Icon) ((Icon)
+		 * app).setAddon(true); rw.startElement("span", inputText);
+		 * rw.writeAttribute("class", "input-group-addon", "class");
+		 * app.encodeAll(context); rw.endElement("span"); }
+		 */
+		if (comp.getChildCount() >= 1 && comp.getClass().getName().endsWith("Panel")) {
+			for (UIComponent child : comp.getChildren()) {
 				decorateComponent(parent, child, ctx, rw);
 			}
 		} else {
 			decorateComponent(parent, comp, ctx, rw);
 		}
 	}
-	
+
 	/**
 	 * Add the correct class
+	 * 
 	 * @param parent
 	 * @param comp
 	 * @param ctx
 	 * @param rw
 	 * @throws IOException
 	 */
-	private static void decorateComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw) 
-	throws IOException {
+	private static void decorateComponent(UIComponent parent, UIComponent comp, FacesContext ctx, ResponseWriter rw)
+			throws IOException {
 		if (comp instanceof Icon)
 			((Icon) comp).setAddon(true); // modifies the id of the icon
-		
+
 		String classToApply = "input-group-addon";
-		if(comp.getClass().getName().endsWith("Button") || comp.getChildCount() > 0)
+		if (comp.getClass().getName().endsWith("Button") || comp.getChildCount() > 0)
 			classToApply = "input-group-btn";
-		
-		rw.startElement("span", parent);
-		rw.writeAttribute("class", classToApply, "class");
-		comp.encodeAll(ctx);
-		rw.endElement("span");
+
+		if (comp instanceof HtmlOutputText) {
+			HtmlOutputText out = (HtmlOutputText)comp;
+			
+			String sc = out.getStyleClass();
+			if (sc == null)
+				sc = classToApply;
+			else
+				sc = sc + " " + classToApply;
+			out.setStyleClass(sc);
+			comp.encodeAll(ctx);
+		}
+		else {
+			rw.startElement("span", parent);
+			rw.writeAttribute("class", classToApply, "class");
+			comp.encodeAll(ctx);
+		 rw.endElement("span");
+		}
 	}
 
 	/**

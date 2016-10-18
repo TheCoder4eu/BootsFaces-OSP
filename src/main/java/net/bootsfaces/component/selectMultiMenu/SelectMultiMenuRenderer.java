@@ -30,6 +30,7 @@ import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
+import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
@@ -41,6 +42,7 @@ import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectMultiMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
@@ -88,6 +90,11 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 						currentOptionValueAsString = (String) currentOptionValue;
 					} else
 						currentOptionValueAsString = String.valueOf(index);
+					if ("".equals(currentOptionValueAsString) && submittedOptionValue.equalsIgnoreCase("on")) {
+						// this is a special case which occurs when the value is set to "".
+						// In this case, the browser sends "on" instead of the empty string.
+						submittedOptionValue="";
+					}
 					if (submittedOptionValue.equals(currentOptionValueAsString)) {
 						if (null == result)
 							result = currentOptionValueAsString;
@@ -98,6 +105,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 					}
 				}
 				if (!found) {
+					FacesMessages.error(clientId, "Invalid data", "Couldn't set the value of the b:selectMultiMenu because an option that wasn't defined by the JSF source code was passed.");
 					menu.setSubmittedValue(result);
 					menu.setValid(false);
 					return;
@@ -134,7 +142,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "form-group", "class");
 		}
 
-		addLabel(rw, clientId+"Inner", menu);
+		addLabel(rw, clientId + "Inner", menu);
 
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
@@ -142,7 +150,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				(appendingAddOnFacet != null), menu);
 
 		addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
-		renderSelectTag(context, rw, clientId+"Inner", clientId, menu);
+		renderSelectTag(context, rw, clientId + "Inner", clientId, menu);
 		addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
 		closeInputGroupForAddOn(rw, hasAddon);
@@ -339,6 +347,16 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				rw.writeAttribute("class", "input-group-btn", "class");
 				prependingAddOnFacet.encodeAll(context);
 				rw.endElement("div");
+			} else if (prependingAddOnFacet instanceof HtmlOutputText) {
+				HtmlOutputText out = (HtmlOutputText) prependingAddOnFacet;
+
+				String sc = out.getStyleClass();
+				if (sc == null)
+					sc = "input-group-addon";
+				else
+					sc = sc + " " + "input-group-addon";
+				out.setStyleClass(sc);
+				prependingAddOnFacet.encodeAll(context);
 			} else {
 				rw.startElement("span", menu);
 				rw.writeAttribute("class", "input-group-addon", "class");
@@ -359,11 +377,11 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-    protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
-        if (span != null && span.trim().length()>0) {
-            rw.endElement("div");
-        }
-    }
+	protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
+		if (span != null && span.trim().length() > 0) {
+			rw.endElement("div");
+		}
+	}
 
 	/**
 	 * Terminates the input field group (if there's one). This method is
@@ -416,8 +434,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	}
 
 	/** Renders the select tag. */
-	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, String name, SelectMultiMenu menu)
-			throws IOException {
+	protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, String name,
+			SelectMultiMenu menu) throws IOException {
 		renderSelectTag(rw, menu);
 		renderSelectTagAttributes(rw, clientId, name, menu);
 		Object selectedOption = getValue2Render(context, menu);

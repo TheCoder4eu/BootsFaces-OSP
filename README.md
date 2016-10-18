@@ -1,10 +1,14 @@
 BootsFaces-OSP
 ==============
 
-BootsFaces - Open Source Project
 <p align="center">
     <img src="http://www.bootsfaces.net/javax.faces.resource/bsf.full.teal.png.jsf?ln=images" width="200">
 </p>
+
+BootsFaces - Open Source Project
+
+[![License](https://img.shields.io/:license-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/net.bootsfaces/bootsfaces/badge.svg)](https://maven-badges.herokuapp.com/maven-central/net.bootsfaces/bootsfaces)
 
 This is the next gen JSF Framework that takes the best from Bootstrap 3 and jQuery UI to let you develop Front-end Enterprise Applications fast and easy.
 
@@ -22,12 +26,12 @@ To get up and running quickly, have a look at the [Quick Start](http://www.boots
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>0.8.6</version>
+        <version>0.9.1</version>
     </dependency>
 
 ###Gradle
 
-    compile 'net.bootsfaces:bootsfaces:0.8.6'
+    compile 'net.bootsfaces:bootsfaces:0.9.1'
 
 ###Development Snapshots
 See [this issue](https://github.com/TheCoder4eu/BootsFaces-OSP/issues/369) for instructions on how to get a current developer snapshot via Maven.  

@@ -18,16 +18,14 @@
 
 package net.bootsfaces.component.kebab;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:kebab /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.kebab.Kebab")
@@ -72,7 +70,7 @@ public class KebabRenderer extends CoreRenderer {
 		//<div class="dropdown dropdown-kebab dropdown-kebab-pf">
 		rw.startElement("div", kebab);
 		rw.writeAttribute("id", kebab.getId(), "id");
-	    String s="dropdown dropdown-kebab dropdown-kebab-pf";
+	    String s="dropdown dropdown-kebab dropdown-kebab-bf dropdown-kebab-pf";
 	    if(kebab.getStyleClass()!=null){
 	    	s=s.concat(" ").concat(kebab.getStyleClass());
 	    }

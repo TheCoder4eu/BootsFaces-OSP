@@ -53,6 +53,17 @@ public final class A {
         
         throw new IllegalArgumentException("Cannot convert " + val);
     }
+    public static double toDouble(Object val) {
+        if (val == null) { return 0; }
+        if (val instanceof Number) {
+            return ((Number) val).doubleValue();
+        }
+        if (val instanceof String) {
+            return Double.parseDouble((String) val);
+        }
+        
+        throw new IllegalArgumentException("Cannot convert " + val);
+    }
         
     public static boolean toBool(Object val) {
         if (val == null) { return false; }

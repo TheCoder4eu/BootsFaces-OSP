@@ -24,7 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class Slider2Core extends HtmlInputText {
 
 	protected enum PropertyKeys {
-		binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, range, rangeHighlights, reversed, scale, selection, span, step, style, styleClass, ticks, ticksLabels, ticksPositions, ticksSnapBounds, tooltipSliderPosition, tooltipSplit, tooltipVisibility, value;
+		binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit, tooltipVisibility, value;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -203,15 +203,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Maximum possible value <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getMax() {
-		return (Float) getStateHelper().eval(PropertyKeys.max, 100f);
+	public double getMax() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
 	 * Maximum possible value <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(Float _max) {
+	public void setMax(double _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
@@ -219,15 +219,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Minimum possible value <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getMin() {
-		return (Float) getStateHelper().eval(PropertyKeys.min, 0f);
+	public double getMin() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
 	 * Minimum possible value <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(Float _min) {
+	public void setMin(double _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
@@ -293,38 +293,6 @@ public abstract class Slider2Core extends HtmlInputText {
 	 */
 	public void setPrecision(int _precision) {
 		getStateHelper().put(PropertyKeys.precision, _precision);
-	}
-
-	/**
-	 * Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public boolean isRange() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.range, false);
-	}
-
-	/**
-	 * Make range slider. Optional if initial value is an array. If initial value is scalar, max will be used for second value. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRange(boolean _range) {
-		getStateHelper().put(PropertyKeys.range, _range);
-	}
-
-	/**
-	 * Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}]. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getRangeHighlights() {
-		return (String) getStateHelper().eval(PropertyKeys.rangeHighlights);
-	}
-
-	/**
-	 * Defines a range array that you want to highlight, for example: [{'start':val1, 'end': val2}]. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setRangeHighlights(String _rangeHighlights) {
-		getStateHelper().put(PropertyKeys.rangeHighlights, _rangeHighlights);
 	}
 
 	/**
@@ -395,15 +363,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public Float getStep() {
-		return (Float) getStateHelper().eval(PropertyKeys.step, 1f);
+	public double getStep() {
+		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(Float _step) {
+	public void setStep(double _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
@@ -437,70 +405,6 @@ public abstract class Slider2Core extends HtmlInputText {
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
-	/**
-	 * Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTicks() {
-		return (String) getStateHelper().eval(PropertyKeys.ticks);
-	}
-
-	/**
-	 * Used to define the values of ticks. Tick marks are indicators to denote special values in the range. This option overwrites min and max options. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTicks(String _ticks) {
-		getStateHelper().put(PropertyKeys.ticks, _ticks);
-	}
-
-	/**
-	 * Defines the labels below the tick marks. Accepts HTML input. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTicksLabels() {
-		return (String) getStateHelper().eval(PropertyKeys.ticksLabels);
-	}
-
-	/**
-	 * Defines the labels below the tick marks. Accepts HTML input. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTicksLabels(String _ticksLabels) {
-		getStateHelper().put(PropertyKeys.ticksLabels, _ticksLabels);
-	}
-
-	/**
-	 * Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTicksPositions() {
-		return (String) getStateHelper().eval(PropertyKeys.ticksPositions);
-	}
-
-	/**
-	 * Defines the positions of the tick values in percentages. The first value should always be 0, the last value should always be 100 percent. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTicksPositions(String _ticksPositions) {
-		getStateHelper().put(PropertyKeys.ticksPositions, _ticksPositions);
-	}
-
-	/**
-	 * Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public Float getTicksSnapBounds() {
-		return (Float) getStateHelper().eval(PropertyKeys.ticksSnapBounds, 0f);
-	}
-
-	/**
-	 * Used to define the snap bounds of a tick. Snaps to the tick if value is within these bounds. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTicksSnapBounds(Float _ticksSnapBounds) {
-		getStateHelper().put(PropertyKeys.ticksSnapBounds, _ticksSnapBounds);
 	}
 
 	/**

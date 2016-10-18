@@ -93,6 +93,9 @@ public final class JQ {
             sel=DP_SEL_DIV.replace(WID, dpId);
             sb.append(DP_START.replace(SEL, sel)).append(opts);
             //sb.append(DP_START_DIV.replace(WID, dpId)).append(opts);
+            if (sb.length()>0 && sb.charAt(sb.length()-1)!=',') {
+            	sb.append(',');
+            }
             sb.append(DP_SELECT.replace(CID, cId));
         } else {
             sb.append(DP_START.replace(SEL, sel)).append(opts);

@@ -17,32 +17,40 @@
  *  along with BootsFaces. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.bootsfaces.component.slider2;
+package net.bootsfaces.component.touchSpin;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IHasTooltip;
+import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:slider2 /&gt;. */
-@FacesComponent("net.bootsfaces.component.slider2.Slider2")
-public class Slider2 extends Slider2Core {
+/** This class holds the attributes of &lt;b:spinner /&gt;. */
+@FacesComponent("net.bootsfaces.component.touchSpin.TouchSpin")
+public class TouchSpin extends TouchSpinCore
+implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.slider2.Slider2";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.touchSpin.TouchSpin";
 
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider2.Slider2";
+	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.touchSpin.TouchSpin";
 
-	public Slider2() {
+	public TouchSpin() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-slider.min.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-slider.min.js");
+		AddResourcesListener.addThemedCSSResource("bootstrap-touchspin.min.css");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-touchspin.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -57,13 +65,25 @@ public class Slider2 extends Slider2Core {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
+
+	@Override
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("startspin", "touchspin.on.startspin");
+		result.put("startupspin", "touchspin.on.startupspin");
+		result.put("startdownspin", "touchspin.on.startdownspin");
+		result.put("stopspin", "touchspin.on.stopspin");
+		result.put("stopupspin", "touchspin.on.stopupspin");
+		result.put("stopdownspin", "touchspin.on.stopdownspin");
+		result.put("change", "change");
+		return result;
+	}
 	
 	@Override
 	public String getValue() {
-		Object val = getStateHelper().eval(PropertyKeys.value, "5");
-		if(val instanceof Double) 
-			return val.toString();
-		return (String) val;
+		Object val = getStateHelper().eval(PropertyKeys.value);
+		if(val instanceof Double) return val.toString();
+		else return (String) val;
 	}
 
 	@Override
