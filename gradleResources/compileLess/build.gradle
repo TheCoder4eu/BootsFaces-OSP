@@ -23,8 +23,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.7.4'
-        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.7.4'
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.11.3'
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.11.3'
     }
 }
 
