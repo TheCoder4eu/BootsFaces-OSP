@@ -158,6 +158,8 @@ public class NavLinkRenderer extends CoreRenderer {
 		String value = (String) ((AbstractNavLink) navlink).getValue();
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
+		Boolean useAjax = ((AbstractNavLink) navlink).isAjax();
+		useAjax = useAjax == null ? true : useAjax; // by default, behave like before
 		if (parent != null) {
 			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
 				parent = parent.getParent();
@@ -171,7 +173,10 @@ public class NavLinkRenderer extends CoreRenderer {
 		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		Tooltip.generateTooltip(context, navlink, rw);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw);
+		
+		if (useAjax) {
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw);
+		}
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
 
@@ -185,7 +190,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (navlink instanceof NavCommandLink)
 			if (((NavCommandLink) navlink).getActionExpression() != null)
 				hasActionExpression = true;
-		if (((AbstractNavLink) navlink).getUpdate() == null && (!((AbstractNavLink) navlink).isAjax())
+		if (((AbstractNavLink) navlink).getUpdate() == null && (!useAjax)
 				&& (!hasActionExpression)) {
 			String url = encodeHref(context, ((AbstractNavLink) navlink));
 			if (url == null) {
