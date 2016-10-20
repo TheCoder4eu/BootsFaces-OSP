@@ -59,7 +59,7 @@ themes.each {
         println "compileLess:Configure Task copyDefaultTheme2$themeName"
 
         from BootstrapFolder+'/less' //Bootstrap less
-        from staticResourcesDir+'/less' //BootsFaces less
+        from staticResourcesDir+'/less/bf' //BootsFaces less
         include '**/*.less'
         exclude 'extra-theme.less'
 
@@ -105,7 +105,7 @@ task copyOriginalLess(type: Copy) {
 //Copy the less files for Bootstrap(default) Theme
 task copyBootsFacesLess(type: Copy) {
   	description 'BootsFaces task: copies the BootsFaces bs-*.less files to the process folder.'
-  	from staticResourcesDir+'/less'
+  	from staticResourcesDir+'/less/bf'
   	into "${buildDir}/process/less/default"
 
     exclude 'bs-patternfly.less'
@@ -130,7 +130,7 @@ task copyBootsFacesLess4PatternFly(type: Copy) {
 //Copy the less files for PatternFly Theme
 task copyPatternFlyLessFiles(type: Copy) {
   	description 'BootsFaces task: copies the Bootstrap and PatternFly less folders to the process folder.'
-  	from PatternFlyFolder+'/less'
+  	from PatternFlyFolder+'/src/less'
   	into "${buildDir}/process/less/patternfly"
 }
 task copyPatternFlyLess(dependsOn: ['copyPatternFlyLessFiles','copyOriginalLess4PatternFly','copyBootsFacesLess4PatternFly']) {
@@ -215,11 +215,4 @@ task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile', 'cleanAss
 assetCompile.mustRunAfter copyFiles2Process
 cleanAssetDir.mustRunAfter assetCompile
 cleanAssetThemeDirs.mustRunAfter cleanAssetDir
-/*
-task hello {
-  println 'Hello '+extractedResources
-  println 'BootstrapFolder:'+BootstrapFolder
-  println 'BootswatchFolder:'+BootswatchFolder
-  println 'staticResourcesDir:'+staticResourcesDir
-}
-*/
+
