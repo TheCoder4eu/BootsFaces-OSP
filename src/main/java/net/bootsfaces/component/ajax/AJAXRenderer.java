@@ -17,6 +17,7 @@ import javax.faces.component.ActionSource;
 import javax.faces.component.ActionSource2;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIParameter;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
 import javax.faces.component.behavior.ClientBehaviorHolder;
@@ -408,7 +409,27 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(", null");
 		if ((event != null) && (event.length() > 0)) {
 			cJS.append(", '" + event + "'");
+		} else
+			cJS.append(", null");
+		
+		String parameterList="";
+		List<UIComponent> children = ((UIComponent)component).getChildren();
+		String id= ((UIComponent)component).getId();
+		for (UIComponent parameter: children) {
+			if (parameter instanceof UIParameter) {
+				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String name = ((UIParameter) parameter).getName();
+				if (null!=value) {
+					parameterList += ",{'" + name + "':'" + value + "'}";
+				}
+			}
 		}
+		if (parameterList.length()>0) {
+			String json="{" + parameterList.substring(1) + "}";
+			cJS.append(json);
+		}
+
+		
 		cJS.append(");");
 		return cJS;
 	}
@@ -473,18 +494,34 @@ public class AJAXRenderer extends CoreRenderer {
 		if (oncomplete != null) {
 			cJS.append(",function(){" + oncomplete + "}");
 		} else
-			cJS.append(", null");
+			cJS.append(",null");
 		if (onError != null) {
 			cJS.append(",function(){" + onError + "}");
 		} else
-			cJS.append(", null");
+			cJS.append(",null");
 		if (onSuccess != null) {
 			cJS.append(",function(){" + onSuccess + "}");
 		} else
-			cJS.append(", null");
+			cJS.append(",null");
 		if ((onevent != null) && (onevent.length() > 0)) {
 			cJS.append(", '" + onevent + "'");
-			// cJS.append(", {'BsFEvent':'" + event+"'}'");
+		} else {
+			cJS.append(",null");
+		}
+		String parameterList="";
+		List<UIComponent> children = ((UIComponent)component).getChildren();
+		for (UIComponent parameter: children) {
+			if (parameter instanceof UIParameter) {
+				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String name = ((UIParameter) parameter).getName();
+				if (null!=value) {
+					parameterList += ",'" + name + "':'" + value + "'";
+				}
+			}
+		}
+		if (parameterList.length()>0) {
+			String json=",{" + parameterList.substring(1) + "}";
+			cJS.append(json);
 		}
 		cJS.append(");");
 

@@ -66,7 +66,7 @@ BsF.ajax.cb = function(o, e, r, f) {
  */
 BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		onerror, onsuccess,
-		eventType) {
+		eventType, parameters) {
 	var argn = arguments.length;
 	if (source.id==null || source.id=="") {
 		source=source.parentNode;
@@ -104,6 +104,11 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		BsF.onSuccessCallback[cid] = null;
 	}
 	opts.onevent = BsF.ajax.onevent;
+	if (parameters) {
+		for(var propertyName in parameters) {
+			opts[propertyName] = parameters[propertyName];
+		}
+	}
 	jsf.ajax.request(source, event, opts);
 	if ($.blockUI && $.blockUI != null) {
 		var message = $.blockUI.defaults.message;
