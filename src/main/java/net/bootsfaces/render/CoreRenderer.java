@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.el.ValueExpression;
+import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.EditableValueHolder;
@@ -392,8 +393,19 @@ public class CoreRenderer extends Renderer {
 				System.out.println(msg);
 			}
 		}
-
 	}
+	
+	protected static UIForm getSurroundingForm(UIComponent component) {
+		UIComponent c = component;
+		while ((c != null) && (!(c instanceof UIForm))) {
+			c = c.getParent();
+		}
+		if (!(c instanceof UIForm)) {
+			throw new FacesException("The component with the id " + component.getClientId() + " must be inside a form");
+		}
+		return (UIForm) c;
+	}
+
 
 	/**
 	 * Algorithm works as follows; - If it's an input component, submitted value

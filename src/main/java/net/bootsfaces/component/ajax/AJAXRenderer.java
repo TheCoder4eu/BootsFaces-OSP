@@ -17,6 +17,7 @@ import javax.faces.component.ActionSource;
 import javax.faces.component.ActionSource2;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIForm;
 import javax.faces.component.UIParameter;
 import javax.faces.component.behavior.AjaxBehavior;
 import javax.faces.component.behavior.ClientBehavior;
@@ -198,7 +199,25 @@ public class AJAXRenderer extends CoreRenderer {
 					if (script.length() > 0 && "click".equals(defaultEvent))
 						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
-			} else if (!(component instanceof CommandButton)) {
+			} else if (component instanceof CommandButton) {
+				String parameterList="";
+				List<UIComponent> children = ((UIComponent)component).getChildren();
+				for (UIComponent parameter: children) {
+					if (parameter instanceof UIParameter) {
+						String value=String.valueOf(((UIParameter) parameter).getValue());
+						String name = ((UIParameter) parameter).getName();
+						if (null!=value) {
+							parameterList += ",'" + name + "':'" + value + "'";
+						}
+					}
+				}
+				if (parameterList.length()>0) {
+					UIForm currentForm = getSurroundingForm((UIComponent)component);
+					parameterList = "'" + currentForm.getClientId() + "',{'" +((CommandButton)component).getClientId() + "':'" +  ((CommandButton)component).getClientId() + "'" + parameterList+ "}";
+					rw.writeAttribute("onclick", "BsF.submitForm(" + parameterList + ");return false;", null);
+				}
+			}
+			else {
 				// b:navCommandLink doesn't submit the form, so we need to use
 				// AJAX
 				boolean generateNonAJAXCommand = false;

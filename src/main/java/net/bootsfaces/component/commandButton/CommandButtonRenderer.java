@@ -59,8 +59,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		}
 		CommandButton commandButton = (CommandButton) component;
 		ResponseWriter rw = context.getResponseWriter();
-//		component.setId(component.getId());
-		String CID = component.getClientId(context);
+		String clientId = component.getClientId(context);
 
 		// 2) get the type (submit, button, reset ; default submit)
 		String type = commandButton.getType();
@@ -71,8 +70,8 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		rw.startElement("button", component);
 		rw.writeAttribute("type", type, null);
-		rw.writeAttribute("id", CID, "id");
-		rw.writeAttribute("name", CID, "name");
+		rw.writeAttribute("id", clientId, "id");
+		rw.writeAttribute("name", clientId, "name");
 		if (null != commandButton.getDir()) {
 			rw.writeAttribute("dir", commandButton.getDir(), "dir");
 		}
@@ -92,7 +91,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 			// Check if it is in a Form
 			String formId = R.findComponentFormId(context, component);
 			if (formId == null) {
-				throw new FacesException("CommandButton : '" + CID + "' must be inside a form element");
+				throw new FacesException("CommandButton : '" + clientId + "' must be inside a form element");
 			}
 		}
 

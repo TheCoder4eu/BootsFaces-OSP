@@ -212,3 +212,84 @@ BsF.substringMatcher = function(strs) {
 	    cb(matches);
 	  };
 	};
+
+	
+	
+/*
+ * This function adds any parameters specified by the
+ * parameter 'pvp' to the form represented by param 'f'.
+ * Any parameters added will be stored in a variable
+ * called 'adp' and stored on the form.
+ * Basically this function has been copied from the
+ * Mojarra code because there didn't seem to be
+ * any alternative implementation.
+ *
+ * @param f - the target form
+ * @param pvp - associative array of parameter
+ *  key/value pairs to be added to the form as hidden input
+ *  fields.
+ */
+BsF.addParametersToForm = function apf(currentForm, pvp) {
+    var parametersAddedTemporarily = new Array();
+    currentForm.parametersAddedTemporarily = parametersAddedTemporarily;
+    var i = 0;
+    for (var k in pvp) {
+        if (pvp.hasOwnProperty(k)) {
+            var p = document.createElement("input");
+            p.type = "hidden";
+            p.name = k;
+            p.value = pvp[k];
+            currentForm.appendChild(p);
+            parametersAddedTemporarily[i++] = p;
+        }
+    }
+};
+
+/**
+ * This is called by command link and command button.  It provides
+ * the form it is nested in, the parameters that need to be
+ * added and finally, the target of the action.  This function
+ * will delete any parameters added <em>after</em> the form
+ * has been submitted to handle DOM caching issues.
+ * Basically this function has been copied from the
+ * Mojarra code because there didn't seem to be
+ * any alternative implementation.
+ *
+ * @param f - the target form
+ * @param pvp - associative array of parameter
+ *  key/value pairs to be added to the form as hidden input
+ *  fields.
+ * @param t - the target of the form submission
+ */
+BsF.submitForm = function jsfcljs(currentForm, parameters) {
+    BsF.addParametersToForm(currentForm, parameters);
+    if (currentForm.onsubmit) {
+        var result = currentForm.onsubmit();
+        if ((typeof result == 'undefined') || result) {
+            currentForm.submit();
+        }
+    } else {
+        currentForm.submit();
+    }    
+    BsF.removeTemporalParametersFromForm(currentForm);
+};
+
+/**
+ * This function deletes any hidden parameters added
+ * to the form by checking for a variable called 'parametersAddedTemporarily'
+ * defined on the form.  If present, this variable will
+ * contain all the parameters added by 'addParametersToForm'.
+ * Basically this function has been copied from the
+ * Mojarra code because there didn't seem to be
+ * any alternative implementation.
+ *
+ * @param currentForm - the target form
+ */
+BsF.removeTemporalParametersFromForm = function removeTemporalParametersFromForm(currentForm) {
+    var parametersAddedTemporarily = currentForm.parametersAddedTemporarily;
+    if (parametersAddedTemporarily !== null) {
+        for (var i = 0; i < parametersAddedTemporarily.length; i++) {
+            currentForm.removeChild(parametersAddedTemporarily[i]);
+        }
+    }
+};
