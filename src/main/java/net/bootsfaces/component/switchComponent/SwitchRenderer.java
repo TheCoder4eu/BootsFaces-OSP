@@ -28,6 +28,8 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox;
 import net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckboxRenderer;
 
+import net.bootsfaces.render.Tooltip;
+
 /** This class generates the HTML code of &lt;b:switchWidget /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.switch.Switch")
 public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
