@@ -261,7 +261,8 @@ BsF.addParametersToForm = function apf(currentForm, pvp) {
  *  fields.
  * @param t - the target of the form submission
  */
-BsF.submitForm = function jsfcljs(currentForm, parameters) {
+BsF.submitForm = function jsfcljs(currentFormId, parameters) {
+	var currentForm = document.getElementById(currentFormId);
     BsF.addParametersToForm(currentForm, parameters);
     if (currentForm.onsubmit) {
         var result = currentForm.onsubmit();
