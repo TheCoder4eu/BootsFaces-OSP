@@ -105,7 +105,7 @@ public class AlertRenderer extends CoreRenderer {
 			String s="bficon-";
 			if(sev.equals("success")) {s+="ok";}
 			if(sev.equals("info")) {s+="info";}
-			if(sev.equals("warning")) {s+="warning-triangle-owarning-triangle-o";}
+			if(sev.equals("warning")) {s+="warning-triangle-o";}
 			if(sev.equals("danger")) {s+="error-circle-o";}
 			rw.writeAttribute("class", "bficon "+s, "class");
 			rw.endElement("span");
