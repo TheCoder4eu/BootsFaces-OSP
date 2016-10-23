@@ -43,6 +43,37 @@ public class SwitchRenderer extends SelectBooleanCheckboxRenderer {
 		rw.append("</script>");
 	}
 
+        /**
+         * Renders the start of the input tag. This method is protected in order to
+         * allow third-party frameworks to derive from it.
+         *
+         * @param rw
+         *            the response writer
+         * @param selectBooleanCheckbox
+         *            the component to render
+         * @throws IOException
+         *             may be thrown by the response writer
+         */
+        @Override
+        protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
+                                      String clientId) throws IOException {
+
+                rw.startElement("div", selectBooleanCheckbox);
+                rw.writeAttribute("id", clientId, null);
+                if (null != selectBooleanCheckbox.getDir()) {
+                        rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+                }
+
+                Tooltip.generateTooltip(context, selectBooleanCheckbox, rw);
+
+                //rw.writeAttribute("class", "checkbox", "class");
+                rw.startElement("label", selectBooleanCheckbox);
+                writeAttribute(rw, "class", getErrorAndRequiredClass(selectBooleanCheckbox, clientId));
+
+                rw.startElement("input", selectBooleanCheckbox);
+        }
+
+
 	/**
 	 * The b:switch and the b:selectBooleanCheckbox share most of their code.
 	 * This method allows to add extra attributes for the switch.
