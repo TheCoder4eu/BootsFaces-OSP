@@ -144,3 +144,42 @@ a.panel-title-link {
   }
 }
 
+//
+// Icons
+// --------------------------------------------------
+
+@icon-prefix: "bficon";
+@icon-font-name-pf: "Glyphicons Halflings";
+
+[class^="@{icon-prefix}-"],
+[class*=" @{icon-prefix}-"] {
+  display: inline-block;
+  font-family: "@{icon-font-name-pf}";
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering =========== */
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+.@{icon-prefix}-error-circle-o:before {
+  color: @brand-danger;
+  content: "\e088";
+}
+.@{icon-prefix}-warning-triangle-o:before {
+  color: @brand-warning;
+  content: "\e107";
+}
+.@{icon-prefix}-ok:before {
+  color: @brand-success;
+  content: "\e089";
+}
+.@{icon-prefix}-info:before {
+  color: @brand-info;
+  content: "\e086";
+}
+
