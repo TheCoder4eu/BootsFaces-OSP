@@ -19,9 +19,12 @@
 
 package net.bootsfaces.component.spinner;
 
+import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.component.iconAwesome.IconAwesome;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
+@FacesComponent("net.bootsfaces.component.spinner.SpinnerCore")
 public abstract class SpinnerCore extends IconAwesome implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {

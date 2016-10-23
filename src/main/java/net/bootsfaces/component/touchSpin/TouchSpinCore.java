@@ -19,9 +19,12 @@
 
 package net.bootsfaces.component.touchSpin;
 
+import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.component.inputText.InputText;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
+@FacesComponent("net.bootsfaces.component.touchSpin.TouchSpinCore")
 public abstract class TouchSpinCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
