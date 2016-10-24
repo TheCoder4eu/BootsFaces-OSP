@@ -178,7 +178,7 @@ public class MessagesRenderer extends CoreRenderer {
 				styleClassPrefix = "alert-danger " + errorClass;
 			}
 			stylePrefix += uiMessages.getErrorStyle();
-			iconStyleClass = "bficon bficon-error-circle-oerror-circle-o";//"fa fa-exclamation-circle";
+			iconStyleClass = "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
 		} else if ("info".equals(severity)) {
 			String infoClass = uiMessages.getInfoClass();
 			if (infoClass==null) {

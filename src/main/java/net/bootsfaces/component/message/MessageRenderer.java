@@ -96,7 +96,7 @@ public class MessageRenderer extends CoreRenderer {
 				style += ";";
 			String severityStyle = findHighestSeverityStyle(messageList, message);
 			if (null==severityStyle) severityStyle=""; else if (!severityStyle.endsWith(";")) severityStyle+=";";
-			
+
 			writeAttribute(rw, "style", style+severityStyle);
 			writeAttribute(rw, "role", "alert");
 
@@ -241,11 +241,11 @@ public class MessageRenderer extends CoreRenderer {
 				hasFatal = true;
 		}
 		if (hasFatal)
-			return "fa fa-exclamation-circle";
+			return "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
 		if (hasError)
-			return "fa fa-exclamation-circle";
+			return "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
 		if (hasWarning)
-			return "fa fa-exclamation-triangle";
-		return "fa fa-info-circle";
+			return "bficon bficon-warning-triangle-o";//"fa fa-exclamation-triangle";
+		return "bficon bficon-info";//"fa fa-info-circle";
 	}
 }
