@@ -28,68 +28,7 @@ import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		border,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		customLangUrl,
-		customOptions,
-		disabled,
-		display,
-		fixedHeader,
-		hidden,
-		immediate,
-		lang,
-		largeScreen,
-		mediumScreen,
-		multiColumnSearch,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		ondblclick,
-		ondeselect,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onorder,
-		onpage,
-		onsearch,
-		onselect,
-		pageLength,
-		pageLengthMenu,
-		paginated,
-		process,
-		responsive,
-		rowHighlight,
-		saveState,
-		scrollCollapse,
-		scrollSize,
-		scrollX,
-		searching,
-		select,
-		smallScreen,
-		span,
-		striped,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible,
-		widgetVar;
+		ajax, border, colLg, colMd, colSm, colXs, customLangUrl, customOptions, disabled, display, fixedHeader, hidden, immediate, lang, largeScreen, mediumScreen, multiColumnSearch, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, pageLength, pageLengthMenu, paginated, process, responsive, rowHighlight, saveState, scrollCollapse, scrollSize, scrollX, searching, select, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -854,6 +793,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSelect(boolean _select) {
 		getStateHelper().put(PropertyKeys.select, _select);
+	}
+
+	/**
+	 * Set this property to "single" if you want to prevent multiple selections. Default is "multiple". <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectionMode() {
+		return (String) getStateHelper().eval(PropertyKeys.selectionMode, "multiple");
+	}
+
+	/**
+	 * Set this property to "single" if you want to prevent multiple selections. Default is "multiple". <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectionMode(String _selectionMode) {
+		getStateHelper().put(PropertyKeys.selectionMode, _selectionMode);
 	}
 
 	/**

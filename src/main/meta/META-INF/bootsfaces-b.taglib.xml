@@ -5365,6 +5365,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Set this property to "single" if you want to prevent multiple selections. Default is "multiple".]]></description>
+		  <name>selectionMode</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>small-screen</name>
 		  <required>false</required>

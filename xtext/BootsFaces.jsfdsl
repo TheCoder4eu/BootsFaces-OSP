@@ -522,6 +522,7 @@ widget dataTable
     scroll-x 		     Boolean    						               "If set, the table can scroll horizontally. Defaults to false."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
     select 		         Boolean    						               "Allows the user to select rows. Defaults to false."
+    selectionMode        String default "multiple"                         "Set this property to \"single\" if you want to prevent multiple selections. Default is \"multiple\"."
 	striped              Boolean default "true"                            "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
     update                                                                 "Component(s) to be updated with ajax."
     value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."

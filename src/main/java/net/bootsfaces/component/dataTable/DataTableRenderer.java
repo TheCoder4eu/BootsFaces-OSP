@@ -497,7 +497,11 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions( "searching: " + dataTable.isSearching() , options);
 		options = addOptions( "order: " + orderString, options);
 		options = addOptions( "stateSave: " + dataTable.isSaveState(), options);
-		options = addOptions( "select: " + dataTable.isSelect(), options);
+		if (dataTable.isSelect() && "single".equalsIgnoreCase(dataTable.getSelectionMode())) {
+			options = addOptions( "select: 'single'", options);
+		} else {
+			options = addOptions( "select: " + dataTable.isSelect(), options);
+		}
 		options = addOptions( generateScrollOptions(dataTable), options);
 		options = addOptions( (BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions( generateColumnInfos(dataTable.getColumnInfo()), options);
