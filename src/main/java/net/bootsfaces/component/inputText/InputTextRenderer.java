@@ -18,8 +18,10 @@
 package net.bootsfaces.component.inputText;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.el.ValueExpression;
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
@@ -64,8 +66,8 @@ public class InputTextRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * This method is called by the JSF framework to get the type-safe value of the attribute. Do not delete this
-	 * method.
+	 * This method is called by the JSF framework to get the type-safe value of
+	 * the attribute. Do not delete this method.
 	 */
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
@@ -112,7 +114,7 @@ public class InputTextRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
 
-		String responsiveLabelClass=null;
+		String responsiveLabelClass = null;
 		String label = inputText.getLabel();
 		{
 			if (!inputText.isRenderLabel()) {
@@ -134,7 +136,6 @@ public class InputTextRenderer extends CoreRenderer {
 		UIComponent app = inputText.getFacet("append");
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
-
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -163,14 +164,16 @@ public class InputTextRenderer extends CoreRenderer {
 
 		if (label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass, "control-label");
+			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" +
+																	// clientId
+			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass,
+					"control-label");
 			writeAttribute(rw, "style", inputText.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
-		
+
 		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
@@ -278,7 +281,8 @@ public class InputTextRenderer extends CoreRenderer {
 				String options2 = "";
 				options2 = addOption(options2, "limit:" + inputText.getTypeaheadLimit());
 				options2 = addOption(options2, "name:'" + typeaheadname + "'");
-				options2 = addOption(options2, "source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
+				options2 = addOption(options2,
+						"source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
 
 				rw.writeText("$('." + id + "').typeahead({" + options + "},{" + options2 + "});", null);
 			}
@@ -294,51 +298,120 @@ public class InputTextRenderer extends CoreRenderer {
 	}
 
 	private String getTypeaheadValueArray(InputText inputText) {
-		String s = inputText.getTypeaheadValues();
-		if (null == s)
+		Object values = inputText.getTypeaheadValues();
+		if (null == values)
 			return null;
-		s = s.trim();
-		if (!s.contains("\'")) {
-			String[] parts = s.split(",");
-			StringBuilder b = new StringBuilder(s.length() * 2);
-			for (String p : parts) {
+		if (values instanceof String) {
+			String s = (String) values;
+			s = s.trim();
+			if (!s.contains("\'")) {
+				String[] parts = s.split(",");
+				StringBuilder b = new StringBuilder(s.length() * 2);
+				for (String p : parts) {
+					if (b.length() > 0) {
+						b.append(',');
+					}
+					b.append('\'');
+					b.append(p.trim());
+					b.append('\'');
+				}
+				s = b.toString();
+
+			}
+			return "[" + s + "]";
+		} else if (values instanceof List) {
+			StringBuilder b = new StringBuilder();
+			for (Object p : (List<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
 				b.append('\'');
-				b.append(p.trim());
+				if (null != p) {
+					b.append(p.toString().trim());
+				}
 				b.append('\'');
 			}
-			s = b.toString();
-
+			String s = b.toString();
+			return "[" + s + "]";
+		} else if (values instanceof Object[]) {
+			StringBuilder b = new StringBuilder();
+			for (Object p : (Object[])values) {
+				if (b.length() > 0) {
+					b.append(',');
+				}
+				b.append('\'');
+				if (null != p) {
+					b.append(p.toString().trim());
+				}
+				b.append('\'');
+			}
+			String s = b.toString();
+			return "[" + s + "]";
+		} else {
+			throw new FacesException("Unexpected data type rendering the type ahead attribute of an inputText field");
 		}
-		return "[" + s + "]";
 	}
 
 	private String getTypeaheadObjectArray(InputText inputText) {
-		String s = inputText.getTypeaheadValues();
-		if (null == s)
+		Object values = inputText.getTypeaheadValues(); 
+		if (null == values)
 			return null;
-		s = s.trim();
-		if (!s.contains("\'")) {
-			String[] parts = s.split(",");
-			StringBuilder b = new StringBuilder(s.length() * 2);
-			for (String p : parts) {
+		if (values instanceof String) {
+			String s = (String) values;
+			s = s.trim();
+			if (!s.contains("\'")) {
+				String[] parts = s.split(",");
+				StringBuilder b = new StringBuilder(s.length() * 2);
+				for (String p : parts) {
+					if (b.length() > 0) {
+						b.append(',');
+					}
+					b.append("{val:");
+					b.append('\'');
+					b.append(p.trim());
+					b.append('\'');
+					b.append('}');
+				}
+				s = b.toString();
+
+			}
+			return "[" + s + "]";
+		} else if (values instanceof List) {
+			StringBuilder b = new StringBuilder();
+			for (Object p : (List<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
 				b.append("{val:");
 				b.append('\'');
-				b.append(p.trim());
+				if (null != p) {
+					b.append(p.toString().trim());
+				}
 				b.append('\'');
 				b.append('}');
 			}
-			s = b.toString();
-
+			String s = b.toString();
+			return "[" + s + "]";
+		} else if (values instanceof Object[]) {
+			StringBuilder b = new StringBuilder();
+			for (Object p : (Object[])values) {
+				if (b.length() > 0) {
+					b.append(',');
+				}
+				b.append("{val:");
+				b.append('\'');
+				if (null != p) {
+					b.append(p.toString().trim());
+				}
+				b.append('\'');
+				b.append('}');
+			}
+			String s = b.toString();
+			return "[" + s + "]";
+		} else {
+			throw new FacesException("Unexpected data type rendering the type ahead attribute of an inputText field");
 		}
-		return "[" + s + "]";
 	}
-
 
 	private void generateStyleClass(InputText inputText, ResponseWriter rw) throws IOException {
 		StringBuilder sb;
@@ -360,7 +433,7 @@ public class InputTextRenderer extends CoreRenderer {
 
 		sb.append(" ").append(getErrorAndRequiredClass(inputText, inputText.getClientId()));
 		if (inputText.isTypeahead()) {
-			sb.append(" ").append(inputText.getClientId().replace(":","_"));
+			sb.append(" ").append(inputText.getClientId().replace(":", "_"));
 		}
 		s = sb.toString().trim();
 		if (s != null && s.length() > 0) {

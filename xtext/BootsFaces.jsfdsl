@@ -1034,7 +1034,7 @@ widget inputText
     typeahead-highlight Boolean default "true"                             "Highlights the part of the suggestions that has already been entered. Defaults to true."
     typeahead-hint      Boolean default "true"                             "If set to false, the typeahead will not show a hint. Defaults to true."
     typeahead-minLength Integer default "1"                                "Minimum number of characters to be entered before a suggestion is shown."
-    typeahead-values                                                       "Comma-separated list of values that can be used for the typeahead list."
+    typeahead-values    java.lang.Object                                   "Comma-separated list of values that can be used for the typeahead list."
     update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."

@@ -129,10 +129,8 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	}
 
 	@Override
-	public void setTypeaheadValues(String _typeaheadValues) {
+	public void setTypeaheadValues(Object _typeaheadValues) {
 		setTypeahead(true);
 		super.setTypeaheadValues(_typeaheadValues);
 	}
-
-
 }

@@ -908,15 +908,15 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 * Comma-separated list of values that can be used for the typeahead list. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public String getTypeaheadValues() {
-		return (String) getStateHelper().eval(PropertyKeys.typeaheadValues);
+	public java.lang.Object getTypeaheadValues() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.typeaheadValues);
 	}
 
 	/**
 	 * Comma-separated list of values that can be used for the typeahead list. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setTypeaheadValues(String _typeaheadValues) {
+	public void setTypeaheadValues(java.lang.Object _typeaheadValues) {
 		getStateHelper().put(PropertyKeys.typeaheadValues, _typeaheadValues);
 	}
 

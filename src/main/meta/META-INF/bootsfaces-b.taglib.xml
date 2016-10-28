@@ -11192,13 +11192,13 @@
 		  <description><![CDATA[Comma-separated list of values that can be used for the typeahead list.]]></description>
 		  <name>typeahead-values</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Comma-separated list of values that can be used for the typeahead list.]]></description>
 		  <name>typeaheadValues</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
