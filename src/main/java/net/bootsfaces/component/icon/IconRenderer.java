@@ -186,7 +186,7 @@ public class IconRenderer extends AJAXRenderer {
 		if (generateAJAXHandler) {
 			if (c instanceof IAJAXComponent && c instanceof ClientBehaviorHolder)
 				AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(),
-						(ClientBehaviorHolder) c, rw);
+						(ClientBehaviorHolder) c, rw, false);
 		}
 		rw.endElement("i");
 

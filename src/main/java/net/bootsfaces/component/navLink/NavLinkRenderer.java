@@ -175,7 +175,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, navlink, rw);
 		
 		if (useAjax) {
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, false);
+		} else {
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, true);
 		}
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
@@ -285,6 +287,9 @@ public class NavLinkRenderer extends CoreRenderer {
 			return url;
 		} else {
 			String outcome = navlink.getOutcome();
+			if (outcome==null) {
+				return null;
+			}
 			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
 
 			ConfigurableNavigationHandler cnh = (ConfigurableNavigationHandler) context.getApplication()

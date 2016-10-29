@@ -100,7 +100,7 @@ public class CarouselControlRenderer extends CoreRenderer {
 
 		rw.writeAttribute("id", carouselControl.getId(), "id");
 		Tooltip.activateTooltips(context, carouselControl);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carouselControl, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carouselControl, rw, false);
 
 		UIComponent parent = carouselControl.getParent();
 		rw.writeAttribute("href", "#" + parent.getClientId(), "href");

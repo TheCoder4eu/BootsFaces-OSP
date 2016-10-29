@@ -488,7 +488,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             rw.writeAttribute("readonly", "readonly", null);
         }
 
-        AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw);
+        AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw, false);
 
         // Encode attributes (HTML 4 pass-through + DHTML)
         R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), H.SELECT_ONE_MENU);

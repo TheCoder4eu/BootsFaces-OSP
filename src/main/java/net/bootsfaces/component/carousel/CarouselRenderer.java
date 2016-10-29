@@ -87,7 +87,7 @@ public class CarouselRenderer extends CoreRenderer {
 
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, carousel, rw);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carousel, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carousel, rw, false);
 
 		writeAttribute(rw, "data-interval", carousel.getInterval());
 		writeAttribute(rw, "data-pause", carousel.getPause());

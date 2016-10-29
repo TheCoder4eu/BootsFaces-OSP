@@ -204,7 +204,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			}
 			Tooltip.generateTooltip(fc, dtp, rw);
 			// Render Ajax Capabilities
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw, false);
 			rw.endElement("input");
 			// span
 			rw.startElement("span", dtp);
@@ -255,7 +255,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			}
 			Tooltip.generateTooltip(fc, dtp, rw);
 			// Render Ajax Capabilities
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw, false);
 			rw.endElement("input");
 
 			// span

@@ -30,6 +30,8 @@ import javax.faces.event.FacesEvent;
 import javax.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
+import net.bootsfaces.component.navCommandLink.NavCommandLink;
+import net.bootsfaces.component.navLink.NavLink;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
@@ -164,15 +166,16 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param context
 	 * @param component
 	 * @param rw
+	 * @param suppressAJAX TODO
 	 * @throws IOException
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw) throws IOException {
-		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null, false);
+			ResponseWriter rw, boolean suppressAJAX) throws IOException {
+		generateBootsFacesAJAXAndJavaScript(context, component, rw, null, null, false, suppressAJAX);
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback)
+			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback, boolean suppressAJAX)
 			throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
@@ -200,22 +203,7 @@ public class AJAXRenderer extends CoreRenderer {
 						script += ";return false;";
 				rw.writeAttribute("on" + defaultEvent, script, null);
 			} else if (component instanceof CommandButton) {
-				String parameterList="";
-				List<UIComponent> children = ((UIComponent)component).getChildren();
-				for (UIComponent parameter: children) {
-					if (parameter instanceof UIParameter) {
-						String value=String.valueOf(((UIParameter) parameter).getValue());
-						String name = ((UIParameter) parameter).getName();
-						if (null!=value) {
-							parameterList += ",'" + name + "':'" + value + "'";
-						}
-					}
-				}
-				if (parameterList.length()>0) {
-					UIForm currentForm = getSurroundingForm((UIComponent)component);
-					parameterList = "'" + currentForm.getClientId() + "',{'" +((CommandButton)component).getClientId() + "':'" +  ((CommandButton)component).getClientId() + "'" + parameterList+ "}";
-					rw.writeAttribute("onclick", "BsF.submitForm(" + parameterList + ");return false;", null);
-				}
+				encodeFormSubmit((UIComponent)component, rw, false);
 			}
 			else {
 				// b:navCommandLink doesn't submit the form, so we need to use
@@ -236,17 +224,40 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
 					// rw.writeAttribute("id", getClientId() + "_a", null);
-					generateOnClickHandler(context, rw, (IAJAXComponent) component);
+					generateOnClickHandler(context, rw, (IAJAXComponent) component, suppressAJAX);
 				}
 			}
 			// TODO: what about composite components?
 		}
 	}
 
-	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component)
+	private static void encodeFormSubmit(UIComponent component, ResponseWriter rw, boolean evenWithoutParameters) throws IOException {
+		String parameterList="";
+		List<UIComponent> children = ((UIComponent)component).getChildren();
+		for (UIComponent parameter: children) {
+			if (parameter instanceof UIParameter) {
+				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String name = ((UIParameter) parameter).getName();
+				if (null!=value) {
+					parameterList += ",'" + name + "':'" + value + "'";
+				}
+			}
+		}
+		if (evenWithoutParameters || parameterList.length()>0) {
+			UIForm currentForm = getSurroundingForm((UIComponent)component);
+			parameterList = "'" + currentForm.getClientId() + "',{'" +component.getClientId() + "':'" +  component.getClientId() + "'" + parameterList+ "}";
+			rw.writeAttribute("onclick", encodeClick((UIComponent) component) + "BsF.submitForm(" + parameterList + ");return false;", null);
+		}
+	}
+
+	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component, boolean suppressAJAX)
 			throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
-		cJS.append(encodeClick(component)).append("return BsF.ajax.cb(this, event);");
+		if (suppressAJAX) {
+			encodeFormSubmit((UIComponent)component, rw, true);
+		} else {
+			cJS.append(encodeClick((UIComponent)component)).append("return BsF.ajax.cb(this, event);");
+		}
 
 		rw.writeAttribute("onclick", cJS.toString(), null);
 	}
@@ -507,7 +518,7 @@ public class AJAXRenderer extends CoreRenderer {
 			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		}
 		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
-		cJS.append(encodeClick(component)).append("BsF.ajax.callAjax(this, event")
+		cJS.append(encodeClick((UIComponent)component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
 				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));
 		if (oncomplete != null) {
@@ -547,9 +558,18 @@ public class AJAXRenderer extends CoreRenderer {
 		return cJS;
 	}
 
-	private static String encodeClick(IAJAXComponent component) {
+	private static String encodeClick(UIComponent component) {
 		String js;
-		String oc = (String) component.getOnclick();
+		String oc=null;
+		if (component instanceof IAJAXComponent) {
+			oc = (String) ((IAJAXComponent)component).getOnclick();
+		}
+		if (component instanceof NavLink) {
+			oc = (String) ((NavLink)component).getOnclick();
+		}
+		if (component instanceof NavCommandLink) {
+			oc = (String) ((NavCommandLink)component).getOnclick();
+		}
 		if (oc != null) {
 			js = oc.endsWith(";") ? oc : oc + ";";
 		} else {

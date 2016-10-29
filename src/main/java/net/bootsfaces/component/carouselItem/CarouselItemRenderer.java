@@ -86,7 +86,7 @@ public class CarouselItemRenderer extends CoreRenderer {
 		
 	    rw.writeAttribute("id", carouselItem.getId(), "id");
 	    Tooltip.activateTooltips(context, carouselItem);
-	    AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carouselItem, rw);
+	    AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, carouselItem, rw, false);
 	}
 	
 	/**

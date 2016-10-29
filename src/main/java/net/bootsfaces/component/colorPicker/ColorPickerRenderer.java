@@ -183,7 +183,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.writeAttribute("value", v, null);
 
 		// Render Ajax Capabilities
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), colorPicker, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), colorPicker, rw, false);
 
 		rw.endElement("input");
 		if (append) {

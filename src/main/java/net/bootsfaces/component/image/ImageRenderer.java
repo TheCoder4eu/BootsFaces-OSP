@@ -69,7 +69,7 @@ public class ImageRenderer extends CoreRenderer {
 			writeAttribute(rw, "class", styleClass, "styleClass");
 		}
 
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), image, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), image, rw, false);
 
 		rw.endElement("img");
 		Tooltip.activateTooltips(context, image);

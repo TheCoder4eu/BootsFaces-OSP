@@ -122,7 +122,7 @@ public class PanelRenderer extends CoreRenderer {
 		// render all data-* attributes
 		renderPassThruAttributes(context, component, null, true);
 
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, panel, rw, false);
 		Tooltip.generateTooltip(context, panel, rw);
 		String _style = panel.getStyle();
 		if (null != _style && _style.length() > 0) {

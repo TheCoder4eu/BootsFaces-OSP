@@ -109,7 +109,7 @@ public class DataTableRenderer extends CoreRenderer {
 		generateHeader(context, dataTable, rw);
 		generateBody(context, dataTable, rw);
 		generateFooter(context, dataTable, rw);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw, false);
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "."+clientId.replace(":", "") + "Table", null);
 	}
 

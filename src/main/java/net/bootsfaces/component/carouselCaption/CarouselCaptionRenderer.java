@@ -79,7 +79,7 @@ public class CarouselCaptionRenderer extends CoreRenderer {
 
 		if (component instanceof CarouselCaption) {
 			Tooltip.generateTooltip(context, ((CarouselCaption) component), rw);
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, ((CarouselCaption) component), rw);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, ((CarouselCaption) component), rw, false);
 			rw.writeAttribute("style", ((CarouselCaption) component).getStyle(), "style");
 		}
 		String styleClass = null;

@@ -198,7 +198,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("class", classes, "class");
 
 		String role = "tablist";
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer, false);
 		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), H.TAB_VIEW);
 		if (tabView.getRole() != null) {
 			role = tabView.getRole();
@@ -400,7 +400,7 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
 		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
 		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false, true);
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
 
 		UIComponent iconFacet = tab.getFacet("anchor");

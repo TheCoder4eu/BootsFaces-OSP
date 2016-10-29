@@ -232,7 +232,7 @@ public class InputTextRenderer extends CoreRenderer {
 		rw.writeAttribute("value", v, null);
 
 		// Render Ajax Capabilities
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw, false);
 
 		rw.endElement("input");
 		if (append) {

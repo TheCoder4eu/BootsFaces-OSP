@@ -162,7 +162,7 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		// Render Ajax Capabilities
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw);
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw, false);
 
 		String v = getValue2Render(context, component);
 		if (null == v)
