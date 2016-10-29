@@ -207,12 +207,22 @@ public class DataTableRenderer extends CoreRenderer {
 					}
 					rw.startElement("td", dataTable);
 					Object contentStyle = column.getAttributes().get("contentStyle");
-					if (contentStyle != null) {
+					Object style = column.getAttributes().get("style");
+					if (contentStyle != null && style==null)  {
 						rw.writeAttribute("style", contentStyle, null);
+					} else if (contentStyle == null && style!=null)  {
+						rw.writeAttribute("style", style, null);
+					} else if (contentStyle != null && style!=null)  {
+						rw.writeAttribute("style", style + ";" + contentStyle, null);
 					}
 					Object contentStyleClass = column.getAttributes().get("contentStyleClass");
-					if (contentStyleClass != null) {
+					Object styleClass = column.getAttributes().get("styleClass");
+					if (contentStyleClass != null && styleClass==null) {
 						rw.writeAttribute("class", contentStyleClass, null);
+					} else if (contentStyleClass == null && styleClass!=null) {
+						rw.writeAttribute("class", styleClass, null);
+					} else if (contentStyleClass != null && styleClass!=null) {
+						rw.writeAttribute("class", styleClass + " " + contentStyleClass, null);
 					}
 					Object value = column.getAttributes().get("value");
 					if (value != null) {
@@ -260,12 +270,23 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 			rw.startElement("th", dataTable);
 			Object headerStyle = column.getAttributes().get("headerStyle");
-			if (headerStyle != null) {
+			Object style = column.getAttributes().get("style");
+			
+			if (headerStyle != null && style == null) {
 				rw.writeAttribute("style", headerStyle, null);
+			} else if (headerStyle == null && style != null) {
+				rw.writeAttribute("style", style, null);
+			} else if (headerStyle != null && style != null) {
+				rw.writeAttribute("style", style + ";" + headerStyle, null);
 			}
 			Object headerStyleClass = column.getAttributes().get("headerStyleClass");
-			if (headerStyleClass != null) {
+			Object styleClass = column.getAttributes().get("styleClass");
+			if (headerStyleClass != null && styleClass==null) {
 				rw.writeAttribute("class", headerStyleClass, null);
+			} else if (headerStyleClass == null && styleClass!=null) {
+				rw.writeAttribute("class", styleClass, null);
+			} else if (headerStyleClass != null && styleClass!=null) {
+				rw.writeAttribute("class", styleClass + " " + headerStyleClass, null);
 			}
 			if (column.getFacet("header") != null) {
 				UIComponent facet = column.getFacet("header");
