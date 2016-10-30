@@ -212,6 +212,8 @@ public class NavLinkRenderer extends CoreRenderer {
 
 			}
 			writeAttribute(rw, "href", url, null);
+			String target=((AbstractNavLink)navlink).getTarget();
+			writeAttribute(rw, "target", target, null);
 		}
 		writeAttribute(rw, "role", "menuitem", null);
 		writeAttribute(rw, "tabindex", "-1", null);
@@ -290,7 +292,6 @@ public class NavLinkRenderer extends CoreRenderer {
 			if (outcome==null) {
 				return null;
 			}
-			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
 
 			ConfigurableNavigationHandler cnh = (ConfigurableNavigationHandler) context.getApplication()
 					.getNavigationHandler();

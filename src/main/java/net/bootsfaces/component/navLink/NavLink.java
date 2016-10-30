@@ -93,67 +93,7 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	}
 
 	protected enum PropertyKeys {
-		active,
-		ajax,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		contentClass,
-		contentStyle,
-		disabled,
-		display,
-		fragment,
-		header,
-		hidden,
-		href,
-		icon,
-		iconAlign,
-		iconAwesome,
-		iconFlip,
-		iconRotate,
-		iconSize,
-		iconSpin,
-		immediate,
-		includeViewParams,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onselect,
-		outcome,
-		process,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		active, ajax, binding, colLg, colMd, colSm, colXs, contentClass, contentStyle, disabled, display, fragment, header, hidden, href, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, includeViewParams, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, smallScreen, span, style, styleClass, target, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -998,6 +938,22 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTarget() {
+		return (String) getStateHelper().eval(PropertyKeys.target);
+	}
+
+	/**
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTarget(String _target) {
+		getStateHelper().put(PropertyKeys.target, _target);
 	}
 
 	/**

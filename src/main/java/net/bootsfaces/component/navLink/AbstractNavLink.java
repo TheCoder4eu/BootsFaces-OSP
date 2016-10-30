@@ -584,6 +584,12 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	void setStyleClass(String _styleClass);
+	
+	/**
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	String getTarget();
 
 	/**
 	 * The text of the tooltip.

@@ -1341,6 +1341,7 @@ widget navCommandLink
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
@@ -1391,6 +1392,7 @@ widget navLink
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
