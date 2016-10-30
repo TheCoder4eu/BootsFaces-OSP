@@ -297,7 +297,7 @@ public class AddResourcesListener implements SystemEventListener {
 		List<String> extCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
 		if(extCSSMap != null) {
 			for (String file: extCSSMap) {
-				String name = "css/" + theme + "/" + file;
+				String name = "css/" + file;
 				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
 					name = "css/icons.css";  //look for it under the css root instead
 
