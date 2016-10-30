@@ -294,7 +294,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 		@SuppressWarnings("unchecked")
-		List<String> extCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
+		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
 		if(extCSSMap != null) {
 			for (String file: extCSSMap) {
 				String name = "css/" + file;
