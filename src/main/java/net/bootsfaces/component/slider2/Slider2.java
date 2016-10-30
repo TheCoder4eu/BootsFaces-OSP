@@ -41,7 +41,7 @@ public class Slider2 extends Slider2Core {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-slider.min.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-slider.min.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-slider.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}

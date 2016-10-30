@@ -108,8 +108,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public void setTags(boolean _tags) {
 		if (_tags) {
 			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
-			//!bs-less//AddResourcesListener.addThemedCSSResource("labels.css");
-			AddResourcesListener.addThemedCSSResource("bootstrap-tagsinput.css");
+			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");
 
 		}
 		super.setTags(_tags);
@@ -123,7 +122,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public void setTypeahead(boolean _typeahead) {
 		if (_typeahead) {
 			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
-			AddResourcesListener.addThemedCSSResource("typeahead.css");
+			AddResourcesListener.addExtCSSResource("typeahead.css");
 		}
 		super.setTypeahead(_typeahead);
 	}

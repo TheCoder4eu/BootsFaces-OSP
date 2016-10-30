@@ -44,9 +44,8 @@ public class DropMenu extends UIComponentBase implements IHasTooltip, IResponsiv
 	public DropMenu() {
 		Tooltip.addResourceFiles();
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/jquery.js");
-		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("dropdown-submenu.css");
+		AddResourcesListener.addExtCSSResource("dropdown-submenu.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

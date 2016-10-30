@@ -38,7 +38,7 @@ public class SocialShare extends SocialShareCore {
 
 	public SocialShare() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("jssocials.css");
+		AddResourcesListener.addExtCSSResource("jssocials.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jssocials.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}

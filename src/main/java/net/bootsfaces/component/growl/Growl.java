@@ -33,8 +33,7 @@ public class Growl extends UIMessages {
 		setRendererType("net.bootsfaces.component.GrowlRenderer");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-notify.min.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//!bs-less//AddResourcesListener.addThemedCSSResource("alerts.css");
-		AddResourcesListener.addThemedCSSResource("animate.css");
+		AddResourcesListener.addExtCSSResource("animate.css");
 	}
 
 	/**

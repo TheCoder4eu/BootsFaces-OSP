@@ -72,6 +72,12 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private static final String THEME_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ThemedResourceFiles";
 
+	/**
+	 * Components can request extended CSS resources by registering them in the ViewMap,
+	 * using the EXT_RESOURCE_KEY.
+	 */
+	private static final String EXT_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ExtResourceFiles";
+
 	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
 								CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
@@ -120,6 +126,8 @@ public class AddResourcesListener implements SystemEventListener {
 		if(viewMap.get(RESOURCE_KEY) != null) return true;
 		// check explicit css request
 		if(viewMap.get(THEME_RESOURCE_KEY) != null) return true;
+		// check explicit css request
+		if(viewMap.get(EXT_RESOURCE_KEY) != null) return true;
 		// check referenced bsf request
 		if(findBsfComponent(root, "bsf") != null) return true;
 
@@ -278,6 +286,17 @@ public class AddResourcesListener implements SystemEventListener {
 		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
 		if(themedCSSMap != null) {
 			for (String file: themedCSSMap) {
+				String name = "css/" + theme + "/" + file;
+				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
+					name = "css/icons.css";  //look for it under the css root instead
+
+				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+			}
+		}
+		@SuppressWarnings("unchecked")
+		List<String> extCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
+		if(extCSSMap != null) {
+			for (String file: extCSSMap) {
 				String name = "css/" + theme + "/" + file;
 				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
 					name = "css/icons.css";  //look for it under the css root instead
@@ -633,6 +652,27 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null == resourceList) {
 			resourceList = new ArrayList<String>();
 			viewMap.put(THEME_RESOURCE_KEY, resourceList);
+		}
+
+		if (!resourceList.contains(resource)) {
+			resourceList.add(resource);
+		}
+	}
+
+	/**
+	 * Registers a Extension CSS file that needs to be included in the header of the HTML
+	 * file.
+	 *
+	 * @param resource
+	 *            The name of the resource file within the library folder.
+	 */
+	public static void addExtCSSResource(String resource) {
+		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		@SuppressWarnings("unchecked")
+		List<String> resourceList = (List<String>) viewMap.get(EXT_RESOURCE_KEY);
+		if (null == resourceList) {
+			resourceList = new ArrayList<String>();
+			viewMap.put(EXT_RESOURCE_KEY, resourceList);
 		}
 
 		if (!resourceList.contains(resource)) {

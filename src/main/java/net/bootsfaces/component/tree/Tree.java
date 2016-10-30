@@ -52,7 +52,7 @@ public class Tree extends TreeCore implements ClientBehaviorHolder, IResponsive 
 		setRendererType(DEFAULT_RENDERER);
 
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		//!bs-less//AddResourcesListener.addThemedCSSResource("list-group.css");
 	}

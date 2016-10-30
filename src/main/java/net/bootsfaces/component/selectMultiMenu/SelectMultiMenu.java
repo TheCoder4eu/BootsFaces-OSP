@@ -44,9 +44,8 @@ public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfac
 
 	public SelectMultiMenu() {
 		Tooltip.addResourceFiles();
-		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bootstrap-multiselect.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-multiselect.css");
 
 		setRendererType(DEFAULT_RENDERER);
 	}

@@ -29,13 +29,12 @@
  * Tasks to Copy STATIC files to resources
  */
 
- def copySpecCssResources = copySpec {
+ /*def copySpecCssResources = copySpec {
      from "staticResources/css/bootstrap-multiselect.css"
      from 'staticResources/css/bootstrap-switch.css'
      from 'staticResources/css/bootstrap-tagsinput.css'
      from 'staticResources/css/bootstrap-slider.min.css'
      from 'staticResources/css/bootstrap-touchspin.min.css'
-     // from 'staticResources/css/dataTables.bootstrap.min.css'
      from 'staticResources/css/jssocials.css'
      from 'staticResources/css/datatables.min.css'
      from 'staticResources/css/bootstrap-tree.css'
@@ -53,8 +52,36 @@
      from 'staticResources/css/sticky-footer-navbar.css'
      from 'staticResources/css/bootstrap-datetimepicker.min.css'
      from 'staticResources/css/typeahead.css'
+ }*/
+
+ task copyCssResources(type: Copy) {
+     from 'staticResources/css/bootstrap-datetimepicker.min.css'
+     from "staticResources/css/bootstrap-multiselect.css"
+     from 'staticResources/css/bootstrap-switch.css'
+     from 'staticResources/css/bootstrap-tagsinput.css'
+     from 'staticResources/css/bootstrap-slider.min.css'
+     from 'staticResources/css/bootstrap-touchspin.min.css'
+     from 'staticResources/css/bootstrap-tree.css'
+     from 'staticResources/css/bootstrap-treeview.min.css'
+
+     from 'staticResources/css/datatables.min.css'
+     from 'staticResources/css/animate.css'
+     from 'staticResources/css/dropdown-submenu.css'
+     from 'staticResources/css/sticky-footer-navbar.css'
+     from 'staticResources/css/fullcalendar.min.css'
+     from 'staticResources/css/jssocials.css'
+     from 'staticResources/css/scrollup.css'
+     from 'staticResources/css/typeahead.css'
+
+     from 'staticResources/css/jq.ui.core.css'
+     from 'staticResources/css/jq.ui.datepicker.css'
+     from 'staticResources/css/jq.ui.slider.css'
+     from 'staticResources/css/jq.ui.theme.css'
+     from 'staticResources/css/jquery.minicolors.css'
+
+     into "${buildDir}/resources/META-INF/resources/bsf/css"
  }
- task copyCssResources << {
+ /*task copyCssResources << {
      allThemes.each { dest ->
      copy {
        with copySpecCssResources
@@ -62,7 +89,7 @@
        println 'css2'+dest
      }
    }
- }
+ }*/
 
  task copyJsResources(type: Copy) {
    	description 'BootsFaces task: copies additional JS files to the target folder (i.e. files that are not part of Bootstrap).'
@@ -80,9 +107,7 @@
    	from 'staticResources/js/datatables.min.js'
    	from 'staticResources/js/fullcalendar.min.js'
    	from 'staticResources/js/fullcalendar-lang-all.js'
-   	// from 'staticResources/js/jquery.dataTables.min.js'
    	from 'staticResources/js/jquery.blockUI.js'
-   	// from 'staticResources/js/dataTables.bootstrap.min.js'
    	from 'staticResources/js/jquery.scrollUp.min.js'
    	from 'staticResources/js/jquery.minicolors.min.js'
    	from 'staticResources/js/moment.min.js'

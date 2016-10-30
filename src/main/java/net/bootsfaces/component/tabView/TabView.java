@@ -49,7 +49,7 @@ public class TabView extends UIOutput
 
 	public TabView() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("bootstrap-treeview.min.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-treeview.min.css");
 		AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/tab.js");

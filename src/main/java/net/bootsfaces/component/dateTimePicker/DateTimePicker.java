@@ -59,7 +59,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
 	public DateTimePicker() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("bootstrap-datetimepicker.min.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-datetimepicker.min.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/moment-with-locales.min.js");
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/moment-jdateformatparser.min.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-datetimepicker.min.js");
