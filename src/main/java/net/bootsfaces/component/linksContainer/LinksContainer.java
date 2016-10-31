@@ -55,7 +55,7 @@ public class LinksContainer extends UIComponentBase {
 		setRendererType(null); // this component renders itself
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

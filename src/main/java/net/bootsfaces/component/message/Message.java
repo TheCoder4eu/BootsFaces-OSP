@@ -41,7 +41,7 @@ public class Message extends UIMessage implements IResponsive {
 		setRendererType(DEFAULT_RENDERER);
 		AddResourcesListener.addThemedCSSResource("core.css");
 		//!bs-less//AddResourcesListener.addThemedCSSResource("alerts.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/alert.js");
 	}
 

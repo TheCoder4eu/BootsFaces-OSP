@@ -42,7 +42,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 		AddResourcesListener.addExtCSSResource("jq.ui.core.css");
 		AddResourcesListener.addExtCSSResource("jq.ui.theme.css");
 		AddResourcesListener.addExtCSSResource("jq.ui.slider.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/widget.js");

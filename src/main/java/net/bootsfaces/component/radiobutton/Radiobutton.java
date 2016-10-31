@@ -43,7 +43,7 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 	public Radiobutton() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

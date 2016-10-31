@@ -41,7 +41,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	public ColorPicker() {
 		setRendererType("net.bootsfaces.component.colorPicker.ColorPicker");
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addExtCSSResource("jquery.minicolors.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");

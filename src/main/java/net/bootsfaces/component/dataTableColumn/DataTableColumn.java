@@ -36,7 +36,7 @@ public class DataTableColumn extends DataTableColumnCore {
 
 	public DataTableColumn() {
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -48,7 +48,7 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	public TouchSpin() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addExtCSSResource("bootstrap-touchspin.min.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-touchspin.min.js");
 		setRendererType(DEFAULT_RENDERER);

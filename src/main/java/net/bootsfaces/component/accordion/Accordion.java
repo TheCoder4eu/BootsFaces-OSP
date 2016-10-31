@@ -40,7 +40,7 @@ public class Accordion extends AccordionCore implements IHasTooltip, net.bootsfa
 	public Accordion() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		//!bs-less//AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

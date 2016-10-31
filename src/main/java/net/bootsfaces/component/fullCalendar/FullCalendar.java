@@ -30,7 +30,7 @@ public class FullCalendar extends FullCalendarCore implements net.bootsfaces.ren
     public FullCalendar() {
         Tooltip.addResourceFiles();
         AddResourcesListener.addThemedCSSResource("core.css");
-        AddResourcesListener.addThemedCSSResource("bsf.css");
+        //AddResourcesListener.addThemedCSSResource("bsf.css");
         setRendererType(DEFAULT_RENDERER);
     }
 

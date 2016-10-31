@@ -72,7 +72,7 @@ public class SelectBooleanCheckbox extends SelectBooleanCheckboxCore implements 
 
 	public SelectBooleanCheckbox() {
 		Tooltip.addResourceFiles();
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

@@ -84,7 +84,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		setRendererType("net.bootsfaces.component.inputText.InputText");
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		renderLabel = BsfUtils.getInitParam("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);

@@ -42,7 +42,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 	public Shake() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "jq/mobile/shake.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 

@@ -95,7 +95,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		AddResourcesListener.addExtCSSResource("jq.ui.core.css");
 		AddResourcesListener.addExtCSSResource("jq.ui.theme.css");
 		AddResourcesListener.addExtCSSResource("jq.ui.datepicker.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/core.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "jq/ui/datepicker.js");

@@ -39,7 +39,7 @@ public class Modal extends ModalCore {
 
 	public Modal() {
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
+		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		//!bs-less//AddResourcesListener.addThemedCSSResource("modals.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
