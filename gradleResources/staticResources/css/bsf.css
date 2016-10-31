@@ -331,7 +331,7 @@ label.bf-fatal { color: red; }
 
 .form-inline {
 
-  // Kick in the inline
+  /* Kick in the inline */
   @media (min-width: @screen-sm) {
     // Inline-block all the things for "inline"
     .form-group  {
@@ -350,9 +350,9 @@ label.bf-fatal { color: red; }
       width: auto;
     }
 
-    // Remove default margin on radios/checkboxes that were used for stacking, and
+    /* Remove default margin on radios/checkboxes that were used for stacking, and
     // then undo the floating of radios and checkboxes to match (which also avoids
-    // a bug in WebKit: https://github.com/twbs/bootstrap/issues/1969).
+    // a bug in WebKit: https://github.com/twbs/bootstrap/issues/1969).*/
     .radio,
     .checkbox {
       display: inline-block;
@@ -368,10 +368,10 @@ label.bf-fatal { color: red; }
   }
 }
 
-// Thumbnails
+/* Thumbnails
 // Responsive image
 //
-// Keep images from scaling beyond the width of their parents.
+// Keep images from scaling beyond the width of their parents. */
 
 .img-responsive {
   display: block;
@@ -384,7 +384,7 @@ label.bf-fatal { color: red; }
         padding: 1px 15px;
 }
 
-// Alert/Messages Icons
+/* Alert/Messages Icons */
 
 .alert > .bficon {
 font-size: 22px;
