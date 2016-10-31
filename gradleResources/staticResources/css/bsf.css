@@ -384,15 +384,6 @@ label.bf-fatal { color: red; }
         padding: 1px 15px;
 }
 
-/* Alert/Messages Icons */
-
-.alert > .bficon {
-font-size: 22px;
-vertical-align: middle;
-position: absolute;
-left: 13px;
-}
-
 /* Glyphicons path override
 @font-face {
     font-family: "Glyphicons Halflings";
