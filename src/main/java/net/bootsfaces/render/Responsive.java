@@ -29,10 +29,12 @@ public class Responsive {
 		int span = sizeToInt(r.getSpan());
 
 		int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md));
-		if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
-			colmd = (colmd > 0) ? colmd : -1;
-		} else {
-			colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
+		if (colmd<0) {
+			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
+				colmd = (colmd > 0) ? colmd : -1;
+			} else {
+				colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
+			}
 		}
 
 		int offs = sizeToInt(r.getOffset());
@@ -53,8 +55,11 @@ public class Responsive {
 				sb.append("col-md-offset-" + offsmd);
 			}
 		}
-		if(colmd == 0) {
+		else if(colmd == 0) {
+			if (forceColMd) {
+				sb.append("col-md-12" );
 			sb.append(" hidden-md");
+			}
 		}
 
 		if (colxs > 0) {
