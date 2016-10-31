@@ -308,6 +308,9 @@ public class AddResourcesListener implements SystemEventListener {
 		// Glyphicons now icons are in core.css
 		//String name = "css/icons.css";
 		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
+
+		//Add mandatory CSS bsf.css
+		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
 		enforceCorrectLoadOrder(root, context);
 	}
 
@@ -361,7 +364,8 @@ public class AddResourcesListener implements SystemEventListener {
 
 		// Theme loading
 		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
-			String filename = "bsf.css";
+			//String filename = "bsf.css";
+			String filename = "core.css";
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
