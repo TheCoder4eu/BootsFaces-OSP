@@ -69,13 +69,14 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 		if (event instanceof PostAddToViewEvent) {
 			if ("non-sticky".equals(getFixed()) || ("bottom".equals(getPosition()) && (!isSticky()))) {
-				UIOutput resource = new UIOutput();
+				AddResourcesListener.addExtCSSResource("sticky-footer-navbar.css");
+				/*UIOutput resource = new UIOutput();
 				resource.getAttributes().put("name", "css/sticky-footer-navbar.css");
 				resource.getAttributes().put("library", C.BSF_LIBRARY);
 				resource.getAttributes().put("target", "head");
 				resource.setRendererType("javax.faces.resource.Stylesheet");
 				FacesContext.getCurrentInstance().getViewRoot().addComponentResource(FacesContext.getCurrentInstance(),
-						resource);
+						resource);*/
 			}
 		}
 		super.processEvent(event);
