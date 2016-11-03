@@ -1,19 +1,19 @@
 /**
- *  Copyright 2015-2016 Stephan Rauh, http://www.beyondjava.net
- *
+ *  Copyright 2015-2016 Stephan Rauh, http://www.beyondjava.net,
+ *                      and Riccardo Massera (TheCoder4.Eu)
  *  This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package net.bootsfaces.listeners;
 
@@ -103,6 +103,7 @@ public class AddResourcesListener implements SystemEventListener {
 
 		// render the resources only if there is at least one bsf component
 		if(ensureExistBootsfacesComponent(root, context)) {
+			addCSS(root, context);
 			addJavascript(root, context);
 			addMetaTags(root, context);
 		}
@@ -190,17 +191,14 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Add the required Javascript files and the FontAwesome CDN link.
+	 * Add the required CSS files and the FontAwesome CDN link.
 	 *
 	 * @param root
 	 *            The UIViewRoot of the JSF tree.
 	 * @param context
 	 *            The current FacesContext
-	 * @param isProduction
-	 *            This flag can be used to deliver different version of the JS
-	 *            library, optimized for debugging or production.
 	 */
-	private void addJavascript(UIViewRoot root, FacesContext context) {
+	private void addCSS(UIViewRoot root, FacesContext context) {
 		// The following code is needed to diagnose the warning "Unable to save dynamic action with clientId 'j_id...'"
 		//				List<UIComponent> r = root.getComponentResources(context, "head");
 		//				System.out.println("**************");
@@ -211,10 +209,10 @@ public class AddResourcesListener implements SystemEventListener {
 		//				System.out.println("**************");
 		// end of the diagnostic code
 
-		ResourceHandler rh = context.getApplication().getResourceHandler();
-		String theme = loadTheme(root, context, rh);
+		//1) First load Theme files (core.css + theme.css)
+		String theme = loadTheme(root, context);
 
-		// deactivate FontAwesome support if the no-fa facet is found in the h:head tag
+		//deactivate FontAwesome support if the no-fa facet is found in the h:head tag
 		UIComponent header = findHeader(root);
 		boolean useCDNImportForFontAwesome = (null == header) || (null == header.getFacet("no-fa"));
 		if (useCDNImportForFontAwesome) {
@@ -227,10 +225,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		boolean loadJQuery = shouldLibraryBeLoaded("net.bootsfaces.get_jquery_from_cdn", true);
-		boolean loadJQueryUI = shouldLibraryBeLoaded("net.bootsfaces.get_jqueryui_from_cdn", true);
-		boolean loadBootstrapFromCDN = shouldLibraryBeLoaded("net.bootsfaces.get_bootstrap_from_cdn", false);
-		// Do we have to add font-awesome and jQuery, or are the resources already there?
+		// Do we have to add font-awesome, or are the resources already there?
 		List<UIComponent> availableResources = root.getComponentResources(context, "head");
 		for (UIComponent ava : availableResources) {
 			String name = (String) ava.getAttributes().get("name");
@@ -238,47 +233,41 @@ public class AddResourcesListener implements SystemEventListener {
 				name = name.toLowerCase();
 				if ((name.contains("font-awesome") || name.contains("fontawesome")) && name.endsWith("css"))
 					useCDNImportForFontAwesome = false;
-				if (name.startsWith("jquery-ui") && name.endsWith(".js"))
-					loadJQueryUI = false;
-				else if (name.startsWith("jquery") && name.endsWith(".js"))
-					loadJQuery = false;
 			}
 		}
 
-		// Font Awesome
+		//2) Font Awesome
 		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
 			output.getAttributes().put("src", C.FONTAWESOME_CDN_URL);
 			addResourceIfNecessary(root, context, output);
 		}
 
-		addMandatoryLibraries(root, context, loadJQuery, loadJQueryUI);
+		//3) Bootstrap from CDN (TODO: check removeBootstrapResources)
+		boolean loadBootstrapFromCDN = shouldLibraryBeLoaded("net.bootsfaces.get_bootstrap_from_cdn", false);
+		if (loadBootstrapFromCDN) { removeBootstrapResources(root, context); }
 
-		String blockUI = BsfUtils.getInitParam("net.bootsfaces.blockUI", context);
-		if (null != blockUI)
-			blockUI = ELTools.evalAsString(blockUI);
-		if (null != blockUI && isTrueOrYes(blockUI)) {
-			createAndAddComponent(root, context, SCRIPT_RENDERER, "js/jquery.blockUI.js", C.BSF_LIBRARY);
-		}
-
-		removeDuplicateResources(root, context);
-		if (loadBootstrapFromCDN) {
-			removeBootstrapResources(root, context);
-		}
-
-		addResourceIfNecessary(root, context, new InternalIE8CompatiblityLinks());
-
+		/*
 		List<UIComponent> res = root.getComponentResources(context, "head");
 		for (UIComponent ava : res) {
 			String library = (String) ava.getAttributes().get("library");
 			if (library != null && library.equals("bsf")) {
 				String name = (String) ava.getAttributes().get("name");
-				if (null != name && name.endsWith(".css") && name.startsWith("css/")
-						&& !name.equals("css/icons.css")) {
+				if (null != name && name.endsWith(".css") && name.startsWith("css/")) {
 					ava.getAttributes().remove("name");
 					int pos = name.lastIndexOf('/');
 					ava.getAttributes().put("name", "css/" + theme + "/" + name.substring(pos + 1));
 				}
+			}
+		} */
+
+		@SuppressWarnings("unchecked")
+		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
+		if(extCSSMap != null) {
+			for (String file: extCSSMap) {
+				String name = "css/" + file;
+
+				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
@@ -287,63 +276,23 @@ public class AddResourcesListener implements SystemEventListener {
 		if(themedCSSMap != null) {
 			for (String file: themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
-				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
-					name = "css/icons.css";  //look for it under the css root instead
-
-				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
-			}
-		}
-		@SuppressWarnings("unchecked")
-		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
-		if(extCSSMap != null) {
-			for (String file: extCSSMap) {
-				String name = "css/" + file;
-				if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
-					name = "css/icons.css";  //look for it under the css root instead
+				// Glyphicons icons now are in core.css if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
+				// Glyphicons icons now are in core.css	name = "css/icons.css";  //look for it under the css root instead
 
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
-		// Glyphicons now icons are in core.css
+
+		// Glyphicons icons now are in core.css
 		//String name = "css/icons.css";
 		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 
 		//Add mandatory CSS bsf.css
 		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
-		enforceCorrectLoadOrder(root, context);
 	}
 
-	private Map<String, Object> addMandatoryLibraries(
-			UIViewRoot root, FacesContext context, boolean loadJQuery, boolean loadJQueryUI) {
-
-		/* We used to check if a single component needs the bsf.js, jsf or jquery library.
-		 * This can be an error prone approach so we add all of them (if not different specified)
-		 */
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
-
-		if (loadJQuery)
-			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
-
-		Map<String, Object> viewMap = root.getViewMap();
-		@SuppressWarnings("unchecked")
-		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
-
-		if (null != resourceMap) {
-			for (Entry<String, String> entry : resourceMap.entrySet()) {
-				String file = entry.getValue();
-				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
-						!file.startsWith("jq/ui") || loadJQueryUI)
-					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
-			}
-			viewMap.remove(RESOURCE_KEY);
-		}
-		return viewMap;
-	}
-
-	private String loadTheme(UIViewRoot root, FacesContext context, ResourceHandler rh) {
+	private String loadTheme(UIViewRoot root, FacesContext context) {
 		/*
 		 * As of v0.8.0 we have two Context Parameters: BootsFaces_USETHEME - as
 		 * in previous versions controls if the current theme is to be rendered
@@ -354,6 +303,9 @@ public class AddResourcesListener implements SystemEventListener {
 		 * is chosen, you will have to provide your custom CSS in the "other"
 		 * folder.
 		 */
+
+		ResourceHandler rh = context.getApplication().getResourceHandler();
+
 		String theme = evalELIfPossible(BsfUtils.getInitParam(C.P_THEME, context));
 		if (!theme.isEmpty()) {
 			if (theme.equalsIgnoreCase("custom")) {
@@ -385,6 +337,85 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		return theme;
+	}
+
+	/**
+	 * Add the required Javascript files and the FontAwesome CDN link.
+	 *
+	 * @param root
+	 *            The UIViewRoot of the JSF tree.
+	 * @param context
+	 *            The current FacesContext
+	 */
+	private void addJavascript(UIViewRoot root, FacesContext context) {
+		// The following code is needed to diagnose the warning "Unable to save dynamic action with clientId 'j_id...'"
+		//				List<UIComponent> r = root.getComponentResources(context, "head");
+		//				System.out.println("**************");
+		//				for (UIComponent ava : r) {
+		//					String name = (String) ava.getAttributes().get("name");
+		//					System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
+		//				}
+		//				System.out.println("**************");
+		// end of the diagnostic code
+
+		boolean loadJQuery = shouldLibraryBeLoaded("net.bootsfaces.get_jquery_from_cdn", true);
+		boolean loadJQueryUI = shouldLibraryBeLoaded("net.bootsfaces.get_jqueryui_from_cdn", true);
+		// Do we have to add jQuery, or are the resources already there?
+		List<UIComponent> availableResources = root.getComponentResources(context, "head");
+		for (UIComponent ava : availableResources) {
+			String name = (String) ava.getAttributes().get("name");
+			if (null != name) {
+				name = name.toLowerCase();
+				if (name.startsWith("jquery-ui") && name.endsWith(".js"))
+					loadJQueryUI = false;
+				else if (name.startsWith("jquery") && name.endsWith(".js"))
+					loadJQuery = false;
+			}
+		}
+
+		addMandatoryLibraries(root, context, loadJQuery, loadJQueryUI);
+
+		String blockUI = BsfUtils.getInitParam("net.bootsfaces.blockUI", context);
+		if (null != blockUI)
+			blockUI = ELTools.evalAsString(blockUI);
+		if (null != blockUI && isTrueOrYes(blockUI)) {
+			createAndAddComponent(root, context, SCRIPT_RENDERER, "js/jquery.blockUI.js", C.BSF_LIBRARY);
+		}
+
+		removeDuplicateResources(root, context);
+
+		addResourceIfNecessary(root, context, new InternalIE8CompatiblityLinks());
+
+		enforceCorrectLoadOrder(root, context);
+	}
+
+	private Map<String, Object> addMandatoryLibraries(
+			UIViewRoot root, FacesContext context, boolean loadJQuery, boolean loadJQueryUI) {
+
+		/* We used to check if a single component needs the bsf.js, jsf or jquery library.
+		 * This can be an error prone approach so we add all of them (if not different specified)
+		 */
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
+
+		if (loadJQuery)
+			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
+
+		Map<String, Object> viewMap = root.getViewMap();
+		@SuppressWarnings("unchecked")
+		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
+
+		if (null != resourceMap) {
+			for (Entry<String, String> entry : resourceMap.entrySet()) {
+				String file = entry.getValue();
+				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
+				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
+						!file.startsWith("jq/ui") || loadJQueryUI)
+					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+			}
+			viewMap.remove(RESOURCE_KEY);
+		}
+		return viewMap;
 	}
 
 	private boolean shouldLibraryBeLoaded(String initParameter, boolean defaultValue) {
