@@ -288,6 +288,9 @@ public class AddResourcesListener implements SystemEventListener {
 		//String name = "css/icons.css";
 		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 
+		if(theme.equals("patternfly")) {
+			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
+		}
 		//Add mandatory CSS bsf.css
 		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
 	}
@@ -306,13 +309,8 @@ public class AddResourcesListener implements SystemEventListener {
 
 		ResourceHandler rh = context.getApplication().getResourceHandler();
 
-		String theme = evalELIfPossible(BsfUtils.getInitParam(C.P_THEME, context));
-		if (!theme.isEmpty()) {
-			if (theme.equalsIgnoreCase("custom")) {
-				theme = "other";
-			}
-		} else
-			theme = "default";
+		String theme = getTheme(context);
+		LOGGER.info("Loading Theme: "+theme); //DEBUG remove for release
 
 		// Theme loading
 		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
@@ -338,6 +336,16 @@ public class AddResourcesListener implements SystemEventListener {
 
 		return theme;
 	}
+
+private String getTheme(FacesContext context) {
+	String theme = evalELIfPossible(BsfUtils.getInitParam(C.P_THEME, context));
+	if (!theme.isEmpty()) {
+		if (theme.equalsIgnoreCase("custom")) {
+			theme = "other";
+		}
+	} else theme = "default";
+	return theme;
+}
 
 	/**
 	 * Add the required Javascript files and the FontAwesome CDN link.
@@ -500,6 +508,8 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Remove Bootstrap CSS files (called if the context param
 	 * "net.bootsfaces.get_bootstrap_from_cdn" is set).
+	 * Only needed for Default Theme (Bootstrap) and custom themes,
+	 * other themes would get default theme look and feel otherwise.
 	 *
 	 * @param root
 	 *            The current UIViewRoot
@@ -507,7 +517,21 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void removeBootstrapResources(UIViewRoot root, FacesContext context) {
-		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
+		String theme = getTheme(context);
+
+		if(theme.equals("default")||theme.equals("other")) {
+			for (UIComponent resource : root.getComponentResources(context, "head")) {
+				String name = (String) resource.getAttributes().get("name");
+				String library = (String) resource.getAttributes().get("library");
+				if ("bsf".equals(library) && name != null ) {
+					if(name.endsWith("bootstrap.min.css")||name.endsWith("bootstrap.css")||name.endsWith("core.css")||name.endsWith("theme.css")) {
+						resource.setInView(false);
+						root.removeComponentResource(context, resource);
+					}
+				}
+			}
+		}
+		/*List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
 			String library = (String) resource.getAttributes().get("library");
@@ -519,7 +543,7 @@ public class AddResourcesListener implements SystemEventListener {
 			c.setInView(false);
 			root.removeComponentResource(context, c);
 			//System.out.println("-2" + c.getClientId());
-		}
+		}*/
 	}
 
 	/**
@@ -737,7 +761,8 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private void createAndAddComponent(UIViewRoot root, FacesContext context,
-			String rendererType, String name, String library) {
+	                                   String rendererType, String name, String library) {
+	  LOGGER.info("Add resource "+name+", library: "+library); //DEBUG remove for release
 		UIOutput output = new UIOutput();
 		output.setRendererType(rendererType);
 		output.getAttributes().put("name", name);
