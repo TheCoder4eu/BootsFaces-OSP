@@ -349,7 +349,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"useCurrent: " + dtp.isUseCurrent() + ", ": "") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
-					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', forceElementPosition: true, " : "" ) +
+					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', " : "" ) +
 					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
 					      	"date: moment(" + inlineDisplayDate + ", " + displayFormat + "), " +
 					      	"locale: '" + sloc.getLanguage() + "', " +
