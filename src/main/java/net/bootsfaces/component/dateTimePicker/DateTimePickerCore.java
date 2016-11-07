@@ -24,15 +24,84 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, allowInputToggle, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, disableTimeInterval, disabledDates, display, enabledDates, focusOnShow, format, hidden, icon, iconAwesome, immediate, initialDate, keepInvalid, keepOpen, labelStyle, labelStyleClass, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, oncomplete, ondtchange, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
+		ajax,
+		allowInputToggle,
+		binding,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		collapse,
+		dayViewHeaderFormat,
+		disableTimeInterval,
+		disabledDates,
+		display,
+		enabledDates,
+		fieldSize,
+		focusOnShow,
+		format,
+		hidden,
+		icon,
+		iconAwesome,
+		immediate,
+		initialDate,
+		keepInvalid,
+		keepOpen,
+		labelStyle,
+		labelStyleClass,
+		largeScreen,
+		locale,
+		maxDate,
+		mediumScreen,
+		minDate,
+		mode,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		oncomplete,
+		ondtchange,
+		placeholder,
+		process,
+		renderLabel,
+		required,
+		requiredMessage,
+		showButtonPanel,
+		showClearButton,
+		showCloseButton,
+		showDate,
+		showTime,
+		showTodayButton,
+		showWeek,
+		sideBySide,
+		smallScreen,
+		span,
+		style,
+		styleClass,
+		timeStepping,
+		tinyScreen,
+		toolbarPlacement,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update,
+		useCurrent,
+		useStrict,
+		viewMode,
+		visible,
+		weekDaysDisabled,
+		widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -245,6 +314,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setEnabledDates(String _enabledDates) {
 		getStateHelper().put(PropertyKeys.enabledDates, _enabledDates);
+	}
+
+	/**
+	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFieldSize() {
+		return (String) getStateHelper().eval(PropertyKeys.fieldSize);
+	}
+
+	/**
+	 * The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) . <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFieldSize(String _fieldSize) {
+		getStateHelper().put(PropertyKeys.fieldSize, _fieldSize);
 	}
 
 	/**

@@ -185,7 +185,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		{
 			// simple wrapper
 			rw.startElement("div", dtp);
-			if (styleClass.length()>0) {
+			if (styleClass.length() > 0) {
 				rw.writeAttribute("class", styleClass, "class");
 			}
 			rw.writeAttribute("id", divPrefix + clientId, null);
@@ -197,7 +197,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("type", "text", null);
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
-			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			//rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			generateStyleClass(dtp, rw);
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
@@ -248,7 +249,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("type", "text", null);
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
-			rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			// rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
+			generateStyleClass(dtp, rw);
+			
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
@@ -275,6 +278,33 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		return divPrefix;
+	}
+	
+	private void generateStyleClass(DateTimePicker dtp, ResponseWriter rw) 
+	throws IOException {
+		StringBuilder sb;
+		String s;
+		sb = new StringBuilder(20); // optimize int
+		sb.append("form-control");
+
+		String fsize = dtp.getFieldSize();
+
+		if (fsize != null) {
+			sb.append(" input-").append(fsize);
+		}
+
+		// styleClass and class support
+		String sclass = dtp.getStyleClass();
+		if (sclass != null) {
+			sb.append(" ").append(sclass);
+		}
+
+		sb.append(" ").append(getErrorAndRequiredClass(dtp, dtp.getClientId()));
+
+		s = sb.toString().trim();
+		if (s != null && s.length() > 0) {
+			rw.writeAttribute("class", s, "class");
+		}
 	}
 
 	/**

@@ -591,6 +591,7 @@ widget dateTimePicker
 	disabled-dates														   "Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]."
     disable-time-interval   											   "Disables time selection between the given moments. Default: false."
 	enabled-dates														   "Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]."
+    field-size                                                             "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
     focus-on-show			 Boolean default "true"						   "If false, the textbox will not be given focus when the picker is shown. Default: true."
     format																   "See momentjs' docs for valid formats. Format also dictates which components are shown, e.g. MM/dd/YYYY will not display the time picker."
     icon                                                                   "Picker Icon, can be one of the Bootstrap icon names. "
