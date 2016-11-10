@@ -153,20 +153,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     protected void addAppendingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
             UIComponent appendingAddOnFacet, boolean hasAppendingAddOn, SelectOneMenu menu) throws IOException {
         if (hasAppendingAddOn) {
-            if (appendingAddOnFacet.getClass().getName().endsWith("Button") || (appendingAddOnFacet.getChildCount() > 0
-                    && appendingAddOnFacet.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-                rw.startElement("div", menu);
-                rw.writeAttribute("class", "input-group-btn", "class");
-                appendingAddOnFacet.encodeAll(context);
-                rw.endElement("div");
-            } else {
-                if (appendingAddOnFacet instanceof Icon)
-                    ((Icon) appendingAddOnFacet).setAddon(true); // modifies the id of the icon
-                rw.startElement("span", menu);
-                rw.writeAttribute("class", "y input-group-addon", "class");
-                appendingAddOnFacet.encodeAll(context);
-                rw.endElement("span");
-            }
+            R.decorateFacetComponent(menu, appendingAddOnFacet, context, rw);
         }
     }
 
@@ -212,22 +199,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     protected void addPrependingAddOnToInputGroup(FacesContext context, ResponseWriter rw,
             UIComponent prependingAddOnFacet, boolean hasPrependingAddOn, SelectOneMenu menu) throws IOException {
         if (hasPrependingAddOn) {
-            if (prependingAddOnFacet.getClass().getName().endsWith("Button")
-                    || (prependingAddOnFacet.getChildCount() > 0
-                            && prependingAddOnFacet.getChildren().get(0).getClass().getName().endsWith("Button"))) {
-                rw.startElement("div", menu);
-                rw.writeAttribute("class", "input-group-btn", "class");
-                prependingAddOnFacet.encodeAll(context);
-                rw.endElement("div");
-            } else {
-                if (prependingAddOnFacet instanceof Icon)
-                    ((Icon) prependingAddOnFacet).setAddon(true); // modifies the id of the icon
-                rw.startElement("span", menu);
-                rw.writeAttribute("class", "input-group-addon", "class");
-                prependingAddOnFacet.encodeAll(context);
-                rw.endElement("span");
-            }
-        }
+        	R.decorateFacetComponent(menu, prependingAddOnFacet, context, rw);
+       }
     }
 
     /**
