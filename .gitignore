@@ -35,3 +35,4 @@ src-gen
 .idea/
 *.iml
 /.externalToolBuilders
+/.apt_generated/

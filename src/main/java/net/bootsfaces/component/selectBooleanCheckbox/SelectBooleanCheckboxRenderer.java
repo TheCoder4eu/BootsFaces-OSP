@@ -38,12 +38,6 @@ import net.bootsfaces.utils.FacesMessages;
 public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 
 	/**
-	 * Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in
-	 * front of or behind the input field).
-	 */
-	public static final String ADDON = "input-group-addon";
-
-	/**
 	 * This methods receives and processes input made by the user. More
 	 * specifically, it ckecks whether the user has interacted with the current
 	 * b:selectBooleanCheckbox. The default implementation simply stores the

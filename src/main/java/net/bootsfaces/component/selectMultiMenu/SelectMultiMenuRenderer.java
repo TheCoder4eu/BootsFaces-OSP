@@ -47,12 +47,6 @@ import net.bootsfaces.utils.FacesMessages;
 /** This class generates the HTML code of &lt;b:selectMultiMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenuRenderer extends CoreRenderer {
-	/**
-	 * Bootstrap CSS class for AddOns (i.e. components rendered seamlessly in
-	 * front of or behind the input field).
-	 */
-	public static final String ADDON = "input-group-addon";
-
 	// http://davidstutz.github.io/bootstrap-multiselect/
 
 	/** Receives the value from the client and sends it to the JSF bean. */
