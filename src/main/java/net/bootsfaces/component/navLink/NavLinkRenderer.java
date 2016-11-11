@@ -182,8 +182,12 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
 
+		String style = "cursor:pointer;";
+		if (((AbstractNavLink) navlink).getStyle()!=null) {
+			style += ((AbstractNavLink) navlink).getStyle();
+		}
 		writeAttribute(rw, "class", getStyleClasses(((AbstractNavLink) navlink)));
-		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getStyle());
+		writeAttribute(rw, "style", style);
 
 		rw.startElement("a", navlink);
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getContentStyle(), "style");
