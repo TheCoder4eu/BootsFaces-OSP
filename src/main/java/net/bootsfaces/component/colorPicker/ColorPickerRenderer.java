@@ -1,6 +1,7 @@
 package net.bootsfaces.component.colorPicker;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
@@ -22,6 +23,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPicker")
 public class ColorPickerRenderer extends CoreRenderer {
+	private static final Logger LOGGER = Logger.getLogger(ColorPickerRenderer.class.getName());
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -127,7 +129,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.writeAttribute("id", clientId, "id");
 		if (colorPicker.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
-
+			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
 		}

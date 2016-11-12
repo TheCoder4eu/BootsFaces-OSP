@@ -25,9 +25,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
 import javax.faces.component.html.HtmlOutputText;
@@ -37,6 +39,9 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.form.Form;
+import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -48,6 +53,7 @@ import net.bootsfaces.utils.FacesMessages;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
 public class SelectMultiMenuRenderer extends CoreRenderer {
 	// http://davidstutz.github.io/bootstrap-multiselect/
+	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	/** Receives the value from the client and sends it to the JSF bean. */
 	@Override
@@ -85,9 +91,11 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 					} else
 						currentOptionValueAsString = String.valueOf(index);
 					if ("".equals(currentOptionValueAsString) && submittedOptionValue.equalsIgnoreCase("on")) {
-						// this is a special case which occurs when the value is set to "".
-						// In this case, the browser sends "on" instead of the empty string.
-						submittedOptionValue="";
+						// this is a special case which occurs when the value is
+						// set to "".
+						// In this case, the browser sends "on" instead of the
+						// empty string.
+						submittedOptionValue = "";
 					}
 					if (submittedOptionValue.equals(currentOptionValueAsString)) {
 						if (null == result)
@@ -99,7 +107,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 					}
 				}
 				if (!found) {
-					FacesMessages.error(clientId, "Invalid data", "Couldn't set the value of the b:selectMultiMenu because an option that wasn't defined by the JSF source code was passed.");
+					FacesMessages.error(clientId, "Invalid data",
+							"Couldn't set the value of the b:selectMultiMenu because an option that wasn't defined by the JSF source code was passed.");
 					menu.setSubmittedValue(result);
 					menu.setValid(false);
 					return;
@@ -131,6 +140,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 		Tooltip.generateTooltip(context, menu, rw);
 		if (menu.isInline()) {
+			LOGGER.warning(
+					"The inline attribute of b:selectMultiMenu is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 			rw.writeAttribute("class", "form-inline", "class");
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
@@ -243,10 +254,22 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 						"b:selectMultiMenu can't process the styleClass attribute if the buttonContainer attribute is set.");
 		} else {
 			String styleClass = menu.getStyleClass();
-			if (styleClass != null) {
-				options += "," + "buttonContainer:'<div class=\"" + styleClass + "\"  style=\"display:block\"/>'";
+			String blockStyle = "block";
+
+			if (menu.isInline()) {
+				blockStyle = "inline-block";
 			} else {
-				options += "," + "buttonContainer:'<div class=\"btn-group\" style=\"display:block\" />'";
+				UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)component);
+				if (currentForm instanceof Form) {
+					if (((Form) currentForm).isInline()) {
+						blockStyle = "display:inline-block";
+					}
+				}
+			}
+			if (styleClass != null) {
+				options += "," + "buttonContainer:'<div class=\"" + styleClass + "\"  style=\"" + blockStyle + "\"/>'";
+			} else {
+				options += "," + "buttonContainer:'<div class=\"btn-group\" style=\"display:" + blockStyle + "\" />'";
 			}
 		}
 

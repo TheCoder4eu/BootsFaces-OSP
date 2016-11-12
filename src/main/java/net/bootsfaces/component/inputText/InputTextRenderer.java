@@ -19,6 +19,7 @@ package net.bootsfaces.component.inputText;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
@@ -41,6 +42,8 @@ import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
 public class InputTextRenderer extends CoreRenderer {
+	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
+
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -157,7 +160,7 @@ public class InputTextRenderer extends CoreRenderer {
 		rw.writeAttribute("id", clientId, "id"); // clientId
 		if (inputText.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
-
+			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
 		}

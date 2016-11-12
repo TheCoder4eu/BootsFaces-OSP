@@ -38,6 +38,8 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.render.Renderer;
 
+import net.bootsfaces.component.form.Form;
+
 public class CoreRenderer extends Renderer {
 
 	/**
@@ -397,10 +399,10 @@ public class CoreRenderer extends Renderer {
 	
 	protected static UIForm getSurroundingForm(UIComponent component) {
 		UIComponent c = component;
-		while ((c != null) && (!(c instanceof UIForm))) {
+		while ((c != null) && (!(c instanceof UIForm)) && (!(c instanceof Form))) {
 			c = c.getParent();
 		}
-		if (!(c instanceof UIForm)) {
+		if (!(c instanceof UIForm || c instanceof Form)) {
 			throw new FacesException("The component with the id " + component.getClientId() + " must be inside a form");
 		}
 		return (UIForm) c;
