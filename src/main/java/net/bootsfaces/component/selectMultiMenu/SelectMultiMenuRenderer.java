@@ -254,10 +254,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 						"b:selectMultiMenu can't process the styleClass attribute if the buttonContainer attribute is set.");
 		} else {
 			String styleClass = menu.getStyleClass();
-			String blockStyle = "block";
+			String blockStyle = "display:block";
 
 			if (menu.isInline()) {
-				blockStyle = "inline-block";
+				blockStyle = "display:inline-block";
 			} else {
 				UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)component);
 				if (currentForm instanceof Form) {
@@ -266,10 +266,14 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 					}
 				}
 			}
+			if (menu.getStyle()!=null) {
+				blockStyle += ";" + menu.getStyle();
+			}
+
 			if (styleClass != null) {
 				options += "," + "buttonContainer:'<div class=\"" + styleClass + "\"  style=\"" + blockStyle + "\"/>'";
 			} else {
-				options += "," + "buttonContainer:'<div class=\"btn-group\" style=\"display:" + blockStyle + "\" />'";
+				options += "," + "buttonContainer:'<div class=\"btn-group\" style=\"" + blockStyle + "\" />'";
 			}
 		}
 
@@ -738,7 +742,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (s != null && s.length() > 0) {
 			rw.writeAttribute("class", s, "class");
 		}
-
+		
 		if (menu.isDisabled()) {
 			rw.writeAttribute("disabled", "disabled", null);
 		}

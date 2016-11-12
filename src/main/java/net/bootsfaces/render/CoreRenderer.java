@@ -115,7 +115,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
+	public void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass) {
 			additionalClass = additionalClass.trim();

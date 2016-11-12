@@ -16,7 +16,7 @@
 * limitations under the License.
  */
 
-package net.bootsfaces.component.datePicker;
+package net.bootsfaces.component.datepicker;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -212,6 +212,34 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	}
 
 	/**
+	 * Renders the optional label. This method is protected in order to allow
+	 * third-party frameworks to derive from it.
+	 *
+	 * @param rw
+	 *            the response writer
+	 * @param clientId
+	 *            the id used by the label to refernce the input field
+	 * @throws IOException
+	 *             may be thrown by the response writer
+	 */
+	protected void addLabel(ResponseWriter rw, String clientId) throws IOException {
+		String label = getLabel();
+		if (!isRenderLabel()) {
+			label = null;
+		}
+		if (label != null) {
+			rw.startElement("label", this);
+			rw.writeAttribute("for", clientId, "for");
+			new CoreRenderer().generateErrorAndRequiredClass(this, rw, clientId, getLabelStyleClass());
+			if (getLabelStyle() != null) {
+				rw.writeAttribute("style", getLabelStyle(), "style");
+			}
+			rw.writeText(label, null);
+			rw.endElement("label");
+		}
+	}
+
+	/**
 	 * Encodes the HTML for this context
 	 *
 	 * @param fc
@@ -225,7 +253,12 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		if (responsiveStyleClass.length() > 0) {
 			rw.startElement("div", this);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
+			rw.writeAttribute("id", clientId, "id");
 		}
+		rw.startElement("div", this);
+		rw.writeAttribute("class", "form-group", "class");
+		addLabel(rw, clientId);
+
 		// stz = selectTimeZone(attrs.get(A.TZ));
 
 		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(JQ.LOCALE)));
@@ -248,19 +281,36 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		boolean isDisabled = A.toBool(attrs.get("disabled"));
 		mode = A.asString(attrs.get("mode"), "toggle-icon");
 		boolean inline = mode.equals("inline");
+		boolean styleHasBeenRendered=false;
 
 		if (inline) { // inline => div with ID
 			dpId = clientId + "_" + "div";
 			rw.startElement("div", this);
 			rw.writeAttribute("id", dpId, null);
 			rw.endElement("div");
+			if (getStyleClass()!=null) {
+				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
+			}
+			if (getStyle()!=null) {
+				rw.writeAttribute("style", getStyle(), "style");
+			}
+			styleHasBeenRendered=true;
 		} else { // popup
 			dpId = clientId;
 
 			if (!mode.equals("popup")) { // with icon => div with prepend/append
 												// style
 				rw.startElement("div", this);
-				rw.writeAttribute("class", "input-group", "class");
+				if (getStyleClass()!=null) {
+					rw.writeAttribute("styleClass", "input-group "+  getStyleClass(), "styleClass");
+				} else {
+					rw.writeAttribute("class", "input-group", "class");
+				}
+				if (getStyle()!=null) {
+					rw.writeAttribute("style", getStyle(), "style");
+				}
+				styleHasBeenRendered=true;
+				
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
@@ -274,7 +324,15 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		String type = inline ? "hidden" : "text";
 
 		rw.startElement("input", null);
-		rw.writeAttribute("id", clientId, null);
+		rw.writeAttribute("id", clientId + "_input", null);
+		if (!styleHasBeenRendered) {
+			if (getStyleClass()!=null) {
+				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
+			}
+			if (getStyle()!=null) {
+				rw.writeAttribute("style", getStyle(), "style");
+			}
+		}
 		rw.writeAttribute("name", clientId, null);
 		Tooltip.generateTooltip(fc, this, rw);
 		rw.writeAttribute("type", type, null);
@@ -314,6 +372,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 
 		} // Closes the popup prepend/append style div
 
+		rw.endElement("div"); // form-group
 		if (responsiveStyleClass.length() > 0) {
 			rw.endElement("div");
 		}
@@ -360,7 +419,6 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		if (attrs.get(JQ.MAXDATE) != null) {
 			sb.append(JQ.MAXDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("',");
 		}
-		
 
 		// If user specifies a specific language to use then we render the
 		// datepicker using this language
@@ -371,7 +429,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		}
 		String options = sb.toString();
 		if (options.endsWith(",")) {
-			options = options.substring(0, options.length()-1);
+			options = options.substring(0, options.length() - 1);
 		}
 		JQ.datePicker(rw, cId, dpId, options, l);
 	}
@@ -665,6 +723,8 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		display,
 		firstDay,
 		hidden,
+		labelStyle,
+		labelStyleClass,
 		lang,
 		largeScreen,
 		mediumScreen,
@@ -676,6 +736,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		offsetSm,
 		offsetXs,
 		placeholder,
+		renderLabel,
 		required,
 		requiredMessage,
 		showButtonPanel,
@@ -867,6 +928,38 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	}
 
 	/**
+	 * The CSS inline style of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyle);
+	}
+
+	/**
+	 * The CSS inline style of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyle(String _labelStyle) {
+		getStateHelper().put(PropertyKeys.labelStyle, _labelStyle);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.labelStyleClass);
+	}
+
+	/**
+	 * The CSS class of the label. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelStyleClass(String _labelStyleClass) {
+		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
+	}
+
+	/**
 	 * This option allows you to localize the DatePicker, specifying the language code (eg. it, fr, es, nl). The datepicker uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes. The Datepicker is localized with the language specified by the ViewRoot Locale. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -1040,6 +1133,23 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	 */
 	public void setPlaceholder(String _placeholder) {
 		getStateHelper().put(PropertyKeys.placeholder, _placeholder);
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
+				net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+	}
+
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderLabel(boolean _renderLabel) {
+		getStateHelper().put(PropertyKeys.renderLabel, _renderLabel);
 	}
 
 	/**

@@ -20,6 +20,7 @@ package net.bootsfaces.component.selectOneMenu;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.el.ELException;
 import javax.el.ExpressionFactory;
@@ -36,6 +37,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.Icon;
+import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -45,6 +47,7 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
 public class SelectOneMenuRenderer extends CoreRenderer {
+	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
     /** Receives the value from the client and sends it to the JSF bean. */
     @Override
@@ -113,6 +116,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
 
         if (menu.isInline()) {
             rw.writeAttribute("class", "form-inline", "class");
+			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
         } else {
             rw.writeAttribute("class", "form-group", "class");
         }
@@ -179,6 +183,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
             generateErrorAndRequiredClass(menu, rw, clientId);
+            writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");
         }
