@@ -144,7 +144,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			if (!isHorizontalForm(dtp)) {
-				rw.writeAttribute("class", responsiveStyleClass, "class");
+				rw.writeAttribute("class", responsiveStyleClass + " form-group", "class");
+			} else {
+				rw.writeAttribute("class", "form-group", "class");
 			}
 			rw.writeAttribute("id", clientId, null);
 			divPrefix=DTP_CONTAINER_ID;
@@ -154,9 +156,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			divPrefix=DTP_CONTAINER_ID;
 		}
 		
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0 && (isHorizontalForm(dtp))) {
-			styleClass += " " + responsiveStyleClass;
-		}
+		
 
 		if (label != null) {
 			rw.startElement("label", dtp);
@@ -168,6 +168,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 
+		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+			rw.startElement("div", dtp);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+		}
+		
 
 		Object v = dtp.getSubmittedValue();
 		if (v == null) {
@@ -277,6 +282,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.endElement("div");
 		}
 
+		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+			rw.endElement("div");
+		}
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.endElement("div");
 		} else if (label != null) {

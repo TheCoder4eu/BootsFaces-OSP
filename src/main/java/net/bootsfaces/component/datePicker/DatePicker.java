@@ -263,10 +263,17 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		rw.writeAttribute("class", "form-group", "class");
 		addLabel(rw, clientId);
 
+		if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
+			rw.startElement("div", this);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+			responsiveStyleHasItsOwnDiv=true;
+		}
+		
 		// stz = selectTimeZone(attrs.get(A.TZ));
 
 		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(JQ.LOCALE)));
 		sdf = selectDateFormat(sloc, A.asString(attrs.get(JQ.DTFORMAT)));
+		
 
 		// Debugging Locale and dateformat
 		// rw.write("<span>DEBUG sloc='"+sloc+"', sdf='"+sdf+"' </span>");
@@ -297,7 +304,6 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 			if (getStyle() != null) {
 				rw.writeAttribute("style", getStyle(), "style");
 			}
-			responsiveStyleHasBeenRendered = true;
 		} else { // popup
 			dpId = clientId;
 
@@ -308,14 +314,10 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 				if (null != getStyleClass()) {
 					clazz += getStyleClass() + " ";
 				}
-				if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
-					clazz += responsiveStyleClass;
-				}
 				rw.writeAttribute("class", clazz, "class");
 				if (getStyle() != null) {
 					rw.writeAttribute("style", getStyle(), "style");
 				}
-				responsiveStyleHasBeenRendered = true;
 
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
@@ -331,14 +333,10 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId + "_input", null);
-		if (!responsiveStyleHasBeenRendered) {
-			if (getStyleClass() != null) {
-				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
-			}
-			if (getStyle() != null) {
-				rw.writeAttribute("style", getStyle(), "style");
-			}
-		}
+
+//		if (getStyle() != null) {
+//			rw.writeAttribute("style", getStyle(), "style");
+//		}
 		rw.writeAttribute("name", clientId, null);
 		Tooltip.generateTooltip(fc, this, rw);
 		rw.writeAttribute("type", type, null);

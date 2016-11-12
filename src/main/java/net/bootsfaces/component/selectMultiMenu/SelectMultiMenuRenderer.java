@@ -133,7 +133,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context).replace(":", "-");
-		String span = startColSpanDiv(rw, menu);
+		String span=null;
+		if (!isHorizontalForm(component)) {
+			span = startColSpanDiv(rw, menu);
+		}
 		rw.startElement("div", menu);
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
 		writeAttribute(rw, "id", clientId);
@@ -149,6 +152,9 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 		addLabel(rw, clientId + "Inner", menu);
 
+		if (isHorizontalForm(component)) {
+			span = startColSpanDiv(rw, menu);
+		}	
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
 		final boolean hasAddon = startInputGroupForAddOn(rw, (prependingAddOnFacet != null),

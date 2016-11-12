@@ -26,7 +26,6 @@ import javax.el.ELException;
 import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UISelectItem;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
@@ -36,7 +35,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -110,7 +108,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         ResponseWriter rw = context.getResponseWriter();
         String outerClientId = menu.getClientId(context);
         String clientId = outerClientId+"Inner";
-        String span = startColSpanDiv(rw, menu);
+        String span=null;
+        if (!isHorizontalForm(component)) {
+           span = startColSpanDiv(rw, menu);
+        }
         rw.startElement("div", menu);
         Tooltip.generateTooltip(context, menu, rw);
 
@@ -124,6 +125,9 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         writeAttribute(rw, "dir", menu.getDir(), "dir");
 
         addLabel(rw, clientId, menu);
+        if (isHorizontalForm(component)) {
+        	span=startColSpanDiv(rw, menu);
+        }
 
         UIComponent prependingAddOnFacet = menu.getFacet("prepend");
         UIComponent appendingAddOnFacet = menu.getFacet("append");
