@@ -116,6 +116,7 @@ public class InputTextRenderer extends CoreRenderer {
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
+		boolean clientIdHasBeenRendered=false;
 
 		String responsiveLabelClass = null;
 		String label = inputText.getLabel();
@@ -131,6 +132,8 @@ public class InputTextRenderer extends CoreRenderer {
 		if (responsiveStyleClass.length() > 0 && responsiveLabelClass == null && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
+			rw.writeAttribute("id", clientId, "id"); // clientId
+			clientIdHasBeenRendered=true;
 		}
 
 		// "Prepend" facet
@@ -154,10 +157,17 @@ public class InputTextRenderer extends CoreRenderer {
 		rw.startElement("div", component);
 		if (null != inputText.getDir()) {
 			rw.writeAttribute("dir", inputText.getDir(), "dir");
+			if (!clientIdHasBeenRendered) {
+				rw.writeAttribute("id", clientId, "id");
+				clientIdHasBeenRendered=true;
+			}
 		}
 
 		Tooltip.generateTooltip(context, inputText, rw);
-		rw.writeAttribute("id", clientId, "id"); // clientId
+		if (!clientIdHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+			clientIdHasBeenRendered=true;
+		}
 		if (inputText.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");

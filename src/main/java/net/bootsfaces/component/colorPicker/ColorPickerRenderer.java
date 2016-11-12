@@ -93,11 +93,14 @@ public class ColorPickerRenderer extends CoreRenderer {
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = colorPicker.getClientId();
+		boolean clientIdHasBeenRendered=false;
 
 		String cssResponsiveClass = Responsive.getResponsiveStyleClass(colorPicker, false).trim();
 		if (cssResponsiveClass.length()>0 && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", cssResponsiveClass, "class");
+			rw.writeAttribute("id", clientId, "id");
+			clientIdHasBeenRendered=true;
 		}
 
 		// "Prepend" facet
@@ -126,7 +129,9 @@ public class ColorPickerRenderer extends CoreRenderer {
 		}
 
 		Tooltip.generateTooltip(context, colorPicker, rw);
-		rw.writeAttribute("id", clientId, "id");
+		if (!clientIdHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		if (colorPicker.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
@@ -163,7 +168,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		// Input
 		rw.startElement("input", colorPicker);
 		rw.writeAttribute("id", "input_" + clientId, null);
-		rw.writeAttribute("name", clientId, null);
+		rw.writeAttribute("name", "input_" + clientId, null);
 		rw.writeAttribute("type", t, null);
 
 		generateStyleClass(colorPicker, rw, cssResponsiveClass);

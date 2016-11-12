@@ -107,10 +107,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
         ResponseWriter rw = context.getResponseWriter();
         String outerClientId = menu.getClientId(context);
+        boolean clientIdHasBeenRendered=false;
         String clientId = outerClientId+"Inner";
         String span=null;
         if (!isHorizontalForm(component)) {
-           span = startColSpanDiv(rw, menu);
+           span = startColSpanDiv(rw, menu, outerClientId);
+           if (null != span) {
+        	   clientIdHasBeenRendered=true;
+           }
         }
         rw.startElement("div", menu);
         Tooltip.generateTooltip(context, menu, rw);
@@ -121,12 +125,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         } else {
             rw.writeAttribute("class", "form-group", "class");
         }
-        rw.writeAttribute("id", outerClientId, "id");
+        if (!clientIdHasBeenRendered) {
+        	rw.writeAttribute("id", outerClientId, "id");
+        }
         writeAttribute(rw, "dir", menu.getDir(), "dir");
 
         addLabel(rw, clientId, menu);
         if (isHorizontalForm(component)) {
-        	span=startColSpanDiv(rw, menu);
+        	span=startColSpanDiv(rw, menu, null);
         }
 
         UIComponent prependingAddOnFacet = menu.getFacet("prepend");
@@ -498,11 +504,12 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      * @throws IOException
      *             may be thrown by the response writer
      */
-    protected String startColSpanDiv(ResponseWriter rw, SelectOneMenu menu) throws IOException {
+    protected String startColSpanDiv(ResponseWriter rw, SelectOneMenu menu, String clientId) throws IOException {
         String clazz = Responsive.getResponsiveStyleClass(menu, false);
         if (clazz!= null && clazz.trim().length()>0) {
             rw.startElement("div", menu);
             rw.writeAttribute("class", clazz, "class");
+            rw.writeAttribute("id", clientId, "id");
         }
         return clazz;
     }
