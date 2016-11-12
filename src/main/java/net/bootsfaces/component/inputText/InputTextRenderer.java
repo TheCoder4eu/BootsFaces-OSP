@@ -128,7 +128,7 @@ public class InputTextRenderer extends CoreRenderer {
 			responsiveLabelClass = Responsive.getResponsiveLabelClass(inputText);
 		}
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
-		if (responsiveStyleClass.length() > 0 && responsiveLabelClass == null) {
+		if (responsiveStyleClass.length() > 0 && responsiveLabelClass == null && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
@@ -177,7 +177,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 
-		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null) {
+		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null && isHorizontalForm(component)) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}

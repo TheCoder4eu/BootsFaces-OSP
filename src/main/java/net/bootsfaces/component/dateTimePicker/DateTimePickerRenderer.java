@@ -143,7 +143,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String divPrefix="";
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
-			rw.writeAttribute("class", responsiveStyleClass, "class");
+			if (!isHorizontalForm(dtp)) {
+				rw.writeAttribute("class", responsiveStyleClass, "class");
+			}
 			rw.writeAttribute("id", clientId, null);
 			divPrefix=DTP_CONTAINER_ID;
 		} else if (label != null) {
@@ -151,11 +153,15 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId, null);
 			divPrefix=DTP_CONTAINER_ID;
 		}
+		
+		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0 && (isHorizontalForm(dtp))) {
+			styleClass += " " + responsiveStyleClass;
+		}
 
 		if (label != null) {
 			rw.startElement("label", dtp);
 			rw.writeAttribute("for", clientId + "_Input", "for"); // "input_" + clientId
-			generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass());
+			generateErrorAndRequiredClassForLabels(dtp, rw, clientId, dtp.getLabelStyleClass());
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
 			rw.writeText(label, null);

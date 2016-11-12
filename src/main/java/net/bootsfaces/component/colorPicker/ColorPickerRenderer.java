@@ -95,7 +95,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		String clientId = colorPicker.getClientId();
 
 		String cssResponsiveClass = Responsive.getResponsiveStyleClass(colorPicker, false).trim();
-		if (cssResponsiveClass.length()>0) {
+		if (cssResponsiveClass.length()>0 && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", cssResponsiveClass, "class");
 		}
@@ -137,16 +137,23 @@ public class ColorPickerRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
-			generateErrorAndRequiredClass(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			generateErrorAndRequiredClassForLabels(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
 			writeAttribute(rw, "style", colorPicker.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
+		
+		if (isHorizontalForm(colorPicker) && null != cssResponsiveClass && cssResponsiveClass.length()>0) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", cssResponsiveClass, "class");
+		}
+
 
 		if (append || prepend) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
+			
 		}
 
 		if (prepend) {
@@ -159,7 +166,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", t, null);
 
-		generateStyleClass(colorPicker, rw);
+		generateStyleClass(colorPicker, rw, cssResponsiveClass);
 
 		String ph = colorPicker.getPlaceholder();
 		if (ph != null) {
@@ -195,8 +202,11 @@ public class ColorPickerRenderer extends CoreRenderer {
 		if (append || prepend) {
 			rw.endElement("div");
 		} // input-group
+		if (isHorizontalForm(colorPicker) && null != cssResponsiveClass && cssResponsiveClass.length()>0) {
+			rw.endElement("div");
+		}
 		rw.endElement("div"); // form-group
-		if (cssResponsiveClass.length()>0) {
+		if (cssResponsiveClass.length()>0 && (!isHorizontalForm(colorPicker))) {
 			rw.endElement("div"); // span
 		}
 
@@ -235,7 +245,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.endElement("script");
 	}
 
-	private void generateStyleClass(ColorPicker colorPicker, ResponseWriter rw) throws IOException {
+	private void generateStyleClass(ColorPicker colorPicker, ResponseWriter rw, String cssResponsiveClass) throws IOException {
 		StringBuilder sb;
 		String s;
 		sb = new StringBuilder(20); // optimize int

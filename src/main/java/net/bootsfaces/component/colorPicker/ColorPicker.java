@@ -14,10 +14,11 @@ import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 
 @FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
-public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive {
+public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
 

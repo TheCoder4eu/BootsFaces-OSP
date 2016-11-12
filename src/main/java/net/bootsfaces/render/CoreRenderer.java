@@ -38,6 +38,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.render.Renderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 
 public class CoreRenderer extends Renderer {
@@ -103,7 +104,7 @@ public class CoreRenderer extends Renderer {
 	 */
 	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
 		getErrorAndRequiredClass(input, clientId);
-		generateErrorAndRequiredClass(input, rw, clientId, null);
+		generateErrorAndRequiredClassForLabels(input, rw, clientId, null);
 	}
 
 	/**
@@ -115,7 +116,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-	public void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
+	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass) {
 			additionalClass = additionalClass.trim();
@@ -123,6 +124,20 @@ public class CoreRenderer extends Renderer {
 				styleClass += " " + additionalClass;
 			}
 		}
+		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)input);
+		if (currentForm instanceof Form) {
+			if (((Form) currentForm).isHorizontal()) {
+				styleClass += " control-label";
+			}
+		}
+		if (input instanceof IResponsiveLabel) {
+			String responsiveLabelClass = Responsive.getResponsiveLabelClass((IResponsiveLabel)input);
+			if (null != responsiveLabelClass) {
+				styleClass += " " + responsiveLabelClass;
+			}
+		}
+
+
 		rw.writeAttribute("class", styleClass, "class");
 	}
 	
@@ -407,6 +422,15 @@ public class CoreRenderer extends Renderer {
 		}
 		return (UIForm) c;
 	}
+	
+	public static boolean isHorizontalForm(UIComponent component) {
+		UIForm c = getSurroundingForm(component);
+		if (c instanceof Form) {
+			return ((Form)c).isHorizontal();
+		}
+		return false;
+	}
+
 
 
 	/**

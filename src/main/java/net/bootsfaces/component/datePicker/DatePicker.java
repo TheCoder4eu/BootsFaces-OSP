@@ -16,7 +16,7 @@
 * limitations under the License.
  */
 
-package net.bootsfaces.component.datepicker;
+package net.bootsfaces.component.datePicker;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -49,6 +49,7 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -59,7 +60,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
-public class DatePicker extends HtmlInputText implements IResponsive {
+public class DatePicker extends HtmlInputText implements IResponsive, IResponsiveLabel {
 
 	/**
 	 * <p>
@@ -230,7 +231,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		if (label != null) {
 			rw.startElement("label", this);
 			rw.writeAttribute("for", clientId, "for");
-			new CoreRenderer().generateErrorAndRequiredClass(this, rw, clientId, getLabelStyleClass());
+			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, clientId, getLabelStyleClass());
 			if (getLabelStyle() != null) {
 				rw.writeAttribute("style", getLabelStyle(), "style");
 			}
@@ -246,14 +247,17 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	 * @throws IOException
 	 */
 	private void encodeHTML(FacesContext fc) throws IOException {
+		boolean responsiveStyleHasBeenRendered = false;
+		boolean responsiveStyleHasItsOwnDiv=false;
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(fc);
 		ResponseWriter rw = fc.getResponseWriter();
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(this, false).trim();
-		if (responsiveStyleClass.length() > 0) {
+		if (responsiveStyleClass.length() > 0  && (!CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id");
+			responsiveStyleHasItsOwnDiv=true;
 		}
 		rw.startElement("div", this);
 		rw.writeAttribute("class", "form-group", "class");
@@ -281,36 +285,38 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		boolean isDisabled = A.toBool(attrs.get("disabled"));
 		mode = A.asString(attrs.get("mode"), "toggle-icon");
 		boolean inline = mode.equals("inline");
-		boolean styleHasBeenRendered=false;
 
 		if (inline) { // inline => div with ID
 			dpId = clientId + "_" + "div";
 			rw.startElement("div", this);
 			rw.writeAttribute("id", dpId, null);
 			rw.endElement("div");
-			if (getStyleClass()!=null) {
+			if (getStyleClass() != null) {
 				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
 			}
-			if (getStyle()!=null) {
+			if (getStyle() != null) {
 				rw.writeAttribute("style", getStyle(), "style");
 			}
-			styleHasBeenRendered=true;
+			responsiveStyleHasBeenRendered = true;
 		} else { // popup
 			dpId = clientId;
 
 			if (!mode.equals("popup")) { // with icon => div with prepend/append
 												// style
 				rw.startElement("div", this);
-				if (getStyleClass()!=null) {
-					rw.writeAttribute("styleClass", "input-group "+  getStyleClass(), "styleClass");
-				} else {
-					rw.writeAttribute("class", "input-group", "class");
+				String clazz="input-group ";
+				if (null != getStyleClass()) {
+					clazz += getStyleClass() + " ";
 				}
-				if (getStyle()!=null) {
+				if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
+					clazz += responsiveStyleClass;
+				}
+				rw.writeAttribute("class", clazz, "class");
+				if (getStyle() != null) {
 					rw.writeAttribute("style", getStyle(), "style");
 				}
-				styleHasBeenRendered=true;
-				
+				responsiveStyleHasBeenRendered = true;
+
 				if (mode.equals("icon-popup") || mode.equals("icon-toggle")) {
 					rw.startElement("span", this);
 					rw.writeAttribute("id", clientId + "_" + ADDON, "id");
@@ -325,11 +331,11 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId + "_input", null);
-		if (!styleHasBeenRendered) {
-			if (getStyleClass()!=null) {
+		if (!responsiveStyleHasBeenRendered) {
+			if (getStyleClass() != null) {
 				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
 			}
-			if (getStyle()!=null) {
+			if (getStyle() != null) {
 				rw.writeAttribute("style", getStyle(), "style");
 			}
 		}
@@ -373,7 +379,7 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		} // Closes the popup prepend/append style div
 
 		rw.endElement("div"); // form-group
-		if (responsiveStyleClass.length() > 0) {
+		if (responsiveStyleClass.length() > 0 && responsiveStyleHasItsOwnDiv) {
 			rw.endElement("div");
 		}
 	}
@@ -723,8 +729,16 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 		display,
 		firstDay,
 		hidden,
+		labelColLg,
+		labelColMd,
+		labelColSm,
+		labelColXs,
+		labelLargeScreen,
+		labelMediumScreen,
+		labelSmallScreen,
 		labelStyle,
 		labelStyleClass,
+		labelTinyScreen,
 		lang,
 		largeScreen,
 		mediumScreen,
@@ -928,6 +942,118 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	}
 
 	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColLg() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColLg, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColLg(String _labelColLg) {
+		getStateHelper().put(PropertyKeys.labelColLg, _labelColLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColMd() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColMd, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColMd(String _labelColMd) {
+		getStateHelper().put(PropertyKeys.labelColMd, _labelColMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColSm() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColSm, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColSm(String _labelColSm) {
+		getStateHelper().put(PropertyKeys.labelColSm, _labelColSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColXs() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColXs, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColXs(String _labelColXs) {
+		getStateHelper().put(PropertyKeys.labelColXs, _labelColXs);
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelLargeScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelLargeScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelLargeScreen(String _labelLargeScreen) {
+		getStateHelper().put(PropertyKeys.labelLargeScreen, _labelLargeScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelMediumScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelMediumScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelMediumScreen(String _labelMediumScreen) {
+		getStateHelper().put(PropertyKeys.labelMediumScreen, _labelMediumScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelSmallScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelSmallScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelSmallScreen(String _labelSmallScreen) {
+		getStateHelper().put(PropertyKeys.labelSmallScreen, _labelSmallScreen);
+	}
+
+	/**
 	 * The CSS inline style of the label. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -957,6 +1083,22 @@ public class DatePicker extends HtmlInputText implements IResponsive {
 	 */
 	public void setLabelStyleClass(String _labelStyleClass) {
 		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLabelTinyScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelTinyScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelTinyScreen(String _labelTinyScreen) {
+		getStateHelper().put(PropertyKeys.labelTinyScreen, _labelTinyScreen);
 	}
 
 	/**

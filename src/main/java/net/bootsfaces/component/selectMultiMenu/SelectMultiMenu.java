@@ -25,6 +25,7 @@ import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -34,7 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
-public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive {
+public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
 

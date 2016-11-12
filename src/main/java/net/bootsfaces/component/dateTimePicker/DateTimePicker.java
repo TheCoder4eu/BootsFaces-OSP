@@ -38,6 +38,7 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.LocaleUtils;
@@ -45,7 +46,7 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
 @FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePicker extends DateTimePickerCore
-implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
+implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 

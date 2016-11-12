@@ -402,6 +402,7 @@ widget colorPicker
 	+style
 	+tooltip
 	+responsive
+    +responsiveLabel
 }
 
 widget column
@@ -554,7 +555,7 @@ widget dataTableColumn {
 }
 
 widget datepicker
-       implemented_by net.bootsfaces.component.datepicker.DatePicker
+       implemented_by net.bootsfaces.component.datePicker.DatePicker
        has_tooltip
        is_responsive
 {
@@ -579,6 +580,7 @@ widget datepicker
 	+style
 	+tooltip
 	+responsive
+    +responsiveLabel
 }
 
 widget dateTimePicker 
@@ -651,6 +653,7 @@ widget dateTimePicker
     widgetParent														   "Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container."
     +style
 	+responsive
+    +responsiveLabel
 	+tooltip
 }
 
@@ -725,7 +728,8 @@ widget form
     acceptcharset       inherited                                          "List of character encodings for input data that are accepted by the server processing this form."
     dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     enytype             inherited                                          "Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'."
-    inline              Boolean default "false"                            "Use this flag to create a horizontal form (labels are on the same line as their input fields)"
+    horizontal          Boolean default "false"                            "Use this flag to create a horizontal form (labels are on the same line as their input fields)"
+    inline              Boolean default "false"                            "Use this flag to create a inline form (labels are on the same line as their input fields)"
     lang                inherited                                          "Code describing the language used in the generated markup for this component."
     onclick             inherited                                          "The onclick attribute."
     ondblclick          inherited                                          "Client side callback to execute when input element is double clicked."
@@ -1862,6 +1866,7 @@ widget selectMultiMenu
     value               inherited                                          "Value."
     +tooltip
     +responsive
+    +responsiveLabel
 }
 
 
@@ -1915,6 +1920,7 @@ widget selectOneMenu
     value               inherited                                          "Value."
     +tooltip
     +responsive
+    +responsiveLabel
 }
 
 

@@ -25,7 +25,7 @@ import net.bootsfaces.utils.BsfUtils;
 public abstract class FormCore extends UIOutput {
 
 	protected enum PropertyKeys {
-		inline, style, styleClass;
+		horizontal, inline, style, styleClass;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -44,12 +44,28 @@ public abstract class FormCore extends UIOutput {
 	 * Use this flag to create a horizontal form (labels are on the same line as their input fields) <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
+	public boolean isHorizontal() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.horizontal, false);
+	}
+
+	/**
+	 * Use this flag to create a horizontal form (labels are on the same line as their input fields) <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHorizontal(boolean _horizontal) {
+		getStateHelper().put(PropertyKeys.horizontal, _horizontal);
+	}
+
+	/**
+	 * Use this flag to create a inline form (labels are on the same line as their input fields) <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
 	}
 
 	/**
-	 * Use this flag to create a horizontal form (labels are on the same line as their input fields) <P>
+	 * Use this flag to create a inline form (labels are on the same line as their input fields) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setInline(boolean _inline) {
