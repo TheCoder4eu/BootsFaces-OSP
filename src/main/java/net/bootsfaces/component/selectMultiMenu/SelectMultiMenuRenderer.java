@@ -134,12 +134,19 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = menu.getClientId(context).replace(":", "-");
 		String span=null;
+		boolean clientIdHasBeenRendered=false;
 		if (!isHorizontalForm(component)) {
-			span = startColSpanDiv(rw, menu);
+			span = startColSpanDiv(rw, menu, menu.getClientId(context), clientIdHasBeenRendered);
+			if (null != span) {
+				clientIdHasBeenRendered=true;
+			}
 		}
 		rw.startElement("div", menu);
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
-		writeAttribute(rw, "id", clientId);
+		if (!clientIdHasBeenRendered) {
+			writeAttribute(rw, "id", menu.getClientId(context));
+			clientIdHasBeenRendered=true;
+		}
 
 		Tooltip.generateTooltip(context, menu, rw);
 		if (menu.isInline()) {
@@ -153,7 +160,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		addLabel(rw, clientId + "Inner", menu);
 
 		if (isHorizontalForm(component)) {
-			span = startColSpanDiv(rw, menu);
+			span = startColSpanDiv(rw, menu, menu.getClientId(context), clientIdHasBeenRendered);
+			if (null != span) {
+				clientIdHasBeenRendered=true;
+			}
 		}	
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");
@@ -786,13 +796,18 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected String startColSpanDiv(ResponseWriter rw, SelectMultiMenu menu) throws IOException {
+	protected String startColSpanDiv(ResponseWriter rw, SelectMultiMenu menu, String clientId, boolean clientIdHasBeenRendered) throws IOException {
 		String clazz = Responsive.getResponsiveStyleClass(menu, false);
 		if (clazz != null && clazz.trim().length() > 0) {
+			clazz=clazz.trim();
 			rw.startElement("div", menu);
 			rw.writeAttribute("class", clazz, "class");
+			if (!clientIdHasBeenRendered) {
+				rw.writeAttribute("id", clientId, "id");
+			}
+			return clazz;
 		}
-		return clazz;
+		return null;
 	}
 
 	/**

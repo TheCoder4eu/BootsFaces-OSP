@@ -247,8 +247,8 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * @throws IOException
 	 */
 	private void encodeHTML(FacesContext fc) throws IOException {
-		boolean responsiveStyleHasBeenRendered = false;
 		boolean responsiveStyleHasItsOwnDiv=false;
+		boolean idHasBeenRendered=false;
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(fc);
 		ResponseWriter rw = fc.getResponseWriter();
@@ -258,10 +258,15 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id");
 			responsiveStyleHasItsOwnDiv=true;
+			idHasBeenRendered=true;
 		}
 		rw.startElement("div", this);
 		rw.writeAttribute("class", "form-group", "class");
-		addLabel(rw, clientId);
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered=true;
+		}
+		addLabel(rw, clientId+"_input");
 
 		if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
