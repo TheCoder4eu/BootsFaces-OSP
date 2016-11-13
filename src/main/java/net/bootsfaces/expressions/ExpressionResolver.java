@@ -133,6 +133,10 @@ public class ExpressionResolver {
 			return result;
 		} catch (Exception e) {
 			String msg ="";
+			if (null != component) {
+				msg += " " + component.getClass().getName() + " ";
+				msg += " " + component.getClientId() + " ";
+			}
 			if (e.getMessage()!=null) {
 				msg += " Additional information: " + e.getMessage();
 			}
