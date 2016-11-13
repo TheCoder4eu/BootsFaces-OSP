@@ -124,8 +124,8 @@ public class CoreRenderer extends Renderer {
 				styleClass += " " + additionalClass;
 			}
 		}
-		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)input);
-		if (currentForm instanceof Form) {
+		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)input, true);
+		if (null != currentForm && currentForm instanceof Form) {
 			if (((Form) currentForm).isHorizontal()) {
 				styleClass += " control-label";
 			}
@@ -412,20 +412,24 @@ public class CoreRenderer extends Renderer {
 		}
 	}
 	
-	protected static UIForm getSurroundingForm(UIComponent component) {
+	protected static UIForm getSurroundingForm(UIComponent component, boolean lenient) {
 		UIComponent c = component;
 		while ((c != null) && (!(c instanceof UIForm)) && (!(c instanceof Form))) {
 			c = c.getParent();
 		}
 		if (!(c instanceof UIForm || c instanceof Form)) {
-			throw new FacesException("The component with the id " + component.getClientId() + " must be inside a form");
+			if (lenient) {
+				return null;
+			} else {
+				throw new FacesException("The component with the id " + component.getClientId() + " must be inside a form");
+			}
 		}
 		return (UIForm) c;
 	}
 	
 	public static boolean isHorizontalForm(UIComponent component) {
-		UIForm c = getSurroundingForm(component);
-		if (c instanceof Form) {
+		UIForm c = getSurroundingForm(component, true);
+		if (null != c && c instanceof Form) {
 			return ((Form)c).isHorizontal();
 		}
 		return false;

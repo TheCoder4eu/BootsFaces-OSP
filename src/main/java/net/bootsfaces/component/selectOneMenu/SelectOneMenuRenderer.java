@@ -507,11 +507,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     protected String startColSpanDiv(ResponseWriter rw, SelectOneMenu menu, String clientId) throws IOException {
         String clazz = Responsive.getResponsiveStyleClass(menu, false);
         if (clazz!= null && clazz.trim().length()>0) {
+        	clazz=clazz.trim();
             rw.startElement("div", menu);
             rw.writeAttribute("class", clazz, "class");
             rw.writeAttribute("id", clientId, "id");
+            return clazz;
         }
-        return clazz;
+
+    	return null;
     }
 
     /**

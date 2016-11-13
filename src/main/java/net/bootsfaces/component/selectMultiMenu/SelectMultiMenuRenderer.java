@@ -265,8 +265,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			if (menu.isInline()) {
 				blockStyle = "display:inline-block";
 			} else {
-				UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)component);
-				if (currentForm instanceof Form) {
+				UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)component, true);
+				if (null != currentForm && currentForm instanceof Form) {
 					if (((Form) currentForm).isInline()) {
 						blockStyle = "display:inline-block";
 					}

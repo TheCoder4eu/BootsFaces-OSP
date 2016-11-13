@@ -244,7 +244,7 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 		if (evenWithoutParameters || parameterList.length()>0) {
-			UIForm currentForm = getSurroundingForm((UIComponent)component);
+			UIForm currentForm = getSurroundingForm((UIComponent)component, false);
 			parameterList = "'" + currentForm.getClientId() + "',{'" +component.getClientId() + "':'" +  component.getClientId() + "'" + parameterList+ "}";
 			rw.writeAttribute("onclick", encodeClick((UIComponent) component) + "BsF.submitForm(" + parameterList + ");return false;", null);
 		}
