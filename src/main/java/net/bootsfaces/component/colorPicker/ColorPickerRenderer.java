@@ -94,13 +94,26 @@ public class ColorPickerRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = colorPicker.getClientId();
 		boolean clientIdHasBeenRendered=false;
+		int numberOfDivs=0;
 
+		String responsiveLabelClass = null;
 		String cssResponsiveClass = Responsive.getResponsiveStyleClass(colorPicker, false).trim();
-		if (cssResponsiveClass.length()>0 && (!isHorizontalForm(component))) {
+		String label = colorPicker.getLabel();
+		{
+			if (!colorPicker.isRenderLabel()) {
+				label = null;
+			}
+		}
+		if (null != label) {
+			responsiveLabelClass = Responsive.getResponsiveLabelClass(colorPicker);
+		}
+		if (cssResponsiveClass.length()>0  && responsiveLabelClass == null && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
+			numberOfDivs++;
 			rw.writeAttribute("class", cssResponsiveClass, "class");
 			rw.writeAttribute("id", clientId, "id");
 			clientIdHasBeenRendered=true;
+			cssResponsiveClass=""; // prevent duplicate rendering
 		}
 
 		// "Prepend" facet
@@ -110,12 +123,6 @@ public class ColorPickerRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-		String label = colorPicker.getLabel();
-		{
-			if (!colorPicker.isRenderLabel()) {
-				label = null;
-			}
-		}
 
 		// Define TYPE ( if null set default = text )
 		// support for b:inputSecret
@@ -124,6 +131,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 			t = "text";
 
 		rw.startElement("div", component);
+		numberOfDivs++;
 		if (null != colorPicker.getDir()) {
 			rw.writeAttribute("dir", colorPicker.getDir(), "dir");
 		}
@@ -149,14 +157,17 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 		
-		if (isHorizontalForm(colorPicker) && null != cssResponsiveClass && cssResponsiveClass.length()>0) {
+		if (isHorizontalForm(colorPicker) && cssResponsiveClass.length()>0) {
 			rw.startElement("div", component);
+			numberOfDivs++;
 			rw.writeAttribute("class", cssResponsiveClass, "class");
+			cssResponsiveClass=""; // prevent duplicate rendering
 		}
 
 
 		if (append || prepend) {
 			rw.startElement("div", component);
+			numberOfDivs++;
 			rw.writeAttribute("class", "input-group", "class");
 			
 		}
@@ -204,15 +215,9 @@ public class ColorPickerRenderer extends CoreRenderer {
 			R.decorateFacetComponent(colorPicker, app, context, rw);
 		}
 
-		if (append || prepend) {
-			rw.endElement("div");
-		} // input-group
-		if (isHorizontalForm(colorPicker) && null != cssResponsiveClass && cssResponsiveClass.length()>0) {
-			rw.endElement("div");
-		}
-		rw.endElement("div"); // form-group
-		if (cssResponsiveClass.length()>0 && (!isHorizontalForm(colorPicker))) {
-			rw.endElement("div"); // span
+		while (numberOfDivs>0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
 		}
 
 		Tooltip.activateTooltips(context, colorPicker);
@@ -266,6 +271,10 @@ public class ColorPickerRenderer extends CoreRenderer {
 		String sclass = colorPicker.getStyleClass();
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
+		}
+		
+		if (cssResponsiveClass!=null) {
+			sb.append(" ").append(cssResponsiveClass);
 		}
 
 		sb.append(" ").append(getErrorAndRequiredClass(colorPicker, colorPicker.getClientId()));
