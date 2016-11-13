@@ -113,6 +113,7 @@ public class InputTextRenderer extends CoreRenderer {
 			return;
 		}
 		InputText inputText = (InputText) component;
+		int numberOfDivs=0;
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
@@ -134,6 +135,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id"); // clientId
 			clientIdHasBeenRendered=true;
+			numberOfDivs++;
 		}
 
 		// "Prepend" facet
@@ -155,12 +157,9 @@ public class InputTextRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", component);
+		numberOfDivs++;
 		if (null != inputText.getDir()) {
 			rw.writeAttribute("dir", inputText.getDir(), "dir");
-			if (!clientIdHasBeenRendered) {
-				rw.writeAttribute("id", clientId, "id");
-				clientIdHasBeenRendered=true;
-			}
 		}
 
 		Tooltip.generateTooltip(context, inputText, rw);
@@ -190,11 +189,13 @@ public class InputTextRenderer extends CoreRenderer {
 		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null && isHorizontalForm(component)) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
+			numberOfDivs++;
 		}
 
 		if (append || prepend) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
+			numberOfDivs++;
 		}
 
 		if (prepend) {
@@ -252,12 +253,9 @@ public class InputTextRenderer extends CoreRenderer {
 			R.decorateFacetComponent(inputText, app, context, rw);
 		}
 
-		if (append || prepend) {
-			rw.endElement("div");
-		} // input-group
-		rw.endElement("div"); // form-group
-		if (responsiveStyleClass.length() > 0) {
-			rw.endElement("div");
+		while (numberOfDivs>0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
 		}
 
 		Tooltip.activateTooltips(context, inputText);
