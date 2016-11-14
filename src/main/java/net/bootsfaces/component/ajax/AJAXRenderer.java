@@ -70,7 +70,7 @@ public class AJAXRenderer extends CoreRenderer {
 				source = componentId;
 			}
 		}
-		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId))|| source.equals(componentId+"Inner")) {
+		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId)|| source.equals(componentId+"Inner"))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
 			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
@@ -441,7 +441,7 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(", '" + event + "'");
 		} else
 			cJS.append(", null");
-		
+
 		String parameterList="";
 		List<UIComponent> children = ((UIComponent)component).getChildren();
 		String id= ((UIComponent)component).getId();
@@ -459,7 +459,7 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(json);
 		}
 
-		
+
 		cJS.append(");");
 		return cJS;
 	}
