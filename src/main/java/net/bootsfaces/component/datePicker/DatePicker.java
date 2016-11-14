@@ -247,20 +247,21 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * @throws IOException
 	 */
 	private void encodeHTML(FacesContext fc) throws IOException {
-		boolean responsiveStyleHasItsOwnDiv=false;
 		boolean idHasBeenRendered=false;
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(fc);
 		ResponseWriter rw = fc.getResponseWriter();
+		int numberOfDivs=0;
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(this, false).trim();
 		if (responsiveStyleClass.length() > 0  && (!CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id");
-			responsiveStyleHasItsOwnDiv=true;
 			idHasBeenRendered=true;
+			numberOfDivs++;
 		}
 		rw.startElement("div", this);
+		numberOfDivs++;
 		rw.writeAttribute("class", "form-group", "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
@@ -270,8 +271,8 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
+			numberOfDivs++;
 			rw.writeAttribute("class", responsiveStyleClass, "class");
-			responsiveStyleHasItsOwnDiv=true;
 		}
 		
 		// stz = selectTimeZone(attrs.get(A.TZ));
@@ -310,11 +311,12 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 				rw.writeAttribute("style", getStyle(), "style");
 			}
 		} else { // popup
-			dpId = clientId;
+			dpId = clientId+"_input";
 
 			if (!mode.equals("popup")) { // with icon => div with prepend/append
 												// style
 				rw.startElement("div", this);
+				numberOfDivs++;
 				String clazz="input-group ";
 				if (null != getStyleClass()) {
 					clazz += getStyleClass() + " ";
@@ -364,7 +366,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		rw.endElement("input");
 
-		encodeJS(fc, rw, clientId, dpId);
+		encodeJS(fc, rw, clientId + "_input", dpId);
 		if (mode.equals("popup-icon") || mode.equals("toggle-icon")) {
 			rw.startElement("span", this);
 			rw.writeAttribute("id", clientId + "_" + ADDON, "id");
@@ -377,13 +379,14 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		if (!inline && !mode.equals("popup")) {
 			rw.endElement("div");
-			JQ.datePickerToggler(rw, clientId, clientId + "_" + ADDON);
+			numberOfDivs--;
+			JQ.datePickerToggler(rw, clientId + "_input", clientId + "_" + ADDON);
 
 		} // Closes the popup prepend/append style div
 
-		rw.endElement("div"); // form-group
-		if (responsiveStyleClass.length() > 0 && responsiveStyleHasItsOwnDiv) {
-			rw.endElement("div");
+		while (numberOfDivs>0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
 		}
 	}
 
