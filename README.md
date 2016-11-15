@@ -26,12 +26,12 @@ To get up and running quickly, have a look at the [Quick Start](http://www.boots
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>0.9.1</version>
+        <version>1.0.0</version>
     </dependency>
 
 ###Gradle
 
-    compile 'net.bootsfaces:bootsfaces:0.9.1'
+    compile 'net.bootsfaces:bootsfaces:1.0.0'
 
 ###Development Snapshots
 See [this issue](https://github.com/TheCoder4eu/BootsFaces-OSP/issues/369) for instructions on how to get a current developer snapshot via Maven.  
