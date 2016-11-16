@@ -310,7 +310,6 @@ public class AddResourcesListener implements SystemEventListener {
 		ResourceHandler rh = context.getApplication().getResourceHandler();
 
 		String theme = getTheme(context);
-		LOGGER.info("Loading Theme: "+theme); //DEBUG remove for release
 
 		// Theme loading
 		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase("other"))) {
@@ -762,7 +761,6 @@ private String getTheme(FacesContext context) {
 
 	private void createAndAddComponent(UIViewRoot root, FacesContext context,
 	                                   String rendererType, String name, String library) {
-	  LOGGER.info("Add resource "+name+", library: "+library); //DEBUG remove for release
 		UIOutput output = new UIOutput();
 		output.setRendererType(rendererType);
 		output.getAttributes().put("name", name);
