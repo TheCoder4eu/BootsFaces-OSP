@@ -135,11 +135,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		String label = dtp.getLabel();
-		{
-			if (!dtp.isRenderLabel()) {
-				label = null;
-			}
+		if (!dtp.isRenderLabel()) {
+			label = null;
 		}
+
 		String divPrefix="";
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
@@ -192,8 +191,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fa = false;
 		}
 
-		if ("plain".equals(mode))
-		{
+		if ("plain".equals(mode)) {
 			// simple wrapper
 			rw.startElement("div", dtp);
 			if (styleClass.length() > 0) {
@@ -226,8 +224,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			rw.endElement("div");
 		}
-		else if ("inline".equals(mode))
-		{
+		else if ("inline".equals(mode)) {
 			// div
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", "input-group date " + styleClass, "class");
@@ -247,8 +244,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			Tooltip.generateTooltip(fc, dtp, rw);
 			rw.endElement("input");
 		}
-		else // "popup"
-		{
+		else { // "popup"
 			// div
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", "input-group date " + styleClass, "class");
@@ -293,8 +289,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		return divPrefix;
 	}
-	
-	private void generateStyleClass(DateTimePicker dtp, ResponseWriter rw) 
+
+	private void generateStyleClass(DateTimePicker dtp, ResponseWriter rw)
 	throws IOException {
 		StringBuilder sb;
 		String s;
@@ -328,7 +324,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	private void encodeJS(FacesContext fc, ResponseWriter rw, DateTimePicker dtp, String divPrefix)
 	throws IOException {
 		String clientId = dtp.getClientId();
-		String fullSelector = "#";
 		String mode = dtp.getMode();
 
 		Object v = dtp.getSubmittedValue();
@@ -348,18 +343,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String displayFormat = "'" + (dtp.getFormat() == null ? LocaleUtils.javaToMomentFormat(format) : format) + "'";
 		String inlineDisplayDate = "'" + (dtp.getFormat() == null ? getDateAsString(v, format, sloc) : getDateAsString(v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
+		boolean openOnClick= !"plain".equals(mode) && !"inline".equals(mode);
+		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
 
-		boolean openOnClick=false;
-		if("plain".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
-		else if("inline".equals(mode)) { fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId); }
-		else {
-			fullSelector += BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
-			openOnClick=true;
-		}
-
-        String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
-                dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" :
-                "";
+		String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
+			dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" : "";
 		String minDate = BsfUtils.isStringValued(dtp.getMinDate()) ?
 							dtp.getMinDate().contains("moment") ? dtp.getMinDate() : "'" + dtp.getMinDate() + "'" :
 							"";
