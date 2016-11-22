@@ -26,6 +26,7 @@ import java.util.Locale;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.Converter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
@@ -66,24 +67,42 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	 * @param dtp
 	 * @return
 	 */
-	public String getValueAsString(Object value, FacesContext ctx, DateTimePicker dtp) {
+	public static String getValueAsString(Object value, FacesContext ctx, DateTimePicker dtp) {
 		// Else we use our own converter
+		if(value == null) {
+			return null;
+		}
 		Locale sloc = BsfUtils.selectLocale(ctx.getViewRoot().getLocale(), dtp.getLocale(), dtp);
 		String sdf = BsfUtils.selectDateFormat(sloc, dtp.getFormat());
 		// assume that the format is always specified as moment.js format
 		sdf = LocaleUtils.momentToJavaFormat(sdf);
 
-		return getDateAsString(value, sdf, sloc);
+		return getDateAsString(ctx, dtp, value, sdf, sloc);
 	}
 
 	/**
 	 * Get date in string format
-	 * @param dt
+	 * @param value
 	 * @param format
 	 * @param locale
 	 * @return
 	 */
-	public static String getDateAsString(Object dt, String format, Locale locale) {
+
+	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String format, Locale locale) {
+		if (value == null) {
+			return null;
+		}
+
+		Converter converter = dtp.getConverter();
+		return  converter == null ?
+				getInternalDateAsString(value, format, locale)
+				:
+				converter.getAsString(fc, dtp, value);
+
+	}
+
+
+	public static String getInternalDateAsString(Object dt, String format, Locale locale) {
 		if (dt == null) {
 			return null;
 		}
@@ -341,7 +360,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		Locale sloc = BsfUtils.selectLocale(fc.getViewRoot().getLocale(), dtp.getLocale(), dtp);
 		String format = BsfUtils.selectDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
 		String displayFormat = "'" + (dtp.getFormat() == null ? LocaleUtils.javaToMomentFormat(format) : format) + "'";
-		String inlineDisplayDate = "'" + (dtp.getFormat() == null ? getDateAsString(v, format, sloc) : getDateAsString(v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
+		String inlineDisplayDate = "'" + (dtp.getFormat() == null ?
+				getDateAsString(fc, dtp, v, format, sloc)
+				:
+				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
 		boolean openOnClick= !"plain".equals(mode) && !"inline".equals(mode);
 		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
