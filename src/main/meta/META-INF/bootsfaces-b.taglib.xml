@@ -6445,6 +6445,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Disables the input element, default is false.]]></description>
+		  <name>disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string].]]></description>
 		  <name>disabled-dates</name>
 		  <required>false</required>
@@ -6917,6 +6923,12 @@
 		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
+		  <name>readonly</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>

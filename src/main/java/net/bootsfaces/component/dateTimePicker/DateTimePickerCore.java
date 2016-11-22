@@ -109,8 +109,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 			this.toString = toString;
 		}
 
-		PropertyKeys() {
-		}
+		PropertyKeys() {}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());

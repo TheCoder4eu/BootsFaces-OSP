@@ -209,6 +209,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			//rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			generateStyleClass(dtp, rw);
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
+			if (dtp.isReadonly()) rw.writeAttribute("readonly", "readonly", null);
+			if (dtp.isDisabled()) rw.writeAttribute("disabled", "true", null);
+			
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
@@ -238,6 +241,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("type", "hidden", "type");
+			if (dtp.isReadonly()) rw.writeAttribute("readonly", "readonly", null);
+			if (dtp.isDisabled()) rw.writeAttribute("disabled", "true", null);
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
@@ -258,8 +263,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("name", clientId, null);
 			// rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			generateStyleClass(dtp, rw);
-			
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
+			if (dtp.isReadonly()) rw.writeAttribute("readonly", "readonly", null);
+			if (dtp.isDisabled()) rw.writeAttribute("disabled", "true", null);
+			
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
@@ -358,6 +365,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		rw.startElement("script", dtp);
 		rw.writeText("$(function () { " +
 					      "$('" + fullSelector + "').datetimepicker({  " +
+					        "ignoreReadonly: false, " +
 					        (dtp.isAllowInputToggle() || openOnClick  ?         		"allowInputToggle: true, ": "") +
 					      	(dtp.isCollapse() ? 										"collapse: " + dtp.isCollapse() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getDayViewHeaderFormat()) ? 	"dayViewHeaderFormat: '" + dtp.getDayViewHeaderFormat() + "', " : "") +

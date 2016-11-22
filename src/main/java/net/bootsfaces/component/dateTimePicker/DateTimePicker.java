@@ -130,10 +130,17 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 
 			return cal.getTime();
 		} catch (ParseException e) {
-			e.printStackTrace();
-			this.setValid(false);
-			throw new ConverterException(
-					BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, BsfUtils.getLabel(context, this)));
+			
+			// FIRST STEP GONE: TRY THE AUTO-PARSER
+			try {
+				cal.setTime(LocaleUtils.autoParseDateFormat(val));
+				return cal.getTime();
+			} catch(Exception pe) {
+				e.printStackTrace();
+				this.setValid(false);
+				throw new ConverterException(
+						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, BsfUtils.getLabel(context, this)));
+			}
 		}
 	}
 }
