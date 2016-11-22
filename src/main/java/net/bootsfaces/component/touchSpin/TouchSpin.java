@@ -82,7 +82,7 @@ implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 	@Override
 	public String getValue() {
 		Object val = getStateHelper().eval(PropertyKeys.value);
-		if(val instanceof Double) return val.toString();
+		if(val instanceof Number) return val.toString();
 		else return (String) val;
 	}
 
