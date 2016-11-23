@@ -57,22 +57,27 @@ ext.useBootClasspath= ( ( props['enableBootClasspath']!=null) && props['enableBo
 group = 'net.bootsfaces'
 version = BootsFacesVersion
 
-task showConfig << {
-  println "Main Configurations."
-  println "--------------------"
-  println "BootsFacesVersion="+BootsFacesVersion
-  println "BootstrapVersion="+BootstrapVersion
-  println "BootswatchFullVersion="+BootswatchFullVersion
-  println "allThemes="+allThemes
-  println "jqversion="+jqversion
-  println "buildJava6:"+buildJava6
-  println "buildJava7:"+buildJava7
-  println "buildJava8:"+buildJava8
-  println "buildOptsJava6="+buildOptsJava6
-  println "buildOptsJava7="+buildOptsJava7
-  println "buildOptsJava8="+buildOptsJava8
-  println "useBootClasspath="+useBootClasspath
-  println "--------------------"
+task showConfig {
+    description = 'Prints out the Build configuration.'
+    doLast {
+      println "Main Configurations:"
+      println "--------------------"
+      println "BootsFacesVersion="+BootsFacesVersion
+      println "BootstrapVersion="+BootstrapVersion
+      println "BootswatchFullVersion="+BootswatchFullVersion
+      println "PatternFlyVersion="+PatternFlyVersion
+      println "allThemes="+allThemes
+      println "jqversion="+jqversion
+      println "--------Java--------"
+      println "buildJava6:"+buildJava6
+      println "buildJava7:"+buildJava7
+      println "buildJava8:"+buildJava8
+      println "buildOptsJava6="+buildOptsJava6
+      println "buildOptsJava7="+buildOptsJava7
+      println "buildOptsJava8="+buildOptsJava8
+      println "useBootClasspath="+useBootClasspath
+      println "--------------------"
+    }
 }
 
 defaultTasks 'showConfig', ':java6:defaultJar', ':java7:jar', ':java8:jar'

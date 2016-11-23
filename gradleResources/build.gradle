@@ -29,31 +29,6 @@
  * Tasks to Copy STATIC files to resources
  */
 
- /*def copySpecCssResources = copySpec {
-     from "staticResources/css/bootstrap-multiselect.css"
-     from 'staticResources/css/bootstrap-switch.css'
-     from 'staticResources/css/bootstrap-tagsinput.css'
-     from 'staticResources/css/bootstrap-slider.min.css'
-     from 'staticResources/css/bootstrap-touchspin.min.css'
-     from 'staticResources/css/jssocials.css'
-     from 'staticResources/css/datatables.min.css'
-     from 'staticResources/css/bootstrap-tree.css'
-     from 'staticResources/css/bootstrap-treeview.min.css'
-     from 'staticResources/css/animate.css'
-     from 'staticResources/css/dropdowns.css'
-     from 'staticResources/css/dropdown-submenu.css'
-     from 'staticResources/css/fullcalendar.min.css'
-     from 'staticResources/css/scrollup.css'
-     from 'staticResources/css/jq.ui.core.css'
-     from 'staticResources/css/jq.ui.datepicker.css'
-     from 'staticResources/css/jq.ui.slider.css'
-     from 'staticResources/css/jq.ui.theme.css'
-     from 'staticResources/css/jquery.minicolors.css'
-     from 'staticResources/css/sticky-footer-navbar.css'
-     from 'staticResources/css/bootstrap-datetimepicker.min.css'
-     from 'staticResources/css/typeahead.css'
- }*/
-
  task copyCssResources(type: Copy) {
      from 'staticResources/css/ext/bootstrap-datetimepicker.min.css'
      from "staticResources/css/ext/bootstrap-multiselect.css"
@@ -81,15 +56,6 @@
 
      into "${buildDir}/resources/META-INF/resources/bsf/css"
  }
- /*task copyCssResources << {
-     allThemes.each { dest ->
-     copy {
-       with copySpecCssResources
-       into "${buildDir}/resources/META-INF/resources/bsf/css/"+dest
-       println 'css2'+dest
-     }
-   }
- }*/
 
  task copyJsResources(type: Copy) {
    	description 'BootsFaces task: copies additional JS files to the target folder (i.e. files that are not part of Bootstrap).'
@@ -182,18 +148,6 @@
      exclude "*.gz"
  }
 
- /*def copySpecBsfCss2Resources = copySpec {
-     from "${assetResources}/bsf.css"
- }
- task copyBsfCss << {
-   allThemes.each { dest ->
-     copy {
-       with copySpecBsfCss2Resources
-       into "${buildDir}/resources/META-INF/resources/bsf/css/"+dest
-       println 'copy bsfcss2 '+dest
-     }
-   }
- }*/
  task copyBsfCss(type: Copy) {
    	description 'BootsFaces task: copies the bsf.css file. bsf.css contains the common non-compiled CSS rules of BootsFaces.'
    	from "${assetResources}/bsf.css"
