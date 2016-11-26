@@ -63,15 +63,19 @@ public class InputTextareaRenderer extends CoreRenderer {
 			return;
 		}
 		InputTextarea inputText = (InputTextarea) component;
+		String clientId = inputText.getClientId();
+		boolean clientIdHasBeenRendered=false;
 
 		ResponseWriter rw = context.getResponseWriter();
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
 		if (responsiveStyleClass.length() > 0) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
+			rw.writeAttribute("id", clientId, null);
+			Tooltip.generateTooltip(context, inputText, rw);
+			clientIdHasBeenRendered=true;
 		}
 
-		String clientId = inputText.getClientId();
 
 		// "Prepend" facet
 		UIComponent prep = inputText.getFacet("prepend");
@@ -102,9 +106,10 @@ public class InputTextareaRenderer extends CoreRenderer {
 		if (null != inputText.getDir()) {
 			rw.writeAttribute("dir", inputText.getDir(), "dir");
 		}
-
-		Tooltip.generateTooltip(context, inputText, rw);
-		rw.writeAttribute("id", clientId, "id");
+		if (!clientIdHasBeenRendered) {
+			Tooltip.generateTooltip(context, inputText, rw);
+			rw.writeAttribute("id", clientId, "id");
+		}
 		if (inputText.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
 
