@@ -58,8 +58,6 @@ public class WellRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = well.getClientId();
 
-		Tooltip.generateTooltip(context, well, rw);
-
 		String sz = well.getSize();
 
 		rw.startElement("div", well);

@@ -2204,6 +2204,24 @@ widget thumbnail
     +responsive
 }
 
+widget video
+       implemented_by net.bootsfaces.component.video.Video
+       extends UIComponentBase
+       has_tooltip
+       is_responsive
+{
+    autoplay            Boolean default "false"                            "Setting this to true will start the video on page load. By default, autoplay is deactivated. Note that mobile devices never start videos automatically."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    controls            Boolean default "true"                             "Hide the controls (start, stop, seeking, volume etc.) by setting this property to false. By default, the controls are shown."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    loop                Boolean default "false"                            "Setting this flag to true causes the video to start over when it's finished. By default, loop is set to false."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	src                 required                                           "URL of the video to be shown. If you use a relative path (i.e. without http:// and without the domain name), the video will be taken from your own server."
+    style                                                                  "Inline CSS of the tab."
+    style-class                                                             "Style class of the div surrounding the tab pane."
+    +tooltip
+    +responsive
+}
 
 widget well
        implemented_by net.bootsfaces.layout.Well
