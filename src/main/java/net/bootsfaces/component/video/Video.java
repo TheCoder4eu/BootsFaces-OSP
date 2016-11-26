@@ -18,16 +18,24 @@
 
 package net.bootsfaces.component.video;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Map;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:video /&gt;. */
 @FacesComponent("net.bootsfaces.component.video.Video")
-public class Video extends VideoCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
+public class Video extends VideoCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive,
+		IAJAXComponent, ClientBehaviorHolder {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.video.Video";
 
@@ -35,10 +43,17 @@ public class Video extends VideoCore implements net.bootsfaces.render.IHasToolti
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.video.Video";
 
+	private static final Collection<String> EVENT_NAMES = Collections
+			.unmodifiableCollection(Arrays.asList("blur", "click", "dblclick", "focus", "input", "keydown", "keypress",
+					"keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup",
+					"abort", "canplay", "canplaythrough", "durationchange", "emptied",
+					"ended", "eeror", "loadeddata", "loadedmetadata", "loadstart",
+					"pause", "play", "playing", "progress", "ratechange", "seeked",
+					"seeking", "stalled", "suspend", "timeupdate", "volumechange", "waiting"));
+
 	public Video() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -53,4 +68,18 @@ public class Video extends VideoCore implements net.bootsfaces.render.IHasToolti
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
+
+	@Override
+	public Map<String, String> getJQueryEvents() {
+		return null;
+	}
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "input";
+	}
+
 }

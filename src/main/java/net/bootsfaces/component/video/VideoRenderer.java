@@ -18,14 +18,14 @@
 
 package net.bootsfaces.component.video;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -33,6 +33,23 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:video /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.video.Video")
 public class VideoRenderer extends CoreRenderer {
+	
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		Video inputText = (Video) component;
+
+		decodeBehaviors(context, inputText);
+
+		String clientId = inputText.getClientId(context);
+		String submittedId = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
+		if (clientId.equals(submittedId)) {
+			new AJAXRenderer().decode(context, component, clientId);
+		}
+		else if ((clientId+"_video").equals(submittedId)) {
+			new AJAXRenderer().decode(context, component, clientId+"_video");
+		}
+	}
+
 
 	/**
 	 * This methods generates the HTML code of the current b:video.
@@ -81,6 +98,9 @@ public class VideoRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, video, rw);
 
 		rw.writeAttribute("class", styleClass, "class");
+		
+		// Render Ajax Capabilities
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), video, rw, false);
 	
 		rw.endElement("video");
 		if (null != responsiveStyle && responsiveStyle.trim().length()>0) {
