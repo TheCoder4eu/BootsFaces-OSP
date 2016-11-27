@@ -30,6 +30,7 @@ import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
+import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -38,7 +39,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent("net.bootsfaces.component.inputTextarea.InputTextarea")
-public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJAXComponent, IResponsive {
+public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 	/**
 	 * <p>
 	 * The standard component type for this component.

@@ -19,6 +19,7 @@
 package net.bootsfaces.component.inputTextarea;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -28,6 +29,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
+import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -36,6 +38,7 @@ import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.InputTextareaRenderer")
 public class InputTextareaRenderer extends CoreRenderer {
+	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -63,17 +66,31 @@ public class InputTextareaRenderer extends CoreRenderer {
 			return;
 		}
 		InputTextarea inputText = (InputTextarea) component;
+		int numberOfDivs=0;
+		
+		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
 		boolean clientIdHasBeenRendered=false;
 
-		ResponseWriter rw = context.getResponseWriter();
+		String responsiveLabelClass = null;
+		String label = inputText.getLabel();
+		{
+			if (!inputText.isRenderLabel()) {
+				label = null;
+			}
+		}
+		if (null != label) {
+			responsiveLabelClass = Responsive.getResponsiveLabelClass(inputText);
+		}
+
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(inputText, false).trim();
-		if (responsiveStyleClass.length() > 0) {
+		if (responsiveStyleClass.length() > 0 && responsiveLabelClass == null && (!isHorizontalForm(component))) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(context, inputText, rw);
 			clientIdHasBeenRendered=true;
+			numberOfDivs++;
 		}
 
 
@@ -84,7 +101,6 @@ public class InputTextareaRenderer extends CoreRenderer {
 		boolean prepend = (prep != null);
 		boolean append = (app != null);
 
-		String label = inputText.getLabel();
 		{
 			if (!inputText.isRenderLabel()) {
 				label = null;
@@ -103,16 +119,18 @@ public class InputTextareaRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", component);
+		numberOfDivs++;
 		if (null != inputText.getDir()) {
 			rw.writeAttribute("dir", inputText.getDir(), "dir");
 		}
 		if (!clientIdHasBeenRendered) {
-			Tooltip.generateTooltip(context, inputText, rw);
 			rw.writeAttribute("id", clientId, "id");
+			Tooltip.generateTooltip(context, inputText, rw);
+			clientIdHasBeenRendered=true;
 		}
 		if (inputText.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");
-
+			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 		} else {
 			rw.writeAttribute("class", "form-group", "class");
 		}
@@ -120,16 +138,24 @@ public class InputTextareaRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
-			generateErrorAndRequiredClassForLabels(inputText, rw, clientId, inputText.getLabelStyleClass());
+			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass,
+					"control-label");
 			writeAttribute(rw, "style", inputText.getLabelStyle());
 
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
 
+		if (responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+			numberOfDivs++;
+		}
+
 		if (append || prepend) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", "input-group", "class");
+			numberOfDivs++;
 		}
 
 
@@ -179,13 +205,9 @@ public class InputTextareaRenderer extends CoreRenderer {
 			R.decorateFacetComponent(inputText, app, context, rw);
 		}
 
-		if (append || prepend) {
-			rw.endElement("div");
-		} // input-group
-		rw.endElement("div"); // form-group
-
-		if (responsiveStyleClass.length() > 0) {
-			rw.endElement("div");
+		while (numberOfDivs>0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
 		}
 
 		Tooltip.activateTooltips(context, inputText);

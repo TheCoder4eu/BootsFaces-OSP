@@ -1147,6 +1147,7 @@ widget inputTextarea
 	+style
 	+tooltip
 	+responsive
+	+responsiveLabel
 }
 
 
