@@ -146,6 +146,9 @@ public class MessagesRenderer extends CoreRenderer {
 			List<FacesMessage> messages) throws IOException {
 		ResponseWriter writer = facesContext.getResponseWriter();
 		String styleClassPrefix = "";
+		if (null != uiMessages.getStyleClass()) {
+			styleClassPrefix = uiMessages.getStyleClass() + " ";
+		}
 		String stylePrefix = uiMessages.getStyle();
 		if (null == stylePrefix) {
 			stylePrefix="";
@@ -156,37 +159,45 @@ public class MessagesRenderer extends CoreRenderer {
 		if ("warn".equals(severity)) {
 			String warnClass = uiMessages.getWarnClass();
 			if (null == warnClass)
-				styleClassPrefix = "alert-warning";
+				styleClassPrefix += "alert-warning";
 			else
-				styleClassPrefix = "alert-warning " + warnClass;
+				styleClassPrefix += "alert-warning " + warnClass;
 			iconStyleClass = "bficon bficon-warning-triangle-o";//"fa fa-exclamation-triangle";
-			stylePrefix += uiMessages.getWarnStyle();
+			if (uiMessages.getWarnStyle()!=null) {
+				stylePrefix += uiMessages.getWarnStyle();
+			}
 		} else if ("fatal".equals(severity)) {
 			String fatalClass = uiMessages.getFatalClass();
 			if (null == fatalClass) {
-				styleClassPrefix = "alert-danger";
+				styleClassPrefix += "alert-danger";
 			} else {
-				styleClassPrefix = "alert-danger " + fatalClass;
+				styleClassPrefix += "alert-danger " + fatalClass;
 			}
-			stylePrefix += uiMessages.getFatalStyle();
+			if (uiMessages.getFatalStyle()!=null) {
+				stylePrefix += uiMessages.getFatalStyle();
+			}
 			iconStyleClass = "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
 		} else if ("error".equals(severity)) {
 			String errorClass = uiMessages.getErrorClass();
 			if (null == errorClass) {
-				styleClassPrefix = "alert-danger";
+				styleClassPrefix += "alert-danger";
 			} else {
-				styleClassPrefix = "alert-danger " + errorClass;
+				styleClassPrefix += "alert-danger " + errorClass;
 			}
-			stylePrefix += uiMessages.getErrorStyle();
+			if (uiMessages.getErrorStyle()!=null) {
+				stylePrefix += uiMessages.getErrorStyle();
+			}
 			iconStyleClass = "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
 		} else if ("info".equals(severity)) {
 			String infoClass = uiMessages.getInfoClass();
 			if (infoClass==null) {
-				styleClassPrefix = "alert-info";
+				styleClassPrefix += "alert-info";
 			} else {
-				styleClassPrefix = "alert-info " + infoClass;
+				styleClassPrefix += "alert-info " + infoClass;
 			}
-			stylePrefix += uiMessages.getInfoStyle();
+			if (uiMessages.getInfoStyle()!=null) {
+				stylePrefix += uiMessages.getInfoStyle();
+			}
 			iconStyleClass = "bficon bficon-info";//"fa fa-info-circle";
 		}
 
