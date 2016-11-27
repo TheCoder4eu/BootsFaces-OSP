@@ -75,6 +75,17 @@ public class CarouselCaption extends UICommand
 		return null;
 	}
 
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		return null;
+	}
+
 	public String getDefaultEventName() {
 		return "click";
 	}

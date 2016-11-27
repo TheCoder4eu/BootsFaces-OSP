@@ -608,8 +608,12 @@ public class AJAXRenderer extends CoreRenderer {
 					additionalEventHandler, true, event, code);
 			if (code.length() > 0) {
 				rw.startElement("script", component);
+				String parameterList = ajaxComponent.getJQueryEventParameterLists().get(event);
+				if (null == parameterList) {
+					parameterList="event";
+				}
 				String js = "$('" + jQueryExpressionOfTargetElement + "').on('" + ajaxComponent.getJQueryEvents().get(event)
-						+ "', function(event){" + code.toString() + "});";
+						+ "', function(" + parameterList + "){" + code.toString() + "});";
 				rw.writeText(js, null);
 				rw.endElement("script");
 			}

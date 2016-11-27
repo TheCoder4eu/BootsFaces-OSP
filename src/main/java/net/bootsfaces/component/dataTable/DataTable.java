@@ -105,6 +105,20 @@ public class DataTable extends DataTableCore
 		return result;
 	}
 
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("select", "event, datatable, typeOfSelection, indexes");
+		result.put("deselect", "event, datatable, typeOfSelection, indexes");
+		return result;
+	}
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}

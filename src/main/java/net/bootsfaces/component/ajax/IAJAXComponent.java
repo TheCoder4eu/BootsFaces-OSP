@@ -101,9 +101,18 @@ public interface IAJAXComponent {
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).Ø
 	 * 
-	 * @return
+	 * @return A hash map containing the events. May be null.
 	 */
 	public Map<String, String> getJQueryEvents();
+	
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	public Map<String, String> getJQueryEventParameterLists();
+
 
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which

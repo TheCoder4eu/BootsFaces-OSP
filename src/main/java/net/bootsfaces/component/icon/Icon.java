@@ -71,6 +71,17 @@ public class Icon extends IconCore implements net.bootsfaces.render.IHasTooltip,
 		return null;
 	}
 
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		return null;
+	}
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}

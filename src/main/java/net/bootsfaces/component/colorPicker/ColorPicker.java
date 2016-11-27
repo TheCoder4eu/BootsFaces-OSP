@@ -98,4 +98,15 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	public void setSwatches(String _swatches) {
 		getStateHelper().put("swatches", _swatches);
 	}
+
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		return null;
+	}
 }
