@@ -83,6 +83,17 @@ public class NavCommandLink extends UICommand
 		return null;
 	}
 
+	/**
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
+	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		return null;
+	}
+
 	protected enum PropertyKeys {
 		active, ajax, binding, colLg, colMd, colSm, colXs, contentClass, contentStyle, disabled, display, fragment, header, hidden, href, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, includeViewParams, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, smallScreen, span, style, styleClass, target, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
