@@ -138,6 +138,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (!isHorizontalForm(component)) {
 			span = startColSpanDiv(rw, menu, menu.getClientId(context), clientIdHasBeenRendered);
 			if (null != span) {
+				Tooltip.generateTooltip(context, menu, rw);
 				clientIdHasBeenRendered=true;
 			}
 		}
@@ -145,10 +146,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		writeAttribute(rw, "dir", menu.getDir(), "dir");
 		if (!clientIdHasBeenRendered) {
 			writeAttribute(rw, "id", menu.getClientId(context));
+			Tooltip.generateTooltip(context, menu, rw);
 			clientIdHasBeenRendered=true;
 		}
 
-		Tooltip.generateTooltip(context, menu, rw);
 		if (menu.isInline()) {
 			LOGGER.warning(
 					"The inline attribute of b:selectMultiMenu is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
@@ -161,9 +162,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 
 		if (isHorizontalForm(component)) {
 			span = startColSpanDiv(rw, menu, menu.getClientId(context), clientIdHasBeenRendered);
-			if (null != span) {
-				clientIdHasBeenRendered=true;
-			}
 		}	
 		UIComponent prependingAddOnFacet = menu.getFacet("prepend");
 		UIComponent appendingAddOnFacet = menu.getFacet("append");

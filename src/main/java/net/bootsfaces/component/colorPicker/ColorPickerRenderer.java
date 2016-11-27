@@ -113,6 +113,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.writeAttribute("class", cssResponsiveClass, "class");
 			rw.writeAttribute("id", clientId, "id");
 			clientIdHasBeenRendered=true;
+			Tooltip.generateTooltip(context, colorPicker, rw);
 			cssResponsiveClass=""; // prevent duplicate rendering
 		}
 
@@ -136,9 +137,9 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.writeAttribute("dir", colorPicker.getDir(), "dir");
 		}
 
-		Tooltip.generateTooltip(context, colorPicker, rw);
 		if (!clientIdHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
+			Tooltip.generateTooltip(context, colorPicker, rw);
 		}
 		if (colorPicker.isInline()) {
 			rw.writeAttribute("class", "form-inline", "class");

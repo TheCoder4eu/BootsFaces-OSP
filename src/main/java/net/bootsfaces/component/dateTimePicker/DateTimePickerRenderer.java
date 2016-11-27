@@ -41,6 +41,7 @@ import net.bootsfaces.utils.LocaleUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePickerRenderer extends CoreRenderer {
 	private static final String DTP_CONTAINER_ID = "dtp_container_";
+	private static final String DTP_CONTAINER_ID2 = "dtp_container2_";
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -147,6 +148,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	private String encodeHTML(FacesContext fc, ResponseWriter rw, DateTimePicker dtp)
 	throws IOException {
 		String clientId = dtp.getClientId();
+		boolean clientIdHasBeenRendered=false;
 		String mode = dtp.getMode();
 		String styleClass = dtp.getStyleClass();
 		if(styleClass == null) styleClass = "";
@@ -167,11 +169,16 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				rw.writeAttribute("class", "form-group", "class");
 			}
 			rw.writeAttribute("id", clientId, null);
+			Tooltip.generateTooltip(fc, dtp, rw);
+			clientIdHasBeenRendered=true;
+
 			divPrefix=DTP_CONTAINER_ID;
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
 			divPrefix=DTP_CONTAINER_ID;
+			Tooltip.generateTooltip(fc, dtp, rw);
+			clientIdHasBeenRendered=true;
 		}
 		
 		
@@ -189,6 +196,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
+			if (!clientIdHasBeenRendered) {
+				rw.writeAttribute("id", clientId, null);
+				Tooltip.generateTooltip(fc, dtp, rw);
+				clientIdHasBeenRendered=true;
+				divPrefix=DTP_CONTAINER_ID2;
+			}
 		}
 		
 
@@ -253,6 +266,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			if(dtp.getStyle() != null) rw.writeAttribute("style", (dtp.isDisabled() ? "opacity: 0.65; pointer-events: none;" : "") + dtp.getStyle(), "style");
 			else if(dtp.isDisabled()) rw.writeAttribute("style", "opacity: 0.65; pointer-events: none;", null);
 			rw.writeAttribute("id", divPrefix + clientId, null);
+			if (!clientIdHasBeenRendered) {
+				Tooltip.generateTooltip(fc, dtp, rw);
+				clientIdHasBeenRendered=true;
+			}
 			rw.endElement("div");
 
 			// write the input item
@@ -265,7 +282,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
-			Tooltip.generateTooltip(fc, dtp, rw);
 			rw.endElement("input");
 		}
 		else { // "popup"
@@ -274,6 +290,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "input-group date " + styleClass, "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
 			rw.writeAttribute("id", divPrefix + clientId, null);
+			if (!clientIdHasBeenRendered) {
+				Tooltip.generateTooltip(fc, dtp, rw);
+				clientIdHasBeenRendered=true;
+				divPrefix=DTP_CONTAINER_ID2;
+			}
 
 			// input
 			rw.startElement("input", dtp);
@@ -289,7 +310,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			if (v != null) {
 				rw.writeAttribute("value", getValueAsString(v, fc, dtp), null);
 			}
-			Tooltip.generateTooltip(fc, dtp, rw);
 			// Render Ajax Capabilities
 			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), dtp, rw, false);
 			rw.endElement("input");
@@ -312,6 +332,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		} else if (label != null) {
 			rw.endElement("div");
 		}
+		Tooltip.activateTooltips(fc, dtp);
 
 		return divPrefix;
 	}

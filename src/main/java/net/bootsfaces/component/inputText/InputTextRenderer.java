@@ -135,6 +135,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id"); // clientId
 			clientIdHasBeenRendered=true;
+			Tooltip.generateTooltip(context, inputText, rw);
 			numberOfDivs++;
 		}
 
@@ -162,9 +163,9 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute("dir", inputText.getDir(), "dir");
 		}
 
-		Tooltip.generateTooltip(context, inputText, rw);
 		if (!clientIdHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
+			Tooltip.generateTooltip(context, inputText, rw);
 			clientIdHasBeenRendered=true;
 		}
 		if (inputText.isInline()) {

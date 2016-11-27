@@ -257,6 +257,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 			rw.startElement("div", this);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id");
+			Tooltip.generateTooltip(fc, this, rw);
 			idHasBeenRendered=true;
 			numberOfDivs++;
 		}
@@ -265,6 +266,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		rw.writeAttribute("class", "form-group", "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
+			Tooltip.generateTooltip(fc, this, rw);
 			idHasBeenRendered=true;
 		}
 		addLabel(rw, clientId+"_input");
@@ -345,7 +347,6 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 //			rw.writeAttribute("style", getStyle(), "style");
 //		}
 		rw.writeAttribute("name", clientId, null);
-		Tooltip.generateTooltip(fc, this, rw);
 		rw.writeAttribute("type", type, null);
 		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
 		rw.writeAttribute("class", "form-control " + styleClass, "class");

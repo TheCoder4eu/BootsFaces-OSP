@@ -113,11 +113,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (!isHorizontalForm(component)) {
            span = startColSpanDiv(rw, menu, outerClientId);
            if (null != span) {
+               Tooltip.generateTooltip(context, menu, rw);
         	   clientIdHasBeenRendered=true;
            }
         }
         rw.startElement("div", menu);
-        Tooltip.generateTooltip(context, menu, rw);
 
         if (menu.isInline()) {
             rw.writeAttribute("class", "form-inline", "class");
@@ -127,6 +127,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
         if (!clientIdHasBeenRendered) {
         	rw.writeAttribute("id", outerClientId, "id");
+            Tooltip.generateTooltip(context, menu, rw);
         }
         writeAttribute(rw, "dir", menu.getDir(), "dir");
 
