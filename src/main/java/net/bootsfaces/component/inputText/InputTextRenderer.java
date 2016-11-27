@@ -187,7 +187,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 
-		if (responsiveStyleClass.length() > 0 && responsiveLabelClass != null && isHorizontalForm(component)) {
+		if (responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			numberOfDivs++;
