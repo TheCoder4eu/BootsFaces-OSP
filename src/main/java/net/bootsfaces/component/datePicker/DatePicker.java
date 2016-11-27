@@ -350,7 +350,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
 		rw.writeAttribute("class", "form-control " + styleClass, "class");
 		if (v != null) {
-			rw.writeAttribute("value", getDateAsString(v, sdf, sloc), null);
+			rw.writeAttribute("value", getConvertedDateAsString(v, sdf, sloc), null);
 		}
 
 		String ph = A.asString(attrs.get("placeholder"));
@@ -426,10 +426,10 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		 * Attributes that need decoding the Date
 		 */
 		if (attrs.get(JQ.MINDATE) != null) {
-			sb.append(JQ.MINDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MINDATE), sdf, sloc)).append("',");
+			sb.append(JQ.MINDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MINDATE), sdf, sloc)).append("',");
 		}
 		if (attrs.get(JQ.MAXDATE) != null) {
-			sb.append(JQ.MAXDATE + ":" + "'").append(getDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("',");
+			sb.append(JQ.MAXDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("',");
 		}
 
 		// If user specifies a specific language to use then we render the
@@ -444,6 +444,12 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 			options = options.substring(0, options.length() - 1);
 		}
 		JQ.datePicker(rw, cId, dpId, options, l);
+	}
+
+	private String getConvertedDateAsString(Object dt, String format, Locale locale) {
+
+		Converter converter = getConverter();
+		return converter == null ? getDateAsString(dt, format, locale) : converter.getAsString(getFacesContext(), this, dt);
 	}
 
 	public static String getDateAsString(Object dt, String format, Locale locale) {
