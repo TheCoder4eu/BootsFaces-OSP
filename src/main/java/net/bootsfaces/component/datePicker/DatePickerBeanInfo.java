@@ -15,7 +15,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
  */
-package net.bootsfaces.component.datePicker;
+package net.bootsfaces.component.datepicker;
 
 import net.bootsfaces.beans.BsfBeanInfo;
 
@@ -25,12 +25,12 @@ import net.bootsfaces.beans.BsfBeanInfo;
  * 
  * @author durzod
  */
-public class DatePickerBeanInfo extends BsfBeanInfo {
+public class DatepickerBeanInfo extends BsfBeanInfo {
 	/**
 	 * Get the reference decorated class
 	 */
 	@Override
 	public Class<?> getDecoratedClass() {
-		return DatePicker.class;
+		return Datepicker.class;
 	}
 }
