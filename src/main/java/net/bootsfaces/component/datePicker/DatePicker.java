@@ -16,7 +16,7 @@
 * limitations under the License.
  */
 
-package net.bootsfaces.component.datePicker;
+package net.bootsfaces.component.datepicker;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -60,7 +60,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
-public class DatePicker extends HtmlInputText implements IResponsive, IResponsiveLabel {
+public class Datepicker extends HtmlInputText implements IResponsive, IResponsiveLabel {
 
 	/**
 	 * <p>
@@ -89,7 +89,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	private String sdf;
 	private String mode;
 
-	public DatePicker() {
+	public Datepicker() {
 		setRendererType(null); // this component renders itself
 
 		AddResourcesListener.addThemedCSSResource("core.css");
@@ -247,18 +247,18 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * @throws IOException
 	 */
 	private void encodeHTML(FacesContext fc) throws IOException {
-		boolean idHasBeenRendered=false;
+		boolean idHasBeenRendered = false;
 		Map<String, Object> attrs = getAttributes();
 		String clientId = getClientId(fc);
 		ResponseWriter rw = fc.getResponseWriter();
-		int numberOfDivs=0;
+		int numberOfDivs = 0;
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(this, false).trim();
-		if (responsiveStyleClass.length() > 0  && (!CoreRenderer.isHorizontalForm(this))) {
+		if (responsiveStyleClass.length() > 0 && (!CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(fc, this, rw);
-			idHasBeenRendered=true;
+			idHasBeenRendered = true;
 			numberOfDivs++;
 		}
 		rw.startElement("div", this);
@@ -267,21 +267,20 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(fc, this, rw);
-			idHasBeenRendered=true;
+			idHasBeenRendered = true;
 		}
-		addLabel(rw, clientId+"_input");
+		addLabel(rw, clientId + "_input");
 
-		if (responsiveStyleClass.length() > 0  && (CoreRenderer.isHorizontalForm(this))) {
+		if (responsiveStyleClass.length() > 0 && (CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
 			numberOfDivs++;
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}
-		
+
 		// stz = selectTimeZone(attrs.get(A.TZ));
 
 		sloc = selectLocale(fc.getViewRoot().getLocale(), A.asString(attrs.get(JQ.LOCALE)));
 		sdf = selectDateFormat(sloc, A.asString(attrs.get(JQ.DTFORMAT)));
-		
 
 		// Debugging Locale and dateformat
 		// rw.write("<span>DEBUG sloc='"+sloc+"', sdf='"+sdf+"' </span>");
@@ -313,13 +312,13 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 				rw.writeAttribute("style", getStyle(), "style");
 			}
 		} else { // popup
-			dpId = clientId+"_input";
+			dpId = clientId + "_input";
 
 			if (!mode.equals("popup")) { // with icon => div with prepend/append
 												// style
 				rw.startElement("div", this);
 				numberOfDivs++;
-				String clazz="input-group ";
+				String clazz = "input-group ";
 				if (null != getStyleClass()) {
 					clazz += getStyleClass() + " ";
 				}
@@ -342,10 +341,13 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId + "_input", null);
+		if (getTabindex()!=null) {
+			rw.writeAttribute("tabindex", getTabindex(), null);
+		}
 
-//		if (getStyle() != null) {
-//			rw.writeAttribute("style", getStyle(), "style");
-//		}
+		//		if (getStyle() != null) {
+		//			rw.writeAttribute("style", getStyle(), "style");
+		//		}
 		rw.writeAttribute("name", clientId, null);
 		rw.writeAttribute("type", type, null);
 		String styleClass = new CoreRenderer().getErrorAndRequiredClass(this, clientId);
@@ -385,8 +387,8 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		} // Closes the popup prepend/append style div
 
-		while (numberOfDivs>0) {
-			rw.endElement("div"); 
+		while (numberOfDivs > 0) {
+			rw.endElement("div");
 			numberOfDivs--;
 		}
 	}
@@ -427,10 +429,12 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		 * Attributes that need decoding the Date
 		 */
 		if (attrs.get(JQ.MINDATE) != null) {
-			sb.append(JQ.MINDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MINDATE), sdf, sloc)).append("',");
+			sb.append(JQ.MINDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MINDATE), sdf, sloc))
+					.append("',");
 		}
 		if (attrs.get(JQ.MAXDATE) != null) {
-			sb.append(JQ.MAXDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc)).append("',");
+			sb.append(JQ.MAXDATE + ":" + "'").append(getConvertedDateAsString(attrs.get(JQ.MAXDATE), sdf, sloc))
+					.append("',");
 		}
 
 		// If user specifies a specific language to use then we render the
@@ -450,7 +454,8 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	private String getConvertedDateAsString(Object dt, String format, Locale locale) {
 
 		Converter converter = getConverter();
-		return converter == null ? getDateAsString(dt, format, locale) : converter.getAsString(getFacesContext(), this, dt);
+		return converter == null ? getDateAsString(dt, format, locale)
+				: converter.getAsString(getFacesContext(), this, dt);
 	}
 
 	public static String getDateAsString(Object dt, String format, Locale locale) {
@@ -772,6 +777,7 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 		span,
 		style,
 		styleClass,
+		tabindex,
 		tinyScreen,
 		tooltip,
 		tooltipContainer,
@@ -1433,6 +1439,22 @@ public class DatePicker extends HtmlInputText implements IResponsive, IResponsiv
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**

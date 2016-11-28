@@ -238,6 +238,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("type", "text", null);
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
+			if (dtp.getTabindex()!=null) {
+				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
+			}
+
 			//rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			generateStyleClass(dtp, rw);
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
@@ -277,6 +281,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("type", "hidden", "type");
+			if (dtp.getTabindex()!=null) {
+				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
+			}
 			if (dtp.isReadonly()) rw.writeAttribute("readonly", "readonly", null);
 			if (dtp.isDisabled()) rw.writeAttribute("disabled", "true", null);
 			if (v != null) {
@@ -301,6 +308,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("type", "text", null);
 			rw.writeAttribute("id", clientId + "_Input", null);
 			rw.writeAttribute("name", clientId, null);
+			if (dtp.getTabindex()!=null) {
+				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
+			}
 			// rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			generateStyleClass(dtp, rw);
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);

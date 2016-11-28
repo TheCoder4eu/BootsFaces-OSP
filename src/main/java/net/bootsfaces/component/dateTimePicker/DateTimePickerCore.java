@@ -87,6 +87,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		span,
 		style,
 		styleClass,
+		tabindex,
 		timeStepping,
 		tinyScreen,
 		toolbarPlacement,
@@ -109,7 +110,8 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -1123,6 +1125,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**

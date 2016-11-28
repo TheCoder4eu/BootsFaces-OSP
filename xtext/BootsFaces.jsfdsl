@@ -555,7 +555,7 @@ widget dataTableColumn {
 }
 
 widget datepicker
-       implemented_by net.bootsfaces.component.datePicker.DatePicker
+       implemented_by net.bootsfaces.component.datepicker.Datepicker
        has_tooltip
        is_responsive
 {
@@ -576,6 +576,7 @@ widget datepicker
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel   Boolean                                            "Boolean value to specify if row Buttons to the bottom of calendar should be shown."
     show-week           Boolean                                            "Boolean value to specify if Week number should be shown."
+    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
    	value               inherited                                          "Value."
 	+style
 	+tooltip
@@ -643,6 +644,7 @@ widget dateTimePicker
     show-close-button	     Boolean									   "Show the 'Close' button in the icon toolbar. Default: false."
     show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false."
     side-by-side			 Boolean									   "Shows the picker side by side when using the time and date together. Default: false."
+    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     time-stepping			 Integer default "1"						   "Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1."
     toolbar-placement		 default "default"  						   "Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'."
     mode					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'."
