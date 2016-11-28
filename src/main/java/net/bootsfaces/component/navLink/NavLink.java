@@ -104,7 +104,69 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	}
 
 	protected enum PropertyKeys {
-		active, ajax, binding, colLg, colMd, colSm, colXs, contentClass, contentStyle, disabled, display, fragment, header, hidden, href, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, includeViewParams, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, outcome, process, smallScreen, span, style, styleClass, target, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		active,
+		ajax,
+		binding,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		contentClass,
+		contentStyle,
+		disabled,
+		display,
+		fragment,
+		header,
+		hidden,
+		href,
+		icon,
+		iconAlign,
+		iconAwesome,
+		iconFlip,
+		iconRotate,
+		iconSize,
+		iconSpin,
+		immediate,
+		includeViewParams,
+		largeScreen,
+		mediumScreen,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		onblur,
+		onchange,
+		onclick,
+		oncomplete,
+		ondblclick,
+		onfocus,
+		onkeydown,
+		onkeypress,
+		onkeyup,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		onselect,
+		outcome,
+		process,
+		smallScreen,
+		span,
+		style,
+		styleClass,
+		tabindex,
+		target,
+		tinyScreen,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update,
+		visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -949,6 +1011,22 @@ public class NavLink extends HtmlOutcomeTargetLink implements ClientBehaviorHold
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**
