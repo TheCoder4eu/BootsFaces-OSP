@@ -79,7 +79,7 @@ public class RemoteCommandRenderer extends CoreRenderer {
 			
 		rw.startElement("script", component);
 		rw.writeAttribute("id", clientId, null);
-		String c = call.toString().replace("callAjax(this,", "callAjax({x:{id:'" + clientId + "'}},");
+		String c = call.toString().replace("callAjax(this,", "callAjax({id:'" + clientId + "'},");
 		rw.append("function " + name + "(){" + c + "}");
 		rw.endElement("script");
 
