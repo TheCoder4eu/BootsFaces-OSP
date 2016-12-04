@@ -168,7 +168,7 @@ public class GyroscopeRenderer extends CoreRenderer {
 		// Render Ajax Capabilities
 		AJAXRenderer.generateAJAXCallForASingleEvent(
 				FacesContext.getCurrentInstance(), gyroscope, rw,
-				null, null, false, "rotation", jsCode);
+				null, null, false, "rotation", jsCode, null);
 		String js = jsCode.toString().replace("callAjax(this,", "callAjax(document.getElementById('" + clientId + ".alpha'),");
 		rw.write("window.addEventListener('deviceorientation', function(event) {\n");
 		rw.write("  var oldAlpha = document.getElementById('" + clientId + ".alpha').value;");

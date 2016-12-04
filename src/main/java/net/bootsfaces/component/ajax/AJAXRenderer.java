@@ -185,7 +185,7 @@ public class AJAXRenderer extends CoreRenderer {
 					if (((IAJAXComponent) component).getJQueryEvents().containsKey(keyClientBehavior))
 						continue;
 				generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
-						specialEventHandler, isJQueryCallback, keyClientBehavior, null);
+						specialEventHandler, isJQueryCallback, keyClientBehavior, null, null);
 			}
 		}
 		if (!generatedAJAXCall) {
@@ -264,7 +264,7 @@ public class AJAXRenderer extends CoreRenderer {
 
 	public static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
 			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
-			String keyClientBehavior, StringBuilder generatedJSCode) throws IOException {
+			String keyClientBehavior, StringBuilder generatedJSCode, String optionalParameterList) throws IOException {
 		boolean generatedAJAXCall = false;
 		String jsCallback = "";
 		String nameOfGetter = "getOn" + keyClientBehavior;
@@ -281,7 +281,7 @@ public class AJAXRenderer extends CoreRenderer {
 								else
 									jsCallback = jsCallback + ";javascript:" + specialEventHandler;
 							}
-							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior);
+							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior, optionalParameterList);
 							if ("dragstart".equals(keyClientBehavior)) {
 								rw.writeAttribute("draggable", "true", "draggable");
 							}
@@ -374,7 +374,7 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	private static String convertAJAXToJavascript(FacesContext context, String jsCallback,
-			ClientBehaviorHolder component, String event) {
+			ClientBehaviorHolder component, String event, String optionalParameterList) {
 		if (jsCallback == null)
 			jsCallback = "";
 		else {
@@ -387,7 +387,7 @@ public class AJAXRenderer extends CoreRenderer {
 					jsCallback = jsCallback.substring(0, end);
 				}
 
-				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component, event);
+				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component, event, optionalParameterList);
 
 				jsCallback = jsCallback.substring(0, pos) + ";" + ajax + rest;
 			}
@@ -398,7 +398,7 @@ public class AJAXRenderer extends CoreRenderer {
 		return jsCallback;
 	}
 
-	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event) {
+	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event, String optionalParameterList) {
 		String complete = component.getOncomplete();
 		String onError = null;
 		String onSuccess = null;
@@ -444,18 +444,20 @@ public class AJAXRenderer extends CoreRenderer {
 
 		String parameterList="";
 		List<UIComponent> children = ((UIComponent)component).getChildren();
-		String id= ((UIComponent)component).getId();
 		for (UIComponent parameter: children) {
 			if (parameter instanceof UIParameter) {
 				String value=String.valueOf(((UIParameter) parameter).getValue());
 				String name = ((UIParameter) parameter).getName();
 				if (null!=value) {
-					parameterList += ",{'" + name + "':'" + value + "'}";
+					parameterList += ",'" + name + "':'" + value + "'";
 				}
 			}
 		}
+		if (null != optionalParameterList) {
+			parameterList += "," + optionalParameterList;
+		}
 		if (parameterList.length()>0) {
-			String json="{" + parameterList.substring(1) + "}";
+			String json=",{" + parameterList.substring(1) + "}";
 			cJS.append(json);
 		}
 
@@ -604,11 +606,16 @@ public class AJAXRenderer extends CoreRenderer {
 			if (null != additionalEventHandlers)
 				additionalEventHandler = additionalEventHandlers.get(event);
 
+			String parameterList = null;
+			if (null != ajaxComponent.getJQueryEventParameterListsForAjax()) {
+				if (null != ajaxComponent.getJQueryEventParameterListsForAjax().get(event))
+					parameterList = ajaxComponent.getJQueryEventParameterListsForAjax().get(event);
+			}			
 			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, event,
-					additionalEventHandler, true, event, code);
+			additionalEventHandler, true, event, code, parameterList);
 			if (code.length() > 0) {
 				rw.startElement("script", component);
-				String parameterList = "event";
+				parameterList = "event";
 				if (null != ajaxComponent.getJQueryEventParameterLists()) {
 					if (null != ajaxComponent.getJQueryEventParameterLists().get(event))
 						parameterList = ajaxComponent.getJQueryEventParameterLists().get(event);
@@ -626,7 +633,7 @@ public class AJAXRenderer extends CoreRenderer {
 		StringBuilder code = new StringBuilder();
 		String additionalEventHandler = null;
 
-		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler, true, event, code);
+		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler, true, event, code, null);
 		return code.toString();
 	}
 }

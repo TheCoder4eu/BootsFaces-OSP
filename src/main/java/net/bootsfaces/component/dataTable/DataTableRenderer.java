@@ -30,11 +30,13 @@ import java.util.regex.Pattern;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
+import javax.faces.application.ApplicationFactory;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
@@ -45,11 +47,18 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dataTable.DataTable")
 public class DataTableRenderer extends CoreRenderer {
 
-	// @Override
-	// public void decode(FacesContext context, UIComponent component) {
-	// super.decode(context, component);
-	// DataTable dataTable = (DataTable) component;
-	// }
+	@Override
+	public void decode(FacesContext context, UIComponent component) {
+		DataTable dataTable = (DataTable) component;
+		if (dataTable.isDisabled()) {
+			return;
+		}
+
+		decodeBehaviors(context, dataTable); // f:ajax
+
+		String clientId = dataTable.getClientId(context);
+		new AJAXRenderer().decode(context, component, clientId);
+	}
 
 	private static final Pattern NUMERIC_PATTERN = Pattern.compile("[0-9]+");
 

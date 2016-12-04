@@ -40,8 +40,8 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 @FacesComponent(CommandButton.COMPONENT_TYPE)
-public class CommandButton extends CommandButtonCore 
-implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive {
+public class CommandButton extends CommandButtonCore
+		implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive {
 
 	/**
 	 * <p>
@@ -95,7 +95,8 @@ implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, I
 
 	/**
 	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * If there's no parameter list for a certain event, the default is simply
+	 * "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -116,5 +117,16 @@ implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, I
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-}
 
+	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard
+	 * JS callbacks which is sent to the server via AJAX. If there's no
+	 * parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		return null;
+	}
+}

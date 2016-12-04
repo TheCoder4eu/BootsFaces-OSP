@@ -29,8 +29,14 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIViewRoot;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
+import javax.faces.event.FacesEvent;
 
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
@@ -119,6 +125,20 @@ public class DataTable extends DataTableCore
 		return result;
 	}
 
+	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
+	 * If there's no parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("select", "'typeOfSelection':typeOfSelection,'indexes':indexes");
+		result.put("deselect", "'typeOfSelection':typeOfSelection,'indexes':indexes");
+		return result;
+	}
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
@@ -164,4 +184,36 @@ public class DataTable extends DataTableCore
 	public void setColumnInfo(List<String> columnInfo) {
 		this.columnInfo = columnInfo;
 	}
+	
+    /**
+     * <p>Queue an event for broadcast at the end of the current request
+     * processing lifecycle phase.  The default implementation in
+     * {@link UIComponentBase} must delegate this call to the
+     * <code>queueEvent()</code> method of the parent {@link UIComponent}.</p>
+     *
+     * @param event {@link FacesEvent} to be queued
+     *
+     * @throws IllegalStateException if this component is not a
+     *  descendant of a {@link UIViewRoot}
+     * @throws NullPointerException if <code>event</code>
+     *  is <code>null</code>
+     */
+    public void queueEvent(FacesEvent event) {
+    	FacesContext context = FacesContext.getCurrentInstance();
+		String indexes = (String) context.getExternalContext().getRequestParameterMap().get("indexes");
+		context.getELContext().getELResolver().setValue(context.getELContext(), null, "indexes", indexes);
+		String typeOfSelection = (String) context.getExternalContext().getRequestParameterMap().get("typeOfSelection");
+		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection", typeOfSelection);
+    	try {
+    		int oldIndex = getRowIndex();
+    		int index = Integer.valueOf(indexes);
+    		setRowIndex(index);
+    		super.queueEvent(event);
+    		setRowIndex(oldIndex);
+    	} catch (Exception multipleIndexes) {
+    		super.queueEvent(event);
+    		
+    	}
+    }
+
 }

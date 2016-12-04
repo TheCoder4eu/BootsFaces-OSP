@@ -60,6 +60,17 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	}
 
 	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
+	 * If there's no parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		return null;
+	}
+
+	/**
 	 * returns the subset of AJAX requests that are implemented by jQuery
 	 * callback or other non-standard means (such as the onclick event of
 	 * b:tabView, which has to be implemented manually).

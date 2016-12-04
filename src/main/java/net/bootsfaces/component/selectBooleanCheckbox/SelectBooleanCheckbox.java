@@ -73,6 +73,17 @@ public class SelectBooleanCheckbox extends SelectBooleanCheckboxCore implements 
 		return null;
 	}
 
+	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
+	 * If there's no parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		return null;
+	}
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}

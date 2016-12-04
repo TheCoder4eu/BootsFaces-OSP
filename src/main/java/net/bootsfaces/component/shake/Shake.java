@@ -56,6 +56,17 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 	}
 
 	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
+	 * If there's no parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		return null;
+	}
+
+	/**
 	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
 	 * If there's no parameter list for a certain event, the default is simply "event".
 	 * 

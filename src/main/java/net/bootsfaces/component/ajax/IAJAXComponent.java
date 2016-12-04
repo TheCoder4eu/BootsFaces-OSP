@@ -113,6 +113,14 @@ public interface IAJAXComponent {
 	 */
 	public Map<String, String> getJQueryEventParameterLists();
 
+	/**
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
+	 * If there's no parameter list for a certain event, the default is simply null.
+	 * 
+	 * @return A hash map containing the events. May be null.
+	 */
+	public Map<String, String> getJQueryEventParameterListsForAjax();
+
 
 	/**
 	 * Comma or space separated list of ids or search expressions denoting which
