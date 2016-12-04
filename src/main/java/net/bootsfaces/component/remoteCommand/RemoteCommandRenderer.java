@@ -69,10 +69,18 @@ public class RemoteCommandRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = remoteCommand.getClientId();
 
-		// put custom code here
-		// Simple demo widget that simply renders every attribute value
-		String parameters=null;
-		StringBuilder call = AJAXRenderer.generateAJAXCall(context, remoteCommand, null, parameters);
+		String parameters=remoteCommand.getParameters();
+		String parametersAsJson=null;
+		if (null != parameters && parameters.length()>0) {
+			parametersAsJson = "";
+			String[] params = parameters.split(",");
+			for (String p: params) {
+				p=p.trim();
+				parametersAsJson += "'" + p + "':" + p + ",";
+			}
+			parametersAsJson=parametersAsJson.substring(0, parametersAsJson.length()-1);
+		}
+		StringBuilder call = AJAXRenderer.generateAJAXCall(context, remoteCommand, null, parametersAsJson);
 		String name = remoteCommand.getName();
 		if (null == name) {
 			throw new FacesException("b:remoteCommand: Please define the name of the JavaScript function calling the Java backend.");
@@ -81,7 +89,11 @@ public class RemoteCommandRenderer extends CoreRenderer {
 		rw.startElement("script", component);
 		rw.writeAttribute("id", clientId, null);
 		String c = call.toString().replace("callAjax(this,", "callAjax({id:'" + clientId + "'},");
-		rw.append("function " + name + "(){" + c + "}");
+		if (parameters!=null) {
+			rw.append("function " + name + "(" + parameters + "){" + c + "}");
+		} else {
+			rw.append("function " + name + "(){" + c + "}");
+		}
 		rw.endElement("script");
 
 	}

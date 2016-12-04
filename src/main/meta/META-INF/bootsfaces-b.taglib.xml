@@ -17377,6 +17377,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional list of parameters to be added to the parameter list of the JavaScript function. The JSF bean can read these parameters from the request parameters (FacesContext.getCurrentContext.getRequestParameter('name1')). If you need more than one parameter, separate them with commas. Don't add a type because this is the signature of the JavaScript function.]]></description>
+		  <name>parameters</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
 		  <name>process</name>
 		  <required>false</required>

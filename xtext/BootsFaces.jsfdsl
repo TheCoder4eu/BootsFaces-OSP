@@ -1601,6 +1601,7 @@ widget remoteCommand
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     name                mandatory                                          "Name of the JavaScript function."
+    parameters                                                             "Optional list of parameters to be added to the parameter list of the JavaScript function. The JSF bean can read these parameters from the request parameters (FacesContext.getCurrentContext.getRequestParameter('name1')). If you need more than one parameter, separate them with commas. Don't add a type because this is the signature of the JavaScript function."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +ajax
 }

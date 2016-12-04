@@ -25,7 +25,7 @@ import net.bootsfaces.utils.BsfUtils;
 public abstract class RemoteCommandCore extends UICommand {
 
 	protected enum PropertyKeys {
-		ajax, binding, disabled, name, onclick, oncomplete, onerror, onsuccess, process, update;
+		ajax, binding, disabled, name, onclick, oncomplete, onerror, onsuccess, parameters, process, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -166,6 +166,22 @@ public abstract class RemoteCommandCore extends UICommand {
 	 */
 	public void setOnsuccess(String _onsuccess) {
 		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
+	}
+
+	/**
+	 * Optional list of parameters to be added to the parameter list of the JavaScript function. The JSF bean can read these parameters from the request parameters (FacesContext.getCurrentContext.getRequestParameter('name1')). If you need more than one parameter, separate them with commas. Don't add a type because this is the signature of the JavaScript function. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getParameters() {
+		return (String) getStateHelper().eval(PropertyKeys.parameters);
+	}
+
+	/**
+	 * Optional list of parameters to be added to the parameter list of the JavaScript function. The JSF bean can read these parameters from the request parameters (FacesContext.getCurrentContext.getRequestParameter('name1')). If you need more than one parameter, separate them with commas. Don't add a type because this is the signature of the JavaScript function. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setParameters(String _parameters) {
+		getStateHelper().put(PropertyKeys.parameters, _parameters);
 	}
 
 	/**
