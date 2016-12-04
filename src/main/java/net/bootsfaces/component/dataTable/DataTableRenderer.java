@@ -114,11 +114,11 @@ public class DataTableRenderer extends CoreRenderer {
 		Tooltip.generateTooltip(context, dataTable, rw);
 		rw.writeAttribute("cellspacing", "0", "cellspacing");
 		rw.writeAttribute("style", dataTable.getStyle(), "style");
+		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw, false);
 
 		generateHeader(context, dataTable, rw);
 		generateBody(context, dataTable, rw);
 		generateFooter(context, dataTable, rw);
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw, false);
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "."+clientId.replace(":", "") + "Table", null);
 	}
 
