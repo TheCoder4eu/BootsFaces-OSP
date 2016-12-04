@@ -101,6 +101,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			throws IOException {
 		rw.startElement("div", radiobutton);
 		rw.writeAttribute("id", itemId, null);
+
 		String styleClass=Responsive.getResponsiveStyleClass(radiobutton, false);
 		String styleClass2 = radiobutton.getStyleClass();
 		if (styleClass2!=null) {
@@ -111,7 +112,11 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		writeAttribute(rw, "style", radiobutton.getStyle());
 		Tooltip.generateTooltip(context, radiobutton, rw);
 		rw.startElement("label", component);
-		rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + itemValue + "')", null);
+		if (radiobutton.isDisabled()) {
+			rw.writeAttribute("class", "disabled", null);
+		} else {
+			rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + itemValue + "')", null);
+		}
 		rw.startElement("input", component);
 		rw.writeAttribute("type", "radio", null);
 		rw.writeAttribute("name", propertyName.replace('.','_'), null);
@@ -121,6 +126,9 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			}
 		} else if (itemValue==null){
 			rw.writeAttribute("checked", "checked", null);
+		}
+		if (radiobutton.isDisabled()) {
+			rw.writeAttribute("disabled", "true", null);
 		}
 		rw.endElement("input");
 		if (itemLabel!=null) {
