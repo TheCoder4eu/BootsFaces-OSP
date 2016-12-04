@@ -179,10 +179,11 @@ public class AJAXRenderer extends CoreRenderer {
 			throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
+		Map<String, String> jQueryEvents = ((IAJAXComponent) component).getJQueryEvents();
 		if (null != eventNames) {
 			for (String keyClientBehavior : eventNames) {
-				if (null != ((IAJAXComponent) component).getJQueryEvents())
-					if (((IAJAXComponent) component).getJQueryEvents().containsKey(keyClientBehavior))
+				if (null != jQueryEvents)
+					if (jQueryEvents.containsKey(keyClientBehavior))
 						continue;
 				generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
 						specialEventHandler, isJQueryCallback, keyClientBehavior, null, null);
@@ -195,27 +196,29 @@ public class AJAXRenderer extends CoreRenderer {
 
 			if (ajax) {
 				// before generating an AJAX default handler, check if there's an jQuery handler that's generated later
-				Set<String> events = ((IAJAXComponent) component).getJQueryEvents().keySet();
-				for (String event : events) {
-					String nameOfGetter = "getOn" + event;
-					try {
-						Method[] methods = component.getClass().getMethods();
-						for (Method m : methods) {
-							if (m.getParameterTypes().length == 0) {
-								if (m.getReturnType() == String.class) {
-									if (m.getName().equalsIgnoreCase(nameOfGetter)) {
-										String jsCallback = (String) m.invoke(component);
-										if (jsCallback != null && jsCallback.contains(AJAX_EVENT_PREFIX)) {
-											ajax=false;
+				if (null != jQueryEvents) {
+					Set<String> events = jQueryEvents.keySet();
+					for (String event : events) {
+						String nameOfGetter = "getOn" + event;
+						try {
+							Method[] methods = component.getClass().getMethods();
+							for (Method m : methods) {
+								if (m.getParameterTypes().length == 0) {
+									if (m.getReturnType() == String.class) {
+										if (m.getName().equalsIgnoreCase(nameOfGetter)) {
+											String jsCallback = (String) m.invoke(component);
+											if (jsCallback != null && jsCallback.contains(AJAX_EVENT_PREFIX)) {
+												ajax=false;
+											}
+											break;
 										}
-										break;
+	
 									}
-
 								}
 							}
+						} catch (Exception e) {
+							
 						}
-					} catch (Exception e) {
-						
 					}
 				}
 				if (ajax) {
