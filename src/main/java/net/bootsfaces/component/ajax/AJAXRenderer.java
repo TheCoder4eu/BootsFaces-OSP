@@ -194,14 +194,40 @@ public class AJAXRenderer extends CoreRenderer {
 			ajax |= null != ((IAJAXComponent) component).getUpdate();
 
 			if (ajax) {
-				StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
-						(ClientBehavior) null);
-				String script = s.toString() + ";";
-				String defaultEvent = ((IAJAXComponent) component).getDefaultEventName();
-				if (component instanceof CommandButton)
-					if (script.length() > 0 && "click".equals(defaultEvent))
-						script += ";return false;";
-				rw.writeAttribute("on" + defaultEvent, script, null);
+				// before generating an AJAX default handler, check if there's an jQuery handler that's generated later
+				Set<String> events = ((IAJAXComponent) component).getJQueryEvents().keySet();
+				for (String event : events) {
+					String nameOfGetter = "getOn" + event;
+					try {
+						Method[] methods = component.getClass().getMethods();
+						for (Method m : methods) {
+							if (m.getParameterTypes().length == 0) {
+								if (m.getReturnType() == String.class) {
+									if (m.getName().equalsIgnoreCase(nameOfGetter)) {
+										String jsCallback = (String) m.invoke(component);
+										if (jsCallback != null && jsCallback.contains(AJAX_EVENT_PREFIX)) {
+											ajax=false;
+										}
+										break;
+									}
+
+								}
+							}
+						}
+					} catch (Exception e) {
+						
+					}
+				}
+				if (ajax) {
+					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
+							(ClientBehavior) null);
+					String script = s.toString() + ";";
+					String defaultEvent = ((IAJAXComponent) component).getDefaultEventName();
+					if (component instanceof CommandButton)
+						if (script.length() > 0 && "click".equals(defaultEvent))
+							script += ";return false;";
+					rw.writeAttribute("on" + defaultEvent, script, null);
+				}
 			} else if (component instanceof CommandButton) {
 				encodeFormSubmit((UIComponent)component, rw, false);
 			}
