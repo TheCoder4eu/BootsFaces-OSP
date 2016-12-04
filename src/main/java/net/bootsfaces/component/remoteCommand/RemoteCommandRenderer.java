@@ -71,7 +71,8 @@ public class RemoteCommandRenderer extends CoreRenderer {
 
 		// put custom code here
 		// Simple demo widget that simply renders every attribute value
-		StringBuilder call = AJAXRenderer.generateAJAXCall(context, remoteCommand, null);
+		String parameters=null;
+		StringBuilder call = AJAXRenderer.generateAJAXCall(context, remoteCommand, null, parameters);
 		String name = remoteCommand.getName();
 		if (null == name) {
 			throw new FacesException("b:remoteCommand: Please define the name of the JavaScript function calling the Java backend.");
