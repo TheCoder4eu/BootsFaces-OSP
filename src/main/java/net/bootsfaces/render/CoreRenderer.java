@@ -102,20 +102,6 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId) throws IOException {
-		getErrorAndRequiredClass(input, clientId);
-		generateErrorAndRequiredClassForLabels(input, rw, clientId, null);
-	}
-
-	/**
-	 * Renders the CSS pseudo classes for required fields and for the error
-	 * levels.
-	 *
-	 * @param input
-	 * @param rw
-	 * @param clientId
-	 * @throws IOException
-	 */
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass) {

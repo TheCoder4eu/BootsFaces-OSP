@@ -193,7 +193,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClass(menu, rw, clientId);
+            generateErrorAndRequiredClassForLabels(menu, rw, clientId, null);
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");
