@@ -131,7 +131,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
         writeAttribute(rw, "dir", menu.getDir(), "dir");
 
-        addLabel(rw, clientId, menu);
+        addLabel(rw, clientId, menu, outerClientId);
         if (isHorizontalForm(component)) {
         	span=startColSpanDiv(rw, menu, null);
         }
@@ -183,7 +183,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      * @throws IOException
      *             may be thrown by the response writer
      */
-    protected void addLabel(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
+    protected void addLabel(ResponseWriter rw, String clientId, SelectOneMenu menu, String outerClientId) throws IOException {
         String label = menu.getLabel();
         {
             if (!menu.isRenderLabel()) {
@@ -193,7 +193,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClassForLabels(menu, rw, clientId, null);
+            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, null);
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");
