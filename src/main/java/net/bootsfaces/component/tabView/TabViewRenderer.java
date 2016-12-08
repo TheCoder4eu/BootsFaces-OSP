@@ -60,18 +60,29 @@ public class TabViewRenderer extends CoreRenderer {
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		TabView tabView = (TabView) component;
+		if (!tabView.isRendered()) {
+			return;
+		}
+		if (tabView.isDisabled()) {
+			return;
+		}
 
 		decodeBehaviors(context, tabView);
 
 		String clientId = tabView.getClientId(context);
 		String activeIndexId = clientId.replace(":", "_") + "_activeIndex";
-		String activeIndexValue = (String) context.getExternalContext().getRequestParameterMap().get(activeIndexId);
+		String newIndexValue = (String) context.getExternalContext().getRequestParameterMap().get(activeIndexId);
 
 		new AJAXRenderer().decode(context, component);
-		if (null != activeIndexValue && activeIndexValue.length() > 0) {
+		if (null != newIndexValue && newIndexValue.length() > 0) {
 			try {
-				if (Integer.valueOf(activeIndexValue) != tabView.getActiveIndex()) {
-					tabView.setActiveIndex(Integer.valueOf(activeIndexValue));
+				if (Integer.valueOf(newIndexValue) != tabView.getActiveIndex()) {
+					int newIndex = Integer.valueOf(newIndexValue);
+					if (newIndex < tabView.getChildCount()) {
+						if (!(((Tab)tabView.getChildren().get(newIndex)).isDisabled())) {
+							tabView.setActiveIndex(newIndex);
+						}
+					}
 				}
 			} catch (NumberFormatException e) {
 
@@ -98,6 +109,9 @@ public class TabViewRenderer extends CoreRenderer {
 		TabView tabView = (TabView) component;
 		ResponseWriter writer = context.getResponseWriter();
 		String clientId = tabView.getClientId();
+		if (!tabView.isRendered()) {
+			return;
+		}
 
 		writer.startElement("input", tabView);
 		writer.writeAttribute("type", "hidden", null);
@@ -206,7 +220,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		writer.writeAttribute("role", role, "role");
 
-		encodeTabs(context, writer, tabs, currentlyActiveIndex, hiddenInputFieldID);
+		encodeTabs(context, writer, tabs, currentlyActiveIndex, hiddenInputFieldID, tabView.isDisabled());
 		writer.endElement("ul");
 	}
 
@@ -326,10 +340,10 @@ public class TabViewRenderer extends CoreRenderer {
 	 *             only thrown if something's wrong with the response writer
 	 */
 	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children,
-			int currentlyActiveIndex, String hiddenInputFieldID) throws IOException {
+			int currentlyActiveIndex, String hiddenInputFieldID, boolean disabled) throws IOException {
 		if (null != children) {
 			for (int index = 0; index < children.size(); index++) {
-				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID, index);
+				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID, index, disabled);
 			}
 		}
 	}
@@ -351,11 +365,10 @@ public class TabViewRenderer extends CoreRenderer {
 	 *             only thrown if something's wrong with the response writer
 	 */
 	private static void encodeTab(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive,
-			String hiddenInputFieldID, int tabIndex) throws IOException {
+			String hiddenInputFieldID, int tabIndex, boolean disabled) throws IOException {
 		Tab tab = (Tab) child;
 		if (!tab.isRendered())
 			return;
-		writer.append("\n<!-- tab #" + tabIndex + "-->\n");
 		writer.startElement("li", tab);
 		if (tab.getDir() != null)
 			writer.writeAttribute("dir", tab.getDir(), "dir");
@@ -369,6 +382,9 @@ public class TabViewRenderer extends CoreRenderer {
 			classes += " ";
 			classes += tab.getStyleClass();
 		}
+		if (tab.isDisabled() || disabled) {
+			classes += " disabled";
+		}
 		if (classes.length() > 0) {
 			writer.writeAttribute("class", classes, "class");
 		}
@@ -377,7 +393,7 @@ public class TabViewRenderer extends CoreRenderer {
 			writer.writeAttribute("style", tab.getStyle(), "style");
 		}
 
-		encodeTabAnchorTag(context, writer, tab, hiddenInputFieldID, tabIndex);
+		encodeTabAnchorTag(context, writer, tab, hiddenInputFieldID, tabIndex, disabled);
 		writer.endElement("li");
 		Tooltip.activateTooltips(context, tab);
 	}
@@ -393,14 +409,18 @@ public class TabViewRenderer extends CoreRenderer {
 	 *             only thrown if something's wrong with the response writer
 	 */
 	private static void encodeTabAnchorTag(FacesContext context, ResponseWriter writer, Tab tab,
-			String hiddenInputFieldID, int tabindex) throws IOException {
+			String hiddenInputFieldID, int tabindex, boolean disabled) throws IOException {
 		writer.startElement("a", tab);
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_tab", "id");
 		writer.writeAttribute("role", "tab", "role");
 		writer.writeAttribute("data-toggle", "tab", "data-toggle");
-		writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
-		String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
-		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false, true);
+		if (tab.isDisabled() || disabled) {
+			writer.writeAttribute("onclick", "event.preventDefault(); return false;", null);
+		} else {
+			writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
+			String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false, true);
+		}
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
 
 		UIComponent iconFacet = tab.getFacet("anchor");
