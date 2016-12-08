@@ -386,7 +386,10 @@ public class TabViewRenderer extends CoreRenderer {
 			classes += " disabled";
 		}
 		if (classes.length() > 0) {
-			writer.writeAttribute("class", classes, "class");
+			writer.writeAttribute("class", classes.trim(), "class");
+		}
+		if (tab.isDisabled() || disabled) {
+			writer.writeAttribute("onclick", "debugger;event.preventDefault(); return false;", null);
 		}
 
 		if (tab.getStyle() != null) {
@@ -413,10 +416,10 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.startElement("a", tab);
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_tab", "id");
 		writer.writeAttribute("role", "tab", "role");
-		writer.writeAttribute("data-toggle", "tab", "data-toggle");
 		if (tab.isDisabled() || disabled) {
 			writer.writeAttribute("onclick", "event.preventDefault(); return false;", null);
 		} else {
+			writer.writeAttribute("data-toggle", "tab", "data-toggle");
 			writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
 			String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
 			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false, true);
