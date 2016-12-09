@@ -6487,6 +6487,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id.]]></description>
+		  <name>field-id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id.]]></description>
+		  <name>fieldId</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
 		  <name>field-size</name>
 		  <required>false</required>
@@ -6537,6 +6549,12 @@
 		<attribute>
 		  <description><![CDATA[Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names.]]></description>
 		  <name>iconAwesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

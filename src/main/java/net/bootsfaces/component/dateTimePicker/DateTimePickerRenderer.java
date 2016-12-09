@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -58,7 +59,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
-		new AJAXRenderer().decode(context, dtp, clientId + "_Input");
+		String fieldId = dtp.getFieldId();
+		if (null == fieldId) {
+			fieldId = clientId + "_Input";
+		}
+		new AJAXRenderer().decode(context, dtp, fieldId);
 		new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
@@ -183,9 +188,15 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		
 		
 
+		String fieldId = dtp.getFieldId();
+		if (null == fieldId) {
+			fieldId = clientId + "_Input";
+		} else if (fieldId.equals(dtp.getId())) {
+			throw new FacesException("The field id must differ from the regular id.");
+		}
 		if (label != null) {
 			rw.startElement("label", dtp);
-			rw.writeAttribute("for", clientId + "_Input", "for"); // "input_" + clientId
+			rw.writeAttribute("for", fieldId, "for"); // "input_" + clientId
 			generateErrorAndRequiredClassForLabels(dtp, rw, clientId, dtp.getLabelStyleClass());
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
@@ -236,7 +247,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// input
 			rw.startElement("input", dtp);
 			rw.writeAttribute("type", "text", null);
-			rw.writeAttribute("id", clientId + "_Input", null);
+			rw.writeAttribute("id", fieldId, null);
 			rw.writeAttribute("name", clientId, null);
 			if (dtp.getTabindex()!=null) {
 				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
@@ -278,7 +289,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 			// write the input item
 			rw.startElement("input", dtp);
-			rw.writeAttribute("id", clientId + "_Input", null);
+			rw.writeAttribute("id", fieldId, null);
 			rw.writeAttribute("name", clientId, null);
 			rw.writeAttribute("type", "hidden", "type");
 			if (dtp.getTabindex()!=null) {
@@ -306,7 +317,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// input
 			rw.startElement("input", dtp);
 			rw.writeAttribute("type", "text", null);
-			rw.writeAttribute("id", clientId + "_Input", null);
+			rw.writeAttribute("id", fieldId, null);
 			rw.writeAttribute("name", clientId, null);
 			if (dtp.getTabindex()!=null) {
 				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
@@ -381,6 +392,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	private void encodeJS(FacesContext fc, ResponseWriter rw, DateTimePicker dtp, String divPrefix)
 	throws IOException {
 		String clientId = dtp.getClientId();
+		String fieldId = dtp.getFieldId();
+		if (null == fieldId) {
+			fieldId = clientId + "_Input";
+		} else if (fieldId.equals(dtp.getId())) {
+			throw new FacesException("The field id must differ from the regular id.");
+		}
 		String mode = dtp.getMode();
 
 		Object v = dtp.getSubmittedValue();
@@ -404,7 +421,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
 		boolean openOnClick= !"plain".equals(mode) && !"inline".equals(mode);
-		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(divPrefix + clientId);
+		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId);
 
 		String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
 			dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" : "";
@@ -452,12 +469,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 		if("inline".equals(mode)) {
 			rw.writeText("$('" + fullSelector + "').on('dp.change', function(e) { " +
-						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId + "_Input") + "').val( e.date.format(" + displayFormat + ") ); " +
+						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
-		if(dtp.isDisabled() && !"inline".equals(mode)) {
-			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
-		}
+//		if(dtp.isDisabled() && !"inline".equals(mode)) {
+//			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
+//		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null);
 	}

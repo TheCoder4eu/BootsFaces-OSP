@@ -37,6 +37,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		disabledDates,
 		display,
 		enabledDates,
+		fieldId,
 		fieldSize,
 		focusOnShow,
 		format,
@@ -324,6 +325,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setEnabledDates(String _enabledDates) {
 		getStateHelper().put(PropertyKeys.enabledDates, _enabledDates);
+	}
+
+	/**
+	 * Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getFieldId() {
+		return (String) getStateHelper().eval(PropertyKeys.fieldId);
+	}
+
+	/**
+	 * Unique id of the input field itself (as opposed to the id, which is belongs to the entire component, including the div surrounding the input field).  Useful for frameworks like JAAS, which require you to use a specific field id. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setFieldId(String _fieldId) {
+		getStateHelper().put(PropertyKeys.fieldId, _fieldId);
 	}
 
 	/**
