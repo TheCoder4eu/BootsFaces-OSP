@@ -459,7 +459,7 @@ public class CoreRenderer extends Renderer {
                 Converter converter = vh.getConverter();
                 if (converter == null) {
                     Class<?> valueType = val.getClass();
-                    if(valueType == String.class) {
+                    if(valueType == String.class && (null == fc.getApplication().createConverter(String.class))) {
                         return (String) val;
                     }
 
