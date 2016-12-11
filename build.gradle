@@ -20,6 +20,7 @@
 Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
+ext.BootsFacesReleaseStatus = props['RELEASE-STATUS'] //SNAPSHOT or RELEASE
 //Bootstrap
 ext.BootstrapVersion = props['bootstrap.version']
 //PatternFly
@@ -78,6 +79,14 @@ task showConfig {
       println "useBootClasspath="+useBootClasspath
       println "--------------------"
     }
+}
+showConfig.doFirst {
+  String configClassFile='src/main/java/net/bootsfaces/C.java'
+  String configClass = new File( configClassFile ).getText( 'UTF-8' )
+  configClass=(configClass =~ /BSFVERSION\s*\=\s*\"[v0-9\.]*\"/).replaceFirst('BSFVERSION="'+BootsFacesVersion+'"')
+  configClass=(configClass =~ /BSFRELEASE_STATUS\s*\=\s*\"\w*\"/).replaceFirst('BSFRELEASE_STATUS="'+BootsFacesReleaseStatus+'"')
+  //println configClass
+  new File( configClassFile ).write( configClass, 'UTF-8' )
 }
 
 defaultTasks 'showConfig', ':java6:defaultJar', ':java7:jar', ':java8:jar'
