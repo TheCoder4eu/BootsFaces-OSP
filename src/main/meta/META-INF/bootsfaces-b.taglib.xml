@@ -19397,6 +19397,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
+		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Text which is displayed if every option has been selected.]]></description>
 		  <name>all-selected-text</name>
 		  <required>false</required>
@@ -19877,20 +19883,80 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when input element loses focus and its value has been modified since gaining focus.]]></description>
+		  <description><![CDATA[AJAX event: A function which is triggered on the change event of the options. Note that the event is not triggered when selecting or deselecting options using the select and deselect methods provided by the plugin.]]></description>
 		  <name>onchange</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback called when the drop-down area is hidden.]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
+		  <name>onclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
+		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method.]]></description>
+		  <name>ondeselectall</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: A callback called after the dropdown has been closed.]]></description>
+		  <name>ondropdownhidden</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: A callback called when the dropdown is closed.]]></description>
 		  <name>ondropdownhide</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback called when the drop-down area is shown.]]></description>
+		  <description><![CDATA[AJAX event: A callback called when the dropdown is shown.]]></description>
 		  <name>ondropdownshow</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: A callback called after the dropdown has been shown.]]></description>
+		  <name>ondropdownshown</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: A function which is triggered when the multiselect is finished initializing.]]></description>
+		  <name>oninitialized</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method.]]></description>
+		  <name>onselectall</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20083,6 +20149,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
+		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

@@ -32,6 +32,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlOutputText;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -116,11 +117,13 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			}
 			menu.setSubmittedValue(result);
 			menu.setValid(true);
+			new AJAXRenderer().decode(context, component, clientId+"Inner");
 			return;
 		}
 
 		menu.setSubmittedValue(null);
 		menu.setValid(true);
+		new AJAXRenderer().decode(context, component, clientId+"Inner");
 	}
 
 	/** Generates the HTML code for this component. */
@@ -240,21 +243,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			options += "," + "dropRight:" + "true";
 		}
 
-		String onChange = menu.getOnchange();
-		if (onChange != null) {
-			options += "," + "onChange:" + onChange;
-		}
-
-		String onDropdownShow = menu.getOndropdownshow();
-		if (onDropdownShow != null) {
-			options += "," + "onDropdownShow:" + onDropdownShow;
-		}
-
-		String onDropdownHide = menu.getOndropdownhide();
-		if (onDropdownHide != null) {
-			options += "," + "onDropdownHide:" + onDropdownHide;
-		}
-
 		String buttonClass = menu.getButtonClass();
 		if (buttonClass != null) {
 			options += "," + "buttonClass:'" + buttonClass + "'";
@@ -295,14 +283,40 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (buttonWidth > 0) {
 			options += "," + "buttonWidth:'" + buttonWidth + "px'";
 		}
+		
+		for (String event: menu.getJQueryEvents().keySet()) {
+			String optionalParameterList="event";
+			if (menu.getJQueryEventParameterLists()!=null) {
+				if (menu.getJQueryEventParameterLists().get(event) != null) {
+					optionalParameterList = menu.getJQueryEventParameterLists().get(event);
+				}
+			}
+			StringBuffer code = new StringBuffer();
+			AJAXRenderer.generateAJAXCallForASingleEvent(context, menu,
+					null, code, null, null, true, 
+					event, null, optionalParameterList);
+			if (code.length()>0) {
+				String result = menu.getJQueryEvents().get(event);
+				result += ":";
+				String realCode = code.toString().replace(".callAjax(this", ".callAjax(document.getElementById('" + clientId + "Inner')" );
+				if (!realCode.startsWith("function")) {
+					result += "function(" + optionalParameterList + ")";
+					result += "{";
+					result += realCode;
+					result += "}";
+				} else {  // backward compatibility to BootsFaces 1.0.0 and earlier
+					result += realCode;
+				}
+				options += "," + result;
+			}
+		}
+
 
 		if (options.length() > 0) {
 			options = "{" + options.substring(1, options.length()) + "}";
 		}
-
 		String js = "$(document).ready(function() {$('#" + clientId + "Inner').multiselect(" + options + ");});\n";
 		context.getResponseWriter().write("<script type='text/javascript'>\r\n" + js + "\r\n</script>");
-
 	}
 
 	/**
@@ -476,6 +490,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			SelectMultiMenu menu) throws IOException {
 		renderSelectTag(rw, menu);
 		renderSelectTagAttributes(rw, clientId, name, menu);
+        AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw, false);
 		Object selectedOption = getValue2Render(context, menu);
 		String[] optionList;
 		if (selectedOption == null) {

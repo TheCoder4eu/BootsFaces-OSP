@@ -185,7 +185,7 @@ public class AJAXRenderer extends CoreRenderer {
 				if (null != jQueryEvents)
 					if (jQueryEvents.containsKey(keyClientBehavior))
 						continue;
-				generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, specialEvent,
+				generatedAJAXCall |= generateAJAXCallForASingleEvent(context, component, rw, null, specialEvent,
 						specialEventHandler, isJQueryCallback, keyClientBehavior, null, null);
 			}
 		}
@@ -292,7 +292,7 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	public static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
+			ResponseWriter rw, StringBuffer code, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
 			String keyClientBehavior, StringBuilder generatedJSCode, String optionalParameterList) throws IOException {
 		boolean generatedAJAXCall = false;
 		String jsCallback = "";
@@ -311,8 +311,13 @@ public class AJAXRenderer extends CoreRenderer {
 									jsCallback = jsCallback + ";javascript:" + specialEventHandler;
 							}
 							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior, optionalParameterList);
+							if (null != code) {
+								code.append(jsCallback);
+							}
 							if ("dragstart".equals(keyClientBehavior)) {
+								if (null != rw) {
 								rw.writeAttribute("draggable", "true", "draggable");
+								}
 							}
 							break;
 						}
@@ -358,7 +363,12 @@ public class AJAXRenderer extends CoreRenderer {
 				if (component instanceof CommandButton)
 					if (generatedAJAXCall && "click".equals(keyClientBehavior))
 						script += ";return false;";
-				rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
+				if (null != rw) {
+					rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
+				}
+				if (null != code) {
+					code.append(jsCallback + script);
+				}
 			}
 		}
 		if (null != generatedJSCode) {
@@ -640,7 +650,7 @@ public class AJAXRenderer extends CoreRenderer {
 				if (null != ajaxComponent.getJQueryEventParameterListsForAjax().get(event))
 					parameterList = ajaxComponent.getJQueryEventParameterListsForAjax().get(event);
 			}			
-			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, event,
+			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, null, event,
 			additionalEventHandler, true, event, code, parameterList);
 			if (code.length() > 0) {
 				rw.startElement("script", component);
@@ -662,7 +672,7 @@ public class AJAXRenderer extends CoreRenderer {
 		StringBuilder code = new StringBuilder();
 		String additionalEventHandler = null;
 
-		generateAJAXCallForASingleEvent(context, component, rw, event, additionalEventHandler, true, event, code, null);
+		generateAJAXCallForASingleEvent(context, component, rw, null, event, additionalEventHandler, true, event, code, null);
 		return code.toString();
 	}
 }

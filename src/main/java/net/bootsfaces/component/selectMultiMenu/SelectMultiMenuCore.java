@@ -25,6 +25,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 
 	protected enum PropertyKeys {
 		accesskey,
+		ajax,
 		allSelectedText,
 		alt,
 		binding,
@@ -72,8 +73,18 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 		offsetSm,
 		offsetXs,
 		onchange,
+		onclick,
+		oncomplete,
+		ondeselectall,
+		ondropdownhidden,
 		ondropdownhide,
 		ondropdownshow,
+		ondropdownshown,
+		onerror,
+		oninitialized,
+		onselectall,
+		onsuccess,
+		process,
 		radiobuttons,
 		readonly,
 		renderLabel,
@@ -94,6 +105,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 		tooltipDelayHide,
 		tooltipDelayShow,
 		tooltipPosition,
+		update,
 		visible;
 		String toString;
 
@@ -123,6 +135,22 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	 */
 	public void setAccesskey(String _accesskey) {
 		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+	}
+
+	/**
+	 * Whether the Button submits the form with AJAX. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+	}
+
+	/**
+	 * Whether the Button submits the form with AJAX. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
 	}
 
 	/**
@@ -862,7 +890,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
+	 * AJAX event: A function which is triggered on the change event of the options. Note that the event is not triggered when selecting or deselecting options using the select and deselect methods provided by the plugin. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnchange() {
@@ -870,7 +898,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback to execute when input element loses focus and its value has been modified since gaining focus. <P>
+	 * AJAX event: A function which is triggered on the change event of the options. Note that the event is not triggered when selecting or deselecting options using the select and deselect methods provided by the plugin. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnchange(String _onchange) {
@@ -878,7 +906,71 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback called when the drop-down area is hidden. <P>
+	 * The onclick attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnclick() {
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
+	}
+
+	/**
+	 * The onclick attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOncomplete() {
+		return (String) getStateHelper().eval(PropertyKeys.oncomplete);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOncomplete(String _oncomplete) {
+		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndeselectall() {
+		return (String) getStateHelper().eval(PropertyKeys.ondeselectall);
+	}
+
+	/**
+	 * AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndeselectall(String _ondeselectall) {
+		getStateHelper().put(PropertyKeys.ondeselectall, _ondeselectall);
+	}
+
+	/**
+	 * AJAX event: A callback called after the dropdown has been closed. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndropdownhidden() {
+		return (String) getStateHelper().eval(PropertyKeys.ondropdownhidden);
+	}
+
+	/**
+	 * AJAX event: A callback called after the dropdown has been closed. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndropdownhidden(String _ondropdownhidden) {
+		getStateHelper().put(PropertyKeys.ondropdownhidden, _ondropdownhidden);
+	}
+
+	/**
+	 * AJAX event: A callback called when the dropdown is closed. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOndropdownhide() {
@@ -886,7 +978,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback called when the drop-down area is hidden. <P>
+	 * AJAX event: A callback called when the dropdown is closed. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndropdownhide(String _ondropdownhide) {
@@ -894,7 +986,7 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback called when the drop-down area is shown. <P>
+	 * AJAX event: A callback called when the dropdown is shown. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOndropdownshow() {
@@ -902,11 +994,107 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	}
 
 	/**
-	 * Client side callback called when the drop-down area is shown. <P>
+	 * AJAX event: A callback called when the dropdown is shown. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOndropdownshow(String _ondropdownshow) {
 		getStateHelper().put(PropertyKeys.ondropdownshow, _ondropdownshow);
+	}
+
+	/**
+	 * AJAX event: A callback called after the dropdown has been shown. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOndropdownshown() {
+		return (String) getStateHelper().eval(PropertyKeys.ondropdownshown);
+	}
+
+	/**
+	 * AJAX event: A callback called after the dropdown has been shown. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOndropdownshown(String _ondropdownshown) {
+		getStateHelper().put(PropertyKeys.ondropdownshown, _ondropdownshown);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
+	}
+
+	/**
+	 * AJAX event: A function which is triggered when the multiselect is finished initializing. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOninitialized() {
+		return (String) getStateHelper().eval(PropertyKeys.oninitialized);
+	}
+
+	/**
+	 * AJAX event: A function which is triggered when the multiselect is finished initializing. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOninitialized(String _oninitialized) {
+		getStateHelper().put(PropertyKeys.oninitialized, _oninitialized);
+	}
+
+	/**
+	 * AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnselectall() {
+		return (String) getStateHelper().eval(PropertyKeys.onselectall);
+	}
+
+	/**
+	 * AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnselectall(String _onselectall) {
+		getStateHelper().put(PropertyKeys.onselectall, _onselectall);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getProcess() {
+		return (String) getStateHelper().eval(PropertyKeys.process);
+	}
+
+	/**
+	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setProcess(String _process) {
+		getStateHelper().put(PropertyKeys.process, _process);
 	}
 
 	/**
@@ -1228,6 +1416,22 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
 		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
+
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getUpdate() {
+		return (String) getStateHelper().eval(PropertyKeys.update);
+	}
+
+	/**
+	 * Component(s) to be updated with ajax. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setUpdate(String _update) {
+		getStateHelper().put(PropertyKeys.update, _update);
 	}
 
 	/**

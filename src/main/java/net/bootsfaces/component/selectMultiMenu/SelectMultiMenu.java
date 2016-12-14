@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.selectMultiMenu;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -35,7 +42,8 @@ import net.bootsfaces.utils.BsfUtils;
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 
 @FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
-public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IResponsiveLabel {
+public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IResponsiveLabel,
+                                                                    net.bootsfaces.component.ajax.IAJAXComponent{
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
 
@@ -58,5 +66,44 @@ public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfac
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+
+	@Override
+	public Map<String, String> getJQueryEvents() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("selectall", "onSelectAll");
+		result.put("dropdownshow", "onDropdownShow");
+		result.put("dropdownhidden", "onDropdownHidden");
+		result.put("selectall", "onSelectAll");
+		result.put("change", "onChange");
+		result.put("dropdownhide", "onDropdownHide");
+		result.put("deselectall", "onDeselectAll");
+		result.put("dropdownshown", "onDropdownShown");
+		result.put("unitialized", "onInitialized");
+		return result;
+	}
+
+	@Override
+	public Map<String, String> getJQueryEventParameterLists() {
+		Map<String, String> result = new HashMap<String, String>();
+		result.put("change", "option, checked, select");
+		return result;
+	}
+
+	@Override
+	public Map<String, String> getJQueryEventParameterListsForAjax() {
+		return null;
+	}
+	
+	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
+			new ArrayList<String>());
+
+	public Collection<String> getEventNames() {
+		return EVENT_NAMES;
+	}
+
+	public String getDefaultEventName() {
+		return "valueChange";
 	}
 }

@@ -1855,9 +1855,6 @@ widget selectMultiMenu
     radiobuttons        Boolean default "false"                            "Set to true to display radiobuttons instead of checkboxes. Of course, in this case you can only select one option, so the widget's name is sort of a misnomer."
     disable-if-empty    Boolean default "false"                            "If true, the button is disabled if no options are given."
     dropRight           Boolean default "false"                            "Moves the drop-down-area from the left hand side to the right hand side."
-    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    ondropdownshow                                                         "Client side callback called when the drop-down area is shown."
-    ondropdownhide                                                         "Client side callback called when the drop-down area is hidden."
     buttonClass         String                                             "The CSS class of the button."
     style-class                                                            "Style class of the input element. Is translated to the buttonContainer attribute."
     button-width        Integer                                            "The width of the multiselect button may be fixed using this option."
@@ -1873,6 +1870,17 @@ widget selectMultiMenu
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Value."
+ 
+    onselectall                                                            "AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method."
+    ondropdownshow                                                         "AJAX event: A callback called when the dropdown is shown."
+    ondropdownhidden                                                       "AJAX event: A callback called after the dropdown has been closed."
+    onchange                                                               "AJAX event: A function which is triggered on the change event of the options. Note that the event is not triggered when selecting or deselecting options using the select and deselect methods provided by the plugin."
+    ondropdownhide                                                         "AJAX event: A callback called when the dropdown is closed."
+    ondeselectall                                                          "AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method."
+    ondropdownshown                                                        "AJAX event: A callback called after the dropdown has been shown."
+    oninitialized                                                          "AJAX event: A function which is triggered when the multiselect is finished initializing."
+  
+    +ajax
     +tooltip
     +responsive
     +responsiveLabel
