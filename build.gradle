@@ -87,6 +87,12 @@ showConfig.doFirst {
   configClass=(configClass =~ /BSFRELEASE_STATUS\s*\=\s*\"\w*\"/).replaceFirst('BSFRELEASE_STATUS="'+BootsFacesReleaseStatus+'"')
   //println configClass
   new File( configClassFile ).write( configClass, 'UTF-8' )
+
+  //Patches version in pom file.
+  def pomVersion = BootsFacesReleaseStatus == 'SNAPSHOT' ? BootsFacesVersion+'-SNAPSHOT' : BootsFacesVersion
+  String projectPomText = new File( 'pom.xml' ).getText( 'UTF-8' )
+  projectPomText=(projectPomText =~ /<version>[^<]+<\/version>/).replaceFirst('<version>'+pomVersion+'</version>')
+  new File( 'pom.xml' ).write( projectPomText, 'UTF-8' )
 }
 
 defaultTasks 'showConfig', ':java6:defaultJar', ':java7:jar', ':java8:jar'
