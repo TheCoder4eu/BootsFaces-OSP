@@ -132,38 +132,70 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("dir", tabView.getDir(), "dir");
 
 		final List<UIComponent> tabs = getTabs(tabView);
+		
+		int activeIndex = forceActiveTabToBeEnabled(tabView, tabs);
 
 		if("bottom".equalsIgnoreCase(tabPosition)) {
-			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
-			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
+			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
 		} else if("left".equalsIgnoreCase(tabPosition)) {
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-2", "class");
-			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
 			writer.endElement("div");
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-10", "class");
-			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
 			writer.endElement("div");
 			drawClearDiv(writer, tabView);
 		} else if("right".equalsIgnoreCase(tabPosition)) {
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-10", "class");
-			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
 			writer.endElement("div");
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-2", "class");
-			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
+			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
 			writer.endElement("div");
 			drawClearDiv(writer, tabView);
 		} else {
-			encodeTabLinks(context, writer, tabView, tabView.getActiveIndex(), tabs, clientId, hiddenInputFieldID);
-			encodeTabContentPanes(context, writer, tabView, tabView.getActiveIndex(), tabs);
+			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
+			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
 		}
 
 		writer.endElement("div");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer, "#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
 		Tooltip.activateTooltips(context, tabView);
+	}
+
+	private int forceActiveTabToBeEnabled(TabView tabView, final List<UIComponent> tabs) {
+		int activeIndex = tabView.getActiveIndex();
+		if (tabView.isDisabled()) {
+			activeIndex=Integer.MAX_VALUE;
+			tabView.setActiveIndex(activeIndex);
+		}
+		if (activeIndex<0) {
+			activeIndex=tabs.size()+activeIndex; // -2 is the second tab from the right hand side
+		}
+		if (activeIndex>=0 && activeIndex<Integer.MAX_VALUE) {
+			if (activeIndex >= tabs.size() ) {
+				activeIndex=tabs.size()-1;
+			}
+			int newActiveIndex = activeIndex;
+			while (((Tab)tabs.get(newActiveIndex)).isDisabled()) {
+				newActiveIndex++;
+				if (newActiveIndex >= tabs.size()) {
+					newActiveIndex=0;
+				}
+				if (newActiveIndex==activeIndex) {
+					newActiveIndex=Integer.MAX_VALUE;
+					break;
+				}
+			}
+			activeIndex=newActiveIndex;
+			tabView.setActiveIndex(activeIndex);
+		}
+		return activeIndex;
 	}
 
 	/**
@@ -279,7 +311,7 @@ public class TabViewRenderer extends CoreRenderer {
 		if (null != tabs) {
 			for (int index = 0; index < tabs.size(); index++) {
 				if (tabs.get(index).isRendered()) {
-					encodeTabPane(context, writer, tabs.get(index), index == currentlyActiveIndex);
+					encodeTabPane(context, writer, tabs.get(index), (index == currentlyActiveIndex) && (!tabView.isDisabled()));
 				}
 			}
 		}
@@ -311,8 +343,10 @@ public class TabViewRenderer extends CoreRenderer {
 		if (tab.getDir()!=null)
 			writer.writeAttribute("dir", tab.getDir(), "dir");
 		String classes = "tab-pane";
-		if (isActive) {
-			classes += " active";
+		if (!tab.isDisabled()) {
+			if (isActive) {
+				classes += " active";
+			}
 		}
 		if (tab.getStyleClass() != null) {
 			classes += " ";
@@ -389,7 +423,7 @@ public class TabViewRenderer extends CoreRenderer {
 			writer.writeAttribute("class", classes.trim(), "class");
 		}
 		if (tab.isDisabled() || disabled) {
-			writer.writeAttribute("onclick", "debugger;event.preventDefault(); return false;", null);
+			writer.writeAttribute("onclick", "event.preventDefault(); return false;", null);
 		}
 
 		if (tab.getStyle() != null) {
