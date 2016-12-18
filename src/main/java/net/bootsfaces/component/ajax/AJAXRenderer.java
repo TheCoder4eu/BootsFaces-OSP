@@ -632,6 +632,22 @@ public class AJAXRenderer extends CoreRenderer {
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
 			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers) throws IOException {
+		generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryExpressionOfTargetElement, additionalEventHandlers, false);
+	}
+	
+	/**
+	 * Registers a callback with jQuery.
+	 *
+	 * @param context
+	 * @param component
+	 * @param rw
+	 * @param jQueryExpressionOfTargetElement
+	 * @param additionalEventHandlers
+	 * @param attachOnReady
+	 * @throws IOException
+	 */
+	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
+			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers, boolean attachOnReady) throws IOException {
 		if (jQueryExpressionOfTargetElement.contains(":")) {
 			if (!jQueryExpressionOfTargetElement.contains("\\\\:")) { // avoid escaping twice
 				jQueryExpressionOfTargetElement=jQueryExpressionOfTargetElement.replace(":", "\\\\:");
@@ -653,7 +669,7 @@ public class AJAXRenderer extends CoreRenderer {
 			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, null, event,
 			additionalEventHandler, true, event, code, parameterList);
 			if (code.length() > 0) {
-				rw.startElement("script", component);
+				rw.startElement("script", component);				
 				parameterList = "event";
 				if (null != ajaxComponent.getJQueryEventParameterLists()) {
 					if (null != ajaxComponent.getJQueryEventParameterLists().get(event))
@@ -661,6 +677,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 				String js = "$('" + jQueryExpressionOfTargetElement + "').on('" + ajaxComponent.getJQueryEvents().get(event)
 						+ "', function(" + parameterList + "){" + code.toString() + "});";
+				if (attachOnReady) js = "$(function() { " + js + " })";
 				rw.writeText(js, null);
 				rw.endElement("script");
 			}
