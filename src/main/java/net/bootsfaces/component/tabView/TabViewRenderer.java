@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.el.ELException;
+import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -33,6 +35,7 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:tabView /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tabView.TabView")
@@ -41,7 +44,7 @@ public class TabViewRenderer extends CoreRenderer {
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// TODO Auto-generated method stub
-		//super.encodeChildren(context, component);
+		// super.encodeChildren(context, component);
 	}
 
 	/**
@@ -79,8 +82,21 @@ public class TabViewRenderer extends CoreRenderer {
 				if (Integer.valueOf(newIndexValue) != tabView.getActiveIndex()) {
 					int newIndex = Integer.valueOf(newIndexValue);
 					if (newIndex < tabView.getChildCount()) {
-						if (!(((Tab)tabView.getChildren().get(newIndex)).isDisabled())) {
-							tabView.setActiveIndex(newIndex);
+						if (!(((Tab) tabView.getChildren().get(newIndex)).isDisabled())) {
+							
+							ValueExpression ve = component.getValueExpression("activeIndex");
+							if (ve != null) {
+								try {
+									ve.setValue(context.getELContext(), newIndex);
+								} catch (ELException e) {
+									tabView.setActiveIndex(newIndex);
+								} catch (Exception e) {
+									tabView.setActiveIndex(newIndex);
+								}
+							} else {
+								tabView.setActiveIndex(newIndex);
+							}
+						
 						}
 					}
 				}
@@ -102,7 +118,8 @@ public class TabViewRenderer extends CoreRenderer {
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
-		assertComponentIsInsideForm(component, "The initially opened tab is opened after an post-back request, regardless which tab has been previously activated by the user");
+		assertComponentIsInsideForm(component,
+				"The initially opened tab is opened after an post-back request, regardless which tab has been previously activated by the user");
 		if (!component.isRendered()) {
 			return;
 		}
@@ -124,7 +141,8 @@ public class TabViewRenderer extends CoreRenderer {
 		// set tab directions
 		final String tabPosition = tabView.getTabPosition();
 		String wrapperClass = "tab-panel";
-		if("bottom".equalsIgnoreCase(tabPosition)) wrapperClass += " tabs-below";
+		if ("bottom".equalsIgnoreCase(tabPosition))
+			wrapperClass += " tabs-below";
 
 		writer.startElement("div", tabView);
 		writer.writeAttribute("class", wrapperClass, "class");
@@ -132,13 +150,13 @@ public class TabViewRenderer extends CoreRenderer {
 		writer.writeAttribute("dir", tabView.getDir(), "dir");
 
 		final List<UIComponent> tabs = getTabs(tabView);
-		
+
 		int activeIndex = forceActiveTabToBeEnabled(tabView, tabs);
 
-		if("bottom".equalsIgnoreCase(tabPosition)) {
+		if ("bottom".equalsIgnoreCase(tabPosition)) {
 			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
 			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
-		} else if("left".equalsIgnoreCase(tabPosition)) {
+		} else if ("left".equalsIgnoreCase(tabPosition)) {
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-2", "class");
 			encodeTabLinks(context, writer, tabView, activeIndex, tabs, clientId, hiddenInputFieldID);
@@ -148,7 +166,7 @@ public class TabViewRenderer extends CoreRenderer {
 			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
 			writer.endElement("div");
 			drawClearDiv(writer, tabView);
-		} else if("right".equalsIgnoreCase(tabPosition)) {
+		} else if ("right".equalsIgnoreCase(tabPosition)) {
 			writer.startElement("div", component);
 			writer.writeAttribute("class", "col-md-10", "class");
 			encodeTabContentPanes(context, writer, tabView, activeIndex, tabs);
@@ -164,48 +182,57 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 
 		writer.endElement("div");
-		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer, "#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer,
+				"#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
 		Tooltip.activateTooltips(context, tabView);
 	}
 
+	/**
+	 * returns the currently active tab. If the attribute getActiveIndex() points to an inactive tab, the next active tag is returned.
+	 * Important: this method must not call setActiveIndex(), because this means the you can't control the tabs from a Java bean.
+	 * Setting an attributes overrides EL expressions defined by the JSF page.
+	 * @param tabView
+	 * @param tabs
+	 * @return Integer.MAX_VALUE if there's no active tab.
+	 */
 	private int forceActiveTabToBeEnabled(TabView tabView, final List<UIComponent> tabs) {
 		int activeIndex = tabView.getActiveIndex();
 		if (tabView.isDisabled()) {
-			activeIndex=Integer.MAX_VALUE;
-			tabView.setActiveIndex(activeIndex);
+			activeIndex = Integer.MAX_VALUE;
 		}
-		if (activeIndex<0) {
-			activeIndex=tabs.size()+activeIndex; // -2 is the second tab from the right hand side
+		if (activeIndex < 0) {
+			activeIndex = tabs.size() + activeIndex; // -2 is the second tab
+														// from the right hand
+														// side
 		}
-		if (activeIndex>=0 && activeIndex<Integer.MAX_VALUE) {
-			if (activeIndex >= tabs.size() ) {
-				activeIndex=tabs.size()-1;
+		if (activeIndex >= 0 && activeIndex < Integer.MAX_VALUE) {
+			if (activeIndex >= tabs.size()) {
+				activeIndex = tabs.size() - 1;
 			}
 			int newActiveIndex = activeIndex;
-			while (((Tab)tabs.get(newActiveIndex)).isDisabled()) {
+			while (((Tab) tabs.get(newActiveIndex)).isDisabled()) {
 				newActiveIndex++;
 				if (newActiveIndex >= tabs.size()) {
-					newActiveIndex=0;
+					newActiveIndex = 0;
 				}
-				if (newActiveIndex==activeIndex) {
-					newActiveIndex=Integer.MAX_VALUE;
+				if (newActiveIndex == activeIndex) {
+					newActiveIndex = Integer.MAX_VALUE;
 					break;
 				}
 			}
-			activeIndex=newActiveIndex;
-			tabView.setActiveIndex(activeIndex);
+			activeIndex = newActiveIndex;
 		}
 		return activeIndex;
 	}
 
 	/**
 	 * Draw a clear div
+	 * 
 	 * @param writer
 	 * @param tabView
 	 * @throws IOException
 	 */
-	private static void drawClearDiv(ResponseWriter writer, UIComponent tabView)
-	throws IOException {
+	private static void drawClearDiv(ResponseWriter writer, UIComponent tabView) throws IOException {
 		writer.startElement("div", tabView);
 		writer.writeAttribute("style", "clear:both;", "style");
 		writer.endElement("div");
@@ -225,12 +252,12 @@ public class TabViewRenderer extends CoreRenderer {
 	 */
 	private static void encodeTabLinks(FacesContext context, ResponseWriter writer, TabView tabView,
 			int currentlyActiveIndex, List<UIComponent> tabs, String clientId, String hiddenInputFieldID)
-	throws IOException {
+			throws IOException {
 		writer.startElement("ul", tabView);
 		writer.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, tabView, writer);
 		String classes = "nav ";
-		if("left".equalsIgnoreCase(tabView.getTabPosition()) || "right".equalsIgnoreCase(tabView.getTabPosition())) {
+		if ("left".equalsIgnoreCase(tabView.getTabPosition()) || "right".equalsIgnoreCase(tabView.getTabPosition())) {
 			classes += " nav-pills nav-stacked";
 		} else {
 			classes = classes + (tabView.isPills() ? " nav-pills" : " nav-tabs");
@@ -311,7 +338,8 @@ public class TabViewRenderer extends CoreRenderer {
 		if (null != tabs) {
 			for (int index = 0; index < tabs.size(); index++) {
 				if (tabs.get(index).isRendered()) {
-					encodeTabPane(context, writer, tabs.get(index), (index == currentlyActiveIndex) && (!tabView.isDisabled()));
+					encodeTabPane(context, writer, tabs.get(index),
+							(index == currentlyActiveIndex) && (!tabView.isDisabled()));
 				}
 			}
 		}
@@ -339,8 +367,8 @@ public class TabViewRenderer extends CoreRenderer {
 			throws IOException {
 		Tab tab = (Tab) child;
 		writer.startElement("div", tab);
-		writer.writeAttribute("id", tab.getClientId().replace(":", "_")+"_pane", "id");
-		if (tab.getDir()!=null)
+		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_pane", "id");
+		if (tab.getDir() != null)
 			writer.writeAttribute("dir", tab.getDir(), "dir");
 		String classes = "tab-pane";
 		if (!tab.isDisabled()) {
@@ -377,7 +405,8 @@ public class TabViewRenderer extends CoreRenderer {
 			int currentlyActiveIndex, String hiddenInputFieldID, boolean disabled) throws IOException {
 		if (null != children) {
 			for (int index = 0; index < children.size(); index++) {
-				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID, index, disabled);
+				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID,
+						index, disabled);
 			}
 		}
 	}
@@ -454,9 +483,10 @@ public class TabViewRenderer extends CoreRenderer {
 			writer.writeAttribute("onclick", "event.preventDefault(); return false;", null);
 		} else {
 			writer.writeAttribute("data-toggle", "tab", "data-toggle");
-			writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_")+"_pane", "href");
-			String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex) + "';";
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick,false, true);
+			writer.writeAttribute("href", "#" + tab.getClientId().replace(":", "_") + "_pane", "href");
+			String onclick = "document.getElementById('" + hiddenInputFieldID + "').value='" + String.valueOf(tabindex)
+					+ "';";
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick, false, true);
 		}
 		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
 
