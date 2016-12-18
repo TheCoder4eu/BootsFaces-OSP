@@ -220,6 +220,16 @@ public class TabViewRenderer extends CoreRenderer {
 					break;
 				}
 			}
+			if (activeIndex != newActiveIndex) {
+				ValueExpression ve = tabView.getValueExpression("activeIndex");
+				if (ve != null) {
+					try {
+						ve.setValue(FacesContext.getCurrentInstance().getELContext(), newActiveIndex);
+					} catch (ELException e) {
+					} catch (Exception e) {
+					}
+				}
+			}
 			activeIndex = newActiveIndex;
 		}
 		return activeIndex;
