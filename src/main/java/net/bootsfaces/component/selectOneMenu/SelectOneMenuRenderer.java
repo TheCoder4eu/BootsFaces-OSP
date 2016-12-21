@@ -414,7 +414,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (isDisabled)
             rw.writeAttribute("disabled", "disabled", "disabled");
 
-        if (isEscape)
+        if (isEscape && !isItemLabelBlank)
         	rw.writeText(itemLabel, null);
         else
         	rw.write(itemLabel);
