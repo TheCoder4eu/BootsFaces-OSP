@@ -302,7 +302,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         final String description = selectItem.getDescription();
         final Object itemValue = selectItem.getValue();
 
-        renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled());
+        renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled(), selectItem.isEscape());
     }
 
     private Converter findImplicitConverter(FacesContext context, UIComponent component) {
@@ -376,7 +376,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     }
 
     private void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, int index, String itemLabel,
-            final String description, final Object itemValue, boolean isDisabled) throws IOException {
+            final String description, final Object itemValue, boolean isDisabled, boolean isEscape) throws IOException {
         Object submittedValue = menu.getSubmittedValue();
         Object selectedOption;
         Object optionValue;
@@ -414,8 +414,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (isDisabled)
             rw.writeAttribute("disabled", "disabled", "disabled");
 
-        rw.write(itemLabel);
-
+        if (isEscape)
+        	rw.writeText(itemLabel, null);
+        else
+        	rw.write(itemLabel);
+        
         rw.endElement("option");
     }
 
