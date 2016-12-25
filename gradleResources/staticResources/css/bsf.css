@@ -44,7 +44,7 @@
         font-weight: bold;
         min-height: auto;
 }
-.ui-widget {
+.ui-datepicker-inline {
     font-size: 0.85em;
 }
 div > .ui-datepicker-trigger {

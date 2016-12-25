@@ -304,13 +304,13 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 			dpId = clientId + "_" + "div";
 			rw.startElement("div", this);
 			rw.writeAttribute("id", dpId, null);
-			rw.endElement("div");
 			if (getStyleClass() != null) {
-				rw.writeAttribute("styleClass", getStyleClass(), "styleClass");
+				rw.writeAttribute("class", getStyleClass(), "styleClass");
 			}
 			if (getStyle() != null) {
 				rw.writeAttribute("style", getStyle(), "style");
 			}
+			rw.endElement("div");
 		} else { // popup
 			dpId = clientId + "_input";
 
