@@ -142,7 +142,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
                 (appendingAddOnFacet != null), menu);
 
         addPrependingAddOnToInputGroup(context, rw, prependingAddOnFacet, (prependingAddOnFacet != null), menu);
-        renderSelectTag(context, rw, clientId, menu);
+        renderSelectTag(context, rw, clientId, menu, outerClientId);
         addAppendingAddOnToInputGroup(context, rw, appendingAddOnFacet, (appendingAddOnFacet != null), menu);
 
         closeInputGroupForAddOn(rw, hasAddon);
@@ -255,10 +255,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     }
 
     /** Renders the select tag. */
-    protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectOneMenu menu)
+    protected void renderSelectTag(FacesContext context, ResponseWriter rw, String clientId, SelectOneMenu menu, String outerClientId)
             throws IOException {
         renderSelectTag(rw, menu);
-        renderSelectTagAttributes(rw, clientId, menu);
+        renderSelectTagAttributes(rw, clientId, menu, outerClientId);
         renderOptions(context, rw, menu);
 
         renderInputTagEnd(rw);
@@ -444,7 +444,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      * @throws IOException
      *             may be thrown by the response writer
      */
-    protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectOneMenu menu)
+    protected void renderSelectTagAttributes(ResponseWriter rw, String clientId, SelectOneMenu menu, String outerClientId)
             throws IOException {
         rw.writeAttribute("id", clientId, null);
         //Tooltip.generateTooltip(FacesContext.getCurrentInstance(), menu, rw);
@@ -463,7 +463,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (cssClass != null) {
             sb.append(" ").append(cssClass);
         }
-        sb.append(" ").append(getErrorAndRequiredClass(menu, clientId));
+        sb.append(" ").append(getErrorAndRequiredClass(menu, outerClientId));
 
         s = sb.toString().trim();
         if (s != null && s.length() > 0) {
