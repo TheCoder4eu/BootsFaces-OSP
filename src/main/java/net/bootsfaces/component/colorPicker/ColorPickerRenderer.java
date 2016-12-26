@@ -36,7 +36,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		decodeBehaviors(context, colorPicker);
 
 		String clientId = colorPicker.getClientId(context);
-		String name = clientId;
+		String name = "input_" + clientId;
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 
 		if (submittedValue != null) {
