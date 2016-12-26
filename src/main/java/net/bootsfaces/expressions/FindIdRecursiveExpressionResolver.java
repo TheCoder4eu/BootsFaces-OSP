@@ -20,9 +20,9 @@ public class FindIdRecursiveExpressionResolver implements AbstractExpressionReso
 				searchRoot = searchRoot.getParent();
 			}
 				
-			UIComponent c = findIdRecursively(searchRoot, parameters[0]);
+			List<UIComponent> c = findIdsRecursively(searchRoot, parameters[0]);
 			if (null != c) {
-				result.add(c);
+				result.addAll(c);
 			}
 		}
 		if (result.size() > 0) {
@@ -32,18 +32,25 @@ public class FindIdRecursiveExpressionResolver implements AbstractExpressionReso
 		throw new FacesException("Invalid search expression - couldn't find id " + currentId + ". Complete search expression: " + originalExpression);
 	}
 
-	public UIComponent findIdRecursively(UIComponent parent, String id) {
+	public List<UIComponent> findIdsRecursively(UIComponent parent, String id) {
 		if (null==parent)
 			return null;
+		List<UIComponent> result = null;
 		if (id.equals(parent.getId())) {
-			return parent;
+			result = new ArrayList<UIComponent>();
+			result.add(parent);
 		}
 		Iterator<UIComponent> facetsAndChildren = parent.getFacetsAndChildren();
 		while (facetsAndChildren.hasNext()) {
 			UIComponent child = facetsAndChildren.next();
-			UIComponent result = findIdRecursively(child, id);
-			if (null != result) return result;
+			List<UIComponent> childresult = findIdsRecursively(child, id);
+			if (null != childresult && (!childresult.isEmpty())) {
+				if (null == result) {
+					result = new ArrayList<UIComponent>();
+				}
+				result.addAll(childresult);
+			}
 		}
-		return null;
+		return result;
 	}
 }
