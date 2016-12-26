@@ -117,13 +117,13 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			}
 			menu.setSubmittedValue(result);
 			menu.setValid(true);
-			new AJAXRenderer().decode(context, component, clientId+"Inner");
+			new AJAXRenderer().decode(context, component, clientId);
 			return;
 		}
 
-		menu.setSubmittedValue(null);
+		menu.setSubmittedValue("");
 		menu.setValid(true);
-		new AJAXRenderer().decode(context, component, clientId+"Inner");
+		new AJAXRenderer().decode(context, component, clientId);
 	}
 
 	/** Generates the HTML code for this component. */
