@@ -421,7 +421,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
 		boolean openOnClick= !"plain".equals(mode) && !"inline".equals(mode);
-		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId);
+		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
 
 		String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
 			dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" : "";
