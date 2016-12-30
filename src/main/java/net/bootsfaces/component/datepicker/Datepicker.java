@@ -341,7 +341,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId + "_input", null);
-		if (getTabindex()!=null) {
+		if (getTabindex() != null) {
 			rw.writeAttribute("tabindex", getTabindex(), null);
 		}
 
@@ -1169,7 +1169,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	}
 
 	/**
-	 * Controls how the Calendar is showed, can be inline or popup. Default is popup. <P>
+	 * Controls how the Calendar is showed, can be inline, popup, popup-icon, icon-popup, toggle-icon, and icon-toggle. Default is toggle-icon. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMode() {
@@ -1177,7 +1177,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	}
 
 	/**
-	 * Controls how the Calendar is showed, can be inline or popup. Default is popup. <P>
+	 * Controls how the Calendar is showed, can be inline, popup, popup-icon, icon-popup, toggle-icon, and icon-toggle. Default is toggle-icon. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMode(String _mode) {
