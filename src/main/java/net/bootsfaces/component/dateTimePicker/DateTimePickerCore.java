@@ -44,6 +44,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		hidden,
 		icon,
 		iconAwesome,
+		iconPosition,
 		immediate,
 		initialDate,
 		keepInvalid,
@@ -80,6 +81,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		showClearButton,
 		showCloseButton,
 		showDate,
+		showIcon,
 		showTime,
 		showTodayButton,
 		showWeek,
@@ -437,6 +439,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setIconAwesome(String _iconAwesome) {
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.iconPosition, "right");
+	}
+
+	/**
+	 * Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPosition(String _iconPosition) {
+		getStateHelper().put(PropertyKeys.iconPosition, _iconPosition);
 	}
 
 	/**
@@ -1014,6 +1032,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setShowDate(boolean _showDate) {
 		getStateHelper().put(PropertyKeys.showDate, _showDate);
+	}
+
+	/**
+	 * Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public boolean isShowIcon() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, false);
+	}
+
+	/**
+	 * Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setShowIcon(boolean _showIcon) {
+		getStateHelper().put(PropertyKeys.showIcon, _showIcon);
 	}
 
 	/**

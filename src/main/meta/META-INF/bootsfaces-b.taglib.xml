@@ -6071,7 +6071,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls how the Calendar is showed, can be inline or popup. Default is popup.]]></description>
+		  <description><![CDATA[Controls how the Calendar is showed, can be inline, popup, popup-icon, icon-popup, toggle-icon, and icon-toggle. Default is toggle-icon.]]></description>
 		  <name>mode</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -6549,6 +6549,18 @@
 		<attribute>
 		  <description><![CDATA[Font Awesome Icon to show in this DateTimePicker, can be one of the Font Awesome icon names.]]></description>
 		  <name>iconAwesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'.]]></description>
+		  <name>icon-position</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'.]]></description>
+		  <name>iconPosition</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7035,6 +7047,18 @@
 		<attribute>
 		  <description><![CDATA[By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used..]]></description>
 		  <name>showDate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'.]]></description>
+		  <name>show-icon</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'.]]></description>
+		  <name>showIcon</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
