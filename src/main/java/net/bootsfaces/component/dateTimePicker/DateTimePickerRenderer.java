@@ -445,6 +445,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 //			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
 //		}
 		rw.endElement("script");
-		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null);
+		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
 	}
 }
