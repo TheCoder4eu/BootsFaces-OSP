@@ -253,7 +253,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				rw.writeAttribute("tabindex", dtp.getTabindex(), null);
 			}
 
-			//rw.writeAttribute("class", "form-control " + getErrorAndRequiredClass(dtp, clientId), "class");
 			generateStyleClass(dtp, rw);
 			if(BsfUtils.isStringValued(dtp.getPlaceholder())) rw.writeAttribute("placeholder", dtp.getPlaceholder(), null);
 			if (dtp.isReadonly()) rw.writeAttribute("readonly", "readonly", null);
