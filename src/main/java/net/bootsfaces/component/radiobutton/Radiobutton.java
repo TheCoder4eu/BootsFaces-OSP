@@ -69,7 +69,7 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 		String propertyName = getValueExpression("value").getExpressionString();
 		if (propertyName.startsWith("#{") && propertyName.endsWith("}")) {
 			propertyName=propertyName.substring(2, propertyName.length()-1);
-			return "input_"+propertyName;
+			return "input_"+propertyName.trim();
 		} else {
 			throw new FacesException("The value attribute of a radiobutton must be an EL expression.");
 		}
