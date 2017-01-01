@@ -645,7 +645,7 @@ widget dateTimePicker
     show-week	     		 Boolean									   "Whether or not to show week numbers to the left of week rows. Default false."
     show-clear-button		 Boolean									   "Show the 'Clear' button in the icon toolbar. Default: false."
     show-close-button	     Boolean									   "Show the 'Close' button in the icon toolbar. Default: false."
-    show-icon       	     Boolean									   "Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'."
+    show-icon       	     Boolean default "true"  					   "Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'."
     show-today-button	     Boolean									   "Show the 'Today' button in the icon toolbar. Default: false."
     side-by-side			 Boolean									   "Shows the picker side by side when using the time and date together. Default: false."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
