@@ -1039,7 +1039,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowIcon() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
 	}
 
 	/**
