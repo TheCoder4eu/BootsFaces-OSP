@@ -28,9 +28,9 @@ public abstract class DataTableColumnCore extends UIColumn {
 		contentStyle,
 		contentStyleClass,
 		customOptions,
-		dataType,
 		dataOrder,
 		dataSearch,
+		dataType,
 		footerStyle,
 		footerStyleClass,
 		headerStyle,
@@ -107,37 +107,37 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
-	 * Allows you to specify a value for ordering. Useful i.E. for ordering formatted values.<P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDataOrder(String _dataOrder) {
-		getStateHelper().put(PropertyKeys.dataOrder, _dataOrder);
-	}
-	
-	/**
-	 * Allows you to specify a value for ordering. Useful i.E. for ordering formatted values.<P>
+	 * Allows you to specify a value for ordering. Useful i.E. for ordering formatted values. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDataOrder() {
 		return (String) getStateHelper().eval(PropertyKeys.dataOrder);
 	}
-	
+
 	/**
-	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values.<P>
+	 * Allows you to specify a value for ordering. Useful i.E. for ordering formatted values. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setDataSearch(String _dataSearch) {
-		getStateHelper().put(PropertyKeys.dataSearch, _dataSearch);
+	public void setDataOrder(String _dataOrder) {
+		getStateHelper().put(PropertyKeys.dataOrder, _dataOrder);
 	}
-	
+
 	/**
-	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values.<P>
+	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDataSearch() {
 		return (String) getStateHelper().eval(PropertyKeys.dataSearch);
 	}
-	
+
+	/**
+	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDataSearch(String _dataSearch) {
+		getStateHelper().put(PropertyKeys.dataSearch, _dataSearch);
+	}
+
 	/**
 	 * Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -297,7 +297,6 @@ public abstract class DataTableColumnCore extends UIColumn {
 	public void setOrderBy(String _orderBy) {
 		getStateHelper().put(PropertyKeys.orderBy, _orderBy);
 	}
-
 
 	/**
 	 * Disables or enables the sort button for this column. <P>
