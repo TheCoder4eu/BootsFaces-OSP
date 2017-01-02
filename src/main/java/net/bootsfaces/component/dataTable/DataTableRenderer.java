@@ -233,6 +233,14 @@ public class DataTableRenderer extends CoreRenderer {
 					} else if (contentStyleClass != null && styleClass!=null) {
 						rw.writeAttribute("class", styleClass + " " + contentStyleClass, null);
 					}
+					
+					Object dataOrder = column.getAttributes().get("dataOrder");
+					if (dataOrder != null)
+						rw.writeAttribute("data-order", dataOrder, null);
+					Object dataSearch = column.getAttributes().get("dataSearch");
+					if (dataSearch != null)
+						rw.writeAttribute("data-search", dataSearch, null);
+					
 					Object value = column.getAttributes().get("value");
 					if (value != null) {
 						rw.writeText(value, null);
