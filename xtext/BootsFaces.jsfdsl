@@ -541,6 +541,8 @@ widget dataTableColumn {
     label-style-class                                                      "The CSS class of the label."
     order                                                                  "Is the table to be sorted by this column? Legal values are 'asc' and 'desc'."
     order-by                                                               "Allows you to sort input field. Legal values are dom-text, dom-text-numeric, dom-select and dom-checkbox."
+	data-order															   "Allows you to specify a value for ordering. Useful i.E. for ordering formatted values."
+	data-search															   "Allows you to specify a value for searching. Useful i.E. for searching formatted values."
     data-type                                                              "Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'."
 	content-style                                                          "Inline style of the cells in the content area."
     content-style-class                                                    "Style class of cells in the content area.."
