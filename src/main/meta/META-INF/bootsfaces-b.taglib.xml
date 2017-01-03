@@ -5666,13 +5666,25 @@
 		  <name>data-order</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>				
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to specify a value for ordering. Useful i.E. for ordering formatted values.]]></description>
+		  <name>dataOrder</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Allows you to specify a value for searching. Useful i.E. for searching formatted values.]]></description>
 		  <name>data-search</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
-		</attribute>				
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Allows you to specify a value for searching. Useful i.E. for searching formatted values.]]></description>
+		  <name>dataSearch</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Specifies order-by more precisely. Is also used by the filtering methods. Legal values are 'string', 'date', 'numeric'.]]></description>
 		  <name>data-type</name>
