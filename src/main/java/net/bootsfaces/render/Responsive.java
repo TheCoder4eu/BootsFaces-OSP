@@ -397,19 +397,32 @@ public class Responsive {
 		int colsm = sizeToInt(getSize(r, Sizes.sm));
 		int colmd = sizeToInt(getSize(r, Sizes.md));
 		int collg = sizeToInt(getSize(r, Sizes.lg));
+		
+		StringBuilder sb = new StringBuilder();
 
 		if (colmd > 0) {
-			return "col-md-"+ colmd;
+			sb.append("col-md-");
+			sb.append(colmd);
+			sb.append(' ');
 		}
 
 		if (colxs > 0) {
-			return "col-xs-"+ colxs;
+			sb.append("col-xs-");
+			sb.append(colxs);
+			sb.append(' ');
 		}
 		if (colsm > 0) {
-			return "col-sm-"+ colsm;
+			sb.append("col-sm-");
+			sb.append(colsm);
+			sb.append(' ');
 		}
 		if (collg > 0) {
-			return "col-lg-"+ collg;
+			sb.append("col-lg-");
+			sb.append(collg);
+			sb.append(' ');
+		}
+		if (sb.length()>0) {
+			return sb.substring(0, sb.length()-1);
 		}
 
 		return null;
