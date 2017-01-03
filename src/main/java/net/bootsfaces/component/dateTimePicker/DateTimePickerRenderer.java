@@ -181,6 +181,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
+			rw.writeAttribute("class", "form-group", "class");
 			divPrefix=DTP_CONTAINER_ID;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
@@ -237,7 +238,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	    if ("inline".equals(mode)) {
 			// div
 			rw.startElement("div", dtp);
-			rw.writeAttribute("class", "input-group date " + styleClass, "class");
+			rw.writeAttribute("class", ("input-group date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", (dtp.isDisabled() ? "opacity: 0.65; pointer-events: none;" : "") + dtp.getStyle(), "style");
 			else if(dtp.isDisabled()) rw.writeAttribute("style", "opacity: 0.65; pointer-events: none;", null);
 			rw.writeAttribute("id", divPrefix + clientId, null);
@@ -266,7 +267,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			// div
 			rw.startElement("div", dtp);
 			String inputGroup = dtp.isShowIcon() ? "input-group " : "";
-			rw.writeAttribute("class", inputGroup +"date " + styleClass, "class");
+			rw.writeAttribute("class", (inputGroup +"date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
 			rw.writeAttribute("id", divPrefix + clientId, null);
 			if (!clientIdHasBeenRendered) {
