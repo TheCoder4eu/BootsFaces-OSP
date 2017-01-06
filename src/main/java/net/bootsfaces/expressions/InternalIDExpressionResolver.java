@@ -29,6 +29,9 @@ public class InternalIDExpressionResolver implements AbstractExpressionResolver 
 				
 				UIComponent c = component.findComponent(childId);
 				if (null == c) {
+					c = parent.findComponent(childId);
+				}
+				if (null == c) {
 					c = component.findComponent(":"+childId);
 				}
 				if (null != c) {
@@ -40,5 +43,4 @@ public class InternalIDExpressionResolver implements AbstractExpressionResolver 
 		}
 		throw new FacesException("ID not found: " + currentId + " search expression: " + originalExpression);
 	}
-
 }
