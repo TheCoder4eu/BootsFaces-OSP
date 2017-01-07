@@ -398,3 +398,18 @@ label.bf-fatal { color: red; }
 .bootstrap-datetimepicker-widget.wider {
 	width: 85%;
 }
+
+/* Collapsible panels */
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
+}
+a.panel-title-link {
+	outline: thin dotted rgba(255, 255, 255, 0.3);
+    outline-offset: 3px;
+}
