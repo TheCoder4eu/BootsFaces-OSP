@@ -394,7 +394,7 @@ label.bf-fatal { color: red; }
 	display: inline-block;
 }
 
+/** It seems that 1 em is smaller in BootsFaces than the dateTimePicker expects */
 .bootstrap-datetimepicker-widget.wider {
-	// It seems that 1 em is smaller in BootsFaces than the dateTimePicker expects
 	width: initial;
 }
