@@ -403,6 +403,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 							"";
 
 		rw.startElement("script", dtp);
+		rw.writeText("console.log('initializing dateTimePicker fullSelector: " + fullSelector + "    AJAX-ID: " + fieldId+ "');", null);
 		rw.writeText("$(function () { " +
 					      "$('" + fullSelector + "').datetimepicker({  " +
 					        "ignoreReadonly: false, " +
