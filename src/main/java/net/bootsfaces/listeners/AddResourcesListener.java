@@ -56,7 +56,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.listeners.AddResourcesListener");
 
 	/**
-	 * Are the jsf.js and the bsf.js file required?
+	 * List of JS files that have to be loaded earlier than most JS files.
 	 */
 	private static final String BASIC_JS_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.BasicJSResourceFiles";
 
@@ -410,6 +410,19 @@ private String getTheme(FacesContext context) {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
 
 		Map<String, Object> viewMap = root.getViewMap();
+		@SuppressWarnings("unchecked")
+		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
+
+		if (null != basicResourceMap) {
+			for (Entry<String, String> entry : basicResourceMap.entrySet()) {
+				String file = entry.getValue();
+				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
+				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
+						!file.startsWith("jq/ui") || loadJQueryUI)
+					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+			}
+			viewMap.remove(BASIC_JS_RESOURCE_KEY);
+		}
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(RESOURCE_KEY);
 

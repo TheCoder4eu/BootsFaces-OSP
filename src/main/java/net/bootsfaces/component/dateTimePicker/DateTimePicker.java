@@ -53,7 +53,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
-	
+
 	private static final Collection<String> EVENT_NAMES = Collections
 			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown",
 					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
@@ -61,8 +61,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	public DateTimePicker() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addExtCSSResource("bootstrap-datetimepicker.min.css");
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/moment-with-locales.min.js");
-		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/moment-jdateformatparser.min.js");
+		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/moment-with-locales.min.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-datetimepicker.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
@@ -70,7 +69,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-	
+
 
 	@Override
 	public Map<String, String> getJQueryEvents() {
@@ -82,7 +81,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	/**
 	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
 	 * If there's no parameter list for a certain event, the default is simply null.
-	 * 
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
@@ -93,14 +92,14 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	/**
 	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
 	 * If there's no parameter list for a certain event, the default is simply "event".
-	 * 
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
 	public Map<String, String> getJQueryEventParameterLists() {
 		return null;
 	}
-	
+
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
@@ -116,7 +115,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	
+
 	@Override
 	public Object getConvertedValue(FacesContext context, Object submittedValue)
 	throws ConverterException {
@@ -152,7 +151,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 
 			return cal.getTime();
 		} catch (ParseException e) {
-			
+
 			// FIRST STEP GONE: TRY THE AUTO-PARSER
 			try {
 				cal.setTime(LocaleUtils.autoParseDateFormat(val));
