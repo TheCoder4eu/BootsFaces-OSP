@@ -224,7 +224,9 @@ implements Node, Serializable {
 	public boolean equals(Object obj) {
 		if(obj == null) return false;
 		if(obj instanceof DefaultNodeImpl)
-			return this.getText().equals(((Node)obj).getText());
+//			return this.getText().equals(((Node)obj).getText());
+
+			return this.getNodeId() == ((Node)obj).getNodeId();
 		return false;
 	}
 
