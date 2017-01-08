@@ -1496,7 +1496,7 @@ widget panel
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    show-collapse-link  Boolean default "true"                             "Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'."
+    show-collapse-link  Boolean default "false"                            "Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard if you activate this feature by setting showCollapseLink='true'."
     style                                                                  "Inline style of the entire panel area."
     style-class                                                            "Style class of the input element."
     title                                                                  "Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title."

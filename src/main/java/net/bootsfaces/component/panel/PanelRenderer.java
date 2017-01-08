@@ -203,9 +203,9 @@ public class PanelRenderer extends CoreRenderer {
 		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
 		String style = "display:block;";
 		if (!panel.isShowCollapseLink()) {
-			style += "outline: none";
+			style += "outline:none";
 		} else {
-			style += "outline: none;text-decoration: underline;";
+			style += "outline:none;text-decoration:underline;";
 
 		}
 		rw.writeAttribute("style", style, "style"); //let the anchor

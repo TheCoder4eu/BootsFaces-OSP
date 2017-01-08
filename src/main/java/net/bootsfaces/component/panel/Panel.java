@@ -85,7 +85,7 @@ public class Panel extends UIComponentBase
 		result.put("collapsed", "hidden.bs.collapse");
 		return result;
 	}
-	
+
 	/**
 	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
 	 * If there's no parameter list for a certain event, the default is simply "event".
@@ -782,15 +782,15 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'. <P>
+	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard if you activate this feature by setting showCollapseLink='true'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowCollapseLink() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCollapseLink, true);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCollapseLink, false);
 	}
 
 	/**
-	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard unless you deactivate this feature by setting showCollapseLink='false'. <P>
+	 * Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard if you activate this feature by setting showCollapseLink='true'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setShowCollapseLink(boolean _showCollapseLink) {
@@ -1052,4 +1052,5 @@ public class Panel extends UIComponentBase
 	public void setVisible(String _visible) {
 		getStateHelper().put(PropertyKeys.visible, _visible);
 	}
+
 }
