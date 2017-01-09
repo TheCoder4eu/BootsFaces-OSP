@@ -223,7 +223,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * @throws IOException
 	 *             may be thrown by the response writer
 	 */
-	protected void addLabel(ResponseWriter rw, String clientId) throws IOException {
+	protected void addLabel(ResponseWriter rw, String clientId, String fieldId) throws IOException {
 		String label = getLabel();
 		if (!isRenderLabel()) {
 			label = null;
@@ -231,7 +231,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		if (label != null) {
 			rw.startElement("label", this);
 			rw.writeAttribute("for", clientId, "for");
-			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, clientId, getLabelStyleClass());
+			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId, getLabelStyleClass());
 			if (getLabelStyle() != null) {
 				rw.writeAttribute("style", getLabelStyle(), "style");
 			}
@@ -269,7 +269,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 			Tooltip.generateTooltip(fc, this, rw);
 			idHasBeenRendered = true;
 		}
-		addLabel(rw, clientId + "_input");
+		addLabel(rw, clientId + "_input", clientId);
 
 		if (responsiveStyleClass.length() > 0 && (CoreRenderer.isHorizontalForm(this))) {
 			rw.startElement("div", this);
