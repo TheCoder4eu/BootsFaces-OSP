@@ -158,6 +158,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String styleClass = dtp.getStyleClass();
 		if(styleClass == null) styleClass = "";
 		styleClass = styleClass.trim();
+		String datePickerId;
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		String label = dtp.getLabel();
@@ -241,7 +242,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("class", ("input-group date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", (dtp.isDisabled() ? "opacity: 0.65; pointer-events: none;" : "") + dtp.getStyle(), "style");
 			else if(dtp.isDisabled()) rw.writeAttribute("style", "opacity: 0.65; pointer-events: none;", null);
-			rw.writeAttribute("id", divPrefix + clientId, null);
+			datePickerId = divPrefix + clientId;
+			rw.writeAttribute("id", datePickerId, null);
 			if (!clientIdHasBeenRendered) {
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
@@ -269,7 +271,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			String inputGroup = dtp.isShowIcon() ? "input-group " : "";
 			rw.writeAttribute("class", (inputGroup +"date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
-			rw.writeAttribute("id", divPrefix + clientId, null);
+			datePickerId = divPrefix + clientId;
+			rw.writeAttribute("id", datePickerId, null);
 			if (!clientIdHasBeenRendered) {
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
@@ -326,7 +329,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 		Tooltip.activateTooltips(fc, dtp);
 
-		return divPrefix;
+		return datePickerId;
 	}
 
 	private void generateStyleClass(DateTimePicker dtp, ResponseWriter rw)
@@ -360,7 +363,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	 * Encode the javascript code
 	 * @throws IOException
 	 */
-	private void encodeJS(FacesContext fc, ResponseWriter rw, DateTimePicker dtp, String divPrefix)
+	private void encodeJS(FacesContext fc, ResponseWriter rw, DateTimePicker dtp, String datePickerId)
 	throws IOException {
 		String clientId = dtp.getClientId();
 		String fieldId = dtp.getFieldId();
@@ -391,7 +394,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 				:
 				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
 
-		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
+		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(datePickerId);
 
 		String defaultDate = BsfUtils.isStringValued(dtp.getInitialDate()) ?
 			dtp.getInitialDate().contains("moment") ? dtp.getInitialDate() : "'" + dtp.getInitialDate() + "'" : "";
