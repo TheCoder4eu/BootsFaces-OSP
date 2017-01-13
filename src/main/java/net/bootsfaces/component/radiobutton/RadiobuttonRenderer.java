@@ -20,6 +20,7 @@ package net.bootsfaces.component.radiobutton;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.FacesException;
@@ -42,7 +43,9 @@ import net.bootsfaces.render.Tooltip;
 public class RadiobuttonRenderer extends InputTextRenderer {
 
 	private UIComponent findComponentByName(UIComponent c, String name) {
-		for (UIComponent comp : c.getChildren()) {
+		Iterator<UIComponent> children = c.getFacetsAndChildren();
+		while(children.hasNext()) {
+			UIComponent comp = children.next();
 			if (comp instanceof Radiobutton) {
 				if (name.equals(((Radiobutton)comp).getName())) return comp;
 			}
