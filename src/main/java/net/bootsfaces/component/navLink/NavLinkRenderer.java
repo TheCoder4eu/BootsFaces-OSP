@@ -172,12 +172,17 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
+		if (((AbstractNavLink) navlink).isDisabled()) {
+			writeAttribute(rw, "class", "disabled");
+		}
 		Tooltip.generateTooltip(context, navlink, rw);
 		
-		if (useAjax) {
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, false);
-		} else {
-			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, true);
+		if (!((AbstractNavLink)navlink).isDisabled()) {
+			if (useAjax) {
+				AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, false);
+			} else {
+				AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, true);
+			}
 		}
 
 		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
@@ -193,31 +198,33 @@ public class NavLinkRenderer extends CoreRenderer {
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getContentStyle(), "style");
 		writeAttribute(rw, "class", (navlink instanceof NavCommandLink ? "commandLink " : "") + (((AbstractNavLink) navlink).getContentClass() != null ? ((AbstractNavLink) navlink).getContentClass() : ""), "class");
 		boolean hasActionExpression = false;
-		if (navlink instanceof NavCommandLink)
-			if (((NavCommandLink) navlink).getActionExpression() != null)
-				hasActionExpression = true;
-		if (((AbstractNavLink) navlink).getUpdate() == null && (!useAjax)
-				&& (!hasActionExpression)) {
-			String url = encodeHref(context, ((AbstractNavLink) navlink));
-			if (url == null) {
-				/*
-				 * If we cannot get an outcome we use the Bootstrap Framework to
-				 * give a feedback to the developer if this build is in the
-				 * Development Stage
-				 */
-				if (FacesContext.getCurrentInstance().getApplication().getProjectStage()
-						.equals(ProjectStage.Development)) {
-					writeAttribute(rw, "data-toggle", "tooltip", null);
-					writeAttribute(rw, "title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
-							+ "WARNING! " + "This link is disabled because a navigation case could not be matched.",
-							null);
+		if (!((AbstractNavLink) navlink).isDisabled()) {
+			if (navlink instanceof NavCommandLink)
+				if (((NavCommandLink) navlink).getActionExpression() != null)
+					hasActionExpression = true;
+			if (((AbstractNavLink) navlink).getUpdate() == null && (!useAjax)
+					&& (!hasActionExpression)) {
+				String url = encodeHref(context, ((AbstractNavLink) navlink));
+				if (url == null) {
+					/*
+					 * If we cannot get an outcome we use the Bootstrap Framework to
+					 * give a feedback to the developer if this build is in the
+					 * Development Stage
+					 */
+					if (FacesContext.getCurrentInstance().getApplication().getProjectStage()
+							.equals(ProjectStage.Development)) {
+						writeAttribute(rw, "data-toggle", "tooltip", null);
+						writeAttribute(rw, "title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
+								+ "WARNING! " + "This link is disabled because a navigation case could not be matched.",
+								null);
+					}
+					url = "#";
+	
 				}
-				url = "#";
-
+				writeAttribute(rw, "href", url, null);
+				String target=((AbstractNavLink)navlink).getTarget();
+				writeAttribute(rw, "target", target, null);
 			}
-			writeAttribute(rw, "href", url, null);
-			String target=((AbstractNavLink)navlink).getTarget();
-			writeAttribute(rw, "target", target, null);
 		}
 		writeAttribute(rw, "role", "menuitem", null);
 		writeAttribute(rw, "tabindex", "-1", null);
