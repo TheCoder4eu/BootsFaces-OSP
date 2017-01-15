@@ -555,16 +555,16 @@ public class DataTableRenderer extends CoreRenderer {
 			// # Footer stuff:
 			// https://datatables.net/examples/api/multi_filter.html
 			// # Convert footer column text to input textfields
-			rw.writeText("\n" + widgetVar + ".find('.bf-multisearch').each(function() {" + "var title = $(this).text();"
+			rw.writeText(widgetVar + ".find('.bf-multisearch').each(function(){" + "var title=$(this).text();"
 					+ "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
-					+ "});\n", null);
+					+ "});", null);
 			// # Add event listeners for each multisearch input
-			rw.writeText("table.columns().every( function (col) {" + "var that = this;\n" + "var inputs = $("
-					+ widgetVar + ".find('.bf-multisearch input'));\n"
-					+ "$(inputs[col]).on( 'keyup change', function () {" + "    if ( that.search() !== this.value ) {"
-					+ "        that.search( this.value ).draw('page');" + "    }" + "} );" +
-
-					"} );", null);
+			rw.writeText("table.columns().every( function(col) {" + "var that=this;var inputs=$("
+					+ widgetVar + ".find('.bf-multisearch input'));"
+				    + "inputs[col].value=table.columns(col).search()[0];"
+					+ "$(inputs[col]).on('keyup change', function(){if(that.search()!==this.value){"
+					+ "that.search(this.value).draw('page');}});" +
+					"});", null);
 		}
 		// # End enclosure
 		rw.writeText("} );", null);
