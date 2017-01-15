@@ -38,6 +38,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.dataTableColumn.DataTableColumn;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -437,6 +438,7 @@ public class DataTableRenderer extends CoreRenderer {
 						infos.set(index, s + ",'orderable': false");
 				}
 			}
+			
 			if (column.getAttributes().get("customOptions") != null) {
 				String customOptions = column.getAttributes().get("customOptions").toString();
 				if (customOptions !=null && customOptions.length()>0) {
@@ -559,12 +561,32 @@ public class DataTableRenderer extends CoreRenderer {
 					+ "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
 					+ "});", null);
 			// # Add event listeners for each multisearch input
-			rw.writeText("table.columns().every( function(col) {" + "var that=this;var inputs=$("
-					+ widgetVar + ".find('.bf-multisearch input'));"
+			rw.writeText("var inputs=$("+ widgetVar + ".find('.bf-multisearch input'));", null);
+			rw.writeText("table.columns().every( function(col) {" + "var that=this;"
 				    + "inputs[col].value=table.columns(col).search()[0];"
 					+ "$(inputs[col]).on('keyup change', function(){if(that.search()!==this.value){"
-					+ "that.search(this.value).draw('page');}});" +
-					"});", null);
+					+ "that.search(this.value).draw('page');}});", null);
+			rw.writeText("});", null);
+			int col=0;
+			for (UIComponent column : dataTable.getChildren()) {
+				if (!column.isRendered()) {
+					continue;
+				}
+				String searchValue = null;
+				if ((column instanceof DataTableColumn)) {
+					searchValue = ((DataTableColumn) column).getSearchValue();
+				} else {
+					Object sv = column.getAttributes().get("searchValue");
+					if (sv != null && (!"".equals(sv))) {
+					    searchValue = sv.toString();
+					}
+				}
+				if (null != searchValue) {
+					rw.writeText("inputs[" + col + "].value='" + searchValue + "';", null);
+					rw.writeText("table.columns(" + col+").search('"+searchValue + "').draw('page');", null);
+				}
+				col++;
+			}			
 		}
 		// # End enclosure
 		rw.writeText("} );", null);

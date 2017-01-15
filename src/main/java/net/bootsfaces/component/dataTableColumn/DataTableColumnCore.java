@@ -41,6 +41,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 		order,
 		orderBy,
 		orderable,
+		searchValue,
 		searchable,
 		style,
 		styleClass;
@@ -123,7 +124,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
-	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values. <P>
+	 * Allows you to specify a value for searching. The search doesn't consider the real content of this column. Instead, it considers the value of the data-search attribute. Useful i.E. for searching formatted values. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDataSearch() {
@@ -131,7 +132,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
-	 * Allows you to specify a value for searching. Useful i.E. for searching formatted values. <P>
+	 * Allows you to specify a value for searching. The search doesn't consider the real content of this column. Instead, it considers the value of the data-search attribute. Useful i.E. for searching formatted values. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDataSearch(String _dataSearch) {
@@ -312,6 +313,22 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 */
 	public void setOrderable(boolean _orderable) {
 		getStateHelper().put(PropertyKeys.orderable, _orderable);
+	}
+
+	/**
+	 * Initial content of the search filter field. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSearchValue() {
+		return (String) getStateHelper().eval(PropertyKeys.searchValue,null);
+	}
+
+	/**
+	 * Initial content of the search filter field. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSearchValue(String _searchValue) {
+		getStateHelper().put(PropertyKeys.searchValue, _searchValue);
 	}
 
 	/**

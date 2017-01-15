@@ -5674,13 +5674,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to specify a value for searching. Useful i.E. for searching formatted values.]]></description>
+		  <description><![CDATA[Allows you to specify a value for searching. The search doesn't consider the real content of this column. Instead, it considers the value of the data-search attribute. Useful i.E. for searching formatted values.]]></description>
 		  <name>data-search</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to specify a value for searching. Useful i.E. for searching formatted values.]]></description>
+		  <description><![CDATA[Allows you to specify a value for searching. The search doesn't consider the real content of this column. Instead, it considers the value of the data-search attribute. Useful i.E. for searching formatted values.]]></description>
 		  <name>dataSearch</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -5798,6 +5798,18 @@
 		  <name>orderable</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Initial content of the search filter field.]]></description>
+		  <name>search-value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Initial content of the search filter field.]]></description>
+		  <name>searchValue</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable.]]></description>
