@@ -18,6 +18,7 @@
 package net.bootsfaces.render;
 
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.render.Renderer;
 
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 
@@ -45,32 +47,34 @@ public class CoreRenderer extends Renderer {
 
 	/**
 	 * Method that provide ability to render pass through attributes.
+	 * 
 	 * @param context
 	 * @param component
 	 * @param attrs
 	 * @throws IOException
 	 */
-	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs, boolean shouldRenderDataAttributes)
-	throws IOException {
+	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs,
+			boolean shouldRenderDataAttributes) throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 
-		if((attrs == null || attrs.length <= 0) && shouldRenderDataAttributes == false) return;
+		if ((attrs == null || attrs.length <= 0) && shouldRenderDataAttributes == false)
+			return;
 
 		// pre-defined attributes
-		for(String attribute: component.getAttributes().keySet()) {
+		for (String attribute : component.getAttributes().keySet()) {
 			boolean attributeToRender = false;
-			if(shouldRenderDataAttributes && attribute.startsWith("data-")) {
+			if (shouldRenderDataAttributes && attribute.startsWith("data-")) {
 				attributeToRender = true;
 			}
-			if(!attributeToRender && attrs != null) {
-				for(String ca: attrs) {
-					if(attribute.equals(ca)) {
+			if (!attributeToRender && attrs != null) {
+				for (String ca : attrs) {
+					if (attribute.equals(ca)) {
 						attributeToRender = true;
 						break;
 					}
 				}
 			}
-			if(attributeToRender) {
+			if (attributeToRender) {
 				Object value = component.getAttributes().get(attribute);
 
 				if (shouldRenderAttribute(value))
@@ -78,13 +82,14 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 	}
+
 	protected void renderPassThruAttributes(FacesContext context, UIComponent component, String[] attrs)
-	throws IOException {
+			throws IOException {
 		ResponseWriter writer = context.getResponseWriter();
 
 		// pre-defined attributes
 		if (attrs != null && attrs.length > 0) {
-			for (String attribute: attrs) {
+			for (String attribute : attrs) {
 				Object value = component.getAttributes().get(attribute);
 
 				if (shouldRenderAttribute(value))
@@ -102,31 +107,31 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId, String additionalClass) throws IOException {
+	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
+			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass) {
 			additionalClass = additionalClass.trim();
-			if (additionalClass.trim().length()>0) {
+			if (additionalClass.trim().length() > 0) {
 				styleClass += " " + additionalClass;
 			}
 		}
-		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent)input, true);
+		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent) input, true);
 		if (null != currentForm && currentForm instanceof Form) {
 			if (((Form) currentForm).isHorizontal()) {
 				styleClass += " control-label";
 			}
 		}
 		if (input instanceof IResponsiveLabel) {
-			String responsiveLabelClass = Responsive.getResponsiveLabelClass((IResponsiveLabel)input);
+			String responsiveLabelClass = Responsive.getResponsiveLabelClass((IResponsiveLabel) input);
 			if (null != responsiveLabelClass) {
 				styleClass += " " + responsiveLabelClass;
 			}
 		}
 
-
 		rw.writeAttribute("class", styleClass, "class");
 	}
-	
+
 	/**
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
@@ -136,29 +141,29 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId, String additionalClass1, String additionalClass2, String additionalClass3) throws IOException {
+	protected void generateErrorAndRequiredClass(UIInput input, ResponseWriter rw, String clientId,
+			String additionalClass1, String additionalClass2, String additionalClass3) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
 		if (null != additionalClass1) {
 			additionalClass1 = additionalClass1.trim();
-			if (additionalClass1.trim().length()>0) {
+			if (additionalClass1.trim().length() > 0) {
 				styleClass += " " + additionalClass1;
 			}
 		}
 		if (null != additionalClass2) {
 			additionalClass2 = additionalClass2.trim();
-			if (additionalClass2.trim().length()>0) {
+			if (additionalClass2.trim().length() > 0) {
 				styleClass += " " + additionalClass2;
 			}
 		}
 		if (null != additionalClass3) {
 			additionalClass3 = additionalClass3.trim();
-			if (additionalClass3.trim().length()>0) {
+			if (additionalClass3.trim().length() > 0) {
 				styleClass += " " + additionalClass3;
 			}
 		}
 		rw.writeAttribute("class", styleClass, "class");
 	}
-
 
 	/**
 	 * Yields the value of the required and error level CSS class.
@@ -168,7 +173,8 @@ public class CoreRenderer extends Renderer {
 	 * @return
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error", "bf-fatal has-error" };
+		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error",
+				"bf-fatal has-error" };
 		int level = 0;
 		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
 		if (null != messages) {
@@ -191,6 +197,17 @@ public class CoreRenderer extends Renderer {
 		String styleClass = levels[level];
 		if (input.isRequired()) {
 			styleClass += " bf-required";
+		} else {
+			Annotation[] readAnnotations = ELTools.readAnnotations(input);
+			if (null != readAnnotations && readAnnotations.length > 0) {
+				for (Annotation a : readAnnotations) {
+					if ((a.annotationType().getName().endsWith("NotNull"))
+							|| (a.annotationType().getName().endsWith("NotEmpty"))) {
+						styleClass += " bf-required";
+						break;
+					}
+				}
+			}
 		}
 		return styleClass;
 	}
@@ -225,7 +242,7 @@ public class CoreRenderer extends Renderer {
 		if (!(component instanceof ClientBehaviorHolder)) {
 			return;
 		}
-		
+
 		Map<String, List<ClientBehavior>> behaviors = ((ClientBehaviorHolder) component).getClientBehaviors();
 		if (behaviors.isEmpty()) {
 			return;
@@ -397,7 +414,7 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 	}
-	
+
 	protected static UIForm getSurroundingForm(UIComponent component, boolean lenient) {
 		UIComponent c = component;
 		while ((c != null) && (!(c instanceof UIForm)) && (!(c instanceof Form))) {
@@ -407,21 +424,20 @@ public class CoreRenderer extends Renderer {
 			if (lenient) {
 				return null;
 			} else {
-				throw new FacesException("The component with the id " + component.getClientId() + " must be inside a form");
+				throw new FacesException(
+						"The component with the id " + component.getClientId() + " must be inside a form");
 			}
 		}
 		return (UIForm) c;
 	}
-	
+
 	public static boolean isHorizontalForm(UIComponent component) {
 		UIForm c = getSurroundingForm(component, true);
 		if (null != c && c instanceof Form) {
-			return ((Form)c).isHorizontal();
+			return ((Form) c).isHorizontal();
 		}
 		return false;
 	}
-
-
 
 	/**
 	 * Algorithm works as follows; - If it's an input component, submitted value
@@ -451,23 +467,23 @@ public class CoreRenderer extends Renderer {
 
 			// format the value as string
 			if (val != null) {
-				/* OLD
-				Converter converter = getConverter(fc, vh);
-				*/
+				/*
+				 * OLD Converter converter = getConverter(fc, vh);
+				 */
 
 				/* NEW */
-                Converter converter = vh.getConverter();
-                if (converter == null) {
-                    Class<?> valueType = val.getClass();
-                    if(valueType == String.class && (null == fc.getApplication().createConverter(String.class))) {
-                        return (String) val;
-                    }
+				Converter converter = vh.getConverter();
+				if (converter == null) {
+					Class<?> valueType = val.getClass();
+					if (valueType == String.class && (null == fc.getApplication().createConverter(String.class))) {
+						return (String) val;
+					}
 
-                    converter = fc.getApplication().createConverter(valueType);
-                }
-                /* END NEW */
+					converter = fc.getApplication().createConverter(valueType);
+				}
+				/* END NEW */
 
-                if (converter != null)
+				if (converter != null)
 					return converter.getAsString(fc, c, val);
 				else
 					return val.toString(); // Use toString as a fallback if
