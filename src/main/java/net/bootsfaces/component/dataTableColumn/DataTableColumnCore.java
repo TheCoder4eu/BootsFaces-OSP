@@ -320,7 +320,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSearchValue() {
-		return (String) getStateHelper().eval(PropertyKeys.searchValue,null);
+		return (String) getStateHelper().eval(PropertyKeys.searchValue);
 	}
 
 	/**
