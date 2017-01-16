@@ -137,7 +137,11 @@ public class SliderRenderer extends BadgeRenderer {
 		}
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
+		if (slider.getStyleClass()!=null) {
+			s += " " + slider.getStyleClass();
+		}
 		rw.writeAttribute("class", s, "class");
+		writeAttribute(rw, "style", slider.getStyle());
 		// -------------------------------------------------------------->
 		// <<-- Vertical -->>
 		if (isVertical) {
@@ -240,7 +244,7 @@ public class SliderRenderer extends BadgeRenderer {
 			 */
 			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null);
 			if (mode.equals("badge")) {
-				generateBadge(context, slider, rw, clientId, slider.getStyleClass(), slider.getStyle(),
+				generateBadge(context, slider, rw, clientId, slider.getBadgeStyleClass(), slider.getBadgeStyle(),
 						Integer.toString(val), "_badge");
 			}
 		}
@@ -261,7 +265,12 @@ public class SliderRenderer extends BadgeRenderer {
 			rw.writeAttribute("readonly", "readonly", null);
 		}
 
-		rw.writeAttribute("class", "form-control input-sm" + (vo ? " text-center" : ""), "class");
+		String styleClass = "form-control input-sm" + (vo ? " text-center" : "");
+		if (slider.getBadgeStyleClass()!=null) {
+			styleClass += " " + slider.getBadgeStyleClass();
+		}
+		rw.writeAttribute("class", styleClass, "class");
+		writeAttribute(rw, "style", slider.getBadgeStyleClass());
 
 		rw.writeAttribute("value", val, null);
 

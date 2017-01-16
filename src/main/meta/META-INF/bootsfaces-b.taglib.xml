@@ -20872,6 +20872,30 @@
 			<component-type>net.bootsfaces.component.slider.Slider</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
+		  <name>badge-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
+		  <name>badgeStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the badge or input field (if it's shown).]]></description>
+		  <name>badge-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the badge or input field (if it's shown).]]></description>
+		  <name>badgeStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -20992,19 +21016,19 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <description><![CDATA[Inline style of the entire slider.]]></description>
 		  <name>style</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the input element.]]></description>
+		  <description><![CDATA[Style class of the entire slider.]]></description>
 		  <name>style-class</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the input element.]]></description>
+		  <description><![CDATA[Style class of the entire slider.]]></description>
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -21089,6 +21113,30 @@
 		<component>
 			<component-type>net.bootsfaces.component.slider2.Slider2</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
+		  <name>badge-style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
+		  <name>badgeStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the badge or input field (if it's shown).]]></description>
+		  <name>badge-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of the badge or input field (if it's shown).]]></description>
+		  <name>badgeStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -21252,19 +21300,19 @@
 		  <type>java.lang.Double</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <description><![CDATA[Inline style of the entire slider.]]></description>
 		  <name>style</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of this element.]]></description>
+		  <description><![CDATA[Style class of the entire slider.]]></description>
 		  <name>style-class</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of this element.]]></description>
+		  <description><![CDATA[Style class of the entire slider.]]></description>
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

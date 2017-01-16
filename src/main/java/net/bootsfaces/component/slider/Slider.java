@@ -79,6 +79,8 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	protected enum PropertyKeys {
+		badgeStyle,
+		badgeStyleClass,
 		binding,
 		disabled,
 		handleShape,
@@ -113,6 +115,38 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Inline style of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBadgeStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.badgeStyle);
+	}
+
+	/**
+	 * Inline style of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeStyle(String _badgeStyle) {
+		getStateHelper().put(PropertyKeys.badgeStyle, _badgeStyle);
+	}
+
+	/**
+	 * Style class of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBadgeStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.badgeStyleClass);
+	}
+
+	/**
+	 * Style class of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeStyleClass(String _badgeStyleClass) {
+		getStateHelper().put(PropertyKeys.badgeStyleClass, _badgeStyleClass);
 	}
 
 	/**
@@ -340,7 +374,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the entire slider. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -348,7 +382,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the entire slider. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -356,7 +390,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the entire slider. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -364,7 +398,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	/**
-	 * Style class of the input element. <P>
+	 * Style class of the entire slider. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

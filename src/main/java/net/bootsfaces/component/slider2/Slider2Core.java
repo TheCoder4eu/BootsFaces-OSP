@@ -24,7 +24,35 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class Slider2Core extends HtmlInputText {
 
 	protected enum PropertyKeys {
-		binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit, tooltipVisibility, value;
+		badgeStyle,
+		badgeStyleClass,
+		binding,
+		disabled,
+		focus,
+		formatter,
+		handleShape,
+		inline,
+		label,
+		labelStyle,
+		labelStyleClass,
+		labelledBy,
+		max,
+		min,
+		mode,
+		natural_arrow_keys,
+		orientation,
+		precision,
+		reversed,
+		scale,
+		selection,
+		span,
+		step,
+		style,
+		styleClass,
+		tooltipSliderPosition,
+		tooltipSplit,
+		tooltipVisibility,
+		value;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -37,6 +65,38 @@ public abstract class Slider2Core extends HtmlInputText {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Inline style of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBadgeStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.badgeStyle);
+	}
+
+	/**
+	 * Inline style of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeStyle(String _badgeStyle) {
+		getStateHelper().put(PropertyKeys.badgeStyle, _badgeStyle);
+	}
+
+	/**
+	 * Style class of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBadgeStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.badgeStyleClass);
+	}
+
+	/**
+	 * Style class of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeStyleClass(String _badgeStyleClass) {
+		getStateHelper().put(PropertyKeys.badgeStyleClass, _badgeStyleClass);
 	}
 
 	/**
@@ -376,7 +436,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the entire slider. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -384,7 +444,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Inline style of the input element. <P>
+	 * Inline style of the entire slider. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -392,7 +452,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Style class of this element. <P>
+	 * Style class of the entire slider. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -400,7 +460,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Style class of this element. <P>
+	 * Style class of the entire slider. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

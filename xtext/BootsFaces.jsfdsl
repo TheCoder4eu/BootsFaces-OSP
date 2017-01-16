@@ -1968,8 +1968,10 @@ widget slider
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     span                Integer default "12"                               "The column span of the slider."
     step                Integer                                            "The step of the slider."
-    style                                                                  "Inline style of the input element."
-    style-class                                                            "Style class of the input element."
+    style                                                                  "Inline style of the entire slider."
+    style-class                                                            "Style class of the entire slider."
+    badge-style                                                            "Inline style of the badge or input field (if it's shown)."
+    badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
     value               inherited                                          "Value."
     +tooltip
 }
@@ -2006,7 +2008,10 @@ widget slider2
 	tooltip-split		Boolean default "false"							   "If false show one tootip if true show two tooltips one for each handler."
 	tooltip-slider-position												   "Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider."
 	value				default "5" 								   	   "Initial value float mode."
-	+style
+    style                                                                  "Inline style of the entire slider."
+    style-class                                                            "Style class of the entire slider."
+    badge-style                                                            "Inline style of the badge or input field (if it's shown)."
+    badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
 }
 
 widget socialShare
