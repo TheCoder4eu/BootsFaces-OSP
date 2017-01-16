@@ -1268,7 +1268,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered.]]></description>
+		  <description><![CDATA[Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered.]]></description>
 		  <name>size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -1400,9 +1400,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Button text.]]></description>
+		  <description><![CDATA[Optional button caption.]]></description>
 		  <name>value</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -4762,7 +4762,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered.]]></description>
+		  <description><![CDATA[Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered.]]></description>
 		  <name>size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -4906,9 +4906,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Button text.]]></description>
+		  <description><![CDATA[Optional button caption.]]></description>
 		  <name>value</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -19318,7 +19318,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'.]]></description>
+		  <description><![CDATA[The checkbox size. Legal values: null, 'mini', 'small', 'normal', 'large'. Default value: 'null'.]]></description>
 		  <name>switchsize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

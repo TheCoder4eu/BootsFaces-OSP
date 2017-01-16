@@ -157,10 +157,10 @@ widget button
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
+    size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    value               mandatory inherited                                "Button text."
+    value               inherited                                          "Optional button caption."
     +style
     +tooltip
 	+responsive
@@ -453,11 +453,11 @@ widget commandButton
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    size                                                                   "Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered."
+    size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "The button type, can be submit, button, reset ; default submit."
-    value               mandatory inherited                                "Button text."
+    value               inherited                                          "Optional button caption."
     +ajax
     +style
     +responsive
@@ -1814,7 +1814,7 @@ widget switch
     off-color                                                                       "Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'."
     indeterminate       Boolean                                                     "Indeterminate state. Turned off by default."
     inverse             Boolean                                                     "Inverse switch direction. Default value: false"
-    switchsize                                                                      "The checkbox size. null, 'mini', 'small', 'normal', 'large'. Default value: 'null'."
+    switchsize                                                                      "The checkbox size. Legal values: null, 'mini', 'small', 'normal', 'large'. Default value: 'null'."
     animate             Boolean                                                     "Animate the switch. Default value: true."
     disabled            Boolean                                                     "Is the switch disabled? Default value: false."
     readonly            Boolean                                                     "Is the switch readonly? Default value: false."
@@ -2060,7 +2060,7 @@ widget touchSpin
     label-style-class                                                      "The CSS class of the label."
     lang                             inherited                             "Code describing the language used in the generated markup for this component."
     min					Float default "0"								   "Minimum value."
-    max					Float default "100"							   "Maximum value."
+    max					Float default "100"							       "Maximum value."
     max-boosted-step	Integer default "0"								   "Maximum step when boosted."
     maxlength           Integer inherited                                  "The maximum length of the input."
     mousewheel			Boolean default "true"							   "Enables the mouse wheel to change the value of the input."

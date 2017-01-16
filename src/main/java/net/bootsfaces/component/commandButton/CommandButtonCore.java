@@ -821,7 +821,7 @@ public abstract class CommandButtonCore extends UICommand implements net.bootsfa
 	}
 
 	/**
-	 * Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered. <P>
+	 * Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSize() {
@@ -829,7 +829,7 @@ public abstract class CommandButtonCore extends UICommand implements net.bootsfa
 	}
 
 	/**
-	 * Size of the Button, can be large, small, mini. If not specified, Standard size button is rendered. <P>
+	 * Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSize(String _size) {
