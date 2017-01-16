@@ -78,13 +78,13 @@ div > .ui-datepicker-trigger {
 @media (max-width: 320px) { .slider2 .col-xs-1 { width: 20%; } }
 
 /* Slider */
-.row .slider { margin-left: 0px; }
+.slider-vertical {margin-left:auto;margin-right:auto;}
 .slider input { width: auto; }
 .slider .badge { min-width: 30px; }
 .slider .ui-widget { margin-top: 7px; }
 .slider-vertical input { margin: 5px auto; width: auto; padding: 5px; }
 .slider-vertical .badge { margin: 10px auto; display: block; width: 66%; max-width: 50px; padding-left:0px; padding-right:0px;}
-.row .slider-vertical { padding-bottom: 5px; margin-left: 0px;}
+.row .slider-vertical { padding-bottom: 5px;}
 .slider-vertical p { font-weight: bold; margin: 0px; text-align: center;}
 .slider-vertical .ui-widget { margin: 0 auto; }
 
