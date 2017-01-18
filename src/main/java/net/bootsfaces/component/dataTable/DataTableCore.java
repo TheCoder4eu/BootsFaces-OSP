@@ -28,7 +28,7 @@ import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, border, colLg, colMd, colSm, colXs, customLangUrl, customOptions, disabled, display, fixedHeader, hidden, immediate, lang, largeScreen, mediumScreen, multiColumnSearch, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, pageLength, pageLengthMenu, paginated, process, responsive, rowHighlight, saveState, scrollCollapse, scrollSize, scrollX, searching, select, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax, border, colLg, colMd, colSm, colXs, customLangUrl, customOptions, disabled, display, fixedHeader, hidden, immediate, info, lang, largeScreen, mediumScreen, multiColumnSearch, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, pageLength, pageLengthMenu, paginated, process, responsive, rowHighlight, saveState, scrollCollapse, scrollSize, scrollX, searching, select, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -250,7 +250,23 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	public void setImmediate(boolean _immediate) {
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
+	
+	/**
+	 * If set, this will enable the information about record count. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
+	 */
+	public boolean isInfo() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.info, true);
+	}
 
+	/**
+	 * If set, this will enable the information about record count. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setInfo(boolean _info) {
+		getStateHelper().put(PropertyKeys.info, _info);
+	}
+	
 	/**
 	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.

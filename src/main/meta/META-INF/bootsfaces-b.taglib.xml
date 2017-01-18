@@ -5168,6 +5168,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If set, this will enable the information about record count. Defaults to true.]]></description>
+		  <name>info</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used.]]></description>
 		  <name>lang</name>
 		  <required>false</required>
