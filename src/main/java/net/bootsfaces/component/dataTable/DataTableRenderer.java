@@ -532,7 +532,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("fixedHeader: " + dataTable.isFixedHeader(), options);
 		options = addOptions( "responsive: " + dataTable.isResponsive(), options);
 		options = addOptions( "paging: " + dataTable.isPaginated(), options);
-		if (!dataTable.isPaginated()) {
+		if (!dataTable.isInfo()) {
 			options = addOptions( "info: false", options);
 		}
 		options = addOptions( "pageLength: " + pageLength, options);
