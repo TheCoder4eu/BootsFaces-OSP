@@ -246,6 +246,10 @@ public class DataTableRenderer extends CoreRenderer {
 					if (value != null) {
 						rw.writeText(value, null);
 					}
+					String dataOrder = (String) column.getAttributes().get("dataOrder");
+					if (dataOrder != null && !dataOrder.isEmpty()) {
+						rw.writeAttribute("data-order", dataOrder, null);
+					}
 
 					renderChildrenOfColumn(column, context);
 					rw.endElement("td");
