@@ -18,17 +18,76 @@
 
 package net.bootsfaces.component.dataTable;
 
-import java.util.Map;
-
 import javax.faces.component.UIData;
-
-import net.bootsfaces.component.dataTable.DataTable.DataTablePropertyType;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, border, colLg, colMd, colSm, colXs, customLangUrl, customOptions, disabled, display, fixedHeader, hidden, immediate, info, lang, largeScreen, mediumScreen, multiColumnSearch, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, pageLength, pageLengthMenu, paginated, process, responsive, rowHighlight, saveState, scrollCollapse, scrollSize, scrollX, searching, select, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax,
+		border,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		customLangUrl,
+		customOptions,
+		disabled,
+		display,
+		fixedHeader,
+		hidden,
+		immediate,
+		info,
+		lang,
+		largeScreen,
+		mediumScreen,
+		multiColumnSearch,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		onclick,
+		oncomplete,
+		ondblclick,
+		ondeselect,
+		onmousedown,
+		onmousemove,
+		onmouseout,
+		onmouseover,
+		onmouseup,
+		onorder,
+		onpage,
+		onsearch,
+		onselect,
+		pageLength,
+		pageLengthMenu,
+		paginated,
+		process,
+		responsive,
+		rowHighlight,
+		saveState,
+		scrollCollapse,
+		scrollSize,
+		scrollX,
+		searching,
+		select,
+		selectionMode,
+		smallScreen,
+		span,
+		striped,
+		style,
+		styleClass,
+		tinyScreen,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		update,
+		visible,
+		widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -45,7 +104,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -61,7 +120,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If set, this will surround the table by a border. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isBorder() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.border, true);
@@ -77,7 +136,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -93,7 +152,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -109,7 +168,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -125,7 +184,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -173,7 +232,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -189,7 +248,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -205,7 +264,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Activates the fixed header plugin of the dataTable. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFixedHeader() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fixedHeader, false);
@@ -237,7 +296,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isImmediate() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
@@ -250,7 +309,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	public void setImmediate(boolean _immediate) {
 		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
-	
+
 	/**
 	 * If set, this will enable the information about record count. Defaults to true. <P>
 	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
@@ -266,7 +325,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	public void setInfo(boolean _info) {
 		getStateHelper().put(PropertyKeys.info, _info);
 	}
-	
+
 	/**
 	 * Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -285,7 +344,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -301,7 +360,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -317,7 +376,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isMultiColumnSearch() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.multiColumnSearch, false);
@@ -621,7 +680,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Sets the default page length for paginated dataTable. The default value is 10. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 10, if it hasn't been set by the JSF file.
 	 */
 	public int getPageLength() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.pageLength, 10);
@@ -637,7 +696,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "[ 10, 25, 50, 100 ]", if it hasn't been set by the JSF file.
 	 */
 	public String getPageLengthMenu() {
 		return (String) getStateHelper().eval(PropertyKeys.pageLengthMenu, "[ 10, 25, 50, 100 ]");
@@ -653,7 +712,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Activates the pagination of the dataTable. Default value is 'true'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isPaginated() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.paginated, true);
@@ -685,7 +744,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Activates the responsive plugin of the dataTable <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isResponsive() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.responsive, false);
@@ -701,7 +760,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Enable the row highlight css. Default: true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRowHighlight() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.rowHighlight, true);
@@ -717,7 +776,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSaveState() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.saveState, true);
@@ -733,7 +792,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isScrollCollapse() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollCollapse, true);
@@ -765,7 +824,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If set, the table can scroll horizontally. Defaults to false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isScrollX() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollX, false);
@@ -781,7 +840,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSearching() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.searching, true);
@@ -797,7 +856,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Allows the user to select rows. Defaults to false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSelect() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.select, false);
@@ -813,7 +872,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Set this property to "single" if you want to prevent multiple selections. Default is "multiple". <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "multiple", if it hasn't been set by the JSF file.
 	 */
 	public String getSelectionMode() {
 		return (String) getStateHelper().eval(PropertyKeys.selectionMode, "multiple");
@@ -829,7 +888,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -861,7 +920,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isStriped() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.striped, true);
@@ -909,7 +968,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
@@ -941,7 +1000,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -957,7 +1016,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -973,7 +1032,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -989,7 +1048,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);

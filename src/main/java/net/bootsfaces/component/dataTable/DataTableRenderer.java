@@ -30,13 +30,11 @@ import java.util.regex.Pattern;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
-import javax.faces.application.ApplicationFactory;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTableColumn.DataTableColumn;
 import net.bootsfaces.render.CoreRenderer;
@@ -245,10 +243,6 @@ public class DataTableRenderer extends CoreRenderer {
 					Object value = column.getAttributes().get("value");
 					if (value != null) {
 						rw.writeText(value, null);
-					}
-					String dataOrder = (String) column.getAttributes().get("dataOrder");
-					if (dataOrder != null && !dataOrder.isEmpty()) {
-						rw.writeAttribute("data-order", dataOrder, null);
 					}
 
 					renderChildrenOfColumn(column, context);

@@ -31,7 +31,6 @@ public abstract class DataTableColumnCore extends UIColumn {
 		dataOrder,
 		dataSearch,
 		dataType,
-		dataOrder,
 		footerStyle,
 		footerStyleClass,
 		headerStyle,
@@ -154,22 +153,6 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 */
 	public void setDataType(String _dataType) {
 		getStateHelper().put(PropertyKeys.dataType, _dataType);
-	}
-	
-	/**
-	 * Provide an additional attribute for ordering. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getDataOrder() {
-		return (String) getStateHelper().eval(PropertyKeys.dataOrder);
-	}
-
-	/**
-	 * Provide an additional attribute for ordering. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDataOrder(String _dataOrder) {
-		getStateHelper().put(PropertyKeys.dataOrder, _dataOrder);
 	}
 
 	/**
@@ -318,7 +301,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 
 	/**
 	 * Disables or enables the sort button for this column. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isOrderable() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.orderable, true);
@@ -350,7 +333,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 
 	/**
 	 * If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSearchable() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.searchable, true);
