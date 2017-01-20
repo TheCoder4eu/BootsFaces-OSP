@@ -5704,18 +5704,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Provide an additional attribute for ordering.]]></description>
-		  <name>data-order</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[Provide an additional attribute for ordering.]]></description>
-		  <name>dataOrder</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Inline style of the footer cell.]]></description>
 		  <name>footer-style</name>
 		  <required>false</required>
