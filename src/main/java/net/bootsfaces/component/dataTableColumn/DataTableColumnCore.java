@@ -29,6 +29,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 		contentStyleClass,
 		customOptions,
 		dataType,
+		dataOrder,
 		footerStyle,
 		footerStyleClass,
 		headerStyle,
@@ -118,6 +119,22 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 */
 	public void setDataType(String _dataType) {
 		getStateHelper().put(PropertyKeys.dataType, _dataType);
+	}
+	
+	/**
+	 * Provide an additional attribute for ordering. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDataOrder() {
+		return (String) getStateHelper().eval(PropertyKeys.dataOrder);
+	}
+
+	/**
+	 * Provide an additional attribute for ordering. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDataOrder(String _dataOrder) {
+		getStateHelper().put(PropertyKeys.dataOrder, _dataOrder);
 	}
 
 	/**
