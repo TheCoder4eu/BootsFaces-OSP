@@ -68,7 +68,8 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -141,7 +142,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -157,7 +158,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -173,7 +174,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -189,7 +190,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
@@ -221,7 +222,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	/**
 	 * Width of the menu items. Needed to position the child menus correctly. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "180px", if it hasn't been set by the JSF file.
 	 */
 	public String getWidth() {
 		return (String) getStateHelper().eval(PropertyKeys.width, "180px");

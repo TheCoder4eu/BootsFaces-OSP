@@ -117,7 +117,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * If true, you can't move the slider, nor can you edit the number. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -133,7 +133,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Focus the appropriate slider handle after a value change. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFocus() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.focus, false);
@@ -165,7 +165,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Handle shape. Accepts: 'round', 'square', 'triangle' or 'custom' <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "round", if it hasn't been set by the JSF file.
 	 */
 	public String getHandleShape() {
 		return (String) getStateHelper().eval(PropertyKeys.handleShape, "round");
@@ -181,7 +181,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
@@ -261,7 +261,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Maximum possible value <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
 	public double getMax() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
@@ -277,7 +277,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Minimum possible value <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public double getMin() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
@@ -293,7 +293,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "badge", if it hasn't been set by the JSF file.
 	 */
 	public String getMode() {
 		return (String) getStateHelper().eval(PropertyKeys.mode, "badge");
@@ -309,7 +309,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isNatural_arrow_keys() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.natural_arrow_keys, false);
@@ -325,7 +325,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Set the orientation. Accepts 'vertical' or 'horizontal' <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "horizontal", if it hasn't been set by the JSF file.
 	 */
 	public String getOrientation() {
 		return (String) getStateHelper().eval(PropertyKeys.orientation, "horizontal");
@@ -341,7 +341,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * The number of digits shown after the decimal. Defaults to the number of digits after the decimal of step value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getPrecision() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.precision, 0);
@@ -357,7 +357,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Whether or not the slider should be reversed <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isReversed() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.reversed, false);
@@ -373,7 +373,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Set to 'logarithmic' to use a logarithmic scale. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "linear", if it hasn't been set by the JSF file.
 	 */
 	public String getScale() {
 		return (String) getStateHelper().eval(PropertyKeys.scale, "linear");
@@ -389,7 +389,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "before", if it hasn't been set by the JSF file.
 	 */
 	public String getSelection() {
 		return (String) getStateHelper().eval(PropertyKeys.selection, "before");
@@ -405,7 +405,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * The column span of the slider. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 12, if it hasn't been set by the JSF file.
 	 */
 	public int getSpan() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.span, 12);
@@ -421,7 +421,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Increment step <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public double getStep() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
@@ -485,7 +485,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * If false show one tootip if true show two tooltips one for each handler. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTooltipSplit() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.tooltipSplit, false);
@@ -501,7 +501,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "show", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipVisibility() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipVisibility, "show");
@@ -517,7 +517,7 @@ public abstract class Slider2Core extends HtmlInputText {
 
 	/**
 	 * Initial value float mode. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "5", if it hasn't been set by the JSF file.
 	 */
 	public String getValue() {
 		return (String) getStateHelper().eval(PropertyKeys.value, "5");

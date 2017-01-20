@@ -28,7 +28,85 @@ import net.bootsfaces.component.inputText.InputText;
 public abstract class TouchSpinCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, binding, boostat, booster, buttonDownClass, buttonUpClass, colLg, colMd, colSm, colXs, converterMessage, decimals, display, fieldId, fieldSize, forceStepDivisibility, hidden, initval, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, max, maxBoostedStep, mediumScreen, min, mousewheel, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onchange, oncomplete, onstartdownspin, onstartspin, onstartupspin, onstopdownspin, onstopspin, onstopupspin, postfix, postfixExtraClass, prefix, prefixExtraClass, process, renderLabel, required, requiredMessage, smallScreen, span, step, stepInterval, stepIntervalDelay, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value, verticalButtons, verticalDownClass, verticalUpClass, visible;
+		ajax,
+		binding,
+		boostat,
+		booster,
+		buttonDownClass,
+		buttonUpClass,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		converterMessage,
+		decimals,
+		display,
+		fieldId,
+		fieldSize,
+		forceStepDivisibility,
+		hidden,
+		initval,
+		inline,
+		labelColLg,
+		labelColMd,
+		labelColSm,
+		labelColXs,
+		labelLargeScreen,
+		labelMediumScreen,
+		labelSmallScreen,
+		labelStyle,
+		labelStyleClass,
+		labelTinyScreen,
+		largeScreen,
+		max,
+		maxBoostedStep,
+		mediumScreen,
+		min,
+		mousewheel,
+		name,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		onchange,
+		oncomplete,
+		onstartdownspin,
+		onstartspin,
+		onstartupspin,
+		onstopdownspin,
+		onstopspin,
+		onstopupspin,
+		postfix,
+		postfixExtraClass,
+		prefix,
+		prefixExtraClass,
+		process,
+		renderLabel,
+		required,
+		requiredMessage,
+		smallScreen,
+		span,
+		step,
+		stepInterval,
+		stepIntervalDelay,
+		style,
+		styleClass,
+		tags,
+		tinyScreen,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		type,
+		update,
+		value,
+		verticalButtons,
+		verticalDownClass,
+		verticalUpClass,
+		visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -45,7 +123,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -77,7 +155,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Boost at every nth step. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 10, if it hasn't been set by the JSF file.
 	 */
 	public int getBoostat() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.boostat, 10);
@@ -93,7 +171,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * If enabled, the the spinner is continually becoming faster as holding the button. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isBooster() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.booster, true);
@@ -109,7 +187,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Class(es) of down button. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "btn btn-default", if it hasn't been set by the JSF file.
 	 */
 	public String getButtonDownClass() {
 		return (String) getStateHelper().eval(PropertyKeys.buttonDownClass, "btn btn-default");
@@ -125,7 +203,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Class(es) of up button. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "btn btn-default", if it hasn't been set by the JSF file.
 	 */
 	public String getButtonUpClass() {
 		return (String) getStateHelper().eval(PropertyKeys.buttonUpClass, "btn btn-default");
@@ -141,7 +219,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -157,7 +235,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -173,7 +251,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -189,7 +267,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -221,7 +299,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Number of decimal points. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getDecimals() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.decimals, 0);
@@ -237,7 +315,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -285,7 +363,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * How to force the value to be divisible by step value: 'none' | 'round' | 'floor' | 'ceil' <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "round", if it hasn't been set by the JSF file.
 	 */
 	public String getForceStepDivisibility() {
 		return (String) getStateHelper().eval(PropertyKeys.forceStepDivisibility, "round");
@@ -317,7 +395,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Applied when no explicit value is set on the input with the value attribute. Empty string means that the value remains empty on initialization. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "", if it hasn't been set by the JSF file.
 	 */
 	public String getInitval() {
 		return (String) getStateHelper().eval(PropertyKeys.initval, "");
@@ -333,7 +411,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
@@ -349,7 +427,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColLg, "-1");
@@ -365,7 +443,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColMd, "-1");
@@ -381,7 +459,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColSm, "-1");
@@ -397,7 +475,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColXs, "-1");
@@ -413,7 +491,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelLargeScreen, "-1");
@@ -429,7 +507,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelMediumScreen, "-1");
@@ -445,7 +523,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelSmallScreen, "-1");
@@ -493,7 +571,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelTinyScreen, "-1");
@@ -509,7 +587,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -525,7 +603,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Maximum value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
 	public double getMax() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
@@ -541,7 +619,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Maximum step when boosted. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMaxBoostedStep() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxBoostedStep, 0);
@@ -557,7 +635,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -573,7 +651,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Minimum value. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public double getMin() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
@@ -589,7 +667,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Enables the mouse wheel to change the value of the input. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isMousewheel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.mousewheel, true);
@@ -909,7 +987,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
@@ -926,7 +1004,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Boolean value Require input in the component when the form is submitted. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRequired() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
@@ -958,7 +1036,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -990,7 +1068,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Incremental/decremental step on up/down change. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public double getStep() {
 		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
@@ -1006,7 +1084,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Refresh rate of the spinner in milliseconds. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
 	public int getStepInterval() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.stepInterval, 100);
@@ -1022,7 +1100,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Time in milliseconds before the spinner starts to spin. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 500, if it hasn't been set by the JSF file.
 	 */
 	public int getStepIntervalDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.stepIntervalDelay, 500);
@@ -1070,7 +1148,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTags() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.tags, false);
@@ -1086,7 +1164,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
@@ -1118,7 +1196,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -1134,7 +1212,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -1150,7 +1228,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -1166,7 +1244,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
@@ -1246,7 +1324,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Enables the traditional up/down buttons. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isVerticalButtons() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.verticalButtons, false);
@@ -1262,7 +1340,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Class of the down button with vertical buttons mode enabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "glyphicon glyphicon-chevron-down", if it hasn't been set by the JSF file.
 	 */
 	public String getVerticalDownClass() {
 		return (String) getStateHelper().eval(PropertyKeys.verticalDownClass, "glyphicon glyphicon-chevron-down");
@@ -1278,7 +1356,7 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 
 	/**
 	 * Class of the up button with vertical buttons mode enabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "glyphicon glyphicon-chevron-up", if it hasn't been set by the JSF file.
 	 */
 	public String getVerticalUpClass() {
 		return (String) getStateHelper().eval(PropertyKeys.verticalUpClass, "glyphicon glyphicon-chevron-up");

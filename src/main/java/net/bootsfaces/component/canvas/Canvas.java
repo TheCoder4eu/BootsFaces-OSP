@@ -115,7 +115,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -131,7 +131,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -147,7 +147,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -163,7 +163,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -179,7 +179,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -211,7 +211,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Height of the canvas in pixels. This is a mandatory field. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 600, if it hasn't been set by the JSF file.
 	 */
 	public int getHeight() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.height, 600);
@@ -243,7 +243,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -259,7 +259,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -355,7 +355,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -419,7 +419,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
@@ -451,7 +451,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -467,7 +467,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -483,7 +483,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -499,7 +499,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
@@ -547,7 +547,7 @@ public class Canvas extends UIOutput implements net.bootsfaces.render.IHasToolti
 
 	/**
 	 * Width of the canvas in pixels. This is a mandatory field. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 600, if it hasn't been set by the JSF file.
 	 */
 	public int getWidth() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.width, 600);

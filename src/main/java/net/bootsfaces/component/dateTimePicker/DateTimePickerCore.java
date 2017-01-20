@@ -123,7 +123,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -139,7 +139,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * If true, the picker will show on textbox focus and icon click when used in a button group. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAllowInputToggle() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.allowInputToggle, false);
@@ -171,7 +171,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -187,7 +187,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -203,7 +203,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -219,7 +219,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -235,7 +235,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isCollapse() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.collapse, true);
@@ -251,7 +251,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "MMMM YYYY", if it hasn't been set by the JSF file.
 	 */
 	public String getDayViewHeaderFormat() {
 		return (String) getStateHelper().eval(PropertyKeys.dayViewHeaderFormat, "MMMM YYYY");
@@ -299,7 +299,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -363,7 +363,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * If false, the textbox will not be given focus when the picker is shown. Default: true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFocusOnShow() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.focusOnShow, true);
@@ -443,7 +443,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "right", if it hasn't been set by the JSF file.
 	 */
 	public String getIconPosition() {
 		return (String) getStateHelper().eval(PropertyKeys.iconPosition, "right");
@@ -459,7 +459,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isImmediate() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
@@ -491,7 +491,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Will cause the date picker to not revert or overwrite invalid dates. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isKeepInvalid() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.keepInvalid, false);
@@ -507,7 +507,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Will cause the date picker to stay open after selecting a date if no time components are being used. Deafult: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isKeepOpen() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.keepOpen, false);
@@ -523,7 +523,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColLg, "-1");
@@ -539,7 +539,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColMd, "-1");
@@ -555,7 +555,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColSm, "-1");
@@ -571,7 +571,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColXs, "-1");
@@ -587,7 +587,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelLargeScreen, "-1");
@@ -603,7 +603,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelMediumScreen, "-1");
@@ -619,7 +619,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelSmallScreen, "-1");
@@ -667,7 +667,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelTinyScreen, "-1");
@@ -683,7 +683,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -731,7 +731,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -763,7 +763,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "component", if it hasn't been set by the JSF file.
 	 */
 	public String getMode() {
 		return (String) getStateHelper().eval(PropertyKeys.mode, "component");
@@ -923,7 +923,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
@@ -940,7 +940,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Boolean value Require input in the component when the form is submitted. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRequired() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
@@ -972,7 +972,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowButtonPanel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showButtonPanel, false);
@@ -988,7 +988,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Show the 'Clear' button in the icon toolbar. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowClearButton() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showClearButton, false);
@@ -1004,7 +1004,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Show the 'Close' button in the icon toolbar. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowCloseButton() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showCloseButton, false);
@@ -1020,7 +1020,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * By setting this to false you can deactivate the date part of the dateTimePicker. Is ignored if the attribute 'format' is used.. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowDate() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDate, true);
@@ -1036,7 +1036,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Show or hide the calendar icon next to the input field. Legal values: 'true' and 'false'. Default value: 'true'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowIcon() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
@@ -1052,7 +1052,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * By setting this to false you can deactivate the time part of the dateTimePicker. Is ignored if the attribute 'format' is used. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowTime() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showTime, true);
@@ -1068,7 +1068,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Show the 'Today' button in the icon toolbar. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowTodayButton() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showTodayButton, false);
@@ -1084,7 +1084,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Whether or not to show week numbers to the left of week rows. Default false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowWeek() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showWeek, false);
@@ -1100,7 +1100,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Shows the picker side by side when using the time and date together. Default: false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSideBySide() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.sideBySide, false);
@@ -1116,7 +1116,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -1196,7 +1196,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public int getTimeStepping() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.timeStepping, 1);
@@ -1212,7 +1212,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
@@ -1228,7 +1228,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "default", if it hasn't been set by the JSF file.
 	 */
 	public String getToolbarPlacement() {
 		return (String) getStateHelper().eval(PropertyKeys.toolbarPlacement, "default");
@@ -1260,7 +1260,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -1276,7 +1276,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -1292,7 +1292,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -1308,7 +1308,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
@@ -1356,7 +1356,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * On show, will set the picker to the current date/time. Default: true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isUseCurrent() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.useCurrent, true);
@@ -1372,7 +1372,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * Defines if moment should use strict date parsing when considering a date to be valid. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isUseStrict() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.useStrict, false);
@@ -1388,7 +1388,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 
 	/**
 	 * The default view to display when the picker is shown. Note: To limit the picker to selecting, for instance the year and month, use format: MM/YYYY. Default: 'days'. Accepts: 'decades','years','months','days'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "days", if it hasn't been set by the JSF file.
 	 */
 	public String getViewMode() {
 		return (String) getStateHelper().eval(PropertyKeys.viewMode, "days");

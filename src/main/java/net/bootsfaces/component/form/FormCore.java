@@ -42,7 +42,7 @@ public abstract class FormCore extends UIOutput {
 
 	/**
 	 * Use this flag to create a horizontal form (labels are on the same line as their input fields) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isHorizontal() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.horizontal, false);
@@ -58,7 +58,7 @@ public abstract class FormCore extends UIOutput {
 
 	/**
 	 * Use this flag to create a inline form (labels are on the same line as their input fields) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);

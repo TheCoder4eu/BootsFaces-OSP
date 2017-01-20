@@ -168,7 +168,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Optional attribute to define which tab is active initially. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getActiveIndex() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.activeIndex, 0);
@@ -184,7 +184,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -248,7 +248,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Disables the input element, default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -264,7 +264,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isImmediate() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
@@ -376,7 +376,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Change the rendering of tab to pills mode. Default false <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isPills() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.pills, false);
@@ -472,7 +472,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -488,7 +488,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -504,7 +504,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -520,7 +520,7 @@ public class TabView extends UIOutput
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);

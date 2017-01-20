@@ -67,7 +67,8 @@ public class Growl extends UIMessages {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -76,7 +77,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Specifies whether the message can be dismissed. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAllowDismiss() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.allowDismiss, false);
@@ -92,7 +93,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Animation of the message while entering <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "animated fadeInDown", if it hasn't been set by the JSF file.
 	 */
 	public String getAnimationEnter() {
 		return (String) getStateHelper().eval(PropertyKeys.animationEnter, "animated fadeInDown");
@@ -108,7 +109,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Animation of the message while exiting <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "animated fadeOutUp", if it hasn't been set by the JSF file.
 	 */
 	public String getAnimationExit() {
 		return (String) getStateHelper().eval(PropertyKeys.animationExit, "animated fadeOutUp");
@@ -124,7 +125,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 5000, if it hasn't been set by the JSF file.
 	 */
 	public int getDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.delay, 5000);
@@ -140,7 +141,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEscape() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, false);
@@ -156,7 +157,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isGlobalOnly() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.globalOnly, false);
@@ -188,7 +189,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Specifies if newest messages must be displayed on top of the others. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isNewestOnTop() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.newestOnTop, false);
@@ -204,7 +205,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Horizontal position of the growl message. Valid values are 'left', 'center' or 'right'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "right", if it hasn't been set by the JSF file.
 	 */
 	public String getPlacementAlign() {
 		return (String) getStateHelper().eval(PropertyKeys.placementAlign, "right");
@@ -220,7 +221,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Vertical position of the growl message. Valid values are 'top' or 'bottom'. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "top", if it hasn't been set by the JSF file.
 	 */
 	public String getPlacementFrom() {
 		return (String) getStateHelper().eval(PropertyKeys.placementFrom, "top");
@@ -236,7 +237,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Specifies whether the detailed information from the message should be shown. Default to false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowDetail() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, false);
@@ -252,7 +253,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * Specifies whether the summary information from the message should be shown. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowSummary() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
@@ -300,7 +301,7 @@ public class Growl extends UIMessages {
 
 	/**
 	 * This is the amount of milliseconds removed from the notify at every timer milliseconds. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 1000, if it hasn't been set by the JSF file.
 	 */
 	public int getTimer() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.timer, 1000);

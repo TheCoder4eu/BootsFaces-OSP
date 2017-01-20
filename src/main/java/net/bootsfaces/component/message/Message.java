@@ -107,7 +107,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -123,7 +123,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -139,7 +139,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -155,7 +155,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -187,7 +187,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -235,7 +235,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEscape() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
@@ -331,7 +331,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -347,7 +347,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isLineBreak() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.lineBreak, true);
@@ -363,7 +363,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "<br />", if it hasn't been set by the JSF file.
 	 */
 	public String getLineBreakTag() {
 		return (String) getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
@@ -379,7 +379,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -475,7 +475,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * By default, b:message shows every message reported for the component. You can limit it to one message by setting this flag to true. In this case, BootsFaces shows only the most important message (measured by the severity level). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isOnlyMostSevere() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.onlyMostSevere, false);
@@ -491,7 +491,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Flag indicating whether previously handled messages are redisplayed or not <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRedisplay() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.redisplay, true);
@@ -507,7 +507,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Specifies whether the detailed information from the message should be shown. Default to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowDetail() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showDetail, true);
@@ -523,7 +523,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * If false, the icon of the message is not show. Default = true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowIcon() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showIcon, true);
@@ -539,7 +539,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Specifies whether the summary information from the message should be shown. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowSummary() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showSummary, true);
@@ -555,7 +555,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -619,7 +619,7 @@ public class Message extends UIMessage implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");

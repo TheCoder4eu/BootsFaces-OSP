@@ -24,7 +24,63 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class InputTextCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, binding, colLg, colMd, colSm, colXs, converterMessage, display, fieldId, fieldSize, hidden, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, oncomplete, placeholder, process, renderLabel, required, requiredMessage, smallScreen, span, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, typeahead, typeaheadHighlight, typeaheadHint, typeaheadLimit, typeaheadMinLength, typeaheadValues, update, visible;
+		ajax,
+		binding,
+		colLg,
+		colMd,
+		colSm,
+		colXs,
+		converterMessage,
+		display,
+		fieldId,
+		fieldSize,
+		hidden,
+		inline,
+		labelColLg,
+		labelColMd,
+		labelColSm,
+		labelColXs,
+		labelLargeScreen,
+		labelMediumScreen,
+		labelSmallScreen,
+		labelStyle,
+		labelStyleClass,
+		labelTinyScreen,
+		largeScreen,
+		mediumScreen,
+		name,
+		offset,
+		offsetLg,
+		offsetMd,
+		offsetSm,
+		offsetXs,
+		oncomplete,
+		placeholder,
+		process,
+		renderLabel,
+		required,
+		requiredMessage,
+		smallScreen,
+		span,
+		style,
+		styleClass,
+		tags,
+		tinyScreen,
+		tooltip,
+		tooltipContainer,
+		tooltipDelay,
+		tooltipDelayHide,
+		tooltipDelayShow,
+		tooltipPosition,
+		type,
+		typeahead,
+		typeaheadHighlight,
+		typeaheadHint,
+		typeaheadLimit,
+		typeaheadMinLength,
+		typeaheadValues,
+		update,
+		visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -41,7 +97,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Activates AJAX. The default value is false (no AJAX). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -73,7 +129,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -89,7 +145,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -105,7 +161,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -121,7 +177,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -153,7 +209,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -217,7 +273,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
@@ -233,7 +289,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColLg, "-1");
@@ -249,7 +305,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColMd, "-1");
@@ -265,7 +321,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColSm, "-1");
@@ -281,7 +337,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.labelColXs, "-1");
@@ -297,7 +353,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelLargeScreen, "-1");
@@ -313,7 +369,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelMediumScreen, "-1");
@@ -329,7 +385,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelSmallScreen, "-1");
@@ -377,7 +433,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLabelTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.labelTinyScreen, "-1");
@@ -393,7 +449,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -409,7 +465,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -569,7 +625,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel,
@@ -586,7 +642,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Boolean value Require input in the component when the form is submitted. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRequired() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
@@ -618,7 +674,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -682,7 +738,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTags() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.tags, false);
@@ -698,7 +754,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");
@@ -730,7 +786,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -746,7 +802,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -762,7 +818,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -778,7 +834,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
@@ -826,7 +882,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTypeahead() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeahead, false);
@@ -842,7 +898,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Highlights the part of the suggestions that has already been entered. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTypeaheadHighlight() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeaheadHighlight, true);
@@ -858,7 +914,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * If set to false, the typeahead will not show a hint. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isTypeaheadHint() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.typeaheadHint, true);
@@ -874,7 +930,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Maximum number of suggestions to be shown. Defaults to 5. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 5, if it hasn't been set by the JSF file.
 	 */
 	public int getTypeaheadLimit() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.typeaheadLimit, 5);
@@ -890,7 +946,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 
 	/**
 	 * Minimum number of characters to be entered before a suggestion is shown. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public int getTypeaheadMinLength() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.typeaheadMinLength, 1);

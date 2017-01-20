@@ -132,7 +132,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * alternative text <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "Brand", if it hasn't been set by the JSF file.
 	 */
 	public String getAlt() {
 		return (String) getStateHelper().eval(PropertyKeys.alt, "Brand");
@@ -308,7 +308,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * Boolean value default is false; when set to true the navbar container will be "fluid": a full width container, spanning the entire width of the viewport. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFluid() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fluid, false);
@@ -324,7 +324,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * Boolean value to specify if Navbar should use inverse color scheme. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInverse() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inverse, false);
@@ -372,7 +372,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * Deprecated (use position and sticky instead). If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isStatic() {
 		return (boolean) (Boolean) getStateHelper().eval("static", false);
@@ -388,7 +388,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * Determines whether the navBar is pinned at its default position (i.e. sticky="true"), or if it scrolls with the page (sticky="false"). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSticky() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.sticky, true);
@@ -452,7 +452,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -468,7 +468,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -484,7 +484,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -500,7 +500,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);

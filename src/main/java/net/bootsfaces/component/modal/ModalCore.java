@@ -52,7 +52,7 @@ public abstract class ModalCore extends UIComponentBase {
 
 	/**
 	 * By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop="false" to disable this feature. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isBackdrop() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.backdrop, true);
@@ -68,7 +68,7 @@ public abstract class ModalCore extends UIComponentBase {
 
 	/**
 	 * If true, the modal dialog can be closed by clicking the small cross in the upper right corner <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isClosable() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.closable, true);
@@ -84,7 +84,7 @@ public abstract class ModalCore extends UIComponentBase {
 
 	/**
 	 * By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape="false" to disable this feature. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
 	public boolean isCloseOnEscape() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.closeOnEscape, true);

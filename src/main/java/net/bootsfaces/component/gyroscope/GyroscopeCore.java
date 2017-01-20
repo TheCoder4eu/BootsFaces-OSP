@@ -24,17 +24,7 @@ import javax.faces.component.UICommand;
 public abstract class GyroscopeCore extends UICommand {
 
 	protected enum PropertyKeys {
-		ajax,
-		alpha,
-		beta,
-		disabled,
-		gamma,
-		interval,
-		oncomplete,
-		onrotation,
-		process,
-		threshold,
-		update;
+		ajax, alpha, beta, disabled, gamma, interval, oncomplete, onrotation, process, threshold, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -51,7 +41,7 @@ public abstract class GyroscopeCore extends UICommand {
 
 	/**
 	 * Whether the Button submits the form with AJAX. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -99,7 +89,7 @@ public abstract class GyroscopeCore extends UICommand {
 
 	/**
 	 * Disables the input element, default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -131,7 +121,7 @@ public abstract class GyroscopeCore extends UICommand {
 
 	/**
 	 * Specifies the delay (in milliseconds) between each slide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 500, if it hasn't been set by the JSF file.
 	 */
 	public int getInterval() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.interval, 500);
@@ -195,7 +185,7 @@ public abstract class GyroscopeCore extends UICommand {
 
 	/**
 	 * Specifies the sensitivity of the skae detector. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 15, if it hasn't been set by the JSF file.
 	 */
 	public int getThreshold() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.threshold, 15);

@@ -42,7 +42,7 @@ public abstract class RemoteCommandCore extends UICommand {
 
 	/**
 	 * Whether the Button submits the form with AJAX. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -74,7 +74,7 @@ public abstract class RemoteCommandCore extends UICommand {
 
 	/**
 	 * Boolean value to specify if the button is disabled. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);

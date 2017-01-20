@@ -55,13 +55,7 @@ public class ScrollSpy extends UIComponentBase {
 	}
 
 	protected enum PropertyKeys {
-		container,
-		offset,
-		selectionListener,
-		smooth,
-		smoothSpeed,
-		target,
-		update;
+		container, offset, selectionListener, smooth, smoothSpeed, target, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -94,7 +88,7 @@ public class ScrollSpy extends UIComponentBase {
 
 	/**
 	 * Scroll offset <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getOffset() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.offset, 0);
@@ -126,7 +120,7 @@ public class ScrollSpy extends UIComponentBase {
 
 	/**
 	 * Enable smooth scroll <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSmooth() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.smooth, false);
@@ -142,7 +136,7 @@ public class ScrollSpy extends UIComponentBase {
 
 	/**
 	 * Speed of the smooth scroll (default 800) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 800, if it hasn't been set by the JSF file.
 	 */
 	public int getSmoothSpeed() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.smoothSpeed, 800);

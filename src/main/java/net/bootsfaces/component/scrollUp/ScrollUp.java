@@ -55,19 +55,7 @@ public class ScrollUp extends UIComponentBase {
 	}
 
 	protected enum PropertyKeys {
-		animation,
-		animationSpeed,
-		distance,
-		easing,
-		from,
-		image,
-		name,
-		overlay,
-		speed,
-		target,
-		text,
-		title,
-		trigger;
+		animation, animationSpeed, distance, easing, from, image, name, overlay, speed, target, text, title, trigger;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -100,7 +88,7 @@ public class ScrollUp extends UIComponentBase {
 
 	/**
 	 * Animation speed (ms). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getAnimationSpeed() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.animationSpeed, 0);
@@ -116,7 +104,7 @@ public class ScrollUp extends UIComponentBase {
 
 	/**
 	 * Distance from top/bottom before showing element (px) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getDistance() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.distance, 0);
@@ -212,7 +200,7 @@ public class ScrollUp extends UIComponentBase {
 
 	/**
 	 * Speed back to top (ms). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getSpeed() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.speed, 0);

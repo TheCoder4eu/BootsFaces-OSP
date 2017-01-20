@@ -167,7 +167,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * If true, you can't move the slider, nor can you edit the number. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -215,7 +215,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isInline() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.inline, false);
@@ -279,7 +279,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The maximum value of the slider. (default 100) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
 	public int getMax() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
@@ -295,7 +295,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The minimum value of the slider. (default 0) <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMin() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
@@ -311,7 +311,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "badge", if it hasn't been set by the JSF file.
 	 */
 	public String getMode() {
 		return (String) getStateHelper().eval(PropertyKeys.mode, "badge");
@@ -343,7 +343,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The column span of the slider. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 12, if it hasn't been set by the JSF file.
 	 */
 	public int getSpan() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.span, 12);
@@ -359,7 +359,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The step of the slider. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getStep() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.step, 0);
@@ -423,7 +423,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
 		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
@@ -439,7 +439,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
@@ -455,7 +455,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
@@ -471,7 +471,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);

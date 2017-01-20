@@ -61,190 +61,179 @@ public class Container extends UIOutput implements net.bootsfaces.render.IHasToo
 		tooltipDelay,
 		tooltipDelayHide,
 		tooltipDelayShow,
-		tooltipPosition
-;
-        String toString;
+		tooltipPosition;
+		String toString;
 
-        PropertyKeys(String toString) {
-            this.toString = toString;
-        }
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
 
-        PropertyKeys() {}
+		PropertyKeys() {
+		}
 
-        public String toString() {
-            return ((this.toString != null) ? this.toString : super.toString());
-        }
-    }
-	
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
 
 	/**
 	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDir() {
-		return  (String)getStateHelper().eval(PropertyKeys.dir);
+		return (String) getStateHelper().eval(PropertyKeys.dir);
 	}
-	
+
 	/**
 	 * Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDir(String _dir) {
-	    getStateHelper().put(PropertyKeys.dir, _dir);
-    }
-	
+		getStateHelper().put(PropertyKeys.dir, _dir);
+	}
 
 	/**
 	 * Boolean value default is false; when set to true, the container will be "fluid": a full width container, spanning the entire width of the viewport. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isFluid() {
-		return (boolean) (Boolean)getStateHelper().eval(PropertyKeys.fluid, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.fluid, false);
 	}
-	
+
 	/**
 	 * Boolean value default is false; when set to true, the container will be "fluid": a full width container, spanning the entire width of the viewport. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setFluid(boolean _fluid) {
-	    getStateHelper().put(PropertyKeys.fluid, _fluid);
-    }
-	
+		getStateHelper().put(PropertyKeys.fluid, _fluid);
+	}
 
 	/**
 	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
-		return  (String)getStateHelper().eval(PropertyKeys.style);
+		return (String) getStateHelper().eval(PropertyKeys.style);
 	}
-	
+
 	/**
 	 * Inline style of the input element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
-	    getStateHelper().put(PropertyKeys.style, _style);
-    }
-	
+		getStateHelper().put(PropertyKeys.style, _style);
+	}
 
 	/**
 	 * Style class of this element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
-		return  (String)getStateHelper().eval(PropertyKeys.styleClass);
+		return (String) getStateHelper().eval(PropertyKeys.styleClass);
 	}
-	
+
 	/**
 	 * Style class of this element. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
-	    getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-    }
-	
+		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
 
 	/**
 	 * The text of the tooltip. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltip() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltip);
+		return (String) getStateHelper().eval(PropertyKeys.tooltip);
 	}
-	
+
 	/**
 	 * The text of the tooltip. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltip(String _tooltip) {
-	    getStateHelper().put(PropertyKeys.tooltip, _tooltip);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltip, _tooltip);
+	}
 
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "body", if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipContainer() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
+		return (String) getStateHelper().eval(PropertyKeys.tooltipContainer, "body");
 	}
-	
+
 	/**
 	 * Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipContainer(String _tooltipContainer) {
-	    getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipContainer, _tooltipContainer);
+	}
 
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelay() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelay, 0);
 	}
-	
+
 	/**
 	 * The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelay(int _tooltipDelay) {
-	    getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelay, _tooltipDelay);
+	}
 
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayHide() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayHide, 0);
 	}
-	
+
 	/**
 	 * The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayHide(int _tooltipDelayHide) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayHide, _tooltipDelayHide);
+	}
 
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getTooltipDelayShow() {
-		return (int) (Integer)getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.tooltipDelayShow, 0);
 	}
-	
+
 	/**
 	 * The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipDelayShow(int _tooltipDelayShow) {
-	    getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
-    }
-	
+		getStateHelper().put(PropertyKeys.tooltipDelayShow, _tooltipDelayShow);
+	}
 
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTooltipPosition() {
-		return  (String)getStateHelper().eval(PropertyKeys.tooltipPosition);
+		return (String) getStateHelper().eval(PropertyKeys.tooltipPosition);
 	}
-	
+
 	/**
 	 * Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom". <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTooltipPosition(String _tooltipPosition) {
-	    getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
-    }
-	
-}
+		getStateHelper().put(PropertyKeys.tooltipPosition, _tooltipPosition);
+	}
 
+}

@@ -60,7 +60,8 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 			this.toString = toString;
 		}
 
-		PropertyKeys() {}
+		PropertyKeys() {
+		}
 
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
@@ -69,7 +70,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Message of the block overaly. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "Click to enable sharing links", if it hasn't been set by the JSF file.
 	 */
 	public String getBlockMessage() {
 		return (String) getStateHelper().eval(PropertyKeys.blockMessage, "Click to enable sharing links");
@@ -85,7 +86,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColLg() {
 		return (String) getStateHelper().eval(PropertyKeys.colLg, "-1");
@@ -101,7 +102,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColMd() {
 		return (String) getStateHelper().eval(PropertyKeys.colMd, "-1");
@@ -117,7 +118,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColSm() {
 		return (String) getStateHelper().eval(PropertyKeys.colSm, "-1");
@@ -133,7 +134,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getColXs() {
 		return (String) getStateHelper().eval(PropertyKeys.colXs, "-1");
@@ -149,7 +150,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisableBlock() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disableBlock, false);
@@ -165,7 +166,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * If you use the "visible" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "block", if it hasn't been set by the JSF file.
 	 */
 	public String getDisplay() {
 		return (String) getStateHelper().eval(PropertyKeys.display, "block");
@@ -197,7 +198,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getLargeScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.largeScreen, "-1");
@@ -213,7 +214,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getMediumScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.mediumScreen, "-1");
@@ -309,7 +310,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * A string specifying the name of sharing strategy. Available strategies are: blank, popup or self. Default popup. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "popup", if it hasn't been set by the JSF file.
 	 */
 	public String getShareIn() {
 		return (String) getStateHelper().eval(PropertyKeys.shareIn, "popup");
@@ -357,7 +358,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * A boolean specifying whether to show the text on the share button. Default false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isShowLabel() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.showLabel, false);
@@ -373,7 +374,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getSmallScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.smallScreen, "-1");
@@ -453,7 +454,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * A string specifying the theme. Available themes are flat or minimal. Default flat. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "flat", if it hasn't been set by the JSF file.
 	 */
 	public String getTheme() {
 		return (String) getStateHelper().eval(PropertyKeys.theme, "flat");
@@ -469,7 +470,7 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	/**
 	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
 	 */
 	public String getTinyScreen() {
 		return (String) getStateHelper().eval(PropertyKeys.tinyScreen, "-1");

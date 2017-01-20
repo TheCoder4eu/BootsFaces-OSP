@@ -92,14 +92,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 	}
 
 	protected enum PropertyKeys {
-		ajax,
-		disabled,
-		interval,
-		oncomplete,
-		onshake,
-		process,
-		threshold,
-		update;
+		ajax, disabled, interval, oncomplete, onshake, process, threshold, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -116,7 +109,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 
 	/**
 	 * Whether the Button submits the form with AJAX. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
@@ -132,7 +125,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 
 	/**
 	 * Disables the input element, default is false. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isDisabled() {
 		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.disabled, false);
@@ -148,7 +141,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 
 	/**
 	 * Specifies the delay (in milliseconds) between each slide. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 500, if it hasn't been set by the JSF file.
 	 */
 	public int getInterval() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.interval, 500);
@@ -212,7 +205,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 
 	/**
 	 * Specifies the sensitivity of the skae detector. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or 15, if it hasn't been set by the JSF file.
 	 */
 	public int getThreshold() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.threshold, 15);
