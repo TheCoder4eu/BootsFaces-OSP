@@ -94,6 +94,10 @@ public class TouchSpinRenderer extends InputTextRenderer {
 		
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = BsfUtils.escapeJQuerySpecialCharsInSelector(spin.getClientId());
+		String fieldId = spin.getFieldId();
+		if (null == fieldId) {
+			fieldId = "input_" + clientId;
+		}
 		
 		rw.startElement("script", spin);
 		//# Start enclosure
@@ -101,7 +105,7 @@ public class TouchSpinRenderer extends InputTextRenderer {
 		
 		rw.writeText(
 				 // build slider structure
-				 "$('#input_" + clientId + "').TouchSpin({ " +
+				 "$('#" + fieldId + "').TouchSpin({ " +
 						 
 				 	(BsfUtils.isStringValued(spin.getInitval()) ? "initval: " + spin.getInitval() + ", " : "") +
 				 	"min: " + spin.getMin() + ", " +

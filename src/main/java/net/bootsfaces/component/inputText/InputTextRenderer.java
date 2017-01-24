@@ -175,9 +175,14 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "form-group", "class");
 		}
 
+		String fieldId = inputText.getFieldId();
+		if (null == fieldId) {
+			fieldId = "input_" + clientId;
+		}
+
 		if (label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for", "input_" + clientId, "for"); // "input_" +
+			rw.writeAttribute("for", fieldId, "for"); // "input_" +
 																	// clientId
 			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass,
 					"control-label");
@@ -205,10 +210,6 @@ public class InputTextRenderer extends CoreRenderer {
 
 		// Input
 		rw.startElement("input", inputText);
-		String fieldId = inputText.getFieldId();
-		if (null == fieldId) {
-			fieldId = "input_" + clientId;
-		}
 		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
 		String name = inputText.getName();
 		// System.out.println(name);
