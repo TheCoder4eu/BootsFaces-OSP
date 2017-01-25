@@ -92,12 +92,11 @@ public class ImageRenderer extends CoreRenderer {
 		String resourceName = image.getName();
 		String value = image.getValue();
 		if (value != null && value.length() > 0) {
-			if (FacesContext.getCurrentInstance().isProjectStage(ProjectStage.Development)) {
-				LOGGER.warning(
-						"Please use either the 'value' attribute of b:image, or the 'name' and 'library' attribute pair. If all three attributes are provided, BootsFaces uses the 'value' attributes, ignoring both 'name' and 'library'.");
-			}
-			if (resourceName != null || image.getLibrary() != null) {
-
+			if (resourceName != null && image.getLibrary() != null) {
+				if (FacesContext.getCurrentInstance().isProjectStage(ProjectStage.Development)) {
+					LOGGER.warning(
+							"Please use either the 'value' attribute of b:image, or the 'name' and 'library' attribute pair. If all three attributes are provided, BootsFaces uses the 'value' attributes, ignoring both 'name' and 'library'.");
+				}
 			}
 			if (handler.isResourceURL(value)) {
 				return value;
