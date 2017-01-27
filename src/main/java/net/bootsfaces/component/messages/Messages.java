@@ -399,7 +399,7 @@ public class Messages extends javax.faces.component.UIMessages implements IRespo
 
 	/**
 	 * If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet. <P>
-	 * @return Returns the value of the attribute, or "<br />", if it hasn't been set by the JSF file.
+	 * @return Returns the value of the attribute, or "&lt;br />", if it hasn't been set by the JSF file.
 	 */
 	public String getLineBreakTag() {
 		return (String) getStateHelper().eval(PropertyKeys.lineBreakTag, "<br />");
