@@ -34,6 +34,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTableColumn.DataTableColumn;
@@ -559,7 +560,7 @@ public class DataTableRenderer extends CoreRenderer {
 			// https://datatables.net/examples/api/multi_filter.html
 			// # Convert footer column text to input textfields
 			rw.writeText(widgetVar + ".find('.bf-multisearch').each(function(){" + "var title=$(this).text();"
-					+ "$(this).html('<input class=\"input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
+					+ "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
 					+ "});", null);
 			// # Add event listeners for each multisearch input
 			rw.writeText("var inputs=$("+ widgetVar + ".find('.bf-multisearch input'));", null);
@@ -682,6 +683,11 @@ public class DataTableRenderer extends CoreRenderer {
 			String lang = dataTable.getLang();
 			if (availableLanguages.contains(lang))
 				return determineLanguageUrl(fc, lang);
+		} else {
+			String lang = fc.getViewRoot().getLocale().getLanguage();
+			if (availableLanguages.contains(lang)) {
+				return determineLanguageUrl(fc, lang);
+			}
 		}
 		return null;
 	}
@@ -699,7 +705,7 @@ public class DataTableRenderer extends CoreRenderer {
 	private String determineLanguageUrl(FacesContext fc, String lang) {
 		// Build resource url
 		return fc.getApplication().getResourceHandler()
-				.createResource("jq/ui/i18n/dt/datatable-" + lang + ".json", "bsf").getRequestPath();
+				.createResource("jq/ui/i18n/dt/datatable-" + lang + ".json", C.BSF_LIBRARY).getRequestPath();
 	}
 
 	@Override
