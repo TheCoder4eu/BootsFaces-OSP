@@ -408,3 +408,7 @@ a.panel-title-link {
 	outline: thin dotted rgba(255, 255, 255, 0.3);
     outline-offset: 3px;
 }
+
+.form-inline .form-control.datatable-filter-field {
+	width: 100%;
+}

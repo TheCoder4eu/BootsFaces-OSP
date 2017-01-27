@@ -559,8 +559,14 @@ public class DataTableRenderer extends CoreRenderer {
 			// # Footer stuff:
 			// https://datatables.net/examples/api/multi_filter.html
 			// # Convert footer column text to input textfields
+			
+			String filter="<div class=\"form-group has-feedback\">";
+		    filter+="<input class=\"form-control input-sm datatable-filter-field\" type=\"text\" placeholder=\"' + title + '\" />";
+		    filter+="<i class=\"fa fa-search form-control-feedback\"></i>";
+		    filter+="</div>";
+		
 			rw.writeText(widgetVar + ".find('.bf-multisearch').each(function(){" + "var title=$(this).text();"
-					+ "$(this).html('<input class=\"form-control input-sm\" type=\"text\" placeholder=\"Search ' + title + '\" />');"
+					+ "$(this).html('" + filter + "');"
 					+ "});", null);
 			// # Add event listeners for each multisearch input
 			rw.writeText("var inputs=$("+ widgetVar + ".find('.bf-multisearch input'));", null);
