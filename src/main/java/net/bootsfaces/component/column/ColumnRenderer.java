@@ -87,6 +87,7 @@ public class ColumnRenderer extends CoreRenderer {
 			if (style != null) {
 				rw.writeAttribute("style", style, "style");
 			}
+			beginDisabledFieldset(column, rw);
 		}
 	}
 
@@ -103,7 +104,9 @@ public class ColumnRenderer extends CoreRenderer {
 		Column column = (Column) component;
 
 		if (column.isRendered()) {
-	        fc.getResponseWriter().endElement("div");
+			ResponseWriter rw = fc.getResponseWriter();
+			beginDisabledFieldset(column, rw);
+	        rw.endElement("div");
 	        Tooltip.activateTooltips(FacesContext.getCurrentInstance(), column);
 		}
     }

@@ -77,6 +77,7 @@ public class ContainerRenderer extends CoreRenderer {
 			rw.writeAttribute("style", style, "style");
 		}
 		rw.writeAttribute("class", c, "class");
+		beginDisabledFieldset(container, rw);
 	}
 
 	/**
@@ -101,7 +102,9 @@ public class ContainerRenderer extends CoreRenderer {
 			return;
 		}
 		Container container = (Container) component;
-		context.getResponseWriter().endElement("div");
+		ResponseWriter rw = context.getResponseWriter();
+		beginDisabledFieldset(container, rw);
+		rw.endElement("div");
 		Tooltip.activateTooltips(context, container);
 	}
 }

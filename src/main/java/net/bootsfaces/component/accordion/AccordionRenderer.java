@@ -94,10 +94,7 @@ public class AccordionRenderer extends CoreRenderer {
 		rw.writeAttribute("id", accordionClientId, "id");
 		Tooltip.generateTooltip(context, component, rw);
 		
-		if (accordion.isContentDisabled()) {
-			rw.startElement("fieldset", accordion);
-			rw.writeAttribute("disabled", "disabled", "null");
-		}
+		beginDisabledFieldset(accordion, rw);
 
 		if (accordion.getChildren() != null && accordion.getChildren().size() > 0) {
 			for (UIComponent _child : accordion.getChildren()) {
@@ -114,10 +111,9 @@ public class AccordionRenderer extends CoreRenderer {
 				}
 			}
 		}
-		if (accordion.isContentDisabled()) {
-			rw.endElement("fieldset");
-		}
+		endDisabledFieldset(accordion, rw);
 	}
+
 
 	/**
 	 * This methods generates the HTML code of the current b:accordion.

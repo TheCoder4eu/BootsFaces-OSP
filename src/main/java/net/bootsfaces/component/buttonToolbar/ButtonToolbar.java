@@ -23,13 +23,14 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:buttonToolbar /&gt;. */
 @FacesComponent("net.bootsfaces.component.buttonToolbar.ButtonToolbar")
-public class ButtonToolbar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive {
+public class ButtonToolbar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.buttonToolbar.ButtonToolbar";
 
@@ -58,6 +59,7 @@ public class ButtonToolbar extends UIComponentBase implements net.bootsfaces.ren
 		colMd,
 		colSm,
 		colXs,
+		contentDisabled,
 		display,
 		hidden,
 		largeScreen,
@@ -172,6 +174,22 @@ public class ButtonToolbar extends UIComponentBase implements net.bootsfaces.ren
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

@@ -26,6 +26,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:row /&gt;. */
@@ -75,6 +76,7 @@ public class RowRenderer extends CoreRenderer {
 		rw.writeAttribute("class", s, "class");
 
 		Tooltip.activateTooltips(context, row);
+		beginDisabledFieldset(row, rw);
 	}
 
 	/**
@@ -99,6 +101,8 @@ public class RowRenderer extends CoreRenderer {
 			return;
 		}
 		// Row row = (Row) component;
-		context.getResponseWriter().endElement("div");
+		ResponseWriter rw = context.getResponseWriter();
+		beginDisabledFieldset((IContentDisabled)component, rw);
+		rw.endElement("div");
 	}
 }

@@ -26,6 +26,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
@@ -90,6 +91,7 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		}
 
 		Tooltip.generateTooltip(context, buttonGroup, rw);
+		beginDisabledFieldset(buttonGroup, rw);
 	}
 
 	/**
@@ -115,6 +117,7 @@ public class ButtonGroupRenderer extends CoreRenderer {
 		}
 		ButtonGroup buttonGroup = (ButtonGroup) component;
 		ResponseWriter rw = context.getResponseWriter();
+		endDisabledFieldset(buttonGroup, rw);
 		rw.endElement("div");
 		String responsive = Responsive.getResponsiveStyleClass(buttonGroup, false).trim();
 		if(responsive.length() > 0) {

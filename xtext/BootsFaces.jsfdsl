@@ -189,6 +189,7 @@ widget buttonGroup
     +style
     +tooltip
     +responsive
+	+contentDisabled
 }
 
 
@@ -206,6 +207,7 @@ widget buttonToolbar
     +style
     +tooltip
     +responsive
+	+contentDisabled    
 }
 
 widget canvas
@@ -422,6 +424,7 @@ widget column
     +style
     +responsive
     +tooltip
+	+contentDisabled
 }
 
 widget commandButton
@@ -482,6 +485,7 @@ widget container
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
 	+tooltip
+	+contentDisabled
 }
 
 widget dataTable
@@ -700,6 +704,7 @@ widget dropButton
 	+style
 	+responsive
 	+tooltip
+	+contentDisabled
 }
 
 
@@ -1631,6 +1636,7 @@ widget row
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of this element."
     +tooltip
+	+contentDisabled
 }
 
 widget scrollUp

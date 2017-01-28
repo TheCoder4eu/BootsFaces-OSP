@@ -40,6 +40,7 @@ import javax.faces.convert.Converter;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.accordion.Accordion;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 
@@ -524,6 +525,19 @@ public class CoreRenderer extends Renderer {
 		}
 
 		return converter;
+	}
+
+	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
+		if (component.isContentDisabled()) {
+			rw.endElement("fieldset");
+		}
+	}
+
+	public static void beginDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
+		if (component.isContentDisabled()) {
+			rw.startElement("fieldset", (UIComponent)component);
+			rw.writeAttribute("disabled", "disabled", "null");
+		}
 	}
 
 }

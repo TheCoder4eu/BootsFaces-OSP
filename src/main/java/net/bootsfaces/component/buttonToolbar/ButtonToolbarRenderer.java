@@ -76,7 +76,7 @@ public class ButtonToolbarRenderer extends CoreRenderer {
 		if (null != buttonToolbar.getStyle()) {
 			rw.writeAttribute("style", buttonToolbar.getStyle(), "style");
 		}
-
+		beginDisabledFieldset(buttonToolbar, rw);
 	}
 
 	/**
@@ -102,6 +102,7 @@ public class ButtonToolbarRenderer extends CoreRenderer {
 		}
 		ButtonToolbar buttonToolbar = (ButtonToolbar) component;
 		ResponseWriter rw = context.getResponseWriter();
+		endDisabledFieldset(buttonToolbar, rw);
 		rw.endElement("div");
 		Tooltip.activateTooltips(context, buttonToolbar);
 	}
