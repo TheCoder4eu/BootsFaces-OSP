@@ -6,12 +6,14 @@ import java.util.Collections;
 import java.util.Map;
 
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
@@ -120,4 +122,27 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	public Map<String, String> getJQueryEventParameterLists() {
 		return null;
 	}
+	
+	/**
+	 * Boolean value to specify if the widget is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or false, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		if (super.isDisabled()) 
+			return true;
+		UIComponent ancestor = getParent();
+		while (ancestor!=null) {
+			if (ancestor instanceof IContentDisabled) {
+				if (((IContentDisabled)ancestor).isContentDisabled()) {
+					return true;
+				}
+			}
+			ancestor=ancestor.getParent();
+		}
+		return false;
+	}
+
 }

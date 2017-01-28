@@ -30,6 +30,7 @@ import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
@@ -37,6 +38,7 @@ import javax.faces.convert.ConverterException;
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
@@ -164,4 +166,27 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 			}
 		}
 	}
+	
+	/**
+	 * Boolean value to specify if the widget is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or false, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		if (super.isDisabled()) 
+			return true;
+		UIComponent ancestor = getParent();
+		while (ancestor!=null) {
+			if (ancestor instanceof IContentDisabled) {
+				if (((IContentDisabled)ancestor).isContentDisabled()) {
+					return true;
+				}
+			}
+			ancestor=ancestor.getParent();
+		}
+		return false;
+	}
+
 }

@@ -36,6 +36,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIComponent;
 import javax.faces.component.UIInput;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
@@ -48,6 +49,7 @@ import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.JQ;
@@ -735,6 +737,29 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		return styleClass;
 	}
+	
+	/**
+	 * Boolean value to specify if the widget is disabled.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or false, if it hasn't been
+	 *         set by the JSF file.
+	 */
+	public boolean isDisabled() {
+		if (super.isDisabled()) 
+			return true;
+		UIComponent ancestor = getParent();
+		while (ancestor!=null) {
+			if (ancestor instanceof IContentDisabled) {
+				if (((IContentDisabled)ancestor).isContentDisabled()) {
+					return true;
+				}
+			}
+			ancestor=ancestor.getParent();
+		}
+		return false;
+	}
+
 
 	protected enum PropertyKeys {
 		binding,
