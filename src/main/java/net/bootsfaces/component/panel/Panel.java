@@ -33,6 +33,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -41,7 +42,7 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent("net.bootsfaces.component.panel.Panel")
 public class Panel extends UIComponentBase
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive {
+		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.panel.Panel";
 
@@ -147,6 +148,7 @@ public class Panel extends UIComponentBase
 		collapsed,
 		collapsible,
 		contentClass,
+		contentDisabled,
 		contentStyle,
 		dir,
 		disabled,
@@ -347,6 +349,22 @@ public class Panel extends UIComponentBase
 	 */
 	public void setContentClass(String _contentClass) {
 		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

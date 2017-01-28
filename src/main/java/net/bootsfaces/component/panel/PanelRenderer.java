@@ -193,6 +193,11 @@ public class PanelRenderer extends CoreRenderer {
 		// create the body
 		rw.startElement("div", panel);
 		rw.writeAttribute("class", "panel-body", "class");
+		if (panel.isContentDisabled()) {
+			rw.startElement("fieldset", panel);
+			rw.writeAttribute("disabled", "disabled", "null");
+		}
+
 	}
 
 	private void writeTitleLink(Panel panel, ResponseWriter rw, String jQueryClientID, String accordionParent)
@@ -242,6 +247,9 @@ public class PanelRenderer extends CoreRenderer {
 		}
 		Panel panel = (Panel) component;
 		ResponseWriter rw = context.getResponseWriter();
+		if (panel.isContentDisabled()) {
+			rw.endElement("fieldset");
+		}
 		String clientId = panel.getClientId();
 		rw.endElement("div"); // panel-body
 		UIComponent foot = panel.getFacet("footer");
