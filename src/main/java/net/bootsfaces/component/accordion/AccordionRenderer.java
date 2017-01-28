@@ -93,6 +93,11 @@ public class AccordionRenderer extends CoreRenderer {
 		writeAttribute(rw, "style", accordion.getStyle());
 		rw.writeAttribute("id", accordionClientId, "id");
 		Tooltip.generateTooltip(context, component, rw);
+		
+		if (accordion.isContentDisabled()) {
+			rw.startElement("fieldset", accordion);
+			rw.writeAttribute("disabled", "disabled", "null");
+		}
 
 		if (accordion.getChildren() != null && accordion.getChildren().size() > 0) {
 			for (UIComponent _child : accordion.getChildren()) {
@@ -108,6 +113,9 @@ public class AccordionRenderer extends CoreRenderer {
 					throw new FacesException("Accordion must contain only collapsible panel components", null);
 				}
 			}
+		}
+		if (accordion.isContentDisabled()) {
+			rw.endElement("fieldset");
 		}
 	}
 

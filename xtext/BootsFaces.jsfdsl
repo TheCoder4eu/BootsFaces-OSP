@@ -74,6 +74,10 @@ attribute_list style {
     style-class                                                           "Style class of this element."
 }
 
+attribute_list contentDisabled {
+	content-disabled            Boolean default "false"                    "Enables or disables every child element of this container. By default, child elements are enabled."
+}
+
 widget accordion
        implemented_by net.bootsfaces.component.accordion.Accordion
        extends UIComponentBase
@@ -87,6 +91,7 @@ widget accordion
 	+tooltip
 	+responsive
 	+style
+	+contentDisabled
 }
 
 widget alert
