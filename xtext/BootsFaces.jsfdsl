@@ -1538,6 +1538,7 @@ widget panelGrid
     style-class                                                            "Style class of the div surrounding the panel grid."
     +tooltip
     +responsive
+    +contentDisabled
 }
 
 widget pillLinks

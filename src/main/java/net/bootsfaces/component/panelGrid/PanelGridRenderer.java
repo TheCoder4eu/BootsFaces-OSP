@@ -58,12 +58,17 @@ public class PanelGridRenderer extends CoreRenderer {
         PanelGrid panelGrid = (PanelGrid) component;
 		ResponseWriter writer = context.getResponseWriter();
 
+		boolean idHasBeenRendered=false;
 		String responsiveStyle= Responsive.getResponsiveStyleClass(panelGrid, false);
 		if (null != responsiveStyle) {
 			writer.startElement("div", panelGrid);
 			writer.writeAttribute("class", responsiveStyle.trim(), null);
+			String clientId = panelGrid.getClientId();
+			writer.writeAttribute("id", clientId, "id");
+			idHasBeenRendered=true;
 		}
-		generateContainerStart(writer, panelGrid);
+		generateContainerStart(writer, panelGrid, idHasBeenRendered);
+		beginDisabledFieldset(panelGrid, writer);
 
 		int[] columns = getColSpanArray(panelGrid);
 		String[] columnClasses = getColumnClasses(panelGrid, columns);
@@ -87,6 +92,7 @@ public class PanelGridRenderer extends CoreRenderer {
 			}
 		}
 
+		endDisabledFieldset(panelGrid, writer);
 		generateContainerEnd(writer);
 		if (null != responsiveStyle) {
 			writer.endElement("div");
@@ -285,11 +291,9 @@ public class PanelGridRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             if something's wrong with the response writer.
 	 */
-	protected void generateContainerStart(ResponseWriter writer, PanelGrid panelGrid) throws IOException {
+	protected void generateContainerStart(ResponseWriter writer, PanelGrid panelGrid, boolean idHasBeenRendered) throws IOException {
 		writer.startElement("div", panelGrid);
-
-		String id = panelGrid.getId();
-		if (null != id) {
+		if (!idHasBeenRendered) {
 			String clientId = panelGrid.getClientId();
 			writer.writeAttribute("id", clientId, "id");
 		}
