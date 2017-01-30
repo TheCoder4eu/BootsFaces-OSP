@@ -729,6 +729,7 @@ widget dropMenu
 	+tooltip
 	+responsive
 	+iconAwesome
+    +contentDisabled
 }
 
 
