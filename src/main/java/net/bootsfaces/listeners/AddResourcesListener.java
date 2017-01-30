@@ -131,7 +131,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// check explicit css request
 		if(viewMap.get(EXT_RESOURCE_KEY) != null) return true;
 		// check referenced bsf request
-		if(findBsfComponent(root, "bsf") != null) return true;
+		if(findBsfComponent(root, C.BSF_LIBRARY) != null) return true;
 
 		return false;
 	}
@@ -289,9 +289,21 @@ public class AddResourcesListener implements SystemEventListener {
 		//String name = "css/icons.css";
 		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 
-		if(theme.equals("patternfly")) {
+		if (theme.equals("patternfly")) {
 			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
+			// remove datatables.min.css
+			for (UIComponent resource : root.getComponentResources(context, "head")) {
+				String library = (String) resource.getAttributes().get("library");
+				if (C.BSF_LIBRARY.equals(library)) {
+					String name = (String) resource.getAttributes().get("name");
+					if ("css/datatables.min.css".equals(name)) {
+						resource.setInView(false);
+						root.removeComponentResource(context, resource);
+					}
+				}
+			}
 		}
+		
 		//Add mandatory CSS bsf.css
 		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
 	}
@@ -404,7 +416,7 @@ private String getTheme(FacesContext context) {
 		 * This can be an error prone approach so we add all of them (if not different specified)
 		 */
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", "bsf");
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", C.BSF_LIBRARY);
 
 		if (loadJQuery)
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
@@ -417,7 +429,7 @@ private String getTheme(FacesContext context) {
 			for (Entry<String, String> entry : basicResourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
+				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) ||
 						!file.startsWith("jq/ui") || loadJQueryUI)
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 			}
@@ -430,7 +442,7 @@ private String getTheme(FacesContext context) {
 			for (Entry<String, String> entry : resourceMap.entrySet()) {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
-				if (!"jq/jquery.js".equals(file) || !"bsf".equals(library) ||
+				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) ||
 						!file.startsWith("jq/ui") || loadJQueryUI)
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 			}
@@ -536,7 +548,7 @@ private String getTheme(FacesContext context) {
 			for (UIComponent resource : root.getComponentResources(context, "head")) {
 				String name = (String) resource.getAttributes().get("name");
 				String library = (String) resource.getAttributes().get("library");
-				if ("bsf".equals(library) && name != null ) {
+				if (C.BSF_LIBRARY.equals(library) && name != null ) {
 					if(name.endsWith("bootstrap.min.css")||name.endsWith("bootstrap.css")||name.endsWith("core.css")||name.endsWith("theme.css")) {
 						resource.setInView(false);
 						root.removeComponentResource(context, resource);
