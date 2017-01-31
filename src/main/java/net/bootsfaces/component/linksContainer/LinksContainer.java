@@ -29,6 +29,7 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -37,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4eu
  */
 
-public class LinksContainer extends UIComponentBase {
+public class LinksContainer extends UIComponentBase implements IContentDisabled {
 	/**
 	 * <p>
 	 * The standard component type for this component.
@@ -123,4 +124,21 @@ public class LinksContainer extends UIComponentBase {
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+	
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval("contentDisabled", false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put("contentDisabled", _contentDisabled);
+	}
+
 }

@@ -32,6 +32,7 @@ import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
@@ -39,7 +40,7 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @ListenerFor(systemEventClass = PostAddToViewEvent.class)
 @FacesComponent("net.bootsfaces.component.navBar.NavBar")
-public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
+public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navBar.NavBar";
 
@@ -102,6 +103,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		brandImgStyleClass,
 		brandStyle,
 		brandStyleClass,
+		contentDisabled,
 		fixed,
 		fluid,
 		inverse,
@@ -288,6 +290,22 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 */
 	public void setBrandStyleClass(String _brandStyleClass) {
 		getStateHelper().put(PropertyKeys.brandStyleClass, _brandStyleClass);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

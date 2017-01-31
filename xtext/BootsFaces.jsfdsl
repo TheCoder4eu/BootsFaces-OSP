@@ -55,20 +55,6 @@ attribute_list responsiveLabel {
     label-tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
 }
 
-attribute_list responsiveContainer {
-	content-col-lg              default "-1"                               "List of integer values to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-col-md              default "-1"                               "List of integer values to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-col-sm              default "-1"                               "List of integer values to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-col-xs              default "-1"                               "List of integer values to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-large-screen        default "-1"                               "Alternative spelling to col-lg. List of integer values to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-medium-screen       default "-1"                               "Alternative spelling to col-md. List of integer values to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-small-screen        default "-1"                               "Alternative spelling to col-sm. List of integer values to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-tiny-screen         default "-1"                               "Alternative spelling to col-xs. List of integer values to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-hidden				      								       "Comma-separated list of values determining the visibility of the columns of the container. This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
-    content-span                                                           "List of integer values to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    content-visible				       									   "Comma-separated list of values determining the visibility of the columns of the container. This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
-}
-
 attribute_list style {
 	style                                                                 "Inline style of the input element."
     style-class                                                           "Style class of this element."
@@ -729,6 +715,7 @@ widget dropMenu
 	+tooltip
 	+responsive
 	+iconAwesome
+    +contentDisabled
 }
 
 
@@ -1358,6 +1345,7 @@ widget navBar
     tooltip-delay-hide  Integer                                            "The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-delay-show  Integer                                            "The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
+    +contentDisabled
 }
 
 widget navCommandLink
@@ -1473,6 +1461,7 @@ widget navbarLinks
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
 	+style
+	+contentDisabled
 }
 
 
