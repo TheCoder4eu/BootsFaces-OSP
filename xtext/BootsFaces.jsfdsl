@@ -1177,6 +1177,7 @@ widget jumbotron
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
 	+tooltip
+	+contentDisabled
 }
 
 widget kebab 
@@ -2291,4 +2292,5 @@ widget well
     style-class                                                            "Style class of the div surrounding the tab pane."
     +tooltip
     +responsive
+    +contentDisabled
 }

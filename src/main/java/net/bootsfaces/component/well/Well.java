@@ -22,13 +22,14 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:well /&gt;. */
 @FacesComponent("net.bootsfaces.component.well.Well")
-public class Well extends WellCore implements net.bootsfaces.render.IHasTooltip, IResponsive {
+public class Well extends WellCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.well.Well";
 

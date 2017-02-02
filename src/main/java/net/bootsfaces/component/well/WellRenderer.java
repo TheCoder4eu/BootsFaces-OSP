@@ -79,6 +79,7 @@ public class WellRenderer extends CoreRenderer {
 		} else {
 			rw.writeAttribute("class", "well" + styleClass, "class");
 		}
+		beginDisabledFieldset(well, rw);
 	}
 
 	/**
@@ -103,7 +104,9 @@ public class WellRenderer extends CoreRenderer {
 			return;
 		}
 		Well well = (Well) component;
-		context.getResponseWriter().endElement("div");
+		ResponseWriter rw = context.getResponseWriter();
+		endDisabledFieldset(well, rw);
+		rw.endElement("div");
 		Tooltip.activateTooltips(context, well);
 	}
 }
