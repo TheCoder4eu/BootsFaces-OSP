@@ -758,7 +758,6 @@ widget form
     target              inherited                                          "Name of a frame where the response retrieved after this form submit is to be displayed."
     title               inherited                                          "Advisory title information about markup elements generated for this component."
 	+style
-	+contentDisabled
 }
 
 widget flyOutMenu
