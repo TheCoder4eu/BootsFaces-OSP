@@ -533,11 +533,20 @@ public class CoreRenderer extends Renderer {
 		}
 	}
 
-	public static void beginDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
+	/**
+	 * Renders the code disabling every input field and every button within a container.
+	 * @param component
+	 * @param rw
+	 * @return true if an element has been rendered
+	 * @throws IOException
+	 */
+	public static boolean beginDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
 			rw.startElement("fieldset", (UIComponent)component);
 			rw.writeAttribute("disabled", "disabled", "null");
+			return true;
 		}
+		return false;
 	}
 
 }

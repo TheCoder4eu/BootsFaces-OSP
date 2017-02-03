@@ -30,6 +30,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		colMd,
 		colSm,
 		colXs,
+		contentDisabled,
 		customLangUrl,
 		customOptions,
 		disabled,
@@ -42,6 +43,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		largeScreen,
 		mediumScreen,
 		multiColumnSearch,
+		multiColumnSearchPosition,
 		offset,
 		offsetLg,
 		offsetMd,
@@ -196,6 +198,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**
@@ -388,6 +406,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setMultiColumnSearch(boolean _multiColumnSearch) {
 		getStateHelper().put(PropertyKeys.multiColumnSearch, _multiColumnSearch);
+	}
+
+	/**
+	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
+	 * @return Returns the value of the attribute, or "bottom", if it hasn't been set by the JSF file.
+	 */
+	public String getMultiColumnSearchPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.multiColumnSearchPosition, "bottom");
+	}
+
+	/**
+	 * Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMultiColumnSearchPosition(String _multiColumnSearchPosition) {
+		getStateHelper().put(PropertyKeys.multiColumnSearchPosition, _multiColumnSearchPosition);
 	}
 
 	/**

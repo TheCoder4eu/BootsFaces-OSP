@@ -88,15 +88,27 @@ public class DataTableRenderer extends CoreRenderer {
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = dataTable.getClientId();
+		boolean idHasBeenRendered=false;
 
 		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.startElement("div", dataTable);
 			rw.writeAttribute("class", responsiveStyle.trim(), null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered=true;
+		}
+		
+		if (dataTable.isContentDisabled()) {
+			if (beginDisabledFieldset(dataTable, rw)) {
+				rw.writeAttribute("id", clientId, "id");
+				idHasBeenRendered=true;
+			}
 		}
 
 		rw.startElement("table", dataTable);
-		rw.writeAttribute("id", clientId, "id");
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 
 		String styleClass = "table ";
 		if (dataTable.isBorder()) {
@@ -126,10 +138,10 @@ public class DataTableRenderer extends CoreRenderer {
 		boolean hasFooter = false;
 		boolean hasSearchbar = false;
 		if (dataTable.isMultiColumnSearch()) {
-//			String position = dataTable.getMultiColumnSearchPosition();
-//			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
+			String position = dataTable.getMultiColumnSearchPosition();
+			if ("both".equalsIgnoreCase(position) || "bottom".equalsIgnoreCase(position)) {
 				hasSearchbar = true;
-//			}
+			}
 		}
 		for (UIComponent column : dataTable.getChildren()) {
 			if (!column.isRendered()) {
@@ -175,7 +187,7 @@ public class DataTableRenderer extends CoreRenderer {
 			if (!column.isRendered()) {
 				continue;
 			}
-			rw.startElement("th", dataTable);
+			rw.startElement("td", dataTable);
 			Object footerStyle = column.getAttributes().get("footerStyle");
 			if (footerStyle != null) {
 				rw.writeAttribute("style", footerStyle, null);
@@ -196,7 +208,7 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.writeText(column.getAttributes().get("label"), null);
 				}
 			}
-			rw.endElement("th");
+			rw.endElement("td");
 		}
 		rw.endElement("tr");
 	}
@@ -278,6 +290,13 @@ public class DataTableRenderer extends CoreRenderer {
 	
 	private void generateHeader(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
 		rw.startElement("thead", dataTable);
+		// Putting input fields into the header doesn't work yet
+		if (dataTable.isMultiColumnSearch()) {
+			String position = dataTable.getMultiColumnSearchPosition();
+			if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
+				generateMultiColumnSearchRow(context, dataTable, rw);
+			}
+		}
 		rw.startElement("tr", dataTable);
 		int index = 0;
 		List<UIComponent> columns = dataTable.getChildren();
@@ -460,15 +479,6 @@ public class DataTableRenderer extends CoreRenderer {
 			index++;
 		}
 		rw.endElement("tr");
-		if (false) {
-			// Putting input fields into the header doesn't work yet
-//			if (dataTable.isMultiColumnSearch()) {
-//				String position = dataTable.getMultiColumnSearchPosition();
-//				if ("both".equalsIgnoreCase(position) || "top".equalsIgnoreCase(position)) {
-//					generateMultiColumnSearchRow(context, dataTable, rw);
-//				}
-//			}
-		}
 
 		rw.endElement("thead");
 	}
@@ -518,6 +528,7 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
+		endDisabledFieldset(dataTable, rw);
 		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.endElement("div");
