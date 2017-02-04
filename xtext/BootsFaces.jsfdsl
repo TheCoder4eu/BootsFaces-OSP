@@ -492,7 +492,7 @@ widget dataTable
     info				 Boolean default "true"							   "If set, this will enable the information about record count. Defaults to true."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
-//    multi-column-search-position default "bottom"                          "Doesn't work yet. Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
+    multi-column-search-position default "bottom"                          "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -528,6 +528,7 @@ widget dataTable
 	+style
 	+responsive
 	+tooltip
+	+contentDisabled
 }
 
 widget dataTableColumn {
@@ -728,6 +729,7 @@ widget fetchBeanInfos
 }
  
 widget form 
+       extends UIForm
        has_children {
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1177,6 +1179,7 @@ widget jumbotron
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
 	+tooltip
+	+contentDisabled
 }
 
 widget kebab 
@@ -2291,4 +2294,5 @@ widget well
     style-class                                                            "Style class of the div surrounding the tab pane."
     +tooltip
     +responsive
+    +contentDisabled
 }

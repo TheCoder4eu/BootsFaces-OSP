@@ -65,6 +65,7 @@ public class JumbotronRenderer extends CoreRenderer {
 		if(BsfUtils.isStringValued(jumbotron.getStyleClass()))
 			styleClass = styleClass + " " + jumbotron.getStyleClass();
 		rw.writeAttribute("class", styleClass, "class");
+		beginDisabledFieldset(jumbotron, rw);
 	}
 	
 	/**
@@ -84,6 +85,7 @@ public class JumbotronRenderer extends CoreRenderer {
 	    }
 		Jumbotron jumbotron = (Jumbotron) component;
 		ResponseWriter rw = context.getResponseWriter();
+		endDisabledFieldset(jumbotron, rw);
 		rw.endElement("div");
 		Tooltip.activateTooltips(context, jumbotron);
 	}

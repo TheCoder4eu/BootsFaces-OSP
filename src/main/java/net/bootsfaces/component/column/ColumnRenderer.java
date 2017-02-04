@@ -105,7 +105,7 @@ public class ColumnRenderer extends CoreRenderer {
 
 		if (column.isRendered()) {
 			ResponseWriter rw = fc.getResponseWriter();
-			beginDisabledFieldset(column, rw);
+			endDisabledFieldset(column, rw);
 	        rw.endElement("div");
 	        Tooltip.activateTooltips(FacesContext.getCurrentInstance(), column);
 		}
