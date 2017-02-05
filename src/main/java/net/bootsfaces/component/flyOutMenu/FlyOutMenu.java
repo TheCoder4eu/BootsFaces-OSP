@@ -23,12 +23,13 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:flyOutMenu /&gt;. */
 @FacesComponent("net.bootsfaces.component.flyOutMenu.FlyOutMenu")
-public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTooltip {
+public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTooltip, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.flyOutMenu.FlyOutMenu";
 
@@ -53,6 +54,7 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 
 	protected enum PropertyKeys {
 		binding,
+		contentDisabled,
 		style,
 		styleClass,
 		tooltip,
@@ -90,6 +92,22 @@ public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTo
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

@@ -771,6 +771,7 @@ widget flyOutMenu
 	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."
 	+style
 	+tooltip
+	+contentDisabled
 }
 
 widget focus
