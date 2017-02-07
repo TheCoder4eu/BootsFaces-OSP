@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2016 Dario D'Urzo
+ *  Copyright 2014-2017 Dario D'Urzo
  *
  *  This file is part of BootsFaces.
  *
