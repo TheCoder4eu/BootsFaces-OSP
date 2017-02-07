@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-16 by Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-2017 by Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
