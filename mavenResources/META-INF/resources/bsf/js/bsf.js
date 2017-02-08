@@ -1,6 +1,6 @@
 /*
  
- Copyright 2013-2016 Riccardo Massera (TheCoder4.Eu)
+ Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
  BootsFaces JS
  author: TheCoder4.eu
 
