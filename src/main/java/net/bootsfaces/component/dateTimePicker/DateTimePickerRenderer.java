@@ -42,7 +42,6 @@ import net.bootsfaces.utils.LocaleUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePickerRenderer extends CoreRenderer {
 	private static final String DTP_OUTER_CONTAINER_SUFFIX = "Outer";
-	// private static final String DTP_CONTAINER_ID2 = "dtp_container2_";
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -177,7 +176,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
-
 			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 		} else if (label != null) {
 			rw.startElement("div", dtp);
@@ -188,8 +186,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			clientIdHasBeenRendered=true;
 		}
 		
-		
-
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
 			fieldId = clientId + "_Input";
@@ -209,14 +205,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
-			/*if (!clientIdHasBeenRendered) { Unneccessary code, clientIdHasBeenRendered is always true, due to condition above
-				rw.writeAttribute("id", clientId, null);
-				Tooltip.generateTooltip(fc, dtp, rw);
-				clientIdHasBeenRendered=true;
-				divPrefix=DTP_CONTAINER_ID2;
-			}*/
-		}
-		
+		}		
 
 		Object v = dtp.getSubmittedValue();
 		if (v == null) {
@@ -276,7 +265,6 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			if (!clientIdHasBeenRendered) {
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
-				//divPrefix=DTP_CONTAINER_ID2;
 			}
 
 			if (dtp.isShowIcon() && "left".equalsIgnoreCase(dtp.getIconPosition())) {
