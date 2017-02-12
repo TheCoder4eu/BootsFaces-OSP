@@ -108,8 +108,9 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.startElement("table", dataTable);
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
-		}
-
+		} else
+			rw.writeAttribute("id", clientId + "Inner", "id"); // Table selection needs a valid AJAX id on the table tag
+		
 		String styleClass = "table ";
 		if (dataTable.isBorder()) {
 			styleClass += "table-bordered ";
