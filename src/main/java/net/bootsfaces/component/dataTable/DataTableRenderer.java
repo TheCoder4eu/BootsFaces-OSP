@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014 - 17 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -108,8 +108,9 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.startElement("table", dataTable);
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
-		}
-
+		} else
+			rw.writeAttribute("id", clientId + "Inner", "id"); // Table selection needs a valid AJAX id on the table tag
+		
 		String styleClass = "table ";
 		if (dataTable.isBorder()) {
 			styleClass += "table-bordered ";

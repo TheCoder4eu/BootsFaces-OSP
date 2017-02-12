@@ -41,8 +41,8 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePickerRenderer extends CoreRenderer {
-	private static final String DTP_CONTAINER_ID = "dtp_container_";
-	private static final String DTP_CONTAINER_ID2 = "dtp_container2_";
+	private static final String DTP_OUTER_CONTAINER_SUFFIX = "Outer";
+	// private static final String DTP_CONTAINER_ID2 = "dtp_container2_";
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -140,8 +140,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		DateTimePicker dtp = (DateTimePicker) component;
 		ResponseWriter rw = context.getResponseWriter();
 
-		String divPrefix = encodeHTML(context, rw, dtp);
-		encodeJS(context, rw, dtp, divPrefix);
+		String dateTimePickerId = encodeHTML(context, rw, dtp);
+		encodeJS(context, rw, dtp, dateTimePickerId);
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String styleClass = dtp.getStyleClass();
 		if(styleClass == null) styleClass = "";
 		styleClass = styleClass.trim();
-		String datePickerId;
+		String dateTimePickerId;
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		String label = dtp.getLabel();
@@ -166,7 +166,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			label = null;
 		}
 
-		String divPrefix="";
+		String divSuffix="";
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			if (!isHorizontalForm(dtp)) {
@@ -178,12 +178,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
 
-			divPrefix=DTP_CONTAINER_ID;
+			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
 			rw.writeAttribute("class", "form-group", "class");
-			divPrefix=DTP_CONTAINER_ID;
+			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
 		}
@@ -209,12 +209,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
-			if (!clientIdHasBeenRendered) {
+			/*if (!clientIdHasBeenRendered) { Unneccessary code, clientIdHasBeenRendered is always true, due to condition above
 				rw.writeAttribute("id", clientId, null);
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
 				divPrefix=DTP_CONTAINER_ID2;
-			}
+			}*/
 		}
 		
 
@@ -242,8 +242,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			rw.writeAttribute("class", ("input-group date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", (dtp.isDisabled() ? "opacity: 0.65; pointer-events: none;" : "") + dtp.getStyle(), "style");
 			else if(dtp.isDisabled()) rw.writeAttribute("style", "opacity: 0.65; pointer-events: none;", null);
-			datePickerId = divPrefix + clientId;
-			rw.writeAttribute("id", datePickerId, null);
+			dateTimePickerId =  clientId + divSuffix;
+			rw.writeAttribute("id", dateTimePickerId, null);
 			if (!clientIdHasBeenRendered) {
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
@@ -271,12 +271,12 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			String inputGroup = dtp.isShowIcon() ? "input-group " : "";
 			rw.writeAttribute("class", (inputGroup +"date " + styleClass).trim(), "class");
 			if(dtp.getStyle() != null) rw.writeAttribute("style", dtp.getStyle(), "style");
-			datePickerId = divPrefix + clientId;
-			rw.writeAttribute("id", datePickerId, null);
+			dateTimePickerId = clientId + divSuffix;
+			rw.writeAttribute("id", dateTimePickerId, null);
 			if (!clientIdHasBeenRendered) {
 				Tooltip.generateTooltip(fc, dtp, rw);
 				clientIdHasBeenRendered=true;
-				divPrefix=DTP_CONTAINER_ID2;
+				//divPrefix=DTP_CONTAINER_ID2;
 			}
 
 			if (dtp.isShowIcon() && "left".equalsIgnoreCase(dtp.getIconPosition())) {
@@ -329,7 +329,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 		Tooltip.activateTooltips(fc, dtp);
 
-		return datePickerId;
+		return dateTimePickerId;
 	}
 
 	private void generateStyleClass(DateTimePicker dtp, ResponseWriter rw)
