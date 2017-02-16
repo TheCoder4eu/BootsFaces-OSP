@@ -639,7 +639,7 @@ public class BsfUtils {
 		if (object instanceof Number) {
 			return ((Number) object).intValue();
 		}
-		throw new IllegalArgumentException("Object in not numeric");
+		throw new IllegalArgumentException("Object is not numeric");
 	}
 
 	public static float getSliderValue(String value) {
