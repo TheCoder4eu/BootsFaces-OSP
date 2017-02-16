@@ -1,8 +1,8 @@
 /**
  *  Copyright 2015-2016 Stephan Rauh (http://www.beyondjava.net)
- *  
+ *
  *  This file is part of BootsFaces.
- *  
+ *
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -20,21 +20,19 @@ package net.bootsfaces.component.poll;
 
 import java.io.IOException;
 import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlCommandButton;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.event.ActionEvent;
-
 import net.bootsfaces.C;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
  * The poll component refreshes a portion of the JSF view periodically via AJAX.
- * 
+ *
  * @author Stephan Rauh
  */
 @FacesComponent("net.bootsfaces.component.poll.Poll")
@@ -96,10 +94,9 @@ public class Poll extends HtmlCommandButton {
 		String update = (String) attrs.get("update");
 		if (null == update)
 			update = "@form";
-		String intervalAsString = (String) attrs.get("interval");
-		if (null == intervalAsString)
-			intervalAsString = "1000";
-		String intervalInMillseconds = intervalAsString;
+		Integer intervalInMillseconds = BsfUtils.toInteger(attrs.get("interval"));
+		if (null == intervalInMillseconds)
+			intervalInMillseconds = 1000;
 		String execute = (String) attrs.get("execute");
 		if (null == execute)
 			execute = "@none";
