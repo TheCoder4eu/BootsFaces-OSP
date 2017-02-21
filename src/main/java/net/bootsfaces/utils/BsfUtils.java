@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
@@ -25,7 +24,6 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
-
 import net.bootsfaces.expressions.ExpressionResolver;
 
 public class BsfUtils {
@@ -74,7 +72,7 @@ public class BsfUtils {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Check if a generic object is valued
 	 * @param obj
@@ -572,9 +570,9 @@ public class BsfUtils {
 			return "";
 		}
 	}
-	
+
 	/**
-	 * Resolve the search expression 
+	 * Resolve the search expression
 	 * @param refItem
 	 * @return
 	 */
@@ -587,7 +585,7 @@ public class BsfUtils {
 		}
 		return refItem;
 	}
-	
+
 	/**
 	 * Support method to convert String slider value to float values
 	 * @param value
@@ -601,11 +599,11 @@ public class BsfUtils {
 			if (value.trim().startsWith("[") || value.contains(",") || isArray) {
 				if(value.trim().startsWith("["))
 					value = value.substring(1, value.length() -1);
-				
+
 				String[] values = value.split(",");
 				for(int i = 0; i < values.length; i++) {
 					try {
-						if(BsfUtils.isStringValued(values[i])) 
+						if(BsfUtils.isStringValued(values[i]))
 							floatList.add(Float.parseFloat(values[i]));
 					} catch(NumberFormatException nfe) {
 						nfe.printStackTrace();
@@ -624,14 +622,33 @@ public class BsfUtils {
 		Float[] values = new Float[floatList.size()];
 		return floatList.toArray(values);
 	}
-	
+
+	/**
+	 * Convert object to integer.
+	 * @param object
+	 * @return Integer value of object or {@code null} if object is {@code null}.
+	 * @throws IllegalArgumentException If object is not a string or number.
+	 */
+	public static Integer toInteger(Object object) {
+		if (object == null) {
+			return null;
+		}
+		if (object instanceof String) {
+			return Integer.valueOf((String) object);
+		}
+		if (object instanceof Number) {
+			return ((Number) object).intValue();
+		}
+		throw new IllegalArgumentException("Object is not numeric");
+	}
+
 	public static float getSliderValue(String value) {
 		Float[] values = getSliderValues(value);
 		if(values != null) return values[0];
 		return -1f;
 	}
-	
+
 	public static int getIntSliderValue(String value) {
 		return (int)getSliderValue(value);
-	}  
+	}
 }
