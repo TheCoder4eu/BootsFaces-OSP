@@ -80,4 +80,9 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 	public String getType() {
 		return "hidden";
 	}
+	
+	@Override
+	public boolean getRendersChildren() {
+		return true;
+	}
 }
