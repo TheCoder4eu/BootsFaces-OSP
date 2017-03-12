@@ -24,7 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class KebabCore extends UIComponentBase {
 
 	protected enum PropertyKeys {
-		binding, style, styleClass;
+		binding, contentDisabled, style, styleClass;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -53,6 +53,22 @@ public abstract class KebabCore extends UIComponentBase {
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

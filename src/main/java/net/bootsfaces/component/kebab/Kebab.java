@@ -22,11 +22,12 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:kebab /&gt;. */
 @FacesComponent("net.bootsfaces.component.kebab.Kebab")
-public class Kebab extends KebabCore {
+public class Kebab extends KebabCore implements IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.kebab.Kebab";
 
