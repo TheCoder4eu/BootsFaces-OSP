@@ -62,7 +62,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 															// AJAXRenderer
 
 		String clientId = selectBooleanCheckbox.getClientId(context);
-		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		String submittedValue = context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
@@ -106,8 +106,11 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		SelectBooleanCheckbox selectBooleanCheckbox = (SelectBooleanCheckbox) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
-
-		String span = startColSpanDiv(rw, selectBooleanCheckbox);
+		
+		String span = null;
+		if (!isHorizontalForm(component)) {
+			span = startColSpanDiv(rw, selectBooleanCheckbox);
+		}
 		rw.startElement("div", component);
 		writeAttribute(rw, "class", "form-group");
 		addLabel(rw, clientId, selectBooleanCheckbox);
@@ -184,6 +187,14 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 */
 	protected void renderInputTag(FacesContext context, ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
+		int numberOfDivs = 0;
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(selectBooleanCheckbox, false).trim();
+		if (responsiveStyleClass.length() > 0 && isHorizontalForm(selectBooleanCheckbox)) {
+			rw.startElement("div", selectBooleanCheckbox);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+			numberOfDivs++;
+		}
+		
 		renderInputTag(rw, context, selectBooleanCheckbox, clientId);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
 		// Render Ajax Capabilities
@@ -192,6 +203,11 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		renderInputTagValue(context, rw, selectBooleanCheckbox);
 		renderInputTagEnd(rw, selectBooleanCheckbox);
 		renderInputTagHelper(rw, context, selectBooleanCheckbox, clientId);
+		
+		while (numberOfDivs > 0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
+		}
 	}
 
 	/**
@@ -320,7 +336,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		rw.endElement("input");
 		String caption = selectBooleanCheckbox.getCaption();
 		if (null != caption)
-			rw.append(caption);
+			rw.append(" " + caption);
 		rw.endElement("label");
 		rw.endElement("div");
 	}

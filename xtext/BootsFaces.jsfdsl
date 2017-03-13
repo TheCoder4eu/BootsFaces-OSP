@@ -1721,6 +1721,7 @@ widget selectBooleanCheckbox
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
     +tooltip
     +responsive
+    +responsiveLabel
 }
 
 widget shake
