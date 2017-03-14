@@ -326,7 +326,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 	
 	/**
-	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * Specifies the URL of the page the link goes to. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getHref() {
@@ -334,7 +334,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs. <P>
+	 * Specifies the URL of the page the link goes to. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHref(String _href) {
