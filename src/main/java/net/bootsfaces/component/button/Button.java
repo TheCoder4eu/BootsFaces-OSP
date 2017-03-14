@@ -70,6 +70,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		display,
 		fragment,
 		hidden,
+		href,
 		icon,
 		iconAlign,
 		iconAwesome,
@@ -108,6 +109,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		style,
 		styleClass,
 		tabindex,
+		target,
 		tinyScreen,
 		title,
 		tooltip,
@@ -321,6 +323,22 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+	
+	/**
+	 * Specifies the URL of the page the link goes to. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHref() {
+		return (String) getStateHelper().eval(PropertyKeys.href);
+	}
+
+	/**
+	 * Specifies the URL of the page the link goes to. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHref(String _href) {
+		getStateHelper().put(PropertyKeys.href, _href);
 	}
 
 	/**
@@ -929,6 +947,22 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setTabindex(String _tabindex) {
 		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
+	}
+	
+	/**
+	 * The target attribute specifies where to open the linked document. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getTarget() {
+		return (String) getStateHelper().eval(PropertyKeys.target);
+	}
+
+	/**
+	 * The target attribute specifies where to open the linked document. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTarget(String _target) {
+		getStateHelper().put(PropertyKeys.target, _target);
 	}
 
 	/**
