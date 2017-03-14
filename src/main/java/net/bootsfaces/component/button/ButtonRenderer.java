@@ -176,7 +176,10 @@ public class ButtonRenderer extends CoreRenderer {
 				if (!fragment.startsWith("#")) {
 					fragment = "#" + fragment;
 				}
-				js += "window.location.href='" + fragment + "';";
+				js += "window.open('" + fragment + "'";
+				if (button.getTarget() != null)
+					js += ", '" + button.getTarget() + "'";
+				js += ");";
 				return js;
 			}
 		}
@@ -200,7 +203,10 @@ public class ButtonRenderer extends CoreRenderer {
 							url += "#" + fragment;
 						}
 					}
-					js += "window.location.href='" + url + "';";
+					js += "window.open('" + url + "'";
+					if (button.getTarget() != null)
+						js += ", '" + button.getTarget() + "'";
+					js += ");";
 				}
 			}
 		}
