@@ -80,10 +80,16 @@ public class ButtonRenderer extends CoreRenderer {
 		Object value = (button.getValue() != null ? button.getValue() : "");
 		String style = button.getStyle();
 
-		rw.startElement("a", button);
+		String tag = "button";
+		if ((button.getHref() != null) || (button.getTarget() != null)) {
+			tag="a";
+		}
+		rw.startElement(tag, button);
 		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("name", clientId, "name");
-		rw.writeAttribute("type", "button", null);
+		if ("button".equals(tag)) {
+			rw.writeAttribute("type", "button", null);
+		}
 		if(BsfUtils.isStringValued(button.getDir())) {
 			rw.writeAttribute("dir", button.getDir(), "dir");
 		}
@@ -114,7 +120,7 @@ public class ButtonRenderer extends CoreRenderer {
 
 		String icon = button.getIcon();
 		String faicon = button.getIconAwesome();
-		boolean fa = false; // flag to indicate wether the selected icon set is
+		boolean fa = false; // flag to indicate whether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
 			icon = faicon;
@@ -135,7 +141,7 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, button);
-		rw.endElement("a");
+		rw.endElement(tag);
 	}
 
 	/**
