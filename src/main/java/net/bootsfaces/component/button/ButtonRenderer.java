@@ -80,7 +80,7 @@ public class ButtonRenderer extends CoreRenderer {
 		Object value = (button.getValue() != null ? button.getValue() : "");
 		String style = button.getStyle();
 
-		rw.startElement("button", button);
+		rw.startElement("a", button);
 		rw.writeAttribute("id", clientId, "id");
 		rw.writeAttribute("name", clientId, "name");
 		rw.writeAttribute("type", "button", null);
@@ -90,6 +90,10 @@ public class ButtonRenderer extends CoreRenderer {
 		if (style != null) {
 			rw.writeAttribute("style", style, "style");
 		}
+		if (button.getHref() != null)
+			rw.writeAttribute("href", button.getHref(), "href");
+		if (button.getTarget() != null)
+			rw.writeAttribute("target", button.getTarget(), "target");
 		rw.writeAttribute("class", getStyleClasses(button), "class");
 
 		Tooltip.generateTooltip(context, button, rw);
@@ -131,7 +135,7 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, button);
-		rw.endElement("button");
+		rw.endElement("a");
 	}
 
 	/**
