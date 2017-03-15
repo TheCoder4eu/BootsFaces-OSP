@@ -37,6 +37,7 @@ import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.LocaleUtils;
+import net.bootsfaces.utils.TestSingleton;
 
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
@@ -115,10 +116,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (dt instanceof String) {
 			return (String) dt;
 		} else if (dt instanceof Date) {
-			SimpleDateFormat dtFormat = new SimpleDateFormat(format, locale);
-			dtFormat.setTimeZone(java.util.TimeZone.getDefault());
-
-			return dtFormat.format((Date) dt);
+//			SimpleDateFormat dtFormat = new SimpleDateFormat(format, locale);
+//			dtFormat.setTimeZone(java.util.TimeZone.getDefault());
+//
+//			return dtFormat.format((Date) dt);
+			return TestSingleton.getInstance().formatDate((Date) dt, format);
 		} else {
 			throw new IllegalArgumentException(
 					"Value could be either String or java.util.Date, you may want to use a custom converter.");
