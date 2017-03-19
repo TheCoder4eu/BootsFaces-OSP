@@ -46,7 +46,7 @@ public class InputTextRenderer extends CoreRenderer {
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-		decode(context, component, null);
+		decode(context, component, null, null);
 	}
 
     /** 
@@ -55,9 +55,12 @@ public class InputTextRenderer extends CoreRenderer {
      * type like int, which doesn't support null values.
      * @param context
      * @param component
-     * @param legalValues
+     * @param legalValues an optional list of legal values. May be null.
+     * @param The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
+     * from the client ID or the name attribute of the input field. However, in some cases such as radio buttons,
+     * this detection fails.
      */
-	public void decode(FacesContext context, UIComponent component, List<String> legalValues) {
+	public void decode(FacesContext context, UIComponent component, List<String> legalValues, String realEventSourceName) {
 		InputText inputText = (InputText) component;
 
 		if (inputText.isDisabled() || inputText.isReadonly()) {
@@ -68,7 +71,11 @@ public class InputTextRenderer extends CoreRenderer {
 
 		String clientId = inputText.getClientId(context);
 		String name = inputText.getName();
-		if (null == name) {
+//		if (realAttributeName != null) {
+//			name = realAttributeName;
+//		}
+//		else 
+			if (null == name) {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
@@ -86,7 +93,7 @@ public class InputTextRenderer extends CoreRenderer {
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
 		}
-		new AJAXRenderer().decode(context, component, name);
+		new AJAXRenderer().decode(context, component, realEventSourceName);
 	}
 
 	/**
@@ -177,23 +184,26 @@ public class InputTextRenderer extends CoreRenderer {
 			if (t == null)
 				t = "text";
 		}
+		boolean visible =  !"hidden".equals(t);
 
-		rw.startElement("div", component);
-		numberOfDivs++;
-		if (null != inputText.getDir()) {
-			rw.writeAttribute("dir", inputText.getDir(), "dir");
-		}
-
-		if (!clientIdHasBeenRendered) {
-			rw.writeAttribute("id", clientId, "id");
-			Tooltip.generateTooltip(context, inputText, rw);
-			clientIdHasBeenRendered=true;
-		}
-		if (inputText.isInline()) {
-			rw.writeAttribute("class", "form-inline", "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-		} else {
-			rw.writeAttribute("class", "form-group", "class");
+		if (visible) {
+			rw.startElement("div", component);
+			numberOfDivs++;
+			if (null != inputText.getDir()) {
+				rw.writeAttribute("dir", inputText.getDir(), "dir");
+			}
+	
+			if (!clientIdHasBeenRendered) {
+				rw.writeAttribute("id", clientId, "id");
+				Tooltip.generateTooltip(context, inputText, rw);
+				clientIdHasBeenRendered=true;
+			}
+			if (inputText.isInline()) {
+				rw.writeAttribute("class", "form-inline", "class");
+				LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
+			} else {
+				rw.writeAttribute("class", "form-group", "class");
+			}
 		}
 
 		String fieldId = inputText.getFieldId();
@@ -201,7 +211,7 @@ public class InputTextRenderer extends CoreRenderer {
 			fieldId = "input_" + clientId;
 		}
 
-		if (label != null) {
+		if (visible && label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" +
 																	// clientId
@@ -213,7 +223,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 
-		if (responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
+		if (visible && responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			numberOfDivs++;

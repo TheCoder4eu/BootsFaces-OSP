@@ -19,7 +19,6 @@
 package net.bootsfaces.component.radiobutton;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +33,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.SelectItemUtils;
-import net.bootsfaces.component.inputText.InputText;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -96,7 +95,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		List<UIComponent> radioButtonGroup = findComponentsByName(form, radioButton.getName());
 		if (radioButtonGroup.get(0) == component) {
 			List<String> legalValues = collectLegalValues(context, radioButtonGroup);
-			super.decode(context, component, legalValues);
+			super.decode(context, component, legalValues, "input_" + clientId);
 		}
 	}
 
@@ -162,8 +161,13 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		} else {
 			throw new FacesException("The value attribute of a radiobutton must be an EL expression.");
 		}
+		UIForm form = findSurroundingForm(component);
+		UIComponent radioButtonGroup = findComponentByName(form, radiobutton.getName());
+		String radiobuttonGroupId = radioButtonGroup.getClientId(context);
+
 		RadioButtonInternalStateBean state = (RadioButtonInternalStateBean) ELTools.evalAsObject("#{radioButtonInternalStateBean}");
-		String key = "BF_generated_radiobuttonfield_"+propertyName;
+		
+		String key = "BF_generated_radiobuttonfield_"+radiobuttonGroupId;
 		if (!state.inputHasAlreadyBeenRendered(key)) {
 			super.encodeEnd(context, component);
 //			rw.startElement("input", component);
@@ -220,9 +224,11 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		} 
 		rw.startElement("input", component);
 		if (!radiobutton.isDisabled()) {
-			String trigger = radiobutton.isAjax() ? ".trigger('input')" : "";
+			boolean ajax = radiobutton.isAjax();
+			ajax |= null != ((IAJAXComponent) component).getUpdate();
+			String trigger = ajax ? ".trigger('click')" : "";
 			// Add onclick to input element to avoid event bubbling, if event is added on a label
-			rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + itemValue + "')" + trigger, null);
+			rw.writeAttribute("onclick", "$('#input_" + firstRadioButton.getClientId(context).replace(":", "\\\\:") + "').val('" + itemValue + "')" + trigger, null);
 		}
 		rw.writeAttribute("type", "radio", null);
 		rw.writeAttribute("name", propertyName.replace('.','_'), null);
