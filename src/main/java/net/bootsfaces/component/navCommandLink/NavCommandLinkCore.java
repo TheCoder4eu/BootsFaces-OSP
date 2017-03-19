@@ -327,7 +327,7 @@ public abstract class NavCommandLinkCore extends UICommand implements net.bootsf
 	}
 
 	/**
-	 * URL to link directly to implement anchor behavior. <P>
+	 * Specifies the URL of the page the link goes to. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getHref() {
@@ -335,7 +335,7 @@ public abstract class NavCommandLinkCore extends UICommand implements net.bootsf
 	}
 
 	/**
-	 * URL to link directly to implement anchor behavior. <P>
+	 * Specifies the URL of the page the link goes to. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHref(String _href) {
