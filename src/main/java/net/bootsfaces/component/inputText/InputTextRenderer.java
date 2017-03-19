@@ -44,9 +44,20 @@ import net.bootsfaces.render.Tooltip;
 public class InputTextRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
-
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
+		decode(context, component, null);
+	}
+
+    /** 
+     * This method is used by RadioButtons and SelectOneMenus to limit the list of legal values. If another value is
+     * sent, the input field is considered empty. This comes in useful the the back-end attribute is a primitive
+     * type like int, which doesn't support null values.
+     * @param context
+     * @param component
+     * @param legalValues
+     */
+	public void decode(FacesContext context, UIComponent component, List<String> legalValues) {
 		InputText inputText = (InputText) component;
 
 		if (inputText.isDisabled() || inputText.isReadonly()) {
@@ -61,6 +72,16 @@ public class InputTextRenderer extends CoreRenderer {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
+		
+		if (null != legalValues && null != submittedValue) {
+			boolean found = false;
+			for (String option: legalValues) {
+				found |= submittedValue.equals(option);
+			}
+			if (!found) {
+				submittedValue = "";
+			}
+		}
 
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);

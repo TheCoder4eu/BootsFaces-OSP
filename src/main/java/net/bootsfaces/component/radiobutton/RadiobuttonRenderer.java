@@ -20,6 +20,7 @@ package net.bootsfaces.component.radiobutton;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -42,31 +43,36 @@ import net.bootsfaces.render.Tooltip;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.radiobutton.Radiobutton")
 public class RadiobuttonRenderer extends InputTextRenderer {
 
-	private UIComponent findComponentByName(UIComponent c, String name) {
+	private List<UIComponent> findComponentsByName(UIComponent c, String name) {
+		List<UIComponent> result = new ArrayList<UIComponent>();
 		Iterator<UIComponent> children = c.getFacetsAndChildren();
 		while(children.hasNext()) {
 			UIComponent comp = children.next();
 			if (comp instanceof Radiobutton) {
-				if (name.equals(((Radiobutton)comp).getName())) return comp;
+				if (name.equals(((Radiobutton)comp).getName())) {
+					result.add(comp);
+				}
 			}
-			UIComponent r = findComponentByName(comp, name);
-			if (r != null) return r;
+			List<UIComponent> r = findComponentsByName(comp, name);
+			if (!r.isEmpty()) {
+				result.addAll(r);
+			}
 		}
-		return null;
+		return result;
 	}
 	
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-		InputText inputText = (InputText) component;
+		Radiobutton radioButton = (Radiobutton) component;
 
-		if (inputText.isDisabled() || inputText.isReadonly()) {
+		if (radioButton.isDisabled() || radioButton.isReadonly()) {
 			return;
 		}
 
-		decodeBehaviors(context, inputText);
+		decodeBehaviors(context, radioButton);
 
-		String clientId = inputText.getClientId(context);
-		String name = inputText.getName();
+		String clientId = radioButton.getClientId(context);
+		String name = radioButton.getName();
 		if (null == name) {
 			name = "input_" + clientId;
 		}
@@ -81,11 +87,36 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			c = c.getParent();
 		}
 		
-		// Ajax fires decode to all radio buttons. Change value only for the firt element
-		UIComponent firstRadioButton = findComponentByName(form, inputText.getName());
-		if (firstRadioButton == component) {
-			super.decode(context, component);
+		// AJAX fires decode to all radio buttons. Change value only for the first element
+		List<UIComponent> radioButtonGroup = findComponentsByName(form, radioButton.getName());
+		if (radioButtonGroup.get(0) == component) {
+			List<String> legalValues = collectLegalValues(context, radioButtonGroup);
+			super.decode(context, component, legalValues);
 		}
+	}
+
+	private List<String> collectLegalValues(FacesContext context, List<UIComponent> radioButtonGroup) {
+		List<String> legalValues = new ArrayList<String>();
+		for (UIComponent b: radioButtonGroup) {
+			Radiobutton r = (Radiobutton)b;
+			List<SelectItem> options = SelectItemUtils.collectOptions(context, r);
+			if (options.size()>0) {
+				// traditional JSF approach using f:selectItem[s]
+				int counter=0;
+				for (SelectItem option:options) {
+					String o = null;
+					if (null != option.getValue()) {
+						o = String.valueOf(option);
+					}
+					legalValues.add(o);
+				}
+
+			} else {
+				// BootsFaces approach using b:radioButtons for each radiobutton item
+				legalValues.add(r.getItemValue());
+			}
+		}
+		return legalValues;
 	}
 	
 	/**
