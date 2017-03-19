@@ -22938,6 +22938,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>content-disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>contentDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline CSS of the div surrounding the tab pane.]]></description>
 		  <name>content-style</name>
 		  <required>false</required>
@@ -23240,6 +23252,18 @@
 		  <name>contentClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>content-disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>contentDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline CSS style of the div surrounding the panes.]]></description>

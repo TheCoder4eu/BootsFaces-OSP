@@ -2157,6 +2157,7 @@ widget tab
     title                                                                  "Caption of the tab."
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
+    +contentDisabled
 }
 
 widget tabLinks
@@ -2199,6 +2200,7 @@ widget tabView
     style-class                                                            "Style class of the div surrounding this element."
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
+    +contentDisabled
 }
 
 widget tree

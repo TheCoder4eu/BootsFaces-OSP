@@ -29,12 +29,14 @@ import javax.faces.component.UIOutput;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
 @FacesComponent("net.bootsfaces.component.tab.Tab")
-public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
+public class Tab extends UIOutput
+		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tab.Tab";
 
@@ -104,6 +106,7 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 
 	protected enum PropertyKeys {
 		ajax,
+		contentDisabled,
 		contentStyle,
 		dir,
 		disabled,
@@ -149,6 +152,22 @@ public class Tab extends UIOutput implements net.bootsfaces.render.IHasTooltip, 
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**
