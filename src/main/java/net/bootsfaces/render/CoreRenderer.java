@@ -169,9 +169,9 @@ public class CoreRenderer extends Renderer {
 	/**
 	 * Yields the value of the required and error level CSS class.
 	 *
-	 * @param input
-	 * @param clientId
-	 * @return
+	 * @param input must not be null
+	 * @param clientId must not be null
+	 * @return can never be null
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
 		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error",

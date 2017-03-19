@@ -54,6 +54,8 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 		onerror,
 		onsuccess,
 		process,
+		required,
+		requiredMessage,
 		smallScreen,
 		span,
 		style,
@@ -463,6 +465,38 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	 */
 	public void setProcess(String _process) {
 		getStateHelper().put(PropertyKeys.process, _process);
+	}
+
+	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRequired() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.required, false);
+	}
+
+	/**
+	 * Boolean value Require input in the component when the form is submitted. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequired(boolean _required) {
+		getStateHelper().put(PropertyKeys.required, _required);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRequiredMessage() {
+		return (String) getStateHelper().eval(PropertyKeys.requiredMessage);
+	}
+
+	/**
+	 * Message to show if the user did not specify a value and the attribute required is set to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRequiredMessage(String _requiredMessage) {
+		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
 	}
 
 	/**

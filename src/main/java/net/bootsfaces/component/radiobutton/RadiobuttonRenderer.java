@@ -42,6 +42,19 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:radiobutton /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.radiobutton.Radiobutton")
 public class RadiobuttonRenderer extends InputTextRenderer {
+	
+	private UIComponent findComponentByName(UIComponent c, String name) {
+		Iterator<UIComponent> children = c.getFacetsAndChildren();
+		while(children.hasNext()) {
+			UIComponent comp = children.next();
+			if (comp instanceof Radiobutton) {
+				if (name.equals(((Radiobutton)comp).getName())) return comp;
+			}
+			UIComponent r = findComponentByName(comp, name);
+			if (r != null) return r;
+		}
+		return null;
+	}
 
 	private List<UIComponent> findComponentsByName(UIComponent c, String name) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
@@ -77,15 +90,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			name = "input_" + clientId;
 		}
 
-		UIForm form = null;
-		UIComponent c = component;
-		while(c != null) {
-			if (c instanceof UIForm) {
-				form = (UIForm)c;
-				break;
-			}
-			c = c.getParent();
-		}
+		UIForm form = findSurroundingForm(component);
 		
 		// AJAX fires decode to all radio buttons. Change value only for the first element
 		List<UIComponent> radioButtonGroup = findComponentsByName(form, radioButton.getName());
@@ -95,6 +100,19 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		}
 	}
 
+	private UIForm findSurroundingForm(UIComponent component) {
+		UIForm form = null;
+		UIComponent c = component;
+		while(c != null) {
+			if (c instanceof UIForm) {
+				form = (UIForm)c;
+				break;
+			}
+			c = c.getParent();
+		}
+		return form;
+	}
+
 	private List<String> collectLegalValues(FacesContext context, List<UIComponent> radioButtonGroup) {
 		List<String> legalValues = new ArrayList<String>();
 		for (UIComponent b: radioButtonGroup) {
@@ -102,11 +120,10 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			List<SelectItem> options = SelectItemUtils.collectOptions(context, r);
 			if (options.size()>0) {
 				// traditional JSF approach using f:selectItem[s]
-				int counter=0;
 				for (SelectItem option:options) {
 					String o = null;
 					if (null != option.getValue()) {
-						o = String.valueOf(option);
+						o = String.valueOf(option.getValue());
 					}
 					legalValues.add(o);
 				}
@@ -188,6 +205,12 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			styleClass = styleClass2 + styleClass;
 		}
 		styleClass=styleClass.trim() + " radio";
+		
+		UIForm form = findSurroundingForm(component);
+		Radiobutton firstRadioButton = (Radiobutton)findComponentByName(form, radiobutton.getName());
+		String errorClass = getErrorAndRequiredClass(firstRadioButton, firstRadioButton.getClientId(context));
+		styleClass += " " + errorClass;
+		
 		rw.writeAttribute("class", styleClass, null);
 		writeAttribute(rw, "style", radiobutton.getStyle());
 		Tooltip.generateTooltip(context, radiobutton, rw);
