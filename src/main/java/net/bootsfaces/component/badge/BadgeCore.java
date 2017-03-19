@@ -18,9 +18,7 @@
 
 package net.bootsfaces.component.badge;
 
-import javax.faces.component.*;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIOutput;
 
 /** This class holds the attributes of &lt;b:badge /&gt;. */
 public abstract class BadgeCore extends UIOutput implements net.bootsfaces.render.IHasTooltip {

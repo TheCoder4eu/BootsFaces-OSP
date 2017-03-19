@@ -20,7 +20,6 @@ package net.bootsfaces.component.badge;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIOutput;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
