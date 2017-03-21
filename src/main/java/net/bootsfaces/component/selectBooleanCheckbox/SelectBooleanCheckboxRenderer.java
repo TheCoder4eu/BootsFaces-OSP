@@ -112,7 +112,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
-		writeAttribute(rw, "class", "form-group");
+		writeAttribute(rw, "class", getFormGroupWithFeedback("form-group", clientId));
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		renderInputTag(context, rw, clientId, selectBooleanCheckbox);

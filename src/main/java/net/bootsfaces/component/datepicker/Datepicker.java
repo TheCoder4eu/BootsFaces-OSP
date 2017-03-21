@@ -56,6 +56,7 @@ import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
  *
@@ -265,7 +266,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		rw.startElement("div", this);
 		numberOfDivs++;
-		rw.writeAttribute("class", "form-group", "class");
+		rw.writeAttribute("class", "form-group " + FacesMessages.getErrorSeverityClass(clientId), "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(fc, this, rw);
