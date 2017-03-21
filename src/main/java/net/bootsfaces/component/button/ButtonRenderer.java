@@ -74,6 +74,8 @@ public class ButtonRenderer extends CoreRenderer {
 	 */
 	public void encodeHTML(FacesContext context, Button button)
 	throws IOException {
+		if (button.getHref()!=null&&button.getOutcome()!=null) 
+			throw new FacesException("Please define the href attribute or the outcome attribute, but not both");
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = button.getClientId();
 
