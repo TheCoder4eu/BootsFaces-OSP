@@ -40,6 +40,7 @@ import javax.faces.render.Renderer;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
+import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.FacesMessages;
 
 public class CoreRenderer extends Renderer {
@@ -116,7 +117,7 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent) input, true);
-		if (null != currentForm && currentForm instanceof Form) {
+		if (currentForm instanceof Form) {
 			if (((Form) currentForm).isHorizontal()) {
 				styleClass += " control-label";
 			}
@@ -172,7 +173,10 @@ public class CoreRenderer extends Renderer {
 	 * @return can never be null
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String styleClass = FacesMessages.getErrorSeverityClass(clientId);
+		String styleClass = "";
+		if (isLegacyFeedbackClassesEnabled()) {
+			styleClass = FacesMessages.getErrorSeverityClass(clientId);
+		}
 		if (input.isRequired()) {
 			styleClass += " bf-required";
 		} else {
@@ -534,6 +538,14 @@ public class CoreRenderer extends Renderer {
 	 * @return
 	 */
 	protected String getFormGroupWithFeedback(String additionalClass, String clientId){
+		if (isLegacyFeedbackClassesEnabled()) {
+			return additionalClass;
+		}
 		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
+	}
+	
+	protected boolean isLegacyFeedbackClassesEnabled(){
+		String legacyErrorClasses = BsfUtils.getInitParam("net.bootsfaces.legacy_error_classes");
+		return legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes");
 	}
 }

@@ -93,7 +93,7 @@ public class InputTextRenderer extends CoreRenderer {
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
 		}
-		//new AJAXRenderer().decode(context, component, realEventSourceName);
+		new AJAXRenderer().decode(context, component, realEventSourceName);
 	}
 
 	/**

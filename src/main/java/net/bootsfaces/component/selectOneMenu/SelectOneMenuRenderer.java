@@ -120,7 +120,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         rw.startElement("div", menu);
 
         if (menu.isInline()) {
-            rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
+            rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", outerClientId), "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
         } else {
             rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");

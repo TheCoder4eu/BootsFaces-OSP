@@ -204,31 +204,31 @@ public class FacesMessages {
 	 * @return
 	 */
 	public static String getErrorSeverityClass(String clientId) {
-		String legacyErrorClasses = BsfUtils.getInitParam("net.bootsfaces.legacy_error_classes");
-		String styleClass = "";
-		if (legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes")) {
-			String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error", "bf-fatal has-error" };
-			int level = 0;
-			Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
-			if (null != messages) {
-				while (messages.hasNext()) {
-					FacesMessage message = messages.next();
-					if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
-						if (level < 1)
-							level = 1;
-					if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
-						if (level < 2)
-							level = 2;
-					if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
-						if (level < 3)
-							level = 3;
-					if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
-						if (level < 4)
-							level = 4;
-				}
+		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error", "bf-fatal has-error" };
+		int level = 0;
+		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
+		if (null != messages) {
+			if (!messages.hasNext()) {
+				return "";
 			}
-			styleClass = levels[level];
+			while (messages.hasNext()) {
+				FacesMessage message = messages.next();
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
+					if (level < 1)
+						level = 1;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
+					if (level < 2)
+						level = 2;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
+					if (level < 3)
+						level = 3;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
+					if (level < 4)
+						level = 4;
+			}
+			return levels[level];
 		}
-		return styleClass;
+		return "";
 	}
+	
 }
