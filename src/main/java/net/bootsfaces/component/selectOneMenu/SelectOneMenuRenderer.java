@@ -120,10 +120,10 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         rw.startElement("div", menu);
 
         if (menu.isInline()) {
-            rw.writeAttribute("class", "form-inline", "class");
+            rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", outerClientId), "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
         } else {
-            rw.writeAttribute("class", "form-group", "class");
+            rw.writeAttribute("class", getFormGroupWithFeedback("form-group", outerClientId), "class");
         }
         if (!clientIdHasBeenRendered) {
         	rw.writeAttribute("id", outerClientId, "id");
@@ -193,7 +193,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, null);
+            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, "control-label");
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");

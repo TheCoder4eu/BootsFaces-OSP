@@ -35,6 +35,7 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
+import net.bootsfaces.utils.FacesMessages;
 import net.bootsfaces.utils.LocaleUtils;
 import net.bootsfaces.utils.TestSingleton;
 
@@ -167,12 +168,13 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		String divSuffix="";
+		String errorSeverityClass = FacesMessages.getErrorSeverityClass(clientId);
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			if (!isHorizontalForm(dtp)) {
-				rw.writeAttribute("class", responsiveStyleClass + " form-group", "class");
+				rw.writeAttribute("class", responsiveStyleClass + " form-group " + errorSeverityClass, "class");
 			} else {
-				rw.writeAttribute("class", "form-group", "class");
+				rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
 			}
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(fc, dtp, rw);
@@ -181,7 +183,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
-			rw.writeAttribute("class", "form-group", "class");
+			rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
 			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;

@@ -56,6 +56,7 @@ import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
+import net.bootsfaces.utils.FacesMessages;
 
 /**
  *
@@ -233,7 +234,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		if (label != null) {
 			rw.startElement("label", this);
 			rw.writeAttribute("for", clientId, "for");
-			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId, getLabelStyleClass());
+			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId, getLabelStyleClass() + " control-label");
 			if (getLabelStyle() != null) {
 				rw.writeAttribute("style", getLabelStyle(), "style");
 			}
@@ -265,7 +266,8 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		rw.startElement("div", this);
 		numberOfDivs++;
-		rw.writeAttribute("class", "form-group", "class");
+		String errorSeverityClass = BsfUtils.isLegacyFeedbackClassesEnabled() ? "" : FacesMessages.getErrorSeverityClass(clientId);
+		rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(fc, this, rw);

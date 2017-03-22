@@ -17,6 +17,7 @@
  */
 package net.bootsfaces.utils;
 
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -196,4 +197,38 @@ public class FacesMessages {
 		FacesMessages.error(clientId, summary, detail);
 	}
 
+	/**
+	 * Returns style matching the severity error.
+	 * 
+	 * @param clientId
+	 * @return
+	 */
+	public static String getErrorSeverityClass(String clientId) {
+		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error", "bf-fatal has-error" };
+		int level = 0;
+		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
+		if (null != messages) {
+			if (!messages.hasNext()) {
+				return "";
+			}
+			while (messages.hasNext()) {
+				FacesMessage message = messages.next();
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
+					if (level < 1)
+						level = 1;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
+					if (level < 2)
+						level = 2;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
+					if (level < 3)
+						level = 3;
+				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
+					if (level < 4)
+						level = 4;
+			}
+			return levels[level];
+		}
+		return "";
+	}
+	
 }

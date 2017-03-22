@@ -19,13 +19,11 @@ package net.bootsfaces.render;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
@@ -40,9 +38,10 @@ import javax.faces.convert.Converter;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.beans.ELTools;
-import net.bootsfaces.component.accordion.Accordion;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
+import net.bootsfaces.utils.BsfUtils;
+import net.bootsfaces.utils.FacesMessages;
 
 public class CoreRenderer extends Renderer {
 
@@ -118,7 +117,7 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent) input, true);
-		if (null != currentForm && currentForm instanceof Form) {
+		if (currentForm instanceof Form) {
 			if (((Form) currentForm).isHorizontal()) {
 				styleClass += " control-label";
 			}
@@ -174,28 +173,10 @@ public class CoreRenderer extends Renderer {
 	 * @return can never be null
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error",
-				"bf-fatal has-error" };
-		int level = 0;
-		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
-		if (null != messages) {
-			while (messages.hasNext()) {
-				FacesMessage message = messages.next();
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
-					if (level < 1)
-						level = 1;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
-					if (level < 2)
-						level = 2;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
-					if (level < 3)
-						level = 3;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
-					if (level < 4)
-						level = 4;
-			}
+		String styleClass = "";
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			styleClass = FacesMessages.getErrorSeverityClass(clientId);
 		}
-		String styleClass = levels[level];
 		if (input.isRequired()) {
 			styleClass += " bf-required";
 		} else {
@@ -212,6 +193,7 @@ public class CoreRenderer extends Renderer {
 		}
 		return styleClass;
 	}
+
 
 	protected boolean shouldRenderAttribute(Object value) {
 		if (value == null)
@@ -549,4 +531,18 @@ public class CoreRenderer extends Renderer {
 		return false;
 	}
 
+	/**
+	 * Get the main field container 
+	 * @param additionalClass
+	 * @param clientId
+	 * @return
+	 */
+	protected String getFormGroupWithFeedback(String additionalClass, String clientId){
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			return additionalClass;
+		}
+		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
+	}
+	
+	
 }
