@@ -100,6 +100,9 @@ public class AJAXRenderer extends CoreRenderer {
 										if (component instanceof ActionSource) {
 											if (((ActionSource) component).isImmediate())
 												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+										} else if (component instanceof IImmediate) {
+											if (((IImmediate) component).isImmediate())
+												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
 										}
 										component.queueEvent(ajaxEvent);
 									}

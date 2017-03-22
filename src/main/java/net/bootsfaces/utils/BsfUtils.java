@@ -26,6 +26,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
 
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.expressions.ExpressionResolver;
 
 public class BsfUtils {
@@ -661,6 +662,19 @@ public class BsfUtils {
 	 */
 	public static boolean isLegacyFeedbackClassesEnabled() {
 		String legacyErrorClasses = getInitParam("net.bootsfaces.legacy_error_classes");
+		legacyErrorClasses=evalELIfPossible(legacyErrorClasses);
 		return legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes");
 	}
+	
+	private static String evalELIfPossible(String expression) {
+		if (expression != null) {
+			if (expression.contains("#")) {
+				expression = ELTools.evalAsString(expression).trim();
+			}
+		}
+		else
+			expression = "";
+		return expression;
+	}
+
 }

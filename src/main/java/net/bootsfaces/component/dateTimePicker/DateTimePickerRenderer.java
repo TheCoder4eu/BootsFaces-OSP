@@ -168,7 +168,8 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		String divSuffix="";
-		String errorSeverityClass = FacesMessages.getErrorSeverityClass(clientId);
+		String errorSeverityClass = getFormGroupWithFeedback("", clientId);
+//				FacesMessages.getErrorSeverityClass(clientId);
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
 			if (!isHorizontalForm(dtp)) {
