@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
@@ -24,6 +25,7 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
+
 import net.bootsfaces.expressions.ExpressionResolver;
 
 public class BsfUtils {
@@ -650,5 +652,15 @@ public class BsfUtils {
 
 	public static int getIntSliderValue(String value) {
 		return (int)getSliderValue(value);
+	}
+
+	/**
+	 * It checks where the framework should place BS feedback classes.
+	 * 
+	 * @return
+	 */
+	public static boolean isLegacyFeedbackClassesEnabled() {
+		String legacyErrorClasses = getInitParam("net.bootsfaces.legacy_error_classes");
+		return legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes");
 	}
 }

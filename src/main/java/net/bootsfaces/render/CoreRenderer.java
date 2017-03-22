@@ -174,7 +174,7 @@ public class CoreRenderer extends Renderer {
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
 		String styleClass = "";
-		if (isLegacyFeedbackClassesEnabled()) {
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
 			styleClass = FacesMessages.getErrorSeverityClass(clientId);
 		}
 		if (input.isRequired()) {
@@ -538,14 +538,11 @@ public class CoreRenderer extends Renderer {
 	 * @return
 	 */
 	protected String getFormGroupWithFeedback(String additionalClass, String clientId){
-		if (isLegacyFeedbackClassesEnabled()) {
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
 			return additionalClass;
 		}
 		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
 	}
 	
-	protected boolean isLegacyFeedbackClassesEnabled(){
-		String legacyErrorClasses = BsfUtils.getInitParam("net.bootsfaces.legacy_error_classes");
-		return legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes");
-	}
+	
 }
