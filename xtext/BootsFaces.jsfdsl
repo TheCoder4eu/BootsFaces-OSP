@@ -130,7 +130,6 @@ widget button
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Font Awesome Icon to show in this Button, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     lang                                                                   "Code describing the language used in the generated markup for this component."
     look                                                                   "Look of the Button, can be primary, block, info, success, warning, important, error, inverse. If not specified, Standard gray button with gradient is rendered."
     onblur                                                                 "Client side callback to execute when input element loses focus."
