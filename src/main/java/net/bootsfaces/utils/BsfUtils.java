@@ -474,7 +474,7 @@ public class BsfUtils {
 
 		return selFormat;
 	}
-
+	
 	/**
 	 * Selects the Date Pattern to use based on the given Locale if the input
 	 * format is null
@@ -482,11 +482,41 @@ public class BsfUtils {
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
 	 * @param format
+	 *            optional Input format String, given as Moment.js date format
+	 * @return Moment.js Date Pattern eg. DD/MM/YYYY
+	 */
+	public static String selectMomentJSDateFormat(Locale locale, String format) {
+		String selFormat;
+		if (format == null) {
+			selFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
+			// Since DateFormat.SHORT is silly, return a smart format
+			if (selFormat.equals("M/d/yy")) {
+				return "MM/DD/YYYY";
+			}
+			if (selFormat.equals("d/M/yy")) {
+				return "DD/MM/YYYY";
+			}
+			return LocaleUtils.javaToMomentFormat(selFormat);
+		} else {
+			selFormat = format;
+		}
+
+		return selFormat;
+	}
+
+
+	/**
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
+	 *
+	 * @param locale
+	 *            Locale (may be the result of a call to selectLocale)
+	 * @param momentJSFormat
 	 *            Input format String
 	 * @return Date Pattern eg. dd/MM/yyyy
 	 */
-	public static String selectDateTimeFormat(Locale locale, String format, boolean withDate, boolean withTime) {
-		if (format == null) {
+	public static String selectJavaDateTimeFormatFromMomentJSFormatOrDefault(Locale locale, String momentJSFormat, boolean withDate, boolean withTime) {
+		if (momentJSFormat == null) {
 			String dateFormat = "";
 			if (withDate) {
 				dateFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
@@ -504,9 +534,45 @@ public class BsfUtils {
 			}
 			return (dateFormat + " " + timeFormat).trim();
 		} else {
-			return format;
+			return LocaleUtils.momentToJavaFormat(momentJSFormat);
 		}
 	}
+	
+	/**
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
+	 *
+	 * @param locale
+	 *            Locale (may be the result of a call to selectLocale)
+	 * @param momentJSFormat
+	 *            Input format String
+	 * @return moment.js Date Pattern eg. DD/MM/YYYY
+	 */
+	public static String selectMomentJSDateTimeFormat(Locale locale, String momentJSFormat, boolean withDate, boolean withTime) {
+		if (momentJSFormat == null) {
+			String dateFormat = "";
+			if (withDate) {
+				dateFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
+			}
+			String timeFormat = "";
+			if (withTime) {
+				timeFormat = ((SimpleDateFormat)DateFormat.getTimeInstance(DateFormat.MEDIUM, locale)).toPattern();
+			}
+			// Since DateFormat.SHORT is silly, return a smart format
+			if (dateFormat.equals("M/d/yy")) {
+				dateFormat = "MM/dd/yyyy";
+			}
+			else if (dateFormat.equals("d/M/yy")) {
+				dateFormat = "dd/MM/yyyy";
+			}
+			String result = LocaleUtils.javaToMomentFormat((dateFormat + " " + timeFormat).trim());
+			System.out.println(result);
+			return result;
+		} else {
+			return momentJSFormat;
+		}
+	}
+
 
 
 	/**

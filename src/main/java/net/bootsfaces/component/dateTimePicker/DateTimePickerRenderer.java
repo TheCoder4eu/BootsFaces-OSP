@@ -19,6 +19,7 @@
 package net.bootsfaces.component.dateTimePicker;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -35,7 +36,6 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
-import net.bootsfaces.utils.FacesMessages;
 import net.bootsfaces.utils.LocaleUtils;
 import net.bootsfaces.utils.TestSingleton;
 
@@ -64,11 +64,11 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fieldId = clientId + "_Input";
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
-		new AJAXRenderer().decode(context, dtp, clientId);
+//		new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
-	 * Get value displayable
+	 * Yields the value which is displayed in the input field of the date picker.
 	 * @param ctx
 	 * @param dtp
 	 * @return
@@ -79,11 +79,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			return null;
 		}
 		Locale sloc = BsfUtils.selectLocale(ctx.getViewRoot().getLocale(), dtp.getLocale(), dtp);
-		String sdf = BsfUtils.selectDateFormat(sloc, dtp.getFormat());
-		// assume that the format is always specified as moment.js format
-		sdf = LocaleUtils.momentToJavaFormat(sdf);
+		String javaFormatString = BsfUtils.selectJavaDateTimeFormatFromMomentJSFormatOrDefault(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
 
-		return getDateAsString(ctx, dtp, value, sdf, sloc);
+		return getDateAsString(ctx, dtp, value, javaFormatString, sloc);
 	}
 
 	/**
@@ -94,21 +92,21 @@ public class DateTimePickerRenderer extends CoreRenderer {
 	 * @return
 	 */
 
-	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String format, Locale locale) {
+	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String javaFormatString, Locale locale) {
 		if (value == null) {
 			return null;
 		}
 
 		Converter converter = dtp.getConverter();
 		return  converter == null ?
-				getInternalDateAsString(value, format, locale)
+				getInternalDateAsString(value, javaFormatString, locale)
 				:
 				converter.getAsString(fc, dtp, value);
 
 	}
 
 
-	public static String getInternalDateAsString(Object dt, String format, Locale locale) {
+	public static String getInternalDateAsString(Object dt, String javaFormatString, Locale locale) {
 		if (dt == null) {
 			return null;
 		}
@@ -116,11 +114,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (dt instanceof String) {
 			return (String) dt;
 		} else if (dt instanceof Date) {
-//			SimpleDateFormat dtFormat = new SimpleDateFormat(format, locale);
-//			dtFormat.setTimeZone(java.util.TimeZone.getDefault());
-//
-//			return dtFormat.format((Date) dt);
-			return TestSingleton.getInstance().formatDate((Date) dt, format);
+			SimpleDateFormat dtFormat = new SimpleDateFormat(javaFormatString, locale);
+            String result = dtFormat.format((Date) dt);
+			return result;
 		} else {
 			throw new IllegalArgumentException(
 					"Value could be either String or java.util.Date, you may want to use a custom converter.");
@@ -379,12 +375,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		Locale sloc = BsfUtils.selectLocale(fc.getViewRoot().getLocale(), dtp.getLocale(), dtp);
-		String format = BsfUtils.selectDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
-		String displayFormat = "'" + (dtp.getFormat() == null ? LocaleUtils.javaToMomentFormat(format) : format) + "'";
-		String inlineDisplayDate = "'" + (dtp.getFormat() == null ?
-				getDateAsString(fc, dtp, v, format, sloc)
-				:
-				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
+		String format = BsfUtils.selectMomentJSDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
+		String displayFormat = "'" + format + "'";
+		String inlineDisplayDate = "'" +
+				getValueAsString(v, fc, dtp) + "'";
 
 		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(datePickerId);
 

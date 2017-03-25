@@ -118,6 +118,9 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		super.setValueExpression(name, binding);
 	}
 
+	/**
+	 * Converts the date from the moment.js format to a java.util.Date.
+	 */
 	@Override
 	public Object getConvertedValue(FacesContext context, Object submittedValue)
 	throws ConverterException {
@@ -130,7 +133,6 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		if (val.trim().length() == 0) {
 			return null;
 		}
-		//System.out.println("CV: " + val);
 
 		Converter converter = this.getConverter();
 
@@ -140,12 +142,11 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		}
 		// Else we use our own converter
 		Locale sloc = BsfUtils.selectLocale(context.getViewRoot().getLocale(), this.getLocale(), this);
-		String componentFormat = BsfUtils.selectDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
-		String sdf = BsfUtils.selectDateFormat(sloc, componentFormat);
-		sdf = LocaleUtils.momentToJavaFormat(sdf);
+		String momentJSFormat = BsfUtils.selectMomentJSDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
+		String javaFormat = LocaleUtils.momentToJavaFormat(momentJSFormat);
 
 		Calendar cal = Calendar.getInstance(sloc);
-		SimpleDateFormat format = new SimpleDateFormat(sdf, sloc);
+		SimpleDateFormat format = new SimpleDateFormat(javaFormat, sloc);
 		format.setTimeZone(cal.getTimeZone());
 
 		try {
@@ -162,7 +163,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 				e.printStackTrace();
 				this.setValid(false);
 				throw new ConverterException(
-						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, BsfUtils.getLabel(context, this)));
+						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, javaFormat, BsfUtils.getLabel(context, this)));
 			}
 		}
 	}
