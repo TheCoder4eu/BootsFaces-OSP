@@ -275,8 +275,13 @@ public class LocaleUtils {
 				beginIndex = i;
 			}
 		}
+		
+		if (beginIndex < formatString.length() && i <= formatString.length()) {
+			return resultString + mapSubformat(formatString, mapping, beginIndex, i, escapeStart, escapeEnd, targetEscapeStart, targetEscapeEnd);
+		} else {
+			return resultString;
+		}
 
-		return resultString + mapSubformat(formatString, mapping, beginIndex, i, escapeStart, escapeEnd, targetEscapeStart, targetEscapeEnd);
 	}
 
 	/**
