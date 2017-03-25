@@ -256,7 +256,7 @@ public class LocaleUtils {
 		for (; i < formatString.length(); i++) {
 			currentChar = formatString.charAt(i);
 			if (i > 0 && lastChar != currentChar) {
-				resultString += mapSubformat(formatString, mapping, beginIndex, i, targetEscapeStart, targetEscapeEnd);
+				resultString += mapSubformat(formatString, mapping, beginIndex, i, escapeStart, escapeEnd, targetEscapeStart, targetEscapeEnd);
 				beginIndex = i;
 			}
 			lastChar = currentChar;
@@ -276,7 +276,7 @@ public class LocaleUtils {
 			}
 		}
 
-		return resultString + mapSubformat(formatString, mapping, beginIndex, i, escapeStart, escapeEnd);
+		return resultString + mapSubformat(formatString, mapping, beginIndex, i, escapeStart, escapeEnd, targetEscapeStart, targetEscapeEnd);
 	}
 
 	/**
@@ -290,15 +290,15 @@ public class LocaleUtils {
 	 * @return
 	 */
 	private static String mapSubformat(String formatString, Map<String, String> mapping, int beginIndex,
-			int currentIndex, String escapeStart, String escapeEnd) {
+			int currentIndex, String escapeStart, String escapeEnd, String targetEscapeStart, String targetEscapeEnd) {
 		String subformat = formatString.substring(beginIndex, currentIndex);
 		if (subformat.equals(escapeStart) || subformat.equals(escapeEnd)) {
-			return escapeStart + "(error: cannot ecape escape characters)" + escapeEnd;
+			return targetEscapeStart + "(error: cannot ecape escape characters)" + targetEscapeEnd;
 		}
 		if (mapping.containsKey(subformat)) {
 			String result = mapping.get(subformat);
 			if (result==null || result.length()==0) {
-				return escapeStart + "(error: " + subformat + " cannot be converted)" + escapeEnd;
+				return targetEscapeStart + "(error: " + subformat + " cannot be converted)" + targetEscapeEnd;
 			}
 			return result;
 		}
