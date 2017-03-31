@@ -71,11 +71,11 @@ public class InputTextRenderer extends CoreRenderer {
 
 		String clientId = inputText.getClientId(context);
 		String name = inputText.getName();
-//		if (realAttributeName != null) {
-//			name = realAttributeName;
-//		}
-//		else 
-			if (null == name) {
+		if (realEventSourceName == null) {
+			realEventSourceName = "input_" + clientId;
+		}
+		
+		if (null == name) {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
