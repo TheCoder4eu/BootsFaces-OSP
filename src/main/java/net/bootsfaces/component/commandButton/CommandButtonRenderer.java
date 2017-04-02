@@ -57,20 +57,32 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
+		boolean idHasBeenRendered=false;
 		CommandButton commandButton = (CommandButton) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = component.getClientId(context);
 
-		// 2) get the type (submit, button, reset ; default submit)
+		// add responsive style
+		String clazz = Responsive.getResponsiveStyleClass(commandButton, false).trim();
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.startElement("div", commandButton);
+			rw.writeAttribute("class", clazz, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+
 		String type = commandButton.getType();
 		if (null == type)
 			type = "submit";
-		// 3) is it Ajax? (default= false)
+
 		String style = commandButton.getStyle();
 
 		rw.startElement("button", component);
 		rw.writeAttribute("type", type, null);
-		rw.writeAttribute("id", clientId, "id");
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		rw.writeAttribute("name", clientId, "name");
 		if (null != commandButton.getDir()) {
 			rw.writeAttribute("dir", commandButton.getDir(), "dir");
@@ -81,7 +93,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		writeAttribute(rw, "style", style, "style");
 
-		rw.writeAttribute("class", getStyleClasses(commandButton), "class");
+		rw.writeAttribute("class", getStyleClasses(commandButton, isResponsive), "class");
 
 		if (commandButton.isDisabled()) {
 			rw.writeAttribute("disabled", "disabled", "disabled");
@@ -97,8 +109,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, commandButton, rw, false);
 
-		// TODO : write DHTML attrs - onclick
-		// Encode attributes (HTML 4 pass-through + DHTML)
 		R.encodeHTML4DHTMLAttrs(rw, commandButton.getAttributes(), H.ALLBUTTON);
 	}
 
@@ -149,11 +159,15 @@ public class CommandButtonRenderer extends CoreRenderer {
 		}
 
 		rw.endElement("button");
-
+		String clazz = Responsive.getResponsiveStyleClass(commandButton, false).trim();
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, component);
 	}
 
-	private String getStyleClasses(CommandButton component) {
+	private String getStyleClasses(CommandButton component, boolean isResponsive) {
 		StringBuilder sb = new StringBuilder(40); // optimize int
 
 		sb.append("btn");
@@ -172,13 +186,13 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (component.isDisabled()) {
 			sb.append(" " + "disabled");
 		}
+		if (isResponsive) {
+			sb.append(" btn-block");
+		}
 		String sclass = component.getStyleClass();
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
-
-		// add responsive style
-		sb.append(Responsive.getResponsiveStyleClass(component, false));
 
 		return sb.toString().trim();
 

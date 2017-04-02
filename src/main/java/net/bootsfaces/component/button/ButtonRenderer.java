@@ -74,10 +74,22 @@ public class ButtonRenderer extends CoreRenderer {
 	 */
 	public void encodeHTML(FacesContext context, Button button)
 	throws IOException {
+		boolean idHasBeenRendered=false;
 		if (button.getHref()!=null&&button.getOutcome()!=null) 
 			throw new FacesException("Please define the href attribute or the outcome attribute, but not both");
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = button.getClientId();
+		
+		// add responsive style
+		String clazz = Responsive.getResponsiveStyleClass(button, false).trim();
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.startElement("div", button);
+			rw.writeAttribute("class", clazz, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+
 
 		Object value = (button.getValue() != null ? button.getValue() : "");
 		String style = button.getStyle();
@@ -87,7 +99,9 @@ public class ButtonRenderer extends CoreRenderer {
 			tag="a";
 		}
 		rw.startElement(tag, button);
-		rw.writeAttribute("id", clientId, "id");
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		rw.writeAttribute("name", clientId, "name");
 		if ("button".equals(tag)) {
 			rw.writeAttribute("type", "button", null);
@@ -102,7 +116,7 @@ public class ButtonRenderer extends CoreRenderer {
 			rw.writeAttribute("href", button.getHref(), "href");
 		if (button.getTarget() != null)
 			rw.writeAttribute("target", button.getTarget(), "target");
-		rw.writeAttribute("class", getStyleClasses(button), "class");
+		rw.writeAttribute("class", getStyleClasses(button, isResponsive), "class");
 
 		Tooltip.generateTooltip(context, button, rw);
 
@@ -144,6 +158,9 @@ public class ButtonRenderer extends CoreRenderer {
 
 		Tooltip.activateTooltips(context, button);
 		rw.endElement(tag);
+		if (isResponsive) {
+			rw.endElement("div");
+		}
 	}
 
 	/**
@@ -333,11 +350,9 @@ public class ButtonRenderer extends CoreRenderer {
 	/**
 	 * Collects the CSS classes of the button.
 	 *
-	 * @param attrs
-	 *            the attribute list.
 	 * @return the CSS classes (separated by a space).
 	 */
-	private static String getStyleClasses(Button button) {
+	private static String getStyleClasses(Button button, boolean isResponsive) {
 		StringBuilder sb;
 		sb = new StringBuilder(40); // optimize int
 		sb.append("btn");
@@ -354,16 +369,16 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		if (button.isDisabled()) {
-			sb.append(" " + "disabled");
+			sb.append(" disabled");
 		}
-		// TODO add styleClass and class support
+		if (isResponsive) {
+			sb.append(" btn-block");
+		}
 		String sclass = button.getStyleClass();
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
 
-		// add responsive style
-		sb.append(Responsive.getResponsiveStyleClass(button, false));
 
 		return sb.toString().trim();
 	}
