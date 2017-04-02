@@ -39,6 +39,8 @@ import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.SelectItemAndComponent;
+import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 import net.bootsfaces.component.inputText.InputTextRenderer;
@@ -70,7 +72,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 				submittedValues.add(map.get(key));
 			}
 		}
-		List<Object> items = collectOptions(context, menu);
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+
 
 		if (!submittedValues.isEmpty()) {
 			// check for manipulated input
@@ -78,7 +81,7 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			for (String submittedOptionValue : submittedValues) {
 				boolean found = false;
 				for (int index = 0; index < items.size(); index++) {
-					Object currentOption = items.get(index);
+					Object currentOption = items.get(index).getSelectItem();
 					String currentOptionValueAsString;
 					Object currentOptionValue;
 					if (currentOption instanceof SelectItem) {
@@ -560,10 +563,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 	 */
 	protected void renderOptions(FacesContext context, ResponseWriter rw, String[] selectedOption, SelectMultiMenu menu)
 			throws IOException {
-		List<Object> items = collectOptions(context, menu);
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
 
 		for (int index = 0; index < items.size(); index++) {
-			Object option = items.get(index);
+			Object option = items.get(index).getSelectItem();
 			if (option instanceof SelectItem) {
 				renderOption(rw, (SelectItem) option, selectedOption, index);
 			} else {
@@ -572,60 +575,6 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		}
 	}
 
-	@SuppressWarnings("rawtypes")
-	private List<Object> collectOptions(FacesContext context, SelectMultiMenu menu) {
-		List<Object> items = new ArrayList<Object>();
-
-		List<UIComponent> selectItems = menu.getChildren();
-		for (UIComponent kid : selectItems) {
-			if (kid instanceof UISelectItem) {
-				UISelectItem option = (UISelectItem) kid;
-				items.add(option);
-			} else if (kid instanceof UISelectItems) {
-
-				UISelectItems uiSelectItems = ((UISelectItems) kid);
-				Object value = uiSelectItems.getValue();
-
-				if (value != null) {
-					if (value instanceof SelectItem) {
-						items.add(value);
-
-					} else {
-						if (value.getClass().isArray()) {
-							for (int i = 0; i < Array.getLength(value); i++) {
-								Object item = Array.get(value, i);
-
-								if (item instanceof SelectItem)
-									items.add(item);
-								else
-									items.add(createSelectItem(context, uiSelectItems, item, null));
-							}
-						} else if (value instanceof Map) {
-							Map map = (Map) value;
-
-							for (Iterator it = map.keySet().iterator(); it.hasNext();) {
-								Object key = it.next();
-
-								items.add(createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key)));
-							}
-						} else if (value instanceof Collection) {
-							Collection collection = (Collection) value;
-
-							for (Iterator it = collection.iterator(); it.hasNext();) {
-								Object item = it.next();
-								if (item instanceof SelectItem)
-									items.add(item);
-								else
-									items.add(createSelectItem(context, uiSelectItems, item, null));
-							}
-						}
-					}
-				}
-
-			}
-		}
-		return items;
-	}
 
 	/**
 	 * Renders a single &lt;option&gt; tag. For some reason,
