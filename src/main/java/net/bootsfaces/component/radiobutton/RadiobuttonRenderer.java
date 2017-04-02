@@ -32,6 +32,7 @@ import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.inputText.InputTextRenderer;
@@ -116,13 +117,13 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		List<String> legalValues = new ArrayList<String>();
 		for (UIComponent b: radioButtonGroup) {
 			Radiobutton r = (Radiobutton)b;
-			List<SelectItem> options = SelectItemUtils.collectOptions(context, r);
+			List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, r);
 			if (options.size()>0) {
 				// traditional JSF approach using f:selectItem[s]
-				for (SelectItem option:options) {
+				for (SelectItemAndComponent option:options) {
 					String o = null;
-					if (null != option.getValue()) {
-						o = String.valueOf(option.getValue());
+					if (null != option.getSelectItem().getValue()) {
+						o = String.valueOf(option.getSelectItem().getValue());
 					}
 					legalValues.add(o);
 				}
@@ -170,19 +171,16 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		String key = "BF_generated_radiobuttonfield_"+radiobuttonGroupId;
 		if (!state.inputHasAlreadyBeenRendered(key)) {
 			super.encodeEnd(context, component);
-//			rw.startElement("input", component);
-//			rw.writeAttribute("name", propertyName, null);
-//			rw.endElement("input");
 		}
 
-		List<SelectItem> options = SelectItemUtils.collectOptions(context, component);
+		List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, component);
 		if (options.size()>0) {
 			// traditional JSF approach using f:selectItem[s]
 			int counter=0;
-			for (SelectItem option:options) {
+			for (SelectItemAndComponent option:options) {
 				generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue,
-						option.getValue(),
-						option.getLabel(), clientId+(counter++));
+						option.getSelectItem().getValue(),
+						option.getSelectItem().getLabel(), clientId+(counter++));
 
 			}
 
