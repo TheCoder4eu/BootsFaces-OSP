@@ -99,7 +99,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	}
 
 	public String getDefaultEventName() {
-		return "input";
+		return "blur";
 	}
 
 	public InputText() {
