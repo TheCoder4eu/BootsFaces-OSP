@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
@@ -155,7 +156,11 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = radiobutton.getClientId();
 
-		String propertyName = radiobutton.getValueExpression("value").getExpressionString();
+		ValueExpression valueExpression = radiobutton.getValueExpression("value");
+		if (null == valueExpression) {
+			throw new FacesException("Radiobuttons always need a value. More precisely, the value attribute must be an EL expression pointing to an attribute of a JSF bean.");
+		}
+		String propertyName = valueExpression.getExpressionString();
 		Object beanValue = ELTools.evalAsObject(propertyName);
 		if (propertyName.startsWith("#{") && propertyName.endsWith("}")) {
 			propertyName=propertyName.substring(2, propertyName.length()-1).trim();
@@ -163,7 +168,15 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			throw new FacesException("The value attribute of a radiobutton must be an EL expression.");
 		}
 		UIForm form = findSurroundingForm(component);
-		UIComponent radioButtonGroup = findComponentByName(form, radiobutton.getName());
+		if (null == form) {
+			throw new FacesException("Radio buttons must be inside a form.");
+		}
+		
+		String name = radiobutton.getName();
+		if (null == name) {
+			throw new FacesException("Please specify the 'name' attribute of the radio button.");
+		}
+		UIComponent radioButtonGroup = findComponentByName(form, name);
 		String radiobuttonGroupId = radioButtonGroup.getClientId(context);
 
 		RadioButtonInternalStateBean state = (RadioButtonInternalStateBean) ELTools.evalAsObject("#{radioButtonInternalStateBean}");

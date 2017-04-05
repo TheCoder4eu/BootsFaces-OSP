@@ -64,6 +64,10 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 		// this is not an jQuery component
 		return null;
 	}
+	
+	public String getDefaultEventName() {
+		return "click";
+	}
 
 	public String getName() {
 		String propertyName = getValueExpression("value").getExpressionString();
