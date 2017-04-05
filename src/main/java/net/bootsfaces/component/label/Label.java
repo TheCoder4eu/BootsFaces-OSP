@@ -73,14 +73,29 @@ public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 		 * <span class="badge badge-important">6</span>
 		 */
 
+		boolean idHasBeenRendered=false;
 		Map<String, Object> attrs = this.getAttributes();
 
 		String sev = A.asString(attrs.get("severity"));
 		String txt = A.asString(attrs.get("text"));
 		ResponseWriter rw = context.getResponseWriter();
+		
+		// add responsive style
+		String clientId = this.getClientId();
+		String clazz = Responsive.getResponsiveStyleClass(this, false).trim();
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.startElement("div", this);
+			rw.writeAttribute("class", clazz, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+
 
 		rw.startElement("span", this);
-		rw.writeAttribute("id", this.getClientId(), "id");
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		Tooltip.generateTooltip(context, this, rw);
 		String sclass = "label" + " " + "label";
 		if (sev != null) {
@@ -97,6 +112,10 @@ public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 
 		rw.writeText(txt, null);
 		rw.endElement("span");
+		if (isResponsive) {
+			rw.endElement("div");
+		}
+
 		Tooltip.activateTooltips(context, this);
 	}
 
