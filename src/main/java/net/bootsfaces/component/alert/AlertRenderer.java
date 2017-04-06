@@ -83,7 +83,7 @@ public class AlertRenderer extends CoreRenderer {
 		if (sev != null) {
 			rw.writeAttribute("class", "alert alert-" + sev + " fadein" + styleClass, "class");
 		} else {
-			rw.writeAttribute("class", "alert fadein" + styleClass, "class");
+			rw.writeAttribute("class", "alert alert-warning fadein" + styleClass, "class");
 		}
 		if (closbl) {
 			rw.startElement("button", alert);
