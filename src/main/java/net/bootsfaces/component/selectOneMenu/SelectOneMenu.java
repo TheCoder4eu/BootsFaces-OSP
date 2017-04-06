@@ -99,7 +99,7 @@ public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.r
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	public void validateValue(FacesContext context, Object newValue) {

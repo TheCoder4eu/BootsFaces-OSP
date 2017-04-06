@@ -95,7 +95,7 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	@Override
@@ -106,7 +106,6 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	public InputTextarea() {
 		setRendererType("net.bootsfaces.component.InputTextareaRenderer");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		Tooltip.addResourceFiles();
 	}
 
