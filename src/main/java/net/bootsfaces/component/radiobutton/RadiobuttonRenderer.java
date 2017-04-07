@@ -35,6 +35,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;
+import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.Responsive;
@@ -183,7 +184,15 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		
 		String key = "BF_generated_radiobuttonfield_"+radiobuttonGroupId;
 		if (!state.inputHasAlreadyBeenRendered(key)) {
-			super.encodeEnd(context, component);
+			rw.startElement("input", null);
+			rw.writeAttribute("id", "input_" + clientId, null);
+			rw.writeAttribute("name", name, null);
+			rw.writeAttribute("type",  "hidden", null);
+			rw.writeAttribute("value", String.valueOf(beanValue), null);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), radiobutton, rw, false);
+
+			rw.endElement("input");
+
 		}
 
 		List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, component);
