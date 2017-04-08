@@ -163,16 +163,14 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		}
 
 		String divSuffix="";
-		String errorSeverityClass = getFormGroupWithFeedback("", clientId);
-//				FacesMessages.getErrorSeverityClass(clientId);
+                String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
+                        
 			if (!isHorizontalForm(dtp)) {
-				rw.writeAttribute("class", responsiveStyleClass + " form-group " + errorSeverityClass, "class");
+			    rw.writeAttribute("class", responsiveStyleClass + classesWithFeedback, "class");
 			} else {
-                            if(hasToRenderFormGroup(dtp)) {
-				rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
-                            }
+			    rw.writeAttribute("class", classesWithFeedback, "class");
 			}
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(fc, dtp, rw);
@@ -181,7 +179,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
-			rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
+			rw.writeAttribute("class", classesWithFeedback, "class");
 			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;

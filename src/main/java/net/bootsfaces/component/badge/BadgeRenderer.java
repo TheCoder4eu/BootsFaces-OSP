@@ -24,6 +24,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.IResponsive;
@@ -32,7 +33,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:badge /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.badge.Badge")
-public class BadgeRenderer extends CoreRenderer {
+public class BadgeRenderer extends CoreInputRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:badge.

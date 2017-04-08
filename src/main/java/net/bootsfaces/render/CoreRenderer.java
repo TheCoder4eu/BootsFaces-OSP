@@ -578,11 +578,15 @@ public class CoreRenderer extends Renderer {
 
 	/**
 	 * Get the main field container 
+         * 
+         * @deprecated Use {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)} instead
+         * 
 	 * @param additionalClass
 	 * @param clientId
 	 * @return
 	 */
-	protected String getFormGroupWithFeedback(String additionalClass, String clientId){
+        @Deprecated
+	protected String getFormGroupWithFeedback(String additionalClass, String clientId) {
 		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
 			return additionalClass;
 		}

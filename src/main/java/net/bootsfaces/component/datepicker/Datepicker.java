@@ -45,6 +45,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.formGroup.FormGroup;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
@@ -267,7 +268,12 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		rw.startElement("div", this);
 		numberOfDivs++;
 		String errorSeverityClass = BsfUtils.isLegacyFeedbackClassesEnabled() ? "" : FacesMessages.getErrorSeverityClass(clientId);
-		rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
+                
+                String formGroupClass="";
+                if(!(getParent() instanceof FormGroup)) {
+                    formGroupClass = "form-group";
+                }
+		rw.writeAttribute("class", formGroupClass + errorSeverityClass, "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(fc, this, rw);

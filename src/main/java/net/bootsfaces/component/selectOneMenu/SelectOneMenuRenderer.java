@@ -120,14 +120,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
         }
         rw.startElement("div", menu);
 
-        if (menu.isInline()) {
-            rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", outerClientId), "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-        } else {
-            if(hasToRenderFormGroup(component)) {
-                rw.writeAttribute("class", getFormGroupWithFeedback("form-group", outerClientId), "class");
-            }
-        }
+        rw.writeAttribute("class", getWithFeedback(getInputMode(menu.isInline()), component), "class");
         if (!clientIdHasBeenRendered) {
         	rw.writeAttribute("id", outerClientId, "id");
             Tooltip.generateTooltip(context, menu, rw);

@@ -131,11 +131,7 @@ public class SliderRenderer extends BadgeRenderer {
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
 
-		if (slider.isInline()) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-		} else {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-		}
+                rw.writeAttribute("class", getWithFeedback(getInputMode(slider.isInline()), slider), "class");
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
 		if (slider.getStyleClass()!=null) {
