@@ -91,6 +91,12 @@ public class PanelGridRenderer extends CoreRenderer {
 				row++;
 			}
 		}
+		if (column != 0) {
+			generateRowEnd(writer, row, rowClasses);
+			column = 0;
+			row++;
+		}
+
 
 		endDisabledFieldset(panelGrid, writer);
 		generateContainerEnd(writer);

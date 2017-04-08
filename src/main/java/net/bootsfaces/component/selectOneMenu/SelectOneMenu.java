@@ -58,7 +58,7 @@ public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.r
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**

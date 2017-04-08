@@ -1573,7 +1573,7 @@ widget progressBar
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
-    value                                                                  "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
+    value               mandatory                                          "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
     max                 Integer default "100"                              "The maximum value of the ProgressBar. (default 100)"
     min                 Integer default "0"                                "The minimum value of the ProgressBar. (default 0)"
     caption                                                                "Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent."

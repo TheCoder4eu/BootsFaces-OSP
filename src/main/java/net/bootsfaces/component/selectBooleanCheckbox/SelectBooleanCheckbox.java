@@ -45,7 +45,7 @@ public class SelectBooleanCheckbox extends SelectBooleanCheckboxCore
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox";
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -91,7 +91,7 @@ public class SelectBooleanCheckbox extends SelectBooleanCheckboxCore
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	public SelectBooleanCheckbox() {

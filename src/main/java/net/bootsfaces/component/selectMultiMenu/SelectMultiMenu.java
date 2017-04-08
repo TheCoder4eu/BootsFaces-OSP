@@ -104,6 +104,6 @@ public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfac
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 }
