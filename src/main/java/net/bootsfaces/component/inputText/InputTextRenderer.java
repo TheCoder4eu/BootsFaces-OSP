@@ -33,6 +33,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.formGroup.FormGroup;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
@@ -202,7 +203,9 @@ public class InputTextRenderer extends CoreRenderer {
 				rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
 				LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 			} else {
+                            if(!(component.getParent() instanceof FormGroup)) {
 				rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
+                            }
 			}
 		}
 
