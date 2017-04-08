@@ -35,6 +35,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.beans.ELTools;
@@ -508,6 +509,50 @@ public class CoreRenderer extends Renderer {
 
 		return converter;
 	}
+	
+	/**
+	 * This method is called by the JSF framework to get the type-safe value of
+	 * the attribute. Do not delete this method.
+	 */
+	@Override
+	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
+		Converter cnv = resolveConverter(fc, c);
+
+		if (cnv != null) {
+			if (sval == null || sval instanceof String) {
+				return cnv.getAsObject(fc, c, (String)sval);
+			} else {
+				return cnv.getAsObject(fc, c, String.valueOf(sval));
+			}
+		} else {
+			return sval;
+		}
+	}
+
+	protected Converter resolveConverter(FacesContext context, UIComponent c) {
+		if (!(c instanceof ValueHolder)) {
+			return null;
+		}
+
+		Converter cnv = ((ValueHolder) c).getConverter();
+
+		if (cnv != null) {
+			return cnv;
+		} else {
+			ValueExpression ve = c.getValueExpression("value");
+
+			if (ve != null) {
+				Class<?> valType = ve.getType(context.getELContext());
+
+				if (valType != null) {
+					return context.getApplication().createConverter(valType);
+				}
+			}
+
+			return null;
+		}
+	}
+
 
 	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
