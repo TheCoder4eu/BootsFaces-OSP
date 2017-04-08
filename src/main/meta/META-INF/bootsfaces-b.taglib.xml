@@ -6053,7 +6053,7 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
-                <attribute>
+		<attribute>
 		  <description><![CDATA[An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages.]]></description>
 		  <name>label</name>
 		  <required>false</required>
@@ -24905,7 +24905,8 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-        <!-- *********** b:formGroup ************************* -->
+	
+	<!-- *********** b:formGroup ************************* -->
 	<tag>
 		<tag-name>formGroup</tag-name>
 		<component>
