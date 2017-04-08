@@ -40,6 +40,6 @@ public class InputRenderer extends CoreRenderer {
      * @return 
      */
     protected boolean hasToRenderFormGroup(UIComponent component) {
-        return component.getParent() instanceof FormGroup;
+        return !(component.getParent() instanceof FormGroup);
     }
 }

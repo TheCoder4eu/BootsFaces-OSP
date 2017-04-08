@@ -18,11 +18,14 @@
 package net.bootsfaces.component.formGroup;
 
 import java.io.IOException;
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
+import net.bootsfaces.component.form.Form;
 import net.bootsfaces.render.CoreRenderer;
 import static net.bootsfaces.render.CoreRenderer.beginDisabledFieldset;
 import net.bootsfaces.render.IContentDisabled;
@@ -43,6 +46,12 @@ public class FormGroupRenderer extends CoreRenderer {
         if (!component.isRendered()) {
             return;
         }
+
+        // Verify that we are inside an horizontal form
+        if (getSurroundingForm(component, true) == null || !isHorizontalForm(component)) {
+            throw new FacesException("The " + FormGroup.COMPONENT_TYPE + " component with the id " + component.getClientId() + " must be inside an horizontal " + Form.COMPONENT_TYPE);
+        }
+
         FormGroup formGroup = (FormGroup) component;
         ResponseWriter rw = context.getResponseWriter();
         String clientId = formGroup.getClientId();
