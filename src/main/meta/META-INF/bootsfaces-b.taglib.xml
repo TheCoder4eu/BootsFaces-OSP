@@ -6053,6 +6053,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+                <attribute>
+		  <description><![CDATA[An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages.]]></description>
+		  <name>label</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>label-col-lg</name>
