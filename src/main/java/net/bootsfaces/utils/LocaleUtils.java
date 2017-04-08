@@ -183,8 +183,6 @@ public class LocaleUtils {
 	 * @return
 	 */
 	public static Date autoParseDateFormat(String dateString) {
-		long start = System.nanoTime();
-		try {
 		// STEP 1: try to detect standard locale based java date format
 		for (Locale locale : DateFormat.getAvailableLocales()) {
 			for (int style = DateFormat.FULL; style <= DateFormat.SHORT; style++) {
@@ -210,11 +208,6 @@ public class LocaleUtils {
 			}
 		}
 		return null;
-		} finally {
-			long end = System.nanoTime() - start;
-			time += end;
-			System.out.println("Time: " + (time / 1000)/1000.0 + " ms");
-		}
 	}
 
 	/**
@@ -317,8 +310,6 @@ public class LocaleUtils {
 		isCorrect(javaToMomentFormat("DD/MM/YYYY"), "[(error: DD can't be converted)]/MM/gggg");
 		isCorrect(javaToMomentFormat("DD[/]MM"), "[(error: DD cannot be converted)][(error: cannot ecape escape characters)]/[(error: cannot ecape escape characters)]MM");
 		isCorrect(javaToMomentFormat("dd/MM/yyyy"), "DD/MM/YYYY");
-		//		System.out.println(javaToMomentFormat("dd/MM/yyyy"));
-//		System.out.println(momentToJavaFormat("DD/MM/YYYY"));
 	}
 	
 	// TEST METHOD
