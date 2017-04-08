@@ -37,12 +37,13 @@ import net.bootsfaces.component.formGroup.FormGroup;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
+import net.bootsfaces.render.InputRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
-public class InputTextRenderer extends CoreRenderer {
+public class InputTextRenderer extends InputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	@Override
@@ -164,7 +165,7 @@ public class InputTextRenderer extends CoreRenderer {
 				rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
 				LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 			} else {
-                            if(!(component.getParent() instanceof FormGroup)) {
+                            if(hasToRenderFormGroup(component)) {
 				rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
                             }
 			}
