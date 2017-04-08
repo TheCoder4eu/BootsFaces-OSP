@@ -3,13 +3,9 @@ package net.bootsfaces.component.colorPicker;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
@@ -103,16 +99,19 @@ public class ColorPickerRenderer extends CoreRenderer {
 			Tooltip.generateTooltip(context, colorPicker, rw);
 		}
 		if (colorPicker.isInline()) {
-			rw.writeAttribute("class", "form-inline", "class");
+			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 		} else {
-			rw.writeAttribute("class", "form-group", "class");
+			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
 		}
+		LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
-			generateErrorAndRequiredClassForLabels(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			//generateErrorAndRequiredClassForLabels(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			generateErrorAndRequiredClass(colorPicker, rw, clientId, colorPicker.getLabelStyleClass(), responsiveLabelClass,
+					"control-label");
 			writeAttribute(rw, "style", colorPicker.getLabelStyle());
 
 			rw.writeText(label, null);
@@ -202,7 +201,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.startElement("script", colorPicker);
 		rw.writeText("$(function() {" +
 					"$('#input_" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').minicolors({" +
-					(colorPicker.getAttributes().get("control") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
+					(colorPicker.getAttributes().get("s") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
 					(colorPicker.getAttributes().get("format") != null ? " format: '" + colorPicker.getAttributes().get("format")  + "'," : "")  +
 					(colorPicker.getAttributes().get("opacity") != null ? " opacity: " + colorPicker.getAttributes().get("opacity")  + "," : "")  +
 					(colorPicker.getAttributes().get("position") != null ? " position: '" + colorPicker.getAttributes().get("position")  + "'," : "")  +

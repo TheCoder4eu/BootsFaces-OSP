@@ -111,11 +111,11 @@ public class Slider2Renderer extends BadgeRenderer {
 		}
 		if (v == null) {
 			v = slider.getValue();
-			slider.setValue(v);
+			//slider.setValue(v);
 		}
 		if (v == null) {
 			v = max / 2;
-			slider.setValue(v);
+			//slider.setValue(v);
 		}
 		double val = A.toDouble(v);
 		if (val > max) {
@@ -206,7 +206,14 @@ public class Slider2Renderer extends BadgeRenderer {
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);
 				rw.writeAttribute("for", clientId, null);
-				writeAttribute(rw, "class", slider.getLabelStyleClass());
+				String styleClass="";
+				if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+					styleClass = "control-label";
+				}
+				if (slider.getLabelStyleClass() != null) {
+					styleClass += " " + slider.getLabelStyleClass();
+				}
+				writeAttribute(rw, "class", styleClass);
 				writeAttribute(rw, "style", slider.getLabelStyle());
 				rw.write(label);
 				rw.endElement("label"); // Label
@@ -238,6 +245,9 @@ public class Slider2Renderer extends BadgeRenderer {
 	private void encodeVLabel(Slider2 slider, ResponseWriter rw, String label) throws IOException {
 		R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null, null);
 		rw.startElement("p", slider);
+		if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			rw.writeAttribute("class", "control-label", null);
+		}
 		rw.write(label);
 		rw.endElement("p"); // Label
 		rw.endElement("div"); // Column

@@ -45,7 +45,30 @@ public class Slider2 extends Slider2Core {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-slider.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
-
+	
+	
+	   /**
+     * <p>Return <code>true</code> if the new value is different from
+     * the previous value.  First compare the two values by passing
+     * <em>value</em> to the <code>equals</code> method on argument
+     * <em>previous</em>.  If that method returns <code>true</code>,
+     * return <code>true</code>.  If that method returns
+     * <code>false</code>, and both arguments implement
+     * <code>java.lang.Comparable</code>, compare the two values by
+     * passing <em>value</em> to the <code>compareTo</code> method on
+     * argument <em>previous</em>.  Return <code>true</code> if this
+     * method returns <code>0</code>, <code>false</code> otherwise.</p>
+     *
+     * @param previous old value of this component (if any)
+     * @param value    new value of this component (if any)
+     */
+    protected boolean compareValues(Object previous, Object value) {
+    	if (previous instanceof String && value instanceof Double) {
+    		previous = Double.valueOf((String)previous);
+    	}
+    	return super.compareValues(previous, value);
+    }
+    
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -61,7 +84,7 @@ public class Slider2 extends Slider2Core {
 	@Override
 	public String getValue() {
 		Object val = getStateHelper().eval(PropertyKeys.value, "5");
-		if(val instanceof Double) 
+		if(val instanceof Number) 
 			return val.toString();
 		return (String) val;
 	}
