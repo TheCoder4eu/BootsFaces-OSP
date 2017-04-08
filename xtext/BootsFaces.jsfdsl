@@ -2304,3 +2304,17 @@ widget well
     +responsive
     +contentDisabled
 }
+
+widget formGroup
+       implemented_by net.bootsfaces.component.formGroup.FormGroup
+       has_children
+       has_tooltip
+ {
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style                                                                  "Inline style of the input element."
+    style-class                                                            "Style class of this element."
+    +tooltip
+	+contentDisabled
+}
