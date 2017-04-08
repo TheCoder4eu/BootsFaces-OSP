@@ -37,13 +37,13 @@ import net.bootsfaces.component.formGroup.FormGroup;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
-import net.bootsfaces.render.InputRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
-public class InputTextRenderer extends InputRenderer {
+public class InputTextRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	@Override

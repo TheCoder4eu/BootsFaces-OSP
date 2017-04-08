@@ -102,7 +102,7 @@ public class RowRenderer extends CoreRenderer {
 		}
 		// Row row = (Row) component;
 		ResponseWriter rw = context.getResponseWriter();
-		beginDisabledFieldset((IContentDisabled)component, rw);
+		endDisabledFieldset((IContentDisabled)component, rw);
 		rw.endElement("div");
 	}
 }

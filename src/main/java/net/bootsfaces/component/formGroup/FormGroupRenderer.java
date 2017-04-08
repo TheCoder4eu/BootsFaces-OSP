@@ -84,7 +84,7 @@ public class FormGroupRenderer extends CoreRenderer {
             return;
         }
         ResponseWriter rw = context.getResponseWriter();
-        beginDisabledFieldset((IContentDisabled) component, rw);
+        endDisabledFieldset((IContentDisabled) component, rw);
         rw.endElement("div");
     }
 }

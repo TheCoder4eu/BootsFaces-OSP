@@ -24,7 +24,7 @@ import net.bootsfaces.component.formGroup.FormGroup;
  *
  * @author Guillermo González de Agüero
  */
-public class InputRenderer extends CoreRenderer {
+public class CoreInputRenderer extends CoreRenderer {
 
     /**
      * <p>Check whether the input needs to be wrapped on a div containing the "form-group" class.</p>
