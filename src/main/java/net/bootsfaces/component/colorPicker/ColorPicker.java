@@ -18,6 +18,7 @@ import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
 public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
@@ -49,8 +50,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");
 
-		renderLabel = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.defaults.renderLabel");
+		renderLabel = BsfUtils.getInitParam("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);
 		}
