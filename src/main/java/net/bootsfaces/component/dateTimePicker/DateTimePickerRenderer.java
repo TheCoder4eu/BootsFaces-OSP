@@ -84,12 +84,13 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 	/**
 	 * Get date in string format
-	 * @param value
-	 * @param format
-	 * @param locale
-	 * @return
+	 * @param fc The FacesContext
+	 * @param dtp the DateTimePicker component
+	 * @param value The date to display
+	 * @param javaFormatString The format string as defined by the SimpleDateFormat syntax
+	 * @param locale The locale
+	 * @return null if the value is null.
 	 */
-
 	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String javaFormatString, Locale locale) {
 		if (value == null) {
 			return null;
