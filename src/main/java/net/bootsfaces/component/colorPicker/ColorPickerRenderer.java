@@ -10,7 +10,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -18,7 +18,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPicker")
-public class ColorPickerRenderer extends CoreRenderer {
+public class ColorPickerRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(ColorPickerRenderer.class.getName());
 
 	@Override
@@ -102,7 +102,9 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
 			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 		} else {
+                    if(hasToRenderFormGroup(component)) {
 			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
+                    }
 		}
 		LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
 
