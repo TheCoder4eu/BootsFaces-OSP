@@ -38,7 +38,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public ColorPicker() {
@@ -88,7 +88,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	/**
