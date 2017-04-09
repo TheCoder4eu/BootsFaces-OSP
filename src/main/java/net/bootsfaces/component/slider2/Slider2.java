@@ -45,8 +45,8 @@ public class Slider2 extends Slider2Core {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-slider.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
-	
-	
+
+
 	   /**
      * <p>Return <code>true</code> if the new value is different from
      * the previous value.  First compare the two values by passing
@@ -68,7 +68,7 @@ public class Slider2 extends Slider2Core {
     	}
     	return super.compareValues(previous, value);
     }
-    
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -80,11 +80,11 @@ public class Slider2 extends Slider2Core {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	
+	/* !
 	@Override
 	public String getValue() {
 		Object val = getStateHelper().eval(PropertyKeys.value, "5");
-		if(val instanceof Number) 
+		if(val instanceof Number)
 			return val.toString();
 		return (String) val;
 	}
@@ -112,4 +112,5 @@ public class Slider2 extends Slider2Core {
 		else if(step instanceof String) return Double.parseDouble((String)step);
 		return (Double) step;
 	}
+	*/
 }

@@ -260,34 +260,34 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Maximum possible value <P>
+	 * The maximum value of the slider. (default 100) <P>
 	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
-	public double getMax() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
+	public int getMax() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
-	 * Maximum possible value <P>
+	 * The maximum value of the slider. (default 100) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(double _max) {
+	public void setMax(int _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
 	/**
-	 * Minimum possible value <P>
+	 * The minimum value of the slider. (default 0) <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
-	public double getMin() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
+	public int getMin() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
-	 * Minimum possible value <P>
+	 * The minimum value of the slider. (default 0) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(double _min) {
+	public void setMin(int _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
