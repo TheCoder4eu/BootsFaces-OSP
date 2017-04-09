@@ -354,7 +354,7 @@ public class Slider2Renderer extends BadgeRenderer {
 		if(BsfUtils.isValued(slider.isTooltipSplit())) rw.writeAttribute("data-slider-tooltip-split", slider.isTooltipSplit(), null);
 		if(BsfUtils.isValued(slider.getTooltipSliderPosition())) rw.writeAttribute("data-slider-tooltip-position", slider.getTooltipSliderPosition(), null);
 		if(BsfUtils.isValued(slider.getOrientation())) rw.writeAttribute("data-slider-orientation", slider.getOrientation().startsWith("vertical") ? "vertical" : "horizontal", null);
-		if(BsfUtils.isValued(slider.isDisabled())) rw.writeAttribute("data-slider-enabled", !slider.isDisabled(), null);
+		if(slider.isDisabled()) rw.writeAttribute("data-slider-enabled", "false", null);
 		if(BsfUtils.isValued(slider.getPrecision())) rw.writeAttribute("data-slider-precision", slider.getPrecision(), null);
 		if(BsfUtils.isValued(slider.getScale())) rw.writeAttribute("data-slider-ticks-scale", slider.getScale(), null);
 		if(BsfUtils.isValued(slider.isFocus())) rw.writeAttribute("data-slider-focus", slider.isFocus(), null);
