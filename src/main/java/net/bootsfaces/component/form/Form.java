@@ -18,26 +18,24 @@
 
 package net.bootsfaces.component.form;
 
+import java.io.IOException;
 import javax.el.ValueExpression;
+import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIForm;
+import javax.faces.context.FacesContext;
+import net.bootsfaces.C;
 
-import net.bootsfaces.component.form.FormCore.PropertyKeys;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
-@FacesComponent("net.bootsfaces.component.form.Form")
+@FacesComponent(Form.COMPONENT_TYPE)
 public class Form extends UIForm {
 
-	public static final String COMPONENT_TYPE = "javax.faces.Form";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".form.Form";
 
-	public static final String COMPONENT_FAMILY = "javax.faces.Form";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	public static final String DEFAULT_RENDERER = "javax.faces.Form";
-
-	public Form() {
-		setRendererType(DEFAULT_RENDERER);
-	}
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
@@ -130,4 +128,11 @@ public class Form extends UIForm {
 		getStateHelper().put(PropertyKeys.horizontal, _horizontal);
 	}
 
+    @Override
+    public void encodeBegin(FacesContext context) throws IOException {
+        if(isHorizontal() && isInline()) {
+            throw new FacesException("A b:form can't be form both inline and horizontal. Please set only one of them for form \"" + getClientId() + "\".");
+        }
+        super.encodeBegin(context); //To change body of generated methods, choose Tools | Templates.
+    }
 }
