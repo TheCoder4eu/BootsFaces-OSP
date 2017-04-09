@@ -189,7 +189,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, "control-label");
+            generateErrorAndRequiredClass(menu, rw, outerClientId, menu.getLabelStyleClass(), Responsive.getResponsiveLabelClass(menu), "control-label");
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");

@@ -236,6 +236,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 			rw.startElement("label", this);
 			rw.writeAttribute("for", clientId, "for");
 			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId, getLabelStyleClass() + " control-label");
+                        
 			if (getLabelStyle() != null) {
 				rw.writeAttribute("style", getLabelStyle(), "style");
 			}

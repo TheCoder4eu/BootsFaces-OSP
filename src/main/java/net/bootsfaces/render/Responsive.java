@@ -5,6 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.FacesException;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.form.Form;
 
 
 public class Responsive {
@@ -22,81 +26,84 @@ public class Responsive {
 	 */
 	public static String getResponsiveStyleClass(IResponsive r) { return getResponsiveStyleClass(r, true); }
 	public static String getResponsiveStyleClass(IResponsive r, boolean forceColMd) {
-		int colxs = sizeToInt(getSize(r, Sizes.xs));
-		int colsm = sizeToInt(getSize(r, Sizes.sm));
-		int collg = sizeToInt(getSize(r, Sizes.lg));
+            if(!shouldRenderResponsiveClasses(r)) {
+                return "";
+            }
+            
+            int colxs = sizeToInt(getSize(r, Sizes.xs));
+            int colsm = sizeToInt(getSize(r, Sizes.sm));
+            int collg = sizeToInt(getSize(r, Sizes.lg));
 
-		int span = sizeToInt(r.getSpan());
+            int span = sizeToInt(r.getSpan());
 
-		int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md));
-		if (colmd<0) {
-			if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
-				colmd = (colmd > 0) ? colmd : -1;
-			} else {
-				colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
-			}
-		}
+            int colmd = (span > 0) ? span : sizeToInt(getSize(r, Sizes.md));
+            if (colmd < 0) {
+                if ((colxs > 0) || (colsm > 0) || (collg > 0)) {
+                    colmd = (colmd > 0) ? colmd : -1;
+                } else {
+                    colmd = (colmd > 0) ? colmd : (forceColMd ? 12 : -1);
+                }
+            }
 
-		int offs = sizeToInt(r.getOffset());
-		int offsmd = (offs > 0) ? offs : sizeToInt(r.getOffsetMd());
-		int oxs = sizeToInt(r.getOffsetXs());
-		int osm = sizeToInt(r.getOffsetSm());
-		int olg = sizeToInt(r.getOffsetLg());
+            int offs = sizeToInt(r.getOffset());
+            int offsmd = (offs > 0) ? offs : sizeToInt(r.getOffsetMd());
+            int oxs = sizeToInt(r.getOffsetXs());
+            int osm = sizeToInt(r.getOffsetSm());
+            int olg = sizeToInt(r.getOffsetLg());
 
-		StringBuilder sb = new StringBuilder();
-		if (colmd > 0 || offsmd > 0) {
-			if (colmd > 0) {
-				sb.append("col-md-").append(colmd);
-			}
-			if (offsmd > 0) {
-				if (colmd > 0) {
-					sb.append(" ");
-				}
-				sb.append("col-md-offset-" + offsmd);
-			}
-		}
-		else if(colmd == 0) {
-			if (forceColMd) {
-				sb.append("col-md-12" );
-			sb.append(" hidden-md");
-			}
-		}
+            StringBuilder sb = new StringBuilder();
+            if (colmd > 0 || offsmd > 0) {
+                if (colmd > 0) {
+                    sb.append("col-md-").append(colmd);
+                }
+                if (offsmd > 0) {
+                    if (colmd > 0) {
+                        sb.append(" ");
+                    }
+                    sb.append("col-md-offset-" + offsmd);
+                }
+            } else if (colmd == 0) {
+                if (forceColMd) {
+                    sb.append("col-md-12");
+                    sb.append(" hidden-md");
+                }
+            }
 
-		if (colxs > 0) {
-			sb.append(" col-xs-").append(colxs);
-		}
-		if (colxs == 0) {
-			sb.append(" hidden-xs");
-		}
+            if (colxs > 0) {
+                sb.append(" col-xs-").append(colxs);
+            }
+            if (colxs == 0) {
+                sb.append(" hidden-xs");
+            }
 
-		if (colsm > 0) {
-			sb.append(" col-sm-").append(colsm);
-		}
-		if (colsm == 0) {
-			sb.append(" hidden-sm");
-		}
+            if (colsm > 0) {
+                sb.append(" col-sm-").append(colsm);
+            }
+            if (colsm == 0) {
+                sb.append(" hidden-sm");
+            }
 
-		if (collg > 0) {
-			sb.append(" col-lg-").append(collg);
-		}
-		if (collg == 0) {
-			sb.append(" hidden-lg");
-		}
+            if (collg > 0) {
+                sb.append(" col-lg-").append(collg);
+            }
+            if (collg == 0) {
+                sb.append(" hidden-lg");
+            }
 
-		sb.append(encodeVisibility(r, r.getVisible(), "visible"));
-		sb.append(encodeVisibility(r, r.getHidden(), "hidden"));
+            sb.append(encodeVisibility(r, r.getVisible(), "visible"));
+            sb.append(encodeVisibility(r, r.getHidden(), "hidden"));
 
-		if (oxs > 0) {
-			sb.append(" col-xs-offset-").append(oxs);
-		}
-		if (osm > 0) {
-			sb.append(" col-sm-offset-").append(osm);
-		}
-		if (olg > 0) {
-			sb.append(" col-lg-offset-").append(olg);
-		}
+            if (oxs > 0) {
+                sb.append(" col-xs-offset-").append(oxs);
+            }
+            if (osm > 0) {
+                sb.append(" col-sm-offset-").append(osm);
+            }
+            if (olg > 0) {
+                sb.append(" col-lg-offset-").append(olg);
+            }
 
-		return " " + sb.toString().trim() + " ";
+            return " " + sb.toString().trim() + " ";
 	}
 
 	/**
@@ -393,40 +400,66 @@ public class Responsive {
 	 * @return null, if there's no label-col-xx attribute
 	 */
 	public static String getResponsiveLabelClass(IResponsiveLabel r) {
-		int colxs = sizeToInt(getSize(r, Sizes.xs));
-		int colsm = sizeToInt(getSize(r, Sizes.sm));
-		int colmd = sizeToInt(getSize(r, Sizes.md));
-		int collg = sizeToInt(getSize(r, Sizes.lg));
-		
-		StringBuilder sb = new StringBuilder();
+            if(!shouldRenderResponsiveClasses(r)) {
+                return "";
+            }
+            
+            int  colxs = sizeToInt(getSize(r, Sizes.xs));
+	    int colsm = sizeToInt(getSize(r, Sizes.sm));
+            int colmd = sizeToInt(getSize(r, Sizes.md));
+            int collg = sizeToInt(getSize(r, Sizes.lg));
 
-		if (colmd > 0) {
-			sb.append("col-md-");
-			sb.append(colmd);
-			sb.append(' ');
-		}
+            StringBuilder sb = new StringBuilder();
 
-		if (colxs > 0) {
-			sb.append("col-xs-");
-			sb.append(colxs);
-			sb.append(' ');
-		}
-		if (colsm > 0) {
-			sb.append("col-sm-");
-			sb.append(colsm);
-			sb.append(' ');
-		}
-		if (collg > 0) {
-			sb.append("col-lg-");
-			sb.append(collg);
-			sb.append(' ');
-		}
-		if (sb.length()>0) {
-			return sb.substring(0, sb.length()-1);
-		}
+            if (colmd > 0) {
+                sb.append("col-md-");
+                sb.append(colmd);
+                sb.append(' ');
+            }
 
-		return null;
+            if (colxs > 0) {
+                sb.append("col-xs-");
+                sb.append(colxs);
+                sb.append(' ');
+            }
+            if (colsm > 0) {
+                sb.append("col-sm-");
+                sb.append(colsm);
+                sb.append(' ');
+            }
+            if (collg > 0) {
+                sb.append("col-lg-");
+                sb.append(collg);
+                sb.append(' ');
+            }
+            if (sb.length() > 0) {
+                return sb.substring(0, sb.length() - 1);
+            }
+
+            return null;
 	}
+        
+        /**
+         * Temporal and ugly hack to prevent responsive classes to be applied to inputs inside inline forms.
+         *
+         * This should be removed and the logic placed somewhere else.
+         * 
+         * @return whether the component should render responsive classes
+         */
+        private static boolean shouldRenderResponsiveClasses(Object r) {
+            // This method only checks inputs.
+            if(r instanceof UIComponent && r instanceof IResponsiveLabel) {
+                UIForm form = AJAXRenderer.getSurroundingForm((UIComponent) r, true);
+                if(form instanceof Form) {
+                    if(((Form)form).isInline()) {
+                        // If the form is inline, no responsive classes should be applied
+                        return false; 
+                    }
+                }
+            }
+            
+            return true;
+        }
 
 
 	// TEST METHOD

@@ -194,7 +194,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		if (label != null) {
 			rw.startElement("label", dtp);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClassForLabels(dtp, rw, clientId, dtp.getLabelStyleClass());
+                        generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass(), Responsive.getResponsiveLabelClass(dtp), "control-label");
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
 			rw.writeText(label, null);

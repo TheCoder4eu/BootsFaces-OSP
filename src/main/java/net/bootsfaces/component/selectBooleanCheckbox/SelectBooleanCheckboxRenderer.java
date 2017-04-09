@@ -144,7 +144,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
-				generateErrorAndRequiredClassForLabels(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass());
+                                generateErrorAndRequiredClass(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass(), Responsive.getResponsiveLabelClass(selectBooleanCheckbox), "control-label");
 				writeAttribute(rw, "style", selectBooleanCheckbox.getLabelStyle());
 
 				if (null != selectBooleanCheckbox.getDir()) {

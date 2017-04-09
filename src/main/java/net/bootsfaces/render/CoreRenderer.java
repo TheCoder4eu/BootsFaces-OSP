@@ -100,6 +100,8 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
+         * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
+         * 
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
 	 *
@@ -108,6 +110,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
+        @Deprecated
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
 			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
