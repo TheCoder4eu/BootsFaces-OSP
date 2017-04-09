@@ -423,15 +423,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
-	public double getStep() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
+	public int getStep() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(double _step) {
+	public void setStep(int _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
@@ -518,17 +518,17 @@ public abstract class Slider2Core extends HtmlInputText {
 	/**
 	 * Initial value float mode. <P>
 	 * @return Returns the value of the attribute, or "5", if it hasn't been set by the JSF file.
-	 */
+	 *
 	public String getValue() {
 		return (String) getStateHelper().eval(PropertyKeys.value, "5");
-	}
+	}*/
 
 	/**
 	 * Initial value float mode. <P>
 	 * Usually this method is called internally by the JSF engine.
-	 */
+	 *
 	public void setValue(String _value) {
 		getStateHelper().put(PropertyKeys.value, _value);
-	}
+	}*/
 
 }
