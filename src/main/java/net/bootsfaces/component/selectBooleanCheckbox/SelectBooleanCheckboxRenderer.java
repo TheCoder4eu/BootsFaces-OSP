@@ -113,9 +113,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
-                if(hasToRenderFormGroup(component)) {
-        		writeAttribute(rw, "class", getFormGroupWithFeedback("form-group", clientId));
-                }
+                writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		renderInputTag(context, rw, clientId, selectBooleanCheckbox);
@@ -146,7 +144,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
-				generateErrorAndRequiredClassForLabels(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass());
+                                generateErrorAndRequiredClass(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass(), Responsive.getResponsiveLabelClass(selectBooleanCheckbox), "control-label");
 				writeAttribute(rw, "style", selectBooleanCheckbox.getLabelStyle());
 
 				if (null != selectBooleanCheckbox.getDir()) {

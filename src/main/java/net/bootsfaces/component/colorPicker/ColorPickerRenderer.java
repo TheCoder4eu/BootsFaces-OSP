@@ -98,16 +98,9 @@ public class ColorPickerRenderer extends CoreInputRenderer {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(context, colorPicker, rw);
 		}
-		if (colorPicker.isInline()) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-		} else {
-                    if(hasToRenderFormGroup(component)) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-                    }
-		}
-		LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-
+                
+                rw.writeAttribute("class", getWithFeedback(getInputMode(colorPicker.isInline()), component), "class");
+                
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");

@@ -1049,7 +1049,7 @@ public abstract class ColorPickerCore extends HtmlInputText implements net.boots
 	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, false);
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
 	}
 
 	/**

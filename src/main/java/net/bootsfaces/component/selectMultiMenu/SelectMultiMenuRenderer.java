@@ -155,16 +155,8 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 			clientIdHasBeenRendered=true;
 		}
 
-		if (menu.isInline()) {
-			LOGGER.warning(
-					"The inline attribute of b:selectMultiMenu is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-		} else {
-                    if(hasToRenderFormGroup(component)) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-                    }
-		}
-
+                rw.writeAttribute("class", getWithFeedback(getInputMode(menu.isInline()), component), "class");
+                
 		addLabel(rw, clientId + "Inner", menu);
 
 		if (isHorizontalForm(component)) {
@@ -374,7 +366,10 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 		if (label != null) {
 			rw.startElement("label", menu);
 			rw.writeAttribute("for", clientId, "for");
-			generateErrorAndRequiredClassForLabels(menu, rw, clientId, menu.getLabelStyleClass());
+                        
+                        generateErrorAndRequiredClass(menu, rw, clientId, menu.getLabelStyleClass(), Responsive.getResponsiveLabelClass(menu), "control-label");
+                        
+			//generateErrorAndRequiredClassForLabels(menu, rw, clientId, "control-label " + menu.getLabelStyleClass());
 			writeAttribute(rw, "style", menu.getLabelStyle());
 			rw.writeText(label, null);
 			rw.endElement("label");
