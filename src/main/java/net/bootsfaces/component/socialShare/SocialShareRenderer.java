@@ -49,10 +49,11 @@ public class SocialShareRenderer extends CoreRenderer {
 		String clientId = socialShare.getClientId();
 
 		if(!BsfUtils.isStringValued(socialShare.getShares())) return;
+                
+                beginResponsiveWrapper(component, rw);
 		
 		rw.startElement("div", socialShare);
 		rw.writeAttribute("id", clientId + "_wrapper", "id");
-		rw.writeAttribute("class", Responsive.getResponsiveStyleClass(socialShare, false), "class");
 		
 		// Create the div container
 		rw.startElement("div", socialShare);
@@ -122,7 +123,14 @@ public class SocialShareRenderer extends CoreRenderer {
 		
 		rw.endElement("script");
 	}
+
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        endResponsiveWrapper(component, context.getResponseWriter());
+    }
 	
+        
+        
 	/**
 	 * Get the style class
 	 * @param sb

@@ -589,5 +589,27 @@ public class CoreRenderer extends Renderer {
 		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
 	}
 	
-	
+
+        protected void beginResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.startElement("div", component);
+                responseWriter.writeAttribute("class", responsiveStyleClass, null);
+            }
+        }
+        
+        protected void endResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.endElement("div");
+            }
+        }
 }
