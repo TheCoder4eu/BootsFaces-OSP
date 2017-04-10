@@ -334,13 +334,14 @@ public class Slider2Renderer extends BadgeRenderer {
 		 */
 		// For Horizontal, we keep one column for the input/badge
 		//R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0, null, null); // Issue #172
-		R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null); // Issue #592
-
+		
 		//<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
 		if (vo) {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "col-md-12 col-xs-12 col-sm-12 col-lg-12", "class");
 			rw.writeAttribute("align", "center", null);
+		} else {
+			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null); // Issue #592
 		}
 		// Slider <input>
 		rw.startElement("input", null);
