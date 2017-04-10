@@ -20,6 +20,7 @@ package net.bootsfaces.component.tabLinks;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -31,7 +32,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author thecoder4.eu
  */
 
-@FacesComponent("net.bootsfaces.component.tabLinks.TabLinks")
+@FacesComponent(TabLinks.COMPONENT_TYPE)
 public class TabLinks extends LinksContainer {
 
 	/**
@@ -39,7 +40,7 @@ public class TabLinks extends LinksContainer {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabLinks.TabLinks";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tabLinks.TabLinks";
 
 	public TabLinks() {
 		setRendererType(null); // this component renders itself

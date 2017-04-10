@@ -63,7 +63,7 @@ import net.bootsfaces.utils.FacesMessages;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.datepicker.Datepicker")
+@FacesComponent(Datepicker.COMPONENT_TYPE)
 public class Datepicker extends HtmlInputText implements IResponsive, IResponsiveLabel {
 
 	/**
@@ -71,7 +71,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.datepicker.Datepicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".datepicker.Datepicker";
 	/**
 	 * <p>
 	 * The component family for this component.

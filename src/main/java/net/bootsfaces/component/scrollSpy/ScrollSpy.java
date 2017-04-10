@@ -23,18 +23,19 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.scrollSpy.event.ScrollSpyEventListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:scrollSpy /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/scrollspy.js", target = "body"), })
-@FacesComponent("net.bootsfaces.component.scrollSpy.ScrollSpy")
+@FacesComponent(ScrollSpy.COMPONENT_TYPE)
 public class ScrollSpy extends UIComponentBase {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.scrollSpy.ScrollSpy";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".scrollSpy.ScrollSpy";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.scrollSpy.ScrollSpy";
 

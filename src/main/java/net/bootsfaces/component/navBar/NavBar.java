@@ -39,12 +39,12 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:navBar /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @ListenerFor(systemEventClass = PostAddToViewEvent.class)
-@FacesComponent("net.bootsfaces.component.navBar.NavBar")
+@FacesComponent(NavBar.COMPONENT_TYPE)
 public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.navBar.NavBar";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".navBar.NavBar";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.navBar.NavBar";
 

@@ -28,12 +28,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:slider2 /&gt;. */
-@FacesComponent("net.bootsfaces.component.slider2.Slider2")
+@FacesComponent(Slider2.COMPONENT_TYPE)
 public class Slider2 extends Slider2Core {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.slider2.Slider2";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".slider2.Slider2";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider2.Slider2";
 

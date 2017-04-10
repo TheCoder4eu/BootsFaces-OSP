@@ -27,12 +27,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:socialShare /&gt;. */
-@FacesComponent("net.bootsfaces.component.socialShare.SocialShare")
+@FacesComponent(SocialShare.COMPONENT_TYPE)
 public class SocialShare extends SocialShareCore {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.socialShare.SocialShare";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".socialShare.SocialShare";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.socialShare.SocialShare";
 

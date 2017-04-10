@@ -20,7 +20,7 @@ import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
+@FacesComponent(ColorPicker.COMPONENT_TYPE)
 public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;

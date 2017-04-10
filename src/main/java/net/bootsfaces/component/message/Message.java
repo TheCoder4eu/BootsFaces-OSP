@@ -28,12 +28,12 @@ import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
-@FacesComponent("net.bootsfaces.component.message.Message")
+@FacesComponent(Message.COMPONENT_TYPE)
 public class Message extends UIMessage implements IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.message.Message";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".message.Message";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.message.Message";
 

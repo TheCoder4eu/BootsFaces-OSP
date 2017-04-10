@@ -22,6 +22,7 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
@@ -29,13 +30,13 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:switch /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/bootstrap-switch.js", target = "head") })
-@FacesComponent("net.bootsfaces.component.switch.Switch")
+@FacesComponent(Switch.COMPONENT_TYPE)
 public class Switch extends net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox
 		implements net.bootsfaces.render.IHasTooltip {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.switch.Switch";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".switch.Switch";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.switch.Switch";
 

@@ -20,6 +20,7 @@ package net.bootsfaces.component.well;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -28,12 +29,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:well /&gt;. */
-@FacesComponent("net.bootsfaces.component.well.Well")
+@FacesComponent(Well.COMPONENT_TYPE)
 public class Well extends WellCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.well.Well";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".well.Well";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.well.Well";
 

@@ -21,6 +21,7 @@ package net.bootsfaces.component.panelGrid;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -62,12 +63,12 @@ import net.bootsfaces.utils.BsfUtils;
  * @since 22.11.2014
  */
 
-@FacesComponent("net.bootsfaces.component.panelGrid.PanelGrid")
+@FacesComponent(PanelGrid.COMPONENT_TYPE)
 public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.panelGrid.PanelGrid";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".panelGrid.PanelGrid";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.panelGrid.PanelGrid";
 

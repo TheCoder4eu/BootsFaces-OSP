@@ -20,6 +20,7 @@ package net.bootsfaces.component.pillLinks;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.linksContainer.LinksContainer;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -29,7 +30,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4eu
  */
-@FacesComponent("net.bootsfaces.component.pillLinks.PillLinks")
+@FacesComponent(PillLinks.COMPONENT_TYPE)
 public class PillLinks extends LinksContainer {
 
 	/**
@@ -37,7 +38,7 @@ public class PillLinks extends LinksContainer {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.pillLinks.PillLinks";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".pillLinks.PillLinks";
 
 	public PillLinks() {
 		setRendererType(null); // this component renders itself

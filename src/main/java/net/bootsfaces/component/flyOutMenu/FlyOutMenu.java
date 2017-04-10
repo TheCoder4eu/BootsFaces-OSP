@@ -21,6 +21,7 @@ package net.bootsfaces.component.flyOutMenu;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -28,12 +29,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:flyOutMenu /&gt;. */
-@FacesComponent("net.bootsfaces.component.flyOutMenu.FlyOutMenu")
+@FacesComponent(FlyOutMenu.COMPONENT_TYPE)
 public class FlyOutMenu extends UIOutput implements net.bootsfaces.render.IHasTooltip, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.flyOutMenu.FlyOutMenu";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT +".flyOutMenu.FlyOutMenu";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.flyOutMenu.FlyOutMenu";
 
