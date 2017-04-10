@@ -38,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
 public class Tree extends TreeCore implements ClientBehaviorHolder, IResponsive {
 
 	// Static internal references
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tree.Tree";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tree.Tree";
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tree.Tree";
 

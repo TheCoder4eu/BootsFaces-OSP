@@ -20,6 +20,7 @@ package net.bootsfaces.component.iconAwesome;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -27,12 +28,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:iconAwesome /&gt;. */
-@FacesComponent("net.bootsfaces.component.iconAwesome.IconAwesome")
+@FacesComponent(IconAwesome.COMPONENT_TYPE)
 public class IconAwesome extends Icon {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.iconAwesome.IconAwesome";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + "net.bootsfaces.component.iconAwesome.IconAwesome";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.iconAwesome.IconAwesome";
 

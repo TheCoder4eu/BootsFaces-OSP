@@ -20,18 +20,19 @@ package net.bootsfaces.component.badge;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:badge /&gt;. */
-@FacesComponent("net.bootsfaces.component.badge.Badge")
+@FacesComponent(Badge.COMPONENT_TYPE)
 public class Badge extends BadgeCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
 
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.badge.Badge";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".badge.Badge";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.badge.Badge";
 

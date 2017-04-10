@@ -29,6 +29,7 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
@@ -41,13 +42,13 @@ import net.bootsfaces.utils.BsfUtils;
 	  @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 
-@FacesComponent("net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
+@FacesComponent(SelectMultiMenu.COMPONENT_TYPE)
 public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IResponsiveLabel,
                                                                     net.bootsfaces.component.ajax.IAJAXComponent{
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".selectMultiMenu.SelectMultiMenu";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu";
 

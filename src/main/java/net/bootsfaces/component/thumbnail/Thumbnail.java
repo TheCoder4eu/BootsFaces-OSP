@@ -21,6 +21,7 @@ package net.bootsfaces.component.thumbnail;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
@@ -29,12 +30,12 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:thumbnail /&gt;. */
 
-@FacesComponent("net.bootsfaces.component.thumbnail.Thumbnail")
+@FacesComponent(Thumbnail.COMPONENT_TYPE)
 public class Thumbnail extends ThumbnailCore implements net.bootsfaces.render.IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.thumbnail.Thumbnail";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".thumbnail.Thumbnail";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.thumbnail.Thumbnail";
 

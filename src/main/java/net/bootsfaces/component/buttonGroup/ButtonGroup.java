@@ -20,6 +20,7 @@ package net.bootsfaces.component.buttonGroup;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -27,12 +28,12 @@ import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:buttonGroup /&gt;. */
-@FacesComponent("net.bootsfaces.component.buttonGroup.ButtonGroup")
+@FacesComponent(ButtonGroup.COMPONENT_TYPE)
 public class ButtonGroup extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.buttonGroup.ButtonGroup";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".buttonGroup.ButtonGroup";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.buttonGroup.ButtonGroup";
 

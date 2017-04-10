@@ -35,13 +35,13 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
-@FacesComponent("net.bootsfaces.component.touchSpin.TouchSpin")
+@FacesComponent(TouchSpin.COMPONENT_TYPE)
 public class TouchSpin extends TouchSpinCore
 implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.touchSpin.TouchSpin";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".touchSpin.TouchSpin";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.touchSpin.TouchSpin";
 

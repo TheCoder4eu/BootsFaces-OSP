@@ -21,6 +21,7 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -31,11 +32,11 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:accordion /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
-@FacesComponent("net.bootsfaces.component.accordion.Accordion")
+@FacesComponent(Accordion.COMPONENT_TYPE)
 public class Accordion extends AccordionCore implements IHasTooltip, net.bootsfaces.render.IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.accordion.Accordion";
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".accordion.Accordion";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.accordion.Accordion";
 
 	public Accordion() {

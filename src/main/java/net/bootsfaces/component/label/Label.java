@@ -26,6 +26,7 @@ import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
@@ -36,12 +37,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:label /&gt;. */
-@FacesComponent("net.bootsfaces.component.label.Label")
+@FacesComponent(Label.COMPONENT_TYPE)
 public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.label.Label";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".label.Label";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.label.Label";
 

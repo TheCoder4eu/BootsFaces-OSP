@@ -15,9 +15,9 @@ import net.bootsfaces.C;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent("net.bootsfaces.component.focus.Focus")
+@FacesComponent(Focus.COMPONENT_TYPE)
 public class Focus extends UIComponentBase {
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.focus.Focus";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".focus.Focus";
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Focus() {

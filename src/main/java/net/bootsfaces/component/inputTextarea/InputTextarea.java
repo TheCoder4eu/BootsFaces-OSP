@@ -38,14 +38,14 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.inputTextarea.InputTextarea")
+@FacesComponent(InputTextarea.COMPONENT_TYPE)
 public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 	/**
 	 * <p>
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.inputTextarea.InputTextarea";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".inputTextarea.InputTextarea";
 	/**
 	 * <p>
 	 * The component family for this component.

@@ -20,6 +20,7 @@ package net.bootsfaces.component.messages;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.UIMessages;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -34,9 +35,15 @@ import net.bootsfaces.utils.BsfUtils;
  * <code>setRendererType()</code> method.
  * </p>
  */
-@FacesComponent("net.bootsfaces.component.messages.Messages")
+@FacesComponent(Messages.COMPONENT_TYPE)
 public class Messages extends javax.faces.component.UIMessages implements IResponsive {
 
+    public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".messages.Messages";
+
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
+	public static final String DEFAULT_RENDERER = "javax.faces.Messages";
+    
 	public Messages() {
 		super();
 		AddResourcesListener.addThemedCSSResource("core.css");
@@ -797,4 +804,8 @@ public class Messages extends javax.faces.component.UIMessages implements IRespo
 		getStateHelper().put(PropertyKeys.warnStyle, _warnStyle);
 	}
 
+    @Override
+    public String getFamily() {
+        return COMPONENT_FAMILY;
+    }
 }

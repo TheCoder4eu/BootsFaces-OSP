@@ -46,13 +46,13 @@ import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.LocaleUtils;
 
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
-@FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
+@FacesComponent(DateTimePicker.COMPONENT_TYPE)
 public class DateTimePicker extends DateTimePickerCore
 implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dateTimePicker.DateTimePicker";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 

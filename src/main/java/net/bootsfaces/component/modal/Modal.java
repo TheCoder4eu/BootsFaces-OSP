@@ -22,18 +22,19 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/modal.js", target = "body") })
-@FacesComponent("net.bootsfaces.component.modal.Modal")
+@FacesComponent(Modal.COMPONENT_TYPE)
 public class Modal extends ModalCore {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.modal.Modal";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".modal.Modal";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.modal.Modal";
 
