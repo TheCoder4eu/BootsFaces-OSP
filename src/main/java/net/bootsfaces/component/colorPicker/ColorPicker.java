@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
@@ -30,7 +29,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".ColorPicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".colorPicker.ColorPicker";
 	/**
 	 * <p>
 	 * The component family for this component.

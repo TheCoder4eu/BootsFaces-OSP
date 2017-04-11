@@ -32,10 +32,15 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent(Form.COMPONENT_TYPE)
 public class Form extends UIForm {
 
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".form.Form";
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.form.Form";
 
-	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+	public static final String COMPONENT_FAMILY = "javax.faces.Form";
 
+	public static final String DEFAULT_RENDERER = "javax.faces.Form";
+
+	public Form() {
+		setRendererType(DEFAULT_RENDERER);
+	}
 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
