@@ -14,7 +14,7 @@
     text-align: center;
     vertical-align: 0;
     width: 8px;
-	  color: grey;
+	color: grey;
 }
 a.panel-title-link {
 	outline: thin dotted rgba(255, 255, 255, 0.3);
@@ -35,57 +35,62 @@ a.panel-title-link {
 @icon-font-name-pf: "Glyphicons Halflings";
 
 .alert > .bficon {
-font-size: 22px;
-vertical-align: middle;
-position: absolute;
-left: 13px;
+	font-size: 22px;
+	vertical-align: middle;
+	position: absolute;
+	left: 13px;
 }
 
 [class^="@{icon-prefix}-"],
 [class*=" @{icon-prefix}-"] {
-  display: inline-block;
-  font-family: "@{icon-font-name-pf}";
-  font-style: normal;
-  font-variant: normal;
-  font-weight: normal;
-  line-height: 1;
-  speak: none;
-  text-transform: none;
-  /* Better Font Rendering =========== */
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
+	display: inline-block;
+	font-family: "@{icon-font-name-pf}";
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1;
+	speak: none;
+	text-transform: none;
+	/* Better Font Rendering =========== */
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
 }
 
 .@{icon-prefix}-error-circle-o:before {
-  color: @brand-danger;
-  content: "\e088";
+	color: @brand-danger;
+	content: "\e088";
 }
 .@{icon-prefix}-warning-triangle-o:before {
-  color: @brand-warning;
-  content: "\e107";
+	color: @brand-warning;
+	content: "\e107";
 }
 .@{icon-prefix}-ok:before {
-  color: @brand-success;
-  content: "\e089";
+	color: @brand-success;
+	content: "\e089";
 }
 .@{icon-prefix}-info:before {
-  color: @brand-info;
-  content: "\e086";
+	color: @brand-info;
+	content: "\e086";
 }
 
-// Datatables
-div.dataTables_wrapper div.dataTables_filter {
-    text-align: right;
+// Patternfly & datatables integration
+table.dataTable > thead > tr > th {
+  padding-right: 20px;
 }
-
-div.dataTables_wrapper div.dataTables_filter label {
-    font-weight: normal;
-    white-space: nowrap;
-    text-align: left;
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:after {
+    bottom: 3px;
+	right: 6px;
 }
-
-div.dataTables_wrapper div.dataTables_filter input {
-    margin-left: 0.5em;
-    display: inline-block;
-    width: auto;
+table.dataTable.table-condensed .sorting:after,
+table.dataTable.table-condensed .sorting_asc:after,
+table.dataTable.table-condensed .sorting_desc:after {
+  top: 3px;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+    top: 4px;
 }
