@@ -82,6 +82,8 @@ public class CarouselRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = escapeClientId(component.getClientId());
 
+                beginResponsiveWrapper(component, rw);
+                
 		rw.startElement("div", carousel);
 		Tooltip.generateTooltip(context, carousel, rw);
 
@@ -101,7 +103,6 @@ public class CarouselRenderer extends CoreRenderer {
 			styleClass = "carousel " + (carousel.isSlide() ? "slide " : "");
 		else
 			styleClass = "carousel " + (carousel.isSlide() ? "slide " : "") + styleClass;
-		styleClass += Responsive.getResponsiveStyleClass(carousel, false);
 
 		rw.writeAttribute("class", styleClass, "class");
 
@@ -190,5 +191,7 @@ public class CarouselRenderer extends CoreRenderer {
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+clientId, null);
 
 		Tooltip.activateTooltips(context, carousel);
+                
+                endResponsiveWrapper(component, rw);
 	}
 }
