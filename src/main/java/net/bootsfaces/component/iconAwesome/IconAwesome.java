@@ -31,7 +31,7 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent(IconAwesome.COMPONENT_TYPE)
 public class IconAwesome extends Icon {
 
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + "net.bootsfaces.component.iconAwesome.IconAwesome";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".iconAwesome.IconAwesome";
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 

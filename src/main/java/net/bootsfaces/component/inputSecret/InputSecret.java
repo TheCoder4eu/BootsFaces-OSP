@@ -31,6 +31,6 @@ import net.bootsfaces.component.inputText.InputText;
 @FacesComponent(InputSecret.COMPONENT_TYPE)
 public class InputSecret extends InputText {
     
-    public static final String COMPONENT_TYPE=C.BSFCOMPONENT + "inputSecret.InputSecret";
+    public static final String COMPONENT_TYPE=C.BSFCOMPONENT + ".inputSecret.InputSecret";
     
 }
