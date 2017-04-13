@@ -1716,6 +1716,8 @@ widget selectBooleanCheckbox
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean inherited                                  "Boolean value Require input in the component when the form is submitted."
+    required-message    inherited                                          "Message to show if the user did not specify a value and the attribute required is set to true."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
