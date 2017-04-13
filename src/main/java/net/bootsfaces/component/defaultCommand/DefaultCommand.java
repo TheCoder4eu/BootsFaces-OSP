@@ -17,7 +17,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent(DefaultCommand.COMPONENT_TYPE)
 public class DefaultCommand extends UIComponentBase {
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".DefaultCommand";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".defaultCommand.DefaultCommand";
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 

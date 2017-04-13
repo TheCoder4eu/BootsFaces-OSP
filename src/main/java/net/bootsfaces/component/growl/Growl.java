@@ -28,7 +28,7 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent(Growl.COMPONENT_TYPE)
 public class Growl extends UIMessages {
 
-    public static final String COMPONENT_TYPE = C.BSFCOMPONENT +"growl.Growl";
+    public static final String COMPONENT_TYPE = C.BSFCOMPONENT +".growl.Growl";
     
     public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
     

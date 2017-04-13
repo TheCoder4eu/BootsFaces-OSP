@@ -38,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent(FetchBeanInfos.COMPONENT_TYPE)
 public class FetchBeanInfos extends FetchBeanInfosCore {
 
-        public static final String COMPONENT_TYPE = C.BSFCOMPONENT + "fetchBeanInfos.FetchBeanInfos";
+        public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".fetchBeanInfos.FetchBeanInfos";
     
 	/**
 	 * The component family for this component.
