@@ -13994,6 +13994,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level.]]></description>
+		  <name>only-most-severe</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level.]]></description>
+		  <name>onlyMostSevere</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer.]]></description>
 		  <name>recursive</name>
 		  <required>false</required>

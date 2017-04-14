@@ -60,22 +60,27 @@ public class MessageRenderer extends CoreRenderer {
 		forValue = ExpressionResolver.getComponentIDs(context, message, forValue);
 
 		List<FacesMessage> messageList = context.getMessageList(forValue);
-		
+
 		ResponseWriter rw = context.getResponseWriter();
 		int numberOfDivs = 0;
-		
+		boolean idHasBeenRendered = false;
+
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(message, false).trim();
+		String clientId = message.getClientId(context);
 		if (!responsiveStyleClass.isEmpty()) {
 			numberOfDivs++;
 			rw.startElement("div", component);
 			writeAttribute(rw, "class", responsiveStyleClass);
+			writeAttribute(rw, "id", clientId);
+			idHasBeenRendered = true;
 		}
-		
+
 		if (!messageList.isEmpty()) {
-			String clientId = message.getClientId(context);
 			numberOfDivs++;
 			rw.startElement("div", message);
-			writeAttribute(rw, "id", clientId);
+			if (!idHasBeenRendered) {
+				writeAttribute(rw, "id", clientId);
+			}
 			if (null != message.getDir()) {
 				rw.writeAttribute("dir", message.getDir(), "dir");
 			}
@@ -97,12 +102,12 @@ public class MessageRenderer extends CoreRenderer {
 			else if (!style.endsWith(";"))
 				style += ";";
 			String severityStyle = findHighestSeverityStyle(messageList, message);
-			if (null==severityStyle)
-				severityStyle="";
+			if (null == severityStyle)
+				severityStyle = "";
 			else if (!severityStyle.endsWith(";"))
-				severityStyle+=";";
+				severityStyle += ";";
 
-			writeAttribute(rw, "style", style+severityStyle);
+			writeAttribute(rw, "style", style + severityStyle);
 			writeAttribute(rw, "role", "alert");
 
 			boolean onlyMostSevere = message.isOnlyMostSevere();
@@ -248,11 +253,12 @@ public class MessageRenderer extends CoreRenderer {
 				hasFatal = true;
 		}
 		if (hasFatal)
-			return "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
+			return "bficon bficon-error-circle-o";// "fa fa-exclamation-circle";
 		if (hasError)
-			return "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
+			return "bficon bficon-error-circle-o";// "fa fa-exclamation-circle";
 		if (hasWarning)
-			return "bficon bficon-warning-triangle-o";//"fa fa-exclamation-triangle";
-		return "bficon bficon-info";//"fa fa-info-circle";
+			return "bficon bficon-warning-triangle-o";// "fa
+														// fa-exclamation-triangle";
+		return "bficon bficon-info";// "fa fa-info-circle";
 	}
 }

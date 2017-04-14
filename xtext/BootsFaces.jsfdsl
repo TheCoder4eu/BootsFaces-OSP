@@ -1278,6 +1278,7 @@ widget messages
     info-style                                                             "CSS style to be used for messages with severity \"INFO\"."
     line-break          Boolean default "true"                             "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag."
     line-break-tag      String  default "<br />"                           "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet."
+    only-most-severe    Boolean default "false"                            "By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level."
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
     redisplay           Boolean inherited                                  "Set the flag indicating whether messages that have already been displayed should be displayed again. By default, messages are always redisplayed. Most likely, you'll want to set this flag to false."
     recursive           Boolean default "false"                            "If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer."
