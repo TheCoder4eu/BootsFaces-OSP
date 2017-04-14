@@ -19,8 +19,6 @@
 package net.bootsfaces.component.message;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -61,18 +59,23 @@ public class MessageRenderer extends CoreRenderer {
 			forValue = "@previous";
 		forValue = ExpressionResolver.getComponentIDs(context, message, forValue);
 
-		List<FacesMessage> messageList = new ArrayList<FacesMessage>();
-		Iterator<FacesMessage> messageIterator = FacesContext.getCurrentInstance().getMessages(forValue);
-		while (messageIterator.hasNext()) {
-			FacesMessage fm = messageIterator.next();
-			messageList.add(fm);
-		}
+		List<FacesMessage> messageList = context.getMessageList(forValue);
+		
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = message.getClientId();
-
-		rw.startElement("div", message);
-		writeAttribute(rw, "id", clientId);
-		if (null != messageList && (!messageList.isEmpty())) {
+		int numberOfDivs = 0;
+		
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(message, false).trim();
+		if (!responsiveStyleClass.isEmpty()) {
+			numberOfDivs++;
+			rw.startElement("div", component);
+			writeAttribute(rw, "class", responsiveStyleClass);
+		}
+		
+		if (!messageList.isEmpty()) {
+			String clientId = message.getClientId(context);
+			numberOfDivs++;
+			rw.startElement("div", message);
+			writeAttribute(rw, "id", clientId);
 			if (null != message.getDir()) {
 				rw.writeAttribute("dir", message.getDir(), "dir");
 			}
@@ -86,7 +89,6 @@ public class MessageRenderer extends CoreRenderer {
 			String severityClass = findHighestSeverityClass(messageList, message);
 			// alert-danger
 			styleClass += "alert " + severityClass + " bf-message";
-			styleClass += Responsive.getResponsiveStyleClass(message, false);
 
 			writeAttribute(rw, "class", styleClass.trim());
 			String style = message.getStyle();
@@ -95,7 +97,10 @@ public class MessageRenderer extends CoreRenderer {
 			else if (!style.endsWith(";"))
 				style += ";";
 			String severityStyle = findHighestSeverityStyle(messageList, message);
-			if (null==severityStyle) severityStyle=""; else if (!severityStyle.endsWith(";")) severityStyle+=";";
+			if (null==severityStyle)
+				severityStyle="";
+			else if (!severityStyle.endsWith(";"))
+				severityStyle+=";";
 
 			writeAttribute(rw, "style", style+severityStyle);
 			writeAttribute(rw, "role", "alert");
@@ -159,7 +164,9 @@ public class MessageRenderer extends CoreRenderer {
 				msg.rendered();
 			}
 		}
-		rw.endElement("div");
+		for (int i = numberOfDivs; i > 0; i--) {
+			rw.endElement("div");
+		}
 	}
 
 	public static void warnOnFirstUse() {
@@ -188,13 +195,13 @@ public class MessageRenderer extends CoreRenderer {
 				hasFatal = true;
 		}
 		if (hasFatal)
-			return ("alert-danger " + message.getFatalClass());
+			return ("alert-danger " + (message.getFatalClass() == null ? "" : message.getFatalClass()));
 		if (hasError)
-			return ("alert-danger " + message.getErrorClass());
+			return ("alert-danger " + (message.getErrorClass() == null ? "" : message.getErrorClass()));
 		if (hasWarning)
-			return ("alert-warning " + message.getWarnClass());
+			return ("alert-warning " + (message.getWarnClass() == null ? "" : message.getWarnClass()));
 
-		return ("alert-info " + message.getInfoClass());
+		return ("alert-info " + (message.getInfoClass() == null ? "" : message.getInfoClass()));
 	}
 
 	private String findHighestSeverityStyle(List<FacesMessage> messageList, Message message) {
