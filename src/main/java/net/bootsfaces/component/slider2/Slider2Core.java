@@ -51,8 +51,7 @@ public abstract class Slider2Core extends HtmlInputText {
 		styleClass,
 		tooltipSliderPosition,
 		tooltipSplit,
-		tooltipVisibility,
-		value;
+		tooltipVisibility;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -276,7 +275,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * The minimum value of the slider. (default 0) <P>
+	 * The maximum value of the slider. (default 0) <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMin() {
@@ -284,7 +283,7 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * The minimum value of the slider. (default 0) <P>
+	 * The maximum value of the slider. (default 0) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMin(int _min) {
@@ -514,21 +513,5 @@ public abstract class Slider2Core extends HtmlInputText {
 	public void setTooltipVisibility(String _tooltipVisibility) {
 		getStateHelper().put(PropertyKeys.tooltipVisibility, _tooltipVisibility);
 	}
-
-	/**
-	 * Initial value float mode. <P>
-	 * @return Returns the value of the attribute, or "5", if it hasn't been set by the JSF file.
-	 *
-	public String getValue() {
-		return (String) getStateHelper().eval(PropertyKeys.value, "5");
-	}*/
-
-	/**
-	 * Initial value float mode. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 *
-	public void setValue(String _value) {
-		getStateHelper().put(PropertyKeys.value, _value);
-	}*/
 
 }
