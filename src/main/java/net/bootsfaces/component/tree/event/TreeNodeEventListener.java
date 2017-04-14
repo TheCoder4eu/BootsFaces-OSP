@@ -43,6 +43,13 @@ public interface TreeNodeEventListener {
     void processValueUnchecked(final TreeNodeCheckedEvent event);
     
     /**
+     * Called if node has been expanded or collapsed
+     * 
+     * @param event corresponding {@link TreeNodeExpandedEvent} 
+     */
+    void processValueExpanded(final TreeNodeExpandedEvent event);
+    
+    /**
      * @return true if actual value is selected. if a selected row is found remaining rows will not be checked because
      * only single tree node selection is available.
      *

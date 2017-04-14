@@ -29,6 +29,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.tree.event.TreeNodeCheckedEvent;
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
+import net.bootsfaces.component.tree.event.TreeNodeExpandedEvent;
 import net.bootsfaces.component.tree.event.TreeNodeSelectionEvent;
 import net.bootsfaces.component.tree.model.Node;
 import net.bootsfaces.component.tree.model.TreeModelUtils;
@@ -76,6 +77,10 @@ public class TreeRenderer extends CoreRenderer {
 						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, true));
 					} else if ("nodeUnchecked".equals(key)) {
 						nodeSelectionListener.processValueUnchecked(new TreeNodeCheckedEvent(n, false));
+                                        } else if ("nodeExpanded".equals(key)) {
+						nodeSelectionListener.processValueExpanded(new TreeNodeExpandedEvent(n, true));
+					} else if ("nodeCollapsed".equals(key)) {
+						nodeSelectionListener.processValueExpanded(new TreeNodeExpandedEvent(n, false));
 					}
 				}
 			}
