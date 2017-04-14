@@ -143,5 +143,14 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 		}
 		return false;
 	}
+	
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+	}
+
 
 }
