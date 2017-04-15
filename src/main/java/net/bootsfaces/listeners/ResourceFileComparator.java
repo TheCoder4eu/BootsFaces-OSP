@@ -36,9 +36,9 @@ public class ResourceFileComparator implements Comparator<UIComponent> {
 			libname = name.substring(pos+1);
 		}
 		if (libname.contains("jquery-ui"))
-			name = "2" + libname; // make it the second JS file, while still distinguishing between jquery-ui.js and jquery-ui-plugins.js
+			name = "2" + libname.replace(".js", ""); // make it the second JS file, while still distinguishing between jquery-ui.js and jquery-ui-plugins.js
 		else if (libname.contains("jquery")) {
-			name = "1" + libname; // make it the first JS file, while still distinguishing between jquery.js and jquery-plugins.js
+			name = "1" + libname.replace(".js", ""); // make it the first JS file, while still distinguishing between jquery.js and jquery-plugins.js
 		}
 		else if (name.contains("ui/core.js"))
 			name = "3.js"; // make it the third JS file
