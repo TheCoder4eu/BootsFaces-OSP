@@ -136,6 +136,9 @@ public class MessagesRenderer extends CoreRenderer {
 			List<FacesMessage> severityMessages = messages.get(severity);
 			if (severityMessages.size() > 0) {
 				encodeSeverityMessages(facesContext, uiMessages, severity, severityMessages);
+				if (uiMessages.isOnlyMostSevere()) {
+					break;
+				}
 			}
 		}
 
