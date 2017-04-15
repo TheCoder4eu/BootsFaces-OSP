@@ -71,12 +71,13 @@ public class TreeRenderer extends CoreRenderer {
 				if (nodeSelectionListener != null) {
 					// execute listener only for listened events
 					if ("nodeSelected".equals(key)) {
-						Node n2 = checkNodeIsSelected(tree.getValue(), tree);
-						nodeSelectionListener.processValueChange(new TreeNodeSelectionEvent(n2, n));
-					} else if ("nodeChecked".equals(key)) {
+						nodeSelectionListener.processValueSelected(new TreeNodeSelectionEvent(n, true));
+					} else if ("nodeUnselected".equals(key)) {
+                                                nodeSelectionListener.processValueSelected(new TreeNodeSelectionEvent(n, false));
+                                        }else if ("nodeChecked".equals(key)) {
 						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, true));
 					} else if ("nodeUnchecked".equals(key)) {
-						nodeSelectionListener.processValueUnchecked(new TreeNodeCheckedEvent(n, false));
+						nodeSelectionListener.processValueChecked(new TreeNodeCheckedEvent(n, false));
                                         } else if ("nodeExpanded".equals(key)) {
 						nodeSelectionListener.processValueExpanded(new TreeNodeExpandedEvent(n, true));
 					} else if ("nodeCollapsed".equals(key)) {
@@ -85,22 +86,6 @@ public class TreeRenderer extends CoreRenderer {
 				}
 			}
 		}
-	}
-
-	/**
-	 * Check if node tree is selected using the listener callback
-	 * @param node
-	 * @param tree
-	 * @return
-	 */
-	private Node checkNodeIsSelected(Node node, Tree tree) {
-		if(tree.getNodeSelectionListener().isValueSelected(node) == true) return node;
-		for (Node n : node.getChilds()) {
-			Node rt = checkNodeIsSelected(n, tree);
-			if(rt != null) return rt;
-		}
-
-		return null;
 	}
 
 	@Override
