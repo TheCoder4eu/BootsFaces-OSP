@@ -98,6 +98,11 @@ public class TreeRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = tree.getClientId();
 
+		Node value = tree.getValue();
+		if (null == value) {
+			throw new FacesException("Please set the value attribute of b:tree. ClientId of the tree without value: " + clientId);
+		}
+
 		// check is inside form (MyFaces requires to be)
 		final UIForm form = BsfUtils.getClosestForm(tree);
 		if(form == null) {
@@ -143,8 +148,9 @@ public class TreeRenderer extends CoreRenderer {
 		//# Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
 		// build tree management javascript
+		Node value = tree.getValue();
 		rw.writeText("function getTreeData() { " +
-					 "   return '" + TreeModelUtils.renderModelAsJson(tree.getValue(), tree.isRenderRoot())  + "'; " +
+					 "   return '" + TreeModelUtils.renderModelAsJson(value, tree.isRenderRoot())  + "'; " +
 					 "} " +
 
 					 // build tree structure
