@@ -30,9 +30,14 @@ public class ResourceFileComparator implements Comparator<UIComponent> {
 
 	private String renameJSFile(String name) {
 		name = name.toLowerCase();
-		if (name.contains("jquery-ui"))
+		String libname = name;
+		int pos = name.lastIndexOf("/");
+		if (pos >= 0) {
+			libname = name.substring(pos+1);
+		}
+		if (libname.contains("jquery-ui"))
 			name = "2.js"; // make it the second JS file
-		else if (name.contains("jquery"))
+		else if (libname.contains("jquery"))
 			name = "1.js"; // make it the first JS file
 		else if (name.contains("ui/core.js"))
 			name = "3.js"; // make it the third JS file
