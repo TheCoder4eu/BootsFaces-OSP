@@ -23574,13 +23574,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <description><![CDATA[Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model.]]></description>
 		  <name>enable-links</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <description><![CDATA[Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model.]]></description>
 		  <name>enableLinks</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>

@@ -205,7 +205,7 @@ public abstract class TreeCore extends UIComponentBase {
 	}
 
 	/**
-	 * Boolean value to specify if enable href link. <P>
+	 * Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEnableLinks() {
@@ -213,7 +213,7 @@ public abstract class TreeCore extends UIComponentBase {
 	}
 
 	/**
-	 * Boolean value to specify if enable href link. <P>
+	 * Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEnableLinks(boolean _enableLinks) {
