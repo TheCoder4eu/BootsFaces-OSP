@@ -189,8 +189,12 @@ public class PanelGridRenderer extends CoreRenderer {
 		}
 
 		String size = panelGrid.getSize();
-		if (null == size || size.trim().equals(""))
+		if (null == size || size.trim().equals("")) {
 			size = "lg";
+		} else {
+			size = Responsive.translateSize(size, true);
+		}
+		
 
 		String[] result = new String[colSpans.length];
 

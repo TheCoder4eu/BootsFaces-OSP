@@ -234,20 +234,15 @@ public class Responsive {
 		// 1. Only one size:
 		if(expressionToken.size() == 1)
 		{
-			// validation:
-			if(!_valid.contains(expressionToken.get(0)))
-				throw new FacesException("Expression not valid. Valid sizes are [ xs, sm, md, lg ]");
-			finalExpr = " " + visibilityLevel + "-" + translateSize(expressionToken.get(0)) + display;
+			finalExpr = " " + visibilityLevel + "-" + translateSize(expressionToken.get(0), true) + display;
 		}
 		// 2. Expression contains comma, so is a list of sizes
 		else if (expressionToken.contains(","))
 		{
 			for(String ex: expressionToken) {
 				if(",".equals(ex)) continue;
-				if(!_valid.contains(ex))
-					throw new FacesException("Expression contains a non valid size. Valid sizes are [ xs, sm, md, lg ]. ");
 
-				finalExpr += " " + visibilityLevel + "-" + translateSize(ex) + display + " ";
+				finalExpr += " " + visibilityLevel + "-" + translateSize(ex, true) + display + " ";
 			}
 		}
 		// 3. Expression is a range from
@@ -256,7 +251,7 @@ public class Responsive {
 				if(!_valid.contains(expressionToken.get(1)))
 					throw new FacesException("Expression not valid. Valid syntax is ...[size] eg. ...sm . Valid sizes are [ xs, sm, md, lg ].");
 
-				List<String> sR = getSizeRange("<=", translateSize(expressionToken.get(1)));
+				List<String> sR = getSizeRange("<=", translateSize(expressionToken.get(1), false));
 				for(String s: sR) {
 					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
 				}
@@ -264,7 +259,7 @@ public class Responsive {
 				if(!_valid.contains(expressionToken.get(0)))
 					throw new FacesException("Expression not valid. Valid syntax is [size]... eg. sm... . Valid sizes are [ xs, sm, md, lg ].");
 
-				List<String> sR = getSizeRange(">=", translateSize(expressionToken.get(0)));
+				List<String> sR = getSizeRange(">=", translateSize(expressionToken.get(0), false));
 				for(String s: sR) {
 					finalExpr += " " + visibilityLevel + "-" + s + display + " ";
 				}
@@ -278,7 +273,7 @@ public class Responsive {
 			if(!_valid.contains(expressionToken.get(0)) && !"...".equals(expressionToken.get(1)) && !_valid.contains(expressionToken.get(2)))
 				throw new FacesException("Expression not valid. Valid syntax is [size]...[size] eg. xs...md . Valid sizes are [ xs, sm, md, lg ].");
 
-			List<String> sR2 = getSizeRange(expressionToken.get(1), translateSize(expressionToken.get(0)), translateSize(expressionToken.get(2)));
+			List<String> sR2 = getSizeRange(expressionToken.get(1), translateSize(expressionToken.get(0), false), translateSize(expressionToken.get(2), false));
 			for(String s: sR2) {
 				finalExpr += " " + visibilityLevel + "-" + s + display + " ";
 			}
@@ -296,7 +291,19 @@ public class Responsive {
 	 * @param size
 	 * @return
 	 */
-	private static String translateSize(String size) {
+	public static String translateSize(String size, boolean strict) {
+		if (strict) {
+			boolean found=false;
+			for (String s: validValues) {
+				if (s.equals(size)) {
+					found=true;
+					break;
+				}
+			}
+			if (!found) {
+				throw new FacesException("The size of b:panel must be one of the values xs, sm, md, lg, tiny-screen, small-screen, medium-screen, or large-screen");
+			}
+		}
 		if(size.equalsIgnoreCase("xs") || size.equalsIgnoreCase("tiny-screen")) return "xs";
 		if(size.equalsIgnoreCase("sm") || size.equalsIgnoreCase("small-screen")) return "sm";
 		if(size.equalsIgnoreCase("md") || size.equalsIgnoreCase("medium-screen")) return "md";
