@@ -26,6 +26,11 @@
     border-width: 1px 0 0;
 }
 
+/* Horizontal Forms */
+.row .form-group {
+    margin-bottom: 10px;
+}
+
 /* navCommandLink */
 .commandLink {
   cursor: pointer;
