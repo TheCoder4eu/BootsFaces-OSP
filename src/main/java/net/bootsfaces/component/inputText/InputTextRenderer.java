@@ -52,7 +52,7 @@ public class InputTextRenderer extends CoreInputRenderer {
      * @param context
      * @param component
      * @param legalValues an optional list of legal values. May be null.
-     * @param The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
+     * @param realEventSourceName The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
      * from the client ID or the name attribute of the input field. However, in some cases such as radio buttons,
      * this detection fails.
      */
