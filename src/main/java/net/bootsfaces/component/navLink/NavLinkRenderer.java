@@ -155,7 +155,11 @@ public class NavLinkRenderer extends CoreRenderer {
 	public void encodeHTML(FacesContext context, UIComponent navlink) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
 
-		String value = String.valueOf(((AbstractNavLink) navlink).getValue());
+		Object _value = ((AbstractNavLink) navlink).getValue();
+		String value = null;
+		if (_value != null) {
+			value = String.valueOf(_value);
+		}
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
 		Boolean useAjax = ((AbstractNavLink) navlink).isAjax();
