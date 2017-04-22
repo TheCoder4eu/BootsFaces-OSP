@@ -26,10 +26,13 @@
     border-width: 1px 0 0;
 }
 
-/* Horizontal Forms */
+/* Horizontal Forms
 .row .form-group {
     margin-bottom: 10px;
-}
+} */
+
+/* Inline Forms */
+.form-inline label, input { margin-right: 10px; }
 
 /* navCommandLink */
 .commandLink {
@@ -429,4 +432,3 @@ a.panel-title-link {
 		url("#{resource['fonts/glyphicons-halflings-regular.ttf']}") format('truetype'),
 		url("#{resource['fonts/glyphicons-halflings-regular.svg']}#glyphicons_halflingsregular") format('svg');
 }
-
