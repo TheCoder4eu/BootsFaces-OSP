@@ -29,7 +29,7 @@ public final class C {
      * BootsFaces Library Constants
      */
      public static final String BSFVERSION="1.1.0";
-     public static final String BSFRELEASE_STATUS="SNAPSHOT"; //SNAPSHOT or empty String (for a final RELEASE)
+     public static final String BSFRELEASE_STATUS="RC1"; //SNAPSHOT or empty String (for a final RELEASE)
      public static final String BSFCOMPONENT= "net.bootsfaces.component";
      public static final String BSFLAYOUT   = "net.bootsfaces.layout";
      //public static final String BSFRENDER   = "net.bootsfaces.render";

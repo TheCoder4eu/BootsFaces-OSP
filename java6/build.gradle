@@ -40,7 +40,7 @@ install {
         pom.artifactId = 'bootsfaces'
         // shouldn't be needed as this is the default anyway
         pom.packaging = 'jar'
-        pom.version = "$BootsFacesVersion-SNAPSHOT"
+        pom.version = "$pomVersion"
     }
 }
 
