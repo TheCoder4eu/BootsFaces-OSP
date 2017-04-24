@@ -68,6 +68,9 @@ task showConfig {
       println "Main Configurations:"
       println "--------------------"
       println "BootsFacesVersion="+BootsFacesVersion
+      println "BootsFacesReleaseStatus="+BootsFacesReleaseStatus
+      println "pomVersion="+pomVersion
+      println "--------------------"
       println "BootstrapVersion="+BootstrapVersion
       println "BootswatchFullVersion="+BootswatchFullVersion
       println "PatternFlyVersion="+PatternFlyVersion
