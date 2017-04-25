@@ -92,7 +92,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		} else {
 			// if there is no href, no outcome, no child and no value we render
 			// a divider
-			if ((navlink.getValue() == null) && (((UIComponent) navlink).getChildCount() == 0)) {
+			if ((navlink.getValue() == null) && (((UIComponent) navlink).getChildCount() == 0) && navlink.getIcon() == null && navlink.getIconAwesome()==null) {
 				encodeDivider(context, navlink);
 			} else {
 				encodeHTML(context, (UIComponent) navlink);
@@ -235,7 +235,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		String icon = ((AbstractNavLink) navlink).getIcon();
 		String faicon = ((AbstractNavLink) navlink).getIconAwesome();
-		boolean fa = false; // flag to indicate wether the selected icon set is
+		boolean fa = false; // flag to indicate whether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
 			icon = faicon;
