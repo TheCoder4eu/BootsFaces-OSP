@@ -172,6 +172,7 @@ public class NavBarRenderer extends CoreRenderer {
 				rw.writeAttribute("href", "#", "href");
 			} else {
 				rw.writeAttribute("href", href, "href");
+				writeAttribute(rw, "target", navBar.getBrandTarget());
 			}
 			rw.startElement("span", navBar);
 			if (brandImg != null) {

@@ -1328,7 +1328,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -14436,6 +14436,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href.]]></description>
+		  <name>brand-target</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href.]]></description>
+		  <name>brandTarget</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -15062,7 +15074,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -15646,7 +15658,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

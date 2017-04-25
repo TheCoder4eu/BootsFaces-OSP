@@ -23,8 +23,6 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIOutput;
-import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
@@ -103,6 +101,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 		brandImgStyleClass,
 		brandStyle,
 		brandStyleClass,
+		brandTarget,
 		contentDisabled,
 		fixed,
 		fluid,
@@ -290,6 +289,22 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 */
 	public void setBrandStyleClass(String _brandStyleClass) {
 		getStateHelper().put(PropertyKeys.brandStyleClass, _brandStyleClass);
+	}
+
+	/**
+	 * Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getBrandTarget() {
+		return (String) getStateHelper().eval(PropertyKeys.brandTarget);
+	}
+
+	/**
+	 * Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBrandTarget(String _brandTarget) {
+		getStateHelper().put(PropertyKeys.brandTarget, _brandTarget);
 	}
 
 	/**

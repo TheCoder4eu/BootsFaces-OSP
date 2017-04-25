@@ -150,7 +150,7 @@ widget button
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
-    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Optional button caption."
     +style
@@ -1336,6 +1336,7 @@ widget navBar
     brand-img-style-class                                                  "CSS style class of the brand image."
     brand-style                                                            "Inline style of the optional navBar brand."
     brand-style-class                                                      "CSS style class of the optional navBar brand."
+    brand-target                                                           "Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href."
     fixed                                                                  "Deprecated (use position and sticky instead). If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be \"bottom\", \"top\" or \"non-sticky\". The latter is a footer that scrolls with the page."
     fluid               Boolean  default "false"                           "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1398,7 +1399,7 @@ widget navCommandLink
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
-    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
@@ -1450,7 +1451,7 @@ widget navLink
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
-    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
