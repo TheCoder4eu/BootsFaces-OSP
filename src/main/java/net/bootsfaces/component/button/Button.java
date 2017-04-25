@@ -934,7 +934,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTarget() {
@@ -942,7 +942,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTarget(String _target) {

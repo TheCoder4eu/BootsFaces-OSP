@@ -28,10 +28,10 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesComponent(Growl.COMPONENT_TYPE)
 public class Growl extends UIMessages {
 
-    public static final String COMPONENT_TYPE = C.BSFCOMPONENT +".growl.Growl";
-    
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".growl.Growl";
+
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
+
 	public Growl() {
 		super();
 		setRendererType("net.bootsfaces.component.GrowlRenderer");
@@ -319,10 +319,4 @@ public class Growl extends UIMessages {
 		getStateHelper().put(PropertyKeys.timer, _timer);
 	}
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
-        
-        
 }
