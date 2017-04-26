@@ -235,8 +235,9 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		if (label != null) {
 			rw.startElement("label", this);
 			rw.writeAttribute("for", clientId, "for");
-			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId, getLabelStyleClass() + " control-label");
-                        
+			new CoreRenderer().generateErrorAndRequiredClassForLabels(this, rw, fieldId,
+					getLabelStyleClass() + " control-label");
+
 			if (getLabelStyle() != null) {
 				rw.writeAttribute("style", getLabelStyle(), "style");
 			}
@@ -268,12 +269,13 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		rw.startElement("div", this);
 		numberOfDivs++;
-		String errorSeverityClass = BsfUtils.isLegacyFeedbackClassesEnabled() ? "" : FacesMessages.getErrorSeverityClass(clientId);
-                
-                String formGroupClass="";
-                if(!(getParent() instanceof FormGroup)) {
-                    formGroupClass = "form-group";
-                }
+		String errorSeverityClass = BsfUtils.isLegacyFeedbackClassesEnabled() ? ""
+				: FacesMessages.getErrorSeverityClass(clientId);
+
+		String formGroupClass = "";
+		if (!(getParent() instanceof FormGroup)) {
+			formGroupClass = "form-group";
+		}
 		rw.writeAttribute("class", formGroupClass + errorSeverityClass, "class");
 		if (!idHasBeenRendered) {
 			rw.writeAttribute("id", clientId, "id");
@@ -746,7 +748,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		}
 		return styleClass;
 	}
-	
+
 	/**
 	 * Boolean value to specify if the widget is disabled.
 	 * <P>
@@ -755,20 +757,19 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	 *         set by the JSF file.
 	 */
 	public boolean isDisabled() {
-		if (super.isDisabled()) 
+		if (super.isDisabled())
 			return true;
 		UIComponent ancestor = getParent();
-		while (ancestor!=null) {
+		while (ancestor != null) {
 			if (ancestor instanceof IContentDisabled) {
-				if (((IContentDisabled)ancestor).isContentDisabled()) {
+				if (((IContentDisabled) ancestor).isContentDisabled()) {
 					return true;
 				}
 			}
-			ancestor=ancestor.getParent();
+			ancestor = ancestor.getParent();
 		}
 		return false;
 	}
-
 
 	protected enum PropertyKeys {
 		binding,
@@ -1331,7 +1332,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
@@ -1340,7 +1341,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRenderLabel(boolean _renderLabel) {

@@ -3894,7 +3894,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -6288,13 +6288,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -7106,13 +7106,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -10992,13 +10992,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -11714,13 +11714,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -12490,13 +12490,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -18484,13 +18484,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -19642,13 +19642,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -20412,13 +20412,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -21056,13 +21056,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -22672,13 +22672,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>

@@ -624,7 +624,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
@@ -633,7 +633,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRenderLabel(boolean _renderLabel) {
