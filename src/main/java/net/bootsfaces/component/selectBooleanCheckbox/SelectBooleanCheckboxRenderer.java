@@ -113,7 +113,11 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
-                writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
+        writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
+        if (null != selectBooleanCheckbox.getDir()) {
+			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+		}
+
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		renderInputTag(context, rw, clientId, selectBooleanCheckbox);
