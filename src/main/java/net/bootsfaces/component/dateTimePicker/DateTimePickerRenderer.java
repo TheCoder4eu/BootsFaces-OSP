@@ -62,7 +62,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			fieldId = clientId + "_Input";
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
-//		new AJAXRenderer().decode(context, dtp, clientId);
+		new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
