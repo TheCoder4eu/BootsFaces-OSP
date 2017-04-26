@@ -740,7 +740,7 @@ widget form
     accept              inherited                                          "List of content types that a server processing this form will handle correctly"
     acceptcharset       inherited                                          "List of character encodings for input data that are accepted by the server processing this form."
     dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
-    enytype             inherited                                          "Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'."
+    enctype             inherited                                          "Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'."
     horizontal          Boolean default "false"                            "Use this flag to create a horizontal form (labels are on the same line as their input fields)"
     inline              Boolean default "false"                            "Use this flag to create a inline form (labels are on the same line as their input fields)"
     lang                inherited                                          "Code describing the language used in the generated markup for this component."

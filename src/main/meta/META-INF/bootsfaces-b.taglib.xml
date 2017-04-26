@@ -8269,7 +8269,7 @@
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'.]]></description>
-		  <name>enytype</name>
+		  <name>enctype</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
