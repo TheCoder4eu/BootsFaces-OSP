@@ -59,10 +59,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = clientId + "_Input";
+			fieldId = "input_" + clientId;
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
-		new AJAXRenderer().decode(context, dtp, clientId);
+		// new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = clientId + "_Input";
+			fieldId = "input_" + clientId;
 		} else if (fieldId.equals(dtp.getId())) {
 			throw new FacesException("The field id must differ from the regular id.");
 		}
@@ -354,7 +354,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String clientId = dtp.getClientId();
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = clientId + "_Input";
+			fieldId = "input_" + clientId;
 		} else if (fieldId.equals(dtp.getId())) {
 			throw new FacesException("The field id must differ from the regular id.");
 		}
