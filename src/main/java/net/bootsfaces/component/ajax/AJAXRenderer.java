@@ -70,7 +70,7 @@ public class AJAXRenderer extends CoreRenderer {
 				source = componentId;
 			}
 		}
-		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId)|| source.equals(componentId+"Inner")|| source.equals(componentId+"Outer"))) {
+		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId) || source.equals(componentId+"Inner"))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
 			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {

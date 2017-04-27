@@ -57,9 +57,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
-		String fieldId = dtp.getFieldId();
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
+		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
+		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		
+		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = "input_" + clientId;
+			fieldId = clientId + "_Input";
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
 		// new AJAXRenderer().decode(context, dtp, clientId);
@@ -186,7 +191,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = "input_" + clientId;
+			fieldId = clientId + "_Input";
 		} else if (fieldId.equals(dtp.getId())) {
 			throw new FacesException("The field id must differ from the regular id.");
 		}
@@ -354,7 +359,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		String clientId = dtp.getClientId();
 		String fieldId = dtp.getFieldId();
 		if (null == fieldId) {
-			fieldId = "input_" + clientId;
+			fieldId = clientId + "_Input";
 		} else if (fieldId.equals(dtp.getId())) {
 			throw new FacesException("The field id must differ from the regular id.");
 		}
