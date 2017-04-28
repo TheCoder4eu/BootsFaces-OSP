@@ -100,8 +100,8 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-         * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
-         * 
+     * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
+     * 
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
 	 *
@@ -110,7 +110,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
-        @Deprecated
+    @Deprecated
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
 			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
@@ -188,7 +188,8 @@ public class CoreRenderer extends Renderer {
 			if (null != readAnnotations && readAnnotations.length > 0) {
 				for (Annotation a : readAnnotations) {
 					if ((a.annotationType().getName().endsWith("NotNull"))
-							|| (a.annotationType().getName().endsWith("NotEmpty"))) {
+							|| (a.annotationType().getName().endsWith("NotEmpty"))
+							|| (a.annotationType().getName().endsWith("NotBlank"))) {
 						styleClass += " bf-required";
 						break;
 					}
@@ -204,7 +205,7 @@ public class CoreRenderer extends Renderer {
 			return false;
 
 		if (value instanceof Boolean) {
-			return ((Boolean) value).booleanValue();
+			return ((Boolean) value);
 		} else if (value instanceof Number) {
 			Number number = (Number) value;
 
@@ -242,7 +243,7 @@ public class CoreRenderer extends Renderer {
 
 			if (behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
 				String behaviorSource = params.get("javax.faces.source");
-				String clientId = component.getClientId();
+				String clientId = component.getClientId(context);
 				if (behaviorSource != null && clientId.equals(behaviorSource)) {
 					for (ClientBehavior behavior : behaviorsForEvent) {
 						behavior.decode(context, component);
