@@ -1207,7 +1207,8 @@ widget label
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
-    text                mandatory                                          "Label text."
+    text                                                                   "Deprecated in favor of 'value'. Label text."
+    value                                                                  "Label text."
 	+style
 	+responsive
 	+tooltip
