@@ -566,7 +566,7 @@ public class BsfUtils {
 				dateFormat = "dd/MM/yyyy";
 			}
 			String result = LocaleUtils.javaToMomentFormat((dateFormat + " " + timeFormat).trim());
-			System.out.println(result);
+//			System.out.println(result);
 			return result;
 		} else {
 			return momentJSFormat;

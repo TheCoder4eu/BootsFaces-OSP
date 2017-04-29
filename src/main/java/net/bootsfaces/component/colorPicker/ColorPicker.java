@@ -7,7 +7,6 @@ import java.util.Map;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
@@ -18,8 +17,9 @@ import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent("net.bootsfaces.component.colorPicker.ColorPicker")
+@FacesComponent(ColorPicker.COMPONENT_TYPE)
 public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
@@ -29,7 +29,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".ColorPicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".colorPicker.ColorPicker";
 	/**
 	 * <p>
 	 * The component family for this component.
@@ -38,7 +38,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public ColorPicker() {
@@ -49,8 +49,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.minicolors.min.js");
 
-		renderLabel = FacesContext.getCurrentInstance().getExternalContext()
-				.getInitParameter("net.bootsfaces.defaults.renderLabel");
+		renderLabel = BsfUtils.getInitParam("net.bootsfaces.defaults.renderLabel");
 		if (null != renderLabel && renderLabel.contains("#{")) {
 			renderLabel = ELTools.evalAsString(renderLabel);
 		}
@@ -88,7 +87,7 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	/**
@@ -144,5 +143,14 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 		}
 		return false;
 	}
+	
+	/**
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isRenderLabel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+	}
+
 
 }

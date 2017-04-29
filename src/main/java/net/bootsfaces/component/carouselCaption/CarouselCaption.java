@@ -27,19 +27,20 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UICommand;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:carouselCaption /&gt;. */
-@FacesComponent("net.bootsfaces.component.carouselCaption.CarouselCaption")
+@FacesComponent(CarouselCaption.COMPONENT_TYPE)
 public class CarouselCaption extends UICommand
 		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.carouselCaption.CarouselCaption";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".carouselCaption.CarouselCaption";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.carouselCaption.CarouselCaption";
 

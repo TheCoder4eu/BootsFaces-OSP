@@ -98,7 +98,8 @@ public enum ComponentsEnum {
 	tree("<b:tree", "tree", "net.bootsfaces.component.tree.Tree"),
 	thumbnail("<b:thumbnail", "thumbnail", "net.bootsfaces.component.thumbnail.Thumbnail"),
 	video("<b:video", "video", "net.bootsfaces.component.video.Video"),
-	well("<b:well", "well", "net.bootsfaces.component.well.Well");
+	well("<b:well", "well", "net.bootsfaces.component.well.Well"),
+	formGroup("<b:formGroup", "formGroup", "net.bootsfaces.component.formGroup.FormGroup");
 	private String tag;
 
 	private String tagname;

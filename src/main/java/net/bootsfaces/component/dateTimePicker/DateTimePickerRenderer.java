@@ -32,14 +32,14 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
-public class DateTimePickerRenderer extends CoreRenderer {
+public class DateTimePickerRenderer extends CoreInputRenderer {
 	private static final String DTP_OUTER_CONTAINER_SUFFIX = "Outer";
 
 	@Override
@@ -89,12 +89,13 @@ public class DateTimePickerRenderer extends CoreRenderer {
 
 	/**
 	 * Get date in string format
-	 * @param value
-	 * @param format
-	 * @param locale
-	 * @return
+	 * @param fc The FacesContext
+	 * @param dtp the DateTimePicker component
+	 * @param value The date to display
+	 * @param javaFormatString The format string as defined by the SimpleDateFormat syntax
+	 * @param locale The locale
+	 * @return null if the value is null.
 	 */
-
 	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String javaFormatString, Locale locale) {
 		if (value == null) {
 			return null;
@@ -167,14 +168,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		String divSuffix="";
-		String errorSeverityClass = getFormGroupWithFeedback("", clientId);
-//				FacesMessages.getErrorSeverityClass(clientId);
+                String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
+                        
 			if (!isHorizontalForm(dtp)) {
-				rw.writeAttribute("class", responsiveStyleClass + " form-group " + errorSeverityClass, "class");
+			    rw.writeAttribute("class", responsiveStyleClass + classesWithFeedback, "class");
 			} else {
-				rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
+			    rw.writeAttribute("class", classesWithFeedback, "class");
 			}
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(fc, dtp, rw);
@@ -183,7 +184,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
-			rw.writeAttribute("class", "form-group " + errorSeverityClass, "class");
+			rw.writeAttribute("class", classesWithFeedback, "class");
 			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
@@ -198,7 +199,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", dtp);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClassForLabels(dtp, rw, clientId, dtp.getLabelStyleClass());
+                        generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass(), Responsive.getResponsiveLabelClass(dtp), "control-label");
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
 			rw.writeText(label, null);

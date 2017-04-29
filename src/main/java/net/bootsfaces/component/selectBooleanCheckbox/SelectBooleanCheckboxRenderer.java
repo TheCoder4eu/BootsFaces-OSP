@@ -26,6 +26,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -35,7 +36,7 @@ import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectBooleanCheckbox /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
-public class SelectBooleanCheckboxRenderer extends CoreRenderer {
+public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 
 	/**
 	 * This methods receives and processes input made by the user. More
@@ -112,7 +113,11 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
-		writeAttribute(rw, "class", getFormGroupWithFeedback("form-group", clientId));
+        writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
+        if (null != selectBooleanCheckbox.getDir()) {
+			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+		}
+
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		renderInputTag(context, rw, clientId, selectBooleanCheckbox);
@@ -143,7 +148,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
-				generateErrorAndRequiredClassForLabels(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass());
+                                generateErrorAndRequiredClass(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass(), Responsive.getResponsiveLabelClass(selectBooleanCheckbox), "control-label");
 				writeAttribute(rw, "style", selectBooleanCheckbox.getLabelStyle());
 
 				if (null != selectBooleanCheckbox.getDir()) {

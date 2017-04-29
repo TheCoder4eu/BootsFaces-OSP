@@ -54,9 +54,11 @@ public class ThumbnailRenderer extends CoreRenderer {
 
 		Tooltip.generateTooltip(context, thumbnail, rw);
 
-        rw.startElement("div", thumbnail);
-        rw.writeAttribute("id", clientId, "id");
-        Tooltip.generateTooltip(context, thumbnail, rw);
+                beginResponsiveWrapper(component, rw);
+                
+                rw.startElement("div", thumbnail);
+                rw.writeAttribute("id", clientId, "id");
+                Tooltip.generateTooltip(context, thumbnail, rw);
 		String style = thumbnail.getStyle();
 		if (null != style) {
 			rw.writeAttribute("style", style, null);
@@ -66,7 +68,6 @@ public class ThumbnailRenderer extends CoreRenderer {
 			styleClass = "thumbnail";
 		else
 			styleClass = "thumbnail " + styleClass;
-		styleClass += Responsive.getResponsiveStyleClass(thumbnail, false);
 
 		rw.writeAttribute("class",  styleClass, "class");
 	}
@@ -86,17 +87,20 @@ public class ThumbnailRenderer extends CoreRenderer {
 	    if (!component.isRendered()) {
 	        return;
 	    }
-		Thumbnail thumbnail = (Thumbnail) component;
-		ResponseWriter rw = context.getResponseWriter();
-        UIComponent capt;
-        capt = thumbnail.getFacet("caption");
-        if (capt != null ) {
-            rw.startElement("div", thumbnail);
-            rw.writeAttribute("class", "caption", "class");
-            capt.encodeAll(context);
+		
+            Thumbnail thumbnail = (Thumbnail) component;
+            ResponseWriter rw = context.getResponseWriter();
+            UIComponent capt;
+            capt = thumbnail.getFacet("caption");
+            if (capt != null ) {
+                rw.startElement("div", thumbnail);
+                rw.writeAttribute("class", "caption", "class");
+                capt.encodeAll(context);
+                rw.endElement("div");
+            }
             rw.endElement("div");
-        }
-        rw.endElement("div");
-		Tooltip.activateTooltips(context, thumbnail);
+            Tooltip.activateTooltips(context, thumbnail);
+            
+            endResponsiveWrapper(component, rw);
 	}
 }

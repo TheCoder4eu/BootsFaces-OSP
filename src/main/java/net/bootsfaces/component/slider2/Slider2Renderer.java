@@ -28,7 +28,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
-import javax.faces.convert.DoubleConverter;
+//!//import javax.faces.convert.DoubleConverter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
@@ -61,19 +61,25 @@ public class Slider2Renderer extends BadgeRenderer {
 
 		String clientId = slider.getClientId(context);
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
-		
+
 		if (submittedValue != null) {
 			slider.setSubmittedValue(submittedValue);
 		}
 		new AJAXRenderer().decode(context, component, clientId);
 	}
-	
+/* !
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = new DoubleConverter();
-		return cnv.getAsObject(fc, c, (String) sval);
-	}
+		Converter cnv = resolveConverter(fc, c);
 
+		if (cnv != null) {
+			return cnv.getAsObject(fc, c, (String) sval);
+		} else {
+			cnv = new DoubleConverter();
+			return cnv.getAsObject(fc, c, (String) sval);
+		}
+	}
+*/
 	/**
 	 * This methods generates the HTML code of the current b:slider2.
 	 * @param context the FacesContext.
@@ -87,18 +93,17 @@ public class Slider2Renderer extends BadgeRenderer {
 	    }
 		Slider2 slider = (Slider2) component;
 		ResponseWriter rw = context.getResponseWriter();
-		
 		encodeHTML(slider, context, rw);
 	}
-	
+
 	private void encodeHTML(Slider2 slider, FacesContext context, ResponseWriter rw) throws IOException {
 		String clientId = slider.getClientId(context);
 
 		String mode = slider.getMode();
 		String label = slider.getLabel();
 
-		double min = slider.getMin();
-		double max = slider.getMax(); 
+		int min = slider.getMin();
+		int max = slider.getMax();
 		Object v = slider.getSubmittedValue();
 		if (v == null) {
 			v = slider.getValue();
@@ -111,14 +116,15 @@ public class Slider2Renderer extends BadgeRenderer {
 			v = max / 2;
 			slider.setValue(v);
 		}
-		double val = A.toDouble(v);
+		//!//double val = A.toDouble(v);
+		int val = A.toInt(v);
 		if (val > max) {
 			val = max;
 		}
 		if (val < min) {
 			val = min;
 		}
-		String valS = Double.toString(val);
+		//!//String valS = Double.toString(val);
 		String o;
 		if (slider.getOrientation() != null) {
 			o = slider.getOrientation();
@@ -133,11 +139,7 @@ public class Slider2Renderer extends BadgeRenderer {
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
 
-		if (slider.isInline()) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-		} else {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-		}
+		rw.writeAttribute("class", getWithFeedback(getInputMode(slider.isInline()), slider), "class");
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider2-vertical" : "slider2");
 		if (slider.getStyleClass()!=null) {
@@ -163,18 +165,18 @@ public class Slider2Renderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
+				encodeSliderInput(slider, rw, isVertical, span, clientId, val);
 				rw.endElement("div");/* Row */
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
 			}
-			encodeInput(slider, rw, mode, context, valS, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 			if (!bottom) {
 				rw.endElement("div"); /* Row */
 
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
+				encodeSliderInput(slider, rw, isVertical, span, clientId, val);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
@@ -200,7 +202,14 @@ public class Slider2Renderer extends BadgeRenderer {
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);
 				rw.writeAttribute("for", clientId, null);
-				writeAttribute(rw, "class", slider.getLabelStyleClass());
+				String styleClass="";
+				if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+					styleClass = "control-label";
+				}
+				if (slider.getLabelStyleClass() != null) {
+					styleClass += " " + slider.getLabelStyleClass();
+				}
+				writeAttribute(rw, "class", styleClass);
 				writeAttribute(rw, "style", slider.getLabelStyle());
 				rw.write(label);
 				rw.endElement("label"); // Label
@@ -212,9 +221,9 @@ public class Slider2Renderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 
-			encodeInput(slider, rw, mode, context, valS, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderInput(slider, rw, isVertical, span, clientId, valS);
+			encodeSliderInput(slider, rw, isVertical, span, clientId, val);
 			rw.endElement("div");/* Row */
 
 		}
@@ -232,13 +241,16 @@ public class Slider2Renderer extends BadgeRenderer {
 	private void encodeVLabel(Slider2 slider, ResponseWriter rw, String label) throws IOException {
 		R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null, null);
 		rw.startElement("p", slider);
+		if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			rw.writeAttribute("class", "control-label", null);
+		}
 		rw.write(label);
 		rw.endElement("p"); // Label
 		rw.endElement("div"); // Column
 	}
-	
-	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, String val,
-			String clientId, boolean vo, double min, double max) throws IOException {
+
+	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, int val,
+			String clientId, boolean vo, int min, int max) throws IOException {
 		int cols = (vo ? 12 : 1);
 		if (!mode.equals("basic")) {
 			/*
@@ -248,7 +260,7 @@ public class Slider2Renderer extends BadgeRenderer {
 			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null);
 			if (mode.equals("badge")) {
 				generateBadge(context, slider, rw, clientId, slider.getBadgeStyleClass(), slider.getBadgeStyle(),
-						val, "_badge");
+						Integer.toString(val), "_badge");
 			}
 		}
 		removeMisleadingType(slider);
@@ -306,7 +318,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId, String val)
+	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId, int val)
 	throws IOException {
 		int cols = span;
 		if (!slider.getMode().equals("basic")) {
@@ -317,18 +329,22 @@ public class Slider2Renderer extends BadgeRenderer {
 		 * int olg
 		 */
 		// For Horizontal, we keep one column for the input/badge
-		R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0,
-				null, null); // Issue #172
-		// R.encodeColumn(rw, null, (vo ? 12 : 4), (vo ? 12 : 4), (vo ? 12 : 4),
-		// (vo ? 12 : 4), 0, 0, 0, 0, null, null);
+		//R.encodeColumn(rw, null, (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), (vo ? 12 : cols), 0, 0, 0, 0, null, null); // Issue #172
+		
+		//<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12" align="center">
+		if (vo) {
+			rw.startElement("div", null);
+			rw.writeAttribute("class", "col-md-12 col-xs-12 col-sm-12 col-lg-12", "class");
+			rw.writeAttribute("align", "center", null);
+		} else {
+			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null); // Issue #592
+		}
 		// Slider <input>
-		
-		
 		rw.startElement("input", null);
 		rw.writeAttribute("id", clientId + "_slider", null); // concat
-		
+
 		rw.writeAttribute("data-slider-id", clientId + "_slider_id", null);
-		
+
 		if(BsfUtils.isValued(slider.getMin())) rw.writeAttribute("data-slider-min", slider.getMin(), null);
 		if(BsfUtils.isValued(slider.getMax())) rw.writeAttribute("data-slider-max", slider.getMax(), null);
 		if(BsfUtils.isValued(slider.getValue())) rw.writeAttribute("data-slider-value", val, null);
@@ -338,14 +354,14 @@ public class Slider2Renderer extends BadgeRenderer {
 		if(BsfUtils.isValued(slider.isTooltipSplit())) rw.writeAttribute("data-slider-tooltip-split", slider.isTooltipSplit(), null);
 		if(BsfUtils.isValued(slider.getTooltipSliderPosition())) rw.writeAttribute("data-slider-tooltip-position", slider.getTooltipSliderPosition(), null);
 		if(BsfUtils.isValued(slider.getOrientation())) rw.writeAttribute("data-slider-orientation", slider.getOrientation().startsWith("vertical") ? "vertical" : "horizontal", null);
-		if(BsfUtils.isValued(slider.isDisabled())) rw.writeAttribute("data-slider-enabled", !slider.isDisabled(), null);
+		if(slider.isDisabled() || slider.isReadonly()) rw.writeAttribute("data-slider-enabled", "false", null);
 		if(BsfUtils.isValued(slider.getPrecision())) rw.writeAttribute("data-slider-precision", slider.getPrecision(), null);
 		if(BsfUtils.isValued(slider.getScale())) rw.writeAttribute("data-slider-ticks-scale", slider.getScale(), null);
 		if(BsfUtils.isValued(slider.isFocus())) rw.writeAttribute("data-slider-focus", slider.isFocus(), null);
 		if(BsfUtils.isValued(slider.getLabelledBy())) rw.writeAttribute("data-slider-labelledby", slider.getLabelledBy(), null);
 
 		rw.endElement("input");
-		
+
 		rw.endElement("div"); // Column
 	}
 
@@ -353,27 +369,27 @@ public class Slider2Renderer extends BadgeRenderer {
 
 		String fClientId = BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
 		String VarName = clientId.replace(":", "_");
-		
+
 		rw.startElement("script", slider);
 		//# Start enclosure
 		rw.writeText("$(document).ready(function() {", null);
-		
+
 			rw.writeText(
 					 // build slider structure
 					 "var " + VarName + "_sv = new Slider('#" + fClientId + "_slider', { " +
 					 	(BsfUtils.isStringValued(slider.getFormatter()) ? "formatter: " + slider.getFormatter() + "," : "") +
-					 "}); ", null);	
+					 "}); ", null);
 			rw.writeText(
 					 "$('#" + fClientId + "_slider').on('slide', function(slideEvt) { " +
 					 	 "$('#" + fClientId + "').val(slideEvt.value); "+
 					 	 "$('#" + fClientId + "_badge').text(slideEvt.value); "+
-					 "}); ", null);	
+					 "}); ", null);
 			rw.writeText(
 					 "$('#" + fClientId + "').keyup(function(event) { " +
 						 "   var val = this.value; " +
-						 "   if(typeof val === 'string') val = Number(val); " + 
+						 "   if(typeof val === 'string') val = Number(val); " +
 					 	 "   " + VarName + "_sv.setValue(val, true, true); " +
-					 "}); ", null);	
+					 "}); ", null);
 
 		rw.writeText("});", null);
 		rw.endElement("script");

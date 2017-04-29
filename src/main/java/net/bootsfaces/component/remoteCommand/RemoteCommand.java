@@ -23,6 +23,7 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.ajax.IAJAXComponent2;
@@ -30,12 +31,12 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:remoteCommand /&gt;. */
-@FacesComponent("net.bootsfaces.component.remoteCommand.RemoteCommand")
+@FacesComponent(RemoteCommand.COMPONENT_TYPE)
 public class RemoteCommand extends RemoteCommandCore implements ClientBehaviorHolder, IAJAXComponent, IAJAXComponent2 {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.remoteCommand.RemoteCommand";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".remoteCommand.RemoteCommand";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.remoteCommand.RemoteCommand";
 

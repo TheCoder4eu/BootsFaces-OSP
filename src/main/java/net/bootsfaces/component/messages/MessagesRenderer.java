@@ -3,30 +3,30 @@
  *
  *  This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package net.bootsfaces.component.messages;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
@@ -54,95 +54,106 @@ public class MessagesRenderer extends CoreRenderer {
 
 		String clientId = uiMessages.getClientId(facesContext);
 
-		List<FacesMessage> messagesToShow = new ArrayList<FacesMessage>();
+		List<FacesMessage> messagesToShow;
 
-		if (uiMessages.getFor()!=null) {
+		if (uiMessages.getFor() != null) {
 			if (uiMessages.isGlobalOnly()) {
 				throw new FacesException("Error rendering b:messages: The attributes 'globalOnly' and 'for' are mutually exclusive.");
 			}
+			messagesToShow = new ArrayList<FacesMessage>();
 			List<String> parentIds = resolveComponentIds(facesContext, uiMessages.getFor(), uiMessages);
 			Iterator<String> clientIdsWithMessages = facesContext.getClientIdsWithMessages();
-			while(clientIdsWithMessages.hasNext()) {
+			while (clientIdsWithMessages.hasNext()) {
 				String currentId = clientIdsWithMessages.next();
-				boolean showIt=false;
+				boolean showIt = false;
 				if (uiMessages.isRecursive()) {
 					UIComponent c = facesContext.getViewRoot().findComponent(currentId);
 					while (c != null && !showIt) {
-						for (String parentId: parentIds) {
+						for (String parentId : parentIds) {
 							if (c.getClientId().equals(parentId)) {
-								showIt=true;
+								showIt = true;
 							}
 						}
-						c=c.getParent();
+						c = c.getParent();
 					}
 
 				} else {
-					for (String parentId: parentIds) {
+					for (String parentId : parentIds) {
 						if (currentId.equals(parentId)) {
-							showIt=true;
+							showIt = true;
 						}
 					}
 				}
 				if (showIt) {
-		            Iterator<FacesMessage> messagesIterator = facesContext.getMessages(currentId);
-		            while (messagesIterator.hasNext()) {
-		                FacesMessage next = messagesIterator.next();
-		                if (!messagesToShow.contains(next)) {
-		                	messagesToShow.add(next);
-		                }
-		            }
+					Iterator<FacesMessage> messagesIterator = facesContext.getMessages(currentId);
+					while (messagesIterator.hasNext()) {
+						FacesMessage next = messagesIterator.next();
+						if (!messagesToShow.contains(next)) {
+							messagesToShow.add(next);
+						}
+					}
 				}
 			}
 		} else {
-			Iterator<FacesMessage> allMessages = uiMessages.isGlobalOnly() ? facesContext.getMessages(null)
-					: facesContext.getMessages();
-			while (allMessages.hasNext()) {
-				messagesToShow.add(allMessages.next());
-			}
+			messagesToShow = uiMessages.isGlobalOnly() ? facesContext.getMessageList(null)
+					: facesContext.getMessageList();
 		}
 
-		Map<String, List<FacesMessage>> messages = new HashMap<String, List<FacesMessage>>();
-		messages.put("info", new ArrayList<FacesMessage>()); // Bootstrap info
-		messages.put("warn", new ArrayList<FacesMessage>()); // Bootstrap warning
-		messages.put("error", new ArrayList<FacesMessage>()); // Bootstrap error
-		messages.put("fatal", new ArrayList<FacesMessage>()); // Bootstrap fatal error
+		Map<FacesMessage.Severity, List<FacesMessage>> messages = new LinkedHashMap<FacesMessage.Severity, List<FacesMessage>>();
+		messages.put(FacesMessage.SEVERITY_FATAL, new ArrayList<FacesMessage>()); // Bootstrap fatal error
+		messages.put(FacesMessage.SEVERITY_ERROR, new ArrayList<FacesMessage>()); // Bootstrap error
+		messages.put(FacesMessage.SEVERITY_WARN, new ArrayList<FacesMessage>()); // Bootstrap warning
+		messages.put(FacesMessage.SEVERITY_INFO, new ArrayList<FacesMessage>()); // Bootstrap info
 
 		for (FacesMessage message : messagesToShow) {
-			Severity severity = message.getSeverity();
 			if (message.isRendered() && !uiMessages.isRedisplay()) {
 				continue;
 			}
 
-			if (severity.equals(FacesMessage.SEVERITY_INFO))
-				messages.get("info").add(message);
-			else if (severity.equals(FacesMessage.SEVERITY_WARN))
-				messages.get("warn").add(message);
-			else if (severity.equals(FacesMessage.SEVERITY_ERROR))
-				messages.get("error").add(message);
-			else if (severity.equals(FacesMessage.SEVERITY_FATAL))
-				messages.get("fatal").add(message);
+			messages.get(message.getSeverity()).add(message);
 		}
 
+		int numberOfDivs = 0;
+		boolean idHasBeenRendered = false;
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(uiMessages, false).trim();
+		if (!responsiveStyleClass.isEmpty()) {
+			numberOfDivs++;
+			writer.startElement("div", component);
+			writeAttribute(writer, "class", responsiveStyleClass);
+			writeAttribute(writer, "id", clientId);
+			idHasBeenRendered = true;
+		}
+
+		numberOfDivs++;
 		writer.startElement("div", uiMessages);
 		if (null != uiMessages.getDir()) {
-			writer.writeAttribute("dir", uiMessages.getDir(), "dir");
+			writeAttribute(writer, "dir", uiMessages.getDir(), "dir");
 		}
-		writeAttribute(writer, "class", "bf-messages" + Responsive.getResponsiveStyleClass(uiMessages, false));
+		writeAttribute(writer, "class", "bf-messages");
 		writeAttribute(writer, "role", "alert");
 
-		writer.writeAttribute("id", clientId, "id");
+		if (!idHasBeenRendered) {
+			writeAttribute(writer, "id", clientId, "id");
+		}
 
-		for (String severity : messages.keySet()) {
-			List<FacesMessage> severityMessages = messages.get(severity);
+		for (Map.Entry<FacesMessage.Severity, List<FacesMessage>> entry : messages.entrySet()) {
+			FacesMessage.Severity severity = entry.getKey();
+			List<FacesMessage> severityMessages = entry.getValue();
 			if (severityMessages.size() > 0) {
 				encodeSeverityMessages(facesContext, uiMessages, severity, severityMessages);
+				if (uiMessages.isOnlyMostSevere()) {
+					break;
+				}
 			}
 		}
 
-		writer.endElement("div");
+		for (int i = numberOfDivs; i > 0; i--) {
+			writer.endElement("div");
+		}
 	}
 
-	private void encodeSeverityMessages(FacesContext facesContext, Messages uiMessages, String severity,
+	private void encodeSeverityMessages(FacesContext facesContext, Messages uiMessages, FacesMessage.Severity severity,
 			List<FacesMessage> messages) throws IOException {
 		ResponseWriter writer = facesContext.getResponseWriter();
 		String styleClassPrefix = "";
@@ -151,51 +162,52 @@ public class MessagesRenderer extends CoreRenderer {
 		}
 		String stylePrefix = uiMessages.getStyle();
 		if (null == stylePrefix) {
-			stylePrefix="";
+			stylePrefix = "";
 		} else if (!styleClassPrefix.endsWith(";")) {
 			stylePrefix += ";";
 		}
 		String iconStyleClass = "";
-		if ("warn".equals(severity)) {
+		if (FacesMessage.SEVERITY_WARN.equals(severity)) {
 			String warnClass = uiMessages.getWarnClass();
-			if (null == warnClass)
+			if (null == warnClass) {
 				styleClassPrefix += "alert-warning";
-			else
+			} else {
 				styleClassPrefix += "alert-warning " + warnClass;
+			}
 			iconStyleClass = "bficon bficon-warning-triangle-o";//"fa fa-exclamation-triangle";
-			if (uiMessages.getWarnStyle()!=null) {
+			if (uiMessages.getWarnStyle() != null) {
 				stylePrefix += uiMessages.getWarnStyle();
 			}
-		} else if ("fatal".equals(severity)) {
+		} else if (FacesMessage.SEVERITY_FATAL.equals(severity)) {
 			String fatalClass = uiMessages.getFatalClass();
 			if (null == fatalClass) {
 				styleClassPrefix += "alert-danger";
 			} else {
 				styleClassPrefix += "alert-danger " + fatalClass;
 			}
-			if (uiMessages.getFatalStyle()!=null) {
+			if (uiMessages.getFatalStyle() != null) {
 				stylePrefix += uiMessages.getFatalStyle();
 			}
 			iconStyleClass = "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
-		} else if ("error".equals(severity)) {
+		} else if (FacesMessage.SEVERITY_ERROR.equals(severity)) {
 			String errorClass = uiMessages.getErrorClass();
 			if (null == errorClass) {
 				styleClassPrefix += "alert-danger";
 			} else {
 				styleClassPrefix += "alert-danger " + errorClass;
 			}
-			if (uiMessages.getErrorStyle()!=null) {
+			if (uiMessages.getErrorStyle() != null) {
 				stylePrefix += uiMessages.getErrorStyle();
 			}
 			iconStyleClass = "bficon bficon-error-circle-o";//"fa fa-exclamation-circle";
-		} else if ("info".equals(severity)) {
+		} else if (FacesMessage.SEVERITY_INFO.equals(severity)) {
 			String infoClass = uiMessages.getInfoClass();
-			if (infoClass==null) {
+			if (infoClass == null) {
 				styleClassPrefix += "alert-info";
 			} else {
 				styleClassPrefix += "alert-info " + infoClass;
 			}
-			if (uiMessages.getInfoStyle()!=null) {
+			if (uiMessages.getInfoStyle() != null) {
 				stylePrefix += uiMessages.getInfoStyle();
 			}
 			iconStyleClass = "bficon bficon-info";//"fa fa-info-circle";
@@ -215,8 +227,9 @@ public class MessagesRenderer extends CoreRenderer {
 
 		boolean firstMessage = true;
 		for (FacesMessage msg : messages) {
-			if (!firstMessage && uiMessages.isLineBreak())
+			if (!firstMessage && uiMessages.isLineBreak()) {
 				writer.append(uiMessages.getLineBreakTag());
+			}
 			firstMessage = false;
 
 			writer.startElement("span", null);
@@ -270,14 +283,11 @@ public class MessagesRenderer extends CoreRenderer {
 		List<String> idList = new ArrayList<String>();
 		if (null == forComponent || forComponent.length() == 0) {
 			idList.add("");
-		}
-		else {
+		} else {
 			String csvListOfIds = ExpressionResolver.getComponentIDs(context, message, forComponent);
 			if (null != csvListOfIds) {
 				String[] ids = csvListOfIds.split(" ");
-				for (String id:ids) {
-					idList.add(id);
-				}
+				Collections.addAll(idList, ids);
 			}
 		}
 		return idList;

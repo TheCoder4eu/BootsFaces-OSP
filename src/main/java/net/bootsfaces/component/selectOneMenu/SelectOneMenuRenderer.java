@@ -37,7 +37,7 @@ import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputText.InputTextRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -45,7 +45,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
-public class SelectOneMenuRenderer extends CoreRenderer {
+public class SelectOneMenuRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
     /** Receives the value from the client and sends it to the JSF bean. */
@@ -120,12 +120,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
         rw.startElement("div", menu);
 
-        if (menu.isInline()) {
-            rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", outerClientId), "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-        } else {
-            rw.writeAttribute("class", getFormGroupWithFeedback("form-group", outerClientId), "class");
-        }
+        rw.writeAttribute("class", getWithFeedback(getInputMode(menu.isInline()), component), "class");
         if (!clientIdHasBeenRendered) {
         	rw.writeAttribute("id", outerClientId, "id");
             Tooltip.generateTooltip(context, menu, rw);
@@ -194,7 +189,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, "control-label");
+            generateErrorAndRequiredClass(menu, rw, outerClientId, menu.getLabelStyleClass(), Responsive.getResponsiveLabelClass(menu), "control-label");
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");

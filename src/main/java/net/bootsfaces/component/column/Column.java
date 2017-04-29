@@ -21,6 +21,7 @@ package net.bootsfaces.component.column;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -30,12 +31,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:column /&gt;. */
-@FacesComponent("net.bootsfaces.component.column.Column")
+@FacesComponent(Column.COMPONENT_TYPE)
 public class Column extends UIOutput implements IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.column.Column";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".column.Column";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.column.Column";
 

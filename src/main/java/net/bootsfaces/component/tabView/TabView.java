@@ -38,13 +38,13 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tabView /&gt;. */
-@FacesComponent("net.bootsfaces.component.tabView.TabView")
+@FacesComponent(TabView.COMPONENT_TYPE)
 public class TabView extends UIOutput
 		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabView.TabView";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tabView.TabView";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 

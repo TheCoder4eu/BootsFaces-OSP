@@ -35,7 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author Stephan Rauh
  */
-@FacesComponent("net.bootsfaces.component.poll.Poll")
+@FacesComponent(Poll.COMPONENT_TYPE)
 public class Poll extends HtmlCommandButton {
 
 	/**
@@ -43,7 +43,7 @@ public class Poll extends HtmlCommandButton {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.poll.Poll";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".poll.Poll";
 	/**
 	 * <p>
 	 * The component family for this component.

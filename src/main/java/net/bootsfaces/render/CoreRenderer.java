@@ -35,6 +35,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.beans.ELTools;
@@ -99,6 +100,8 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
+     * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
+     * 
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
 	 *
@@ -107,6 +110,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
+    @Deprecated
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
 			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
@@ -184,7 +188,8 @@ public class CoreRenderer extends Renderer {
 			if (null != readAnnotations && readAnnotations.length > 0) {
 				for (Annotation a : readAnnotations) {
 					if ((a.annotationType().getName().endsWith("NotNull"))
-							|| (a.annotationType().getName().endsWith("NotEmpty"))) {
+							|| (a.annotationType().getName().endsWith("NotEmpty"))
+							|| (a.annotationType().getName().endsWith("NotBlank"))) {
 						styleClass += " bf-required";
 						break;
 					}
@@ -200,7 +205,7 @@ public class CoreRenderer extends Renderer {
 			return false;
 
 		if (value instanceof Boolean) {
-			return ((Boolean) value).booleanValue();
+			return ((Boolean) value);
 		} else if (value instanceof Number) {
 			Number number = (Number) value;
 
@@ -238,7 +243,7 @@ public class CoreRenderer extends Renderer {
 
 			if (behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
 				String behaviorSource = params.get("javax.faces.source");
-				String clientId = component.getClientId();
+				String clientId = component.getClientId(context);
 				if (behaviorSource != null && clientId.equals(behaviorSource)) {
 					for (ClientBehavior behavior : behaviorsForEvent) {
 						behavior.decode(context, component);
@@ -508,6 +513,50 @@ public class CoreRenderer extends Renderer {
 
 		return converter;
 	}
+	
+	/**
+	 * This method is called by the JSF framework to get the type-safe value of
+	 * the attribute. Do not delete this method.
+	 */
+	@Override
+	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
+		Converter cnv = resolveConverter(fc, c);
+
+		if (cnv != null) {
+			if (sval == null || sval instanceof String) {
+				return cnv.getAsObject(fc, c, (String)sval);
+			} else {
+				return cnv.getAsObject(fc, c, String.valueOf(sval));
+			}
+		} else {
+			return sval;
+		}
+	}
+
+	protected Converter resolveConverter(FacesContext context, UIComponent c) {
+		if (!(c instanceof ValueHolder)) {
+			return null;
+		}
+
+		Converter cnv = ((ValueHolder) c).getConverter();
+
+		if (cnv != null) {
+			return cnv;
+		} else {
+			ValueExpression ve = c.getValueExpression("value");
+
+			if (ve != null) {
+				Class<?> valType = ve.getType(context.getELContext());
+
+				if (valType != null) {
+					return context.getApplication().createConverter(valType);
+				}
+			}
+
+			return null;
+		}
+	}
+
 
 	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
@@ -533,16 +582,42 @@ public class CoreRenderer extends Renderer {
 
 	/**
 	 * Get the main field container 
+         * 
+         * @deprecated Use {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)} instead
+         * 
 	 * @param additionalClass
 	 * @param clientId
 	 * @return
 	 */
-	protected String getFormGroupWithFeedback(String additionalClass, String clientId){
+        @Deprecated
+	protected String getFormGroupWithFeedback(String additionalClass, String clientId) {
 		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
 			return additionalClass;
 		}
 		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
 	}
 	
-	
+
+        protected void beginResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.startElement("div", component);
+                responseWriter.writeAttribute("class", responsiveStyleClass, null);
+            }
+        }
+        
+        protected void endResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.endElement("div");
+            }
+        }
 }

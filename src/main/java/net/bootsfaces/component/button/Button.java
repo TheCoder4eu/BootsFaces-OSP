@@ -21,6 +21,7 @@ package net.bootsfaces.component.button;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlOutcomeTargetButton;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
@@ -29,12 +30,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:button /&gt;. */
-@FacesComponent("net.bootsfaces.component.button.Button")
+@FacesComponent(Button.COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.button.Button";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".button.Button";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.button.Button";
 
@@ -78,7 +79,6 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		iconRotate,
 		iconSize,
 		iconSpin,
-		immediate,
 		lang,
 		largeScreen,
 		look,
@@ -451,22 +451,6 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setIconSpin(boolean _iconSpin) {
 		getStateHelper().put(PropertyKeys.iconSpin, _iconSpin);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
-	 */
-	public boolean isImmediate() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.immediate, false);
-	}
-
-	/**
-	 * Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setImmediate(boolean _immediate) {
-		getStateHelper().put(PropertyKeys.immediate, _immediate);
 	}
 
 	/**
@@ -950,7 +934,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getTarget() {
@@ -958,7 +942,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href. <P>
+	 * Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setTarget(String _target) {

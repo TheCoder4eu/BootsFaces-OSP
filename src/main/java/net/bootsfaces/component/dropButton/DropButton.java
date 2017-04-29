@@ -21,6 +21,7 @@ package net.bootsfaces.component.dropButton;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -30,12 +31,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropButton /&gt;. */
-@FacesComponent("net.bootsfaces.component.dropButton.DropButton")
+@FacesComponent(DropButton.COMPONENT_TYPE)
 public class DropButton extends UIComponentBase implements IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dropButton.DropButton";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dropButton.DropButton";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropButton.DropButton";
 

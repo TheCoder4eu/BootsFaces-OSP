@@ -51,8 +51,7 @@ public abstract class Slider2Core extends HtmlInputText {
 		styleClass,
 		tooltipSliderPosition,
 		tooltipSplit,
-		tooltipVisibility,
-		value;
+		tooltipVisibility;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -260,34 +259,34 @@ public abstract class Slider2Core extends HtmlInputText {
 	}
 
 	/**
-	 * Maximum possible value <P>
+	 * The maximum value of the slider. (default 100) <P>
 	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
-	public double getMax() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.max, 100);
+	public int getMax() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
-	 * Maximum possible value <P>
+	 * The maximum value of the slider. (default 100) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(double _max) {
+	public void setMax(int _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
 	/**
-	 * Minimum possible value <P>
+	 * The maximum value of the slider. (default 0) <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
-	public double getMin() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.min, 0);
+	public int getMin() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
-	 * Minimum possible value <P>
+	 * The maximum value of the slider. (default 0) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(double _min) {
+	public void setMin(int _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
@@ -423,15 +422,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
-	public double getStep() {
-		return (double) (Double) getStateHelper().eval(PropertyKeys.step, 1);
+	public int getStep() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(double _step) {
+	public void setStep(int _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
@@ -513,22 +512,6 @@ public abstract class Slider2Core extends HtmlInputText {
 	 */
 	public void setTooltipVisibility(String _tooltipVisibility) {
 		getStateHelper().put(PropertyKeys.tooltipVisibility, _tooltipVisibility);
-	}
-
-	/**
-	 * Initial value float mode. <P>
-	 * @return Returns the value of the attribute, or "5", if it hasn't been set by the JSF file.
-	 */
-	public String getValue() {
-		return (String) getStateHelper().eval(PropertyKeys.value, "5");
-	}
-
-	/**
-	 * Initial value float mode. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setValue(String _value) {
-		getStateHelper().put(PropertyKeys.value, _value);
 	}
 
 }

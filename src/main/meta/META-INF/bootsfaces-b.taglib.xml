@@ -1094,12 +1094,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false.]]></description>
-		  <name>immediate</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[Code describing the language used in the generated markup for this component.]]></description>
 		  <name>lang</name>
 		  <required>false</required>
@@ -1334,7 +1328,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -3900,7 +3894,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -6060,6 +6054,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages.]]></description>
+		  <name>label</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>label-col-lg</name>
 		  <required>false</required>
@@ -6288,13 +6288,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -7106,13 +7106,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -8269,7 +8269,7 @@
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'.]]></description>
-		  <name>enytype</name>
+		  <name>enctype</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10992,13 +10992,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -11714,13 +11714,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -12490,13 +12490,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -13994,6 +13994,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level.]]></description>
+		  <name>only-most-severe</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level.]]></description>
+		  <name>onlyMostSevere</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer.]]></description>
 		  <name>recursive</name>
 		  <required>false</required>
@@ -14420,6 +14432,18 @@
 		<attribute>
 		  <description><![CDATA[CSS style class of the optional navBar brand.]]></description>
 		  <name>brandStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href.]]></description>
+		  <name>brand-target</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href.]]></description>
+		  <name>brandTarget</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -15050,7 +15074,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -15634,7 +15658,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href.]]></description>
+		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -17202,7 +17226,7 @@
 		<attribute>
 		  <description><![CDATA[The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form.]]></description>
 		  <name>value</name>
-		  <required>false</required>
+		  <required>true</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -18460,13 +18484,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -18476,6 +18500,24 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value Require input in the component when the form is submitted.]]></description>
+		  <name>required</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>required-message</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Message to show if the user did not specify a value and the attribute required is set to true.]]></description>
+		  <name>requiredMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -19600,13 +19642,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -20370,13 +20412,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -21014,13 +21056,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -21564,16 +21606,16 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Maximum possible value]]></description>
+		  <description><![CDATA[The maximum value of the slider. (default 100)]]></description>
 		  <name>max</name>
 		  <required>false</required>
-		  <type>java.lang.Double</type>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Minimum possible value]]></description>
+		  <description><![CDATA[The maximum value of the slider. (default 0)]]></description>
 		  <name>min</name>
 		  <required>false</required>
-		  <type>java.lang.Double</type>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field.]]></description>
@@ -21633,7 +21675,7 @@
 		  <description><![CDATA[Increment step]]></description>
 		  <name>step</name>
 		  <required>false</required>
-		  <type>java.lang.Double</type>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the entire slider.]]></description>
@@ -21690,10 +21732,10 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Initial value float mode.]]></description>
+		  <description><![CDATA[Initial position of the slider.]]></description>
 		  <name>value</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
 	
@@ -22630,13 +22672,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>render-label</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used by AngularFaces, too.]]></description>
+		  <description><![CDATA[Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too.]]></description>
 		  <name>renderLabel</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -23544,13 +23586,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <description><![CDATA[Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model.]]></description>
 		  <name>enable-links</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Boolean value to specify if enable href link.]]></description>
+		  <description><![CDATA[Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model.]]></description>
 		  <name>enableLinks</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -24901,6 +24943,128 @@
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<!-- *********** b:formGroup ************************* -->
+	<tag>
+		<tag-name>formGroup</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.formGroup.FormGroup</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>content-disabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
+		  <name>contentDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
+		  <name>dir</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
+		  <name>id</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
+		  <name>rendered</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Inline style of the input element.]]></description>
+		  <name>style</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Style class of this element.]]></description>
+		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The text of the tooltip.]]></description>
+		  <name>tooltip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+		  <name>tooltip-container</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body.]]></description>
+		  <name>tooltipContainer</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltip-delay</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltipDelay</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltip-delay-hide</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltipDelayHide</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltip-delay-show</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The tooltip is shown with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
+		  <name>tooltipDelayShow</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+		  <name>tooltip-position</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
+		  <name>tooltipPosition</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

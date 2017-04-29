@@ -26,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.C;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.utils.BsfUtils;
@@ -35,7 +36,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author durzod
  *
  */
-@FacesRenderer(componentFamily="javax.faces.Messages", rendererType="net.bootsfaces.component.GrowlRenderer")
+@FacesRenderer(componentFamily=C.BSFCOMPONENT, rendererType="net.bootsfaces.component.GrowlRenderer")
 public class GrowlRenderer extends CoreRenderer {
     @Override
     public void encodeEnd(FacesContext facesContext, UIComponent component) throws IOException {

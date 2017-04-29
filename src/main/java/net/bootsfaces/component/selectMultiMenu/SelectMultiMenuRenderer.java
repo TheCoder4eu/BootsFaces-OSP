@@ -44,7 +44,7 @@ import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 import net.bootsfaces.component.inputText.InputTextRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -53,7 +53,7 @@ import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectMultiMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectMultiMenu.SelectMultiMenu")
-public class SelectMultiMenuRenderer extends CoreRenderer {
+public class SelectMultiMenuRenderer extends CoreInputRenderer {
 	// http://davidstutz.github.io/bootstrap-multiselect/
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
@@ -155,14 +155,8 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 			clientIdHasBeenRendered=true;
 		}
 
-		if (menu.isInline()) {
-			LOGGER.warning(
-					"The inline attribute of b:selectMultiMenu is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-		} else {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-		}
-
+                rw.writeAttribute("class", getWithFeedback(getInputMode(menu.isInline()), component), "class");
+                
 		addLabel(rw, clientId + "Inner", menu);
 
 		if (isHorizontalForm(component)) {
@@ -372,7 +366,10 @@ public class SelectMultiMenuRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", menu);
 			rw.writeAttribute("for", clientId, "for");
-			generateErrorAndRequiredClassForLabels(menu, rw, clientId, menu.getLabelStyleClass());
+                        
+                        generateErrorAndRequiredClass(menu, rw, clientId, menu.getLabelStyleClass(), Responsive.getResponsiveLabelClass(menu), "control-label");
+                        
+			//generateErrorAndRequiredClassForLabels(menu, rw, clientId, "control-label " + menu.getLabelStyleClass());
 			writeAttribute(rw, "style", menu.getLabelStyle());
 			rw.writeText(label, null);
 			rw.endElement("label");

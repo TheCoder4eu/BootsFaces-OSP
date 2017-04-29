@@ -18,13 +18,13 @@ package net.bootsfaces.decorator;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.faces.view.facelets.Tag;
 import javax.faces.view.facelets.TagAttribute;
 import javax.faces.view.facelets.TagAttributes;
 import javax.faces.view.facelets.TagDecorator;
-
 import net.bootsfaces.component.ComponentsEnum;
 import net.bootsfaces.expressions.decorator.AFTagAttributes;
 import net.bootsfaces.expressions.decorator.TagAttributeUtilities;
@@ -35,6 +35,9 @@ import net.bootsfaces.utils.BsfUtils;
  * them to the list of JSF bean to be synchronized with the client and implements a couple of pseudo JSF tags.
  */
 public class BootsFacesTagDecorator implements TagDecorator {
+    
+    private static final Logger LOGGER = Logger.getLogger(BootsFacesTagDecorator.class.getName());
+    
 	private static boolean active = false;
 	private boolean activeByDefault=true;
 
@@ -56,8 +59,8 @@ public class BootsFacesTagDecorator implements TagDecorator {
 		for (ComponentsEnum component : components) {
 			bootsfacesTags.put(component.tagname(), component.tagname());
 		}
-		System.out.println("The simplified HTML-like syntax of BootsFaces is available with " + bootsfacesTags.size()
-				+ " components. You can switch it off globally using the context parameter net.bootsfaces.defaults.decorator in the web.xml or on a per-page basis by adding the attribute bootsFacesDecorator='false'.");
+		LOGGER.log(Level.INFO, "The simplified HTML-like syntax of BootsFaces is available with {0} components. "
+                + "You can switch it off globally using the context parameter net.bootsfaces.defaults.decorator in the web.xml or on a per-page basis by adding the attribute bootsFacesDecorator=''false''.", bootsfacesTags.size());
 	}
 
 	public BootsFacesTagDecorator() {

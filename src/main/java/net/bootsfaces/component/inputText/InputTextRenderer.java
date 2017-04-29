@@ -21,27 +21,23 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
-public class InputTextRenderer extends CoreRenderer {
+public class InputTextRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	@Override
@@ -56,7 +52,7 @@ public class InputTextRenderer extends CoreRenderer {
      * @param context
      * @param component
      * @param legalValues an optional list of legal values. May be null.
-     * @param The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
+     * @param realEventSourceName The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
      * from the client ID or the name attribute of the input field. However, in some cases such as radio buttons,
      * this detection fails.
      */
@@ -94,45 +90,6 @@ public class InputTextRenderer extends CoreRenderer {
 			inputText.setSubmittedValue(submittedValue);
 		}
 		new AJAXRenderer().decode(context, component, realEventSourceName);
-	}
-
-	/**
-	 * This method is called by the JSF framework to get the type-safe value of
-	 * the attribute. Do not delete this method.
-	 */
-	@Override
-	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
-
-		if (cnv != null) {
-			return cnv.getAsObject(fc, c, (String) sval);
-		} else {
-			return sval;
-		}
-	}
-
-	protected Converter resolveConverter(FacesContext context, UIComponent c) {
-		if (!(c instanceof ValueHolder)) {
-			return null;
-		}
-
-		Converter cnv = ((ValueHolder) c).getConverter();
-
-		if (cnv != null) {
-			return cnv;
-		} else {
-			ValueExpression ve = c.getValueExpression("value");
-
-			if (ve != null) {
-				Class<?> valType = ve.getType(context.getELContext());
-
-				if (valType != null) {
-					return context.getApplication().createConverter(valType);
-				}
-			}
-
-			return null;
-		}
 	}
 
 	@Override
@@ -198,12 +155,8 @@ public class InputTextRenderer extends CoreRenderer {
 				Tooltip.generateTooltip(context, inputText, rw);
 				clientIdHasBeenRendered=true;
 			}
-			if (inputText.isInline()) {
-				rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-				LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-			} else {
-				rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-			}
+                        
+                        rw.writeAttribute("class", getWithFeedback(getInputMode(inputText.isInline()), component), "class");
 		}
 
 		String fieldId = inputText.getFieldId();

@@ -25,8 +25,12 @@ import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent("net.bootsfaces.component.growl.Growl")
+@FacesComponent(Growl.COMPONENT_TYPE)
 public class Growl extends UIMessages {
+
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".growl.Growl";
+
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Growl() {
 		super();

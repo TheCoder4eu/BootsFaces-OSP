@@ -32,6 +32,7 @@ import net.bootsfaces.render.A;
 import net.bootsfaces.render.JQ;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
+import net.bootsfaces.utils.BsfUtils;
 
 /** This class generates the HTML code of &lt;b:slider /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.slider.Slider")
@@ -130,11 +131,7 @@ public class SliderRenderer extends BadgeRenderer {
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, slider, rw);
 
-		if (slider.isInline()) {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-inline", clientId), "class");
-		} else {
-			rw.writeAttribute("class", getFormGroupWithFeedback("form-group", clientId), "class");
-		}
+                rw.writeAttribute("class", getWithFeedback(getInputMode(slider.isInline()), slider), "class");
 		rw.startElement("div", null);
 		String s = "row " + (isVertical ? "slider-vertical" : "slider");
 		if (slider.getStyleClass()!=null) {
@@ -197,7 +194,14 @@ public class SliderRenderer extends BadgeRenderer {
 				R.encodeColumn(rw, null, 6, 6, 6, 6, 0, 0, 0, 0, null, null);
 				rw.startElement("label", slider);
 				rw.writeAttribute("for", clientId, null);
-				writeAttribute(rw, "class", slider.getLabelStyleClass());
+				String styleClass="";
+				if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+					styleClass = "control-label";
+				}
+				if (slider.getLabelStyleClass() != null) {
+					styleClass += " " + slider.getLabelStyleClass();
+				}
+				writeAttribute(rw, "class", styleClass);
 				writeAttribute(rw, "style", slider.getLabelStyle());
 				rw.write(label);
 				rw.endElement("label"); // Label
@@ -229,6 +233,9 @@ public class SliderRenderer extends BadgeRenderer {
 	private void encodeVLabel(Slider slider, ResponseWriter rw, String label) throws IOException {
 		R.encodeColumn(rw, null, 12, 12, 12, 12, 0, 0, 0, 0, null, null);
 		rw.startElement("p", slider);
+		if (!BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			rw.writeAttribute("class", "control-label", null);
+		}
 		rw.write(label);
 		rw.endElement("p"); // Label
 		rw.endElement("div"); // Column

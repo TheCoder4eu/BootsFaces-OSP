@@ -23,6 +23,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -33,12 +34,12 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body") })
-@FacesComponent("net.bootsfaces.component.dropMenu.DropMenu")
+@FacesComponent(DropMenu.COMPONENT_TYPE)
 public class DropMenu extends DropMenuCore implements IHasTooltip, IResponsive, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dropMenu.DropMenu";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dropMenu.DropMenu";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dropMenu.DropMenu";
 

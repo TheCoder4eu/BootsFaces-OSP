@@ -22,6 +22,7 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
@@ -31,12 +32,12 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body") })
-@FacesComponent("net.bootsfaces.component.alert.Alert")
+@FacesComponent(Alert.COMPONENT_TYPE)
 public class Alert extends UIComponentBase implements IHasTooltip, IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.alert.Alert";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".alert.Alert";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.alert.Alert";
 

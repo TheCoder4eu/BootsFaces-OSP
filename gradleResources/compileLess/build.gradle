@@ -23,8 +23,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.13.1'
-        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.13.1'
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.14.0'
+        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.14.0'
     }
 }
 
@@ -52,6 +52,10 @@ assets {
 
 assetCompile.dependsOn assetClean
 
+
+/*
+ * Dynamic tasks to copy files to the process directory
+ */
 themes.each {
     //create a dynamic task for each theme (in the config phase)
     def themeName ->
@@ -80,7 +84,7 @@ themes.each {
     }
 }
 
-task copyBootswatchLess4Themes (dependsOn: ['cloneDefaultLess4Themes',tasks.matching { Task task -> task.name.startsWith("copyBootswatchTheme2")}]) {
+task copyBootswatchLess4Themes (dependsOn: ['cloneDefaultLess4Themes',tasks.matching { Task task -> task.name.startsWith("copyBootswatchTheme2")},'copyBootswatchLessCustomizations']) {
     description 'BootsFaces task: copies the Bootswatch less files to the process folder for all the included Themes.'
     println "Task copyBootswatchLess4Themes"
 }
@@ -92,6 +96,12 @@ task cloneDefaultLess4Themes (dependsOn: [tasks.matching { Task task -> task.nam
 }
 copyBootswatchLess4Themes.mustRunAfter cloneDefaultLess4Themes
 
+//Copy the per-Theme Customizations
+task copyBootswatchLessCustomizations(type: Copy) {
+  	description 'BootsFaces task: copies the theme Customizations files to the process folder.'
+  	from staticResourcesDir+'/less/bw'
+  	into "${buildDir}/process/less"
+}
 
 /*
  * Tasks to copy files to the process directory

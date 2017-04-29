@@ -31,7 +31,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.listLinks.ListLinks")
+@FacesComponent(ListLinks.COMPONENT_TYPE)
 public class ListLinks extends LinksContainer {
 
 	/**
@@ -39,7 +39,7 @@ public class ListLinks extends LinksContainer {
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.listLinks.ListLinks";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".listLinks.ListLinks";
 	/**
 	 * <p>
 	 * The component family for this component.
