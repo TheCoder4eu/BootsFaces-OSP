@@ -13112,9 +13112,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Label text.]]></description>
+		  <description><![CDATA[Deprecated in favor of 'value'. Label text.]]></description>
 		  <name>text</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -13192,6 +13192,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Label text.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

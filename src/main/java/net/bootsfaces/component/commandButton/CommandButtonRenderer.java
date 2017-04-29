@@ -18,15 +18,17 @@
 package net.bootsfaces.component.commandButton;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIParameter;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
@@ -45,9 +47,22 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (componentIsDisabledOrReadonly(component)) {
 			return;
 		}
+		
+		boolean found=false;
 
-		String param = component.getClientId(context);
-		if (context.getExternalContext().getRequestParameterMap().containsKey(param)) {
+		String clientId = component.getClientId(context);
+		String param = clientId;
+
+		Map<String, String> params = context.getExternalContext().getRequestParameterMap();
+		if (params.containsKey(param)) {
+			found=true;
+		} else {
+			String source = params.get("javax.faces.source");
+	        if (clientId.equals(source)) {
+	        	found = true;
+	        }
+		}
+		if (found) {
 			new AJAXRenderer().decode(context, component);
 		}
 	}
