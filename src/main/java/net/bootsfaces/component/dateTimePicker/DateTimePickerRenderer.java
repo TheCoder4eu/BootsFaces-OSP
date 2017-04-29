@@ -57,12 +57,17 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
-		String fieldId = dtp.getFieldId();
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
+		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
+		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		
+		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
 		if (null == fieldId) {
 			fieldId = clientId + "_Input";
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
-//		new AJAXRenderer().decode(context, dtp, clientId);
+		// new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
