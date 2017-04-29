@@ -104,12 +104,21 @@ public class Label extends UIComponentBase implements IHasTooltip, IResponsive {
 		} else {
 			sclass += "-default";
 		}
-		sclass += this.getStyleClass() != null ? " " + this.getStyleClass() : "";
-		sclass += Responsive.getResponsiveStyleClass(this, false);
-
+		String styleClass = this.getStyleClass();
+		sclass += styleClass != null ? " " + styleClass : "";
 		rw.writeAttribute("class", sclass, "class");
-		if (this.getStyle() != null)
-			rw.writeAttribute("style", this.getStyle(), "style");
+		String style = getStyle();
+		if (isResponsive) {
+			if (null == style) { 
+				style="display:block";
+			}
+			else {
+				style += ";display:block";
+			}
+		}
+
+		if (style != null)
+			rw.writeAttribute("style", style, "style");
 
 		rw.writeText(txt, null);
 		rw.endElement("span");
