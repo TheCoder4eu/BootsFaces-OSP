@@ -18,7 +18,6 @@
 package net.bootsfaces.component.commandButton;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Map;
 
 import javax.faces.FacesException;
@@ -26,9 +25,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
