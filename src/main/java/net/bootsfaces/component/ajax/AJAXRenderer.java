@@ -562,7 +562,11 @@ public class AJAXRenderer extends CoreRenderer {
 		} else {
 			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		}
-		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
+		if (update==null) {
+			update="";
+		} else {
+			update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
+		}
 		cJS.append(encodeClick((UIComponent)component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
 				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));
