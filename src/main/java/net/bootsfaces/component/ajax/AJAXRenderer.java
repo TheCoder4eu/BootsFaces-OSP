@@ -70,7 +70,7 @@ public class AJAXRenderer extends CoreRenderer {
 				source = componentId;
 			}
 		}
-		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId)|| source.equals(componentId+"Inner")|| source.equals(componentId+"Outer"))) {
+		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId) || source.equals(componentId+"Inner"))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
 			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
@@ -100,7 +100,10 @@ public class AJAXRenderer extends CoreRenderer {
 										if (component instanceof ActionSource) {
 											if (((ActionSource) component).isImmediate())
 												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
-										}
+										} else if (component instanceof IAJAXComponent) {
+										if (((IAJAXComponent) component).isImmediate())
+											ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+									}
 										component.queueEvent(ajaxEvent);
 									}
 								}
@@ -166,7 +169,8 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param context
 	 * @param component
 	 * @param rw
-	 * @param suppressAJAX TODO
+	 * @param suppressAJAX replaces the AJAX request by a BsF.submitForm(), but only if there are parameters. Used by b:navCommandRenderer to implement 
+	 * and action or an actionListener instead of rendering a simple link.
 	 * @throws IOException
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
@@ -558,7 +562,11 @@ public class AJAXRenderer extends CoreRenderer {
 		} else {
 			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		}
-		update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
+		if (update==null) {
+			update="";
+		} else {
+			update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
+		}
 		cJS.append(encodeClick((UIComponent)component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
 				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));

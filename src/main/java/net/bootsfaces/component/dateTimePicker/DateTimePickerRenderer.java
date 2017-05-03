@@ -32,15 +32,14 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
-import net.bootsfaces.utils.LocaleUtils;
 
 /** This class generates the HTML code of &lt;b:dateTimePicker /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
-public class DateTimePickerRenderer extends CoreRenderer {
+public class DateTimePickerRenderer extends CoreInputRenderer {
 	private static final String DTP_OUTER_CONTAINER_SUFFIX = "Outer";
 
 	@Override
@@ -58,16 +57,21 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
 		}
-		String fieldId = dtp.getFieldId();
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
+		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
+		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		
+		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
 		if (null == fieldId) {
 			fieldId = clientId + "_Input";
 		}
 		new AJAXRenderer().decode(context, dtp, fieldId);
-		new AJAXRenderer().decode(context, dtp, clientId);
+		// new AJAXRenderer().decode(context, dtp, clientId);
 	}
 
 	/**
-	 * Get value displayable
+	 * Yields the value which is displayed in the input field of the date picker.
 	 * @param ctx
 	 * @param dtp
 	 * @return
@@ -78,36 +82,35 @@ public class DateTimePickerRenderer extends CoreRenderer {
 			return null;
 		}
 		Locale sloc = BsfUtils.selectLocale(ctx.getViewRoot().getLocale(), dtp.getLocale(), dtp);
-		String sdf = BsfUtils.selectDateFormat(sloc, dtp.getFormat());
-		// assume that the format is always specified as moment.js format
-		sdf = LocaleUtils.momentToJavaFormat(sdf);
+		String javaFormatString = BsfUtils.selectJavaDateTimeFormatFromMomentJSFormatOrDefault(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
 
-		return getDateAsString(ctx, dtp, value, sdf, sloc);
+		return getDateAsString(ctx, dtp, value, javaFormatString, sloc);
 	}
 
 	/**
 	 * Get date in string format
-	 * @param value
-	 * @param format
-	 * @param locale
-	 * @return
+	 * @param fc The FacesContext
+	 * @param dtp the DateTimePicker component
+	 * @param value The date to display
+	 * @param javaFormatString The format string as defined by the SimpleDateFormat syntax
+	 * @param locale The locale
+	 * @return null if the value is null.
 	 */
-
-	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String format, Locale locale) {
+	public static String getDateAsString(FacesContext fc, DateTimePicker dtp, Object value, String javaFormatString, Locale locale) {
 		if (value == null) {
 			return null;
 		}
 
 		Converter converter = dtp.getConverter();
 		return  converter == null ?
-				getInternalDateAsString(value, format, locale)
+				getInternalDateAsString(value, javaFormatString, locale)
 				:
 				converter.getAsString(fc, dtp, value);
 
 	}
 
 
-	public static String getInternalDateAsString(Object dt, String format, Locale locale) {
+	public static String getInternalDateAsString(Object dt, String javaFormatString, Locale locale) {
 		if (dt == null) {
 			return null;
 		}
@@ -115,10 +118,9 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (dt instanceof String) {
 			return (String) dt;
 		} else if (dt instanceof Date) {
-			SimpleDateFormat dtFormat = new SimpleDateFormat(format, locale);
-			dtFormat.setTimeZone(java.util.TimeZone.getDefault());
-
-			return dtFormat.format((Date) dt);
+			SimpleDateFormat dtFormat = new SimpleDateFormat(javaFormatString, locale);
+            String result = dtFormat.format((Date) dt);
+			return result;
 		} else {
 			throw new IllegalArgumentException(
 					"Value could be either String or java.util.Date, you may want to use a custom converter.");
@@ -166,12 +168,14 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		String divSuffix="";
+                String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
 		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
 			rw.startElement("div", dtp);
+                        
 			if (!isHorizontalForm(dtp)) {
-				rw.writeAttribute("class", responsiveStyleClass + " form-group", "class");
+			    rw.writeAttribute("class", responsiveStyleClass + classesWithFeedback, "class");
 			} else {
-				rw.writeAttribute("class", "form-group", "class");
+			    rw.writeAttribute("class", classesWithFeedback, "class");
 			}
 			rw.writeAttribute("id", clientId, null);
 			Tooltip.generateTooltip(fc, dtp, rw);
@@ -180,7 +184,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		} else if (label != null) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("id", clientId, null);
-			rw.writeAttribute("class", "form-group", "class");
+			rw.writeAttribute("class", classesWithFeedback, "class");
 			divSuffix=DTP_OUTER_CONTAINER_SUFFIX;
 			Tooltip.generateTooltip(fc, dtp, rw);
 			clientIdHasBeenRendered=true;
@@ -195,7 +199,7 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		if (label != null) {
 			rw.startElement("label", dtp);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" + clientId
-			generateErrorAndRequiredClassForLabels(dtp, rw, clientId, dtp.getLabelStyleClass());
+                        generateErrorAndRequiredClass(dtp, rw, clientId, dtp.getLabelStyleClass(), Responsive.getResponsiveLabelClass(dtp), "control-label");
 			writeAttribute(rw, "style", dtp.getLabelStyle());
 
 			rw.writeText(label, null);
@@ -375,12 +379,10 @@ public class DateTimePickerRenderer extends CoreRenderer {
 		}
 
 		Locale sloc = BsfUtils.selectLocale(fc.getViewRoot().getLocale(), dtp.getLocale(), dtp);
-		String format = BsfUtils.selectDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
-		String displayFormat = "'" + (dtp.getFormat() == null ? LocaleUtils.javaToMomentFormat(format) : format) + "'";
-		String inlineDisplayDate = "'" + (dtp.getFormat() == null ?
-				getDateAsString(fc, dtp, v, format, sloc)
-				:
-				getDateAsString(fc, dtp, v, LocaleUtils.momentToJavaFormat(format), sloc)) + "'";
+		String format = BsfUtils.selectMomentJSDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
+		String displayFormat = "'" + format + "'";
+		String inlineDisplayDate = "'" +
+				getValueAsString(v, fc, dtp) + "'";
 
 		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(datePickerId);
 

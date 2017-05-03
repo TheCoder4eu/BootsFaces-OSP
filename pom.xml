@@ -3,19 +3,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.bootsfaces</groupId>
 	<artifactId>bootsfaces</artifactId>
-	<version>1.1.0-SNAPSHOT</version>
+	<version>1.1.1-SNAPSHOT</version>
 	<name>BootsFaces</name>
 	<description>TheCoder4EU</description>
 	<url>http://www.bootsfaces.net</url>
 
 	<licenses>
 		<license>
-			<name>GNU General Public License (GPL) version 3.0</name>
-			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
-		</license>
-		<license>
-			<name>GNU Lesser General Public License (LGPL) version 3.0</name>
-			<url>http://www.gnu.org/licenses/lgpl.txt</url>
+			<name>Apache License, Version 2.0</name>
+			<url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
 		</license>
 	</licenses>
 
@@ -78,7 +74,8 @@
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>

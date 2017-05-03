@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
@@ -24,6 +25,8 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
+
+import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.expressions.ExpressionResolver;
 
 public class BsfUtils {
@@ -471,7 +474,7 @@ public class BsfUtils {
 
 		return selFormat;
 	}
-
+	
 	/**
 	 * Selects the Date Pattern to use based on the given Locale if the input
 	 * format is null
@@ -479,11 +482,41 @@ public class BsfUtils {
 	 * @param locale
 	 *            Locale (may be the result of a call to selectLocale)
 	 * @param format
+	 *            optional Input format String, given as Moment.js date format
+	 * @return Moment.js Date Pattern eg. DD/MM/YYYY
+	 */
+	public static String selectMomentJSDateFormat(Locale locale, String format) {
+		String selFormat;
+		if (format == null) {
+			selFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
+			// Since DateFormat.SHORT is silly, return a smart format
+			if (selFormat.equals("M/d/yy")) {
+				return "MM/DD/YYYY";
+			}
+			if (selFormat.equals("d/M/yy")) {
+				return "DD/MM/YYYY";
+			}
+			return LocaleUtils.javaToMomentFormat(selFormat);
+		} else {
+			selFormat = format;
+		}
+
+		return selFormat;
+	}
+
+
+	/**
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
+	 *
+	 * @param locale
+	 *            Locale (may be the result of a call to selectLocale)
+	 * @param momentJSFormat
 	 *            Input format String
 	 * @return Date Pattern eg. dd/MM/yyyy
 	 */
-	public static String selectDateTimeFormat(Locale locale, String format, boolean withDate, boolean withTime) {
-		if (format == null) {
+	public static String selectJavaDateTimeFormatFromMomentJSFormatOrDefault(Locale locale, String momentJSFormat, boolean withDate, boolean withTime) {
+		if (momentJSFormat == null) {
 			String dateFormat = "";
 			if (withDate) {
 				dateFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
@@ -501,9 +534,45 @@ public class BsfUtils {
 			}
 			return (dateFormat + " " + timeFormat).trim();
 		} else {
-			return format;
+			return LocaleUtils.momentToJavaFormat(momentJSFormat);
 		}
 	}
+	
+	/**
+	 * Selects the Date Pattern to use based on the given Locale if the input
+	 * format is null
+	 *
+	 * @param locale
+	 *            Locale (may be the result of a call to selectLocale)
+	 * @param momentJSFormat
+	 *            Input format String
+	 * @return moment.js Date Pattern eg. DD/MM/YYYY
+	 */
+	public static String selectMomentJSDateTimeFormat(Locale locale, String momentJSFormat, boolean withDate, boolean withTime) {
+		if (momentJSFormat == null) {
+			String dateFormat = "";
+			if (withDate) {
+				dateFormat = ((SimpleDateFormat) DateFormat.getDateInstance(DateFormat.SHORT, locale)).toPattern();
+			}
+			String timeFormat = "";
+			if (withTime) {
+				timeFormat = ((SimpleDateFormat)DateFormat.getTimeInstance(DateFormat.MEDIUM, locale)).toPattern();
+			}
+			// Since DateFormat.SHORT is silly, return a smart format
+			if (dateFormat.equals("M/d/yy")) {
+				dateFormat = "MM/dd/yyyy";
+			}
+			else if (dateFormat.equals("d/M/yy")) {
+				dateFormat = "dd/MM/yyyy";
+			}
+			String result = LocaleUtils.javaToMomentFormat((dateFormat + " " + timeFormat).trim());
+//			System.out.println(result);
+			return result;
+		} else {
+			return momentJSFormat;
+		}
+	}
+
 
 
 	/**
@@ -651,4 +720,27 @@ public class BsfUtils {
 	public static int getIntSliderValue(String value) {
 		return (int)getSliderValue(value);
 	}
+
+	/**
+	 * It checks where the framework should place BS feedback classes.
+	 * 
+	 * @return
+	 */
+	public static boolean isLegacyFeedbackClassesEnabled() {
+		String legacyErrorClasses = getInitParam("net.bootsfaces.legacy_error_classes");
+		legacyErrorClasses=evalELIfPossible(legacyErrorClasses);
+		return legacyErrorClasses.equalsIgnoreCase("true") || legacyErrorClasses.equalsIgnoreCase("yes");
+	}
+	
+	private static String evalELIfPossible(String expression) {
+		if (expression != null) {
+			if (expression.contains("#")) {
+				expression = ELTools.evalAsString(expression).trim();
+			}
+		}
+		else
+			expression = "";
+		return expression;
+	}
+
 }

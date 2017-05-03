@@ -21,32 +21,42 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
-public class InputTextRenderer extends CoreRenderer {
+public class InputTextRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
-
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
+		decode(context, component, null, null);
+	}
+
+    /** 
+     * This method is used by RadioButtons and SelectOneMenus to limit the list of legal values. If another value is
+     * sent, the input field is considered empty. This comes in useful the the back-end attribute is a primitive
+     * type like int, which doesn't support null values.
+     * @param context
+     * @param component
+     * @param legalValues an optional list of legal values. May be null.
+     * @param realEventSourceName The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
+     * from the client ID or the name attribute of the input field. However, in some cases such as radio buttons,
+     * this detection fails.
+     */
+	public void decode(FacesContext context, UIComponent component, List<String> legalValues, String realEventSourceName) {
 		InputText inputText = (InputText) component;
 
 		if (inputText.isDisabled() || inputText.isReadonly()) {
@@ -57,54 +67,29 @@ public class InputTextRenderer extends CoreRenderer {
 
 		String clientId = inputText.getClientId(context);
 		String name = inputText.getName();
+		if (realEventSourceName == null) {
+			realEventSourceName = "input_" + clientId;
+		}
+		
 		if (null == name) {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
+		
+		if (null != legalValues && null != submittedValue) {
+			boolean found = false;
+			for (String option: legalValues) {
+				found |= submittedValue.equals(option);
+			}
+			if (!found) {
+				submittedValue = "";
+			}
+		}
 
 		if (submittedValue != null) {
 			inputText.setSubmittedValue(submittedValue);
 		}
-		new AJAXRenderer().decode(context, component, name);
-	}
-
-	/**
-	 * This method is called by the JSF framework to get the type-safe value of
-	 * the attribute. Do not delete this method.
-	 */
-	@Override
-	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
-
-		if (cnv != null) {
-			return cnv.getAsObject(fc, c, (String) sval);
-		} else {
-			return sval;
-		}
-	}
-
-	protected Converter resolveConverter(FacesContext context, UIComponent c) {
-		if (!(c instanceof ValueHolder)) {
-			return null;
-		}
-
-		Converter cnv = ((ValueHolder) c).getConverter();
-
-		if (cnv != null) {
-			return cnv;
-		} else {
-			ValueExpression ve = c.getValueExpression("value");
-
-			if (ve != null) {
-				Class<?> valType = ve.getType(context.getELContext());
-
-				if (valType != null) {
-					return context.getApplication().createConverter(valType);
-				}
-			}
-
-			return null;
-		}
+		new AJAXRenderer().decode(context, component, realEventSourceName);
 	}
 
 	@Override
@@ -156,23 +141,22 @@ public class InputTextRenderer extends CoreRenderer {
 			if (t == null)
 				t = "text";
 		}
+		boolean visible =  !"hidden".equals(t);
 
-		rw.startElement("div", component);
-		numberOfDivs++;
-		if (null != inputText.getDir()) {
-			rw.writeAttribute("dir", inputText.getDir(), "dir");
-		}
-
-		if (!clientIdHasBeenRendered) {
-			rw.writeAttribute("id", clientId, "id");
-			Tooltip.generateTooltip(context, inputText, rw);
-			clientIdHasBeenRendered=true;
-		}
-		if (inputText.isInline()) {
-			rw.writeAttribute("class", "form-inline", "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-		} else {
-			rw.writeAttribute("class", "form-group", "class");
+		if (visible) {
+			rw.startElement("div", component);
+			numberOfDivs++;
+			if (null != inputText.getDir()) {
+				rw.writeAttribute("dir", inputText.getDir(), "dir");
+			}
+	
+			if (!clientIdHasBeenRendered) {
+				rw.writeAttribute("id", clientId, "id");
+				Tooltip.generateTooltip(context, inputText, rw);
+				clientIdHasBeenRendered=true;
+			}
+                        
+                        rw.writeAttribute("class", getWithFeedback(getInputMode(inputText.isInline()), component), "class");
 		}
 
 		String fieldId = inputText.getFieldId();
@@ -180,7 +164,7 @@ public class InputTextRenderer extends CoreRenderer {
 			fieldId = "input_" + clientId;
 		}
 
-		if (label != null) {
+		if (visible && label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" +
 																	// clientId
@@ -192,7 +176,7 @@ public class InputTextRenderer extends CoreRenderer {
 			rw.endElement("label");
 		}
 
-		if (responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
+		if (visible && responsiveStyleClass.length() > 0 && isHorizontalForm(component)) {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			numberOfDivs++;

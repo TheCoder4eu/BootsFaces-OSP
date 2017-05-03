@@ -23,6 +23,7 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -31,12 +32,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:radiobutton /&gt;. */
-@FacesComponent("net.bootsfaces.component.radiobutton.Radiobutton")
+@FacesComponent(Radiobutton.COMPONENT_TYPE)
 public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.radiobutton.Radiobutton";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".radiobutton.Radiobutton";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.radiobutton.Radiobutton";
 
@@ -64,6 +65,10 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 		// this is not an jQuery component
 		return null;
 	}
+	
+	public String getDefaultEventName() {
+		return "click";
+	}
 
 	public String getName() {
 		String propertyName = getValueExpression("value").getExpressionString();
@@ -79,5 +84,10 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 	@Override
 	public String getType() {
 		return "hidden";
+	}
+	
+	@Override
+	public boolean getRendersChildren() {
+		return true;
 	}
 }

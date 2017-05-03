@@ -26,6 +26,7 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.ajax.IAJAXComponent2;
@@ -48,13 +49,13 @@ public class CommandButton extends CommandButtonCore
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.commandButton.CommandButton";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".commandButton.CommandButton";
 	/**
 	 * <p>
 	 * The component family for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	/**
 	 * <p>

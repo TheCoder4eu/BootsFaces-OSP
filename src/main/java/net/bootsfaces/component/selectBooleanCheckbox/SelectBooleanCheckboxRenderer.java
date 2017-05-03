@@ -26,6 +26,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
@@ -35,7 +36,7 @@ import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:selectBooleanCheckbox /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectBooleanCheckbox.SelectBooleanCheckbox")
-public class SelectBooleanCheckboxRenderer extends CoreRenderer {
+public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 
 	/**
 	 * This methods receives and processes input made by the user. More
@@ -62,7 +63,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 															// AJAXRenderer
 
 		String clientId = selectBooleanCheckbox.getClientId(context);
-		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		String submittedValue = context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		if (submittedValue != null) {
 			selectBooleanCheckbox.setSubmittedValue("on".equals(submittedValue));
@@ -106,10 +107,17 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		SelectBooleanCheckbox selectBooleanCheckbox = (SelectBooleanCheckbox) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = selectBooleanCheckbox.getClientId();
-
-		String span = startColSpanDiv(rw, selectBooleanCheckbox);
+		
+		String span = null;
+		if (!isHorizontalForm(component)) {
+			span = startColSpanDiv(rw, selectBooleanCheckbox);
+		}
 		rw.startElement("div", component);
-		writeAttribute(rw, "class", "form-group");
+        writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
+        if (null != selectBooleanCheckbox.getDir()) {
+			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
+		}
+
 		addLabel(rw, clientId, selectBooleanCheckbox);
 
 		renderInputTag(context, rw, clientId, selectBooleanCheckbox);
@@ -140,7 +148,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 			String label = selectBooleanCheckbox.getLabel();
 			if (label != null) {
 				rw.startElement("label", selectBooleanCheckbox);
-				generateErrorAndRequiredClassForLabels(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass());
+                                generateErrorAndRequiredClass(selectBooleanCheckbox, rw, clientId, selectBooleanCheckbox.getLabelStyleClass(), Responsive.getResponsiveLabelClass(selectBooleanCheckbox), "control-label");
 				writeAttribute(rw, "style", selectBooleanCheckbox.getLabelStyle());
 
 				if (null != selectBooleanCheckbox.getDir()) {
@@ -184,6 +192,14 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 	 */
 	protected void renderInputTag(FacesContext context, ResponseWriter rw, String clientId,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
+		int numberOfDivs = 0;
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass(selectBooleanCheckbox, false).trim();
+		if (responsiveStyleClass.length() > 0 && isHorizontalForm(selectBooleanCheckbox)) {
+			rw.startElement("div", selectBooleanCheckbox);
+			rw.writeAttribute("class", responsiveStyleClass, "class");
+			numberOfDivs++;
+		}
+		
 		renderInputTag(rw, context, selectBooleanCheckbox, clientId);
 		renderInputTagAttributes(rw, clientId, selectBooleanCheckbox);
 		// Render Ajax Capabilities
@@ -192,6 +208,11 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		renderInputTagValue(context, rw, selectBooleanCheckbox);
 		renderInputTagEnd(rw, selectBooleanCheckbox);
 		renderInputTagHelper(rw, context, selectBooleanCheckbox, clientId);
+		
+		while (numberOfDivs > 0) {
+			rw.endElement("div"); 
+			numberOfDivs--;
+		}
 	}
 
 	/**
@@ -320,7 +341,7 @@ public class SelectBooleanCheckboxRenderer extends CoreRenderer {
 		rw.endElement("input");
 		String caption = selectBooleanCheckbox.getCaption();
 		if (null != caption)
-			rw.append(caption);
+			rw.append(" " + caption);
 		rw.endElement("label");
 		rw.endElement("div");
 	}

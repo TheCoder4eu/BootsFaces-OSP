@@ -19,10 +19,11 @@
 package net.bootsfaces.component.radiobutton;
 
 import java.io.IOException;
-import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
@@ -32,8 +33,10 @@ import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;
-import net.bootsfaces.component.inputText.InputText;
+import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -41,7 +44,7 @@ import net.bootsfaces.render.Tooltip;
 /** This class generates the HTML code of &lt;b:radiobutton /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.radiobutton.Radiobutton")
 public class RadiobuttonRenderer extends InputTextRenderer {
-
+	
 	private UIComponent findComponentByName(UIComponent c, String name) {
 		Iterator<UIComponent> children = c.getFacetsAndChildren();
 		while(children.hasNext()) {
@@ -54,23 +57,52 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		}
 		return null;
 	}
+
+	private List<UIComponent> findComponentsByName(UIComponent c, String name) {
+		List<UIComponent> result = new ArrayList<UIComponent>();
+		Iterator<UIComponent> children = c.getFacetsAndChildren();
+		while(children.hasNext()) {
+			UIComponent comp = children.next();
+			if (comp instanceof Radiobutton) {
+				if (name.equals(((Radiobutton)comp).getName())) {
+					result.add(comp);
+				}
+			}
+			List<UIComponent> r = findComponentsByName(comp, name);
+			if (!r.isEmpty()) {
+				result.addAll(r);
+			}
+		}
+		return result;
+	}
 	
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
-		InputText inputText = (InputText) component;
+		Radiobutton radioButton = (Radiobutton) component;
 
-		if (inputText.isDisabled() || inputText.isReadonly()) {
+		if (radioButton.isDisabled() || radioButton.isReadonly()) {
 			return;
 		}
 
-		decodeBehaviors(context, inputText);
+		decodeBehaviors(context, radioButton);
 
-		String clientId = inputText.getClientId(context);
-		String name = inputText.getName();
+		String clientId = radioButton.getClientId(context);
+		String name = radioButton.getName();
 		if (null == name) {
 			name = "input_" + clientId;
 		}
 
+		UIForm form = findSurroundingForm(component);
+		
+		// AJAX fires decode to all radio buttons. Change value only for the first element
+		List<UIComponent> radioButtonGroup = findComponentsByName(form, radioButton.getName());
+		if (radioButtonGroup.get(0) == component) {
+			List<String> legalValues = collectLegalValues(context, radioButtonGroup);
+			super.decode(context, component, legalValues, "input_" + clientId);
+		}
+	}
+
+	private UIForm findSurroundingForm(UIComponent component) {
 		UIForm form = null;
 		UIComponent c = component;
 		while(c != null) {
@@ -80,12 +112,30 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			}
 			c = c.getParent();
 		}
-		
-		// Ajax fires decode to all radio buttons. Change value only for the firt element
-		UIComponent firstRadioButton = findComponentByName(form, inputText.getName());
-		if (firstRadioButton == component) {
-			super.decode(context, component);
+		return form;
+	}
+
+	private List<String> collectLegalValues(FacesContext context, List<UIComponent> radioButtonGroup) {
+		List<String> legalValues = new ArrayList<String>();
+		for (UIComponent b: radioButtonGroup) {
+			Radiobutton r = (Radiobutton)b;
+			List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, r);
+			if (options.size()>0) {
+				// traditional JSF approach using f:selectItem[s]
+				for (SelectItemAndComponent option:options) {
+					String o = null;
+					if (null != option.getSelectItem().getValue()) {
+						o = String.valueOf(option.getSelectItem().getValue());
+					}
+					legalValues.add(o);
+				}
+
+			} else {
+				// BootsFaces approach using b:radioButtons for each radiobutton item
+				legalValues.add(r.getItemValue());
+			}
 		}
+		return legalValues;
 	}
 	
 	/**
@@ -107,30 +157,52 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = radiobutton.getClientId();
 
-		String propertyName = radiobutton.getValueExpression("value").getExpressionString();
+		ValueExpression valueExpression = radiobutton.getValueExpression("value");
+		if (null == valueExpression) {
+			throw new FacesException("Radiobuttons always need a value. More precisely, the value attribute must be an EL expression pointing to an attribute of a JSF bean.");
+		}
+		String propertyName = valueExpression.getExpressionString();
 		Object beanValue = ELTools.evalAsObject(propertyName);
 		if (propertyName.startsWith("#{") && propertyName.endsWith("}")) {
 			propertyName=propertyName.substring(2, propertyName.length()-1).trim();
 		} else {
 			throw new FacesException("The value attribute of a radiobutton must be an EL expression.");
 		}
+		UIForm form = findSurroundingForm(component);
+		if (null == form) {
+			throw new FacesException("Radio buttons must be inside a form.");
+		}
+		
+		String name = radiobutton.getName();
+		if (null == name) {
+			throw new FacesException("Please specify the 'name' attribute of the radio button.");
+		}
+		UIComponent radioButtonGroup = findComponentByName(form, name);
+		String radiobuttonGroupId = radioButtonGroup.getClientId(context);
+
 		RadioButtonInternalStateBean state = (RadioButtonInternalStateBean) ELTools.evalAsObject("#{radioButtonInternalStateBean}");
-		String key = "BF_generated_radiobuttonfield_"+propertyName;
+		
+		String key = "BF_generated_radiobuttonfield_"+radiobuttonGroupId;
 		if (!state.inputHasAlreadyBeenRendered(key)) {
-			super.encodeEnd(context, component);
-//			rw.startElement("input", component);
-//			rw.writeAttribute("name", propertyName, null);
-//			rw.endElement("input");
+			rw.startElement("input", null);
+			rw.writeAttribute("id", "input_" + clientId, null);
+			rw.writeAttribute("name", name, null);
+			rw.writeAttribute("type",  "hidden", null);
+			rw.writeAttribute("value", String.valueOf(beanValue), null);
+			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), radiobutton, rw, false);
+
+			rw.endElement("input");
+
 		}
 
-		List<SelectItem> options = SelectItemUtils.collectOptions(context, component);
+		List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, component);
 		if (options.size()>0) {
 			// traditional JSF approach using f:selectItem[s]
 			int counter=0;
-			for (SelectItem option:options) {
+			for (SelectItemAndComponent option:options) {
 				generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue,
-						option.getValue(),
-						option.getLabel(), clientId+(counter++));
+						option.getSelectItem().getValue(),
+						option.getSelectItem().getLabel(), clientId+(counter++));
 
 			}
 
@@ -157,6 +229,12 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			styleClass = styleClass2 + styleClass;
 		}
 		styleClass=styleClass.trim() + " radio";
+		
+		UIForm form = findSurroundingForm(component);
+		Radiobutton firstRadioButton = (Radiobutton)findComponentByName(form, radiobutton.getName());
+		String errorClass = getErrorAndRequiredClass(firstRadioButton, firstRadioButton.getClientId(context));
+		styleClass += " " + errorClass;
+		
 		rw.writeAttribute("class", styleClass, null);
 		writeAttribute(rw, "style", radiobutton.getStyle());
 		Tooltip.generateTooltip(context, radiobutton, rw);
@@ -166,9 +244,11 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		} 
 		rw.startElement("input", component);
 		if (!radiobutton.isDisabled()) {
-			String trigger = radiobutton.isAjax() ? ".trigger('input')" : "";
+			boolean ajax = radiobutton.isAjax();
+			ajax |= null != ((IAJAXComponent) component).getUpdate();
+			String trigger = ajax ? ".trigger('click')" : "";
 			// Add onclick to input element to avoid event bubbling, if event is added on a label
-			rw.writeAttribute("onclick", "$('[name=\"input_" + propertyName + "\"]').val('" + itemValue + "')" + trigger, null);
+			rw.writeAttribute("onclick", "$('#input_" + firstRadioButton.getClientId(context).replace(":", "\\\\:") + "').val('" + itemValue + "')" + trigger, null);
 		}
 		rw.writeAttribute("type", "radio", null);
 		rw.writeAttribute("name", propertyName.replace('.','_'), null);

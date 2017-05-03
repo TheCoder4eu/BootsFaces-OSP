@@ -77,6 +77,7 @@ public class Messages extends javax.faces.component.UIMessages implements IRespo
 		offsetMd,
 		offsetSm,
 		offsetXs,
+		onlyMostSevere,
 		recursive,
 		showDetail,
 		showIcon,
@@ -507,6 +508,22 @@ public class Messages extends javax.faces.component.UIMessages implements IRespo
 	 */
 	public void setOffsetXs(String _offsetXs) {
 		getStateHelper().put(PropertyKeys.offsetXs, _offsetXs);
+	}
+
+	/**
+	 * By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isOnlyMostSevere() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.onlyMostSevere, false);
+	}
+
+	/**
+	 * By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnlyMostSevere(boolean _onlyMostSevere) {
+		getStateHelper().put(PropertyKeys.onlyMostSevere, _onlyMostSevere);
 	}
 
 	/**

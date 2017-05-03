@@ -19,6 +19,7 @@
 package net.bootsfaces.component.inputSecret;
 
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.inputText.InputText;
 
@@ -27,6 +28,9 @@ import net.bootsfaces.component.inputText.InputText;
  * @author Stephan Rauh, http://www.beyondjava.net
  */
 
-@FacesComponent("net.bootsfaces.component.inputSecret.InputSecret")
+@FacesComponent(InputSecret.COMPONENT_TYPE)
 public class InputSecret extends InputText {
+    
+    public static final String COMPONENT_TYPE=C.BSFCOMPONENT + ".inputSecret.InputSecret";
+    
 }

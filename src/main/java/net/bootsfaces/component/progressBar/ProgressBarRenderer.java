@@ -66,7 +66,11 @@ public class ProgressBarRenderer extends CoreRenderer {
 		if (max == min)
 			throw new FacesException("ProgressBar: max and min values must not match.");
 
-		double value = Double.parseDouble(progressBar.getValue());
+		String svalue = progressBar.getValue();
+		if (null == svalue) {
+			throw new FacesException("Please define the value of the progressbar. It must not be null, nor may it be omitted.");
+		}
+		double value = Double.parseDouble(svalue);
 		double progressCompletion = (value - min) / (max - min) * 100;
 
 		String style = "width: " + progressCompletion + "%;";

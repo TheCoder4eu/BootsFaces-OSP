@@ -24,6 +24,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.IResponsive;
@@ -32,7 +33,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:badge /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.badge.Badge")
-public class BadgeRenderer extends CoreRenderer {
+public class BadgeRenderer extends CoreInputRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:badge.
@@ -66,26 +67,49 @@ public class BadgeRenderer extends CoreRenderer {
 	protected void generateBadge(FacesContext context, UIComponent component, ResponseWriter rw,
 			String clientId, String styleClass, String style, String val, String suffix) throws IOException {
 
-		rw.startElement("span", component);
 		if (null != suffix) {
 			clientId = clientId + suffix;
 		}
-		rw.writeAttribute("id", clientId, "id");
+		boolean idHasBeenRendered=false;
+		String clazz = "";
+		if (component instanceof IResponsive) {
+			clazz = Responsive.getResponsiveStyleClass((IResponsive)component, false).trim();
+		}
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", clazz, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+		rw.startElement("span", component);
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		if (styleClass == null)
 			styleClass = "badge";
 		else
 			styleClass += " badge";
 		Tooltip.generateTooltip(context, component, rw);
-		if (component instanceof IResponsive) {
-			styleClass += Responsive.getResponsiveStyleClass((IResponsive)component, false);
-		}
 		rw.writeAttribute("class", styleClass, "class");
+		if (isResponsive) {
+			if (null == style) { 
+				style="display:block";
+			}
+			else {
+				style += ";display:block";
+			}
+		}
 		if (null != style)
 			rw.writeAttribute("style", style, "style");
 		if (val!=null) {
 			rw.writeText(val, null);
 		}
 		rw.endElement("span");
+		if (isResponsive) {
+			rw.endElement("div");
+		}
+
 		Tooltip.activateTooltips(context, component);
 	}
 }

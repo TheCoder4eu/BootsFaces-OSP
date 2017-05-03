@@ -21,19 +21,20 @@ package net.bootsfaces.component.spinner;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import net.bootsfaces.C;
 
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
-@FacesComponent("net.bootsfaces.component.spinner.Spinner")
+@FacesComponent(Spinner.COMPONENT_TYPE)
 public class Spinner extends SpinnerCore
 		implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.spinner.Spinner";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".spinner.Spinner";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.spinner.Spinner";
 

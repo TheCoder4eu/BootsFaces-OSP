@@ -74,23 +74,49 @@ public class ButtonRenderer extends CoreRenderer {
 	 */
 	public void encodeHTML(FacesContext context, Button button)
 	throws IOException {
+		boolean idHasBeenRendered=false;
+		if (button.getHref()!=null&&button.getOutcome()!=null) 
+			throw new FacesException("Please define the href attribute or the outcome attribute, but not both");
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = button.getClientId();
+		
+		// add responsive style
+		String clazz = Responsive.getResponsiveStyleClass(button, false).trim();
+		boolean isResponsive = clazz.length() > 0;
+		if (isResponsive) {
+			rw.startElement("div", button);
+			rw.writeAttribute("class", clazz, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+
 
 		Object value = (button.getValue() != null ? button.getValue() : "");
 		String style = button.getStyle();
 
-		rw.startElement("button", button);
-		rw.writeAttribute("id", clientId, "id");
+		String tag = "button";
+		if ((button.getHref() != null) || (button.getTarget() != null)) {
+			tag="a";
+		}
+		rw.startElement(tag, button);
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+		}
 		rw.writeAttribute("name", clientId, "name");
-		rw.writeAttribute("type", "button", null);
+		if ("button".equals(tag)) {
+			rw.writeAttribute("type", "button", null);
+		}
 		if(BsfUtils.isStringValued(button.getDir())) {
 			rw.writeAttribute("dir", button.getDir(), "dir");
 		}
 		if (style != null) {
 			rw.writeAttribute("style", style, "style");
 		}
-		rw.writeAttribute("class", getStyleClasses(button), "class");
+		if (button.getHref() != null)
+			rw.writeAttribute("href", button.getHref(), "href");
+		if (button.getTarget() != null)
+			rw.writeAttribute("target", button.getTarget(), "target");
+		rw.writeAttribute("class", getStyleClasses(button, isResponsive), "class");
 
 		Tooltip.generateTooltip(context, button, rw);
 
@@ -110,7 +136,7 @@ public class ButtonRenderer extends CoreRenderer {
 
 		String icon = button.getIcon();
 		String faicon = button.getIconAwesome();
-		boolean fa = false; // flag to indicate wether the selected icon set is
+		boolean fa = false; // flag to indicate whether the selected icon set is
 							// Font Awesome or not.
 		if (faicon != null) {
 			icon = faicon;
@@ -131,7 +157,10 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		Tooltip.activateTooltips(context, button);
-		rw.endElement("button");
+		rw.endElement(tag);
+		if (isResponsive) {
+			rw.endElement("div");
+		}
 	}
 
 	/**
@@ -172,7 +201,12 @@ public class ButtonRenderer extends CoreRenderer {
 				if (!fragment.startsWith("#")) {
 					fragment = "#" + fragment;
 				}
-				js += "window.location.href='" + fragment + "';";
+				js += "window.open('" + fragment + "', '";
+				if (button.getTarget() != null)
+					js += button.getTarget();
+				else
+					js += "_self";
+				js += "');";
 				return js;
 			}
 		}
@@ -196,7 +230,12 @@ public class ButtonRenderer extends CoreRenderer {
 							url += "#" + fragment;
 						}
 					}
-					js += "window.location.href='" + url + "';";
+					js += "window.open('" + url + "', '";
+					if (button.getTarget() != null)
+						js += button.getTarget();
+					else
+						js += "_self";
+					js += "');";
 				}
 			}
 		}
@@ -311,11 +350,9 @@ public class ButtonRenderer extends CoreRenderer {
 	/**
 	 * Collects the CSS classes of the button.
 	 *
-	 * @param attrs
-	 *            the attribute list.
 	 * @return the CSS classes (separated by a space).
 	 */
-	private static String getStyleClasses(Button button) {
+	private static String getStyleClasses(Button button, boolean isResponsive) {
 		StringBuilder sb;
 		sb = new StringBuilder(40); // optimize int
 		sb.append("btn");
@@ -332,16 +369,16 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		if (button.isDisabled()) {
-			sb.append(" " + "disabled");
+			sb.append(" disabled");
 		}
-		// TODO add styleClass and class support
+		if (isResponsive) {
+			sb.append(" btn-block");
+		}
 		String sclass = button.getStyleClass();
 		if (sclass != null) {
 			sb.append(" ").append(sclass);
 		}
 
-		// add responsive style
-		sb.append(Responsive.getResponsiveStyleClass(button, false));
 
 		return sb.toString().trim();
 	}

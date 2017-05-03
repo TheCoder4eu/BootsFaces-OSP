@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014 - 17 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -22,7 +22,7 @@ import javax.faces.component.*;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
-public abstract class FormCore extends UIOutput {
+public abstract class FormCore extends UIForm {
 
 	protected enum PropertyKeys {
 		horizontal, inline, style, styleClass;

@@ -27,12 +27,12 @@ import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:scrollUp /&gt;. */
-@FacesComponent("net.bootsfaces.component.scrollUp.ScrollUp")
+@FacesComponent(ScrollUp.COMPONENT_TYPE)
 public class ScrollUp extends UIComponentBase {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.scrollUp.ScrollUp";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".scrollUp.ScrollUp";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.scrollUp.ScrollUp";
 

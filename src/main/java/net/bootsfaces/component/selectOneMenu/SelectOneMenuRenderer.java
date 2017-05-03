@@ -33,10 +33,11 @@ import javax.faces.convert.ConverterException;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputText.InputTextRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -44,7 +45,7 @@ import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:SelectOneMenu /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.selectOneMenu.SelectOneMenu")
-public class SelectOneMenuRenderer extends CoreRenderer {
+public class SelectOneMenuRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
     /** Receives the value from the client and sends it to the JSF bean. */
@@ -58,11 +59,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         String clientId = outerClientId+"Inner";
         String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
-        List<SelectItem> items = SelectItemUtils.collectOptions(context, menu);
+        List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
 
         if (null != submittedOptionValue) {
             for (int index = 0; index < items.size(); index++) {
-                Object currentOption = items.get(index);
+                Object currentOption = items.get(index).getSelectItem();
                 String currentOptionValueAsString;
                 Object currentOptionValue = null;
                 if (currentOption instanceof SelectItem) {
@@ -119,12 +120,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         }
         rw.startElement("div", menu);
 
-        if (menu.isInline()) {
-            rw.writeAttribute("class", "form-inline", "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-        } else {
-            rw.writeAttribute("class", "form-group", "class");
-        }
+        rw.writeAttribute("class", getWithFeedback(getInputMode(menu.isInline()), component), "class");
         if (!clientIdHasBeenRendered) {
         	rw.writeAttribute("id", outerClientId, "id");
             Tooltip.generateTooltip(context, menu, rw);
@@ -193,7 +189,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         if (label != null) {
             rw.startElement("label", menu);
             rw.writeAttribute("for", clientId, "for");
-            generateErrorAndRequiredClassForLabels(menu, rw, outerClientId, null);
+            generateErrorAndRequiredClass(menu, rw, outerClientId, menu.getLabelStyleClass(), Responsive.getResponsiveLabelClass(menu), "control-label");
             writeAttribute(rw, "style", menu.getLabelStyle());
             rw.writeText(label, null);
             rw.endElement("label");
@@ -274,11 +270,11 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      */
     protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu)
             throws IOException {
-        List<SelectItem> items = SelectItemUtils.collectOptions(context, menu);
+        List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
 
         for (int index = 0; index < items.size(); index++) {
-            Object option = items.get(index);
-            renderOption(context,menu, rw, (SelectItem) option, index);
+            SelectItemAndComponent option = items.get(index);
+            renderOption(context,menu, rw, (option.getSelectItem()), index, option.getComponent());
         }
     }
 
@@ -295,14 +291,14 @@ public class SelectOneMenuRenderer extends CoreRenderer {
      * @throws IOException
      *             thrown if something's wrong with the response writer
      */
-    protected void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, SelectItem selectItem, int index)
+    protected void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, SelectItem selectItem, int index, UIComponent itemComponent)
             throws IOException {
 
         String itemLabel = selectItem.getLabel();
         final String description = selectItem.getDescription();
         final Object itemValue = selectItem.getValue();
 
-        renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled(), selectItem.isEscape());
+        renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled(), selectItem.isEscape(), itemComponent);
     }
 
     private Converter findImplicitConverter(FacesContext context, UIComponent component) {
@@ -376,7 +372,8 @@ public class SelectOneMenuRenderer extends CoreRenderer {
     }
 
     private void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, int index, String itemLabel,
-            final String description, final Object itemValue, boolean isDisabled, boolean isEscape) throws IOException {
+            final String description, final Object itemValue, boolean isDisabled, boolean isEscape,
+            UIComponent itemComponent) throws IOException {
         Object submittedValue = menu.getSubmittedValue();
         Object selectedOption;
         Object optionValue;
@@ -393,7 +390,7 @@ public class SelectOneMenuRenderer extends CoreRenderer {
         boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
         itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
 
-        rw.startElement("option", null);
+        rw.startElement("option", itemComponent);
         rw.writeAttribute("data-label", itemLabel, null);
         if (description != null) {
             rw.writeAttribute("title", description, null);

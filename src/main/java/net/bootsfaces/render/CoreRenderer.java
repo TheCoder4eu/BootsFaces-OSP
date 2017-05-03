@@ -19,13 +19,11 @@ package net.bootsfaces.render;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.ProjectStage;
 import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
@@ -37,12 +35,14 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
+import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
 
 import net.bootsfaces.beans.ELTools;
-import net.bootsfaces.component.accordion.Accordion;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
+import net.bootsfaces.utils.BsfUtils;
+import net.bootsfaces.utils.FacesMessages;
 
 public class CoreRenderer extends Renderer {
 
@@ -100,6 +100,8 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
+     * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
+     * 
 	 * Renders the CSS pseudo classes for required fields and for the error
 	 * levels.
 	 *
@@ -108,6 +110,7 @@ public class CoreRenderer extends Renderer {
 	 * @param clientId
 	 * @throws IOException
 	 */
+    @Deprecated
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
 			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
@@ -118,7 +121,7 @@ public class CoreRenderer extends Renderer {
 			}
 		}
 		UIForm currentForm = AJAXRenderer.getSurroundingForm((UIComponent) input, true);
-		if (null != currentForm && currentForm instanceof Form) {
+		if (currentForm instanceof Form) {
 			if (((Form) currentForm).isHorizontal()) {
 				styleClass += " control-label";
 			}
@@ -169,33 +172,15 @@ public class CoreRenderer extends Renderer {
 	/**
 	 * Yields the value of the required and error level CSS class.
 	 *
-	 * @param input
-	 * @param clientId
-	 * @return
+	 * @param input must not be null
+	 * @param clientId must not be null
+	 * @return can never be null
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
-		String[] levels = { "bf-no-message has-success", "bf-info", "bf-warning has-warning", "bf-error has-error",
-				"bf-fatal has-error" };
-		int level = 0;
-		Iterator<FacesMessage> messages = FacesContext.getCurrentInstance().getMessages(clientId);
-		if (null != messages) {
-			while (messages.hasNext()) {
-				FacesMessage message = messages.next();
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_INFO))
-					if (level < 1)
-						level = 1;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_WARN))
-					if (level < 2)
-						level = 2;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_ERROR))
-					if (level < 3)
-						level = 3;
-				if (message.getSeverity().equals(FacesMessage.SEVERITY_FATAL))
-					if (level < 4)
-						level = 4;
-			}
+		String styleClass = "";
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			styleClass = FacesMessages.getErrorSeverityClass(clientId);
 		}
-		String styleClass = levels[level];
 		if (input.isRequired()) {
 			styleClass += " bf-required";
 		} else {
@@ -203,7 +188,8 @@ public class CoreRenderer extends Renderer {
 			if (null != readAnnotations && readAnnotations.length > 0) {
 				for (Annotation a : readAnnotations) {
 					if ((a.annotationType().getName().endsWith("NotNull"))
-							|| (a.annotationType().getName().endsWith("NotEmpty"))) {
+							|| (a.annotationType().getName().endsWith("NotEmpty"))
+							|| (a.annotationType().getName().endsWith("NotBlank"))) {
 						styleClass += " bf-required";
 						break;
 					}
@@ -213,12 +199,13 @@ public class CoreRenderer extends Renderer {
 		return styleClass;
 	}
 
+
 	protected boolean shouldRenderAttribute(Object value) {
 		if (value == null)
 			return false;
 
 		if (value instanceof Boolean) {
-			return ((Boolean) value).booleanValue();
+			return ((Boolean) value);
 		} else if (value instanceof Number) {
 			Number number = (Number) value;
 
@@ -256,7 +243,7 @@ public class CoreRenderer extends Renderer {
 
 			if (behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
 				String behaviorSource = params.get("javax.faces.source");
-				String clientId = component.getClientId();
+				String clientId = component.getClientId(context);
 				if (behaviorSource != null && clientId.equals(behaviorSource)) {
 					for (ClientBehavior behavior : behaviorsForEvent) {
 						behavior.decode(context, component);
@@ -526,6 +513,50 @@ public class CoreRenderer extends Renderer {
 
 		return converter;
 	}
+	
+	/**
+	 * This method is called by the JSF framework to get the type-safe value of
+	 * the attribute. Do not delete this method.
+	 */
+	@Override
+	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
+		Converter cnv = resolveConverter(fc, c);
+
+		if (cnv != null) {
+			if (sval == null || sval instanceof String) {
+				return cnv.getAsObject(fc, c, (String)sval);
+			} else {
+				return cnv.getAsObject(fc, c, String.valueOf(sval));
+			}
+		} else {
+			return sval;
+		}
+	}
+
+	protected Converter resolveConverter(FacesContext context, UIComponent c) {
+		if (!(c instanceof ValueHolder)) {
+			return null;
+		}
+
+		Converter cnv = ((ValueHolder) c).getConverter();
+
+		if (cnv != null) {
+			return cnv;
+		} else {
+			ValueExpression ve = c.getValueExpression("value");
+
+			if (ve != null) {
+				Class<?> valType = ve.getType(context.getELContext());
+
+				if (valType != null) {
+					return context.getApplication().createConverter(valType);
+				}
+			}
+
+			return null;
+		}
+	}
+
 
 	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
@@ -549,4 +580,44 @@ public class CoreRenderer extends Renderer {
 		return false;
 	}
 
+	/**
+	 * Get the main field container 
+         * 
+         * @deprecated Use {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)} instead
+         * 
+	 * @param additionalClass
+	 * @param clientId
+	 * @return
+	 */
+        @Deprecated
+	protected String getFormGroupWithFeedback(String additionalClass, String clientId) {
+		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
+			return additionalClass;
+		}
+		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
+	}
+	
+
+        protected void beginResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.startElement("div", component);
+                responseWriter.writeAttribute("class", responsiveStyleClass, null);
+            }
+        }
+        
+        protected void endResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+            if(!(component instanceof IResponsive)) {
+                return;
+            }
+            
+            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
+            if(!"".equals(responsiveStyleClass)) {
+                responseWriter.endElement("div");
+            }
+        }
 }

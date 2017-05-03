@@ -3,18 +3,14 @@ package net.bootsfaces.component.colorPicker;
 import java.io.IOException;
 import java.util.logging.Logger;
 
-import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
-import javax.faces.component.ValueHolder;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreInputRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -22,7 +18,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.colorPicker.ColorPicker")
-public class ColorPickerRenderer extends CoreRenderer {
+public class ColorPickerRenderer extends CoreInputRenderer {
 	private static final Logger LOGGER = Logger.getLogger(ColorPickerRenderer.class.getName());
 
 	@Override
@@ -43,45 +39,6 @@ public class ColorPickerRenderer extends CoreRenderer {
 			colorPicker.setSubmittedValue(submittedValue);
 		}
 		new AJAXRenderer().decode(context, component, name);
-	}
-
-	/**
-	 * This method is called by the JSF framework to get the type-safe value of
-	 * the attribute. Do not delete this method.
-	 */
-	@Override
-	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
-
-		if (cnv != null) {
-			return cnv.getAsObject(fc, c, (String) sval);
-		} else {
-			return sval;
-		}
-	}
-
-	protected Converter resolveConverter(FacesContext context, UIComponent c) {
-		if (!(c instanceof ValueHolder)) {
-			return null;
-		}
-
-		Converter cnv = ((ValueHolder) c).getConverter();
-
-		if (cnv != null) {
-			return cnv;
-		} else {
-			ValueExpression ve = c.getValueExpression("value");
-
-			if (ve != null) {
-				Class<?> valType = ve.getType(context.getELContext());
-
-				if (valType != null) {
-					return context.getApplication().createConverter(valType);
-				}
-			}
-
-			return null;
-		}
 	}
 
 	@Override
@@ -141,17 +98,15 @@ public class ColorPickerRenderer extends CoreRenderer {
 			rw.writeAttribute("id", clientId, "id");
 			Tooltip.generateTooltip(context, colorPicker, rw);
 		}
-		if (colorPicker.isInline()) {
-			rw.writeAttribute("class", "form-inline", "class");
-			LOGGER.warning("The inline attribute of b:inputText is deprecated and generates faulty HTML code. Please use <b:form inline=\"true\"> instead.");
-		} else {
-			rw.writeAttribute("class", "form-group", "class");
-		}
-
+                
+                rw.writeAttribute("class", getWithFeedback(getInputMode(colorPicker.isInline()), component), "class");
+                
 		if (label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", "input_" + clientId, "for");
-			generateErrorAndRequiredClassForLabels(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			//generateErrorAndRequiredClassForLabels(colorPicker, rw, clientId, colorPicker.getLabelStyleClass());
+			generateErrorAndRequiredClass(colorPicker, rw, clientId, colorPicker.getLabelStyleClass(), responsiveLabelClass,
+					"control-label");
 			writeAttribute(rw, "style", colorPicker.getLabelStyle());
 
 			rw.writeText(label, null);
@@ -241,7 +196,7 @@ public class ColorPickerRenderer extends CoreRenderer {
 		rw.startElement("script", colorPicker);
 		rw.writeText("$(function() {" +
 					"$('#input_" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId) + "').minicolors({" +
-					(colorPicker.getAttributes().get("control") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
+					(colorPicker.getAttributes().get("s") != null ? " control: '" + colorPicker.getAttributes().get("control")  + "'," : "")  +
 					(colorPicker.getAttributes().get("format") != null ? " format: '" + colorPicker.getAttributes().get("format")  + "'," : "")  +
 					(colorPicker.getAttributes().get("opacity") != null ? " opacity: " + colorPicker.getAttributes().get("opacity")  + "," : "")  +
 					(colorPicker.getAttributes().get("position") != null ? " position: '" + colorPicker.getAttributes().get("position")  + "'," : "")  +

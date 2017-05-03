@@ -20,13 +20,18 @@ package net.bootsfaces.component.growl;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessages;
+import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
-@FacesComponent("net.bootsfaces.component.growl.Growl")
+@FacesComponent(Growl.COMPONENT_TYPE)
 public class Growl extends UIMessages {
+
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".growl.Growl";
+
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public Growl() {
 		super();
@@ -34,6 +39,10 @@ public class Growl extends UIMessages {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-notify.min.js");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addExtCSSResource("animate.css");
+	}
+	
+	public String getFamily() {
+		return COMPONENT_FAMILY;
 	}
 
 	/**

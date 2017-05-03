@@ -40,7 +40,7 @@ install {
         pom.artifactId = 'bootsfaces'
         // shouldn't be needed as this is the default anyway
         pom.packaging = 'jar'
-        pom.version = "$BootsFacesVersion-SNAPSHOT"
+        pom.version = "$pomVersion"
     }
 }
 
@@ -49,11 +49,11 @@ mavenCentral()
 }
 
 dependencies {
-compile 'javax.servlet:servlet-api:3.+'
-compile 'com.sun.faces:jsf-api:2.2.+'
-compile 'javax.el:javax.el-api:3.0.0'
-testCompile 'junit:junit:4.11'
-testCompile 'org.mockito:mockito-core:2.0.17-beta'
+  compile 'javax.servlet:javax.servlet-api:3.1.0'
+  compile 'com.sun.faces:jsf-api:2.2.14'
+  compile 'javax.el:javax.el-api:3.0.0'
+  testCompile 'junit:junit:4.11'
+  testCompile 'org.mockito:mockito-core:2.0.17-beta'
 // testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
 // testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.1.1'
 // testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.1.1'

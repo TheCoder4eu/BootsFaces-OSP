@@ -38,14 +38,14 @@ import javax.faces.model.SelectItem;
  */
 public class SelectItemUtils {
     @SuppressWarnings("rawtypes")
-    public static List<SelectItem> collectOptions(FacesContext context, UIComponent menu) {
-        List<SelectItem> items = new ArrayList<SelectItem>();
+    public static List<SelectItemAndComponent> collectOptions(FacesContext context, UIComponent menu) {
+        List<SelectItemAndComponent> items = new ArrayList<SelectItemAndComponent>();
 
         List<UIComponent> selectItems = menu.getChildren();
         for (UIComponent kid : selectItems) {
             if (kid instanceof UISelectItem) {
                 UISelectItem option = (UISelectItem) kid;
-                items.add(toSelectItem(option));
+                items.add(new SelectItemAndComponent(kid, toSelectItem(option)));
             } else if (kid instanceof UISelectItems) {
 
                 UISelectItems uiSelectItems = ((UISelectItems) kid);
@@ -53,7 +53,7 @@ public class SelectItemUtils {
 
                 if (value != null) {
                     if (value instanceof SelectItem) {
-                        items.add((SelectItem)value);
+                        items.add(new SelectItemAndComponent(kid, (SelectItem)value));
 
                     } else {
                         if (value.getClass().isArray()) {
@@ -61,9 +61,9 @@ public class SelectItemUtils {
                                 Object item = Array.get(value, i);
 
                                 if (item instanceof SelectItem)
-                                    items.add((SelectItem)item);
+                                    items.add(new SelectItemAndComponent(kid, (SelectItem)item));
                                 else
-                                    items.add(createSelectItem(context, uiSelectItems, item, null));
+                                    items.add(new SelectItemAndComponent(kid, createSelectItem(context, uiSelectItems, item, null)));
                             }
                         } else if (value instanceof Map) {
                             Map map = (Map) value;
@@ -71,7 +71,7 @@ public class SelectItemUtils {
                             for (Iterator it = map.keySet().iterator(); it.hasNext();) {
                                 Object key = it.next();
 
-                                items.add(createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key)));
+                                items.add(new SelectItemAndComponent(kid, createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key))));
                             }
                         } else if (value instanceof Collection) {
                             Collection collection = (Collection) value;
@@ -79,9 +79,9 @@ public class SelectItemUtils {
                             for (Iterator it = collection.iterator(); it.hasNext();) {
                                 Object item = it.next();
                                 if (item instanceof SelectItem)
-                                    items.add((SelectItem)item);
+                                    items.add(new SelectItemAndComponent(kid, (SelectItem)item));
                                 else
-                                    items.add(createSelectItem(context, uiSelectItems, item, null));
+                                    items.add(new SelectItemAndComponent(kid, createSelectItem(context, uiSelectItems, item, null)));
                             }
                         }
                     }

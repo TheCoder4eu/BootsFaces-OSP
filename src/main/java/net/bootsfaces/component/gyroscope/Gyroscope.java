@@ -27,20 +27,21 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:gyroscope /&gt;. */
-@FacesComponent("net.bootsfaces.component.gyroscope.Gyroscope")
+@FacesComponent(Gyroscope.COMPONENT_TYPE)
 public class Gyroscope extends GyroscopeCore implements IAJAXComponent, ClientBehaviorHolder {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.gyroscope.Gyroscope";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".gyroscope.Gyroscope";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.gyroscope.Gyroscope";
+	public static final String DEFAULT_RENDERER = C.BSFCOMPONENT + ".gyroscope.Gyroscope";
 
 	public Gyroscope() {
 		AddResourcesListener.addThemedCSSResource("core.css");

@@ -292,6 +292,7 @@ public class AddResourcesListener implements SystemEventListener {
 		if (theme.equals("patternfly")) {
 			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
 			// remove datatables.min.css
+			/*
 			for (UIComponent resource : root.getComponentResources(context, "head")) {
 				String library = (String) resource.getAttributes().get("library");
 				if (C.BSF_LIBRARY.equals(library)) {
@@ -302,6 +303,7 @@ public class AddResourcesListener implements SystemEventListener {
 					}
 				}
 			}
+			*/
 		}
 		
 		//Add mandatory CSS bsf.css

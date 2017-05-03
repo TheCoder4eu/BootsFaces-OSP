@@ -125,11 +125,11 @@ widget button
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     dismiss                                                                "This attribute is mapped to the HTML5 data-dismiss custom attribute."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Button Icon, can be one of the Bootstrap icon names. Alignment can be specified with icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Font Awesome Icon to show in this Button, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     lang                                                                   "Code describing the language used in the generated markup for this component."
     look                                                                   "Look of the Button, can be primary, block, info, success, warning, important, error, inverse. If not specified, Standard gray button with gradient is rendered."
     onblur                                                                 "Client side callback to execute when input element loses focus."
@@ -150,6 +150,7 @@ widget button
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Optional button caption."
     +style
@@ -379,7 +380,7 @@ widget colorPicker
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -565,12 +566,13 @@ widget datepicker
     first-day           Integer                                            "Set the first day of the week: Sunday is 0, Monday is 1, etc."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     lang                                                                   "This option allows you to localize the DatePicker, specifying the language code (eg. it, fr, es, nl). The datepicker uses the ISO 639-1 language codes eventually followed by ISO 3166-1 country codes. The Datepicker is localized with the language specified by the ViewRoot Locale."
+    label               inherited                                          "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     mode                                                                   "Controls how the Calendar is showed, can be inline, popup, popup-icon, icon-popup, toggle-icon, and icon-toggle. Default is toggle-icon."
     number-of-months    Integer                                            "Number of months to show."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -610,7 +612,7 @@ widget dateTimePicker
     initial-date			 											   "Sets the picker default date/time. Overrides useCurrent. Default: false. Accepts: date, moment, string."
     keep-invalid		     Boolean									   "Will cause the date picker to not revert or overwrite invalid dates. Default: false."
     keep-open				 Boolean								       "Will cause the date picker to stay open after selecting a date if no time components are being used. Deafult: false."
-    label                    inherited                             "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
+    label                    inherited                                     "An optional label of the field. The label is only shown if you also set render-attribute='true'. The label is also used for error messages."
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     locale															       "The desired locale. It uses the moment.js locales."
@@ -636,7 +638,7 @@ widget dateTimePicker
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly                 Boolean inherited                             "Flag indicating that this input element will prevent changes by the user."
     rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    render-label             Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label             Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     required                 Boolean                                       "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     show-button-panel        Boolean                                       "Boolean value to specify if row Buttons to the bottom of calendar should be shown (all button at once)."
@@ -738,7 +740,7 @@ widget form
     accept              inherited                                          "List of content types that a server processing this form will handle correctly"
     acceptcharset       inherited                                          "List of character encodings for input data that are accepted by the server processing this form."
     dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
-    enytype             inherited                                          "Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'."
+    enctype             inherited                                          "Content type used to submit the form to the server.  If not specified, the default value is 'application/x-www-form-urlencoded'."
     horizontal          Boolean default "false"                            "Use this flag to create a horizontal form (labels are on the same line as their input fields)"
     inline              Boolean default "false"                            "Use this flag to create a inline form (labels are on the same line as their input fields)"
     lang                inherited                                          "Code describing the language used in the generated markup for this component."
@@ -1004,7 +1006,7 @@ widget inputSecret
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1070,7 +1072,7 @@ widget inputText
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean      inherited                             "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1140,7 +1142,7 @@ widget inputTextarea
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly              Boolean                                          "Flag indicating that this input element will prevent changes by the user."
-    render-label          Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label          Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered              Boolean inherited                                "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required              Boolean                                          "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1192,6 +1194,7 @@ widget kebab
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
+	+contentDisabled
 }
 
 widget label
@@ -1204,7 +1207,8 @@ widget label
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
-    text                mandatory                                          "Label text."
+    text                                                                   "Deprecated in favor of 'value'. Label text."
+    value                                                                  "Label text."
 	+style
 	+responsive
 	+tooltip
@@ -1275,6 +1279,7 @@ widget messages
     info-style                                                             "CSS style to be used for messages with severity \"INFO\"."
     line-break          Boolean default "true"                             "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag."
     line-break-tag      String  default "<br />"                           "If there's more than one message, they can optionally be separated by a line break. By default, the separator is a br tag. You can replace if with an arbitrary HTML snippet."
+    only-most-severe    Boolean default "false"                            "By default, b:messages shows every message reported. You can limit it to the most important messages by setting this flag to true. In this case, BootsFaces shows only the message with the severity level."
     rendered            Boolean inherited                                  "A boolean value that indicates whether this component should be rendered. Default value: true."
     redisplay           Boolean inherited                                  "Set the flag indicating whether messages that have already been displayed should be displayed again. By default, messages are always redisplayed. Most likely, you'll want to set this flag to false."
     recursive           Boolean default "false"                            "If set to true, b:messages checks the for attributes using a slower algorithm that doesn't require you to put the component into a namingcontainer."
@@ -1332,6 +1337,7 @@ widget navBar
     brand-img-style-class                                                  "CSS style class of the brand image."
     brand-style                                                            "Inline style of the optional navBar brand."
     brand-style-class                                                      "CSS style class of the optional navBar brand."
+    brand-target                                                           "Optional target of the HTML anchor tag that's rendered for the brand image. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide a brand-href."
     fixed                                                                  "Deprecated (use position and sticky instead). If specified, the Fixed Bar will be rendered on top or bottom of the page. Can be \"bottom\", \"top\" or \"non-sticky\". The latter is a footer that scrolls with the page."
     fluid               Boolean  default "false"                           "Boolean value default is false; when set to true the navbar container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1367,7 +1373,7 @@ widget navCommandLink
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
     header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
-    href                                                                   "URL to link directly to implement anchor behavior."
+    href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
@@ -1394,7 +1400,7 @@ widget navCommandLink
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
-    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
@@ -1418,7 +1424,7 @@ widget navLink
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
     header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
-    href                                                                   "URL to link directly to implement anchor behavior."
+    href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
@@ -1446,7 +1452,7 @@ widget navLink
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
-    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tag. This attribute is only evaluated if you provide an href."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
     update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
     +responsive
@@ -1571,7 +1577,7 @@ widget progressBar
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
-    value                                                                  "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
+    value               mandatory                                          "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
     max                 Integer default "100"                              "The maximum value of the ProgressBar. (default 100)"
     min                 Integer default "0"                                "The minimum value of the ProgressBar. (default 0)"
     caption                                                                "Optional caption to change the text, which is shown on the progress bar. Default is the progressbar completion in percent."
@@ -1593,6 +1599,8 @@ widget radiobutton implemented_by net.bootsfaces.component.radiobutton
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
     item-label                                                                  "The caption of the radio button. Alternatively you can use arbitrary captions by embedding them as child elements of the b:radiobutton. As a third alternative, you can follow the traditional JSF approach using &lt;f:f:selectItem /&gt; or &lt;f:selectItems /&gt;."
     value               inherited                                          "EL expression denoting the property of the backend bean. This expression is also used to determine which radiobuttons belong together."
     item-value           String                                             "Value of the item. Must be omitted if you use the traditional JSF approach using &lt;f:selectItem /&gt; or &lt;f:selectItems /&gt;."
@@ -1709,8 +1717,10 @@ widget selectBooleanCheckbox
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean inherited                                  "Boolean value Require input in the component when the form is submitted."
+    required-message    inherited                                          "Message to show if the user did not specify a value and the attribute required is set to true."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
@@ -1720,6 +1730,7 @@ widget selectBooleanCheckbox
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
     +tooltip
     +responsive
+    +responsiveLabel
 }
 
 widget shake
@@ -1809,7 +1820,7 @@ widget switch
 	on-text                                                                         "Optional label of the active switch. The default value is 'on'."
 	off-text                                                                        "Optional label of the inactive switch. The default value is 'off'."
     readonly            Boolean                                      inherited      "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()"  inherited      "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()"  inherited      "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean                                      inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                            inherited      "Inline style of the input element."
     style-class                                                      inherited      "Style class of the input element."
@@ -1873,7 +1884,7 @@ widget selectMultiMenu
     enable-case-insensitive-filtering  Boolean default "false"             "If set to true, the filter is case-insensitive."
 
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1936,7 +1947,7 @@ widget selectOneMenu
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1999,8 +2010,8 @@ widget slider2
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     labelled-by															   "Labels for the slider handle's, Use array for multiple values in a range slider."
-	max					Float default "100"							       "Maximum possible value"
-	min					Float default "0"								   "Minimum possible value"
+	max					Integer default "100"							   "The maximum value of the slider. (default 100)"
+	min					Integer default "0"								   "The maximum value of the slider. (default 0)"
 	mode                default "badge"                                    "Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field."
     natural_arrow_keys	Boolean	default "false"							   "The natural order is used for the arrow keys. Arrow up select the upper slider value for vertical sliders, arrow right the righter slider value for a horizontal slider - no matter if the slider was reversed or not. By default the arrow keys are oriented by arrow up/right to the higher slider value, arrow down/left to the lower slider value."
 	orientation			default "horizontal"							   "Set the orientation. Accepts 'vertical' or 'horizontal'"
@@ -2010,11 +2021,11 @@ widget slider2
 	scale				default "linear"								   "Set to 'logarithmic' to use a logarithmic scale."
 	selection			default "before"								   "Selection placement. Accepts: 'before', 'after' or 'none'. In case of a range slider, the selection will be placed between the handles."
 	span                Integer default "12"                               "The column span of the slider."
-    step				Float default "1"								   "Increment step"
+    step				Integer default "1"								   "Increment step"
 	tooltip-visibility	default "show"									   "Whether to show the tooltip on drag, hide the tooltip, or always show the tooltip. Accepts: 'show', 'hide', or 'always'."
 	tooltip-split		Boolean default "false"							   "If false show one tootip if true show two tooltips one for each handler."
 	tooltip-slider-position												   "Position of tooltip, relative to slider. Accepts 'top'/'bottom' for horizontal sliders and 'left'/'right' for vertically orientated sliders. Default positions are 'top' for horizontal and 'right' for vertical slider."
-	value				default "5" 								   	   "Initial value float mode."
+	value				Integer default "5" inherited   	    	   	   "Initial position of the slider."
     style                                                                  "Inline style of the entire slider."
     style-class                                                            "Style class of the entire slider."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
@@ -2104,7 +2115,7 @@ widget touchSpin
     postfix-extra-class													   "Extra class(es) for postfix."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean      inherited                             "Flag indicating that this input element will prevent changes by the user."
-    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used by AngularFaces, too."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -2151,6 +2162,7 @@ widget tab
     title                                                                  "Caption of the tab."
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
+    +contentDisabled
 }
 
 widget tabLinks
@@ -2193,6 +2205,7 @@ widget tabView
     style-class                                                            "Style class of the div surrounding this element."
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
+    +contentDisabled
 }
 
 widget tree
@@ -2209,8 +2222,8 @@ widget tree
     show-icon				Boolean														"Boolean value to specify if icons are rendered or not."
     show-checkbox			Boolean														"Boolean value to specify if checkbox is rendered or not."
     show-border				Boolean														"Boolean value to specify if tree items has to display the border."
-    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
-    enable-links			Boolean														"Boolean value to specify if enable href link."
+    tabindex                                                                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    enable-links			Boolean														"Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model."
     collapse-icon																		"Glyphicons of collapse."
     expand-icon																			"Glyphicons of expand."
     color																				"Hex value of text color."
@@ -2296,4 +2309,18 @@ widget well
     +tooltip
     +responsive
     +contentDisabled
+}
+
+widget formGroup
+       implemented_by net.bootsfaces.component.formGroup.FormGroup
+       has_children
+       has_tooltip
+ {
+    dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style               inherited                                          "Inline style of the input element."
+    style-class         inherited                                          "Style class of this element."
+    +tooltip
+	+contentDisabled
 }

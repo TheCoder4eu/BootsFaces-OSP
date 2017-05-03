@@ -46,13 +46,13 @@ import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.LocaleUtils;
 
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
-@FacesComponent("net.bootsfaces.component.dateTimePicker.DateTimePicker")
+@FacesComponent(DateTimePicker.COMPONENT_TYPE)
 public class DateTimePicker extends DateTimePickerCore
 implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dateTimePicker.DateTimePicker";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 
@@ -118,6 +118,9 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		super.setValueExpression(name, binding);
 	}
 
+	/**
+	 * Converts the date from the moment.js format to a java.util.Date.
+	 */
 	@Override
 	public Object getConvertedValue(FacesContext context, Object submittedValue)
 	throws ConverterException {
@@ -130,7 +133,6 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		if (val.trim().length() == 0) {
 			return null;
 		}
-		//System.out.println("CV: " + val);
 
 		Converter converter = this.getConverter();
 
@@ -140,12 +142,11 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		}
 		// Else we use our own converter
 		Locale sloc = BsfUtils.selectLocale(context.getViewRoot().getLocale(), this.getLocale(), this);
-		String componentFormat = BsfUtils.selectDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
-		String sdf = BsfUtils.selectDateFormat(sloc, componentFormat);
-		sdf = LocaleUtils.momentToJavaFormat(sdf);
+		String momentJSFormat = BsfUtils.selectMomentJSDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
+		String javaFormat = LocaleUtils.momentToJavaFormat(momentJSFormat);
 
 		Calendar cal = Calendar.getInstance(sloc);
-		SimpleDateFormat format = new SimpleDateFormat(sdf, sloc);
+		SimpleDateFormat format = new SimpleDateFormat(javaFormat, sloc);
 		format.setTimeZone(cal.getTimeZone());
 
 		try {
@@ -162,7 +163,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 				e.printStackTrace();
 				this.setValid(false);
 				throw new ConverterException(
-						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, BsfUtils.getLabel(context, this)));
+						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, javaFormat, BsfUtils.getLabel(context, this)));
 			}
 		}
 	}

@@ -22,11 +22,14 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
+import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.listLinks.ListLinks;
+import net.bootsfaces.component.pillLinks.PillLinks;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.IContentDisabled;
@@ -34,17 +37,10 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
- *
+ * 
  * @author thecoder4eu
  */
-
-public class LinksContainer extends UIComponentBase implements IContentDisabled {
-	/**
-	 * <p>
-	 * The standard component type for this component.
-	 * </p>
-	 */
-	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + "." + "LinksContainer";
+public abstract class LinksContainer extends UIComponentBase implements IContentDisabled {
 	/**
 	 * <p>
 	 * The component family for this component.

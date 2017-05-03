@@ -29,12 +29,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:slider /&gt;. */
-@FacesComponent("net.bootsfaces.component.slider.Slider")
+@FacesComponent(Slider.COMPONENT_TYPE)
 public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.slider.Slider";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".slider.Slider";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.slider.Slider";
 

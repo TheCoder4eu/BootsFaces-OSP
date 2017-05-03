@@ -26,6 +26,7 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.context.FacesContext;
+import net.bootsfaces.C;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -35,12 +36,12 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
-@FacesComponent("net.bootsfaces.component.selectOneMenu.SelectOneMenu")
+@FacesComponent(SelectOneMenu.COMPONENT_TYPE)
 public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".selectOneMenu.SelectOneMenu";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.selectOneMenu.SelectOneMenu";
 
@@ -58,7 +59,7 @@ public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.r
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
@@ -99,7 +100,7 @@ public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.r
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	public void validateValue(FacesContext context, Object newValue) {

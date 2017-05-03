@@ -39,7 +39,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.inputText.InputText")
+@FacesComponent(InputText.COMPONENT_TYPE)
 public class InputText extends InputTextCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
@@ -49,7 +49,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.inputText.InputText";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".inputText.InputText";
 	/**
 	 * <p>
 	 * The component family for this component.
@@ -99,7 +99,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	}
 
 	public String getDefaultEventName() {
-		return "input";
+		return "change";
 	}
 
 	public InputText() {

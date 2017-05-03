@@ -64,6 +64,8 @@ public class AlertRenderer extends CoreRenderer {
 		String t = alert.getTitle();
 		boolean closbl = alert.isClosable();
 
+                beginResponsiveWrapper(component, rw);
+                
 		rw.startElement("div", alert);
 		rw.writeAttribute("id", clientId, "id");
 		Tooltip.generateTooltip(context, component, rw);
@@ -78,12 +80,10 @@ public class AlertRenderer extends CoreRenderer {
 		else
 			styleClass = " " + styleClass;
 
-		styleClass += Responsive.getResponsiveStyleClass(alert, false);
-
 		if (sev != null) {
 			rw.writeAttribute("class", "alert alert-" + sev + " fadein" + styleClass, "class");
 		} else {
-			rw.writeAttribute("class", "alert fadein" + styleClass, "class");
+			rw.writeAttribute("class", "alert alert-warning fadein" + styleClass, "class");
 		}
 		if (closbl) {
 			rw.startElement("button", alert);
@@ -137,5 +137,9 @@ public class AlertRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div");
 		Tooltip.activateTooltips(context, alert);
+                
+                endResponsiveWrapper(component, rw);
 	}
+        
+        
 }

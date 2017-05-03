@@ -35,13 +35,13 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.navbarLinks.NavbarLinks")
+@FacesComponent(NavBarLinks.COMPONENT_TYPE)
 public class NavBarLinks extends LinksContainer {
     
     /**
      * <p>The standard component type for this component.</p>
      */
-    public static final String COMPONENT_TYPE ="net.bootsfaces.component.navbarLinks.NavbarLinks";
+    public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".navbarLinks.NavbarLinks";
     /**
      * <p>The component family for this component.</p>
      */

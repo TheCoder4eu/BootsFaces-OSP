@@ -33,17 +33,18 @@ import javax.faces.context.FacesContext;
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tabView /&gt;. */
-@FacesComponent("net.bootsfaces.component.tabView.TabView")
+@FacesComponent(TabView.COMPONENT_TYPE)
 public class TabView extends UIOutput
-		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent {
+		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent, IContentDisabled {
 
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.tabView.TabView";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tabView.TabView";
 
-	public static final String COMPONENT_FAMILY = "net.bootsfaces.component";
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.tabView.TabView";
 
@@ -130,6 +131,7 @@ public class TabView extends UIOutput
 		activeIndex,
 		ajax,
 		contentClass,
+		contentDisabled,
 		contentStyle,
 		dir,
 		disabled,
@@ -212,6 +214,22 @@ public class TabView extends UIOutput
 	 */
 	public void setContentClass(String _contentClass) {
 		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isContentDisabled() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.contentDisabled, false);
+	}
+
+	/**
+	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentDisabled(boolean _contentDisabled) {
+		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
 	}
 
 	/**

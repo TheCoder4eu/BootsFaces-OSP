@@ -38,14 +38,14 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@FacesComponent("net.bootsfaces.component.inputTextarea.InputTextarea")
+@FacesComponent(InputTextarea.COMPONENT_TYPE)
 public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
 	/**
 	 * <p>
 	 * The standard component type for this component.
 	 * </p>
 	 */
-	public static final String COMPONENT_TYPE = "net.bootsfaces.component.inputTextarea.InputTextarea";
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".inputTextarea.InputTextarea";
 	/**
 	 * <p>
 	 * The component family for this component.
@@ -54,7 +54,7 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
-			Arrays.asList("blur", "change", "valueChange", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
+			Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress", "keyup",
 					"mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
@@ -95,7 +95,7 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	}
 
 	public String getDefaultEventName() {
-		return "valueChange";
+		return "change";
 	}
 
 	@Override
@@ -106,7 +106,6 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	public InputTextarea() {
 		setRendererType("net.bootsfaces.component.InputTextareaRenderer");
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		Tooltip.addResourceFiles();
 	}
 

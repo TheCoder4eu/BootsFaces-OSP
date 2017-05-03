@@ -41,8 +41,16 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 		hidden,
 		immediate,
 		label,
+		labelColLg,
+		labelColMd,
+		labelColSm,
+		labelColXs,
+		labelLargeScreen,
+		labelMediumScreen,
+		labelSmallScreen,
 		labelStyle,
 		labelStyleClass,
+		labelTinyScreen,
 		lang,
 		largeScreen,
 		mediumScreen,
@@ -371,6 +379,118 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColLg() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColLg, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColLg(String _labelColLg) {
+		getStateHelper().put(PropertyKeys.labelColLg, _labelColLg);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColMd() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColMd, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColMd(String _labelColMd) {
+		getStateHelper().put(PropertyKeys.labelColMd, _labelColMd);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColSm() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColSm, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColSm(String _labelColSm) {
+		getStateHelper().put(PropertyKeys.labelColSm, _labelColSm);
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelColXs() {
+		return (String) getStateHelper().eval(PropertyKeys.labelColXs, "-1");
+	}
+
+	/**
+	 * Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelColXs(String _labelColXs) {
+		getStateHelper().put(PropertyKeys.labelColXs, _labelColXs);
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelLargeScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelLargeScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelLargeScreen(String _labelLargeScreen) {
+		getStateHelper().put(PropertyKeys.labelLargeScreen, _labelLargeScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelMediumScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelMediumScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelMediumScreen(String _labelMediumScreen) {
+		getStateHelper().put(PropertyKeys.labelMediumScreen, _labelMediumScreen);
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelSmallScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelSmallScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelSmallScreen(String _labelSmallScreen) {
+		getStateHelper().put(PropertyKeys.labelSmallScreen, _labelSmallScreen);
+	}
+
+	/**
 	 * The CSS inline style of the label. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -400,6 +520,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setLabelStyleClass(String _labelStyleClass) {
 		getStateHelper().put(PropertyKeys.labelStyleClass, _labelStyleClass);
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 */
+	public String getLabelTinyScreen() {
+		return (String) getStateHelper().eval(PropertyKeys.labelTinyScreen, "-1");
+	}
+
+	/**
+	 * Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLabelTinyScreen(String _labelTinyScreen) {
+		getStateHelper().put(PropertyKeys.labelTinyScreen, _labelTinyScreen);
 	}
 
 	/**
@@ -803,7 +939,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * @return Returns the value of the attribute, or net.bootsfaces.component.ComponentUtils.isRenderLabelDefault(), if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
@@ -812,7 +948,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * Allows you to suppress automatic rendering of labels. Used by AngularFaces, too. <P>
+	 * Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRenderLabel(boolean _renderLabel) {

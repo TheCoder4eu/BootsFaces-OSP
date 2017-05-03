@@ -3,19 +3,18 @@
  *
  *  This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package net.bootsfaces.component.tree;
 
 import javax.faces.component.UIComponentBase;
@@ -23,7 +22,9 @@ import javax.faces.component.UIComponentBase;
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
 import net.bootsfaces.component.tree.model.Node;
 
-/** This class holds the attributes of &lt;b:tree /&gt;. */
+/**
+ * This class holds the attributes of &lt;b:tree /&gt;.
+ */
 public abstract class TreeCore extends UIComponentBase {
 
 	protected enum PropertyKeys {
@@ -205,7 +206,7 @@ public abstract class TreeCore extends UIComponentBase {
 	}
 
 	/**
-	 * Boolean value to specify if enable href link. <P>
+	 * Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isEnableLinks() {
@@ -213,7 +214,7 @@ public abstract class TreeCore extends UIComponentBase {
 	}
 
 	/**
-	 * Boolean value to specify if enable href link. <P>
+	 * Boolean value to specify if enable href link. Only useful if you set the href attribute in every node of the tree model. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEnableLinks(boolean _enableLinks) {
