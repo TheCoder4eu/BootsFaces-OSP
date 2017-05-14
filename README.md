@@ -16,26 +16,25 @@ To learn more about the framework, take a look at  [BootsFaces.net](http://www.b
 
 The source for our page can be found on GitHub. If you want to have a deeper look on how to use the library or found a mistake, visit the [Showcase Project](https://github.com/TheCoder4eu/BootsFacesWeb) or the [Examples Project](https://github.com/TheCoder4eu/BootsFaces-examples).
 
-
-###Getting started
+### Getting started
 To get up and running quickly, have a look at the [Quick Start](http://www.bootsfaces.net/quick-start.jsf).
 
-
-###Maven
+### Maven
 
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>1.0.0</version>
+        <version>1.1.0</version>
     </dependency>
 
-###Gradle
+### Gradle
 
-    compile 'net.bootsfaces:bootsfaces:1.0.0'
+    compile 'net.bootsfaces:bootsfaces:1.1.0'
 
-###Development Snapshots
+### Development Snapshots
+
 See [this issue](https://github.com/TheCoder4eu/BootsFaces-OSP/issues/369) for instructions on how to get a current developer snapshot via Maven.  
 There's also a [Snapshot Showcase](http://www3.bootsfaces.net/Showcase/) with the newest upstream changes.
 
-###Contributing
+### Contributing
 If you want to get your feet wet yourself, we suggest you to take a look at our [cheat-sheet](cheat-sheet.md) and the [contribution guidelines](CONTRIBUTING.md).
