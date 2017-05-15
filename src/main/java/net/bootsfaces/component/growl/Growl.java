@@ -19,15 +19,13 @@ package net.bootsfaces.component.growl;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIMessages;
-import javax.faces.context.FacesContext;
-
 import net.bootsfaces.C;
+import net.bootsfaces.component.UIMessagesBase;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent(Growl.COMPONENT_TYPE)
-public class Growl extends UIMessages {
+public class Growl extends UIMessagesBase {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".growl.Growl";
 

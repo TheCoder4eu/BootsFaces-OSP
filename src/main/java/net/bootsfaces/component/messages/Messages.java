@@ -20,8 +20,8 @@ package net.bootsfaces.component.messages;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-
 import net.bootsfaces.C;
+import net.bootsfaces.component.UIMessagesBase;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.utils.BsfUtils;
@@ -35,7 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
  * </p>
  */
 @FacesComponent("net.bootsfaces.component.messages.Messages")
-public class Messages extends javax.faces.component.UIMessages implements IResponsive {
+public class Messages extends UIMessagesBase implements IResponsive {
 
 	public Messages() {
 		super();
