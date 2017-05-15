@@ -234,7 +234,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 		rw.endElement("div"); // rw.write("<!-- form-group -->\n");//form-group
 
-		encodeJS(slider, rw, clientId);
+		encodeJS(slider, rw, clientId, mode);
 		Tooltip.activateTooltips(context, slider);
 	}
 
@@ -365,7 +365,7 @@ public class Slider2Renderer extends BadgeRenderer {
 		rw.endElement("div"); // Column
 	}
 
-	private void encodeJS(Slider2 slider, ResponseWriter rw, String clientId) throws IOException {
+	private void encodeJS(Slider2 slider, ResponseWriter rw, String clientId, String mode) throws IOException {
 
 		String fClientId = BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
 		String VarName = clientId.replace(":", "_");
@@ -384,13 +384,22 @@ public class Slider2Renderer extends BadgeRenderer {
 					 	 "$('#" + fClientId + "').val(slideEvt.value); "+
 					 	 "$('#" + fClientId + "_badge').text(slideEvt.value); "+
 					 "}); ", null);
+                        String fchange="$('#" + fClientId + "').val($('#" + fClientId + "_slider').val()); ";
+                        if (mode.equals("badge")) {
+                            fchange+="$('#" + fClientId + "_badge').text($('#" + fClientId + "_slider').val()); ";
+                        }
+                        //Fix #699
+                        rw.writeText(
+					 "$('#" + fClientId + "_slider').on('change', function() { " +
+					 	 fchange +
+					 "}); ", null);
 			rw.writeText(
 					 "$('#" + fClientId + "').keyup(function(event) { " +
 						 "   var val = this.value; " +
 						 "   if(typeof val === 'string') val = Number(val); " +
 					 	 "   " + VarName + "_sv.setValue(val, true, true); " +
 					 "}); ", null);
-
+                        
 		rw.writeText("});", null);
 		rw.endElement("script");
 

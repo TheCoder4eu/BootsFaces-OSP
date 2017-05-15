@@ -27,7 +27,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
@@ -76,8 +75,11 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 				FacesMessages.error(clientId, userDefinedMessage, userDefinedMessage);
 			} else {
 				String label = selectBooleanCheckbox.getLabel();
-				if (label==null || label.length()==0) {
-					label = clientId;
+				if (label == null || label.isEmpty()) {
+					label = selectBooleanCheckbox.getCaption();
+					if (label == null || label.isEmpty()) {
+						label = clientId;
+					}
 				}
 				FacesMessages.createErrorMessageFromResourceBundle(clientId, "javax.faces.component.UIInput.REQUIRED", label);
 			}
@@ -106,7 +108,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 		}
 		SelectBooleanCheckbox selectBooleanCheckbox = (SelectBooleanCheckbox) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = selectBooleanCheckbox.getClientId();
+		String clientId = selectBooleanCheckbox.getClientId(context);
 		
 		String span = null;
 		if (!isHorizontalForm(component)) {
@@ -174,7 +176,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	 *             may be thrown by the response writer
 	 */
 	protected void closeColSpanDiv(ResponseWriter rw, String span) throws IOException {
-        if (span != null && span.trim().length()>0) {
+        if (span != null && span.trim().length() > 0) {
             rw.endElement("div");
         }
 	}
@@ -340,8 +342,9 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			throws IOException {
 		rw.endElement("input");
 		String caption = selectBooleanCheckbox.getCaption();
-		if (null != caption)
+		if (null != caption) {
 			rw.append(" " + caption);
+		}
 		rw.endElement("label");
 		rw.endElement("div");
 	}
@@ -362,8 +365,9 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	protected void renderInputTagValue(FacesContext context, ResponseWriter rw,
 			SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
 		String v = getValue2Render(context, selectBooleanCheckbox);
-		if (v != null && "true".equals(v))
+		if (v != null && "true".equals(v)) {
 			rw.writeAttribute("checked", v, null);
+		}
 	}
 
 	/**
@@ -379,7 +383,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	 */
 	protected String startColSpanDiv(ResponseWriter rw, SelectBooleanCheckbox selectBooleanCheckbox) throws IOException {
         String clazz = Responsive.getResponsiveStyleClass(selectBooleanCheckbox, false);
-        if (clazz!= null && clazz.trim().length()>0) {
+        if (clazz != null && clazz.trim().length() > 0) {
             rw.startElement("div", selectBooleanCheckbox);
             rw.writeAttribute("class", clazz, "class");
         }
