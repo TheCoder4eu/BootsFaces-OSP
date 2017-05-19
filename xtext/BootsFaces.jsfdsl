@@ -835,8 +835,8 @@ widget growl
     newest-on-top	    Boolean											   "Specifies if newest messages must be displayed on top of the others."
     allow-dismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape              Boolean     									   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
+    severity            inherited                                          "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 	+style
-    severity                                                               "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 }
 
 widget gyroscope
@@ -1297,8 +1297,8 @@ widget messages
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     warn-class                                                             "CSS class to be used for messages with severity \"WARN\"."
     warn-style                                                             "CSS style to be used for messages with severity \"WARN\"."
+    severity            inherited                                          "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
     +responsive
-    severity                                                               "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 }
 
 
