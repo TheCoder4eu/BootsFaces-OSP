@@ -6,7 +6,7 @@
 	version="2.0"
 	id="b">
 	<namespace>http://bootsfaces.net/ui</namespace>
-	
+
 	<!-- *********** b:accordion ************************* -->
 	<tag>
 		<tag-name>accordion</tag-name>
@@ -308,7 +308,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:alert ************************* -->
 	<tag>
 		<tag-name>alert</tag-name>
@@ -610,7 +610,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:badge ************************* -->
 	<tag>
 		<tag-name>badge</tag-name>
@@ -900,7 +900,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:button ************************* -->
 	<tag>
 		<tag-name>button</tag-name>
@@ -1430,7 +1430,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:buttonGroup ************************* -->
 	<tag>
 		<tag-name>buttonGroup</tag-name>
@@ -1744,7 +1744,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:buttonToolbar ************************* -->
 	<tag>
 		<tag-name>buttonToolbar</tag-name>
@@ -2046,7 +2046,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:canvas ************************* -->
 	<tag>
 		<tag-name>canvas</tag-name>
@@ -2348,7 +2348,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:carousel ************************* -->
 	<tag>
 		<tag-name>carousel</tag-name>
@@ -2800,7 +2800,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:carouselItem ************************* -->
 	<tag>
 		<tag-name>carouselItem</tag-name>
@@ -3006,7 +3006,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:carouselCaption ************************* -->
 	<tag>
 		<tag-name>carouselCaption</tag-name>
@@ -3200,7 +3200,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:carouselControl ************************* -->
 	<tag>
 		<tag-name>carouselControl</tag-name>
@@ -3400,7 +3400,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:colorPicker ************************* -->
 	<tag>
 		<tag-name>colorPicker</tag-name>
@@ -4110,7 +4110,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:column ************************* -->
 	<tag>
 		<tag-name>column</tag-name>
@@ -4406,7 +4406,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:commandButton ************************* -->
 	<tag>
 		<tag-name>commandButton</tag-name>
@@ -4972,7 +4972,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:container ************************* -->
 	<tag>
 		<tag-name>container</tag-name>
@@ -5100,7 +5100,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:dataTable ************************* -->
 	<tag>
 		<tag-name>dataTable</tag-name>
@@ -5714,7 +5714,7 @@
 		  <type>String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:dataTableColumn ************************* -->
 	<tag>
 		<tag-name>dataTableColumn</tag-name>
@@ -5938,7 +5938,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:datepicker ************************* -->
 	<tag>
 		<tag-name>datepicker</tag-name>
@@ -6480,7 +6480,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:dateTimePicker ************************* -->
 	<tag>
 		<tag-name>dateTimePicker</tag-name>
@@ -7466,7 +7466,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:defaultCommand ************************* -->
 	<tag>
 		<tag-name>defaultCommand</tag-name>
@@ -7492,7 +7492,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:dropButton ************************* -->
 	<tag>
 		<tag-name>dropButton</tag-name>
@@ -7812,7 +7812,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:dropMenu ************************* -->
 	<tag>
 		<tag-name>dropMenu</tag-name>
@@ -8222,7 +8222,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:fetchBeanInfos ************************* -->
 	<tag>
 		<tag-name>fetchBeanInfos</tag-name>
@@ -8236,7 +8236,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:form ************************* -->
 	<tag>
 		<tag-name>form</tag-name>
@@ -8418,7 +8418,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:flyOutMenu ************************* -->
 	<tag>
 		<tag-name>flyOutMenu</tag-name>
@@ -8546,7 +8546,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:focus ************************* -->
 	<tag>
 		<tag-name>focus</tag-name>
@@ -8572,7 +8572,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:fullCalendar ************************* -->
 	<tag>
 		<tag-name>fullCalendar</tag-name>
@@ -9000,7 +9000,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:growl ************************* -->
 	<tag>
 		<tag-name>growl</tag-name>
@@ -9175,8 +9175,14 @@
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names "info", "warn", "error", "fatal". Default value: "info,warn,error,fatal" (all severities).]]></description>
+		  <name>severity</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:gyroscope ************************* -->
 	<tag>
 		<tag-name>gyroscope</tag-name>
@@ -9274,7 +9280,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:icon ************************* -->
 	<tag>
 		<tag-name>icon</tag-name>
@@ -9672,7 +9678,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:iconAwesome ************************* -->
 	<tag>
 		<tag-name>iconAwesome</tag-name>
@@ -10064,7 +10070,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:image ************************* -->
 	<tag>
 		<tag-name>image</tag-name>
@@ -10498,7 +10504,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:inputSecret ************************* -->
 	<tag>
 		<tag-name>inputSecret</tag-name>
@@ -11214,7 +11220,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:inputText ************************* -->
 	<tag>
 		<tag-name>inputText</tag-name>
@@ -12008,7 +12014,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:inputTextarea ************************* -->
 	<tag>
 		<tag-name>inputTextarea</tag-name>
@@ -12718,7 +12724,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:internalFALink ************************* -->
 	<tag>
 		<tag-name>internalFALink</tag-name>
@@ -12726,7 +12732,7 @@
 			<component-type>net.bootsfaces.component.internalFALink.InternalFALink</component-type>
 		</component>
 	</tag>
-	
+
 	<!-- *********** b:internalIE8CompatibilityLink ************************* -->
 	<tag>
 		<tag-name>internalIE8CompatibilityLink</tag-name>
@@ -12734,7 +12740,7 @@
 			<component-type>net.bootsfaces.component.internalIE8CompatibilityLink.InternalIE8CompatibilityLink</component-type>
 		</component>
 	</tag>
-	
+
 	<!-- *********** b:jumbotron ************************* -->
 	<tag>
 		<tag-name>jumbotron</tag-name>
@@ -12850,7 +12856,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:kebab ************************* -->
 	<tag>
 		<tag-name>kebab</tag-name>
@@ -12906,7 +12912,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:label ************************* -->
 	<tag>
 		<tag-name>label</tag-name>
@@ -13208,7 +13214,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:listLinks ************************* -->
 	<tag>
 		<tag-name>listLinks</tag-name>
@@ -13318,7 +13324,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:message ************************* -->
 	<tag>
 		<tag-name>message</tag-name>
@@ -13722,7 +13728,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:messages ************************* -->
 	<tag>
 		<tag-name>messages</tag-name>
@@ -14209,8 +14215,14 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names "info", "warn", "error", "fatal". Default value: "info,warn,error,fatal" (all severities).]]></description>
+		  <name>severity</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:modal ************************* -->
 	<tag>
 		<tag-name>modal</tag-name>
@@ -14332,7 +14344,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:navBar ************************* -->
 	<tag>
 		<tag-name>navBar</tag-name>
@@ -14604,7 +14616,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:navCommandLink ************************* -->
 	<tag>
 		<tag-name>navCommandLink</tag-name>
@@ -15182,7 +15194,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:navLink ************************* -->
 	<tag>
 		<tag-name>navLink</tag-name>
@@ -15766,7 +15778,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:navbarLinks ************************* -->
 	<tag>
 		<tag-name>navbarLinks</tag-name>
@@ -15894,7 +15906,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:panel ************************* -->
 	<tag>
 		<tag-name>panel</tag-name>
@@ -16382,7 +16394,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:panelGrid ************************* -->
 	<tag>
 		<tag-name>panelGrid</tag-name>
@@ -16726,7 +16738,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:pillLinks ************************* -->
 	<tag>
 		<tag-name>pillLinks</tag-name>
@@ -16836,7 +16848,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:poll ************************* -->
 	<tag>
 		<tag-name>poll</tag-name>
@@ -16898,7 +16910,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:progressBar ************************* -->
 	<tag>
 		<tag-name>progressBar</tag-name>
@@ -17242,7 +17254,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:radiobutton ************************* -->
 	<tag>
 		<tag-name>radiobutton</tag-name>
@@ -17628,7 +17640,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:remoteCommand ************************* -->
 	<tag>
 		<tag-name>remoteCommand</tag-name>
@@ -17738,7 +17750,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:row ************************* -->
 	<tag>
 		<tag-name>row</tag-name>
@@ -17860,7 +17872,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:scrollUp ************************* -->
 	<tag>
 		<tag-name>scrollUp</tag-name>
@@ -17958,7 +17970,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:scrollSpy ************************* -->
 	<tag>
 		<tag-name>scrollSpy</tag-name>
@@ -18026,7 +18038,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:selectBooleanCheckbox ************************* -->
 	<tag>
 		<tag-name>selectBooleanCheckbox</tag-name>
@@ -18682,7 +18694,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:shake ************************* -->
 	<tag>
 		<tag-name>shake</tag-name>
@@ -18762,7 +18774,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:spinner ************************* -->
 	<tag>
 		<tag-name>spinner</tag-name>
@@ -19148,7 +19160,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:switch ************************* -->
 	<tag>
 		<tag-name>switch</tag-name>
@@ -19828,7 +19840,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:selectMultiMenu ************************* -->
 	<tag>
 		<tag-name>selectMultiMenu</tag-name>
@@ -20616,7 +20628,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:selectOneMenu ************************* -->
 	<tag>
 		<tag-name>selectOneMenu</tag-name>
@@ -21248,7 +21260,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:slider ************************* -->
 	<tag>
 		<tag-name>slider</tag-name>
@@ -21490,7 +21502,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:slider2 ************************* -->
 	<tag>
 		<tag-name>slider2</tag-name>
@@ -21744,7 +21756,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:socialShare ************************* -->
 	<tag>
 		<tag-name>socialShare</tag-name>
@@ -22028,7 +22040,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:touchSpin ************************* -->
 	<tag>
 		<tag-name>touchSpin</tag-name>
@@ -22972,7 +22984,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:tab ************************* -->
 	<tag>
 		<tag-name>tab</tag-name>
@@ -23154,7 +23166,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:tabLinks ************************* -->
 	<tag>
 		<tag-name>tabLinks</tag-name>
@@ -23264,7 +23276,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:tabView ************************* -->
 	<tag>
 		<tag-name>tabView</tag-name>
@@ -23500,7 +23512,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:tree ************************* -->
 	<tag>
 		<tag-name>tree</tag-name>
@@ -23880,7 +23892,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:thumbnail ************************* -->
 	<tag>
 		<tag-name>thumbnail</tag-name>
@@ -24164,7 +24176,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:video ************************* -->
 	<tag>
 		<tag-name>video</tag-name>
@@ -24657,7 +24669,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:well ************************* -->
 	<tag>
 		<tag-name>well</tag-name>
@@ -24953,7 +24965,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-	
+
 	<!-- *********** b:formGroup ************************* -->
 	<tag>
 		<tag-name>formGroup</tag-name>

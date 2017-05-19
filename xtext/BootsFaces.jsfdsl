@@ -194,7 +194,7 @@ widget buttonToolbar
     +style
     +tooltip
     +responsive
-	+contentDisabled    
+	+contentDisabled
 }
 
 widget canvas
@@ -586,7 +586,7 @@ widget datepicker
     +responsiveLabel
 }
 
-widget dateTimePicker 
+widget dateTimePicker
 		implemented_by net.bootsfaces.component.DateTimePicker
 		has_tooltip
 		is_responsive
@@ -633,7 +633,7 @@ widget dateTimePicker
     onmouseout                       inherited                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                      inherited                             "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
-    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user." 
+    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly                 Boolean inherited                             "Flag indicating that this input element will prevent changes by the user."
@@ -729,8 +729,8 @@ widget fetchBeanInfos
  	    id                                                                 "Unique identifier of the component in a namingContainer."
 
 }
- 
-widget form 
+
+widget form
        extends UIForm
        has_children {
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
@@ -836,6 +836,7 @@ widget growl
     allow-dismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape              Boolean     									   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
 	+style
+    severity                                                               "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 }
 
 widget gyroscope
@@ -1185,7 +1186,7 @@ widget jumbotron
 	+contentDisabled
 }
 
-widget kebab 
+widget kebab
        implemented_by net.bootsfaces.component.Kebab
        extends UIComponentBase
        has_children
@@ -1297,6 +1298,7 @@ widget messages
     warn-class                                                             "CSS class to be used for messages with severity \"WARN\"."
     warn-style                                                             "CSS style to be used for messages with severity \"WARN\"."
     +responsive
+    severity                                                               "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 }
 
 
@@ -1893,7 +1895,7 @@ widget selectMultiMenu
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Value."
- 
+
     onselectall                                                            "AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method."
     ondropdownshow                                                         "AJAX event: A callback called when the dropdown is shown."
     ondropdownhidden                                                       "AJAX event: A callback called after the dropdown has been closed."
@@ -1902,7 +1904,7 @@ widget selectMultiMenu
     ondeselectall                                                          "AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method."
     ondropdownshown                                                        "AJAX event: A callback called after the dropdown has been shown."
     oninitialized                                                          "AJAX event: A function which is triggered when the multiselect is finished initializing."
-  
+
     +ajax
     +tooltip
     +responsive
@@ -2122,7 +2124,7 @@ widget touchSpin
     size                Integer inherited                                  "Number of characters used to determine the width of the input element."
     step			    Float default "1"								   "Incremental/decremental step on up/down change."
     step-interval		Integer default "100"							   "Refresh rate of the spinner in milliseconds."
-	step-interval-delay Integer default "500" 							   "Time in milliseconds before the spinner starts to spin."   
+	step-interval-delay Integer default "500" 							   "Time in milliseconds before the spinner starts to spin."
     tabindex                          inherited                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
     title                             inherited                            "Advisory tooltip information."
