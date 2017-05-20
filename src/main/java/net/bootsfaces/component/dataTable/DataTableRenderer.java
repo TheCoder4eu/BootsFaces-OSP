@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
-
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
@@ -35,7 +34,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
-
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTableColumn.DataTableColumn;
 import net.bootsfaces.render.CoreRenderer;
@@ -525,7 +523,7 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = clientIdRaw.replace(":", "");
 		String widgetVar = dataTable.getWidgetVar();
 		if (null == widgetVar) {
-			widgetVar = BsfUtils.snakeCaseToCamelCase(clientIdRaw.replace(":", "-") + "Widget");
+			widgetVar = BsfUtils.widgetVarName(clientIdRaw);
 		}
 		String lang = determineLanguage(context, dataTable);
 		rw.endElement("table");
