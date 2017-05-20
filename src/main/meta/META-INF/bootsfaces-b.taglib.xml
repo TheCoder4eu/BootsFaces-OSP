@@ -16889,13 +16889,13 @@
 		  <description><![CDATA[How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000.]]></description>
 		  <name>interval</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, the poll is called only once. Default value: false.]]></description>
 		  <name>once</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify the rendering of the component, when set to false the component will not be rendered.]]></description>
@@ -16906,6 +16906,18 @@
 		<attribute>
 		  <description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
 		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, the poll will stop. Default value: false.]]></description>
+		  <name>stop</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional widget variable to access the datatable widget in JavaScript code.]]></description>
+		  <name>widgetVar</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

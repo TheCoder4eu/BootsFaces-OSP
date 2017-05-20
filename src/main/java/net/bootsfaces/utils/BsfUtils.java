@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
@@ -25,7 +24,6 @@ import javax.faces.component.UIViewRoot;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.xml.bind.DatatypeConverter;
-
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.expressions.ExpressionResolver;
 
@@ -158,8 +156,25 @@ public class BsfUtils {
 
 		return snakeCase.toString();
 	}
-
-
+	
+	/**
+	 * Returns JavaScript var name for provided client ID.
+	 * @param clientId Client ID to convert to JavaScript var name.
+	 * @return JavaScript var name.
+	 */
+	public static String javaScriptVarName(String clientId) {
+		return snakeCaseToCamelCase(clientId.replace(":", "-"));
+	}
+	
+	/**
+	 * Returns widget var name for provided client ID.
+	 * @param clientId Client ID to convert to widget var name.
+	 * @return Widget var name.
+	 */
+	public static String widgetVarName(String clientId) {
+		return javaScriptVarName(clientId) + "Widget";
+	}
+	
 	/**
 	 * Escape html special chars from string
 	 * @param htmlString
@@ -690,25 +705,6 @@ public class BsfUtils {
 
 		Float[] values = new Float[floatList.size()];
 		return floatList.toArray(values);
-	}
-
-	/**
-	 * Convert object to integer.
-	 * @param object
-	 * @return Integer value of object or {@code null} if object is {@code null}.
-	 * @throws IllegalArgumentException If object is not a string or number.
-	 */
-	public static Integer toInteger(Object object) {
-		if (object == null) {
-			return null;
-		}
-		if (object instanceof String) {
-			return Integer.valueOf((String) object);
-		}
-		if (object instanceof Number) {
-			return ((Number) object).intValue();
-		}
-		throw new IllegalArgumentException("Object is not numeric");
 	}
 
 	public static float getSliderValue(String value) {
