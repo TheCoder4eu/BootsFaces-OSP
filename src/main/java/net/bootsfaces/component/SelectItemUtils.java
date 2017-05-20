@@ -93,13 +93,16 @@ public class SelectItemUtils {
     }
 
     private static SelectItem toSelectItem(UISelectItem option) {
-		SelectItem item = new SelectItem();
-		item.setDescription(option.getItemDescription());
-		item.setDisabled(option.isItemDisabled());
-		item.setEscape(option.isItemEscaped());
-		item.setLabel(option.getItemLabel());
-		item.setNoSelectionOption(option.isNoSelectionOption());
-		item.setValue(option.getItemValue());
+		SelectItem item = (SelectItem) option.getValue();
+		if (item == null) {
+			item = new SelectItem();
+			item.setDescription(option.getItemDescription());
+			item.setDisabled(option.isItemDisabled());
+			item.setEscape(option.isItemEscaped());
+			item.setLabel(option.getItemLabel());
+			item.setNoSelectionOption(option.isNoSelectionOption());
+			item.setValue(option.getItemValue());
+		}
 		return item;
 	}
 

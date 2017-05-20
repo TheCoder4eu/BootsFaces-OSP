@@ -38,7 +38,7 @@ public class Growl extends UIMessagesBase {
 		AddResourcesListener.addThemedCSSResource("core.css");
 		AddResourcesListener.addExtCSSResource("animate.css");
 	}
-	
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
