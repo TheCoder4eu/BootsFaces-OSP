@@ -707,25 +707,6 @@ public class BsfUtils {
 		return floatList.toArray(values);
 	}
 
-	/**
-	 * Convert object to integer.
-	 * @param object
-	 * @return Integer value of object or {@code null} if object is {@code null}.
-	 * @throws IllegalArgumentException If object is not a string or number.
-	 */
-	public static Integer toInteger(Object object) {
-		if (object == null) {
-			return null;
-		}
-		if (object instanceof String) {
-			return Integer.valueOf((String) object);
-		}
-		if (object instanceof Number) {
-			return ((Number) object).intValue();
-		}
-		throw new IllegalArgumentException("Object is not numeric");
-	}
-
 	public static float getSliderValue(String value) {
 		Float[] values = getSliderValues(value);
 		if(values != null) return values[0];

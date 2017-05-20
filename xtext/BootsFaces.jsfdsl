@@ -1564,10 +1564,12 @@ widget poll
     action-listener     javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     execute                                                                "Which input fields are to be sent? Default value: @none"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    interval                                                               "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
-    once                                                                   "If true, the poll is called only once. Default value: false."
+    interval            Integer                                            "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
+    once                Boolean                                            "If true, the poll is called only once. Default value: false."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     update                                                                 "Which region of the screen is to be updated? Default value: @form"
+    stop                Boolean                                            "If true, the poll will stop. Default value: false."
+    widgetVar                                                              "Optional widget variable to access the datatable widget in JavaScript code."
 }
 
 widget progressBar
