@@ -1053,6 +1053,7 @@ widget inputText
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     lang                             inherited                             "Code describing the language used in the generated markup for this component."
+    mask                                                                   "Input mask. Default masking definitions: \"9\": numeric, \"a\": alphabetical, \"*\": alphanumeric."
     maxlength           Integer inherited                                  "The maximum length of the input."
     name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
     onblur                           inherited                             "Client side callback to execute when input element loses focus."
