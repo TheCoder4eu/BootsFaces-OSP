@@ -21,10 +21,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -41,6 +39,10 @@ import net.bootsfaces.utils.BsfUtils;
  */
 @FacesComponent(InputText.COMPONENT_TYPE)
 public class InputText extends InputTextCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
+
+  protected enum PropertyKeys {
+		mask
+  }
 
 	private String renderLabel = null;
 
@@ -154,4 +156,26 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		setTypeahead(true);
 		super.setTypeaheadValues(_typeaheadValues);
 	}
+  
+  /**
+   * Returns input mask.
+   * 
+   * @return Input mask.
+   */
+	public String getMask() {
+		return (String) getStateHelper().eval(PropertyKeys.mask);
+	}
+
+  /**
+   * Sets input mask and triggers JavaScript to be loaded.
+   * 
+   * @param mask Input mask to set. 
+   */
+	public void setMask(String mask) {
+		if (mask != null && !mask.isEmpty()) {
+			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.inputmask.bundle.min.js");
+		}
+    getStateHelper().put(PropertyKeys.mask, mask);
+	}
+  
 }
