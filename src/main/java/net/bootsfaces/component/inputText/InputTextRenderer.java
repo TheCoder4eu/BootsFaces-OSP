@@ -20,13 +20,11 @@ package net.bootsfaces.component.inputText;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
@@ -285,7 +283,34 @@ public class InputTextRenderer extends CoreInputRenderer {
 			}
 			rw.endElement("script");
 		}
+    encodeMask(context, inputText, fieldId, rw);
 	}
+  
+  /**
+   * Add script to enable the input mask.
+   * See https://github.com/RobinHerbots/Inputmask.
+   * 
+   * @param context
+   * @param inputText
+   * @param fieldId
+   * @param rw
+   * 
+   * @throws IOException
+   */
+  protected void encodeMask(FacesContext context,
+                            InputText inputText,
+                            String fieldId,
+                            ResponseWriter rw) throws IOException {
+    if (inputText.getMask() != null && !inputText.getMask().isEmpty()) {
+      rw.startElement("script", inputText);
+      rw.writeText("Inputmask(\"", null);
+      rw.writeText(inputText.getMask().replace("\"", "\\\""), null);
+      rw.writeText("\").mask(document.getElementById(\"", null);
+      rw.writeText(fieldId, null);
+      rw.writeText("\"));", null);
+      rw.endElement("script");
+    }
+  }
 
 	private String addOption(String options, String newOption) {
 		if (options.length() > 0) {

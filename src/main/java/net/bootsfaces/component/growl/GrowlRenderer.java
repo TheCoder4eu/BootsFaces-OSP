@@ -19,16 +19,14 @@ package net.bootsfaces.component.growl;
 
 import java.io.IOException;
 import java.util.Iterator;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
 import net.bootsfaces.C;
 import net.bootsfaces.expressions.ExpressionResolver;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreMessageRenderer;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -37,7 +35,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  */
 @FacesRenderer(componentFamily=C.BSFCOMPONENT, rendererType="net.bootsfaces.component.GrowlRenderer")
-public class GrowlRenderer extends CoreRenderer {
+public class GrowlRenderer extends CoreMessageRenderer {
     @Override
     public void encodeEnd(FacesContext facesContext, UIComponent component) throws IOException {
         if (!component.isRendered()){
@@ -68,7 +66,7 @@ public class GrowlRenderer extends CoreRenderer {
         
         while (allMessages.hasNext()) {
             FacesMessage message = allMessages.next();
-            if (message.isRendered() && !uiGrowl.isRedisplay()){
+            if (!shouldBeRendered(message, uiGrowl)){
                 continue;
             }
             

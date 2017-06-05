@@ -194,7 +194,7 @@ widget buttonToolbar
     +style
     +tooltip
     +responsive
-	+contentDisabled    
+	+contentDisabled
 }
 
 widget canvas
@@ -586,7 +586,7 @@ widget datepicker
     +responsiveLabel
 }
 
-widget dateTimePicker 
+widget dateTimePicker
 		implemented_by net.bootsfaces.component.DateTimePicker
 		has_tooltip
 		is_responsive
@@ -633,7 +633,7 @@ widget dateTimePicker
     onmouseout                       inherited                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                      inherited                             "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
-    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user." 
+    onselect                         inherited                             "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly                 Boolean inherited                             "Flag indicating that this input element will prevent changes by the user."
@@ -729,8 +729,8 @@ widget fetchBeanInfos
  	    id                                                                 "Unique identifier of the component in a namingContainer."
 
 }
- 
-widget form 
+
+widget form
        extends UIForm
        has_children {
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
@@ -835,6 +835,7 @@ widget growl
     newest-on-top	    Boolean											   "Specifies if newest messages must be displayed on top of the others."
     allow-dismiss		Boolean											   "Specifies whether the message can be dismissed."
     escape              Boolean     									   "By default, error messages encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered."
+    severity            inherited                                          "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
 	+style
 }
 
@@ -1052,6 +1053,7 @@ widget inputText
     label-style                                                            "The CSS inline style of the label."
     label-style-class                                                      "The CSS class of the label."
     lang                             inherited                             "Code describing the language used in the generated markup for this component."
+    mask                                                                   "Input mask. Default masking definitions: \"9\": numeric, \"a\": alphabetical, \"*\": alphanumeric."
     maxlength           Integer inherited                                  "The maximum length of the input."
     name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
     onblur                           inherited                             "Client side callback to execute when input element loses focus."
@@ -1185,7 +1187,7 @@ widget jumbotron
 	+contentDisabled
 }
 
-widget kebab 
+widget kebab
        implemented_by net.bootsfaces.component.Kebab
        extends UIComponentBase
        has_children
@@ -1296,6 +1298,7 @@ widget messages
     tooltip-position                                                       "Where is the tooltip to be displayed? Possible values: \"top\", \"bottom\", \"right\", \"left\", \"auto\", \"auto top\", \"auto bottom\", \"auto right\" and \"auto left\". Default to \"bottom\"."
     warn-class                                                             "CSS class to be used for messages with severity \"WARN\"."
     warn-style                                                             "CSS style to be used for messages with severity \"WARN\"."
+    severity            inherited                                          "Comma separated list of lower case severity names of which messages should be rendered in this component. Allowed severity names \"info\", \"warn\", \"error\", \"fatal\". Default value: \"info,warn,error,fatal\" (all severities)."
     +responsive
 }
 
@@ -1562,10 +1565,12 @@ widget poll
     action-listener     javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     execute                                                                "Which input fields are to be sent? Default value: @none"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    interval                                                               "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
-    once                                                                   "If true, the poll is called only once. Default value: false."
+    interval            Integer                                            "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
+    once                Boolean                                            "If true, the poll is called only once. Default value: false."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     update                                                                 "Which region of the screen is to be updated? Default value: @form"
+    stop                Boolean                                            "If true, the poll will stop. Default value: false."
+    widgetVar                                                              "Optional widget variable to access the datatable widget in JavaScript code."
 }
 
 widget progressBar
@@ -1893,7 +1898,7 @@ widget selectMultiMenu
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "Value."
- 
+
     onselectall                                                            "AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method."
     ondropdownshow                                                         "AJAX event: A callback called when the dropdown is shown."
     ondropdownhidden                                                       "AJAX event: A callback called after the dropdown has been closed."
@@ -1902,7 +1907,7 @@ widget selectMultiMenu
     ondeselectall                                                          "AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method."
     ondropdownshown                                                        "AJAX event: A callback called after the dropdown has been shown."
     oninitialized                                                          "AJAX event: A function which is triggered when the multiselect is finished initializing."
-  
+
     +ajax
     +tooltip
     +responsive
@@ -2122,7 +2127,7 @@ widget touchSpin
     size                Integer inherited                                  "Number of characters used to determine the width of the input element."
     step			    Float default "1"								   "Incremental/decremental step on up/down change."
     step-interval		Integer default "100"							   "Refresh rate of the spinner in milliseconds."
-	step-interval-delay Integer default "500" 							   "Time in milliseconds before the spinner starts to spin."   
+	step-interval-delay Integer default "500" 							   "Time in milliseconds before the spinner starts to spin."
     tabindex                          inherited                            "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
     title                             inherited                            "Advisory tooltip information."

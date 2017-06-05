@@ -24,24 +24,22 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
 import net.bootsfaces.component.message.MessageRenderer;
 import net.bootsfaces.expressions.ExpressionResolver;
-import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.render.CoreMessageRenderer;
 import net.bootsfaces.render.Responsive;
 
 /**
  * @author duncan
  */
 @FacesRenderer(componentFamily = "javax.faces.Messages", rendererType = "net.bootsfaces.component.messages.MessagesRenderer")
-public class MessagesRenderer extends CoreRenderer {
+public class MessagesRenderer extends CoreMessageRenderer {
 
 	@Override
 	public void encodeEnd(FacesContext facesContext, UIComponent component) throws IOException {
@@ -106,7 +104,7 @@ public class MessagesRenderer extends CoreRenderer {
 		messages.put(FacesMessage.SEVERITY_INFO, new ArrayList<FacesMessage>()); // Bootstrap info
 
 		for (FacesMessage message : messagesToShow) {
-			if (message.isRendered() && !uiMessages.isRedisplay()) {
+			if (!shouldBeRendered(message, uiMessages)) {
 				continue;
 			}
 
