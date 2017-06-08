@@ -62,7 +62,7 @@ public class DefaultCommand extends UIComponentBase {
 				rw.startElement("script", this);
 
 				rw.writeText("" + "$(function() { " + "    $('form#"
-						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { "
+						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " input').keypress(function (e) { "
 						+ "    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { "
 						+ "        document.getElementById('" + actionCommandId + "').click();return false; "
 						+ "    } else { " + "        console.log('keycode not 13'); " + "        return true; "
