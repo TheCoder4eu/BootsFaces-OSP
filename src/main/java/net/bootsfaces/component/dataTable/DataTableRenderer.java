@@ -296,6 +296,12 @@ public class DataTableRenderer extends CoreRenderer {
 				generateMultiColumnSearchRow(context, dataTable, rw);
 			}
 		}
+		if (dataTable.getFacet("header") != null) {
+			UIComponent facet = dataTable.getFacet("header");
+			facet.encodeAll(context);
+			return;
+		}
+		
 		rw.startElement("tr", dataTable);
 		int index = 0;
 		List<UIComponent> columns = dataTable.getChildren();
