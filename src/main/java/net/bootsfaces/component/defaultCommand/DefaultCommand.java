@@ -62,11 +62,19 @@ public class DefaultCommand extends UIComponentBase {
 				rw.startElement("script", this);
 
 				rw.writeText("" + "$(function() { " + "    $('form#"
-						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " :input').keypress(function (e) { "
+						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " input').keypress(function (e) { "
 						+ "    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { "
 						+ "        document.getElementById('" + actionCommandId + "').click();return false; "
 						+ "    } else { " + "        console.log('keycode not 13'); " + "        return true; "
 						+ "    } " + "    }); " + "});", null);
+				
+				rw.writeText("" + "$(function() { " + "    $('form#"
+						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " textarea').keypress(function (e) { "
+						+ "    if ((e.ctrlKey && e.which && e.which == 13) || (e.ctrlKey && e.keyCode && e.keyCode == 13)) { "
+						+ "        document.getElementById('" + actionCommandId + "').click();return false; "
+						+ "    } else { " + "        console.log('keycode not 13 or ctrl not pressed'); " + "        return true; "
+						+ "    } " + "    }); " + "});", null);
+				
 				rw.endElement("script");
 			} else {
 				throw new FacesException("The default command component needs a defined target ID", null);
