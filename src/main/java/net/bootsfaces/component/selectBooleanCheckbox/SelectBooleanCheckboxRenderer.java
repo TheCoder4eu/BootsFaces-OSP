@@ -115,6 +115,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
+		rw.writeAttribute("id", clientId, null);
         writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
         if (null != selectBooleanCheckbox.getDir()) {
 			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
@@ -253,7 +254,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
 			String clientId) throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
-		rw.writeAttribute("id", clientId, null);
+		//rw.writeAttribute("id", clientId, null);
 		if (null != selectBooleanCheckbox.getDir()) {
 			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
 		}
