@@ -18,7 +18,6 @@
 package net.bootsfaces.component.poll;
 
 import java.io.IOException;
-import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlCommandButton;
@@ -84,58 +83,33 @@ public class Poll extends HtmlCommandButton {
 	}
 
 	@Override
-	public void encodeBegin(FacesContext context) throws IOException {
-		// super.encodeBegin(context);
-	}
-
-	@Override
 	public void encodeEnd(FacesContext context) throws IOException {
 		if (!isRendered()) {
 			return;
 		}
-		Map<String, Object> attrs = getAttributes();
-		ResponseWriter rw = context.getResponseWriter();
-
-		/*
-		 * context.getApplication().publishEvent(context,
-		 * PreRenderComponentEvent.class, this);
-		 */
 		String id = getClientId();
 		String widgetVarName = getWidgetVar() == null ? BsfUtils.widgetVarName(id) : getWidgetVar();
 		String intervalId = "window." + BsfUtils.javaScriptVarName(id);		
 		String update = ExpressionResolver.getComponentIDs(context, this, getUpdate());
 		String execute = ExpressionResolver.getComponentIDs(context, this, getExecute());
 
-		rw.append("<script id='" + id + "' type='text/javascript'>");
-		rw.append("\r\n");
+		ResponseWriter rw = context.getResponseWriter();
+		rw.append("<script id='" + id + "' type='text/javascript'>\r\n");
 		if (isStop()) {
-			rw.append("  clearInterval(" + intervalId + ");");
+			rw.append("clearInterval(" + intervalId + ");\r\n");
 		}
 		else {
-			rw.append(widgetVarName + " = new function(){");
-			rw.append("\r\n");
-			rw.append("  clearInterval(" + intervalId + ");");
-			rw.append("\r\n");
-			rw.append("  var handleError = function(){clearInterval(" + intervalId + ");console.log('error with b:poll " + id + "');};");
-			rw.append("\r\n");
-			rw.append("  " + intervalId + " = setInterval(function(){");
-			rw.append("\r\n");
-			if (isOnce()) {
-				rw.append("    clearInterval(" + intervalId + ");");
-				rw.append("\r\n");
-			}
-			rw.append("    jsf.ajax.request('" + id + "', null, {'" + id + "':'" + id + "', execute:'" + execute
-				+ "', render:'" + update + "', onerror:handleError });");
-			rw.append("\r\n");
-			rw.append("  }, " + getInterval() + ");");
-			rw.append("\r\n");
-			rw.append("  this.stop = function(){clearInterval(" + intervalId + ");};");
-			rw.append("\r\n");
-			rw.append("}();");
+			rw.append(widgetVarName + " = new function(){\r\n");
+			rw.append("var o = this;\r\n");
+			rw.append("var handleError = function(){ o.stop(); console.log('error with b:poll " + id + "');};\r\n");
+			rw.append("this.start = function(){ o.stop(); "+ intervalId + " = setInterval(function(){ ");
+			rw.append("jsf.ajax.request('" + id + "', null, {'" + id + "':'" + id + "', execute:'" + execute
+				+ "', render:'" + update + "', onerror:handleError }); }, " + getInterval() + "); };\r\n");
+			rw.append("this.stop = function(){ clearInterval(" + intervalId + "); };\r\n");
+			rw.append("this.start();\r\n");
+			rw.append("}();\r\n");
 		}
-		rw.append("\r\n");
 		rw.append("</script>");
-		//popComponentFromEL(context);
 	}
 
 	@Override
@@ -184,6 +158,7 @@ public class Poll extends HtmlCommandButton {
 	 *
 	 * @return If the poll should called only once. Default value is false.
 	 */
+  @Deprecated
 	public boolean isOnce() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.once, false);
 	}
@@ -193,6 +168,7 @@ public class Poll extends HtmlCommandButton {
 	 *
 	 * @param once Indicate if the poll should called only once.
 	 */
+  @Deprecated
 	public void setOnce(boolean once) {
 		getStateHelper().put(PropertyKeys.once, once);
 	}	
