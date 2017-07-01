@@ -254,7 +254,6 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
 			String clientId) throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
-		//rw.writeAttribute("id", clientId, null);
 		if (null != selectBooleanCheckbox.getDir()) {
 			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
 		}
