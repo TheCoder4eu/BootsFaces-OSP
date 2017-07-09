@@ -111,7 +111,7 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	}
 	jsf.ajax.request(source, event, opts);
 	
-	var disableBlockUI = opts['blockui.disabled'] === "true" ? true : false;
+	var disableBlockUI = opts['blockui.disabled'] === "true";
 	
 	if ($.blockUI && $.blockUI != null && !disableBlockUI) {
 		var message = $.blockUI.defaults.message;
