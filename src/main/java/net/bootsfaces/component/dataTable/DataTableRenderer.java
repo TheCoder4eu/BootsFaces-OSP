@@ -88,6 +88,9 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = dataTable.getClientId();
 		boolean idHasBeenRendered=false;
 
+		rw.startElement("div", dataTable);
+		rw.writeAttribute("style", "overflow-x:auto;white-space:nowrap;overflow-y:hidden;", null);
+		
 		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.startElement("div", dataTable);
@@ -297,11 +300,11 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 		}
 		if (dataTable.getFacet("header") != null) {
-			UIComponent facet = dataTable.getFacet("header");
-			facet.encodeAll(context);
-			return;
+		        UIComponent facet = dataTable.getFacet("header");
+		        facet.encodeAll(context);
+		        return;
 		}
-		
+
 		rw.startElement("tr", dataTable);
 		int index = 0;
 		List<UIComponent> columns = dataTable.getChildren();
@@ -538,6 +541,7 @@ public class DataTableRenderer extends CoreRenderer {
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.endElement("div");
 		}
+		rw.endElement("div");
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
 		// # Start enclosure

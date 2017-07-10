@@ -341,9 +341,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 			}
 			return "[" + s + "]";
-		} else if (values instanceof List) {
+		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (List<?>)values) {
+			for (Object p : (Iterable<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -398,9 +398,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 			}
 			return "[" + s + "]";
-		} else if (values instanceof List) {
+		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (List<?>)values) {
+			for (Object p : (Iterable<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
