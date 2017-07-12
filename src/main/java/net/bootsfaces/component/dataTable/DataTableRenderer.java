@@ -90,13 +90,17 @@ public class DataTableRenderer extends CoreRenderer {
 
 		rw.startElement("div", dataTable);
 		rw.writeAttribute("style", "overflow-x:auto;white-space:nowrap;overflow-y:hidden;", null);
+		rw.writeAttribute("id", clientId, "id");
+		idHasBeenRendered=true;
 		
 		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.startElement("div", dataTable);
 			rw.writeAttribute("class", responsiveStyle.trim(), null);
-			rw.writeAttribute("id", clientId, "id");
-			idHasBeenRendered=true;
+			if (!idHasBeenRendered) {
+				rw.writeAttribute("id", clientId, "id");
+				idHasBeenRendered=true;
+			}
 		}
 		
 		if (dataTable.isContentDisabled()) {
