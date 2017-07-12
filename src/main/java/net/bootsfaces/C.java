@@ -36,9 +36,26 @@ public final class C {
 
     //Theme
     public static final String BSF_LIBRARY="bsf";
+    
     public static final String P_USETHEME ="BootsFaces_USETHEME";
     public static final String P_THEME ="BootsFaces_THEME";
 
+    public static final String P_BLOCK_UI = "net.bootsfaces.blockUI";
+    
+	public static final String P_GET_JQUERYUI_FROM_CDN = "net.bootsfaces.get_jqueryui_from_cdn";
+	public static final String P_GET_JQUERY_FROM_CDN = "net.bootsfaces.get_jquery_from_cdn";
+	public static final String P_GET_BOOTSTRAP_FROM_CDN = "net.bootsfaces.get_bootstrap_from_cdn";
+	public static final String P_GET_FONTAWESOME_FROM_CDN = "net.bootsfaces.get_fontawesome_from_cdn";
+
+	// public static final String P_GET_BOOTSTRAP_COMPONENTS_FROM_CDN = "net.bootsfaces.get_bootstrap_components_from_cdn";
+
+	
+	
+
+	public static final String THEME_NAME_DEFAULT = "default";
+	public static final String THEME_NAME_OTHER = "other";
+
+    
     //Font Awesome
     //public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
     public static final String FA_VERSION="4.7.0";
