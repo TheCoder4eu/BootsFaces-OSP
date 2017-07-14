@@ -42,8 +42,8 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:panel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent(Panel.COMPONENT_TYPE)
-public class Panel extends UIComponentBase
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive, IContentDisabled {
+public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent,
+		ClientBehaviorHolder, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".panel.Panel";
 
@@ -454,9 +454,9 @@ public class Panel extends UIComponentBase
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
 	}
-	
+
 	/**
-	 * Panel header Icon, can be one of the Bootstrap icon names. Alignment can be specified with icon-align attribute. <P>
+	 * Panel header icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIcon() {
@@ -464,7 +464,7 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Panel header Icon, can be one of the Bootstrap icon names. Alignment can be specified with icon-align attribute. <P>
+	 * Panel header icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIcon(String _icon) {
@@ -488,7 +488,7 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Font Awesome Icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconAwesome() {
@@ -496,7 +496,7 @@ public class Panel extends UIComponentBase
 	}
 
 	/**
-	 * Font Awesome Icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
