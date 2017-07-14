@@ -88,10 +88,12 @@ public class DataTableRenderer extends CoreRenderer {
 		String clientId = dataTable.getClientId();
 		boolean idHasBeenRendered=false;
 
-		rw.startElement("div", dataTable);
-		rw.writeAttribute("style", "overflow-x:auto;white-space:nowrap;overflow-y:hidden;", null);
-		rw.writeAttribute("id", clientId, "id");
-		idHasBeenRendered=true;
+		if (dataTable.isScrollHorizontally()) {
+			rw.startElement("div", dataTable);
+			rw.writeAttribute("style", "overflow-x:auto;white-space:nowrap;overflow-y:hidden;", null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered=true;
+		}
 		
 		String responsiveStyle = Responsive.getResponsiveStyleClass(dataTable, false);
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
@@ -545,7 +547,9 @@ public class DataTableRenderer extends CoreRenderer {
 		if (null != responsiveStyle && responsiveStyle.trim().length() > 0) {
 			rw.endElement("div");
 		}
-		rw.endElement("div");
+		if (dataTable.isScrollHorizontally()) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, dataTable);
 		rw.startElement("script", component);
 		// # Start enclosure

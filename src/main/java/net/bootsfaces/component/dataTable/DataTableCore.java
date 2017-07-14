@@ -70,6 +70,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		rowHighlight,
 		saveState,
 		scrollCollapse,
+		scrollHorizontally,
 		scrollSize,
 		scrollX,
 		searching,
@@ -841,6 +842,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isScrollHorizontally() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollHorizontally, false);
+	}
+
+	/**
+	 * Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollHorizontally(boolean _scrollHorizontally) {
+		getStateHelper().put(PropertyKeys.scrollHorizontally, _scrollHorizontally);
+	}
+
+	/**
 	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -857,7 +874,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isScrollX() {
@@ -865,7 +882,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setScrollX(boolean _scrollX) {
