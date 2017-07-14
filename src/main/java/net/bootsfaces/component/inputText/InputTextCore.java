@@ -47,6 +47,7 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 		labelStyleClass,
 		labelTinyScreen,
 		largeScreen,
+		mask,
 		mediumScreen,
 		name,
 		offset,
@@ -461,6 +462,22 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setLargeScreen(String _largeScreen) {
 		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Input mask. Default masking definitions: "9": numeric, "a": alphabetical, "*": alphanumeric. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMask() {
+		return (String) getStateHelper().eval(PropertyKeys.mask);
+	}
+
+	/**
+	 * Input mask. Default masking definitions: "9": numeric, "a": alphabetical, "*": alphanumeric. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMask(String _mask) {
+		getStateHelper().put(PropertyKeys.mask, _mask);
 	}
 
 	/**
