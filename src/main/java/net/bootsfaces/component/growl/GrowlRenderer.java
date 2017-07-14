@@ -71,6 +71,7 @@ public class GrowlRenderer extends CoreMessageRenderer {
             }
             
             encodeSeverityMessage(facesContext, uiGrowl, message);
+            message.rendered();
         }
         writer.writeText("});", null);
         writer.endElement("script");
