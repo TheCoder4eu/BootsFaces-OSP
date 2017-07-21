@@ -61,7 +61,6 @@ public class TabRenderer extends CoreRenderer {
 
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-		// TODO Auto-generated method stub
 		super.encodeChildren(context, component);
 	}
 	

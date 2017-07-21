@@ -33,26 +33,26 @@ attribute_list responsive {
     medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
-    hidden				      											   "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    display				default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    hidden				      											 "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
     offset-md                                                              "Integer value to specify how many columns to offset."
     offset-sm                                                              "Integer value to specify how many columns to offset."
     offset-xs                                                              "Integer value to specify how many columns to offset."
     span                                                                   "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    visible				       											   "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+    visible				       											 "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
 attribute_list responsiveLabel {
-	label-col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+	label-col-lg              default "-1"                                "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-md              default "-1"                                "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-sm              default "-1"                                "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-xs              default "-1"                                "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-large-screen        default "-1"                                "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-medium-screen       default "-1"                                "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-small-screen        default "-1"                                "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-tiny-screen         default "-1"                                "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
 }
 
 attribute_list style {
@@ -64,6 +64,15 @@ attribute_list contentDisabled {
 	content-disabled            Boolean default "false"                    "Enables or disables every child element of this container. By default, child elements are enabled."
 }
 
+attribute_list uirepeat {
+	value                       inherited                                  "The name of a collection of items that this tag iterates over. The collection may be a List, array, java.sql.ResultSet, or an individual java Object. If the collection is null, this tag does nothing."
+	var                         inherited                                  "Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility. Its type depends on the object of the underlying collection"
+	offset                      inherited                                  "Read-write property setting the offset from the beginning of the collection from which to start the iteration. If not set, this offset is not considered and iteration will start at the beginning of the collection."
+	size                        inherited                                  "Read-write property setting the size of the collection to iterate. The value of this attribute must be less than or equal to the actual size of the collection, or a FacesException must be thrown."
+	step                        inherited                                  "Iteration will only process every step items of the collection, starting with the first one."
+	varStatus                   inherited                                  "Name of the exported request scoped variable for the status of the iteration. Object is a POJO with the following read-only JavaBeans properties: begin, end, index, step, even, odd, first, and last. This scoped variable has nested visibility."
+}
+
 widget accordion
        implemented_by net.bootsfaces.component.accordion.Accordion
        extends UIComponentBase
@@ -73,7 +82,7 @@ widget accordion
 {
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
+	expanded-panels														"Comma separated list of child panel id that need to render expanded."
 	+tooltip
 	+responsive
 	+style
@@ -2173,6 +2182,7 @@ widget tab
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
     +contentDisabled
+    +uirepeat
 }
 
 widget tabLinks
