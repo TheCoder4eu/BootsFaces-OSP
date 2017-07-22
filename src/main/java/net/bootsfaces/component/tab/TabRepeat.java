@@ -274,7 +274,7 @@ public class TabRepeat extends UINamingContainer {
         this.model = model;
     }
 
-    private DataModel getDataModel() {
+    public DataModel getDataModel() {
         if (this.model == null) {
             Object val = this.getValue();
             if (val == null) {

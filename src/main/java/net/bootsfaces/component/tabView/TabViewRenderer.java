@@ -29,6 +29,7 @@ import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.model.DataModel;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
@@ -37,7 +38,6 @@ import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:tabView /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tabView.TabView")
@@ -203,43 +203,66 @@ public class TabViewRenderer extends CoreRenderer {
 	 * @return Integer.MAX_VALUE if there's no active tab.
 	 */
 	private int forceActiveTabToBeEnabled(TabView tabView, final List<UIComponent> tabs) {
-		int activeIndex = tabView.getActiveIndex();
-		if (tabView.isDisabled()) {
-			activeIndex = Integer.MAX_VALUE;
+		List<Integer> tabNumberToArrayIndex = new ArrayList<Integer>();
+		
+		int maxIndex = 0;
+		for (UIComponent t: tabs) {
+			DataModel<?> dm = ((Tab)t).getDataModel();
+			int count = dm.getRowCount();
+			if (count > 0) {
+				for (int i = 0; i < count; i++) {
+					tabNumberToArrayIndex.add(maxIndex);
+					
+				}
+				maxIndex++;
+			} else if (count == 0) {
+				tabNumberToArrayIndex.add(maxIndex);
+				maxIndex++;
+			} else {
+				// unknown number of tabs
+				return tabView.getActiveIndex();
+			}
 		}
-		if (activeIndex < 0) {
-			activeIndex = tabs.size() + activeIndex; // -2 is the second tab
+		
+		int activeTabNumber = tabView.getActiveIndex();
+		if (tabView.isDisabled()) {
+			activeTabNumber = Integer.MAX_VALUE;
+		}
+		if (activeTabNumber < 0) {
+			activeTabNumber = tabNumberToArrayIndex.size() + activeTabNumber; // -2 is the second tab
 														// from the right hand
 														// side
 		}
-		if (activeIndex >= 0 && activeIndex < Integer.MAX_VALUE) {
-			if (activeIndex >= tabs.size()) {
-				activeIndex = tabs.size() - 1;
+		if (activeTabNumber >= 0 && activeTabNumber < Integer.MAX_VALUE) {
+
+			if (activeTabNumber >= tabNumberToArrayIndex.size()) {
+				activeTabNumber = tabNumberToArrayIndex.size() - 1;
 			}
-			int newActiveIndex = activeIndex;
-			while (((Tab) tabs.get(newActiveIndex)).isDisabled()) {
-				newActiveIndex++;
-				if (newActiveIndex >= tabs.size()) {
-					newActiveIndex = 0;
+			int newActiveTabNumber = activeTabNumber;
+			while (((Tab) tabs.get(tabNumberToArrayIndex.get(newActiveTabNumber))).isDisabled()) {
+				newActiveTabNumber++;
+				if (newActiveTabNumber >= tabNumberToArrayIndex.size()) {
+					newActiveTabNumber = 0;
 				}
-				if (newActiveIndex == activeIndex) {
-					newActiveIndex = Integer.MAX_VALUE;
+				if (newActiveTabNumber == activeTabNumber) {
+					// this happens if every tab is inactive
+					newActiveTabNumber = Integer.MAX_VALUE;
 					break;
 				}
 			}
-			if (activeIndex != newActiveIndex) {
+			if (activeTabNumber != newActiveTabNumber) {
 				ValueExpression ve = tabView.getValueExpression("activeIndex");
 				if (ve != null) {
 					try {
-						ve.setValue(FacesContext.getCurrentInstance().getELContext(), newActiveIndex);
+						ve.setValue(FacesContext.getCurrentInstance().getELContext(), newActiveTabNumber);
 					} catch (ELException e) {
 					} catch (Exception e) {
 					}
 				}
 			}
-			activeIndex = newActiveIndex;
+			activeTabNumber = newActiveTabNumber;
 		}
-		return activeIndex;
+		return activeTabNumber;
 	}
 
 	/**
@@ -452,7 +475,10 @@ public class TabViewRenderer extends CoreRenderer {
 					int offset = 0;
 					public void run() {
 						try {
-							encodeTab(context, writer, tab, currentIndex == currentlyActiveIndex, hiddenInputFieldID,
+							if (currentlyActiveIndex==6) {
+								System.out.println("Offset: " + offset + " currentIndex: " + currentIndex);
+							}
+							encodeTab(context, writer, tab, currentIndex + offset == currentlyActiveIndex, hiddenInputFieldID,
 									currentIndex + offset, disabled);
 							offset++;
 						} catch (IOException ex) {
