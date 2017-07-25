@@ -367,6 +367,14 @@ public class AJAXRenderer extends CoreRenderer {
 				if (component instanceof CommandButton)
 					if (generatedAJAXCall && "click".equals(keyClientBehavior))
 						script += ";return false;";
+				if (script.startsWith(jsCallback)) {
+					// this happens when you combine onclick and f:ajax.
+					// Both render the onclick attribute, but
+					// in general it's hard to detect this situation because
+					// different components have different default actions for
+					// f:ajax. So let's simply use this hack.
+					jsCallback="";
+				}
 				if (null != rw) {
 					rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
 				}
