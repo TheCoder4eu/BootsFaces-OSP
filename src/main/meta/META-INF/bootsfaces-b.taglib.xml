@@ -5168,6 +5168,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
+		  <name>columnVisibility</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -5176,6 +5182,18 @@
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>contentDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'copy to clipboard' button.]]></description>
+		  <name>copy</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'export CSV file' button.]]></description>
+		  <name>csv</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -5214,6 +5232,12 @@
 		  <name>display</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'export Excel file' button.]]></description>
+		  <name>excel</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
@@ -5464,6 +5488,18 @@
 		<attribute>
 		  <description><![CDATA[Activates the pagination of the dataTable. Default value is 'true'.]]></description>
 		  <name>paginated</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'export PDF file' button.]]></description>
+		  <name>pdf</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'print' button.]]></description>
+		  <name>print</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
