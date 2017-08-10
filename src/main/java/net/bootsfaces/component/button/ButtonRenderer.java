@@ -133,6 +133,23 @@ public class ButtonRenderer extends CoreRenderer {
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
 		renderPassThruAttributes(context, button, H.ALLBUTTON);
+		
+		writeAttribute(rw, "onblur", button.getOnblur());
+		writeAttribute(rw, "onchange", button.getOnchange());
+		writeAttribute(rw, "onclick", button.getOnclick());
+		writeAttribute(rw, "ondblclick", button.getOndblclick());
+		writeAttribute(rw, "onfocus", button.getOnfocus());
+		writeAttribute(rw, "onkeydown", button.getOnkeydown());
+		writeAttribute(rw, "onkeypress", button.getOnkeypress());
+		writeAttribute(rw, "onkeyup", button.getOnkeyup());
+		writeAttribute(rw, "onmousedown", button.getOnmousedown());
+		writeAttribute(rw, "onmousemove", button.getOnmousemove());
+		writeAttribute(rw, "onmouseout", button.getOnmouseout());
+		writeAttribute(rw, "onmouseover", button.getOnmouseover());
+		writeAttribute(rw, "onmouseup", button.getOnmouseup());
+		
+		renderPassThruAttributes(context, button, (String[]) button.getEventNames().toArray());
+
 
 		String icon = button.getIcon();
 		String faicon = button.getIconAwesome();

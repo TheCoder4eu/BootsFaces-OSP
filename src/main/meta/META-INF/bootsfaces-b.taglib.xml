@@ -1262,12 +1262,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
-		  <name>onselect</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[The outcome to navigate to.]]></description>
 		  <name>outcome</name>
 		  <required>false</required>
