@@ -170,7 +170,7 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param component
 	 * @param rw
 	 * @param suppressAJAX replaces the AJAX request by a BsF.submitForm(), but only if there are parameters. Used by b:navCommandRenderer to implement 
-	 * and action or an actionListener instead of rendering a simple link.
+	 * an action or an actionListener instead of rendering a simple link.
 	 * @throws IOException
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
