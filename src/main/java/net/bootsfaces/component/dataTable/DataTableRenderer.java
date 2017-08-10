@@ -225,11 +225,23 @@ public class DataTableRenderer extends CoreRenderer {
 	private void generateBody(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
 		rw.startElement("tbody", dataTable);
 		int rows = dataTable.getRowCount();
+		int visibleRowIndex = 0;
 		dataTable.setRowIndex(-1);
 		for (int row = 0; row < rows; row++) {
 			dataTable.setRowIndex(row);
 			if (dataTable.isRowAvailable()) {
 				rw.startElement("tr", dataTable);
+				String rowStyleClass = dataTable.getRowStyleClass();
+				if (null != rowStyleClass) {
+					if (rowStyleClass.indexOf(",") >= 0) {
+						String[] styleClasses = rowStyleClass.split(",");
+						rowStyleClass = styleClasses[visibleRowIndex % styleClasses.length];
+					}
+					rowStyleClass=rowStyleClass.trim();
+					if (rowStyleClass.length()>0) {
+						rw.writeAttribute("class", rowStyleClass, null);
+					}
+				}
 				List<UIComponent> columns = dataTable.getChildren();
 				for (UIComponent column : columns) {
 					if (!column.isRendered()) {
@@ -271,6 +283,7 @@ public class DataTableRenderer extends CoreRenderer {
 					rw.endElement("td");
 				}
 				rw.endElement("tr");
+				visibleRowIndex++;
 			}
 		}
 		rw.endElement("tbody");

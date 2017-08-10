@@ -74,6 +74,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		process,
 		responsive,
 		rowHighlight,
+		rowStyleClass,
 		saveState,
 		scrollCollapse,
 		scrollHorizontally,
@@ -909,6 +910,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setRowHighlight(boolean _rowHighlight) {
 		getStateHelper().put(PropertyKeys.rowHighlight, _rowHighlight);
+	}
+
+	/**
+	 * Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRowStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.rowStyleClass);
+	}
+
+	/**
+	 * Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowStyleClass(String _rowStyleClass) {
+		getStateHelper().put(PropertyKeys.rowStyleClass, _rowStyleClass);
 	}
 
 	/**

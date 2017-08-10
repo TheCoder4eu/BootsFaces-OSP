@@ -5528,6 +5528,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row.]]></description>
+		  <name>row-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row.]]></description>
+		  <name>rowStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc.]]></description>
 		  <name>save-state</name>
 		  <required>false</required>
