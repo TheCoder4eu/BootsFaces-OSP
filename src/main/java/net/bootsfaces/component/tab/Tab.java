@@ -25,10 +25,10 @@ import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIOutput;
+import javax.faces.component.UINamingContainer;
 import javax.faces.component.behavior.ClientBehaviorHolder;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
@@ -36,7 +36,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
 @FacesComponent(Tab.COMPONENT_TYPE)
-public class Tab extends UIOutput
+public class Tab extends TabRepeat
 		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tab.Tab";

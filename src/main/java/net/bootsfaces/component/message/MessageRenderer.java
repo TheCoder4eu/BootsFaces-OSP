@@ -1,19 +1,19 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *
- *  This file is part of BootsFaces.
- *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ * <p>
+ * This file is part of BootsFaces.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package net.bootsfaces.component.message;
@@ -67,13 +67,13 @@ public class MessageRenderer extends CoreRenderer {
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(message, false).trim();
 		String clientId = message.getClientId(context);
+		numberOfDivs++;
+		rw.startElement("div", component);
 		if (!responsiveStyleClass.isEmpty()) {
-			numberOfDivs++;
-			rw.startElement("div", component);
 			writeAttribute(rw, "class", responsiveStyleClass);
-			writeAttribute(rw, "id", clientId);
-			idHasBeenRendered = true;
 		}
+		writeAttribute(rw, "id", clientId);
+		idHasBeenRendered = true;
 
 		if (!messageList.isEmpty()) {
 			numberOfDivs++;
@@ -258,7 +258,7 @@ public class MessageRenderer extends CoreRenderer {
 			return "bficon bficon-error-circle-o";// "fa fa-exclamation-circle";
 		if (hasWarning)
 			return "bficon bficon-warning-triangle-o";// "fa
-														// fa-exclamation-triangle";
+		// fa-exclamation-triangle";
 		return "bficon bficon-info";// "fa fa-info-circle";
 	}
 }

@@ -180,7 +180,19 @@ public class ELTools {
 
 	private static Field getField(String p_expression) {
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
+			// the following code covers these use cases:
+			// #{someBean.someField}
+			// #{someBean.someMap['someField']}
+			// #{someBean.someMap[someBean.fieldName]}
+			// #{someBean.someMap[someBean.fieldName].someAttribute}
 			int delimiterPos = p_expression.lastIndexOf('.');
+			int mapDelimiterPos = p_expression.lastIndexOf('[');
+			if (mapDelimiterPos>=0) {
+				int mapEndDelimiterPos = p_expression.lastIndexOf(']');
+				if (delimiterPos < mapEndDelimiterPos) {
+					delimiterPos = mapDelimiterPos; // treat the [...] as field
+				}
+			}
 			if (delimiterPos < 0) {
 				LOGGER.log(Level.WARNING, "There's no field to access: #{" + p_expression + "}");
 				return null;
@@ -217,14 +229,21 @@ public class ELTools {
 	}
 
 	private static Method getGetter(String p_expression) {
-		// synchronized (getters) {
-		// if (getters.containsKey(p_expression)) {
-		// return getters.get(p_expression);
-		// }
-		// }
-
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
+			// the following code covers these use cases:
+			// #{someBean.someField}
+			// #{someBean.someMap['someField']}
+			// #{someBean.someMap[someBean.fieldName]}
+			// #{someBean.someMap[someBean.fieldName].someAttribute}
 			int delimiterPos = p_expression.lastIndexOf('.');
+			int mapDelimiterPos = p_expression.lastIndexOf('[');
+			if (mapDelimiterPos>=0) {
+				int mapEndDelimiterPos = p_expression.lastIndexOf(']');
+				if (delimiterPos < mapEndDelimiterPos) {
+					// the last part of the expression is a map access, so there's no getter
+					return null; 
+				}
+			}
 			if (delimiterPos < 0) {
 				LOGGER.log(Level.WARNING, "There's no getter to access: #{" + p_expression + "}");
 				return null;
@@ -236,15 +255,12 @@ public class ELTools {
 			Object container = evalAsObject(beanExp);
 			if (null == container) {
 				LOGGER.severe("Can't read the bean '" + beanExp
-						+ "'. Thus JSR 303 annotations can't be read, let alone used by the AngularJS / AngularDart client.");
+						+ "'. Thus JSR 303 annotations can't be read.");
 				return null;
 			}
 			Method declaredMethod = findMethod(container, getterName);
 			if (null == declaredMethod)
 				declaredMethod = findMethod(container, booleanGetterName);
-			// synchronized (getters) {
-			// getters.put(p_expression, declaredMethod);
-			// }
 			return declaredMethod;
 
 		}

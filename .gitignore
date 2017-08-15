@@ -17,6 +17,8 @@ java8/.settings
 /gradleResources/.settings
 /dist
 /optimized
+.gradle
+.asscache
 /nbproject/
 /nbproject/private/
 .nb-gradle/
@@ -31,7 +33,6 @@ java8/.settings
 src-gen
 /target-grunt/
 .DS_Store
-.gradle
 .idea/
 *.iml
 /.externalToolBuilders

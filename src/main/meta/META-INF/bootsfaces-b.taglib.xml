@@ -6,7 +6,7 @@
 	version="2.0"
 	id="b">
 	<namespace>http://bootsfaces.net/ui</namespace>
-
+	
 	<!-- *********** b:accordion ************************* -->
 	<tag>
 		<tag-name>accordion</tag-name>
@@ -308,7 +308,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:alert ************************* -->
 	<tag>
 		<tag-name>alert</tag-name>
@@ -610,7 +610,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:badge ************************* -->
 	<tag>
 		<tag-name>badge</tag-name>
@@ -900,7 +900,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:button ************************* -->
 	<tag>
 		<tag-name>button</tag-name>
@@ -1262,12 +1262,6 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
-		  <name>onselect</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[The outcome to navigate to.]]></description>
 		  <name>outcome</name>
 		  <required>false</required>
@@ -1430,7 +1424,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:buttonGroup ************************* -->
 	<tag>
 		<tag-name>buttonGroup</tag-name>
@@ -1744,7 +1738,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:buttonToolbar ************************* -->
 	<tag>
 		<tag-name>buttonToolbar</tag-name>
@@ -2046,7 +2040,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:canvas ************************* -->
 	<tag>
 		<tag-name>canvas</tag-name>
@@ -2348,7 +2342,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:carousel ************************* -->
 	<tag>
 		<tag-name>carousel</tag-name>
@@ -2800,7 +2794,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:carouselItem ************************* -->
 	<tag>
 		<tag-name>carouselItem</tag-name>
@@ -3006,7 +3000,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:carouselCaption ************************* -->
 	<tag>
 		<tag-name>carouselCaption</tag-name>
@@ -3200,7 +3194,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:carouselControl ************************* -->
 	<tag>
 		<tag-name>carouselControl</tag-name>
@@ -3400,7 +3394,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:colorPicker ************************* -->
 	<tag>
 		<tag-name>colorPicker</tag-name>
@@ -4110,7 +4104,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:column ************************* -->
 	<tag>
 		<tag-name>column</tag-name>
@@ -4406,7 +4400,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:commandButton ************************* -->
 	<tag>
 		<tag-name>commandButton</tag-name>
@@ -4972,7 +4966,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:container ************************* -->
 	<tag>
 		<tag-name>container</tag-name>
@@ -5100,7 +5094,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:dataTable ************************* -->
 	<tag>
 		<tag-name>dataTable</tag-name>
@@ -5168,6 +5162,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
+		  <name>columnVisibility</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -5176,6 +5176,18 @@
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>contentDisabled</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'copy to clipboard' button.]]></description>
+		  <name>copy</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'export CSV file' button.]]></description>
+		  <name>csv</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -5214,6 +5226,12 @@
 		  <name>display</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'export Excel file' button.]]></description>
+		  <name>excel</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Activates the fixed header plugin of the dataTable.]]></description>
@@ -5468,6 +5486,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Adds a 'export PDF file' button.]]></description>
+		  <name>pdf</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a 'print' button.]]></description>
+		  <name>print</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
 		  <name>process</name>
 		  <required>false</required>
@@ -5498,6 +5528,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row.]]></description>
+		  <name>row-style-class</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row.]]></description>
+		  <name>rowStyleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc.]]></description>
 		  <name>save-state</name>
 		  <required>false</required>
@@ -5522,6 +5564,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false.]]></description>
+		  <name>scroll-horizontally</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false.]]></description>
+		  <name>scrollHorizontally</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px.]]></description>
 		  <name>scroll-size</name>
 		  <required>false</required>
@@ -5534,13 +5588,13 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[If set, the table can scroll horizontally. Defaults to false.]]></description>
+		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false.]]></description>
 		  <name>scroll-x</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[If set, the table can scroll horizontally. Defaults to false.]]></description>
+		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false.]]></description>
 		  <name>scrollX</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -5714,7 +5768,7 @@
 		  <type>String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:dataTableColumn ************************* -->
 	<tag>
 		<tag-name>dataTableColumn</tag-name>
@@ -5938,7 +5992,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:datepicker ************************* -->
 	<tag>
 		<tag-name>datepicker</tag-name>
@@ -6480,7 +6534,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:dateTimePicker ************************* -->
 	<tag>
 		<tag-name>dateTimePicker</tag-name>
@@ -7466,7 +7520,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:defaultCommand ************************* -->
 	<tag>
 		<tag-name>defaultCommand</tag-name>
@@ -7492,7 +7546,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:dropButton ************************* -->
 	<tag>
 		<tag-name>dropButton</tag-name>
@@ -7812,7 +7866,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:dropMenu ************************* -->
 	<tag>
 		<tag-name>dropMenu</tag-name>
@@ -8222,7 +8276,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:fetchBeanInfos ************************* -->
 	<tag>
 		<tag-name>fetchBeanInfos</tag-name>
@@ -8236,7 +8290,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:form ************************* -->
 	<tag>
 		<tag-name>form</tag-name>
@@ -8418,7 +8472,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:flyOutMenu ************************* -->
 	<tag>
 		<tag-name>flyOutMenu</tag-name>
@@ -8546,7 +8600,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:focus ************************* -->
 	<tag>
 		<tag-name>focus</tag-name>
@@ -8572,7 +8626,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:fullCalendar ************************* -->
 	<tag>
 		<tag-name>fullCalendar</tag-name>
@@ -9000,7 +9054,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:growl ************************* -->
 	<tag>
 		<tag-name>growl</tag-name>
@@ -9182,7 +9236,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:gyroscope ************************* -->
 	<tag>
 		<tag-name>gyroscope</tag-name>
@@ -9280,7 +9334,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:icon ************************* -->
 	<tag>
 		<tag-name>icon</tag-name>
@@ -9678,7 +9732,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:iconAwesome ************************* -->
 	<tag>
 		<tag-name>iconAwesome</tag-name>
@@ -10070,7 +10124,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:image ************************* -->
 	<tag>
 		<tag-name>image</tag-name>
@@ -10504,7 +10558,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:inputSecret ************************* -->
 	<tag>
 		<tag-name>inputSecret</tag-name>
@@ -11220,7 +11274,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:inputText ************************* -->
 	<tag>
 		<tag-name>inputText</tag-name>
@@ -11530,6 +11584,12 @@
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Input mask. Default masking definitions: "9": numeric, "a": alphabetical, "*": alphanumeric.]]></description>
+		  <name>mask</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12013,14 +12073,8 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
-		<attribute>
-		  <description><![CDATA[Input mask. Default masking definitions: "9": numeric, "a": alphabetical, "*": alphanumeric.]]></description>
-		  <name>mask</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:inputTextarea ************************* -->
 	<tag>
 		<tag-name>inputTextarea</tag-name>
@@ -12730,7 +12784,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:internalFALink ************************* -->
 	<tag>
 		<tag-name>internalFALink</tag-name>
@@ -12738,7 +12792,7 @@
 			<component-type>net.bootsfaces.component.internalFALink.InternalFALink</component-type>
 		</component>
 	</tag>
-
+	
 	<!-- *********** b:internalIE8CompatibilityLink ************************* -->
 	<tag>
 		<tag-name>internalIE8CompatibilityLink</tag-name>
@@ -12746,7 +12800,7 @@
 			<component-type>net.bootsfaces.component.internalIE8CompatibilityLink.InternalIE8CompatibilityLink</component-type>
 		</component>
 	</tag>
-
+	
 	<!-- *********** b:jumbotron ************************* -->
 	<tag>
 		<tag-name>jumbotron</tag-name>
@@ -12862,7 +12916,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:kebab ************************* -->
 	<tag>
 		<tag-name>kebab</tag-name>
@@ -12918,7 +12972,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:label ************************* -->
 	<tag>
 		<tag-name>label</tag-name>
@@ -13220,7 +13274,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:listLinks ************************* -->
 	<tag>
 		<tag-name>listLinks</tag-name>
@@ -13330,7 +13384,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:message ************************* -->
 	<tag>
 		<tag-name>message</tag-name>
@@ -13734,7 +13788,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:messages ************************* -->
 	<tag>
 		<tag-name>messages</tag-name>
@@ -14228,7 +14282,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:modal ************************* -->
 	<tag>
 		<tag-name>modal</tag-name>
@@ -14350,7 +14404,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:navBar ************************* -->
 	<tag>
 		<tag-name>navBar</tag-name>
@@ -14622,7 +14676,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:navCommandLink ************************* -->
 	<tag>
 		<tag-name>navCommandLink</tag-name>
@@ -15200,7 +15254,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:navLink ************************* -->
 	<tag>
 		<tag-name>navLink</tag-name>
@@ -15784,7 +15838,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:navbarLinks ************************* -->
 	<tag>
 		<tag-name>navbarLinks</tag-name>
@@ -15912,7 +15966,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:panel ************************* -->
 	<tag>
 		<tag-name>panel</tag-name>
@@ -16050,6 +16104,84 @@
 		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Panel header icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>icon</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alignment can be right or left.]]></description>
+		  <name>icon-align</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alignment can be right or left.]]></description>
+		  <name>iconAlign</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>icon-awesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>iconAwesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>icon-flip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>iconFlip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>icon-rotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>iconRotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <name>icon-size</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <name>iconSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>icon-spin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>iconSpin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -16400,7 +16532,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:panelGrid ************************* -->
 	<tag>
 		<tag-name>panelGrid</tag-name>
@@ -16744,7 +16876,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:pillLinks ************************* -->
 	<tag>
 		<tag-name>pillLinks</tag-name>
@@ -16854,7 +16986,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:poll ************************* -->
 	<tag>
 		<tag-name>poll</tag-name>
@@ -16910,16 +17042,16 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
-		  <name>update</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
 		  <description><![CDATA[If true, the poll will stop. Default value: false.]]></description>
 		  <name>stop</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
+		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Optional widget variable to access the datatable widget in JavaScript code.]]></description>
@@ -16928,7 +17060,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:progressBar ************************* -->
 	<tag>
 		<tag-name>progressBar</tag-name>
@@ -17272,7 +17404,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:radiobutton ************************* -->
 	<tag>
 		<tag-name>radiobutton</tag-name>
@@ -17658,7 +17790,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:remoteCommand ************************* -->
 	<tag>
 		<tag-name>remoteCommand</tag-name>
@@ -17768,7 +17900,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:row ************************* -->
 	<tag>
 		<tag-name>row</tag-name>
@@ -17890,7 +18022,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:scrollUp ************************* -->
 	<tag>
 		<tag-name>scrollUp</tag-name>
@@ -17988,7 +18120,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:scrollSpy ************************* -->
 	<tag>
 		<tag-name>scrollSpy</tag-name>
@@ -18056,7 +18188,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:selectBooleanCheckbox ************************* -->
 	<tag>
 		<tag-name>selectBooleanCheckbox</tag-name>
@@ -18712,7 +18844,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:shake ************************* -->
 	<tag>
 		<tag-name>shake</tag-name>
@@ -18792,7 +18924,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:spinner ************************* -->
 	<tag>
 		<tag-name>spinner</tag-name>
@@ -19178,7 +19310,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:switch ************************* -->
 	<tag>
 		<tag-name>switch</tag-name>
@@ -19858,7 +19990,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:selectMultiMenu ************************* -->
 	<tag>
 		<tag-name>selectMultiMenu</tag-name>
@@ -20646,7 +20778,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:selectOneMenu ************************* -->
 	<tag>
 		<tag-name>selectOneMenu</tag-name>
@@ -21278,7 +21410,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:slider ************************* -->
 	<tag>
 		<tag-name>slider</tag-name>
@@ -21520,7 +21652,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:slider2 ************************* -->
 	<tag>
 		<tag-name>slider2</tag-name>
@@ -21774,7 +21906,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:socialShare ************************* -->
 	<tag>
 		<tag-name>socialShare</tag-name>
@@ -22058,7 +22190,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:touchSpin ************************* -->
 	<tag>
 		<tag-name>touchSpin</tag-name>
@@ -23002,7 +23134,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:tab ************************* -->
 	<tag>
 		<tag-name>tab</tag-name>
@@ -23064,6 +23196,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Read-write property setting the offset from the beginning of the collection from which to start the iteration. If not set, this offset is not considered and iteration will start at the beginning of the collection.]]></description>
+		  <name>offset</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Optional JavaScript function that's called when the tab is clicked.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
@@ -23086,6 +23224,18 @@
 		  <name>rendered</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Read-write property setting the size of the collection to iterate. The value of this attribute must be less than or equal to the actual size of the collection, or a FacesException must be thrown.]]></description>
+		  <name>size</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Iteration will only process every step items of the collection, starting with the first one.]]></description>
+		  <name>step</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline CSS of the tab.]]></description>
@@ -23183,8 +23333,26 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[The name of a collection of items that this tag iterates over. The collection may be a List, array, java.sql.ResultSet, or an individual java Object. If the collection is null, this tag does nothing.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility. Its type depends on the object of the underlying collection]]></description>
+		  <name>var</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Name of the exported request scoped variable for the status of the iteration. Object is a POJO with the following read-only JavaBeans properties: begin, end, index, step, even, odd, first, and last. This scoped variable has nested visibility.]]></description>
+		  <name>varStatus</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:tabLinks ************************* -->
 	<tag>
 		<tag-name>tabLinks</tag-name>
@@ -23294,7 +23462,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:tabView ************************* -->
 	<tag>
 		<tag-name>tabView</tag-name>
@@ -23530,7 +23698,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:tree ************************* -->
 	<tag>
 		<tag-name>tree</tag-name>
@@ -23910,7 +24078,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:thumbnail ************************* -->
 	<tag>
 		<tag-name>thumbnail</tag-name>
@@ -24194,7 +24362,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:video ************************* -->
 	<tag>
 		<tag-name>video</tag-name>
@@ -24687,7 +24855,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:well ************************* -->
 	<tag>
 		<tag-name>well</tag-name>
@@ -24983,7 +25151,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
-
+	
 	<!-- *********** b:formGroup ************************* -->
 	<tag>
 		<tag-name>formGroup</tag-name>

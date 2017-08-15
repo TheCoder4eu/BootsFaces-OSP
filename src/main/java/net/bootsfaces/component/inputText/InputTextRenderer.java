@@ -226,8 +226,10 @@ public class InputTextRenderer extends CoreInputRenderer {
 			rw.writeAttribute("data-role", "tagsinput", null);
 		}
 
-		String v = getValue2Render(context, component);
-		rw.writeAttribute("value", v, null);
+		if (!(component instanceof InputSecret)) {
+			String v = getValue2Render(context, component);
+			rw.writeAttribute("value", v, null);
+		}
 
 		// Render Ajax Capabilities
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw, false);

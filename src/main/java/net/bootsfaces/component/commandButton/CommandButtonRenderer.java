@@ -169,13 +169,13 @@ public class CommandButtonRenderer extends CoreRenderer {
 			}
 		}
 
+		Tooltip.activateTooltips(context, component);
 		rw.endElement("button");
 		String clazz = Responsive.getResponsiveStyleClass(commandButton, false).trim();
 		boolean isResponsive = clazz.length() > 0;
 		if (isResponsive) {
 			rw.endElement("div");
 		}
-		Tooltip.activateTooltips(context, component);
 	}
 
 	private String getStyleClasses(CommandButton component, boolean isResponsive) {

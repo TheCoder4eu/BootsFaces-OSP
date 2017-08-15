@@ -33,26 +33,26 @@ attribute_list responsive {
     medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
-    hidden				      											   "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    display				default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    hidden				      											 "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
     offset-md                                                              "Integer value to specify how many columns to offset."
     offset-sm                                                              "Integer value to specify how many columns to offset."
     offset-xs                                                              "Integer value to specify how many columns to offset."
     span                                                                   "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    visible				       											   "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+    visible				       											 "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
 attribute_list responsiveLabel {
-	label-col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+	label-col-lg              default "-1"                                "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-md              default "-1"                                "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-sm              default "-1"                                "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-xs              default "-1"                                "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-large-screen        default "-1"                                "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-medium-screen       default "-1"                                "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-small-screen        default "-1"                                "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-tiny-screen         default "-1"                                "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
 }
 
 attribute_list style {
@@ -64,6 +64,15 @@ attribute_list contentDisabled {
 	content-disabled            Boolean default "false"                    "Enables or disables every child element of this container. By default, child elements are enabled."
 }
 
+attribute_list uirepeat {
+	value                       inherited                                  "The name of a collection of items that this tag iterates over. The collection may be a List, array, java.sql.ResultSet, or an individual java Object. If the collection is null, this tag does nothing."
+	var                         inherited                                  "Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility. Its type depends on the object of the underlying collection"
+	offset                      inherited                                  "Read-write property setting the offset from the beginning of the collection from which to start the iteration. If not set, this offset is not considered and iteration will start at the beginning of the collection."
+	size                        inherited                                  "Read-write property setting the size of the collection to iterate. The value of this attribute must be less than or equal to the actual size of the collection, or a FacesException must be thrown."
+	step                        inherited                                  "Iteration will only process every step items of the collection, starting with the first one."
+	varStatus                   inherited                                  "Name of the exported request scoped variable for the status of the iteration. Object is a POJO with the following read-only JavaBeans properties: begin, end, index, step, even, odd, first, and last. This scoped variable has nested visibility."
+}
+
 widget accordion
        implemented_by net.bootsfaces.component.accordion.Accordion
        extends UIComponentBase
@@ -73,7 +82,7 @@ widget accordion
 {
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
+	expanded-panels														"Comma separated list of child panel id that need to render expanded."
 	+tooltip
 	+responsive
 	+style
@@ -145,7 +154,6 @@ widget button
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-    onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
@@ -484,13 +492,19 @@ widget dataTable
  {
     ajax                 Boolean                                           "Activates AJAX. The default value is false (no AJAX)."
 	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
+    columnVisibility     Boolean default "false"                         "Adds a button allowing the user to show and hide of the columns."
+    copy                 Boolean default "false"                           "Adds a 'copy to clipboard' button."
+    csv                  Boolean default "false"                           "Adds a 'export CSV file' button."
+    excel                Boolean default "false"                           "Adds a 'export Excel file' button."
+    pdf                  Boolean default "false"                           "Adds a 'export PDF file' button."
+    print                Boolean default "false"                           "Adds a 'print' button."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
 	custom-options       String                                            "Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk."
     disabled             Boolean                                           "Boolean value to specify if the button is disabled."
 	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
     id                   inherited                                         "Unique identifier of the component in a namingContainer."
     immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    info				 Boolean default "true"							   "If set, this will enable the information about record count. Defaults to true."
+    info				 Boolean default "true"							      "If set, this will enable the information about record count. Defaults to true."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     multi-column-search-position default "bottom"                          "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
@@ -514,10 +528,12 @@ widget dataTable
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
     rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     row-highlight		 Boolean default "true"							   "Enable the row highlight css. Default: true."
+    row-style-class                                                        "Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row."
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
     scroll-size 		 String    						                   "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
-    scroll-x 		     Boolean    						               "If set, the table can scroll horizontally. Defaults to false."
+    scroll-horizontally  Boolean    						               "Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false."
+    scroll-x 		     Boolean    						               "If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false."
     scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
     select 		         Boolean    						               "Allows the user to select rows. Defaults to false."
     selectionMode        String default "multiple"                         "Set this property to \"single\" if you want to prevent multiple selections. Default is \"multiple\"."
@@ -1495,6 +1511,9 @@ widget panel
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    icon                                                                   "Panel header icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     look                                                                   "Look of the Panel, can be primary, success, info, warning, danger. Default is warning."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
@@ -1520,6 +1539,7 @@ widget panel
     +responsive
     +tooltip
     +contentDisabled
+    +iconAwesome
 }
 
 
@@ -2168,6 +2188,7 @@ widget tab
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
     +contentDisabled
+    +uirepeat
 }
 
 widget tabLinks

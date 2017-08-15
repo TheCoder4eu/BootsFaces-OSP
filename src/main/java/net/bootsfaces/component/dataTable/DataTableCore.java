@@ -30,11 +30,15 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		colMd,
 		colSm,
 		colXs,
+		columnVisibility,
 		contentDisabled,
+		copy,
+		csv,
 		customLangUrl,
 		customOptions,
 		disabled,
 		display,
+		excel,
 		fixedHeader,
 		hidden,
 		immediate,
@@ -65,11 +69,15 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		pageLength,
 		pageLengthMenu,
 		paginated,
+		pdf,
+		print,
 		process,
 		responsive,
 		rowHighlight,
+		rowStyleClass,
 		saveState,
 		scrollCollapse,
+		scrollHorizontally,
 		scrollSize,
 		scrollX,
 		searching,
@@ -201,6 +209,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Adds a button allowing the user to show and hide of the columns. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isColumnVisibility() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.columnVisibility, false);
+	}
+
+	/**
+	 * Adds a button allowing the user to show and hide of the columns. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setColumnVisibility(boolean _columnVisibility) {
+		getStateHelper().put(PropertyKeys.columnVisibility, _columnVisibility);
+	}
+
+	/**
 	 * Enables or disables every child element of this container. By default, child elements are enabled. <P>
 	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
@@ -214,6 +238,38 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setContentDisabled(boolean _contentDisabled) {
 		getStateHelper().put(PropertyKeys.contentDisabled, _contentDisabled);
+	}
+
+	/**
+	 * Adds a 'copy to clipboard' button. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isCopy() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.copy, false);
+	}
+
+	/**
+	 * Adds a 'copy to clipboard' button. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCopy(boolean _copy) {
+		getStateHelper().put(PropertyKeys.copy, _copy);
+	}
+
+	/**
+	 * Adds a 'export CSV file' button. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isCsv() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.csv, false);
+	}
+
+	/**
+	 * Adds a 'export CSV file' button. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCsv(boolean _csv) {
+		getStateHelper().put(PropertyKeys.csv, _csv);
 	}
 
 	/**
@@ -278,6 +334,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setDisplay(String _display) {
 		getStateHelper().put(PropertyKeys.display, _display);
+	}
+
+	/**
+	 * Adds a 'export Excel file' button. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isExcel() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.excel, false);
+	}
+
+	/**
+	 * Adds a 'export Excel file' button. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setExcel(boolean _excel) {
+		getStateHelper().put(PropertyKeys.excel, _excel);
 	}
 
 	/**
@@ -761,6 +833,38 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Adds a 'export PDF file' button. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isPdf() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.pdf, false);
+	}
+
+	/**
+	 * Adds a 'export PDF file' button. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPdf(boolean _pdf) {
+		getStateHelper().put(PropertyKeys.pdf, _pdf);
+	}
+
+	/**
+	 * Adds a 'print' button. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isPrint() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.print, false);
+	}
+
+	/**
+	 * Adds a 'print' button. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setPrint(boolean _print) {
+		getStateHelper().put(PropertyKeys.print, _print);
+	}
+
+	/**
 	 * Comma or space separated list of ids or search expressions denoting which values are to be sent to the server. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -809,6 +913,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRowStyleClass() {
+		return (String) getStateHelper().eval(PropertyKeys.rowStyleClass);
+	}
+
+	/**
+	 * Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowStyleClass(String _rowStyleClass) {
+		getStateHelper().put(PropertyKeys.rowStyleClass, _rowStyleClass);
+	}
+
+	/**
 	 * Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc. <P>
 	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
 	 */
@@ -841,6 +961,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
+	 * Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isScrollHorizontally() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.scrollHorizontally, false);
+	}
+
+	/**
+	 * Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setScrollHorizontally(boolean _scrollHorizontally) {
+		getStateHelper().put(PropertyKeys.scrollHorizontally, _scrollHorizontally);
+	}
+
+	/**
 	 * If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size="200px"). By default, it's px. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -857,7 +993,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isScrollX() {
@@ -865,7 +1001,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setScrollX(boolean _scrollX) {
