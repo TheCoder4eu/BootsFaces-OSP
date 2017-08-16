@@ -52,11 +52,18 @@ public class ImageRenderer extends CoreRenderer {
 		Image image = (Image) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = image.getClientId();
+		
+		boolean useXHRLoader = false;
+		if (image.getOnloadend()!= null || image.getOnloadstart() != null || image.getOnprogress() != null) {
+			useXHRLoader = true;
+		}
 
 		rw.startElement("img", image);
 		Tooltip.generateTooltip(context, image, rw);
 		rw.writeAttribute("id", clientId, "id");
-		rw.writeURIAttribute("src", getImageSource(context, component), "value");
+		if (!useXHRLoader) {
+			rw.writeURIAttribute("src", getImageSource(context, component), "value");
+		}
 
 		renderPassThruAttributes(context, image, new String[] { "alt", "height", "lang", "style", "title", "width" });
 
@@ -72,7 +79,21 @@ public class ImageRenderer extends CoreRenderer {
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), image, rw, false);
 
 		rw.endElement("img");
+		if (useXHRLoader) {
+			rw.startElement("script", image);
+			rw.writeText("document.getElementById('" + clientId + "').load('" + getImageSource(context, component) + "', " 
+			+ getJSFunction(image.getOnloadstart()) + "," + getJSFunction(image.getOnprogress())
+			+ ", " + getJSFunction(image.getOnloadend()) + ");", null);
+			rw.endElement("script");
+		}
 		Tooltip.activateTooltips(context, image);
+	}
+	
+	private String getJSFunction(String jsCode) {
+		if (null == jsCode) {
+			return null;
+		}
+		return "function(img){" + jsCode + ";}";
 	}
 
 	/**
