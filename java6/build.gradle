@@ -124,6 +124,8 @@ task defaultJar(type: Jar) {
         include "META-INF/resources/bsf/js/"
         include "META-INF/resources/bsf/css/default/"
         include "META-INF/resources/bsf/css/*.css"
+        
+        include "META-INF/licenses/**"
    }
 
    manifest {
