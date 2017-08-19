@@ -45,10 +45,6 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
-		// @ResourceDependency(library = "bsf", name =
-		// "js/datatables-bf-extensions.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head") })
 @FacesComponent(DataTable.COMPONENT_TYPE)
 public class DataTable extends DataTableCore
 		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
@@ -82,7 +78,8 @@ public class DataTable extends DataTableCore
 		setRendererType(DEFAULT_RENDERER);
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css");
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

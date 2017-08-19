@@ -12819,6 +12819,34 @@
 		</component>
 	</tag>
 	
+	<!-- *********** b:internalJavaScriptResource ************************* -->
+	<tag>
+		<tag-name>internalJavaScriptResource</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptResource</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[URL of the JavaScript file to include.]]></description>
+		  <name>url</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
+	<!-- *********** b:internalCssScriptResource ************************* -->
+	<tag>
+		<tag-name>internalCssScriptResource</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.internalCssScriptResource.InternalCssScriptResource</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[URL of the CSS file to include.]]></description>
+		  <name>url</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+	</tag>
+	
 	<!-- *********** b:jumbotron ************************* -->
 	<tag>
 		<tag-name>jumbotron</tag-name>

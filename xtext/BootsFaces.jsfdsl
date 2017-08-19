@@ -1193,6 +1193,19 @@ widget internalIE8CompatibilityLink
        implemented_by net.bootsfaces.component.InternalIE8CompatibilityLink
 {}
 
+widget internalJavaScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the JavaScript file to include."
+	
+}
+
+widget internalCssScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the CSS file to include."
+}
+
 
 widget jumbotron
        implemented_by net.bootsfaces.layout.Jumbotron
