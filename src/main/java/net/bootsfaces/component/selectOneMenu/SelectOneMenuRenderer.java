@@ -404,7 +404,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		}
 
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
-		itemLabel = isItemLabelBlank ? "&nbsp;" : itemLabel;
+		itemLabel = isItemLabelBlank ? itemValueAsString : itemLabel;
 
 		rw.startElement("option", itemComponent);
 		rw.writeAttribute("data-label", itemLabel, null);
