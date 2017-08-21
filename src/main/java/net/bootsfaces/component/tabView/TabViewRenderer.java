@@ -86,21 +86,23 @@ public class TabViewRenderer extends CoreRenderer {
 				if (Integer.valueOf(newIndexValue) != tabView.getActiveIndex()) {
 					int newIndex = Integer.valueOf(newIndexValue);
 					if (newIndex < tabView.getChildCount()) {
-						if (!(((Tab) tabView.getChildren().get(newIndex)).isDisabled())) {
-
-							ValueExpression ve = component.getValueExpression("activeIndex");
-							if (ve != null) {
-								try {
-									ve.setValue(context.getELContext(), newIndex);
-								} catch (ELException e) {
-									tabView.setActiveIndex(newIndex);
-								} catch (Exception e) {
+						UIComponent maybeTab = tabView.getChildren().get(newIndex);
+						if (maybeTab instanceof Tab) {
+							if (!(((Tab) maybeTab).isDisabled())) {
+								ValueExpression ve = component.getValueExpression("activeIndex");
+								if (ve != null) {
+									try {
+										ve.setValue(context.getELContext(), newIndex);
+									} catch (ELException e) {
+										tabView.setActiveIndex(newIndex);
+									} catch (Exception e) {
+										tabView.setActiveIndex(newIndex);
+									}
+								} else {
 									tabView.setActiveIndex(newIndex);
 								}
-							} else {
-								tabView.setActiveIndex(newIndex);
+	
 							}
-
 						}
 					}
 				}
