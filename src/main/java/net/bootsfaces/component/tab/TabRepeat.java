@@ -1078,7 +1078,11 @@ public class TabRepeat extends UINamingContainer {
     }
 
     public void queueEvent(FacesEvent event) {
-        super.queueEvent(new IndexedEvent(this, event, this.index));
+		if (this.index >= 0) {
+			super.queueEvent(new IndexedEvent(this, event, this.index));
+		} else {
+			super.queueEvent(event);
+		}
     }
 
     public void restoreState(FacesContext faces, Object object) {
