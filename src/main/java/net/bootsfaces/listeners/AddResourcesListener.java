@@ -17,6 +17,14 @@
  */
 package net.bootsfaces.listeners;
 
+import static net.bootsfaces.C.P_BLOCK_UI;
+import static net.bootsfaces.C.P_GET_BOOTSTRAP_FROM_CDN;
+import static net.bootsfaces.C.P_GET_FONTAWESOME_FROM_CDN;
+import static net.bootsfaces.C.P_GET_JQUERYUI_FROM_CDN;
+import static net.bootsfaces.C.P_GET_JQUERY_FROM_CDN;
+import static net.bootsfaces.C.THEME_NAME_DEFAULT;
+import static net.bootsfaces.C.THEME_NAME_OTHER;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,8 +50,9 @@ import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
 
 import net.bootsfaces.C;
-import static net.bootsfaces.C.*;
 import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.internalCssScriptResource.InternalCssScriptResource;
+import net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptResource;
 import net.bootsfaces.utils.BsfUtils;
 
 /**
@@ -281,26 +290,8 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-
-		// Glyphicons icons now are in core.css
-		//String name = "css/icons.css";
-		//createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
-
 		if (theme.equals("patternfly")) {
 			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
-			// remove datatables.min.css
-			/*
-			for (UIComponent resource : root.getComponentResources(context, "head")) {
-				String library = (String) resource.getAttributes().get("library");
-				if (C.BSF_LIBRARY.equals(library)) {
-					String name = (String) resource.getAttributes().get("name");
-					if ("css/datatables.min.css".equals(name)) {
-						resource.setInView(false);
-						root.removeComponentResource(context, resource);
-					}
-				}
-			}
-			*/
 		}
 		
 		//Add mandatory CSS bsf.css
@@ -492,6 +483,35 @@ public class AddResourcesListener implements SystemEventListener {
 		root.addComponentResource(context, output, "head");
 		//        System.out.println("++" + output.getClientId() + " " + nameToAdd + " " + libToAdd);
 	}
+	
+	public static void addResourceIfNecessary(String url) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot root = context.getViewRoot();
+		if (url.endsWith(".css")) {
+		for (UIComponent c : root.getComponentResources(context, "head")) {
+			if (c instanceof InternalCssScriptResource) {
+				if (((InternalCssScriptResource) c).getUrl().equals(url)) {
+					return;
+				}
+			}
+		}
+		InternalCssScriptResource urlComponent = new InternalCssScriptResource();
+		urlComponent.setUrl(url);
+		root.addComponentResource(context, urlComponent, "head");
+		} else {
+			for (UIComponent c : root.getComponentResources(context, "head")) {
+				if (c instanceof InternalJavaScriptResource) {
+					if (((InternalJavaScriptResource) c).getUrl().equals(url)) {
+						return;
+					}
+				}
+			}
+			InternalJavaScriptResource urlComponent = new InternalJavaScriptResource();
+			urlComponent.setUrl(url);
+			root.addComponentResource(context, urlComponent, "head");
+			
+		}
+	}
 
 	/**
 	 * Remove duplicate resource files. For some reason, many resource files are
@@ -609,10 +629,13 @@ public class AddResourcesListener implements SystemEventListener {
 			} else if ("middle".equals(position)) {
 				middle.add(resource);
 			} else {
-				if (name != null && (name.endsWith(".js"))) {
+				if (resource instanceof InternalJavaScriptResource) {
+					last.add(resource);
+				}
+				else if (name != null && (name.endsWith(".js"))) {
 					resources.add(resource);
 				}
-			}
+			} 
 		}
 
 		// add the JavaScript files in correct order.

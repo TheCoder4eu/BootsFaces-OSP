@@ -8,7 +8,7 @@
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -54,6 +54,19 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ */
+
+
+/*
+ * BootsFaces elects to include this software in this distribution under the CDDL license.
+ */
+
+/*
+ * This class is a modified version of Mojarra's Tab, which has
+ * been published under and CDDL 1.1 license.
+ * 
+ * According to https://www.apache.org/legal/resolved.html, the CDDL license
+ * is compatible to the Apache V2 license.
  */
 
 package net.bootsfaces.component.tab;

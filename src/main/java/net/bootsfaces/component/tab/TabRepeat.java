@@ -1,41 +1,14 @@
 /*
- * This class is a modified version of Mojarra's ui:repeat, which has
- * been published under and CDDL 1.1 license.
- * 
- * According to https://www.apache.org/legal/resolved.html, the CDDL license
- * is compatible to the Apache V2 license. Nonetheless, this file
- * is to subject to be rewritten in order to avoid copyright issues.
- */
-
-/*
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
- *  
- *  This file is part of BootsFaces.
- *  
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
- */
-
-/*
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
- * Copyright (c) 1997-2013 Oracle and/or its affiliates. All rights reserved.
+ * Copyright (c) 1997-2016 Oracle and/or its affiliates. All rights reserved.
  *
  * The contents of this file are subject to the terms of either the GNU
  * General Public License Version 2 only ("GPL") or the Common Development
  * and Distribution License("CDDL") (collectively, the "License").  You
  * may not use this file except in compliance with the License.  You can
  * obtain a copy of the License at
- * https://glassfish.dev.java.net/public/CDDL+GPL_1_1.html
+ * https://glassfish.java.net/public/CDDL+GPL_1_1.html
  * or packager/legal/LICENSE.txt.  See the License for the specific
  * language governing permissions and limitations under the License.
  *
@@ -81,6 +54,18 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ */
+
+/*
+ * BootsFaces elects to include this software in this distribution under the CDDL license.
+ */ 
+
+/*
+ * This class is a modified version of Mojarra's ui:repeat, which has
+ * been published under and CDDL 1.1 license.
+ * 
+ * According to https://www.apache.org/legal/resolved.html, the CDDL license
+ * is compatible to the Apache V2 license.
  */
 
 package net.bootsfaces.component.tab;
@@ -740,6 +725,11 @@ public class TabRepeat extends UINamingContainer {
 
     @Override
     public boolean visitTree(VisitContext context, VisitCallback callback) {
+    	
+		if (this.getVar() == null) {
+			return super.visitTree(context, callback);
+		}
+
         // First check to see whether we are visitable.  If not
         // short-circuit out of this subtree, though allow the
         // visit to proceed through to other subtrees.
@@ -857,7 +847,6 @@ public class TabRepeat extends UINamingContainer {
 
 
     private boolean visitChildren(VisitContext context, VisitCallback callback) {
-
         Integer begin = this.getBegin();
         Integer end = this.getEnd();
         Integer step = this.getStep();
@@ -899,14 +888,19 @@ public class TabRepeat extends UINamingContainer {
     }
 
 
-    public void processDecodes(FacesContext faces) {
-        if (!this.isRendered())
-            return;
-        this.setDataModel(null);
-        if (!this.keepSaved(faces)) this.childState = null;
-        this.process(faces, PhaseId.APPLY_REQUEST_VALUES, null);
-        this.decode(faces);
-    }
+	public void processDecodes(FacesContext faces) {
+		if (null == this.getVar()) {
+			super.processDecodes(faces);
+		} else {
+			if (!this.isRendered())
+				return;
+			this.setDataModel(null);
+			if (!this.keepSaved(faces))
+				this.childState = null;
+			this.process(faces, PhaseId.APPLY_REQUEST_VALUES, null);
+			this.decode(faces);
+		}
+	}
 
     public void processUpdates(FacesContext faces) {
         if (!this.isRendered()) return;
@@ -1093,7 +1087,11 @@ public class TabRepeat extends UINamingContainer {
     }
 
     public void queueEvent(FacesEvent event) {
-        super.queueEvent(new IndexedEvent(this, event, this.index));
+		if (this.index >= 0) {
+			super.queueEvent(new IndexedEvent(this, event, this.index));
+		} else {
+			super.queueEvent(event);
+		}
     }
 
     public void restoreState(FacesContext faces, Object object) {

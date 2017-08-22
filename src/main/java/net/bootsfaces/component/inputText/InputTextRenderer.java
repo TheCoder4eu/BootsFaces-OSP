@@ -73,6 +73,11 @@ public class InputTextRenderer extends CoreInputRenderer {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
+		if (inputText instanceof InputSecret) {
+			if ("*******".equals(submittedValue)) {
+				submittedValue = null;
+			}
+		}
 		
 		if (null != legalValues && null != submittedValue) {
 			boolean found = false;
@@ -226,8 +231,13 @@ public class InputTextRenderer extends CoreInputRenderer {
 			rw.writeAttribute("data-role", "tagsinput", null);
 		}
 
-		if (!(component instanceof InputSecret)) {
-			String v = getValue2Render(context, component);
+		String v = getValue2Render(context, component);
+		if (component instanceof InputSecret) {
+			if (v != null && v.length()> 0) {
+				v = "*******";
+			}
+		}
+		if (v != null && v.length()> 0) {
 			rw.writeAttribute("value", v, null);
 		}
 

@@ -967,6 +967,9 @@ widget image
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onloadstart                                                            "JavaScript code executed when the image starts loading. Note that using this options reduces the speed of loading."
+    onloadend                                                              "JavaScript code executed when the image has successfully been loaded. Note that using this options reduces the speed of loading."
+    onprogress                                                             "JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1189,6 +1192,19 @@ widget internalFALink
 widget internalIE8CompatibilityLink
        implemented_by net.bootsfaces.component.InternalIE8CompatibilityLink
 {}
+
+widget internalJavaScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the JavaScript file to include."
+	
+}
+
+widget internalCssScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the CSS file to include."
+}
 
 
 widget jumbotron

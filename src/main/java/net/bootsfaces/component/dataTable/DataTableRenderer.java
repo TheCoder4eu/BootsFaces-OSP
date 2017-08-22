@@ -90,7 +90,7 @@ public class DataTableRenderer extends CoreRenderer {
 
 		if (dataTable.isScrollHorizontally()) {
 			rw.startElement("div", dataTable);
-			rw.writeAttribute("style", "overflow-x:auto;white-space:nowrap;overflow-y:hidden;", null);
+			rw.writeAttribute("class", "table-responsive", null);			
 			rw.writeAttribute("id", clientId, "id");
 			idHasBeenRendered = true;
 		}
