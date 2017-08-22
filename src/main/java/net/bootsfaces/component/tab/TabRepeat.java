@@ -725,6 +725,11 @@ public class TabRepeat extends UINamingContainer {
 
     @Override
     public boolean visitTree(VisitContext context, VisitCallback callback) {
+    	
+		if (this.getVar() == null) {
+			return super.visitTree(context, callback);
+		}
+
         // First check to see whether we are visitable.  If not
         // short-circuit out of this subtree, though allow the
         // visit to proceed through to other subtrees.
@@ -842,7 +847,6 @@ public class TabRepeat extends UINamingContainer {
 
 
     private boolean visitChildren(VisitContext context, VisitCallback callback) {
-
         Integer begin = this.getBegin();
         Integer end = this.getEnd();
         Integer step = this.getStep();
@@ -884,14 +888,19 @@ public class TabRepeat extends UINamingContainer {
     }
 
 
-    public void processDecodes(FacesContext faces) {
-        if (!this.isRendered())
-            return;
-        this.setDataModel(null);
-        if (!this.keepSaved(faces)) this.childState = null;
-        this.process(faces, PhaseId.APPLY_REQUEST_VALUES, null);
-        this.decode(faces);
-    }
+	public void processDecodes(FacesContext faces) {
+		if (null == this.getVar()) {
+			super.processDecodes(faces);
+		} else {
+			if (!this.isRendered())
+				return;
+			this.setDataModel(null);
+			if (!this.keepSaved(faces))
+				this.childState = null;
+			this.process(faces, PhaseId.APPLY_REQUEST_VALUES, null);
+			this.decode(faces);
+		}
+	}
 
     public void processUpdates(FacesContext faces) {
         if (!this.isRendered()) return;
