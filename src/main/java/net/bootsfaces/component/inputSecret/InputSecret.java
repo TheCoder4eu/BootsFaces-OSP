@@ -19,8 +19,8 @@
 package net.bootsfaces.component.inputSecret;
 
 import javax.faces.component.FacesComponent;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.inputText.InputText;
 
 /**
@@ -30,7 +30,49 @@ import net.bootsfaces.component.inputText.InputText;
 
 @FacesComponent(InputSecret.COMPONENT_TYPE)
 public class InputSecret extends InputText {
-    
-    public static final String COMPONENT_TYPE=C.BSFCOMPONENT + ".inputSecret.InputSecret";
-    
+
+	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".inputSecret.InputSecret";
+
+	protected enum PropertyKeys {
+		renderValue;
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
+	/**
+	 * By default, the value of the password field is never sent to the client.
+	 * However, if you need to send the value to the client for some reason, you can
+	 * set this flag to true. Please make sure that this is not a security hole. The
+	 * password may be unreadable on the screen, but hackers can read it easily.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or false, if it hasn't been set
+	 *         by the JSF file.
+	 */
+	public boolean isRenderValue() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderValue, false);
+	}
+
+	/**
+	 * By default, the value of the password field is never sent to the client.
+	 * However, if you need to send the value to the client for some reason, you can
+	 * set this flag to true. Please make sure that this is not a security hole. The
+	 * password may be unreadable on the screen, but hackers can read it easily.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRenderValue(boolean _renderValue) {
+		getStateHelper().put(PropertyKeys.renderValue, _renderValue);
+	}
+
 }
