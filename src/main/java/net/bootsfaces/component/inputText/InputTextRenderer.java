@@ -74,8 +74,10 @@ public class InputTextRenderer extends CoreInputRenderer {
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 		if (inputText instanceof InputSecret) {
-			if ("*******".equals(submittedValue)) {
-				submittedValue = null;
+			if (!((InputSecret)inputText).isRenderValue()) {
+				if ("*******".equals(submittedValue)) {
+					submittedValue = null;
+				}
 			}
 		}
 		
@@ -232,9 +234,11 @@ public class InputTextRenderer extends CoreInputRenderer {
 		}
 
 		String v = getValue2Render(context, component);
-		if (component instanceof InputSecret) {
-			if (v != null && v.length()> 0) {
-				v = "*******";
+		if (inputText instanceof InputSecret) {
+			if (!((InputSecret) inputText).isRenderValue()) {
+				if (v != null && v.length() > 0) {
+					v = "*******";
+				}
 			}
 		}
 		if (v != null && v.length()> 0) {
