@@ -71,6 +71,7 @@
    	from 'staticResources/js/moment-with-locales.min.js'
    	from 'staticResources/js/fullcalendar.min.js'
    	from 'staticResources/js/fullcalendar-lang-all.js'
+   	from 'staticResources/js/image-loader.js'
    	from 'staticResources/js/jquery.blockUI.js'
    	from 'staticResources/js/jquery.inputmask.bundle.min.js'
    	from 'staticResources/js/jquery.scrollUp.min.js'
