@@ -468,6 +468,55 @@ widget commandButton
     +iconAwesome
 }
 
+widget commandLink
+       implemented_by net.bootsfaces.component.commandLink.CommandLink
+       extends UICommand
+       has_tooltip
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
+    content-style                                                          "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
+    href                                                                   "Specifies the URL of the page the link goes to."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    outcome                                                                "The outcome to navigate to."
+	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                            "CSS style class"
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "Navigation Link text."
+    +responsive
+    +tooltip
+    +iconAwesome
+}
 
 widget container
        implemented_by net.bootsfaces.layout.Container
@@ -1027,6 +1076,7 @@ widget inputSecret
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
+    render-value        Boolean default "false"                            "By default, the value of the password field is never sent to the client. However, if you need to send the value to the client for some reason, you can set this flag to true. Please make sure that this is not a security hole. The password may be unreadable on the screen, but hackers can read it easily."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1248,6 +1298,59 @@ widget label
 	+tooltip
 }
 
+widget link
+       implemented_by net.bootsfaces.component.link.Link
+       extends UICommand
+       has_tooltip
+       is_responsive
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
+    content-style                                                          "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
+    href                                                                   "Specifies the URL of the page the link goes to."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    outcome                                                                "The outcome to navigate to."
+	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                            "CSS style class"
+    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "Navigation Link text."
+    +responsive
+    +tooltip
+    +iconAwesome
+}
+
+
 
 widget listLinks
        implemented_by net.bootsfaces.component.ListLinks
@@ -1407,7 +1510,7 @@ widget navCommandLink
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
-    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
     href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
@@ -1458,7 +1561,7 @@ widget navLink
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
-    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
     href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
@@ -1616,6 +1719,8 @@ widget progressBar
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    content-class                                                          "Style class of the inner div (which defines the length of the progress bar)."
+    content-style                                                          "Inline CSS style of the inner div (which defines the length of the progress bar)."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     value               mandatory                                          "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."

@@ -63,6 +63,8 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 		colMd,
 		colSm,
 		colXs,
+		contentClass,
+		contentStyle,
 		display,
 		hidden,
 		largeScreen,
@@ -199,6 +201,38 @@ public class ProgressBar extends UIOutput implements net.bootsfaces.render.IHasT
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Style class of the inner div (which defines the length of the progress bar). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getContentClass() {
+		return (String) getStateHelper().eval(PropertyKeys.contentClass);
+	}
+
+	/**
+	 * Style class of the inner div (which defines the length of the progress bar). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentClass(String _contentClass) {
+		getStateHelper().put(PropertyKeys.contentClass, _contentClass);
+	}
+
+	/**
+	 * Inline CSS style of the inner div (which defines the length of the progress bar). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getContentStyle() {
+		return (String) getStateHelper().eval(PropertyKeys.contentStyle);
+	}
+
+	/**
+	 * Inline CSS style of the inner div (which defines the length of the progress bar). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setContentStyle(String _contentStyle) {
+		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
 	}
 
 	/**
