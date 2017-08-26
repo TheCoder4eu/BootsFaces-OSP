@@ -164,6 +164,10 @@
 				<directory>src/main/meta/META-INF</directory>
 				<targetPath>META-INF</targetPath>
 			</resource>
+			<resource>
+				<directory>licenses</directory>
+				<targetPath>META-INF/licenses</targetPath>
+			</resource>
 		</resources>
 	</build>
 
