@@ -202,7 +202,7 @@ public class ELTools {
 			Object container = evalAsObject(beanExp);
 			if (null == container) {
 				LOGGER.severe("Can't read the bean '" + beanExp
-						+ "'. Thus JSR 303 annotations can't be read, let alone used by the AngularJS / AngularDart client.");
+						+ "'. Thus JSR 303 annotations can't be read.");
 				return null;
 			}
 
