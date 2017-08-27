@@ -509,7 +509,6 @@ public class AddResourcesListener implements SystemEventListener {
 			InternalJavaScriptResource urlComponent = new InternalJavaScriptResource();
 			urlComponent.setUrl(url);
 			root.addComponentResource(context, urlComponent, "head");
-
 		}
 	}
 
@@ -617,6 +616,7 @@ public class AddResourcesListener implements SystemEventListener {
 		List<UIComponent> first = new ArrayList<UIComponent>();
 		List<UIComponent> middle = new ArrayList<UIComponent>();
 		List<UIComponent> last = new ArrayList<UIComponent>();
+		List<UIComponent> datatable = new ArrayList<UIComponent>();
 
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
@@ -630,7 +630,7 @@ public class AddResourcesListener implements SystemEventListener {
 				middle.add(resource);
 			} else {
 				if (resource instanceof InternalJavaScriptResource) {
-					last.add(resource);
+					datatable.add(resource);
 				}
 				else if (name != null && (name.endsWith(".js"))) {
 					resources.add(resource);
@@ -668,6 +668,9 @@ public class AddResourcesListener implements SystemEventListener {
 			root.addComponentResource(context, c, "head");
 		}
 		for (UIComponent c : last) {
+			root.addComponentResource(context, c, "head");
+		}
+		for (UIComponent c : datatable) {
 			root.addComponentResource(context, c, "head");
 		}
 	}
