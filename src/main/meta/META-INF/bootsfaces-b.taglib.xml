@@ -5232,6 +5232,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered.]]></description>
+		  <name>look</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>medium-screen</name>
 		  <required>false</required>
@@ -14172,6 +14178,12 @@
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>largeScreen</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered.]]></description>
+		  <name>look</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

@@ -25,4 +25,43 @@ import net.bootsfaces.component.navLink.NavLink;
 /** This class holds the attributes of &lt;b:commandLink /&gt;. */
 @FacesComponent("net.bootsfaces.component.commandLink.CommandLink")
 public class CommandLink extends NavLink {
+	protected enum PropertyKeys {
+		look;
+		String toString;
+
+		PropertyKeys(String toString) {
+			this.toString = toString;
+		}
+
+		PropertyKeys() {
+		}
+
+		public String toString() {
+			return ((this.toString != null) ? this.toString : super.toString());
+		}
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success,
+	 * warning, important, danger, and default. If not specified, a standard HTML
+	 * hyperlink is rendered.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by
+	 *         the JSF file.
+	 */
+	public String getLook() {
+		return (String) getStateHelper().eval(PropertyKeys.look);
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success,
+	 * warning, important, danger, and default. If not specified, a standard HTML
+	 * hyperlink is rendered.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLook(String _look) {
+		getStateHelper().put(PropertyKeys.look, _look);
+	}
 }

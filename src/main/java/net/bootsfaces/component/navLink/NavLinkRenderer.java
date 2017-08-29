@@ -255,6 +255,17 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 		if (!(navlink instanceof Link || navlink instanceof CommandLink)) {
 			writeAttribute(rw, "role", "menuitem", null);
+		} else {
+			if (navlink instanceof Link) {
+				if (((Link)navlink).getLook() != null) {
+					writeAttribute(rw, "role", "button", null);
+				}
+			} else if (navlink instanceof CommandLink) {
+				if (((CommandLink)navlink).getLook() != null) {
+					writeAttribute(rw, "role", "button", null);
+				}
+			}
+
 		}
 		writeAttribute(rw, "tabindex", "-1", null);
 
@@ -316,8 +327,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (null != styleClass)
 			c += " " + styleClass;
 
-		c += " "
-				+ Responsive.getResponsiveStyleClass((AbstractNavLink) navlink, false);
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass((AbstractNavLink) navlink, false);
+		c += " " + responsiveStyleClass;
+		c += getStyleClasses(navlink, responsiveStyleClass.length()>1);
 		return c.trim();
 	}
 
@@ -411,5 +423,31 @@ public class NavLinkRenderer extends CoreRenderer {
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// this component rendered it's children itself
+	}
+	
+	/**
+	 * Collects the CSS classes of the link.
+	 *
+	 * @return the CSS classes (separated by a space).
+	 */
+	private static String getStyleClasses(AbstractNavLink link, boolean isResponsive) {
+		StringBuilder sb;
+		sb = new StringBuilder(20); // optimize int
+		
+		String look = null;
+		if (link instanceof Link) {
+			look = ((Link)link).getLook();
+		} else if (link instanceof CommandLink) {
+			look = ((CommandLink)link).getLook();
+		}
+
+		if (look != null) {
+			sb.append("btn btn-").append(look);
+			if (isResponsive) {
+				sb.append(" btn-block");
+			}
+		}
+
+		return sb.toString().trim();
 	}
 }
