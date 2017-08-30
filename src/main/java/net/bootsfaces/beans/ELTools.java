@@ -33,22 +33,15 @@ import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
+import net.bootsfaces.utils.BsfUtils;
+
 /** Collection of helper methods dealing with the JSF Expression language. */
 public class ELTools {
 	private final static Pattern EL_EXPRESSION = Pattern.compile("#\\{\\{([A-Z_$€]|[a-z_0-9$€]|\\.)+\\}");
 
 	private static Map<String, NGBeanAttributeInfo> beanAttributeInfos = new HashMap<String, NGBeanAttributeInfo>();
 
-	/** Caching */
-	// private static Map<String, Field> fields = new HashMap<String, Field>();
-
-	/** Caching */
-	// private static Map<String, Method> getters = new HashMap<String, Method>();
-
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.beans.ELTools");
-
-	/** Caching */
-	// private static Map<String, List<String>> propertyLists = new HashMap<String, List<String>>();
 
 	/**
 	 * Utility method to create a JSF Value expression from the p_expression string
@@ -114,6 +107,22 @@ public class ELTools {
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
 		ELContext elContext = context.getELContext();
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
+
+		Object result = vex.getValue(elContext);
+		if (null == result) {
+			// check whether the JSF attributes exists
+			vex.getValueReference(elContext);
+		}
+		return result;
+	}
+	
+	public static Object evalAsObject(String p_expression, UIComponent component) throws PropertyNotFoundException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
+		ELContext elContext = context.getELContext();
+    
+		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
+
 		Object result = vex.getValue(elContext);
 		if (null == result) {
 			// check whether the JSF attributes exists
@@ -178,7 +187,7 @@ public class ELTools {
 		return null;
 	}
 
-	private static Field getField(String p_expression) {
+	private static Field getField(String p_expression, UIComponent p_component) throws NoBeanException {
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
 			// the following code covers these use cases:
 			// #{someBean.someField}
@@ -199,11 +208,14 @@ public class ELTools {
 			}
 			String beanExp = p_expression.substring(0, delimiterPos) + "}";
 			String fieldName = p_expression.substring(delimiterPos + 1, p_expression.length() - 1);
-			Object container = evalAsObject(beanExp);
+			Object container = evalAsObject(beanExp, p_component);
 			if (null == container) {
-				LOGGER.severe("Can't read the bean '" + beanExp
-						+ "'. Thus JSR 303 annotations can't be read.");
-				return null;
+				String stage = BsfUtils.getInitParam("javax.faces.PROJECT_STAGE");
+				if ("Development".equalsIgnoreCase(stage)) {
+					LOGGER.severe("Can't read the bean '" + beanExp
+							+ "'. Thus JSR 303 annotations can't be read.");
+				}
+				throw new NoBeanException();
 			}
 
 			Class<? extends Object> c = container.getClass();
@@ -350,15 +362,19 @@ public class ELTools {
 	 *            EL expression of the JSF bean attribute
 	 * @return null if there are no annotations, or if they cannot be accessed
 	 */
-	public static Annotation[] readAnnotations(String p_expression) {
-		Field declaredField = getField(p_expression);
-		if (null != declaredField) {
-			if (declaredField.getAnnotations() != null)
-				return declaredField.getAnnotations();
-		}
-		Method getter = getGetter(p_expression);
-		if (null != getter) {
-			return getter.getAnnotations();
+	public static Annotation[] readAnnotations(String p_expression, UIComponent p_component) {
+		try {
+			Field declaredField = getField(p_expression, p_component);
+			if (null != declaredField) {
+				if (declaredField.getAnnotations() != null)
+					return declaredField.getAnnotations();
+			}
+			Method getter = getGetter(p_expression);
+			if (null != getter) {
+				return getter.getAnnotations();
+			}
+		} catch (NoBeanException ex) {
+		  // the error has already been reported
 		}
 		return null;
 	}
@@ -373,7 +389,7 @@ public class ELTools {
 	public static Annotation[] readAnnotations(UIComponent p_component) {
 		ValueExpression valueExpression = p_component.getValueExpression("value");
 		if (valueExpression != null) {
-			return readAnnotations(valueExpression.getExpressionString());
+			return readAnnotations(valueExpression.getExpressionString(), p_component);
 		}
 		return null;
 	}
