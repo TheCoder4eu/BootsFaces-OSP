@@ -341,20 +341,24 @@ public class ELTools {
 	public static Annotation[] readAnnotations(ValueExpression p_expression, UIComponent p_component) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ELContext elContext = context.getELContext();
-		ValueReference valueReference = p_expression.getValueReference(elContext);
-		Object base;
-		if (null == valueReference) {
-			base = evaluteBaseForMojarra(elContext, p_expression);
-		} else {
-			base = valueReference.getBase();
-		}
-		Field declaredField = getField(base, p_expression.getExpressionString());
-		if (null != declaredField) {
-			return declaredField.getAnnotations();
-		}
-		Method getter = getGetter(base, p_expression.getExpressionString());
-		if (null != getter) {
-			return getter.getAnnotations();
+		try {
+			ValueReference valueReference = p_expression.getValueReference(elContext);
+			Object base;
+			if (null == valueReference) {
+				base = evaluteBaseForMojarra(elContext, p_expression);
+			} else {
+				base = valueReference.getBase();
+			}
+			Field declaredField = getField(base, p_expression.getExpressionString());
+			if (null != declaredField) {
+				return declaredField.getAnnotations();
+			}
+			Method getter = getGetter(base, p_expression.getExpressionString());
+			if (null != getter) {
+				return getter.getAnnotations();
+			}
+		} catch (PropertyNotFoundException ex) {
+			// this happens if a bean is null. That's a legal state, so suffice it to return no annotation.
 		}
 		return null;
 	}
