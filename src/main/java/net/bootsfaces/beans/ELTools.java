@@ -345,6 +345,10 @@ public class ELTools {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ELContext elContext = context.getELContext();
 		ValueReference valueReference = p_expression.getValueReference(elContext);
+		if (null == valueReference) {
+			// Todo implement the feature for Mojarra
+			return null;
+		}
 		Object base = valueReference.getBase();
 		Field declaredField = getField(base, p_expression.getExpressionString());
 		if (null != declaredField) {
