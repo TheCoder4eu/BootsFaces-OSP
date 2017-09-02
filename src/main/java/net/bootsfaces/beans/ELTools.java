@@ -33,6 +33,7 @@ import javax.el.ValueExpression;
 import javax.el.ValueReference;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.FaceletContext;
 
 /** Collection of helper methods dealing with the JSF Expression language. */
 public class ELTools {
@@ -111,10 +112,6 @@ public class ELTools {
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
 
 		Object result = vex.getValue(elContext);
-		if (null == result) {
-			// check whether the JSF attributes exists
-			vex.getValueReference(elContext);
-		}
 		return result;
 	}
 
@@ -345,11 +342,12 @@ public class ELTools {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ELContext elContext = context.getELContext();
 		ValueReference valueReference = p_expression.getValueReference(elContext);
+		Object base;
 		if (null == valueReference) {
-			// Todo implement the feature for Mojarra
-			return null;
+			base = evaluteBaseForMojarra(elContext, p_expression);
+		} else {
+			base = valueReference.getBase();
 		}
-		Object base = valueReference.getBase();
 		Field declaredField = getField(base, p_expression.getExpressionString());
 		if (null != declaredField) {
 			return declaredField.getAnnotations();
@@ -359,6 +357,49 @@ public class ELTools {
 			return getter.getAnnotations();
 		}
 		return null;
+	}
+
+	private static Object evaluteBaseForMojarra(ELContext elContext, ValueExpression p_expression) {
+		String exp = p_expression.getExpressionString();
+		int endOfBaseName = exp.lastIndexOf('.');
+		int mapDelimiterPos = exp.lastIndexOf('[');
+		if (mapDelimiterPos >= 0) {
+			int mapEndDelimiterPos = exp.lastIndexOf(']');
+			if (endOfBaseName < mapEndDelimiterPos) {
+				endOfBaseName = mapDelimiterPos; // treat the [...] as field
+			}
+		}
+
+		String basename = exp.substring(2, endOfBaseName);
+
+		Object result = evalAsObject("#{" + basename + "}");
+		if (null != result) {
+			return result;
+		}
+
+		int start = 0;
+		int end = basename.indexOf('.', start);
+		int end2 = basename.indexOf('[', start);
+		if (end2 >= 0 && end2 < end) {
+			end = end2;
+		}
+		if (end < 0) {
+			end = basename.length();
+		}
+		String variableName = basename.substring(start, end);
+		FaceletContext faceletContext = (FaceletContext) FacesContext.getCurrentInstance().getAttributes()
+				.get(FaceletContext.FACELET_CONTEXT_KEY);
+		Object resolvedBase = faceletContext.getAttribute(variableName);
+		if (resolvedBase != null) {
+			if (endOfBaseName == end + 2) {
+				result = resolvedBase;
+			} else {
+				basename = basename.substring(end + 1, endOfBaseName - 2);
+				result = elContext.getELResolver().getValue(elContext, resolvedBase, basename);
+			}
+		}
+
+		return result;
 	}
 
 	/**
