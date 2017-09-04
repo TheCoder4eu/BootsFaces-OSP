@@ -133,7 +133,7 @@ public class SliderRenderer extends BadgeRenderer {
 
                 rw.writeAttribute("class", getWithFeedback(getInputMode(slider.isInline()), slider), "class");
 		rw.startElement("div", null);
-		String s = "row " + (isVertical ? "slider-vertical" : "slider");
+		String s = (isVertical ? "slider-vertical" : "slider");
 		if (slider.getStyleClass()!=null) {
 			s += " " + slider.getStyleClass();
 		}
