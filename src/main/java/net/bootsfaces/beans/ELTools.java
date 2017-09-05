@@ -415,7 +415,7 @@ public class ELTools {
 	 */
 	public static Annotation[] readAnnotations(UIComponent p_component) {
 		ValueExpression valueExpression = p_component.getValueExpression("value");
-		if (valueExpression != null) {
+		if (valueExpression != null && valueExpression.getExpressionString() != null && valueExpression.getExpressionString().length()>0) {
 			return readAnnotations(valueExpression, p_component);
 		}
 		return null;
