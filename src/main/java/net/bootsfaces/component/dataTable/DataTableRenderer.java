@@ -232,6 +232,15 @@ public class DataTableRenderer extends CoreRenderer {
 			if (dataTable.isRowAvailable()) {
 				rw.startElement("tr", dataTable);
 				String rowStyleClass = dataTable.getRowStyleClass();
+				if (null != dataTable.getSelectedRow()) {
+					if (dataTable.getRowData() == dataTable.getSelectedRow()) {
+						if (null == rowStyleClass) {
+							rowStyleClass = "bf-selected-row";
+						} else {
+							rowStyleClass += "bf-selected-row";
+						}
+					}
+				}
 				if (null != rowStyleClass) {
 					if (rowStyleClass.indexOf(",") >= 0) {
 						String[] styleClasses = rowStyleClass.split(",");
@@ -590,6 +599,15 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions(generateColumnInfos(dataTable.getColumnInfo()), options);
 		options = addOptions(dataTable.getCustomOptions(), options);
 		options = addOptions(getButtons(dataTable), options);
+		if (null != dataTable.getSelectedRow()) {
+			String selector = "'.bf-selected-row'";
+			if (dataTable.getSelectedRow() instanceof String) {
+				selector = "'" + dataTable.getSelectedRow() + "'";
+			} else if (dataTable.getSelectedRow() instanceof Number) {
+				selector = dataTable.getSelectedRow().toString();
+			}
+			options = addOptions("'initComplete': function( settings, json ) { " + widgetVar + ".DataTable().rows(" + selector + ").select(); }", options);
+		}
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.
 				"var wrapper = $('#" + clientIdRaw.replace(":", "\\\\:") + "_wrapper');" + "wrapper.replaceWith("

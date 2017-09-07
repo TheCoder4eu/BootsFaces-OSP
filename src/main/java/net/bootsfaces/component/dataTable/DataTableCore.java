@@ -82,6 +82,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		scrollX,
 		searching,
 		select,
+		selectedRow,
 		selectionMode,
 		smallScreen,
 		span,
@@ -1038,6 +1039,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setSelect(boolean _select) {
 		getStateHelper().put(PropertyKeys.select, _select);
+	}
+
+	/**
+	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public java.lang.Object getSelectedRow() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.selectedRow);
+	}
+
+	/**
+	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectedRow(java.lang.Object _selectedRow) {
+		getStateHelper().put(PropertyKeys.selectedRow, _selectedRow);
 	}
 
 	/**

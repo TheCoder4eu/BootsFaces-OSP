@@ -6196,6 +6196,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.]]></description>
+		  <name>selected-row</name>
+		  <required>false</required>
+		  <type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.]]></description>
+		  <name>selectedRow</name>
+		  <required>false</required>
+		  <type>java.lang.Object</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Set this property to "single" if you want to prevent multiple selections. Default is "multiple".]]></description>
 		  <name>selectionMode</name>
 		  <required>false</required>
