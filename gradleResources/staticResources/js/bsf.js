@@ -108,7 +108,9 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		for(var propertyName in parameters) {
 			var p = parameters[propertyName];
 			if (typeof(p)==='object') {
-				p = JSON.stringify(p).replace(/\"/g, "'");
+				if (p.constructor.name!="Array" || p.length>1) {
+					p = JSON.stringify(p).replace(/\"/g, "'");
+				}
 			}
 			opts[propertyName] = p;
 		}
