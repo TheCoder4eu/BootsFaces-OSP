@@ -11,7 +11,7 @@ public class NextExpressionResolver implements AbstractExpressionResolver {
 			String originalExpression, String[] parameters) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		for (UIComponent parent : parentComponents) {
-			UIComponent grandparent = component.getParent();
+			UIComponent grandparent = parent.getParent();
 			for (int i = 0; i < grandparent.getChildCount(); i++) {
 				if (grandparent.getChildren().get(i) == parent) {
 					i++;
