@@ -210,6 +210,9 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			// BootsFaces approach using b:radioButtons for each radiobutton item
 			String itemValue = radiobutton.getItemValue();
 			String itemLabel = radiobutton.getItemLabel();
+			if (itemLabel == null) {
+				itemLabel = radiobutton.getItemValue();
+			}
 			String itemId = clientId;
 
 			generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue, itemValue,
