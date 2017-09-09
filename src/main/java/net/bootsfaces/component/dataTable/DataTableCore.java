@@ -36,6 +36,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		csv,
 		customLangUrl,
 		customOptions,
+		deselectOnBackdropClick,
 		disabled,
 		display,
 		excel,
@@ -82,7 +83,10 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 		scrollX,
 		searching,
 		select,
+		selectedColumn,
+		selectedItems,
 		selectedRow,
+		selectionInfo,
 		selectionMode,
 		smallScreen,
 		span,
@@ -303,6 +307,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setCustomOptions(String _customOptions) {
 		getStateHelper().put(PropertyKeys.customOptions, _customOptions);
+	}
+
+	/**
+	 * If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false. <P>
+	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDeselectOnBackdropClick() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.deselectOnBackdropClick, false);
+	}
+
+	/**
+	 * If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDeselectOnBackdropClick(boolean _deselectOnBackdropClick) {
+		getStateHelper().put(PropertyKeys.deselectOnBackdropClick, _deselectOnBackdropClick);
 	}
 
 	/**
@@ -1026,7 +1046,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Allows the user to select rows. Defaults to false. <P>
+	 * Allows the user to select rows. Defaults to false. Is automatically set to true if selected-column, selected-row or selection-mode is set. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSelect() {
@@ -1034,7 +1054,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Allows the user to select rows. Defaults to false. <P>
+	 * Allows the user to select rows. Defaults to false. Is automatically set to true if selected-column, selected-row or selection-mode is set. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSelect(boolean _select) {
@@ -1042,7 +1062,39 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var. <P>
+	 * Optional parameter defining which columns are selected when the datatable is initially rendered. If this attribute is an integer, it's the column index. If it's a string, it's a jQuery expression. Automatically sets selection='true' and selected-items='column'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public java.lang.Object getSelectedColumn() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.selectedColumn);
+	}
+
+	/**
+	 * Optional parameter defining which columns are selected when the datatable is initially rendered. If this attribute is an integer, it's the column index. If it's a string, it's a jQuery expression. Automatically sets selection='true' and selected-items='column'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectedColumn(java.lang.Object _selectedColumn) {
+		getStateHelper().put(PropertyKeys.selectedColumn, _selectedColumn);
+	}
+
+	/**
+	 * Determines whether rows, columns or individual cells are selected. Legal values are 'row', 'column', and 'cell'. The default value is 'row'. Automatically sets select='true'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectedItems() {
+		return (String) getStateHelper().eval(PropertyKeys.selectedItems);
+	}
+
+	/**
+	 * Determines whether rows, columns or individual cells are selected. Legal values are 'row', 'column', and 'cell'. The default value is 'row'. Automatically sets select='true'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectedItems(String _selectedItems) {
+		getStateHelper().put(PropertyKeys.selectedItems, _selectedItems);
+	}
+
+	/**
+	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.  Automatically sets selection='true' and selected-items='row'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public java.lang.Object getSelectedRow() {
@@ -1050,11 +1102,27 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var. <P>
+	 * Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.  Automatically sets selection='true' and selected-items='row'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSelectedRow(java.lang.Object _selectedRow) {
 		getStateHelper().put(PropertyKeys.selectedRow, _selectedRow);
+	}
+
+	/**
+	 * The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSelectionInfo() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.selectionInfo, true);
+	}
+
+	/**
+	 * The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectionInfo(boolean _selectionInfo) {
+		getStateHelper().put(PropertyKeys.selectionInfo, _selectionInfo);
 	}
 
 	/**

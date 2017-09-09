@@ -90,7 +90,7 @@ public class DataTableRenderer extends CoreRenderer {
 
 		if (dataTable.isScrollHorizontally()) {
 			rw.startElement("div", dataTable);
-			rw.writeAttribute("class", "table-responsive", null);			
+			rw.writeAttribute("class", "table-responsive", null);
 			rw.writeAttribute("id", clientId, "id");
 			idHasBeenRendered = true;
 		}
@@ -246,8 +246,8 @@ public class DataTableRenderer extends CoreRenderer {
 						String[] styleClasses = rowStyleClass.split(",");
 						rowStyleClass = styleClasses[visibleRowIndex % styleClasses.length];
 					}
-					rowStyleClass=rowStyleClass.trim();
-					if (rowStyleClass.length()>0) {
+					rowStyleClass = rowStyleClass.trim();
+					if (rowStyleClass.length() > 0) {
 						rw.writeAttribute("class", rowStyleClass, null);
 					}
 				}
@@ -589,25 +589,74 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("searching: " + dataTable.isSearching(), options);
 		options = addOptions("order: " + orderString, options);
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
-		if (dataTable.isSelect() && "single".equalsIgnoreCase(dataTable.getSelectionMode())) {
-			options = addOptions("select: 'single'", options);
-		} else {
-			options = addOptions("select: " + dataTable.isSelect(), options);
+		
+		if (dataTable.isSelect()) {
+			String json = "";
+			String items = dataTable.getSelectedItems();
+			if ("column".equals(items) || "columns".equals(items)) {
+				json += "items:'column',";
+			} else if ("cell".equals(items) || "cells".equals(items)) {
+				json += "items:'cell',";
+			}
+			if ("single".equalsIgnoreCase(dataTable.getSelectionMode())) {
+				json += "style:'single',";
+			} else {
+				json += "style:'os',";
+			}
+			if (!dataTable.isSelectionInfo()) {
+				json += "info:false,";
+			}
+			if (dataTable.isDeselectOnBackdropClick()) {
+				json += "blurable:true";
+			}
+			if (json.length()>1) {
+				json="select:{" + json.substring(0,  json.length()-1) + "}";
+			} else {
+				json="select:true";
+			}
+			options = addOptions(json, options);
 		}
+		
 		options = addOptions(generateScrollOptions(dataTable), options);
 		options = addOptions((BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions(generateColumnInfos(dataTable.getColumnInfo()), options);
 		options = addOptions(dataTable.getCustomOptions(), options);
 		options = addOptions(getButtons(dataTable), options);
-		if (null != dataTable.getSelectedRow()) {
+		String selectCommand = "";
+		Object selectedRow = dataTable.getSelectedRow();
+		if (null != selectedRow) {
 			String selector = "'.bf-selected-row'";
-			if (dataTable.getSelectedRow() instanceof String) {
-				selector = "'" + dataTable.getSelectedRow() + "'";
-			} else if (dataTable.getSelectedRow() instanceof Number) {
-				selector = dataTable.getSelectedRow().toString();
+			if (selectedRow instanceof String) {
+				try {
+					Integer.parseInt((String)selectedRow);
+					selector = (String) selectedRow;
+				} catch (NumberFormatException itIsAString) {
+					selector = "'" + selectedRow + "'";
+				}
+			} else if (selectedRow instanceof Number) {
+				selector = selectedRow.toString();
 			}
-			options = addOptions("'initComplete': function( settings, json ) { " + widgetVar + ".DataTable().rows(" + selector + ").select(); }", options);
+			selectCommand = widgetVar + ".DataTable().rows(" + selector + ").select(); ";
 		}
+		Object selectedColumn = dataTable.getSelectedColumn();
+		if (null != selectedColumn) {
+			String selector = "'.bf-selected-column'";
+			if (selectedColumn instanceof String) {
+				try {
+					Integer.parseInt((String)selectedColumn);
+					selector = (String) selectedColumn;
+				} catch (NumberFormatException itIsAString) {
+					selector = "'" + selectedColumn + "'";
+				}
+			} else if (selectedColumn instanceof Number) {
+				selector = selectedColumn.toString();
+			}
+			selectCommand += widgetVar + ".DataTable().columns(" + selector + ").select(); ";
+		}
+		if (selectCommand.length() > 0) {
+			options = addOptions("'initComplete': function( settings, json ) { " + selectCommand + "}", options);
+		}
+
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.
 				"var wrapper = $('#" + clientIdRaw.replace(":", "\\\\:") + "_wrapper');" + "wrapper.replaceWith("
@@ -678,8 +727,8 @@ public class DataTableRenderer extends CoreRenderer {
 		if (dataTable.isPrint()) {
 			b.append("'print',");
 		}
-		if (b.length()>0) {
-			return "dom: 'frtiBp'," + "buttons: [" + b.substring(0, b.length()-1) + "]";
+		if (b.length() > 0) {
+			return "dom: 'frtiBp'," + "buttons: [" + b.substring(0, b.length() - 1) + "]";
 		}
 		return null;
 	}

@@ -5800,6 +5800,18 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false.]]></description>
+		  <name>deselect-on-backdrop-click</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false.]]></description>
+		  <name>deselectOnBackdropClick</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -6190,22 +6202,64 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Allows the user to select rows. Defaults to false.]]></description>
+		  <description><![CDATA[Allows the user to select rows. Defaults to false. Is automatically set to true if selected-column, selected-row or selection-mode is set.]]></description>
 		  <name>select</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.]]></description>
+		  <description><![CDATA[Optional parameter defining which columns are selected when the datatable is initially rendered. If this attribute is an integer, it's the column index. If it's a string, it's a jQuery expression. Automatically sets selection='true' and selected-items='column'.]]></description>
+		  <name>selected-column</name>
+		  <required>false</required>
+		  <type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional parameter defining which columns are selected when the datatable is initially rendered. If this attribute is an integer, it's the column index. If it's a string, it's a jQuery expression. Automatically sets selection='true' and selected-items='column'.]]></description>
+		  <name>selectedColumn</name>
+		  <required>false</required>
+		  <type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Determines whether rows, columns or individual cells are selected. Legal values are 'row', 'column', and 'cell'. The default value is 'row'. Automatically sets select='true'.]]></description>
+		  <name>selected-items</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Determines whether rows, columns or individual cells are selected. Legal values are 'row', 'column', and 'cell'. The default value is 'row'. Automatically sets select='true'.]]></description>
+		  <name>selectedItems</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.  Automatically sets selection='true' and selected-items='row'.]]></description>
 		  <name>selected-row</name>
 		  <required>false</required>
 		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.]]></description>
+		  <description><![CDATA[Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.  Automatically sets selection='true' and selected-items='row'.]]></description>
 		  <name>selectedRow</name>
 		  <required>false</required>
 		  <type>java.lang.Object</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true.]]></description>
+		  <name>selection-info</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true.]]></description>
+		  <name>selectionInfo</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Set this property to "single" if you want to prevent multiple selections. Default is "multiple".]]></description>
+		  <name>selection-mode</name>
+		  <required>false</required>
+		  <type>String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Set this property to "single" if you want to prevent multiple selections. Default is "multiple".]]></description>
