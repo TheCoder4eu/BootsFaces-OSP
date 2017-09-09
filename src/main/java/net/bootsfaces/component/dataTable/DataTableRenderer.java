@@ -227,13 +227,15 @@ public class DataTableRenderer extends CoreRenderer {
 		int rows = dataTable.getRowCount();
 		int visibleRowIndex = 0;
 		dataTable.setRowIndex(-1);
+		Object selectedRow = dataTable.getSelectedRow();
 		for (int row = 0; row < rows; row++) {
 			dataTable.setRowIndex(row);
 			if (dataTable.isRowAvailable()) {
 				rw.startElement("tr", dataTable);
 				String rowStyleClass = dataTable.getRowStyleClass();
-				if (null != dataTable.getSelectedRow()) {
-					if (dataTable.getRowData() == dataTable.getSelectedRow()) {
+				
+				if (null != selectedRow) {
+					if (dataTable.getRowData() == selectedRow) {
 						if (null == rowStyleClass) {
 							rowStyleClass = "bf-selected-row";
 						} else {
@@ -607,7 +609,7 @@ public class DataTableRenderer extends CoreRenderer {
 				json += "info:false,";
 			}
 			if (dataTable.isDeselectOnBackdropClick()) {
-				json += "blurable:true";
+				json += "blurable:true,";
 			}
 			if (json.length()>1) {
 				json="select:{" + json.substring(0,  json.length()-1) + "}";
