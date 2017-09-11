@@ -287,13 +287,17 @@ public class BsfUtils {
 	}
 
 	/**
-	 * Returns the clientId for a component with id="foo"
+	 * Returns the clientId for a component with id="foo".
+	 * @return null if there's no such component.
 	 */
 	public static String getComponentClientId(final String componentId) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		UIComponent c = findComponent(root, componentId);
+		if (c==null) {
+			return null;
+		}
 		return c.getClientId(context);
 	}
 
