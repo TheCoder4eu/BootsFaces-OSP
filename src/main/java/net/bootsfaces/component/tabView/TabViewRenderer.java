@@ -477,9 +477,6 @@ public class TabViewRenderer extends CoreRenderer {
 					int offset = 0;
 					public void run() {
 						try {
-							if (currentlyActiveIndex==6) {
-								System.out.println("Offset: " + offset + " currentIndex: " + currentIndex);
-							}
 							encodeTab(context, writer, tab, currentIndex + offset == currentlyActiveIndex, hiddenInputFieldID,
 									currentIndex + offset, disabled);
 							offset++;

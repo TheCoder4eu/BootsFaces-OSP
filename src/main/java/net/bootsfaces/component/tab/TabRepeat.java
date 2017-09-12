@@ -904,17 +904,25 @@ public class TabRepeat extends UINamingContainer {
 
     public void processUpdates(FacesContext faces) {
         if (!this.isRendered()) return;
-        this.resetDataModel();
-        this.process(faces, PhaseId.UPDATE_MODEL_VALUES, null);
+		if (null == this.getVar()) {
+			super.processUpdates(faces);
+		} else {
+	        this.resetDataModel();
+	        this.process(faces, PhaseId.UPDATE_MODEL_VALUES, null);
+		}
     }
 
     public void processValidators(FacesContext faces) {
         if (!this.isRendered()) return;
-        this.resetDataModel();
-        Application app = faces.getApplication();
-        app.publishEvent(faces, PreValidateEvent.class, this);
-        this.process(faces, PhaseId.PROCESS_VALIDATIONS, null);
-        app.publishEvent(faces, PostValidateEvent.class, this);
+		if (null == this.getVar()) {
+			super.processValidators(faces);
+		} else {       
+	        this.resetDataModel();
+	        Application app = faces.getApplication();
+	        app.publishEvent(faces, PreValidateEvent.class, this);
+	        this.process(faces, PhaseId.PROCESS_VALIDATIONS, null);
+	        app.publishEvent(faces, PostValidateEvent.class, this);
+		}
     }
 
     private final static SavedState NullState = new SavedState();
