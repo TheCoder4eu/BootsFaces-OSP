@@ -235,7 +235,7 @@ public class DataTableRenderer extends CoreRenderer {
 				String rowStyleClass = dataTable.getRowStyleClass();
 				
 				if (null != selectedRow) {
-					if (dataTable.getRowData() == selectedRow) {
+					if ((dataTable.getRowData() == selectedRow) || (selectedRow.equals(dataTable.getRowData()))) {
 						if (null == rowStyleClass) {
 							rowStyleClass = "bf-selected-row";
 						} else {
