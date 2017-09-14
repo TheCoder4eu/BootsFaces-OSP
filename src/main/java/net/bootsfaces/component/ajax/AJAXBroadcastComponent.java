@@ -2,6 +2,7 @@ package net.bootsfaces.component.ajax;
 
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
+import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
@@ -73,6 +74,25 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
 		return vex;
 	}
+	
+	/**
+	 * Evaluates an EL expression into an object.
+	 *
+	 * @param p_expression
+	 *            the expression
+	 * @throws PropertyNotFoundException
+	 *             if the attribute doesn't exist at all (as opposed to being
+	 *             null)
+	 * @return the object
+	 */
+	public static MethodExpression evalAsMethodExpression(String p_expression) throws PropertyNotFoundException {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
+		ELContext elContext = context.getELContext();
+		MethodExpression mex = expressionFactory.createMethodExpression(elContext, p_expression, Object.class, new Class[0]);
+		return mex;
+	}
+
 
 	/**
 	 * Execute the ajax call when ajax syntax was found ajax:<command>
@@ -101,7 +121,12 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 				checkELSyntax(el, context.getELContext());
 			}
 			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
-			result = vex.getValue(context.getELContext());
+			try {
+				result = vex.getValue(context.getELContext());
+			} catch (javax.el.PropertyNotFoundException ex) {
+				MethodExpression mex = evalAsMethodExpression("#{" + el + "}");
+				result = mex.invoke(context.getELContext(), null);
+			}
 
 			// look for the next AJAX call (if any)
 			pos = command.indexOf("ajax:", pos + 1);
