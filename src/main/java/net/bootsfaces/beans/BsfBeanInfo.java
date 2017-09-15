@@ -47,7 +47,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 	 */
 	public PropertyDescriptor[] getCustomPropertyDescriptor() throws IntrospectionException {
 		return null;
-	};
+	}
 
 	/**
 	 * Methods that provide the class to decorate. It is an utility method to

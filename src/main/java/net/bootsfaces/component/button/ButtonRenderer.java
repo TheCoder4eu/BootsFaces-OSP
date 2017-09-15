@@ -148,7 +148,7 @@ public class ButtonRenderer extends CoreRenderer {
 		writeAttribute(rw, "onmouseover", button.getOnmouseover());
 		writeAttribute(rw, "onmouseup", button.getOnmouseup());
 		
-		renderPassThruAttributes(context, button, (String[]) button.getEventNames().toArray());
+		renderPassThruAttributes(context, button, button.getEventNames().toArray(new String[0]));
 
 
 		String icon = button.getIcon();
@@ -232,8 +232,6 @@ public class ButtonRenderer extends CoreRenderer {
 			return js;
 
 		if (canOutcomeBeRendered(button, fragment, outcome)) {
-			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
-
 			String url = determineTargetURL(context, button, outcome);
 
 			if (url != null) {

@@ -169,7 +169,8 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 
 		String divSuffix="";
                 String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		boolean hasResponsiveClass = null != responsiveStyleClass && responsiveStyleClass.trim().length()>0;
+		if (hasResponsiveClass) {
 			rw.startElement("div", dtp);
                         
 			if (!isHorizontalForm(dtp)) {
@@ -206,7 +207,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("label");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}		
@@ -311,10 +312,10 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("div");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.endElement("div");
 		}
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (hasResponsiveClass) {
 			rw.endElement("div");
 		} else if (label != null) {
 			rw.endElement("div");

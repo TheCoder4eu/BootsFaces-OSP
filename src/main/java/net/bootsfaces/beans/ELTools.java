@@ -270,15 +270,6 @@ public class ELTools {
 
 	}
 
-	public static String getNGModel(UIComponent p_component) {
-		String id = ELTools.getCoreValueExpression(p_component);
-		if (id.contains(".")) {
-			int index = id.lastIndexOf(".");
-			id = id.substring(index + 1);
-		}
-		return id;
-	}
-
 	/**
 	 * Yields the type of the variable given by an expression.
 	 *
