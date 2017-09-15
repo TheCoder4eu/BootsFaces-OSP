@@ -1676,7 +1676,7 @@ widget panelGrid
  {
     col-spans                                                              "Comma-separated list of the column spans"
     column-classes                                                         "Comma-separated list of the CSS classes assigned to each column."
-    columns                                                                "Synonym to colSpans: comma-separated list of the column spans"
+    columns                                                                "Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
