@@ -114,9 +114,7 @@ public class MessageRenderer extends CoreRenderer {
 			FacesMessage mostSevere = null;
 			if (onlyMostSevere) {
 				for (FacesMessage msg : messageList) {
-					if (null == mostSevere) {
-						mostSevere = msg;
-					} else if (msg.getSeverity().getOrdinal() > mostSevere.getSeverity().getOrdinal()) {
+					if (null == mostSevere || msg.getSeverity().getOrdinal() > mostSevere.getSeverity().getOrdinal()) {
 						mostSevere = msg;
 					}
 				}

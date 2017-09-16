@@ -252,17 +252,28 @@ public class DefaultNodeImpl
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (obj instanceof DefaultNodeImpl) //			return this.getText().equals(((Node)obj).getText());
-        {
-            return this.getNodeId() == ((Node) obj).getNodeId();
-        }
-        return false;
-    }
-
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + nodeId;
+		return result;
+	}
+    
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DefaultNodeImpl other = (DefaultNodeImpl) obj;
+		if (nodeId != other.nodeId)
+			return false;
+		return true;
+	}
+    
+    
     @Override
     public boolean getUseFaIcons() {
         return useFaIcons;

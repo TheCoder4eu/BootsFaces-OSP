@@ -210,7 +210,6 @@ public class ELTools {
 					c = c.getSuperclass();
 				} catch (SecurityException e) {
 					LOGGER.log(Level.SEVERE, "Unable to access a field", e);
-					e.printStackTrace();
 					return null;
 				}
 			}
@@ -264,7 +263,6 @@ public class ELTools {
 			c = c.getSuperclass();
 		} catch (SecurityException e) {
 			LOGGER.log(Level.SEVERE, "Unable to access a getter for security reasons", e);
-			e.printStackTrace();
 		}
 		return null;
 

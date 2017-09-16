@@ -24,6 +24,8 @@ import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.component.UIComponent;
 
@@ -37,6 +39,8 @@ import net.bootsfaces.utils.BsfUtils;
  *
  */
 public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
+
+	private static final Logger LOGGER = Logger.getLogger(BsfBeanInfo.class.getName());
 
 	/**
 	 * Optional method to add custom property descriptors
@@ -68,7 +72,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 
 		try {
 			// if i have found nothing, i'm trying to get manually
-			if (pdl.size() <= 0) {
+			if (pdl.isEmpty()) {
 				BeanInfo bi = Introspector.getBeanInfo(getDecoratedClass(), Introspector.IGNORE_ALL_BEANINFO);
 				PropertyDescriptor birv[] = bi.getPropertyDescriptors();
 				if (birv != null) {
@@ -83,7 +87,7 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 			if (customPd != null)
 				pdl.addAll(Arrays.asList(customPd));
 		} catch (IntrospectionException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE, "Couldn't read the property descriptors", e);
 			throw new Error(e.toString());
 		}
 
@@ -92,8 +96,9 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 	}
 
 	/**
-	 * Method that generates dynamically the snake-case methods from
-	 * the available camelcase properties found inside the bean list.
+	 * Method that generates dynamically the snake-case methods from the available
+	 * camelcase properties found inside the bean list.
+	 * 
 	 * @param pdl
 	 * @throws IntrospectionException
 	 */
@@ -128,7 +133,6 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 							alternative.setBound(true);
 							alternatives.add(alternative);
 						}
-						// addAlternativeForScreenLayout(alternatives, camelCase, getter, setter);
 					}
 				}
 
@@ -138,50 +142,4 @@ public abstract class BsfBeanInfo extends java.beans.SimpleBeanInfo {
 			pdl.addAll(alternatives);
 		}
 	}
-
-	/**
-	 * Utility method to add alternative getter and setter 
-	 * for grid layout settings. 
-	 * @param alternatives
-	 * @param camelCase
-	 * @param getter
-	 * @param setter
-	 * @throws IntrospectionException
-	 
-	private void addAlternativeForScreenLayout(List<PropertyDescriptor> alternatives, String camelCase, String getter,
-			String setter) throws IntrospectionException {
-		PropertyDescriptor alternative;
-		if (camelCase.equals("colXs")) {
-			alternative = new PropertyDescriptor("tiny-screen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("tinyScreen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-		}
-		if (camelCase.equals("colSm")) {
-			alternative = new PropertyDescriptor("small-screen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("smallScreen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-		}
-		if (camelCase.equals("colMd")) {
-			alternative = new PropertyDescriptor("medium-screen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("mediumScreen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-		}
-		if (camelCase.equals("colLg")) {
-			alternative = new PropertyDescriptor("huge-screen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-			alternative = new PropertyDescriptor("hugeScreen", getDecoratedClass(), getter, setter);
-			alternative.setBound(true);
-			alternatives.add(alternative);
-		}
-	}*/
 }

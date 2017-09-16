@@ -31,7 +31,6 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -181,7 +180,8 @@ public class InputTextareaRenderer extends CoreInputRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, H.INPUT_TEXT);
+		renderPassThruAttributes(context, component, new String[] { "accesskey", "alt", "dir", "lang", "maxlength", "size", "style",
+				"tabindex", "title" });
 
 		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {

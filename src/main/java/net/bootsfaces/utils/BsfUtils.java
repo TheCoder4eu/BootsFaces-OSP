@@ -392,8 +392,12 @@ public class BsfUtils {
 		}
 
 		for (int i = 0; i < params.length; i++) {
-			summary = summary.replace("{" + i + "}", params[i]);
-			detail = detail.replace("{" + i + "}", params[i]);
+			if (null != summary) {
+				summary = summary.replace("{" + i + "}", params[i]);
+			}
+			if (null != detail) {
+				detail = detail.replace("{" + i + "}", params[i]);
+			}
 		}
 
 		// At this point, we have a summary and a bundle.

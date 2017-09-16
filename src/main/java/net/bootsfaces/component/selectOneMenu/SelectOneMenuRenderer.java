@@ -38,7 +38,6 @@ import net.bootsfaces.component.SelectItemUtils;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -498,7 +497,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), menu, rw, false);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), H.SELECT_ONE_MENU);
+		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), new String[] { "accesskey", "alt", "lang", "style", "tabindex", "title" });
 	}
 
 	/**

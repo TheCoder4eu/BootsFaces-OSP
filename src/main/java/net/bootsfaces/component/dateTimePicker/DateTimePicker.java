@@ -48,7 +48,7 @@ import net.bootsfaces.utils.LocaleUtils;
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
 @FacesComponent(DateTimePicker.COMPONENT_TYPE)
 public class DateTimePicker extends DateTimePickerCore
-implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
+		implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dateTimePicker.DateTimePicker";
 
@@ -57,8 +57,8 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dateTimePicker.DateTimePicker";
 
 	private static final Collection<String> EVENT_NAMES = Collections
-			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown",
-					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "keydown", "keypress",
+					"keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	public DateTimePicker() {
 		Tooltip.addResourceFiles();
@@ -72,7 +72,6 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		return COMPONENT_FAMILY;
 	}
 
-
 	@Override
 	public Map<String, String> getJQueryEvents() {
 		Map<String, String> result = new HashMap<String, String>();
@@ -81,8 +80,9 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
-	 * If there's no parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 *
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -92,8 +92,8 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 *
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -122,8 +122,7 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 	 * Converts the date from the moment.js format to a java.util.Date.
 	 */
 	@Override
-	public Object getConvertedValue(FacesContext context, Object submittedValue)
-	throws ConverterException {
+	public Object getConvertedValue(FacesContext context, Object submittedValue) throws ConverterException {
 		if (submittedValue == null) {
 			return null;
 		}
@@ -142,7 +141,8 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 		}
 		// Else we use our own converter
 		Locale sloc = BsfUtils.selectLocale(context.getViewRoot().getLocale(), this.getLocale(), this);
-		String momentJSFormat = BsfUtils.selectMomentJSDateTimeFormat(sloc, this.getFormat(), this.isShowDate(), this.isShowTime());
+		String momentJSFormat = BsfUtils.selectMomentJSDateTimeFormat(sloc, this.getFormat(), this.isShowDate(),
+				this.isShowTime());
 		String javaFormat = LocaleUtils.momentToJavaFormat(momentJSFormat);
 
 		Calendar cal = Calendar.getInstance(sloc);
@@ -159,33 +159,32 @@ implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResp
 			try {
 				cal.setTime(LocaleUtils.autoParseDateFormat(val));
 				return cal.getTime();
-			} catch(Exception pe) {
-				e.printStackTrace();
+			} catch (Exception pe) {
 				this.setValid(false);
-				throw new ConverterException(
-						BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, javaFormat, BsfUtils.getLabel(context, this)));
+				throw new ConverterException(BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val,
+						javaFormat, BsfUtils.getLabel(context, this)));
 			}
 		}
 	}
-	
+
 	/**
 	 * Boolean value to specify if the widget is disabled.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute, or false, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set
+	 *         by the JSF file.
 	 */
 	public boolean isDisabled() {
-		if (super.isDisabled()) 
+		if (super.isDisabled())
 			return true;
 		UIComponent ancestor = getParent();
-		while (ancestor!=null) {
+		while (ancestor != null) {
 			if (ancestor instanceof IContentDisabled) {
-				if (((IContentDisabled)ancestor).isContentDisabled()) {
+				if (((IContentDisabled) ancestor).isContentDisabled()) {
 					return true;
 				}
 			}
-			ancestor=ancestor.getParent();
+			ancestor = ancestor.getParent();
 		}
 		return false;
 	}

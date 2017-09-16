@@ -49,7 +49,6 @@ import net.bootsfaces.component.navCommandLink.NavCommandLink;
 import net.bootsfaces.component.pillLinks.PillLinks;
 import net.bootsfaces.component.tabLinks.TabLinks;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -212,7 +211,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 		}
 
-		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), H.ALLBUTTON);
+		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
 
 		
 		String styleClass = (navlink instanceof NavCommandLink ? "commandLink " : "");

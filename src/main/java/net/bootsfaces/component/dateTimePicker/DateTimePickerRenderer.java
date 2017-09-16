@@ -52,7 +52,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			return;
 		}
 
-		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
@@ -315,9 +314,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.endElement("div");
 		}
-		if (hasResponsiveClass) {
-			rw.endElement("div");
-		} else if (label != null) {
+		if (hasResponsiveClass || label != null) {
 			rw.endElement("div");
 		}
 		Tooltip.activateTooltips(fc, dtp);
@@ -436,9 +433,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
-//		if(dtp.isDisabled() && !"inline".equals(mode)) {
-//			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
-//		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
 	}

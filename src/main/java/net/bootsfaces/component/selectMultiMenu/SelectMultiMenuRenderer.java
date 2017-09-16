@@ -45,7 +45,6 @@ import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 import net.bootsfaces.component.inputText.InputTextRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -287,7 +286,7 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 					optionalParameterList = menu.getJQueryEventParameterLists().get(event);
 				}
 			}
-			StringBuffer code = new StringBuffer();
+			StringBuilder code = new StringBuilder();
 			AJAXRenderer.generateAJAXCallForASingleEvent(context, menu,
 					null, code, null, null, true, 
 					event, null, optionalParameterList);
@@ -729,7 +728,7 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), H.SELECT_ONE_MENU);
+		R.encodeHTML4DHTMLAttrs(rw, menu.getAttributes(), new String[] { "accesskey", "alt", "lang", "style", "tabindex", "title" });
 	}
 
 	/**

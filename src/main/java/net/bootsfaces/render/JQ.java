@@ -33,11 +33,7 @@ public final class JQ {
     
     public static final String START_F="$(function(){";
     public static final String END_F="});";
-    public static final String CLOSE_F=");";
     public static final String JS_SUFFIX="_js";
-    public static final String jQo ="$('";
-    public static final String jQc ="')";
-    public static final String DOT=".";
     
     public static final String CID="CID"; //Client ID
     public static final String WID="WID"; //Widget ID
@@ -47,10 +43,7 @@ public final class JQ {
     public static final String DP_START= "$(SEL).datepicker({";
     public static final String DP_SEL_DIV="'div[id=\"WID\"]'";
     public static final String DP_SEL_INPUT="'input[id=\"WID\"]'";
-    //public static final String DP_START_DIV= "$('div[id=\"WID\"]').datepicker({";
-    //public static final String DP_START_INPUT= "$('input[id=\"CID\"]').datepicker({";
     public static final String DP_REGION= "$(SEL).datepicker(\"option\",$.datepicker.regional[\"REGION\"]);";
-    //public static final String DP_INPUT_REGION= "$('input[id=\"CID\"]').datepicker(\"option\",$.datepicker.regional[\"LANG\"]);";
     public static final String DP_SELECT="onSelect: function(dateText, inst) { $('input[id=\"CID\"]').val(dateText); }";
     public static final String DP_CLICK="$('span[id=\"TID\"]').click(function() {";
     public static final String DP_CLICK_BODY="var el=$('input[id=\"CID\"]');";
@@ -64,12 +57,9 @@ public final class JQ {
     public static final String SLIDER_UPDATE="$('input[name=\"CID\"]').val($('div[id=\"CID_slider\"]').slider('value'));";
     public static final String SLIDER_INPUT_KEYUP="$('input[name=\"CID\"]').keyup(function( event ) {$('div[id=\"CID_slider\"]').slider('value',$('input[name=\"CID\"]').val())});";
     
-    //$('div[id="fslider:j_idt60_slider"] > .ui-slider-handle').addClass('ui-slider-handle-round');
     public static final String SLIDER_HANDLE_ROUND="$('div[id=\"CID_slider\"] > .ui-slider-handle').addClass('ui-slider-handle-round');";
     public static final String SLIDER_HANDLE_MD="$('div[id=\"CID_slider\"] > .ui-slider-handle').addClass('ui-slider-handle-md');";
     public static final String SLIDER_HANDLE_LG="$('div[id=\"CID_slider\"] > .ui-slider-handle').addClass('ui-slider-handle-lg');";
-    
-    public static final String MODAL= "$('#CID').modal({ show: false });";
     
     protected static final void startInlineF(ResponseWriter rw, String cId) throws IOException {
         rw.startElement(SCRIPT, null);
@@ -137,16 +127,6 @@ public final class JQ {
         endInlineF(rw);
     }
     
-    
-    public static final String[] SLIDER_OPTS= {
-        "max", "min", "orientation", "range", "step"
-    };
-    
-    /*
-     * Slider Events
-     */
-    public static final String SLIDE= "slide";
-    
     /*
      * jQuery DatePicker Supported Options/Attributes
      */
@@ -166,17 +146,9 @@ public final class JQ {
      * Note that this option only affects what appears in the drop-down, 
      * to restrict which dates may be selected use the minDate and/or maxDate options.
      */
-    public static final String YRANGE = "yearRange";
     public static final String LOCALE = "locale";
     public static final String MINDATE = "minDate";
     public static final String MAXDATE = "maxDate";
-    public static final String DEFAULTDT = "defaultDate";  //Set the date to highlight on first opening if the field is blank. (e.g. +7 +1m +3d ...)
     public static final String SHOWON="showOn";
     public static final String LANG= "lang";
-    
-    public static final String[] DP_OPTS= {
-        NUMOFMONTHS, SHOWBUTS, CHNGMONTH, CHNGYEAR, DTFORMAT,
-        YRANGE, LOCALE, MINDATE, MAXDATE, SHOWWK, DEFAULTDT, FIRSTDAY
-    };
-
 }

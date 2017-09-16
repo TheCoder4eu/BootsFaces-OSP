@@ -35,7 +35,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -132,7 +131,7 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, button, H.ALLBUTTON);
+		renderPassThruAttributes(context, button, new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
 		
 		writeAttribute(rw, "onblur", button.getOnblur());
 		writeAttribute(rw, "onchange", button.getOnchange());

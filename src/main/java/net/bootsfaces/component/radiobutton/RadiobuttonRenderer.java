@@ -93,6 +93,9 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		}
 
 		UIForm form = findSurroundingForm(component);
+		if (null == form) {
+			throw new FacesException("Radiobuttons must be enclosed in a form. Client-ID of the radio button: " + clientId);
+		}
 		
 		// AJAX fires decode to all radio buttons. Change value only for the first element
 		List<UIComponent> radioButtonGroup = findComponentsByName(form, radioButton.getName());
@@ -234,6 +237,9 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		styleClass=styleClass.trim() + " radio";
 		
 		UIForm form = findSurroundingForm(component);
+		if (null == form) {
+			throw new FacesException("Radiobuttons must be enclosed in a form. Client-ID of the radio button: " + radiobutton.getClientId());
+		}
 		Radiobutton firstRadioButton = (Radiobutton)findComponentByName(form, radiobutton.getName());
 		String errorClass = getErrorAndRequiredClass(firstRadioButton, firstRadioButton.getClientId(context));
 		styleClass += " " + errorClass;
