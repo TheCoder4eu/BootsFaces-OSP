@@ -35,6 +35,7 @@ import net.bootsfaces.component.navLink.NavLink;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.utils.BsfUtils;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
@@ -192,6 +193,9 @@ public class AJAXRenderer extends CoreRenderer {
 						specialEventHandler, isJQueryCallback, keyClientBehavior, null, null);
 			}
 		}
+		if (generatedAJAXCall) {
+			assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
+		}
 		if (!generatedAJAXCall) {
 			// should we generate AJAX nonetheless?
 			boolean ajax = ((IAJAXComponent) component).isAjax();
@@ -226,6 +230,7 @@ public class AJAXRenderer extends CoreRenderer {
 					}
 				}
 				if (ajax) {
+					assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
 					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
 							(ClientBehavior) null);
 					String script = s.toString() + ";";
@@ -255,6 +260,7 @@ public class AJAXRenderer extends CoreRenderer {
 					}
 				}
 				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
+					assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
 					generateOnClickHandler(rw, (IAJAXComponent) component, suppressAJAX);
 				}
 			}
