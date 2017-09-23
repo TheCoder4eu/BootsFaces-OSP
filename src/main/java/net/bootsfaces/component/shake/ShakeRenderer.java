@@ -98,7 +98,7 @@ public class ShakeRenderer extends CoreRenderer {
 
 		// Register a shake event listener on window with your callback:
 		rw.write("window.addEventListener('shake', function(){\n");
-		String code = new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(context, shake, rw, clientId, "shake");
+		String code = new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(context, shake, rw, "shake");
 		rw.write(code + "\n");
 		rw.write("}, false);\n");
 		rw.endElement("script");

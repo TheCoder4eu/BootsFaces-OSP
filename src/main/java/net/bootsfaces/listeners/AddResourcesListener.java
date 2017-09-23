@@ -89,7 +89,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String EXT_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ExtResourceFiles";
 
 	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
-								CSS_RENDERER = "javax.faces.resource.Stylesheet";
+			CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
 	static {
 		LOGGER.info("This application is running on BootsFaces"+C.BSFVERSION+"-"+C.BSFRELEASE_STATUS);
@@ -293,11 +293,11 @@ public class AddResourcesListener implements SystemEventListener {
 		if (theme.equals("patternfly")) {
 			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
 		}
-		
+
 		//Add mandatory CSS bsf.css
 		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
-		
-		
+
+
 		//3) Bootstrap from CDN (TODO: check removeBootstrapResources)
 		boolean loadBootstrap = shouldLibraryBeLoaded(P_GET_BOOTSTRAP_FROM_CDN, true);
 		if (! loadBootstrap) { 
@@ -483,21 +483,21 @@ public class AddResourcesListener implements SystemEventListener {
 		root.addComponentResource(context, output, "head");
 		//        System.out.println("++" + output.getClientId() + " " + nameToAdd + " " + libToAdd);
 	}
-	
+
 	public static void addResourceIfNecessary(String url) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 		if (url.endsWith(".css")) {
-		for (UIComponent c : root.getComponentResources(context, "head")) {
-			if (c instanceof InternalCssScriptResource) {
-				if (((InternalCssScriptResource) c).getUrl().equals(url)) {
-					return;
+			for (UIComponent c : root.getComponentResources(context, "head")) {
+				if (c instanceof InternalCssScriptResource) {
+					if (((InternalCssScriptResource) c).getUrl().equals(url)) {
+						return;
+					}
 				}
 			}
-		}
-		InternalCssScriptResource urlComponent = new InternalCssScriptResource();
-		urlComponent.setUrl(url);
-		root.addComponentResource(context, urlComponent, "head");
+			InternalCssScriptResource urlComponent = new InternalCssScriptResource();
+			urlComponent.setUrl(url);
+			root.addComponentResource(context, urlComponent, "head");
 		} else {
 			for (UIComponent c : root.getComponentResources(context, "head")) {
 				if (c instanceof InternalJavaScriptResource) {
@@ -509,7 +509,6 @@ public class AddResourcesListener implements SystemEventListener {
 			InternalJavaScriptResource urlComponent = new InternalJavaScriptResource();
 			urlComponent.setUrl(url);
 			root.addComponentResource(context, urlComponent, "head");
-			
 		}
 	}
 
@@ -617,6 +616,7 @@ public class AddResourcesListener implements SystemEventListener {
 		List<UIComponent> first = new ArrayList<UIComponent>();
 		List<UIComponent> middle = new ArrayList<UIComponent>();
 		List<UIComponent> last = new ArrayList<UIComponent>();
+		List<UIComponent> datatable = new ArrayList<UIComponent>();
 
 		for (UIComponent resource : root.getComponentResources(context, "head")) {
 			String name = (String) resource.getAttributes().get("name");
@@ -630,7 +630,7 @@ public class AddResourcesListener implements SystemEventListener {
 				middle.add(resource);
 			} else {
 				if (resource instanceof InternalJavaScriptResource) {
-					last.add(resource);
+					datatable.add(resource);
 				}
 				else if (name != null && (name.endsWith(".js"))) {
 					resources.add(resource);
@@ -650,6 +650,13 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : last) {
 			root.removeComponentResource(context, c);
 		}
+		for (UIComponent c : datatable) {
+			root.removeComponentResource(context, c);
+		}
+		
+		for (UIComponent resource : root.getComponentResources(context, "head")) {
+			System.out.println(resource.getClass().getName());
+		}
 
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			middle.add(c);
@@ -668,6 +675,9 @@ public class AddResourcesListener implements SystemEventListener {
 			root.addComponentResource(context, c, "head");
 		}
 		for (UIComponent c : last) {
+			root.addComponentResource(context, c, "head");
+		}
+		for (UIComponent c : datatable) {
 			root.addComponentResource(context, c, "head");
 		}
 	}
@@ -815,19 +825,19 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private void createAndAddComponent(UIViewRoot root, FacesContext context,
-            String rendererType, String name, String library) {
+			String rendererType, String name, String library) {
 		createAndAddComponent(root, context, rendererType, name, library, null);
 	}
-		private void createAndAddComponent(UIViewRoot root, FacesContext context,
-	                                   String rendererType, String name, String library, String position) {
-			
-//		if (library != null && BSF_LIBRARY.equals(library)) {
-//			boolean loadBsfResource = shouldLibraryBeLoaded(P_GET_BOOTSTRAP_COMPONENTS_FROM_CDN, true);
-//			
-//			if (! loadBsfResource) {
-//				return;
-//			}
-//		}
+	private void createAndAddComponent(UIViewRoot root, FacesContext context,
+			String rendererType, String name, String library, String position) {
+
+		//		if (library != null && BSF_LIBRARY.equals(library)) {
+		//			boolean loadBsfResource = shouldLibraryBeLoaded(P_GET_BOOTSTRAP_COMPONENTS_FROM_CDN, true);
+		//			
+		//			if (! loadBsfResource) {
+		//				return;
+		//			}
+		//		}
 		UIOutput output = new UIOutput();
 		output.setRendererType(rendererType);
 		output.getAttributes().put("name", name);

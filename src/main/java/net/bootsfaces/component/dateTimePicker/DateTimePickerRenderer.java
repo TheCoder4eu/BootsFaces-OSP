@@ -52,7 +52,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			return;
 		}
 
-		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
@@ -169,7 +168,8 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 
 		String divSuffix="";
                 String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		boolean hasResponsiveClass = null != responsiveStyleClass && responsiveStyleClass.trim().length()>0;
+		if (hasResponsiveClass) {
 			rw.startElement("div", dtp);
                         
 			if (!isHorizontalForm(dtp)) {
@@ -206,7 +206,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("label");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}		
@@ -311,12 +311,10 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("div");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.endElement("div");
 		}
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
-			rw.endElement("div");
-		} else if (label != null) {
+		if (hasResponsiveClass || label != null) {
 			rw.endElement("div");
 		}
 		Tooltip.activateTooltips(fc, dtp);
@@ -435,9 +433,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
-//		if(dtp.isDisabled() && !"inline".equals(mode)) {
-//			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
-//		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
 	}

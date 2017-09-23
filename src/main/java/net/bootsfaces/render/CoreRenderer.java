@@ -100,17 +100,19 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-     * @deprecated Use {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) } instead
-     * 
-	 * Renders the CSS pseudo classes for required fields and for the error
-	 * levels.
+	 * @deprecated Use
+	 *             {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) }
+	 *             instead
+	 * 
+	 *             Renders the CSS pseudo classes for required fields and for the
+	 *             error levels.
 	 *
 	 * @param input
 	 * @param rw
 	 * @param clientId
 	 * @throws IOException
 	 */
-    @Deprecated
+	@Deprecated
 	public void generateErrorAndRequiredClassForLabels(UIInput input, ResponseWriter rw, String clientId,
 			String additionalClass) throws IOException {
 		String styleClass = getErrorAndRequiredClass(input, clientId);
@@ -137,8 +139,7 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-	 * Renders the CSS pseudo classes for required fields and for the error
-	 * levels.
+	 * Renders the CSS pseudo classes for required fields and for the error levels.
 	 *
 	 * @param input
 	 * @param rw
@@ -172,8 +173,10 @@ public class CoreRenderer extends Renderer {
 	/**
 	 * Yields the value of the required and error level CSS class.
 	 *
-	 * @param input must not be null
-	 * @param clientId must not be null
+	 * @param input
+	 *            must not be null
+	 * @param clientId
+	 *            must not be null
 	 * @return can never be null
 	 */
 	public String getErrorAndRequiredClass(UIInput input, String clientId) {
@@ -198,7 +201,6 @@ public class CoreRenderer extends Renderer {
 		}
 		return styleClass;
 	}
-
 
 	protected boolean shouldRenderAttribute(Object value) {
 		if (value == null)
@@ -278,8 +280,7 @@ public class CoreRenderer extends Renderer {
 	 *            {@link UIComponent} associated with the containing element, to
 	 *            which this generated attribute corresponds
 	 * @throws IllegalStateException
-	 *             if this method is called when there is no currently open
-	 *             element
+	 *             if this method is called when there is no currently open element
 	 * @throws IOException
 	 *             if an input/output error occurs
 	 * @throws NullPointerException
@@ -303,8 +304,7 @@ public class CoreRenderer extends Renderer {
 	 * @param value
 	 *            Attribute value to be added
 	 * @throws IllegalStateException
-	 *             if this method is called when there is no currently open
-	 *             element
+	 *             if this method is called when there is no currently open element
 	 * @throws IOException
 	 *             if an input/output error occurs
 	 * @throws NullPointerException
@@ -347,8 +347,7 @@ public class CoreRenderer extends Renderer {
 	 * @param text
 	 *            Text to be written
 	 * @param component
-	 *            The {@link UIComponent} (if any) to which this element
-	 *            corresponds
+	 *            The {@link UIComponent} (if any) to which this element corresponds
 	 * @param property
 	 *            Name of the property or attribute (if any) of the
 	 *            {@link UIComponent} associated with the containing element, to
@@ -389,7 +388,12 @@ public class CoreRenderer extends Renderer {
 		rw.writeText(text, off, len);
 	}
 
-	protected void assertComponentIsInsideForm(UIComponent component, String msg) {
+	protected static void assertComponentIsInsideForm(UIComponent component, String msg) {
+		assertComponentIsInsideForm(component, msg, false);
+
+	}
+
+	public static void assertComponentIsInsideForm(UIComponent component, String msg, boolean throwException) {
 		if (!FacesContext.getCurrentInstance().isProjectStage(ProjectStage.Production)) {
 			UIComponent c = component;
 			while ((c != null) && (!(c instanceof UIForm))) {
@@ -398,7 +402,11 @@ public class CoreRenderer extends Renderer {
 			if (!(c instanceof UIForm)) {
 				System.out.println("Warning: The BootsFaces component " + component.getClass()
 						+ " works better if put inside a form. These capabilities get lost if not put in a form:");
-				System.out.println(msg);
+				if (throwException) {
+					throw new FacesException(msg);
+				} else {
+					System.out.println(msg);
+				}
 			}
 		}
 	}
@@ -428,11 +436,10 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-	 * Algorithm works as follows; - If it's an input component, submitted value
-	 * is checked first since it'd be the value to be used in case validation
-	 * errors terminates jsf lifecycle - Finally the value of the component is
-	 * retrieved from backing bean and if there's a converter, converted value
-	 * is returned
+	 * Algorithm works as follows; - If it's an input component, submitted value is
+	 * checked first since it'd be the value to be used in case validation errors
+	 * terminates jsf lifecycle - Finally the value of the component is retrieved
+	 * from backing bean and if there's a converter, converted value is returned
 	 *
 	 * @param fc
 	 *            FacesContext instance
@@ -513,10 +520,10 @@ public class CoreRenderer extends Renderer {
 
 		return converter;
 	}
-	
+
 	/**
-	 * This method is called by the JSF framework to get the type-safe value of
-	 * the attribute. Do not delete this method.
+	 * This method is called by the JSF framework to get the type-safe value of the
+	 * attribute. Do not delete this method.
 	 */
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
@@ -524,7 +531,7 @@ public class CoreRenderer extends Renderer {
 
 		if (cnv != null) {
 			if (sval == null || sval instanceof String) {
-				return cnv.getAsObject(fc, c, (String)sval);
+				return cnv.getAsObject(fc, c, (String) sval);
 			} else {
 				return cnv.getAsObject(fc, c, String.valueOf(sval));
 			}
@@ -557,7 +564,6 @@ public class CoreRenderer extends Renderer {
 		}
 	}
 
-
 	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
 			rw.endElement("fieldset");
@@ -565,7 +571,9 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-	 * Renders the code disabling every input field and every button within a container.
+	 * Renders the code disabling every input field and every button within a
+	 * container.
+	 * 
 	 * @param component
 	 * @param rw
 	 * @return true if an element has been rendered
@@ -573,7 +581,7 @@ public class CoreRenderer extends Renderer {
 	 */
 	public static boolean beginDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
-			rw.startElement("fieldset", (UIComponent)component);
+			rw.startElement("fieldset", (UIComponent) component);
 			rw.writeAttribute("disabled", "disabled", "null");
 			return true;
 		}
@@ -581,43 +589,44 @@ public class CoreRenderer extends Renderer {
 	}
 
 	/**
-	 * Get the main field container 
-         * 
-         * @deprecated Use {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)} instead
-         * 
+	 * Get the main field container
+	 * 
+	 * @deprecated Use
+	 *             {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)}
+	 *             instead
+	 * 
 	 * @param additionalClass
 	 * @param clientId
 	 * @return
 	 */
-        @Deprecated
+	@Deprecated
 	protected String getFormGroupWithFeedback(String additionalClass, String clientId) {
 		if (BsfUtils.isLegacyFeedbackClassesEnabled()) {
 			return additionalClass;
 		}
 		return additionalClass + " " + FacesMessages.getErrorSeverityClass(clientId);
 	}
-	
 
-        protected void beginResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
-            if(!(component instanceof IResponsive)) {
-                return;
-            }
-            
-            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
-            if(!"".equals(responsiveStyleClass)) {
-                responseWriter.startElement("div", component);
-                responseWriter.writeAttribute("class", responsiveStyleClass, null);
-            }
-        }
-        
-        protected void endResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
-            if(!(component instanceof IResponsive)) {
-                return;
-            }
-            
-            String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive)component, false);
-            if(!"".equals(responsiveStyleClass)) {
-                responseWriter.endElement("div");
-            }
-        }
+	protected void beginResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+		if (!(component instanceof IResponsive)) {
+			return;
+		}
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive) component, false);
+		if (!"".equals(responsiveStyleClass)) {
+			responseWriter.startElement("div", component);
+			responseWriter.writeAttribute("class", responsiveStyleClass, null);
+		}
+	}
+
+	protected void endResponsiveWrapper(UIComponent component, ResponseWriter responseWriter) throws IOException {
+		if (!(component instanceof IResponsive)) {
+			return;
+		}
+
+		String responsiveStyleClass = Responsive.getResponsiveStyleClass((IResponsive) component, false);
+		if (!"".equals(responsiveStyleClass)) {
+			responseWriter.endElement("div");
+		}
+	}
 }

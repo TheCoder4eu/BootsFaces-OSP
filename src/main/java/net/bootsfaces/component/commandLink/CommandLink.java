@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-17 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -16,13 +16,15 @@
 * limitations under the License.
  */
 
-package net.bootsfaces.component.navLink;
+package net.bootsfaces.component.commandLink;
 
-import javax.faces.component.html.HtmlOutcomeTargetLink;
+import javax.faces.component.FacesComponent;
 
-/** This class holds the attributes of &lt;b:navLink /&gt;. */
-public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.bootsfaces.render.IHasTooltip {
+import net.bootsfaces.component.navLink.NavLink;
 
+/** This class holds the attributes of &lt;b:commandLink /&gt;. */
+@FacesComponent("net.bootsfaces.component.commandLink.CommandLink")
+public class CommandLink extends NavLink {
 	protected enum PropertyKeys {
 		active,
 		ajax,
@@ -49,6 +51,7 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 		immediate,
 		includeViewParams,
 		largeScreen,
+		look,
 		mediumScreen,
 		offset,
 		offsetLg,
@@ -76,7 +79,6 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 		span,
 		style,
 		styleClass,
-		tabindex,
 		target,
 		tinyScreen,
 		tooltip,
@@ -499,6 +501,22 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 	 */
 	public void setLargeScreen(String _largeScreen) {
 		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLook() {
+		return (String) getStateHelper().eval(PropertyKeys.look);
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLook(String _look) {
+		getStateHelper().put(PropertyKeys.look, _look);
 	}
 
 	/**
@@ -931,22 +949,6 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
-	}
-
-	/**
-	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getTabindex() {
-		return (String) getStateHelper().eval(PropertyKeys.tabindex);
-	}
-
-	/**
-	 * Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setTabindex(String _tabindex) {
-		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**

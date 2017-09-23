@@ -295,7 +295,7 @@ public abstract class NavCommandLinkCore extends UICommand implements net.bootsf
 	}
 
 	/**
-	 * If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored. <P>
+	 * If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getHeader() {
@@ -303,7 +303,7 @@ public abstract class NavCommandLinkCore extends UICommand implements net.bootsf
 	}
 
 	/**
-	 * If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored. <P>
+	 * If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHeader(String _header) {

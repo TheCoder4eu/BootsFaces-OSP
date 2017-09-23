@@ -37,3 +37,4 @@ src-gen
 *.iml
 /.externalToolBuilders
 /.apt_generated/
+/infer-out/

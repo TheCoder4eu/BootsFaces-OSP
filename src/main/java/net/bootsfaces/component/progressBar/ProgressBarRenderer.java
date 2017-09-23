@@ -56,6 +56,8 @@ public class ProgressBarRenderer extends CoreRenderer {
 		rw.startElement("div", progressBar); // outer div
 		rw.writeAttribute("class", "progress", "class");
 		rw.writeAttribute("id", clientId, "id");
+		rw.writeAttribute("class", progressBar.getStyleClass(), null);
+		rw.writeAttribute("style", progressBar.getStyle(), null);
 		Tooltip.generateTooltip(context, progressBar, rw);
 
 		rw.startElement("div", progressBar); // inner div, responsible for the actual bar
@@ -75,7 +77,7 @@ public class ProgressBarRenderer extends CoreRenderer {
 
 		String style = "width: " + progressCompletion + "%;";
 		//append inline style, if set
-		style += progressBar.getStyle() != null ? progressBar.getStyle() : "";
+		style += progressBar.getContentStyle() != null ? progressBar.getContentStyle() : "";
 
 		rw.writeAttribute("style", style, null);
 
@@ -114,7 +116,7 @@ public class ProgressBarRenderer extends CoreRenderer {
 			classes += " progress-bar-striped";
 
 		//append style class, if set
-		classes += progressBar.getStyleClass() != null ? " " + progressBar.getStyleClass() : "";
+		classes += progressBar.getContentClass() != null ? " " + progressBar.getContentClass() : "";
 		rw.writeAttribute("class", classes, "class");
 	}
 

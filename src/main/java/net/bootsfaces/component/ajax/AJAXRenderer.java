@@ -35,6 +35,7 @@ import net.bootsfaces.component.navLink.NavLink;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
+import net.bootsfaces.utils.BsfUtils;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");
@@ -43,6 +44,7 @@ public class AJAXRenderer extends CoreRenderer {
 	public static final String BSF_EVENT_PREFIX = "BsFEvent=";
 	public static final String AJAX_EVENT_PREFIX = "ajax:";
 
+	@Override
 	public void decode(FacesContext context, UIComponent component) {
 		String id = component.getClientId(context);
 		decode(context, component, id);
@@ -52,7 +54,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (componentIsDisabledOrReadonly(component)) {
 			return;
 		}
-		String source = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
+		String source = context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
 				String tabId = tab.getClientId().replace(":", "_") + "_tab";
@@ -70,15 +72,13 @@ public class AJAXRenderer extends CoreRenderer {
 				source = componentId;
 			}
 		}
-		if (source != null && (source.equals(componentId) || source.equals("input_"+componentId) || source.equals(componentId+"Inner"))) {
+		if (source != null && (source.equals(componentId) || (source.equals("input_" + componentId))
+				|| (("input_" + source).equals(componentId)) || source.equals(componentId + "Inner"))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-			String realEvent = (String) context.getExternalContext().getRequestParameterMap().get("params");
+			String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
 			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
 				realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
 				if (!realEvent.equals(event)) {
-					// System.out.println("Difference between event and
-					// realEvent:" + event + " vs. " + realEvent
-					// + " Component: " + component.getClass().getSimpleName());
 					event = realEvent;
 				}
 			}
@@ -101,9 +101,9 @@ public class AJAXRenderer extends CoreRenderer {
 											if (((ActionSource) component).isImmediate())
 												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
 										} else if (component instanceof IAJAXComponent) {
-										if (((IAJAXComponent) component).isImmediate())
-											ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
-									}
+											if (((IAJAXComponent) component).isImmediate())
+												ajaxEvent.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+										}
 										component.queueEvent(ajaxEvent);
 									}
 								}
@@ -125,8 +125,6 @@ public class AJAXRenderer extends CoreRenderer {
 						List<ClientBehavior> value = entry.getValue();
 						for (ClientBehavior bh : value) {
 							if (bh instanceof AjaxBehavior) {
-								// String delay = ((AjaxBehavior)
-								// bh).getDelay();
 								bh.decode(context, component);
 							}
 						}
@@ -151,13 +149,13 @@ public class AJAXRenderer extends CoreRenderer {
 			if (addEventToQueue) {
 				ActionEvent ae = new ActionEvent(component);
 				if (component instanceof ActionSource) {
-		            if (((ActionSource) component).isImmediate()) {
-		                ae.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
-		            } else {
-		                ae.setPhaseId(PhaseId.INVOKE_APPLICATION);
-		            }
+					if (((ActionSource) component).isImmediate()) {
+						ae.setPhaseId(PhaseId.APPLY_REQUEST_VALUES);
+					} else {
+						ae.setPhaseId(PhaseId.INVOKE_APPLICATION);
+					}
 				}
-				component.queueEvent(ae );
+				component.queueEvent(ae);
 			}
 		}
 	}
@@ -169,8 +167,10 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @param context
 	 * @param component
 	 * @param rw
-	 * @param suppressAJAX replaces the AJAX request by a BsF.submitForm(), but only if there are parameters. Used by b:navCommandRenderer to implement 
-	 * an action or an actionListener instead of rendering a simple link.
+	 * @param suppressAJAX
+	 *            replaces the AJAX request by a BsF.submitForm(), but only if there
+	 *            are parameters. Used by b:navCommandRenderer to implement an
+	 *            action or an actionListener instead of rendering a simple link.
 	 * @throws IOException
 	 */
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
@@ -179,8 +179,8 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback, boolean suppressAJAX)
-			throws IOException {
+			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
+			boolean suppressAJAX) throws IOException {
 		boolean generatedAJAXCall = false;
 		Collection<String> eventNames = component.getEventNames();
 		Map<String, String> jQueryEvents = ((IAJAXComponent) component).getJQueryEvents();
@@ -193,13 +193,17 @@ public class AJAXRenderer extends CoreRenderer {
 						specialEventHandler, isJQueryCallback, keyClientBehavior, null, null);
 			}
 		}
+		if (generatedAJAXCall) {
+			assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
+		}
 		if (!generatedAJAXCall) {
 			// should we generate AJAX nonetheless?
 			boolean ajax = ((IAJAXComponent) component).isAjax();
 			ajax |= null != ((IAJAXComponent) component).getUpdate();
 
 			if (ajax) {
-				// before generating an AJAX default handler, check if there's an jQuery handler that's generated later
+				// before generating an AJAX default handler, check if there's an jQuery handler
+				// that's generated later
 				if (null != jQueryEvents) {
 					Set<String> events = jQueryEvents.keySet();
 					for (String event : events) {
@@ -212,20 +216,21 @@ public class AJAXRenderer extends CoreRenderer {
 										if (m.getName().equalsIgnoreCase(nameOfGetter)) {
 											String jsCallback = (String) m.invoke(component);
 											if (jsCallback != null && jsCallback.contains(AJAX_EVENT_PREFIX)) {
-												ajax=false;
+												ajax = false;
 											}
 											break;
 										}
-	
+
 									}
 								}
 							}
 						} catch (Exception e) {
-							
+
 						}
 					}
 				}
 				if (ajax) {
+					assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
 					StringBuilder s = generateAJAXCallForClientBehavior(context, (IAJAXComponent) component,
 							(ClientBehavior) null);
 					String script = s.toString() + ";";
@@ -236,9 +241,8 @@ public class AJAXRenderer extends CoreRenderer {
 					rw.writeAttribute("on" + defaultEvent, script, null);
 				}
 			} else if (component instanceof CommandButton) {
-				encodeFormSubmit((UIComponent)component, rw, false);
-			}
-			else {
+				encodeFormSubmit((UIComponent) component, rw, false);
+			} else {
 				// b:navCommandLink doesn't submit the form, so we need to use
 				// AJAX
 				boolean generateNonAJAXCommand = false;
@@ -256,48 +260,52 @@ public class AJAXRenderer extends CoreRenderer {
 					}
 				}
 				if (generateNonAJAXCommand && component instanceof IAJAXComponent) {
-					// rw.writeAttribute("id", getClientId() + "_a", null);
-					generateOnClickHandler(context, rw, (IAJAXComponent) component, suppressAJAX);
+					assertComponentIsInsideForm((UIComponent)component, "Please put every component triggering AJAX in a form tag.", true);
+					generateOnClickHandler(rw, (IAJAXComponent) component, suppressAJAX);
 				}
 			}
 			// TODO: what about composite components?
 		}
 	}
 
-	private static void encodeFormSubmit(UIComponent component, ResponseWriter rw, boolean evenWithoutParameters) throws IOException {
-		String parameterList="";
-		List<UIComponent> children = ((UIComponent)component).getChildren();
-		for (UIComponent parameter: children) {
+	private static void encodeFormSubmit(UIComponent component, ResponseWriter rw, boolean evenWithoutParameters)
+			throws IOException {
+		String parameterList = "";
+		List<UIComponent> children = component.getChildren();
+		for (UIComponent parameter : children) {
 			if (parameter instanceof UIParameter) {
-				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String value = String.valueOf(((UIParameter) parameter).getValue());
 				String name = ((UIParameter) parameter).getName();
-				if (null!=value) {
+				if (null != value) {
 					parameterList += ",'" + name + "':'" + value + "'";
 				}
 			}
 		}
-		if (evenWithoutParameters || parameterList.length()>0) {
-			UIForm currentForm = getSurroundingForm((UIComponent)component, false);
-			parameterList = "'" + currentForm.getClientId() + "',{'" +component.getClientId() + "':'" +  component.getClientId() + "'" + parameterList+ "}";
-			rw.writeAttribute("onclick", encodeClick((UIComponent) component) + "BsF.submitForm(" + parameterList + ");return false;", null);
+		if (evenWithoutParameters || parameterList.length() > 0) {
+			UIForm currentForm = getSurroundingForm((UIComponent) component, false);
+			parameterList = "'" + currentForm.getClientId() + "',{'" + component.getClientId() + "':'"
+					+ component.getClientId() + "'" + parameterList + "}";
+			rw.writeAttribute("onclick",
+					encodeClick((UIComponent) component) + "BsF.submitForm(" + parameterList + ");return false;", null);
 		}
 	}
 
-	private static void generateOnClickHandler(FacesContext context, ResponseWriter rw, IAJAXComponent component, boolean suppressAJAX)
-			throws IOException {
+	private static void generateOnClickHandler(ResponseWriter rw, IAJAXComponent component,
+			boolean suppressAJAX) throws IOException {
 		StringBuilder cJS = new StringBuilder(150); // optimize int
 		if (suppressAJAX) {
-			encodeFormSubmit((UIComponent)component, rw, true);
+			encodeFormSubmit((UIComponent) component, rw, true);
 		} else {
-			cJS.append(encodeClick((UIComponent)component)).append("return BsF.ajax.cb(this, event);");
+			cJS.append(encodeClick((UIComponent) component)).append("return BsF.ajax.cb(this, event);");
 		}
 
 		rw.writeAttribute("onclick", cJS.toString(), null);
 	}
 
 	public static boolean generateAJAXCallForASingleEvent(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, StringBuffer code, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
-			String keyClientBehavior, StringBuilder generatedJSCode, String optionalParameterList) throws IOException {
+			ResponseWriter rw, StringBuilder code, String specialEvent, String specialEventHandler,
+			boolean isJQueryCallback, String keyClientBehavior, StringBuilder generatedJSCode,
+			String optionalParameterList) throws IOException {
 		boolean generatedAJAXCall = false;
 		String jsCallback = "";
 		String nameOfGetter = "getOn" + keyClientBehavior;
@@ -314,13 +322,14 @@ public class AJAXRenderer extends CoreRenderer {
 								else
 									jsCallback = jsCallback + ";javascript:" + specialEventHandler;
 							}
-							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior, optionalParameterList);
+							jsCallback = convertAJAXToJavascript(context, jsCallback, component, keyClientBehavior,
+									optionalParameterList);
 							if (null != code) {
 								code.append(jsCallback);
 							}
 							if ("dragstart".equals(keyClientBehavior)) {
 								if (null != rw) {
-								rw.writeAttribute("draggable", "true", "draggable");
+									rw.writeAttribute("draggable", "true", "draggable");
 								}
 							}
 							break;
@@ -332,10 +341,6 @@ public class AJAXRenderer extends CoreRenderer {
 			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter);
 		}
 
-		// TODO behaviors don't render correctly?
-		// SR 19.09.2015: looks a bit odd, indeed. The method generateAJAXCall()
-		// generates an onclick handler -
-		// regardless of which event we currently deal with
 		String script = "";
 		Map<String, List<ClientBehavior>> clientBehaviors = component.getClientBehaviors();
 		List<ClientBehavior> behaviors = clientBehaviors.get(keyClientBehavior);
@@ -358,7 +363,6 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		}
-		// TODO end
 		if (jsCallback.contains("BsF.ajax.") || script.contains("BsF.ajax.")) {
 			generatedAJAXCall = true;
 		}
@@ -373,7 +377,7 @@ public class AJAXRenderer extends CoreRenderer {
 					// in general it's hard to detect this situation because
 					// different components have different default actions for
 					// f:ajax. So let's simply use this hack.
-					jsCallback="";
+					jsCallback = "";
 				}
 				if (null != rw) {
 					rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
@@ -397,8 +401,7 @@ public class AJAXRenderer extends CoreRenderer {
 	private static Object readBeanAttribute(Object bean, String getter) {
 		try {
 			Method method = bean.getClass().getMethod(getter);
-			Object result = method.invoke(bean);
-			return result;
+			return method.invoke(bean);
 		} catch (Exception e) {
 			throw new FacesException("An error occured when reading the property " + getter + " from the bean "
 					+ bean.getClass().getName(), e);
@@ -438,7 +441,8 @@ public class AJAXRenderer extends CoreRenderer {
 					jsCallback = jsCallback.substring(0, end);
 				}
 
-				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component, event, optionalParameterList);
+				StringBuilder ajax = generateAJAXCall(context, (IAJAXComponent) component, event,
+						optionalParameterList);
 
 				jsCallback = jsCallback.substring(0, pos) + ";" + ajax + rest;
 			}
@@ -449,7 +453,8 @@ public class AJAXRenderer extends CoreRenderer {
 		return jsCallback;
 	}
 
-	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event, String optionalParameterList) {
+	public static StringBuilder generateAJAXCall(FacesContext context, IAJAXComponent component, String event,
+			String optionalParameterList) {
 		String complete = component.getOncomplete();
 		String onError = null;
 		String onSuccess = null;
@@ -493,13 +498,13 @@ public class AJAXRenderer extends CoreRenderer {
 		} else
 			cJS.append(", null");
 
-		String parameterList="";
-		List<UIComponent> children = ((UIComponent)component).getChildren();
-		for (UIComponent parameter: children) {
+		String parameterList = "";
+		List<UIComponent> children = ((UIComponent) component).getChildren();
+		for (UIComponent parameter : children) {
 			if (parameter instanceof UIParameter) {
-				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String value = String.valueOf(((UIParameter) parameter).getValue());
 				String name = ((UIParameter) parameter).getName();
-				if (null!=value) {
+				if (null != value) {
 					parameterList += ",'" + name + "':'" + value + "'";
 				}
 			}
@@ -507,11 +512,10 @@ public class AJAXRenderer extends CoreRenderer {
 		if (null != optionalParameterList) {
 			parameterList += "," + optionalParameterList;
 		}
-		if (parameterList.length()>0) {
-			String json=",{" + parameterList.substring(1) + "}";
+		if (parameterList.length() > 0) {
+			String json = ",{" + parameterList.substring(1) + "}";
 			cJS.append(json);
 		}
-
 
 		cJS.append(");");
 		return cJS;
@@ -536,8 +540,6 @@ public class AJAXRenderer extends CoreRenderer {
 			if (ajaxBehavior instanceof AjaxBehavior) {
 				boolean disabled = ((AjaxBehavior) ajaxBehavior).isDisabled();
 				if (!disabled) {
-					// String onerror = ((AjaxBehavior)
-					// ajaxBehavior).getOnerror(); // todo
 					onevent = ((AjaxBehavior) ajaxBehavior).getOnevent();
 					if (onevent == null)
 						onevent = "";
@@ -565,17 +567,17 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 
-		if ("@all".equals(process) || "@none".equals(process) ) {
+		if ("@all".equals(process) || "@none".equals(process)) {
 			// these expressions are evaluated on the client side
 		} else {
 			process = ExpressionResolver.getComponentIDs(context, (UIComponent) component, process);
 		}
-		if (update==null) {
-			update="";
+		if (update == null) {
+			update = "";
 		} else {
 			update = ExpressionResolver.getComponentIDs(context, (UIComponent) component, update);
 		}
-		cJS.append(encodeClick((UIComponent)component)).append("BsF.ajax.callAjax(this, event")
+		cJS.append(encodeClick((UIComponent) component)).append("BsF.ajax.callAjax(this, event")
 				.append(update == null ? ",''" : (",'" + update + "'"))
 				.append(process == null ? ",'@this'" : (",'" + process.trim() + "'"));
 		if (oncomplete != null) {
@@ -595,19 +597,19 @@ public class AJAXRenderer extends CoreRenderer {
 		} else {
 			cJS.append(",null");
 		}
-		String parameterList="";
-		List<UIComponent> children = ((UIComponent)component).getChildren();
-		for (UIComponent parameter: children) {
+		String parameterList = "";
+		List<UIComponent> children = ((UIComponent) component).getChildren();
+		for (UIComponent parameter : children) {
 			if (parameter instanceof UIParameter) {
-				String value=String.valueOf(((UIParameter) parameter).getValue());
+				String value = String.valueOf(((UIParameter) parameter).getValue());
 				String name = ((UIParameter) parameter).getName();
-				if (null!=value) {
+				if (null != value) {
 					parameterList += ",'" + name + "':'" + value + "'";
 				}
 			}
 		}
-		if (parameterList.length()>0) {
-			String json=",{" + parameterList.substring(1) + "}";
+		if (parameterList.length() > 0) {
+			String json = ",{" + parameterList.substring(1) + "}";
 			cJS.append(json);
 		}
 		cJS.append(");");
@@ -617,15 +619,15 @@ public class AJAXRenderer extends CoreRenderer {
 
 	private static String encodeClick(UIComponent component) {
 		String js;
-		String oc=null;
+		String oc = null;
 		if (component instanceof IAJAXComponent) {
-			oc = (String) ((IAJAXComponent)component).getOnclick();
+			oc = ((IAJAXComponent) component).getOnclick();
 		}
 		if (component instanceof NavLink) {
-			oc = (String) ((NavLink)component).getOnclick();
+			oc = ((NavLink) component).getOnclick();
 		}
 		if (component instanceof NavCommandLink) {
-			oc = (String) ((NavCommandLink)component).getOnclick();
+			oc = ((NavCommandLink) component).getOnclick();
 		}
 		if (oc != null) {
 			js = oc.endsWith(";") ? oc : oc + ";";
@@ -647,10 +649,12 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers) throws IOException {
-		generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryExpressionOfTargetElement, additionalEventHandlers, false);
+			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers)
+			throws IOException {
+		generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, jQueryExpressionOfTargetElement,
+				additionalEventHandlers, false);
 	}
-	
+
 	/**
 	 * Registers a callback with jQuery.
 	 *
@@ -663,10 +667,11 @@ public class AJAXRenderer extends CoreRenderer {
 	 * @throws IOException
 	 */
 	public void generateBootsFacesAJAXAndJavaScriptForJQuery(FacesContext context, UIComponent component,
-			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers, boolean attachOnReady) throws IOException {
+			ResponseWriter rw, String jQueryExpressionOfTargetElement, Map<String, String> additionalEventHandlers,
+			boolean attachOnReady) throws IOException {
 		if (jQueryExpressionOfTargetElement.contains(":")) {
 			if (!jQueryExpressionOfTargetElement.contains("\\\\:")) { // avoid escaping twice
-				jQueryExpressionOfTargetElement=jQueryExpressionOfTargetElement.replace(":", "\\\\:");
+				jQueryExpressionOfTargetElement = jQueryExpressionOfTargetElement.replace(":", "\\\\:");
 			}
 		}
 		IAJAXComponent ajaxComponent = (IAJAXComponent) component;
@@ -681,19 +686,21 @@ public class AJAXRenderer extends CoreRenderer {
 			if (null != ajaxComponent.getJQueryEventParameterListsForAjax()) {
 				if (null != ajaxComponent.getJQueryEventParameterListsForAjax().get(event))
 					parameterList = ajaxComponent.getJQueryEventParameterListsForAjax().get(event);
-			}			
+			}
 			generateAJAXCallForASingleEvent(context, (ClientBehaviorHolder) component, rw, null, event,
-			additionalEventHandler, true, event, code, parameterList);
+					additionalEventHandler, true, event, code, parameterList);
 			if (code.length() > 0) {
-				rw.startElement("script", component);				
+				rw.startElement("script", component);
 				parameterList = "event";
 				if (null != ajaxComponent.getJQueryEventParameterLists()) {
 					if (null != ajaxComponent.getJQueryEventParameterLists().get(event))
 						parameterList = ajaxComponent.getJQueryEventParameterLists().get(event);
 				}
-				String js = "$('" + jQueryExpressionOfTargetElement + "').on('" + ajaxComponent.getJQueryEvents().get(event)
-						+ "', function(" + parameterList + "){" + code.toString() + "});";
-				if (attachOnReady) js = "$(function() { " + js + " })";
+				String js = "$('" + jQueryExpressionOfTargetElement + "').on('"
+						+ ajaxComponent.getJQueryEvents().get(event) + "', function(" + parameterList + "){"
+						+ code.toString() + "});";
+				if (attachOnReady)
+					js = "$(function() { " + js + " })";
 				rw.writeText(js, null);
 				rw.endElement("script");
 			}
@@ -701,11 +708,12 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	public String generateBootsFacesAJAXAndJavaScriptForAnMobileEvent(FacesContext context,
-			ClientBehaviorHolder component, ResponseWriter rw, String clientId, String event) throws IOException {
+			ClientBehaviorHolder component, ResponseWriter rw, String event) throws IOException {
 		StringBuilder code = new StringBuilder();
 		String additionalEventHandler = null;
 
-		generateAJAXCallForASingleEvent(context, component, rw, null, event, additionalEventHandler, true, event, code, null);
+		generateAJAXCallForASingleEvent(context, component, rw, null, event, additionalEventHandler, true, event, code,
+				null);
 		return code.toString();
 	}
 }

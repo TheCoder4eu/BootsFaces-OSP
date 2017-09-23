@@ -29,7 +29,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -120,7 +119,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, commandButton, rw, false);
 
-		R.encodeHTML4DHTMLAttrs(rw, commandButton.getAttributes(), H.ALLBUTTON);
+		R.encodeHTML4DHTMLAttrs(rw, commandButton.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
 	}
 
 	@Override

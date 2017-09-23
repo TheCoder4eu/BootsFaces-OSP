@@ -30,8 +30,10 @@ import javax.el.ExpressionFactory;
 import javax.el.MethodExpression;
 import javax.el.PropertyNotFoundException;
 import javax.el.ValueExpression;
+import javax.el.ValueReference;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
+import javax.faces.view.facelets.FaceletContext;
 
 /** Collection of helper methods dealing with the JSF Expression language. */
 public class ELTools {
@@ -39,19 +41,11 @@ public class ELTools {
 
 	private static Map<String, NGBeanAttributeInfo> beanAttributeInfos = new HashMap<String, NGBeanAttributeInfo>();
 
-	/** Caching */
-	// private static Map<String, Field> fields = new HashMap<String, Field>();
-
-	/** Caching */
-	// private static Map<String, Method> getters = new HashMap<String, Method>();
-
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.beans.ELTools");
-
-	/** Caching */
-	// private static Map<String, List<String>> propertyLists = new HashMap<String, List<String>>();
 
 	/**
 	 * Utility method to create a JSF Value expression from the p_expression string
+	 * 
 	 * @param p_expression
 	 * @return
 	 */
@@ -64,7 +58,9 @@ public class ELTools {
 	}
 
 	/**
-	 * Utility method to create a JSF Value expression from p_expression with exprectedType class as return
+	 * Utility method to create a JSF Value expression from p_expression with
+	 * exprectedType class as return
+	 * 
 	 * @param p_expression
 	 * @param expectedType
 	 * @return
@@ -83,6 +79,7 @@ public class ELTools {
 
 	/**
 	 * Utility method to create a JSF Method expression
+	 * 
 	 * @param p_expression
 	 * @param returnType
 	 * @param parameterTypes
@@ -105,8 +102,7 @@ public class ELTools {
 	 * @param p_expression
 	 *            the expression
 	 * @throws PropertyNotFoundException
-	 *             if the attribute doesn't exist at all (as opposed to being
-	 *             null)
+	 *             if the attribute doesn't exist at all (as opposed to being null)
 	 * @return the object
 	 */
 	public static Object evalAsObject(String p_expression) throws PropertyNotFoundException {
@@ -114,11 +110,8 @@ public class ELTools {
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
 		ELContext elContext = context.getELContext();
 		ValueExpression vex = expressionFactory.createValueExpression(elContext, p_expression, Object.class);
+
 		Object result = vex.getValue(elContext);
-		if (null == result) {
-			// check whether the JSF attributes exists
-			vex.getValueReference(elContext);
-		}
 		return result;
 	}
 
@@ -139,7 +132,8 @@ public class ELTools {
 	}
 
 	/**
-	 * Get the bean attributes info 
+	 * Get the bean attributes info
+	 * 
 	 * @param c
 	 * @return
 	 */
@@ -159,6 +153,7 @@ public class ELTools {
 
 	/**
 	 * Return the core value expression of a specified component
+	 * 
 	 * @param component
 	 * @return
 	 */
@@ -178,7 +173,10 @@ public class ELTools {
 		return null;
 	}
 
-	private static Field getField(String p_expression) {
+	private static Field getField(Object container, String p_expression) {
+		if (container == null) {
+			return null;
+		}
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
 			// the following code covers these use cases:
 			// #{someBean.someField}
@@ -187,7 +185,7 @@ public class ELTools {
 			// #{someBean.someMap[someBean.fieldName].someAttribute}
 			int delimiterPos = p_expression.lastIndexOf('.');
 			int mapDelimiterPos = p_expression.lastIndexOf('[');
-			if (mapDelimiterPos>=0) {
+			if (mapDelimiterPos >= 0) {
 				int mapEndDelimiterPos = p_expression.lastIndexOf(']');
 				if (delimiterPos < mapEndDelimiterPos) {
 					delimiterPos = mapDelimiterPos; // treat the [...] as field
@@ -197,15 +195,7 @@ public class ELTools {
 				LOGGER.log(Level.WARNING, "There's no field to access: #{" + p_expression + "}");
 				return null;
 			}
-			String beanExp = p_expression.substring(0, delimiterPos) + "}";
 			String fieldName = p_expression.substring(delimiterPos + 1, p_expression.length() - 1);
-			Object container = evalAsObject(beanExp);
-			if (null == container) {
-				LOGGER.severe("Can't read the bean '" + beanExp
-						+ "'. Thus JSR 303 annotations can't be read, let alone used by the AngularJS / AngularDart client.");
-				return null;
-			}
-
 			Class<? extends Object> c = container.getClass();
 			while (c != null) {
 				Field declaredField;
@@ -220,7 +210,6 @@ public class ELTools {
 					c = c.getSuperclass();
 				} catch (SecurityException e) {
 					LOGGER.log(Level.SEVERE, "Unable to access a field", e);
-					e.printStackTrace();
 					return null;
 				}
 			}
@@ -228,7 +217,10 @@ public class ELTools {
 		return null;
 	}
 
-	private static Method getGetter(String p_expression) {
+	private static Method getGetter(Object container, String p_expression) {
+		if (container == null) {
+			return null;
+		}
 		if (p_expression.startsWith("#{") && p_expression.endsWith("}")) {
 			// the following code covers these use cases:
 			// #{someBean.someField}
@@ -237,28 +229,21 @@ public class ELTools {
 			// #{someBean.someMap[someBean.fieldName].someAttribute}
 			int delimiterPos = p_expression.lastIndexOf('.');
 			int mapDelimiterPos = p_expression.lastIndexOf('[');
-			if (mapDelimiterPos>=0) {
+			if (mapDelimiterPos >= 0) {
 				int mapEndDelimiterPos = p_expression.lastIndexOf(']');
 				if (delimiterPos < mapEndDelimiterPos) {
 					// the last part of the expression is a map access, so there's no getter
-					return null; 
+					return null;
 				}
 			}
 			if (delimiterPos < 0) {
 				LOGGER.log(Level.WARNING, "There's no getter to access: #{" + p_expression + "}");
 				return null;
 			}
-			String beanExp = p_expression.substring(0, delimiterPos) + "}";
 			String fieldName = p_expression.substring(delimiterPos + 1, p_expression.length() - 1);
 			String getterName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-			String booleanGetterName = "is" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
-			Object container = evalAsObject(beanExp);
-			if (null == container) {
-				LOGGER.severe("Can't read the bean '" + beanExp
-						+ "'. Thus JSR 303 annotations can't be read.");
-				return null;
-			}
 			Method declaredMethod = findMethod(container, getterName);
+			String booleanGetterName = "is" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
 			if (null == declaredMethod)
 				declaredMethod = findMethod(container, booleanGetterName);
 			return declaredMethod;
@@ -278,19 +263,9 @@ public class ELTools {
 			c = c.getSuperclass();
 		} catch (SecurityException e) {
 			LOGGER.log(Level.SEVERE, "Unable to access a getter for security reasons", e);
-			e.printStackTrace();
 		}
 		return null;
 
-	}
-
-	public static String getNGModel(UIComponent p_component) {
-		String id = ELTools.getCoreValueExpression(p_component);
-		if (id.contains(".")) {
-			int index = id.lastIndexOf(".");
-			id = id.substring(index + 1);
-		}
-		return id;
 	}
 
 	/**
@@ -300,8 +275,8 @@ public class ELTools {
 	 *            the expression
 	 * @return the type (as class)
 	 */
-	public static Class<?> getType(String p_expression) {
-		Method declaredField = getGetter(p_expression);
+	public static Class<?> getType(Object base, String p_expression) {
+		Method declaredField = getGetter(base, p_expression);
 		if (null != declaredField) {
 			return declaredField.getReturnType();
 		}
@@ -318,7 +293,9 @@ public class ELTools {
 	public static Class<?> getType(UIComponent p_component) {
 		ValueExpression valueExpression = p_component.getValueExpression("value");
 		if (valueExpression != null) {
-			return getType(valueExpression.getExpressionString());
+			FacesContext context = FacesContext.getCurrentInstance();
+			ELContext elContext = context.getELContext();
+			return valueExpression.getType(elContext);
 		}
 		return null;
 	}
@@ -329,8 +306,8 @@ public class ELTools {
 	}
 
 	/**
-	 * Is the parameter passed a primitive type (such as int, long, etc) or a
-	 * type considered primitive by most programmers (such as String)?
+	 * Is the parameter passed a primitive type (such as int, long, etc) or a type
+	 * considered primitive by most programmers (such as String)?
 	 *
 	 * @param c
 	 *            the object
@@ -350,17 +327,72 @@ public class ELTools {
 	 *            EL expression of the JSF bean attribute
 	 * @return null if there are no annotations, or if they cannot be accessed
 	 */
-	public static Annotation[] readAnnotations(String p_expression) {
-		Field declaredField = getField(p_expression);
-		if (null != declaredField) {
-			if (declaredField.getAnnotations() != null)
+	public static Annotation[] readAnnotations(ValueExpression p_expression, UIComponent p_component) {
+		FacesContext context = FacesContext.getCurrentInstance();
+		ELContext elContext = context.getELContext();
+		try {
+			ValueReference valueReference = p_expression.getValueReference(elContext);
+			Object base;
+			if (null == valueReference) {
+				base = evaluteBaseForMojarra(elContext, p_expression);
+			} else {
+				base = valueReference.getBase();
+			}
+			Field declaredField = getField(base, p_expression.getExpressionString());
+			if (null != declaredField) {
 				return declaredField.getAnnotations();
-		}
-		Method getter = getGetter(p_expression);
-		if (null != getter) {
-			return getter.getAnnotations();
+			}
+			Method getter = getGetter(base, p_expression.getExpressionString());
+			if (null != getter) {
+				return getter.getAnnotations();
+			}
+		} catch (PropertyNotFoundException ex) {
+			// this happens if a bean is null. That's a legal state, so suffice it to return no annotation.
 		}
 		return null;
+	}
+
+	private static Object evaluteBaseForMojarra(ELContext elContext, ValueExpression p_expression) {
+		String exp = p_expression.getExpressionString();
+		int endOfBaseName = exp.lastIndexOf('.');
+		int mapDelimiterPos = exp.lastIndexOf('[');
+		if (mapDelimiterPos >= 0) {
+			int mapEndDelimiterPos = exp.lastIndexOf(']');
+			if (endOfBaseName < mapEndDelimiterPos) {
+				endOfBaseName = mapDelimiterPos; // treat the [...] as field
+			}
+		}
+
+		String basename = exp.substring(2, endOfBaseName);
+
+		Object result = evalAsObject("#{" + basename + "}");
+		if (null != result) {
+			return result;
+		}
+
+		int start = 0;
+		int end = basename.indexOf('.', start);
+		int end2 = basename.indexOf('[', start);
+		if (end2 >= 0 && end2 < end) {
+			end = end2;
+		}
+		if (end < 0) {
+			end = basename.length();
+		}
+		String variableName = basename.substring(start, end);
+		FaceletContext faceletContext = (FaceletContext) FacesContext.getCurrentInstance().getAttributes()
+				.get(FaceletContext.FACELET_CONTEXT_KEY);
+		Object resolvedBase = faceletContext.getAttribute(variableName);
+		if (resolvedBase != null) {
+			if (endOfBaseName == end + 2) {
+				result = resolvedBase;
+			} else {
+				basename = basename.substring(end + 1, endOfBaseName - 2);
+				result = elContext.getELResolver().getValue(elContext, resolvedBase, basename);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -372,8 +404,8 @@ public class ELTools {
 	 */
 	public static Annotation[] readAnnotations(UIComponent p_component) {
 		ValueExpression valueExpression = p_component.getValueExpression("value");
-		if (valueExpression != null) {
-			return readAnnotations(valueExpression.getExpressionString());
+		if (valueExpression != null && valueExpression.getExpressionString() != null && valueExpression.getExpressionString().length()>0) {
+			return readAnnotations(valueExpression, p_component);
 		}
 		return null;
 	}

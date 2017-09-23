@@ -287,13 +287,17 @@ public class BsfUtils {
 	}
 
 	/**
-	 * Returns the clientId for a component with id="foo"
+	 * Returns the clientId for a component with id="foo".
+	 * @return null if there's no such component.
 	 */
 	public static String getComponentClientId(final String componentId) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		UIComponent c = findComponent(root, componentId);
+		if (c==null) {
+			return null;
+		}
 		return c.getClientId(context);
 	}
 
@@ -388,8 +392,12 @@ public class BsfUtils {
 		}
 
 		for (int i = 0; i < params.length; i++) {
-			summary = summary.replace("{" + i + "}", params[i]);
-			detail = detail.replace("{" + i + "}", params[i]);
+			if (null != summary) {
+				summary = summary.replace("{" + i + "}", params[i]);
+			}
+			if (null != detail) {
+				detail = detail.replace("{" + i + "}", params[i]);
+			}
 		}
 
 		// At this point, we have a summary and a bundle.

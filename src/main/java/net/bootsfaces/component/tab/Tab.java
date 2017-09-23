@@ -25,7 +25,6 @@ import java.util.Map;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UINamingContainer;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;

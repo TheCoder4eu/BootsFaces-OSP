@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-17 by Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -16,12 +16,19 @@
 * limitations under the License.
  */
 
-package net.bootsfaces.component.navLink;
+package net.bootsfaces.component.link;
 
-import javax.faces.component.html.HtmlOutcomeTargetLink;
+import javax.faces.component.FacesComponent;
 
-/** This class holds the attributes of &lt;b:navLink /&gt;. */
-public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.bootsfaces.render.IHasTooltip {
+import net.bootsfaces.component.navLink.NavLink;
+
+/** This class holds the attributes of &lt;b:link /&gt;. */
+@FacesComponent("net.bootsfaces.component.link.Link")
+public class Link extends NavLink {
+
+	public Link() {
+		super();
+	}
 
 	protected enum PropertyKeys {
 		active,
@@ -49,6 +56,7 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 		immediate,
 		includeViewParams,
 		largeScreen,
+		look,
 		mediumScreen,
 		offset,
 		offsetLg,
@@ -499,6 +507,22 @@ public abstract class NavLinkCore extends HtmlOutcomeTargetLink implements net.b
 	 */
 	public void setLargeScreen(String _largeScreen) {
 		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getLook() {
+		return (String) getStateHelper().eval(PropertyKeys.look);
+	}
+
+	/**
+	 * Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLook(String _look) {
+		getStateHelper().put(PropertyKeys.look, _look);
 	}
 
 	/**

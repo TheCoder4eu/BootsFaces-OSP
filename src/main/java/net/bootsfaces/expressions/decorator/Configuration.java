@@ -1,20 +1,18 @@
 package net.bootsfaces.expressions.decorator;
 
-
 public class Configuration {
-    public static boolean myFaces = false;
+	public static final boolean myFaces = determineJSFImplementation();
 
-    static {
-        StackTraceElement[] stackTrace = new NullPointerException().getStackTrace();
-        for (StackTraceElement line : stackTrace) {
-            if (line.getClassName().contains("org.apache.myfaces")) {
-                myFaces = true;
-                break;
-            }
-            if (line.getClassName().contains("com.sun.faces")) {
-                myFaces = false;
-                break;
-            }
-        }
-    }
+	static boolean determineJSFImplementation() {
+		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+		for (StackTraceElement line : stackTrace) {
+			if (line.getClassName().contains("org.apache.myfaces")) {
+				return true;
+			}
+			if (line.getClassName().contains("com.sun.faces")) {
+				return false;
+			}
+		}
+		return false;
+	}
 }

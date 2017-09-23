@@ -35,7 +35,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.tab.Tab;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 
@@ -314,7 +313,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		String role = "tablist";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer, false);
-		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), H.TAB_VIEW);
+		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), new String[] { "style" });
 		if (tabView.getRole() != null) {
 			role = tabView.getRole();
 		}
@@ -477,9 +476,6 @@ public class TabViewRenderer extends CoreRenderer {
 					int offset = 0;
 					public void run() {
 						try {
-							if (currentlyActiveIndex==6) {
-								System.out.println("Offset: " + offset + " currentIndex: " + currentIndex);
-							}
 							encodeTab(context, writer, tab, currentIndex + offset == currentlyActiveIndex, hiddenInputFieldID,
 									currentIndex + offset, disabled);
 							offset++;
@@ -577,7 +573,7 @@ public class TabViewRenderer extends CoreRenderer {
 					+ "';";
 			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick, false, true);
 		}
-		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
+		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), new String[] { "style", "tabindex" });
 
 		UIComponent iconFacet = tab.getFacet("anchor");
 		if (null != iconFacet) {
