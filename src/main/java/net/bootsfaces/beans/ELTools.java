@@ -365,6 +365,9 @@ public class ELTools {
 				endOfBaseName = mapDelimiterPos; // treat the [...] as field
 			}
 		}
+		if (endOfBaseName == -1) {
+			endOfBaseName = exp.lastIndexOf('}'); 
+		}
 
 		if (endOfBaseName < 0) {
 			LOGGER.log(Level.WARNING, "There's no getter to access: #{" + p_expression + "}");
