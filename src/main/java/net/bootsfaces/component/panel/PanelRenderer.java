@@ -97,10 +97,12 @@ public class PanelRenderer extends CoreRenderer {
 
 		boolean isCollapsible = panel.isCollapsible();
 		String accordionParent = panel.getAccordionParent();
-
-		if (isCollapsible && null == accordionParent) {
+		String responsiveCSS = Responsive.getResponsiveStyleClass(panel, false).trim();
+		boolean isResponsive = responsiveCSS.length() > 0;
+		
+		if (null == accordionParent && (isCollapsible || isResponsive)) {
 			rw.startElement("div", panel);
-			rw.writeAttribute("class", ("panel-group" + Responsive.getResponsiveStyleClass(panel, false)).trim(), null);
+			rw.writeAttribute("class", "panel-group " + responsiveCSS, null);
 			rw.writeAttribute("id", clientId, "id");
 		}
 
@@ -124,7 +126,7 @@ public class PanelRenderer extends CoreRenderer {
 		}
 		
 		rw.startElement("div", panel);
-		if (!(isCollapsible && null == accordionParent)) {
+		if (!((isCollapsible || isResponsive) && null == accordionParent)) {
 			rw.writeAttribute("id", clientId, "id");
 		}
 		writeAttribute(rw, "dir", panel.getDir(), "dir");
@@ -210,7 +212,7 @@ public class PanelRenderer extends CoreRenderer {
 		String _contentClass = panel.getContentClass();
 		if (null == _contentClass)
 			_contentClass = "";
-		if (isCollapsible) {
+		if (isCollapsible || isResponsive) {
 			_contentClass += " panel-collapse collapse"; // in
 			if (!panel.isCollapsed())
 				_contentClass += " in";
@@ -297,23 +299,28 @@ public class PanelRenderer extends CoreRenderer {
 		rw.endElement("div"); // panel-body
 		boolean isCollapsible = panel.isCollapsible();
 		String accordionParent = panel.getAccordionParent();
+		String responsiveCSS = Responsive.getResponsiveStyleClass(panel, false).trim();
+		boolean isResponsive = responsiveCSS.length() > 0;		
 
-		if (isCollapsible && null == accordionParent) {
-			String jQueryClientID = clientId.replace(":", "_");
+		if ((isCollapsible||isResponsive) && null == accordionParent) {
 			rw.endElement("div");
-			rw.startElement("input", panel);
-			rw.writeAttribute("type", "hidden", null);
-			String hiddenInputFieldID = jQueryClientID + "_collapsed";
-			rw.writeAttribute("name", hiddenInputFieldID, "name");
-			rw.writeAttribute("id", hiddenInputFieldID, "id");
-			rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
-			rw.endElement("input");
-			Map<String, String> eventHandlers = new HashMap<String, String>();
-			eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID
-					+ "').value='false';");
-			eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
-					+ "').value='true';");
-			new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"content", eventHandlers);
+			
+			if (isCollapsible) {
+				String jQueryClientID = clientId.replace(":", "_");
+				rw.startElement("input", panel);
+				rw.writeAttribute("type", "hidden", null);
+				String hiddenInputFieldID = jQueryClientID + "_collapsed";
+				rw.writeAttribute("name", hiddenInputFieldID, "name");
+				rw.writeAttribute("id", hiddenInputFieldID, "id");
+				rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
+				rw.endElement("input");
+				Map<String, String> eventHandlers = new HashMap<String, String>();
+				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID
+						+ "').value='false';");
+				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
+						+ "').value='true';");
+				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"content", eventHandlers);
+			}
 		}
 		Tooltip.activateTooltips(context, panel);
 	}
