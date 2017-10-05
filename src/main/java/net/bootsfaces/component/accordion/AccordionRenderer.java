@@ -101,6 +101,12 @@ public class AccordionRenderer extends CoreRenderer {
 				if (_child instanceof Panel && ((Panel) _child).isCollapsible()) {
 					Panel _childPane = (Panel) _child;
 					_childPane.setAccordionParent(accordionClientId);
+                                        String childPaneClientId = _childPane.getClientId();
+                                        if (_childPane.getClientId().contains(":")) {
+                                            String[] parts = _childPane.getClientId().split(":");
+                                            if (parts.length == 2)
+                                                childPaneClientId = parts[1];
+                                        }
 					if (null != expandedIds && expandedIds.contains(_childPane.getClientId()))
 						_childPane.setCollapsed(false);
 					else
