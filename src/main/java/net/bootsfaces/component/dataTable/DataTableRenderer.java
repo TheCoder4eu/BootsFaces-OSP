@@ -27,12 +27,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
+
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTableColumn.DataTableColumn;
@@ -444,74 +446,24 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 			if (column.getAttributes().get("orderBy") != null) {
 				String orderBy = (String) column.getAttributes().get("orderBy");
-				if (dataTable.getColumnInfo() == null) {
-					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
-					for (int k = 0; k < dataTable.getChildren().size(); k++) {
-						infos.add(null);
-					}
-					dataTable.setColumnInfo(infos);
-				}
-				List<String> infos = dataTable.getColumnInfo();
-				String s = infos.get(index);
-				if (s == null) {
-					infos.set(index, "'orderDataType': '" + orderBy + "'");
-				} else {
-					infos.set(index, s + ",'orderDataType': '" + orderBy + "'");
-				}
+				updateColumnDefinition(dataTable, index, "'orderDataType': '" + orderBy + "'");
 
 			}
 			if (column.getAttributes().get("dataType") != null) {
 				String type = (String) column.getAttributes().get("dataType");
-				if (dataTable.getColumnInfo() == null) {
-					List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
-					for (int k = 0; k < dataTable.getChildren().size(); k++) {
-						infos.add(null);
-					}
-					dataTable.setColumnInfo(infos);
-				}
-				List<String> infos = dataTable.getColumnInfo();
-				String s = infos.get(index);
-				if (s == null) {
-					infos.set(index, "'type': '" + type + "'");
-				} else
-					infos.set(index, s + ",'type': '" + type + "'");
+				updateColumnDefinition(dataTable, index, "'type': '" + type + "'");
 			}
 			if (column.getAttributes().get("orderable") != null) {
 				String orderable = column.getAttributes().get("orderable").toString();
+				
 				if ("false".equalsIgnoreCase(orderable)) {
-					if (dataTable.getColumnInfo() == null) {
-						List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
-						for (int k = 0; k < dataTable.getChildren().size(); k++) {
-							infos.add(null);
-						}
-						dataTable.setColumnInfo(infos);
-					}
-					List<String> infos = dataTable.getColumnInfo();
-					String s = infos.get(index);
-					if (s == null) {
-						infos.set(index, "'orderable': false");
-					} else
-						infos.set(index, s + ",'orderable': false");
+					updateColumnDefinition(dataTable, index, "'orderable': false");
 				}
 			}
 
 			if (column.getAttributes().get("customOptions") != null) {
 				String customOptions = column.getAttributes().get("customOptions").toString();
-				if (customOptions != null && customOptions.length() > 0) {
-					if (dataTable.getColumnInfo() == null) {
-						List<String> infos = new ArrayList<String>(dataTable.getChildren().size());
-						for (int k = 0; k < dataTable.getChildren().size(); k++) {
-							infos.add(null);
-						}
-						dataTable.setColumnInfo(infos);
-					}
-					List<String> infos = dataTable.getColumnInfo();
-					String s = infos.get(index);
-					if (s == null) {
-						infos.set(index, customOptions);
-					} else
-						infos.set(index, s + "," + customOptions);
-				}
+				updateColumnDefinition(dataTable, index, customOptions);
 			}
 			rw.endElement("th");
 			index++;
@@ -853,4 +805,35 @@ public class DataTableRenderer extends CoreRenderer {
 		// Children are already rendered in encodeBegin()
 	}
 
+	protected void initColumnInfos(DataTable dataTable) {
+		if (dataTable.getColumnInfo() == null) {
+			List<String> infos = new ArrayList<String>();
+			
+			for (int k = 0; k < dataTable.getChildren().size(); k++) {
+			
+				if (dataTable.getChildren().get(k).isRendered()) {
+					infos.add(null);
+				}
+
+			}
+			
+			dataTable.setColumnInfo(infos);
+		}
+	}
+	
+	protected void updateColumnDefinition(DataTable dataTable, int index, String value) {
+		initColumnInfos(dataTable);
+		
+		List<String> infos = dataTable.getColumnInfo();
+		
+		String s = infos.get(index);
+		
+		if (s == null) {
+			infos.set(index, value);
+		} else {
+			infos.set(index, s + "," + value);
+		}
+		
+	}
+	
 }

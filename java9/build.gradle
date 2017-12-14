@@ -22,9 +22,9 @@ apply plugin: 'java'
 
 //Configurations for Target Java 8 runtime.
 sourceCompatibility = '1.6'
-targetCompatibility = '1.8'
+targetCompatibility = '1.9'
 
-archivesBaseName = 'BootsFaces-OSP'
+archivesBaseName = 'BootsFaces-OSP-jre9'
 
 apply plugin: 'maven'
 
@@ -69,7 +69,7 @@ dependencies {
 compileJava {
     options.compilerArgs.addAll(0,buildOptsJava8)
 }
-compileJava.onlyIf { buildJava8==true }
+compileJava.onlyIf { buildJava9==true }
 
 sourceSets {
     main {
@@ -100,10 +100,10 @@ jar {
    }
 }
 jar.dependsOn(":gradleResources:buildResources")
-jar.onlyIf { buildJava8==true }
+jar.onlyIf { buildJava9==true }
 
 task defaultJar(type: Jar) {
-   baseName='BootsFaces-OSP-default'
+   baseName='BootsFaces-OSP-jre9-default'
    from(sourceSets.main.output.classesDir) {
         include "**"
    }
@@ -137,7 +137,7 @@ task defaultJar(type: Jar) {
    }
 }
 defaultJar.dependsOn(jar,":gradleResources:buildResources")
-defaultJar.onlyIf { (themes.size() > 0) && buildJava8==true }
+defaultJar.onlyIf { (themes.size() > 0) && buildJava9==true }
 
 /*task copyToLib(type: Copy) {
     into "$buildDir/proguard/libs"
@@ -148,7 +148,7 @@ compileJava.doFirst {
     println "Compiling Java Sources:"
     println "source compatibility  :" + sourceCompatibility
     println "target compatibility  :" + targetCompatibility
-    println "Java Build Options  :" + buildOptsJava8
+    println "Java Build Options  :" + buildOptsJava9
     println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
     println "sourceSets.main.output.classesDir :" + sourceSets.main.output.classesDir
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir

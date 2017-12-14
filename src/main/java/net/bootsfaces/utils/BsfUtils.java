@@ -628,7 +628,9 @@ public class BsfUtils {
 	 * Read an object from a base64 string
 	 * @param s
 	 * @return
-	 */
+	 *
+	 * @deprecated since potentially unsafe ( #880 )
+	 *
 	public static Object fromString(String s) {
 		try {
 			byte[] data = DatatypeConverter.parseBase64Binary(s);
@@ -647,7 +649,9 @@ public class BsfUtils {
 	 * Write an object to base64 string
 	 * @param o
 	 * @return
-	 */
+	 *
+	 * @deprecated since potentially unsafe ( #880 )
+	 *
 	public static String toString(Serializable o) {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -661,7 +665,7 @@ public class BsfUtils {
 			e.printStackTrace();
 			return "";
 		}
-	}
+	} */
 
 	/**
 	 * Resolve the search expression
