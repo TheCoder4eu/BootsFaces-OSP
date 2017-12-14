@@ -362,9 +362,6 @@ public class ELTools {
 				endOfBaseName = mapDelimiterPos; // treat the [...] as field
 			}
 		}
-		if (endOfBaseName == -1) {
-			endOfBaseName = exp.lastIndexOf('}'); 
-		}
 
 		String basename = exp.substring(2, endOfBaseName);
 
