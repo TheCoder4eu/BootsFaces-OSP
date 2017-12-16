@@ -383,9 +383,9 @@ public class AddResourcesListener implements SystemEventListener {
 			String name = (String) ava.getAttributes().get("name");
 			if (null != name) {
 				name = name.toLowerCase();
-				if (name.startsWith("jquery-ui") && name.endsWith(".js"))
+				if ((name.contains("/jquery-ui") || name.startsWith("jquery-ui")) && name.endsWith(".js"))
 					loadJQueryUI = false;
-				else if (name.startsWith("jquery") && name.endsWith(".js"))
+				else if ((name.contains("/jquery") || name.startsWith("jquery")) && name.endsWith(".js"))
 					loadJQuery = false;
 			}
 		}
