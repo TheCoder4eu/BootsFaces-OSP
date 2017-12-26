@@ -371,7 +371,7 @@ public class AJAXRenderer extends CoreRenderer {
 				if (component instanceof CommandButton)
 					if (generatedAJAXCall && "click".equals(keyClientBehavior))
 						script += ";return false;";
-				if (script.startsWith(jsCallback)) {
+				if (script.contains(jsCallback)) {
 					// this happens when you combine onclick and f:ajax.
 					// Both render the onclick attribute, but
 					// in general it's hard to detect this situation because
@@ -631,6 +631,9 @@ public class AJAXRenderer extends CoreRenderer {
 		}
 		if (oc != null) {
 			js = oc.endsWith(";") ? oc : oc + ";";
+			if (js.contains("return ")) {
+				js = "if (false===(function() {" + js + "})()) return false;";
+			}
 		} else {
 			js = "";
 		}
