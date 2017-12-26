@@ -654,9 +654,9 @@ public class AddResourcesListener implements SystemEventListener {
 			root.removeComponentResource(context, c);
 		}
 		
-		for (UIComponent resource : root.getComponentResources(context, "head")) {
-			System.out.println(resource.getClass().getName());
-		}
+//		for (UIComponent resource : root.getComponentResources(context, "head")) {
+//			System.out.println(resource.getClass().getName());
+//		}
 
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			middle.add(c);
