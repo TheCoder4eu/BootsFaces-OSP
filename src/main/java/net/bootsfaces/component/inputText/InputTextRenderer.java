@@ -67,6 +67,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if (realEventSourceName == null) {
 			realEventSourceName = "input_" + clientId;
 		}
+		if (null != inputText.getFieldId()) {
+			realEventSourceName = inputText.getFieldId();
+		}
 		
 		if (null == name) {
 			name = "input_" + clientId;
