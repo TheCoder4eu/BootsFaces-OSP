@@ -258,6 +258,35 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		renderOptions(context, rw, menu);
 
 		renderInputTagEnd(rw);
+		renderJQueryAfterComponent(rw, clientId, menu);
+	}
+
+	/**
+	 * render a jquery javascript block after the component if necessary
+	 * 
+	 * @param rw
+	 * @param clientId 
+	 * @param menu
+	 * @throws IOException 
+	 */
+	private void renderJQueryAfterComponent(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
+		Boolean select2 = menu.isSelect2();
+		if (select2 != null && select2) {
+			rw.startElement("script", menu);
+			rw.writeAttribute("type", "text/javascript", "script");
+			
+			StringBuilder buf = new StringBuilder("$(document).ready(function(){");
+			buf.append("\n");
+			// jquery selector for the ID of the select component
+			buf.append("  $(\"[id='").append(clientId).append("']\")");
+			// select2 command to enable filtering
+			buf.append(".select2();");
+			buf.append("\n");
+			buf.append("});");
+			
+			rw.writeText(buf.toString(), "script");
+			rw.endElement("script");
+		}
 	}
 
 	/**
@@ -471,6 +500,13 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String s;
 		sb = new StringBuilder(20); // optimize int
 		sb.append("form-control");
+		
+		Boolean select2 = menu.isSelect2();
+
+		if (select2 != null && select2) {
+			sb.append(" select2style");
+		}
+		
 		String fsize = menu.getFieldSize();
 
 		if (fsize != null) {
