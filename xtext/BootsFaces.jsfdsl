@@ -4,7 +4,7 @@ attribute_list ajax {
     oncomplete                                                            "JavaScript to be executed when ajax completes."
     onerror                                                               "JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions)."
     onsuccess                                                             "JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception)."
-	process                                                               "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    process                                                               "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     update                                                                "Component(s) to be updated with ajax."
 }
 
@@ -25,7 +25,7 @@ attribute_list tooltip {
 }
 
 attribute_list responsive {
-	col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
@@ -45,7 +45,7 @@ attribute_list responsive {
 }
 
 attribute_list responsiveLabel {
-	label-col-lg              default "-1"                                "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-lg              default "-1"                                "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     label-col-md              default "-1"                                "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     label-col-sm              default "-1"                                "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     label-col-xs              default "-1"                                "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
@@ -56,7 +56,7 @@ attribute_list responsiveLabel {
 }
 
 attribute_list style {
-	style                                                                 "Inline style of the input element."
+    style                                                                 "Inline style of the input element."
     style-class                                                           "Style class of this element."
 }
 
@@ -2104,6 +2104,7 @@ widget selectOneMenu
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
+    select2             Boolean                                            "Enable select2 component to make the dropdown filterable by setting this attribute to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
