@@ -338,6 +338,9 @@ public class ELTools {
 			} else {
 				base = valueReference.getBase();
 			}
+			if (null == base) {
+				return null;
+			}
 			Field declaredField = getField(base, p_expression.getExpressionString());
 			if (null != declaredField) {
 				return declaredField.getAnnotations();
@@ -363,6 +366,10 @@ public class ELTools {
 			}
 		}
 
+		if (endOfBaseName < 0) {
+			LOGGER.log(Level.WARNING, "There's no getter to access: #{" + p_expression + "}");
+			return null;
+		}
 		String basename = exp.substring(2, endOfBaseName);
 
 		Object result = evalAsObject("#{" + basename + "}");
