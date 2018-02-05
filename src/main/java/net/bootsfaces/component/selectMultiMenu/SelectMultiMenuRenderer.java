@@ -639,6 +639,9 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 			String value;
 			if (itemValue instanceof String) {
 				value = (String) itemValue;
+			} else if (itemValue instanceof Integer) {
+				Integer intValue = ((Integer) itemValue);
+				value = intValue == null ? null : intValue.toString();
 			} else
 				value = String.valueOf(index);
 			rw.writeAttribute("value", value, "value");
