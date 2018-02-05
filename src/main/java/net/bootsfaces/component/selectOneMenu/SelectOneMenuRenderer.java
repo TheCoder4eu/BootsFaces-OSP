@@ -58,7 +58,8 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String clientId = outerClientId + "Inner";
 		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		if (null != submittedOptionValue) {
 			for (int index = 0; index < items.size(); index++) {
@@ -75,12 +76,14 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				}
 				if (currentOptionValue instanceof String) {
 					currentOptionValueAsString = (String) currentOptionValue;
+				} else if (null != converter) {
+					currentOptionValueAsString = converter.getAsString(context, component, currentOptionValue);
 				} else
 					currentOptionValueAsString = String.valueOf(index);
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(currentOptionValue);
+					menu.setSubmittedValue(currentOptionValueAsString);
 					menu.setValid(true);
-					menu.validateValue(context, submittedOptionValue);
+					menu.validateValue(context, currentOptionValue);
 					new AJAXRenderer().decode(context, component, clientId);
 					return;
 				}
@@ -297,7 +300,8 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	 * @throws IOException
 	 */
 	protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu) throws IOException {
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		for (int index = 0; index < items.size(); index++) {
 			SelectItemAndComponent option = items.get(index);
@@ -442,7 +446,10 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 		if (itemValue != null) {
 			String value;
-			if (itemValue instanceof String) {
+			if (null != converter) {
+				value = converter.getAsString(context, menu, itemValue);
+			}
+			else if (itemValue instanceof String) {
 				value = (String) itemValue;
 			} else {
 				value = String.valueOf(index);

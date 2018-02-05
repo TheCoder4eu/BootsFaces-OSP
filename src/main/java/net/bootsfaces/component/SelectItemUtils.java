@@ -28,6 +28,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UISelectItem;
 import javax.faces.component.UISelectItems;
 import javax.faces.context.FacesContext;
+import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 
 /**
@@ -38,7 +39,7 @@ import javax.faces.model.SelectItem;
  */
 public class SelectItemUtils {
     @SuppressWarnings("rawtypes")
-    public static List<SelectItemAndComponent> collectOptions(FacesContext context, UIComponent menu) {
+    public static List<SelectItemAndComponent> collectOptions(FacesContext context, UIComponent menu, Converter converter) {
         List<SelectItemAndComponent> items = new ArrayList<SelectItemAndComponent>();
 
         List<UIComponent> selectItems = menu.getChildren();
@@ -70,8 +71,13 @@ public class SelectItemUtils {
 
                             for (Iterator it = map.keySet().iterator(); it.hasNext();) {
                                 Object key = it.next();
-
-                                items.add(new SelectItemAndComponent(kid, createSelectItem(context, uiSelectItems, map.get(key), String.valueOf(key))));
+                                String label;
+                                if (null == converter) {
+	                                	label = String.valueOf(key);
+                                } else {
+                                		label = converter.getAsString(context, menu, map.get(key));
+                                }
+                                items.add(new SelectItemAndComponent(kid, createSelectItem(context, uiSelectItems, map.get(key), label)));
                             }
                         } else if (value instanceof Collection) {
                             Collection collection = (Collection) value;
