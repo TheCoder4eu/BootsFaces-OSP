@@ -429,11 +429,11 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		} else if (itemLabel.equals(selectedOption)) {
 			isSelected = true;
 		}
-		if (menu.isDisabled() || menu.isReadonly()) {
-			if (!isSelected) {
-				return; // don't render options that can't be selected
-			}
-		}
+//		if (menu.isDisabled() || menu.isReadonly()) {
+//			if (!isSelected) {
+//				return; // don't render options that can't be selected
+//			}
+//		}
 
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
 		itemLabel = isItemLabelBlank ? itemValueAsString : itemLabel;
