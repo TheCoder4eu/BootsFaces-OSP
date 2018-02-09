@@ -30,6 +30,7 @@ public class Image extends ImageCore
 	public Image() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
+		AddResourcesListener.addBasicJSResource("bsf", "js/image-loader.js");
 		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}

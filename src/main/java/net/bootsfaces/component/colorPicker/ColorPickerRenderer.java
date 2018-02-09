@@ -11,7 +11,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -153,7 +152,8 @@ public class ColorPickerRenderer extends CoreInputRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, H.INPUT_TEXT);
+		renderPassThruAttributes(context, component, new String[] { "accesskey", "alt", "dir", "lang", "maxlength", "size", "style",
+				"tabindex", "title" });
 
 		String autocomplete = colorPicker.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {

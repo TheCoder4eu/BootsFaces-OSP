@@ -106,11 +106,20 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	opts.onevent = BsF.ajax.onevent;
 	if (parameters) {
 		for(var propertyName in parameters) {
-			opts[propertyName] = parameters[propertyName];
+			var p = parameters[propertyName];
+			if (typeof(p)==='object') {
+				if (p.constructor.name!="Array" || p.length>1) {
+					p = JSON.stringify(p).replace(/\"/g, "'");
+				}
+			}
+			opts[propertyName] = p;
 		}
 	}
 	jsf.ajax.request(source, event, opts);
-	if ($.blockUI && $.blockUI != null) {
+	
+	var disableBlockUI = opts['blockui.disabled'] === "true";
+	
+	if ($.blockUI && $.blockUI != null && !disableBlockUI) {
 		var message = $.blockUI.defaults.message;
 		$.blockUI();
 	}

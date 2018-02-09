@@ -41,6 +41,7 @@ import net.bootsfaces.utils.BsfUtils;
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.dateTimePicker.DateTimePicker")
 public class DateTimePickerRenderer extends CoreInputRenderer {
 	private static final String DTP_OUTER_CONTAINER_SUFFIX = "Outer";
+	public static final String BSF_EVENT_PREFIX = "BsFEvent=";
 
 	@Override
 	public void decode(FacesContext context, UIComponent component) {
@@ -52,7 +53,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			return;
 		}
 
-		// System.out.println("Submitted value = " + subVal);
 		if (subVal != null) {
 			dtp.setSubmittedValue(subVal);
 			dtp.setValid(true);
@@ -61,6 +61,13 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
 		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
+		if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
+			realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
+			if (!realEvent.equals(event)) {
+				event = realEvent;
+			}
+		}
 		
 		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
 		if (null == fieldId) {
@@ -169,7 +176,8 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 
 		String divSuffix="";
                 String classesWithFeedback = getWithFeedback(InputMode.DEFAULT, dtp);
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		boolean hasResponsiveClass = null != responsiveStyleClass && responsiveStyleClass.trim().length()>0;
+		if (hasResponsiveClass) {
 			rw.startElement("div", dtp);
                         
 			if (!isHorizontalForm(dtp)) {
@@ -206,7 +214,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("label");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.startElement("div", dtp);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 		}		
@@ -311,12 +319,10 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 			rw.endElement("div");
 		}
 
-		if (isHorizontalForm(dtp) && null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
+		if (isHorizontalForm(dtp) && hasResponsiveClass) {
 			rw.endElement("div");
 		}
-		if (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) {
-			rw.endElement("div");
-		} else if (label != null) {
+		if (hasResponsiveClass || label != null) {
 			rw.endElement("div");
 		}
 		Tooltip.activateTooltips(fc, dtp);
@@ -435,9 +441,6 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 						 "   $('#" + BsfUtils.escapeJQuerySpecialCharsInSelector(fieldId) + "').val( e.date.format(" + displayFormat + ") ); " +
 						 "});", null);
 		}
-//		if(dtp.isDisabled() && !"inline".equals(mode)) {
-//			rw.writeText("$('" + fullSelector + "').data(\"DateTimePicker\").disable(); ", null);
-//		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
 	}

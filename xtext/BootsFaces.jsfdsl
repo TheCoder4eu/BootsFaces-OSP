@@ -4,7 +4,7 @@ attribute_list ajax {
     oncomplete                                                            "JavaScript to be executed when ajax completes."
     onerror                                                               "JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions)."
     onsuccess                                                             "JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception)."
-	process                                                               "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    process                                                               "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     update                                                                "Component(s) to be updated with ajax."
 }
 
@@ -25,7 +25,7 @@ attribute_list tooltip {
 }
 
 attribute_list responsive {
-	col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
@@ -33,35 +33,44 @@ attribute_list responsive {
     medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									   "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
-    hidden				      											   "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
+    display				default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    hidden				      											 "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
     offset-md                                                              "Integer value to specify how many columns to offset."
     offset-sm                                                              "Integer value to specify how many columns to offset."
     offset-xs                                                              "Integer value to specify how many columns to offset."
     span                                                                   "Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    visible				       											   "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
+    visible				       											 "This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs."
 }
 
 attribute_list responsiveLabel {
-	label-col-lg              default "-1"                                       "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-md              default "-1"                                       "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-sm              default "-1"                                       "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-col-xs              default "-1"                                       "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-large-screen        default "-1"                                       "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    label-tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-lg              default "-1"                                "Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-md              default "-1"                                "Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-sm              default "-1"                                "Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-col-xs              default "-1"                                "Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-large-screen        default "-1"                                "Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-medium-screen       default "-1"                                "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-small-screen        default "-1"                                "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
+    label-tiny-screen         default "-1"                                "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
 }
 
 attribute_list style {
-	style                                                                 "Inline style of the input element."
+    style                                                                 "Inline style of the input element."
     style-class                                                           "Style class of this element."
 }
 
 attribute_list contentDisabled {
 	content-disabled            Boolean default "false"                    "Enables or disables every child element of this container. By default, child elements are enabled."
+}
+
+attribute_list uirepeat {
+	value                       inherited                                  "The name of a collection of items that this tag iterates over. The collection may be a List, array, java.sql.ResultSet, or an individual java Object. If the collection is null, this tag does nothing."
+	var                         inherited                                  "Name of the exported scoped variable for the current item of the iteration. This scoped variable has nested visibility. Its type depends on the object of the underlying collection"
+	offset                      inherited                                  "Read-write property setting the offset from the beginning of the collection from which to start the iteration. If not set, this offset is not considered and iteration will start at the beginning of the collection."
+	size                        inherited                                  "Read-write property setting the size of the collection to iterate. The value of this attribute must be less than or equal to the actual size of the collection, or a FacesException must be thrown."
+	step                        inherited                                  "Iteration will only process every step items of the collection, starting with the first one."
+	varStatus                   inherited                                  "Name of the exported request scoped variable for the status of the iteration. Object is a POJO with the following read-only JavaBeans properties: begin, end, index, step, even, odd, first, and last. This scoped variable has nested visibility."
 }
 
 widget accordion
@@ -73,7 +82,7 @@ widget accordion
 {
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-	expanded-panels														  "Comma separated list of child panel id that need to render expanded."
+	expanded-panels														"Comma separated list of child panel id that need to render expanded."
 	+tooltip
 	+responsive
 	+style
@@ -145,7 +154,6 @@ widget button
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-    onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size of the button, can be large ('lg'), small ('sm'), or tiny ('xs'). If not specified, standard size button is rendered."
@@ -460,6 +468,56 @@ widget commandButton
     +iconAwesome
 }
 
+widget commandLink
+       implemented_by net.bootsfaces.component.commandLink.CommandLink
+       extends UICommand
+       has_tooltip
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
+    content-style                                                          "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
+    href                                                                   "Specifies the URL of the page the link goes to."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    look                                                                   "Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    outcome                                                                "The outcome to navigate to."
+	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                            "CSS style class"
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "Navigation Link text."
+    +responsive
+    +tooltip
+    +iconAwesome
+}
 
 widget container
        implemented_by net.bootsfaces.layout.Container
@@ -484,13 +542,19 @@ widget dataTable
  {
     ajax                 Boolean                                           "Activates AJAX. The default value is false (no AJAX)."
 	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
+    columnVisibility     Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
+    copy                 Boolean default "false"                           "Adds a 'copy to clipboard' button."
+    csv                  Boolean default "false"                           "Adds a 'export CSV file' button."
+    excel                Boolean default "false"                           "Adds a 'export Excel file' button."
+    pdf                  Boolean default "false"                           "Adds a 'export PDF file' button."
+    print                Boolean default "false"                           "Adds a 'print' button."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
 	custom-options       String                                            "Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk."
     disabled             Boolean                                           "Boolean value to specify if the button is disabled."
 	fixed-header         Boolean                                           "Activates the fixed header plugin of the dataTable."
     id                   inherited                                         "Unique identifier of the component in a namingContainer."
     immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    info				 Boolean default "true"							   "If set, this will enable the information about record count. Defaults to true."
+    info				 Boolean default "true"							      "If set, this will enable the information about record count. Defaults to true."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     multi-column-search-position default "bottom"                          "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
@@ -513,19 +577,26 @@ widget dataTable
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
     rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    row-highlight		 Boolean default "true"							   "Enable the row highlight css. Default: true."
+    row-highlight		 Boolean default "true"							 "Enable the row highlight css. Default: true."
+    row-style-class                                                        "Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row."
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."
     searching            Boolean default "true"                            "If set to false, this feature completely disables the search functionality of the datatable (i.e. both the UI and the JavaScript API)."
-    scroll-size 		 String    						                   "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
-    scroll-x 		     Boolean    						               "If set, the table can scroll horizontally. Defaults to false."
-    scroll-collapse	     Boolean default "true"							   "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
-    select 		         Boolean    						               "Allows the user to select rows. Defaults to false."
-    selectionMode        String default "multiple"                         "Set this property to \"single\" if you want to prevent multiple selections. Default is \"multiple\"."
-	striped              Boolean default "true"                            "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
-    update                                                                 "Component(s) to be updated with ajax."
-    value                inherited                                         "EL expression referring to the back-end bean attribute providing the value of the field."
-    var                  String  inherited                                 "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
-    widgetVar            String                                            "optional widget variable to access the datatable widget in JavaScript code."
+    scroll-size 		     String    						                  "If set, force the height of table to the size specified. You can optionally to add the unit (e.g. scroll-size=\"200px\"). By default, it's px."
+    scroll-horizontally  Boolean    						                  "Adds a horizontal scroll bar on small screens. Similar to scroll-x, but wraps the entire table within the scroll area. Defaults to false."
+    scroll-x 		     Boolean    						                  "If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false."
+    scroll-collapse	     Boolean default "true"							  "If set, this will have the container match the height of the rows shown in the table if that height is smaller than that given height by the scroll-size. Default: true."
+    select 		         Boolean    						                   "Allows the user to select rows. Defaults to false. Is automatically set to true if selected-column, selected-row or selection-mode is set."
+	selected-column      java.lang.Object                                   "Optional parameter defining which columns are selected when the datatable is initially rendered. If this attribute is an integer, it's the column index. If it's a string, it's a jQuery expression. Automatically sets selection='true' and selected-items='column'."
+	selected-items                                                          "Determines whether rows, columns or individual cells are selected. Legal values are 'row', 'column', and 'cell'. The default value is 'row'. Automatically sets select='true'."
+	selected-row         java.lang.Object                                   "Optional parameter defining which rows are selected when the datatable is initially rendered. If this attribute is an integer, it's the row index. If it's a string, it's a jQuery expression. If it's another object, it's compared to the loop var.  Automatically sets selection='true' and selected-items='row'."
+	deselect-on-backdrop-click Boolean default "false"                      "If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false."
+	selection-info       Boolean default "true"                             "The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true."
+    selection-mode       String default "multiple"                          "Set this property to \"single\" if you want to prevent multiple selections. Default is \"multiple\"."
+	striped              Boolean default "true"                             "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
+    update                                                                  "Component(s) to be updated with ajax."
+    value                inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
+    var                  String  inherited                                  "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
+    widgetVar            String                                             "optional widget variable to access the datatable widget in JavaScript code."
 	+style
 	+responsive
 	+tooltip
@@ -951,6 +1022,9 @@ widget image
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onloadstart                                                            "JavaScript code executed when the image starts loading. Note that using this options reduces the speed of loading."
+    onloadend                                                              "JavaScript code executed when the image has successfully been loaded. Note that using this options reduces the speed of loading."
+    onprogress                                                             "JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading."
     process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1008,6 +1082,7 @@ widget inputSecret
 	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
+    render-value        Boolean default "false"                            "By default, the value of the password field is never sent to the client. However, if you need to send the value to the client for some reason, you can set this flag to true. Please make sure that this is not a security hole. The password may be unreadable on the screen, but hackers can read it easily."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
@@ -1174,6 +1249,19 @@ widget internalIE8CompatibilityLink
        implemented_by net.bootsfaces.component.InternalIE8CompatibilityLink
 {}
 
+widget internalJavaScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the JavaScript file to include."
+	
+}
+
+widget internalCssScriptResource
+       implemented_by net.bootsfaces.component.InternalJavaScriptResourceFile
+{
+	url                                                                    "URL of the CSS file to include."
+}
+
 
 widget jumbotron
        implemented_by net.bootsfaces.layout.Jumbotron
@@ -1215,6 +1303,60 @@ widget label
 	+responsive
 	+tooltip
 }
+
+widget link
+       implemented_by net.bootsfaces.component.link.Link
+       extends UICommand
+       has_tooltip
+       is_responsive
+ {
+    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    active              Boolean                                            "Adds the active state to the link."
+    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
+    content-style                                                          "Inline style of the content area (i.e the anchor tag)."
+    disabled            Boolean                                            "Boolean value to specify if the button is disabled."
+    fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
+    href                                                                   "Specifies the URL of the page the link goes to."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
+    look                                                                   "Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered."
+    onblur                                                                 "Client side callback to execute when input element loses focus."
+    onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
+    onclick                                                                "The onclick attribute."
+    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    ondblclick                                                             "Client side callback to execute when input element is double clicked."
+    onfocus                                                                "Client side callback to execute when input element receives focus."
+    onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
+    onkeypress                                                             "Client side callback to execute when a key is pressed and released over input element."
+    onkeyup                                                                "Client side callback to execute when a key is released over input element."
+    onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
+    onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
+    onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
+    onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
+    onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
+    onselect                                                               "Client side callback to execute when text within input element is selected by user."
+    outcome                                                                "The outcome to navigate to."
+	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    style                                                                  "Inline style"
+    style-class                                                            "CSS style class"
+    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
+    update                                                                 "Component(s) to be updated with ajax."
+    value               inherited                                          "Navigation Link text."
+    +responsive
+    +tooltip
+    +iconAwesome
+}
+
 
 
 widget listLinks
@@ -1375,7 +1517,7 @@ widget navCommandLink
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
-    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
     href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
@@ -1426,7 +1568,7 @@ widget navLink
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     fragment                                                               "The fragment  that is to be appended to the target URL. The # separator is applied automatically and needs not be included."
-    header                                                                 "If present, this element is rendered as Header in a menu with the text specifide by this attribute value: all other attributes will be ignored."
+    header                                                                 "If present, this element is rendered as Header in a menu with the text specified by this attribute value: all other attributes will be ignored."
     href                                                                   "Specifies the URL of the page the link goes to."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
@@ -1495,6 +1637,9 @@ widget panel
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+    icon                                                                   "Panel header icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     look                                                                   "Look of the Panel, can be primary, success, info, warning, danger. Default is warning."
     onclick                                                                "The onclick attribute."
     oncomplete                                                             "JavaScript to be executed when ajax completes with success."
@@ -1520,6 +1665,7 @@ widget panel
     +responsive
     +tooltip
     +contentDisabled
+    +iconAwesome
 }
 
 
@@ -1530,7 +1676,7 @@ widget panelGrid
  {
     col-spans                                                              "Comma-separated list of the column spans"
     column-classes                                                         "Comma-separated list of the CSS classes assigned to each column."
-    columns                                                                "Synonym to colSpans: comma-separated list of the column spans"
+    columns                                                                "Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1580,6 +1726,8 @@ widget progressBar
  {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    content-class                                                          "Style class of the inner div (which defines the length of the progress bar)."
+    content-style                                                          "Inline CSS style of the inner div (which defines the length of the progress bar)."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
     value               mandatory                                          "The value the ProgressBar should indicate. See the label attribute, if the exact value should be shown in text form."
@@ -1925,6 +2073,7 @@ widget selectOneMenu
     ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     field-size                                                             "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
@@ -1956,6 +2105,7 @@ widget selectOneMenu
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
     required-message                                                        "Message to show if the user did not specify a value and the attribute required is set to true."
+    select2             Boolean                                            "Enable select2 component to make the dropdown filterable by setting this attribute to true."
     size                Integer                                            "Number of characters used to determine the width of the input element."
     style                                                                  "Inline style of the input element."
     style-class                                                            "Style class of the input element."
@@ -2168,6 +2318,7 @@ widget tab
     update                                                                 "Component(s) to be updated with ajax."
     +tooltip
     +contentDisabled
+    +uirepeat
 }
 
 widget tabLinks

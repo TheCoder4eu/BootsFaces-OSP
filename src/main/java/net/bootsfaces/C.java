@@ -28,19 +28,29 @@ public final class C {
     /**
      * BootsFaces Library Constants
      */
-     public static final String BSFVERSION="1.1.2-SNAPSHOT";
+     public static final String BSFVERSION="1.2.0";
      public static final String BSFRELEASE_STATUS=""; //SNAPSHOT or empty String (for a final RELEASE)
      public static final String BSFCOMPONENT= "net.bootsfaces.component";
      public static final String BSFLAYOUT   = "net.bootsfaces.layout";
-     //public static final String BSFRENDER   = "net.bootsfaces.render";
 
     //Theme
     public static final String BSF_LIBRARY="bsf";
+    
     public static final String P_USETHEME ="BootsFaces_USETHEME";
     public static final String P_THEME ="BootsFaces_THEME";
 
+    public static final String P_BLOCK_UI = "net.bootsfaces.blockUI";
+    
+	public static final String P_GET_JQUERYUI_FROM_CDN = "net.bootsfaces.get_jqueryui_from_cdn";
+	public static final String P_GET_JQUERY_FROM_CDN = "net.bootsfaces.get_jquery_from_cdn";
+	public static final String P_GET_BOOTSTRAP_FROM_CDN = "net.bootsfaces.get_bootstrap_from_cdn";
+	public static final String P_GET_FONTAWESOME_FROM_CDN = "net.bootsfaces.get_fontawesome_from_cdn";
+
+	public static final String THEME_NAME_DEFAULT = "default";
+	public static final String THEME_NAME_OTHER = "other";
+
+    
     //Font Awesome
-    //public static final String P_USEFONTAWESOME ="BootsFaces_USE_FA";
     public static final String FA_VERSION="4.7.0";
     public static final String FONTAWESOME_CDN_URL="//maxcdn.bootstrapcdn.com/font-awesome/"+FA_VERSION+"/css/font-awesome.min.css";
 

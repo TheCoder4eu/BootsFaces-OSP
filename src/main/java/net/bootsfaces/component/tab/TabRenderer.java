@@ -35,6 +35,9 @@ public class TabRenderer extends CoreRenderer {
 	public void decode(FacesContext context, UIComponent component) {
 		// The AJAXRenderer generates the id of the child element, but the AJAX event is processed by the parent instead
 		component.getParent().decode(context);
+		for (UIComponent c: component.getChildren()) {
+			c.decode(context);
+		}
 	}
 	
 	/**
@@ -61,7 +64,6 @@ public class TabRenderer extends CoreRenderer {
 
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
-		// TODO Auto-generated method stub
 		super.encodeChildren(context, component);
 	}
 	

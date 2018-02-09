@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.bootsfaces</groupId>
 	<artifactId>bootsfaces</artifactId>
-	<version>1.1.2-SNAPSHOT</version>
+	<version>1.2.1-SNAPSHOT</version>
 	<name>BootsFaces</name>
 	<description>TheCoder4EU</description>
 	<url>http://www.bootsfaces.net</url>
@@ -51,7 +51,6 @@
 
 	<!-- DEPENDENCIES -->
 	<dependencies>
-
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
@@ -74,7 +73,7 @@
 
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -163,6 +162,10 @@
 			<resource>
 				<directory>src/main/meta/META-INF</directory>
 				<targetPath>META-INF</targetPath>
+			</resource>
+			<resource>
+				<directory>licenses</directory>
+				<targetPath>META-INF/licenses</targetPath>
 			</resource>
 		</resources>
 	</build>

@@ -78,6 +78,7 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 		renderLabel,
 		required,
 		requiredMessage,
+		select2,
 		size,
 		smallScreen,
 		span,
@@ -972,6 +973,22 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	public void setRequiredMessage(String _requiredMessage) {
 		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
 	}
+	
+	/**
+	 * Gets the select2 feature, default is false.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isSelect2() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.select2, false);
+	}
+
+	/**
+	 * Sets the select2 feature, default is false.
+	 */
+	public void setSelect2(boolean _select2) {
+		getStateHelper().put(PropertyKeys.select2, _select2);
+	}
+
 
 	/**
 	 * Number of characters used to determine the width of the input element. <P>

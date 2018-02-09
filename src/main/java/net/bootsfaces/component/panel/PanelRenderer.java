@@ -28,6 +28,7 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -112,7 +113,16 @@ public class PanelRenderer extends CoreRenderer {
 		} else {
 			_styleClass += " ";
 		}
-
+		
+		String icon = panel.getIcon();
+		String faicon = panel.getIconAwesome();
+		boolean fa = false; // flag to indicate whether the selected icon set is
+		// Font Awesome or not.
+		if (faicon != null) {
+			icon = faicon;
+			fa = true;
+		}
+		
 		rw.startElement("div", panel);
 		if (!(isCollapsible && null == accordionParent)) {
 			rw.writeAttribute("id", clientId, "id");
@@ -154,7 +164,29 @@ public class PanelRenderer extends CoreRenderer {
 					writeTitleLink(panel, rw, jQueryClientID, accordionParent);
 				}
 
-				rw.writeText(_title, null);
+				if (icon != null) {
+
+					Object ialign = panel.getIconAlign(); // Default Left
+
+					if (ialign != null && ialign.equals("right")) {
+						_title = _title != null ? _title + " " : null;
+						writeText(rw, _title, null);
+						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false);
+					} else {
+						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false);
+						_title = _title != null ? " " + _title : null;
+						writeText(rw, _title, null);
+					}
+
+				} else {
+					if (component.getChildCount() > 0) {
+						_title = _title != null ? " " + _title : null;
+						writeText(rw, _title, null);
+					} else {
+						writeText(rw, _title, null);
+					}
+				}
+//				rw.writeText(_title, null);
 				if (isCollapsible) {
 					rw.endElement("a");
 				}

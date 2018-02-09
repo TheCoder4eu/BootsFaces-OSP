@@ -13,7 +13,7 @@ public class PreviousExpressionResolver implements AbstractExpressionResolver {
 			String originalExpression, String[] parameters) {
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		for (UIComponent parent : parentComponents) {
-			UIComponent grandparent = component.getParent();
+			UIComponent grandparent = parent.getParent();
 			for (int i = 0; i < grandparent.getChildCount(); i++) {
 				if (grandparent.getChildren().get(i) == parent) {
 						if(i == 0) //if this is the first element of this component tree level there is no previous

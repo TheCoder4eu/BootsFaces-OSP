@@ -144,7 +144,7 @@ public class PanelGridRenderer extends CoreRenderer {
 		    } else if ("12".equals(columnsCSV)) {
 		    	columnsCSV = "1,1,1,1,1,1,1,1,1,1,1,1";
 		    } else {
-		    	throw new FacesException("PanelGrid.columns attribute: Legal values are 1, 2, 3, 4, 6 and 12. If you need a different number of columns, please use the attribute 'col-spans'.");
+		    	throw new FacesException("Error at " + panelGrid.getClientId() + ". PanelGrid.columns attribute: Got " + columnsCSV + ". Legal values are 1, 2, 3, 4, 6 and 12. If you need a different number of columns, please use the attribute 'col-spans'.");
 		    }
 		}
 		if (null == columnsCSV || columnsCSV.trim().length()==0)

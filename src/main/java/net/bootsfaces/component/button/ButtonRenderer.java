@@ -35,7 +35,6 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -132,7 +131,24 @@ public class ButtonRenderer extends CoreRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, button, H.ALLBUTTON);
+		renderPassThruAttributes(context, button, new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
+		
+		writeAttribute(rw, "onblur", button.getOnblur());
+		writeAttribute(rw, "onchange", button.getOnchange());
+		writeAttribute(rw, "onclick", button.getOnclick());
+		writeAttribute(rw, "ondblclick", button.getOndblclick());
+		writeAttribute(rw, "onfocus", button.getOnfocus());
+		writeAttribute(rw, "onkeydown", button.getOnkeydown());
+		writeAttribute(rw, "onkeypress", button.getOnkeypress());
+		writeAttribute(rw, "onkeyup", button.getOnkeyup());
+		writeAttribute(rw, "onmousedown", button.getOnmousedown());
+		writeAttribute(rw, "onmousemove", button.getOnmousemove());
+		writeAttribute(rw, "onmouseout", button.getOnmouseout());
+		writeAttribute(rw, "onmouseover", button.getOnmouseover());
+		writeAttribute(rw, "onmouseup", button.getOnmouseup());
+		
+		renderPassThruAttributes(context, button, button.getEventNames().toArray(new String[0]));
+
 
 		String icon = button.getIcon();
 		String faicon = button.getIconAwesome();
@@ -215,8 +231,6 @@ public class ButtonRenderer extends CoreRenderer {
 			return js;
 
 		if (canOutcomeBeRendered(button, fragment, outcome)) {
-			outcome = (outcome == null) ? context.getViewRoot().getViewId() : outcome;
-
 			String url = determineTargetURL(context, button, outcome);
 
 			if (url != null) {

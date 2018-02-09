@@ -21,25 +21,28 @@ package net.bootsfaces.component.tabView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.el.ELException;
 import javax.el.ValueExpression;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.model.DataModel;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.tab.Tab;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.FacesMessages;
 
 /** This class generates the HTML code of &lt;b:tabView /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.tabView.TabView")
 public class TabViewRenderer extends CoreRenderer {
+
+	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.tabView.TabViewRenderer");
 
 	@Override
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
@@ -49,10 +52,10 @@ public class TabViewRenderer extends CoreRenderer {
 
 	/**
 	 * Decode to be used to implement an AJAX version of TabView. This methods
-	 * receives and processes input made by the user. More specifically, it
-	 * ckecks whether the user has interacted with the current b:tabView. The
-	 * default implementation simply stores the input value in the list of
-	 * submitted values. If the validation checks are passed, the values in the
+	 * receives and processes input made by the user. More specifically, it ckecks
+	 * whether the user has interacted with the current b:tabView. The default
+	 * implementation simply stores the input value in the list of submitted values.
+	 * If the validation checks are passed, the values in the
 	 * <code>submittedValues</code> list are store in the backend bean.
 	 *
 	 * @param context
@@ -82,21 +85,23 @@ public class TabViewRenderer extends CoreRenderer {
 				if (Integer.valueOf(newIndexValue) != tabView.getActiveIndex()) {
 					int newIndex = Integer.valueOf(newIndexValue);
 					if (newIndex < tabView.getChildCount()) {
-						if (!(((Tab) tabView.getChildren().get(newIndex)).isDisabled())) {
-							
-							ValueExpression ve = component.getValueExpression("activeIndex");
-							if (ve != null) {
-								try {
-									ve.setValue(context.getELContext(), newIndex);
-								} catch (ELException e) {
-									tabView.setActiveIndex(newIndex);
-								} catch (Exception e) {
+						UIComponent maybeTab = tabView.getChildren().get(newIndex);
+						if (maybeTab instanceof Tab) {
+							if (!(((Tab) maybeTab).isDisabled())) {
+								ValueExpression ve = component.getValueExpression("activeIndex");
+								if (ve != null) {
+									try {
+										ve.setValue(context.getELContext(), newIndex);
+									} catch (ELException e) {
+										tabView.setActiveIndex(newIndex);
+									} catch (Exception e) {
+										tabView.setActiveIndex(newIndex);
+									}
+								} else {
 									tabView.setActiveIndex(newIndex);
 								}
-							} else {
-								tabView.setActiveIndex(newIndex);
+	
 							}
-						
 						}
 					}
 				}
@@ -188,51 +193,77 @@ public class TabViewRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * returns the currently active tab. If the attribute getActiveIndex() points to an inactive tab, the next active tag is returned.
-	 * Important: this method must not call setActiveIndex(), because this means the you can't control the tabs from a Java bean.
-	 * Setting an attributes overrides EL expressions defined by the JSF page.
+	 * returns the currently active tab. If the attribute getActiveIndex() points to
+	 * an inactive tab, the next active tag is returned. Important: this method must
+	 * not call setActiveIndex(), because this means the you can't control the tabs
+	 * from a Java bean. Setting an attributes overrides EL expressions defined by
+	 * the JSF page.
+	 * 
 	 * @param tabView
 	 * @param tabs
 	 * @return Integer.MAX_VALUE if there's no active tab.
 	 */
 	private int forceActiveTabToBeEnabled(TabView tabView, final List<UIComponent> tabs) {
-		int activeIndex = tabView.getActiveIndex();
-		if (tabView.isDisabled()) {
-			activeIndex = Integer.MAX_VALUE;
+		List<Integer> tabNumberToArrayIndex = new ArrayList<Integer>();
+		
+		int maxIndex = 0;
+		for (UIComponent t: tabs) {
+			DataModel<?> dm = ((Tab)t).getDataModel();
+			int count = dm.getRowCount();
+			if (count > 0) {
+				for (int i = 0; i < count; i++) {
+					tabNumberToArrayIndex.add(maxIndex);
+					
+				}
+				maxIndex++;
+			} else if (count == 0) {
+				tabNumberToArrayIndex.add(maxIndex);
+				maxIndex++;
+			} else {
+				// unknown number of tabs
+				return tabView.getActiveIndex();
+			}
 		}
-		if (activeIndex < 0) {
-			activeIndex = tabs.size() + activeIndex; // -2 is the second tab
+		
+		int activeTabNumber = tabView.getActiveIndex();
+		if (tabView.isDisabled()) {
+			activeTabNumber = Integer.MAX_VALUE;
+		}
+		if (activeTabNumber < 0) {
+			activeTabNumber = tabNumberToArrayIndex.size() + activeTabNumber; // -2 is the second tab
 														// from the right hand
 														// side
 		}
-		if (activeIndex >= 0 && activeIndex < Integer.MAX_VALUE) {
-			if (activeIndex >= tabs.size()) {
-				activeIndex = tabs.size() - 1;
+		if (activeTabNumber >= 0 && activeTabNumber < Integer.MAX_VALUE) {
+
+			if (activeTabNumber >= tabNumberToArrayIndex.size()) {
+				activeTabNumber = tabNumberToArrayIndex.size() - 1;
 			}
-			int newActiveIndex = activeIndex;
-			while (((Tab) tabs.get(newActiveIndex)).isDisabled()) {
-				newActiveIndex++;
-				if (newActiveIndex >= tabs.size()) {
-					newActiveIndex = 0;
+			int newActiveTabNumber = activeTabNumber;
+			while (((Tab) tabs.get(tabNumberToArrayIndex.get(newActiveTabNumber))).isDisabled()) {
+				newActiveTabNumber++;
+				if (newActiveTabNumber >= tabNumberToArrayIndex.size()) {
+					newActiveTabNumber = 0;
 				}
-				if (newActiveIndex == activeIndex) {
-					newActiveIndex = Integer.MAX_VALUE;
+				if (newActiveTabNumber == activeTabNumber) {
+					// this happens if every tab is inactive
+					newActiveTabNumber = Integer.MAX_VALUE;
 					break;
 				}
 			}
-			if (activeIndex != newActiveIndex) {
+			if (activeTabNumber != newActiveTabNumber) {
 				ValueExpression ve = tabView.getValueExpression("activeIndex");
 				if (ve != null) {
 					try {
-						ve.setValue(FacesContext.getCurrentInstance().getELContext(), newActiveIndex);
+						ve.setValue(FacesContext.getCurrentInstance().getELContext(), newActiveTabNumber);
 					} catch (ELException e) {
 					} catch (Exception e) {
 					}
 				}
 			}
-			activeIndex = newActiveIndex;
+			activeTabNumber = newActiveTabNumber;
 		}
-		return activeIndex;
+		return activeTabNumber;
 	}
 
 	/**
@@ -282,7 +313,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		String role = "tablist";
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tabView, writer, false);
-		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), H.TAB_VIEW);
+		R.encodeHTML4DHTMLAttrs(writer, tabView.getAttributes(), new String[] { "style" });
 		if (tabView.getRole() != null) {
 			role = tabView.getRole();
 		}
@@ -295,8 +326,8 @@ public class TabViewRenderer extends CoreRenderer {
 
 	/**
 	 * Essentially, getTabs() does the same as getChildren(), but it filters
-	 * everything that's not a tab. In particular, comments are ignored. See
-	 * issue 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
+	 * everything that's not a tab. In particular, comments are ignored. See issue
+	 * 77 (https://github.com/TheCoder4eu/BootsFaces-OSP/issues/77).
 	 *
 	 * @return
 	 */
@@ -323,8 +354,8 @@ public class TabViewRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabContentPanes(FacesContext context, ResponseWriter writer, TabView tabView,
-			int currentlyActiveIndex, List<UIComponent> tabs) throws IOException {
+	private static void encodeTabContentPanes(final FacesContext context, final ResponseWriter writer,
+			final TabView tabView, final int currentlyActiveIndex, final List<UIComponent> tabs) throws IOException {
 		writer.startElement("div", tabView);
 		String classes = "tab-content";
 		if (tabView.getContentClass() != null) {
@@ -343,13 +374,33 @@ public class TabViewRenderer extends CoreRenderer {
 			role = tabView.getRole();
 		}
 		writer.writeAttribute("role", role, "role");
-		// int activeIndex = tabView.getActiveIndex();
 
 		if (null != tabs) {
+			int numberOfTabsRendered = 0;
 			for (int index = 0; index < tabs.size(); index++) {
-				if (tabs.get(index).isRendered()) {
-					encodeTabPane(context, writer, tabs.get(index),
-							(index == currentlyActiveIndex) && (!tabView.isDisabled()));
+				final Tab tab = (Tab) tabs.get(index);
+				if (tab.isRendered()) {
+					final int currentIndex = numberOfTabsRendered;
+					Runnable r = new Runnable() {
+						int offset = 0;
+						public void run() {
+							try {
+								encodeTabPane(context, writer, tab,
+										(currentIndex+offset == currentlyActiveIndex) && (!tabView.isDisabled()));
+								offset++;
+							} catch (IOException ex) {
+								// exotic case, suffice it to log it
+								LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
+							}
+						}
+					};
+
+					if (tab.getValue() == null) {
+						r.run();
+						numberOfTabsRendered ++;
+					} else {
+						numberOfTabsRendered += ((Tab)tabs.get(currentIndex)).encodeTabs(context, r);
+					}
 				}
 			}
 		}
@@ -357,9 +408,8 @@ public class TabViewRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * Generate an individual tab pane. Basically, that's &lt;div
-	 * role="tabpanel" class="tab-pane active" id="home"&lt; {{childContent}}
-	 * &gt;/div&gt;
+	 * Generate an individual tab pane. Basically, that's &lt;div role="tabpanel"
+	 * class="tab-pane active" id="home"&lt; {{childContent}} &gt;/div&gt;
 	 *
 	 * @param context
 	 *            the current FacesContext
@@ -373,8 +423,9 @@ public class TabViewRenderer extends CoreRenderer {
 	 *             only thrown if something's wrong with the response writer
 	 */
 
-	private static void encodeTabPane(FacesContext context, ResponseWriter writer, UIComponent child, boolean isActive)
-			throws IOException {
+	private static void encodeTabPane(final FacesContext context, final ResponseWriter writer, final UIComponent child,
+			final boolean isActive) throws IOException {
+
 		Tab tab = (Tab) child;
 		writer.startElement("div", tab);
 		writer.writeAttribute("id", tab.getClientId().replace(":", "_") + "_pane", "id");
@@ -411,20 +462,44 @@ public class TabViewRenderer extends CoreRenderer {
 	 * @throws IOException
 	 *             only thrown if something's wrong with the response writer
 	 */
-	private static void encodeTabs(FacesContext context, ResponseWriter writer, List<UIComponent> children,
-			int currentlyActiveIndex, String hiddenInputFieldID, boolean disabled) throws IOException {
+	private static void encodeTabs(final FacesContext context, final ResponseWriter writer, final List<UIComponent> children,
+			final int currentlyActiveIndex, final String hiddenInputFieldID, final boolean disabled) throws IOException {
 		if (null != children) {
-			for (int index = 0; index < children.size(); index++) {
-				encodeTab(context, writer, children.get(index), index == currentlyActiveIndex, hiddenInputFieldID,
-						index, disabled);
+			int tabIndex = 0;
+
+			for (int index = 0; index < children.size(); index++) {	
+				// todo what's the meaning of those countless parameters?
+				final int loopIndex = index;
+				final int currentIndex = tabIndex;
+				final Tab tab = (Tab)children.get(loopIndex);
+				Runnable r = new Runnable() {
+					int offset = 0;
+					public void run() {
+						try {
+							encodeTab(context, writer, tab, currentIndex + offset == currentlyActiveIndex, hiddenInputFieldID,
+									currentIndex + offset, disabled);
+							offset++;
+						} catch (IOException ex) {
+							// exotic case, suffice it to log it
+							LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
+						}
+					}
+				};
+
+				if (((Tab) children.get(index)).getValue() == null) {
+					r.run();
+					tabIndex ++;
+				} else {
+					tabIndex += tab.encodeTabs(context, r);
+				}
 			}
 		}
 	}
 
 	/**
 	 * Generate an individual tab. Basically, that's &lt;li role="presentation"
-	 * class="active"&gt&lt;a href="#{clientID}" role="tab"
-	 * data-toggle="tab"&lt; {{title}} &gt;/a&gt;
+	 * class="active"&gt&lt;a href="#{clientID}" role="tab" data-toggle="tab"&lt;
+	 * {{title}} &gt;/a&gt;
 	 *
 	 * @param context
 	 *            the current FacesContext
@@ -498,7 +573,7 @@ public class TabViewRenderer extends CoreRenderer {
 					+ "';";
 			AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, tab, writer, "click", onclick, false, true);
 		}
-		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), H.TAB);
+		R.encodeHTML4DHTMLAttrs(writer, tab.getAttributes(), new String[] { "style", "tabindex" });
 
 		UIComponent iconFacet = tab.getFacet("anchor");
 		if (null != iconFacet) {

@@ -52,11 +52,14 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 		ondragover,
 		ondragstart,
 		ondrop,
+		onloadend,
+		onloadstart,
 		onmousedown,
 		onmousemove,
 		onmouseout,
 		onmouseover,
 		onmouseup,
+		onprogress,
 		process,
 		readonly,
 		smallScreen,
@@ -538,6 +541,38 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
+	 * JavaScript code executed when the image has successfully been loaded. Note that using this options reduces the speed of loading. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnloadend() {
+		return (String) getStateHelper().eval(PropertyKeys.onloadend);
+	}
+
+	/**
+	 * JavaScript code executed when the image has successfully been loaded. Note that using this options reduces the speed of loading. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnloadend(String _onloadend) {
+		getStateHelper().put(PropertyKeys.onloadend, _onloadend);
+	}
+
+	/**
+	 * JavaScript code executed when the image starts loading. Note that using this options reduces the speed of loading. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnloadstart() {
+		return (String) getStateHelper().eval(PropertyKeys.onloadstart);
+	}
+
+	/**
+	 * JavaScript code executed when the image starts loading. Note that using this options reduces the speed of loading. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnloadstart(String _onloadstart) {
+		getStateHelper().put(PropertyKeys.onloadstart, _onloadstart);
+	}
+
+	/**
 	 * Client side callback to execute when a pointer input element is pressed down over input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -615,6 +650,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnprogress() {
+		return (String) getStateHelper().eval(PropertyKeys.onprogress);
+	}
+
+	/**
+	 * JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnprogress(String _onprogress) {
+		getStateHelper().put(PropertyKeys.onprogress, _onprogress);
 	}
 
 	/**

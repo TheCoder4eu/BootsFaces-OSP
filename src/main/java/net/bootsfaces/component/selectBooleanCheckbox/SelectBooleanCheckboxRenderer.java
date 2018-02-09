@@ -27,7 +27,6 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -115,6 +114,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 			span = startColSpanDiv(rw, selectBooleanCheckbox);
 		}
 		rw.startElement("div", component);
+		rw.writeAttribute("id", clientId, null);
         writeAttribute(rw,"class", getWithFeedback(InputMode.DEFAULT, component), "class");
         if (null != selectBooleanCheckbox.getDir()) {
 			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
@@ -253,7 +253,6 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 	protected void renderInputTag(ResponseWriter rw, FacesContext context, SelectBooleanCheckbox selectBooleanCheckbox,
 			String clientId) throws IOException {
 		rw.startElement("div", selectBooleanCheckbox);
-		rw.writeAttribute("id", clientId, null);
 		if (null != selectBooleanCheckbox.getDir()) {
 			rw.writeAttribute("dir", selectBooleanCheckbox.getDir(), "dir");
 		}
@@ -312,7 +311,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 		addAttributesForSwitch(rw, selectBooleanCheckbox);
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), H.CHECKBOX);
+		R.encodeHTML4DHTMLAttrs(rw, selectBooleanCheckbox.getAttributes(), new String[] { "accesskey", "alt", "lang", "style", "tabindex", "title" });
 	}
 
 	/**

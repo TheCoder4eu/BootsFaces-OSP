@@ -101,7 +101,6 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		onmouseout,
 		onmouseover,
 		onmouseup,
-		onselect,
 		outcome,
 		size,
 		smallScreen,
@@ -803,22 +802,6 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
-	}
-
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getOnselect() {
-		return (String) getStateHelper().eval(PropertyKeys.onselect);
-	}
-
-	/**
-	 * Client side callback to execute when text within input element is selected by user. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setOnselect(String _onselect) {
-		getStateHelper().put(PropertyKeys.onselect, _onselect);
 	}
 
 	/**

@@ -45,13 +45,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/datatables.min.js", target = "body"),
-		// @ResourceDependency(library = "bsf", name =
-		// "js/datatables-bf-extensions.js", target = "body"),
-		@ResourceDependency(library = "bsf", name = "css/datatables.min.css", target = "head") })
 @FacesComponent(DataTable.COMPONENT_TYPE)
-public class DataTable extends DataTableCore
-		implements IAJAXComponent, ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
+public class DataTable extends DataTableCore implements IAJAXComponent, ClientBehaviorHolder,
+		net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dataTable.DataTable";
 
@@ -82,7 +78,8 @@ public class DataTable extends DataTableCore
 		setRendererType(DEFAULT_RENDERER);
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//AddResourcesListener.addThemedCSSResource("bsf.css");
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css");
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -96,9 +93,9 @@ public class DataTable extends DataTableCore
 	}
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery
-	 * callback or other non-standard means (such as the onclick event of
-	 * b:tabView, which has to be implemented manually).
+	 * returns the subset of AJAX requests that are implemented by jQuery callback
+	 * or other non-standard means (such as the onclick event of b:tabView, which
+	 * has to be implemented manually).
 	 *
 	 * @return
 	 */
@@ -113,8 +110,8 @@ public class DataTable extends DataTableCore
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -127,8 +124,9 @@ public class DataTable extends DataTableCore
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
-	 * If there's no parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -163,8 +161,8 @@ public class DataTable extends DataTableCore
 	}
 
 	/**
-	 * Called in order to lazily initialize the map. This map is used to store
-	 * the column sort information gathered during rendering.
+	 * Called in order to lazily initialize the map. This map is used to store the
+	 * column sort information gathered during rendering.
 	 */
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
@@ -185,36 +183,74 @@ public class DataTable extends DataTableCore
 	public void setColumnInfo(List<String> columnInfo) {
 		this.columnInfo = columnInfo;
 	}
-	
-    /**
-     * <p>Queue an event for broadcast at the end of the current request
-     * processing lifecycle phase.  The default implementation in
-     * {@link UIComponentBase} must delegate this call to the
-     * <code>queueEvent()</code> method of the parent {@link UIComponent}.</p>
-     *
-     * @param event {@link FacesEvent} to be queued
-     *
-     * @throws IllegalStateException if this component is not a
-     *  descendant of a {@link UIViewRoot}
-     * @throws NullPointerException if <code>event</code>
-     *  is <code>null</code>
-     */
-    public void queueEvent(FacesEvent event) {
-    	FacesContext context = FacesContext.getCurrentInstance();
+
+	/**
+	 * <p>
+	 * Queue an event for broadcast at the end of the current request processing
+	 * lifecycle phase. The default implementation in {@link UIComponentBase} must
+	 * delegate this call to the <code>queueEvent()</code> method of the parent
+	 * {@link UIComponent}.
+	 * </p>
+	 *
+	 * @param event
+	 *            {@link FacesEvent} to be queued
+	 *
+	 * @throws IllegalStateException
+	 *             if this component is not a descendant of a {@link UIViewRoot}
+	 * @throws NullPointerException
+	 *             if <code>event</code> is <code>null</code>
+	 */
+	public void queueEvent(FacesEvent event) {
+		FacesContext context = FacesContext.getCurrentInstance();
 		String indexes = (String) context.getExternalContext().getRequestParameterMap().get("indexes");
 		context.getELContext().getELResolver().setValue(context.getELContext(), null, "indexes", indexes);
 		String typeOfSelection = (String) context.getExternalContext().getRequestParameterMap().get("typeOfSelection");
-		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection", typeOfSelection);
-    	try {
-    		int oldIndex = getRowIndex();
-    		int index = Integer.valueOf(indexes);
-    		setRowIndex(index);
-    		super.queueEvent(event);
-    		setRowIndex(oldIndex);
-    	} catch (Exception multipleIndexes) {
-    		super.queueEvent(event);
-    		
-    	}
-    }
+		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection",
+				typeOfSelection);
+		try {
+			int oldIndex = getRowIndex();
+			int index = Integer.valueOf(indexes);
+			setRowIndex(index);
+			super.queueEvent(event);
+			setRowIndex(oldIndex);
+		} catch (Exception multipleIndexes) {
+			super.queueEvent(event);
 
+		}
+	}
+
+	@Override
+	public void setSelectedColumn(Object _selectedColumn) {
+		super.setSelectedColumn(_selectedColumn);
+		if (_selectedColumn != null) {
+			setSelect(true);
+			setSelectedItems("column");
+		}
+	}
+
+	@Override
+	public void setSelectedRow(Object _selectedRow) {
+		super.setSelectedRow(_selectedRow);
+		if (_selectedRow != null) {
+			setSelect(true);
+			setSelectedItems("row");
+		}
+	}
+
+	@Override
+	public void setSelectionMode(String _selectectionMode) {
+		super.setSelectionMode(_selectectionMode);
+		if (_selectectionMode != null) {
+			setSelect(true);
+		}
+	}
+
+	@Override
+	public void setSelectedItems(String _selectedItems) {
+		super.setSelectedItems(_selectedItems);
+		if (_selectedItems != null) {
+			setSelect(true);
+		}
+
+	}
 }

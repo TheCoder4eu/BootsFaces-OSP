@@ -35,9 +35,13 @@ public class SocialShareRenderer extends CoreRenderer {
 
 	/**
 	 * This methods generates the HTML code of the current b:socialShare.
-	 * @param context the FacesContext.
-	 * @param component the current b:socialShare.
-	 * @throws IOException thrown if something goes wrong when writing the HTML code.
+	 * 
+	 * @param context
+	 *            the FacesContext.
+	 * @param component
+	 *            the current b:socialShare.
+	 * @throws IOException
+	 *             thrown if something goes wrong when writing the HTML code.
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
@@ -48,101 +52,85 @@ public class SocialShareRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = socialShare.getClientId();
 
-		if(!BsfUtils.isStringValued(socialShare.getShares())) return;
-                
-                beginResponsiveWrapper(component, rw);
-		
+		if (!BsfUtils.isStringValued(socialShare.getShares())) {
+			return;
+		}
+
+		beginResponsiveWrapper(component, rw);
+
 		rw.startElement("div", socialShare);
 		rw.writeAttribute("id", clientId + "_wrapper", "id");
-		
+
 		// Create the div container
 		rw.startElement("div", socialShare);
 		rw.writeAttribute("id", clientId, "id");
-		if(BsfUtils.isStringValued(socialShare.getStyle())) rw.writeAttribute("style", socialShare.getStyle(), "style");
+		if (BsfUtils.isStringValued(socialShare.getStyle()))
+			rw.writeAttribute("style", socialShare.getStyle(), "style");
 		rw.writeAttribute("class", socialShare.getStyleClass(), "class");
 		rw.endElement("div");
-		
+
 		rw.endElement("div");
-		
-		
+
 		// decode shares
-		String shares = ""; 
+		String shares = "";
 		String[] _share = socialShare.getShares().split(",");
-		for(int i = 0; i < _share.length; i++) {
+		for (int i = 0; i < _share.length; i++) {
 			_share[i] = "'" + _share[i] + "'";
 			shares += _share[i];
-			if(i < _share.length -1) shares += ",";
+			if (i < _share.length - 1)
+				shares += ",";
 		}
-		
+
 		String showCount = socialShare.getShowCount();
-		if(!"false".equalsIgnoreCase(showCount) && !"true".equalsIgnoreCase(showCount) && BsfUtils.isStringValued(showCount)) 
+		if (!"false".equalsIgnoreCase(showCount) && !"true".equalsIgnoreCase(showCount)
+				&& BsfUtils.isStringValued(showCount))
 			showCount = "'" + showCount + "'";
 
 		String scriptId = "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
 		rw.startElement("script", socialShare);
 		rw.writeText("$(function () { " +
-						  // social share section
-					      "$('" + scriptId + "').jsSocials({  " +
-						      (BsfUtils.isStringValued(socialShare.getUrl()) ? 			"url: '" + socialShare.getUrl() + "', " : "") +
-						      (BsfUtils.isStringValued(socialShare.getText()) ? 		"text: '" + socialShare.getText() + "', " : "") +
-						      (BsfUtils.isStringValued(socialShare.getShareIn()) ? 		"shareIn: '" + socialShare.getShareIn() + "', " : "") +
-						      (BsfUtils.isStringValued(showCount) ? 					"showCount: " + showCount + ", " : "") +
-						      (socialShare.isShowLabel() ? 								"showLabel: true, ": "showLabel: false,") +
-						      "shares: [" + shares + "] " +
-						  "});" +
-						  (
-						      socialShare.isDisableBlock() ? 
-						    		  // no block
-						    		  "" : 
-									  // overlay
-									  "$('" + scriptId + "_wrapper').block({"
-									  		+ "	message: '" + socialShare.getBlockMessage() + "',"
-									  		+ "	css: { "
-									  		+ "		border: 'none', "
-									  		+ "     padding: '8px', "	
-									  		+ "		backgroundColor: '#000', "
-									  		+ "		'-webkit-border-radius': '10px', "
-									  		+ "		'-moz-border-radius': '10px', "
-									  		+ " 	'border-radius': '10px', "
-									  		+ "		opacity: 1, "
-									  		+ "		color: '#fff', "
-									  		+ "		fontSize: '12px', "
-									  		+ "		cursor: 'default', "
-									  		+ "		top: '40%', "
-									  		+ "		left: '35%' "
-									  		+ "	}, "
-									  		+ " overlayCSS: { "
-									  	    + "     backgroundColor: '#000', "
-									  	    + "     opacity: 0.6, "
-									  	    + "     cursor: 'default' "
-									  	    + " } "  
-									  		+ "}); " + 
-									  "$('" + scriptId + "_wrapper').click(function() { $('" + scriptId + "_wrapper').unblock(); }); "
-						  ) +
-					  "});", null);
-		
+		// social share section
+				"$('" + scriptId + "').jsSocials({  "
+				+ (BsfUtils.isStringValued(socialShare.getUrl()) ? "url: '" + socialShare.getUrl() + "', " : "")
+				+ (BsfUtils.isStringValued(socialShare.getText()) ? "text: '" + socialShare.getText() + "', " : "")
+				+ (BsfUtils.isStringValued(socialShare.getShareIn()) ? "shareIn: '" + socialShare.getShareIn() + "', "	: "")
+				+ (BsfUtils.isStringValued(showCount) ? "showCount: " + showCount + ", " : "")
+				+ (socialShare.isShowLabel() ? "showLabel: true, " : "showLabel: false,") + "shares: [" + shares + "] "
+				+ "});" 
+				+ (socialShare.isDisableBlock() ?
+				// no block
+						"" :
+						// overlay
+						"$('" + scriptId + "_wrapper').block({" 
+						      + "	message: '" + socialShare.getBlockMessage() 
+						      + "',"
+						      + "	css: { " + "		border: 'none', " 
+						      + "     padding: '8px', "
+						      + "		backgroundColor: '#000', " 
+						      + "		'-webkit-border-radius': '10px', "
+						      + "		'-moz-border-radius': '10px', " 
+						      + " 	'border-radius': '10px', "
+						      + "		opacity: 1, " 
+						      + "		color: '#fff', " + "		fontSize: '12px', "
+						      + "		cursor: 'default', " 
+						      + "		top: '40%', " 
+						      + "		left: '35%' " 
+						      + "	}, "
+						      + " overlayCSS: { "
+						      + "     backgroundColor: '#000', " 
+						      + "     opacity: 0.6, "
+						      + "     cursor: 'default' " 
+						      + " } " 
+						      + "}); " 
+						      + "$('" + scriptId
+						      + "_wrapper').click(function() { $('" + scriptId + "_wrapper').unblock(); }); ")
+				              + "});", null);
+
 		rw.endElement("script");
 	}
 
-    @Override
-    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
-        endResponsiveWrapper(component, context.getResponseWriter());
-    }
-	
-        
-        
-	/**
-	 * Get the style class
-	 * @param sb
-	 * @return
-	 *
-	private String getStyleClass(SocialShare sb) {
-		String sClass = sb.getStyleClass();
-		if(sClass == null) sClass = "";
-		
-		sClass += Responsive.getResponsiveStyleClass(sb, false);
-		
-		return sClass;
+	@Override
+	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+		endResponsiveWrapper(component, context.getResponseWriter());
 	}
-	*/
 }

@@ -287,13 +287,17 @@ public class BsfUtils {
 	}
 
 	/**
-	 * Returns the clientId for a component with id="foo"
+	 * Returns the clientId for a component with id="foo".
+	 * @return null if there's no such component.
 	 */
 	public static String getComponentClientId(final String componentId) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		UIComponent c = findComponent(root, componentId);
+		if (c==null) {
+			return null;
+		}
 		return c.getClientId(context);
 	}
 
@@ -388,8 +392,12 @@ public class BsfUtils {
 		}
 
 		for (int i = 0; i < params.length; i++) {
-			summary = summary.replace("{" + i + "}", params[i]);
-			detail = detail.replace("{" + i + "}", params[i]);
+			if (null != summary) {
+				summary = summary.replace("{" + i + "}", params[i]);
+			}
+			if (null != detail) {
+				detail = detail.replace("{" + i + "}", params[i]);
+			}
 		}
 
 		// At this point, we have a summary and a bundle.
@@ -620,7 +628,9 @@ public class BsfUtils {
 	 * Read an object from a base64 string
 	 * @param s
 	 * @return
-	 */
+	 *
+	 * @deprecated since potentially unsafe ( #880 )
+	 *
 	public static Object fromString(String s) {
 		try {
 			byte[] data = DatatypeConverter.parseBase64Binary(s);
@@ -639,7 +649,9 @@ public class BsfUtils {
 	 * Write an object to base64 string
 	 * @param o
 	 * @return
-	 */
+	 *
+	 * @deprecated since potentially unsafe ( #880 )
+	 *
 	public static String toString(Serializable o) {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -653,7 +665,7 @@ public class BsfUtils {
 			e.printStackTrace();
 			return "";
 		}
-	}
+	} */
 
 	/**
 	 * Resolve the search expression

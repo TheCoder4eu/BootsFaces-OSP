@@ -29,7 +29,6 @@ import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
 import net.bootsfaces.render.CoreInputRenderer;
-import net.bootsfaces.render.H;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -68,11 +67,21 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if (realEventSourceName == null) {
 			realEventSourceName = "input_" + clientId;
 		}
+		if (null != inputText.getFieldId()) {
+			realEventSourceName = inputText.getFieldId();
+		}
 		
 		if (null == name) {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
+		if (inputText instanceof InputSecret) {
+			if (!((InputSecret)inputText).isRenderValue()) {
+				if ("*******".equals(submittedValue)) {
+					submittedValue = null;
+				}
+			}
+		}
 		
 		if (null != legalValues && null != submittedValue) {
 			boolean found = false;
@@ -216,7 +225,8 @@ public class InputTextRenderer extends CoreInputRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, H.INPUT_TEXT);
+		renderPassThruAttributes(context, component, new String[] { "accesskey", "alt", "dir", "lang", "maxlength", "size", "style",
+				"tabindex", "title" });
 
 		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {
@@ -227,7 +237,16 @@ public class InputTextRenderer extends CoreInputRenderer {
 		}
 
 		String v = getValue2Render(context, component);
-		rw.writeAttribute("value", v, null);
+		if (inputText instanceof InputSecret) {
+			if (!((InputSecret) inputText).isRenderValue()) {
+				if (v != null && v.length() > 0) {
+					v = "*******";
+				}
+			}
+		}
+		if (v != null && v.length()> 0) {
+			rw.writeAttribute("value", v, null);
+		}
 
 		// Render Ajax Capabilities
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(FacesContext.getCurrentInstance(), inputText, rw, false);
@@ -341,9 +360,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 			}
 			return "[" + s + "]";
-		} else if (values instanceof List) {
+		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (List<?>)values) {
+			for (Object p : (Iterable<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -398,9 +417,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 			}
 			return "[" + s + "]";
-		} else if (values instanceof List) {
+		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (List<?>)values) {
+			for (Object p : (Iterable<?>)values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
