@@ -91,6 +91,8 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 					}
 					if (currentOptionValue instanceof String) {
 						currentOptionValueAsString = (String) currentOptionValue;
+					} else if (currentOptionValue instanceof Number) {
+						currentOptionValueAsString = currentOptionValue.toString();
 					} else
 						currentOptionValueAsString = String.valueOf(index);
 					if ("".equals(currentOptionValueAsString) && submittedOptionValue.equalsIgnoreCase("on")) {
@@ -639,7 +641,7 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 			String value;
 			if (itemValue instanceof String) {
 				value = (String) itemValue;
-			} else if (itemValue instanceof Integer) {
+			} else if (itemValue instanceof Number) {
 				Integer intValue = ((Integer) itemValue);
 				value = intValue == null ? null : intValue.toString();
 			} else
