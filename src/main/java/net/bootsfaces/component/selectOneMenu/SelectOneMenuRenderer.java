@@ -81,7 +81,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				} else
 					currentOptionValueAsString = String.valueOf(index);
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(currentOptionValueAsString);
+					menu.setSubmittedValue(currentOptionValue);
 					menu.setValid(true);
 					menu.validateValue(context, currentOptionValue);
 					new AJAXRenderer().decode(context, component, clientId);
