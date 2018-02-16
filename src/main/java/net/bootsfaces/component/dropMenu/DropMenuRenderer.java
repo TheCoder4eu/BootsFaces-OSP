@@ -123,7 +123,7 @@ public class DropMenuRenderer extends CoreRenderer {
 				rw.writeText(value, null);
 			}
 			// Encode Caret
-			if ((!isFlyOutMenu) && (!(dropMenu.getParent() instanceof DropMenu))) {
+			if ((!isFlyOutMenu) && (!isDropMenuChild(dropMenu))) {
 				rw.startElement("b", dropMenu);
 				rw.writeAttribute("class", "caret", "class");
 				rw.endElement("b");
@@ -132,6 +132,16 @@ public class DropMenuRenderer extends CoreRenderer {
 		rw.endElement("a");
 
 		encodeDropMenuStart(dropMenu, rw, "dtL" + clientId);
+	}
+
+	private boolean isDropMenuChild(UIComponent component) {
+		UIComponent parent = component.getParent();
+		if (parent != null) {
+			while (parent.getClass().getSimpleName().equals("UIRepeat")) {
+				parent = parent.getParent();
+			}
+		}	
+		return parent instanceof DropMenu;
 	}
 
 	private String determineHtmlTag(UIComponent component, boolean isFlyOutMenu) {
@@ -178,7 +188,7 @@ public class DropMenuRenderer extends CoreRenderer {
 		if (isFlyOutMenu) {
 			userClass += "dropdown-submenu" + " ";
 			return userClass;
-		} else if (dropMenu.getParent() instanceof DropMenu) {
+		} else if (isDropMenuChild(dropMenu)) {
 			userClass += "dropdown-submenu" + " ";
 		}
 		return (userClass + "drop" + direction).trim();
