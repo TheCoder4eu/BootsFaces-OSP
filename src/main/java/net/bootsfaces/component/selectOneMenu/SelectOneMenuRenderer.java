@@ -58,7 +58,8 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String clientId = outerClientId + "Inner";
 		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		if (null != submittedOptionValue) {
 			for (int index = 0; index < items.size(); index++) {
@@ -75,12 +76,14 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				}
 				if (currentOptionValue instanceof String) {
 					currentOptionValueAsString = (String) currentOptionValue;
+				} else if (null != converter) {
+					currentOptionValueAsString = converter.getAsString(context, component, currentOptionValue);
 				} else
 					currentOptionValueAsString = String.valueOf(index);
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(currentOptionValue);
+					menu.setSubmittedValue(currentOptionValueAsString);
 					menu.setValid(true);
-					menu.validateValue(context, submittedOptionValue);
+					menu.validateValue(context, currentOptionValue);
 					new AJAXRenderer().decode(context, component, clientId);
 					return;
 				}
@@ -258,6 +261,35 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		renderOptions(context, rw, menu);
 
 		renderInputTagEnd(rw);
+		renderJQueryAfterComponent(rw, clientId, menu);
+	}
+
+	/**
+	 * render a jquery javascript block after the component if necessary
+	 * 
+	 * @param rw
+	 * @param clientId 
+	 * @param menu
+	 * @throws IOException 
+	 */
+	private void renderJQueryAfterComponent(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
+		Boolean select2 = menu.isSelect2();
+		if (select2 != null && select2) {
+			rw.startElement("script", menu);
+			rw.writeAttribute("type", "text/javascript", "script");
+			
+			StringBuilder buf = new StringBuilder("$(document).ready(function(){");
+			buf.append("\n");
+			// jquery selector for the ID of the select component
+			buf.append("  $(\"[id='").append(clientId).append("']\")");
+			// select2 command to enable filtering
+			buf.append(".select2();");
+			buf.append("\n");
+			buf.append("});");
+			
+			rw.writeText(buf.toString(), "script");
+			rw.endElement("script");
+		}
 	}
 
 	/**
@@ -268,7 +300,8 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	 * @throws IOException
 	 */
 	protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu) throws IOException {
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		for (int index = 0; index < items.size(); index++) {
 			SelectItemAndComponent option = items.get(index);
@@ -396,11 +429,11 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		} else if (itemLabel.equals(selectedOption)) {
 			isSelected = true;
 		}
-		if (menu.isDisabled() || menu.isReadonly()) {
-			if (!isSelected) {
-				return; // don't render options that can't be selected
-			}
-		}
+//		if (menu.isDisabled() || menu.isReadonly()) {
+//			if (!isSelected) {
+//				return; // don't render options that can't be selected
+//			}
+//		}
 
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
 		itemLabel = isItemLabelBlank ? itemValueAsString : itemLabel;
@@ -413,7 +446,10 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 		if (itemValue != null) {
 			String value;
-			if (itemValue instanceof String) {
+			if (null != converter) {
+				value = converter.getAsString(context, menu, itemValue);
+			}
+			else if (itemValue instanceof String) {
 				value = (String) itemValue;
 			} else {
 				value = String.valueOf(index);
@@ -471,6 +507,13 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String s;
 		sb = new StringBuilder(20); // optimize int
 		sb.append("form-control");
+		
+		Boolean select2 = menu.isSelect2();
+
+		if (select2 != null && select2) {
+			sb.append(" select2style");
+		}
+		
 		String fsize = menu.getFieldSize();
 
 		if (fsize != null) {

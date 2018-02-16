@@ -29,6 +29,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+import javax.faces.convert.Converter;
 import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
@@ -122,7 +123,8 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		List<String> legalValues = new ArrayList<String>();
 		for (UIComponent b: radioButtonGroup) {
 			Radiobutton r = (Radiobutton)b;
-			List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, r);
+			Converter converter = r.getConverter();
+			List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, r, converter);
 			if (options.size()>0) {
 				// traditional JSF approach using f:selectItem[s]
 				for (SelectItemAndComponent option:options) {
@@ -198,7 +200,8 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 
 		}
 
-		List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, component);
+		Converter converter = radiobutton.getConverter();
+		List<SelectItemAndComponent> options = SelectItemUtils.collectOptions(context, component, converter);
 		if (options.size()>0) {
 			// traditional JSF approach using f:selectItem[s]
 			int counter=0;

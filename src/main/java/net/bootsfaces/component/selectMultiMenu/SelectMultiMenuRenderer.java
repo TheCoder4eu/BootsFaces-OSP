@@ -71,7 +71,8 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 				submittedValues.add(map.get(key));
 			}
 		}
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 
 		if (!submittedValues.isEmpty()) {
@@ -90,6 +91,8 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 					}
 					if (currentOptionValue instanceof String) {
 						currentOptionValueAsString = (String) currentOptionValue;
+					} else if (currentOptionValue instanceof Number) {
+						currentOptionValueAsString = currentOptionValue.toString();
 					} else
 						currentOptionValueAsString = String.valueOf(index);
 					if ("".equals(currentOptionValueAsString) && submittedOptionValue.equalsIgnoreCase("on")) {
@@ -559,7 +562,8 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 	 */
 	protected void renderOptions(FacesContext context, ResponseWriter rw, String[] selectedOption, SelectMultiMenu menu)
 			throws IOException {
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu);
+		Converter converter = menu.getConverter();
+		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		for (int index = 0; index < items.size(); index++) {
 			Object option = items.get(index).getSelectItem();
@@ -637,6 +641,9 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 			String value;
 			if (itemValue instanceof String) {
 				value = (String) itemValue;
+			} else if (itemValue instanceof Number) {
+				Integer intValue = ((Integer) itemValue);
+				value = intValue == null ? null : intValue.toString();
 			} else
 				value = String.valueOf(index);
 			rw.writeAttribute("value", value, "value");

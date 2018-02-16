@@ -22582,6 +22582,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+			<description><![CDATA[Enable select2 component to make the dropdown filterable by setting this attribute to true.]]></description>
+			<name>select2</name>
+			<required>false</required>
+			<type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Number of characters used to determine the width of the input element.]]></description>
 		  <name>size</name>
 		  <required>false</required>
