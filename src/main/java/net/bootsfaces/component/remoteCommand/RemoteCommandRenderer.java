@@ -90,9 +90,9 @@ public class RemoteCommandRenderer extends CoreRenderer {
 		rw.writeAttribute("id", clientId, null);
 		String c = call.toString().replace("callAjax(this,", "callAjax(document.getElementById('" + clientId + "'),");
 		if (parameters!=null) {
-			rw.append("function " + name + "(" + parameters + "){" + c + "}");
+			rw.append("function " + name + "(" + parameters + ", event){" + c + "}");
 		} else {
-			rw.append("function " + name + "(){" + c + "}");
+			rw.append("function " + name + "(event){" + c + "}");
 		}
 		rw.endElement("script");
 
