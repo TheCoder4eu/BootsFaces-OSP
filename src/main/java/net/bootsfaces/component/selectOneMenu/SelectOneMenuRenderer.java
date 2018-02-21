@@ -81,7 +81,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				} else
 					currentOptionValueAsString = String.valueOf(index);
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(currentOptionValue);
+					menu.setSubmittedValue(null != converter ? currentOptionValueAsString : currentOptionValue);
 					menu.setValid(true);
 					menu.validateValue(context, currentOptionValue);
 					new AJAXRenderer().decode(context, component, clientId);
@@ -293,6 +293,46 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	}
 
 	/**
+	 * Compare current selection with items, if there is any element selected
+	 * 
+	 * @param context
+	 * @param items
+	 * @param converter
+	 * @return
+	 */
+	private SelectItemAndComponent determineSelectedItem(FacesContext context, SelectOneMenu menu, List<SelectItemAndComponent> items, Converter converter) {
+		Object submittedValue = menu.getSubmittedValue();
+		Object selectedOption;
+		if (submittedValue != null) {
+			selectedOption = submittedValue;
+		} else {
+			selectedOption = menu.getValue();
+		}
+
+		for (int index = 0; index < items.size(); index++) {
+			SelectItemAndComponent option = items.get(index);
+			if (option.getSelectItem().isNoSelectionOption()) continue;
+			
+			Object itemValue = option.getSelectItem().getValue();
+			String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
+
+			Object optionValue;
+			if (submittedValue != null) {
+				optionValue = itemValueAsString;
+			} else {
+				optionValue = itemValue;
+			}
+
+			if (itemValue != null) {
+				if (isSelected(context, menu, selectedOption, optionValue, converter)) {
+					return option;
+				}
+			} 
+		}
+		return null;
+	}
+	
+	/**
 	 * Parts of this class are an adapted version of InputRenderer#getSelectItems()
 	 * of PrimeFaces 5.1.
 	 *
@@ -302,10 +342,18 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu) throws IOException {
 		Converter converter = menu.getConverter();
 		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
+		
+		SelectItemAndComponent selection = determineSelectedItem(context, menu, items, converter);
 
 		for (int index = 0; index < items.size(); index++) {
 			SelectItemAndComponent option = items.get(index);
-			renderOption(context, menu, rw, (option.getSelectItem()), index, option.getComponent());
+
+			if (option.getSelectItem().isNoSelectionOption() && 
+					menu.isHideNoSelectionOption() && selection != null)
+				continue;
+			
+			renderOption(context, menu, rw, (option.getSelectItem()), index, option.getComponent(), 
+					option == selection || (selection == null && option.getSelectItem().isNoSelectionOption()));
 		}
 	}
 
@@ -322,14 +370,14 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	 *             thrown if something's wrong with the response writer
 	 */
 	protected void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, SelectItem selectItem,
-			int index, UIComponent itemComponent) throws IOException {
+			int index, UIComponent itemComponent, boolean isSelected) throws IOException {
 
 		String itemLabel = selectItem.getLabel();
 		final String description = selectItem.getDescription();
 		final Object itemValue = selectItem.getValue();
 
 		renderOption(context, menu, rw, index, itemLabel, description, itemValue, selectItem.isDisabled(),
-				selectItem.isEscape(), itemComponent);
+				selectItem.isEscape(), itemComponent, isSelected);
 	}
 
 	private Converter findImplicitConverter(FacesContext context, UIComponent component) {
@@ -406,7 +454,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 	private void renderOption(FacesContext context, SelectOneMenu menu, ResponseWriter rw, int index, String itemLabel,
 			final String description, final Object itemValue, boolean isDisabledOption, boolean isEscape,
-			UIComponent itemComponent) throws IOException {
+			UIComponent itemComponent, boolean isSelected) throws IOException {
 
 		Object submittedValue = menu.getSubmittedValue();
 		Object selectedOption;
@@ -421,14 +469,14 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 			optionValue = itemValue;
 		}
 
-		boolean isSelected = false;
+		/*boolean isSelected = false;
 		if (itemValue != null) {
 			if (isSelected(context, menu, selectedOption, optionValue, converter)) {
 				isSelected = true;
 			}
 		} else if (itemLabel.equals(selectedOption)) {
 			isSelected = true;
-		}
+		}*/
 //		if (menu.isDisabled() || menu.isReadonly()) {
 //			if (!isSelected) {
 //				return; // don't render options that can't be selected

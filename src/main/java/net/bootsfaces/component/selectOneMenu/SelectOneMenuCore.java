@@ -37,6 +37,7 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 		display,
 		fieldSize,
 		hidden,
+		hideNoSelectionOption,
 		immediate,
 		inline,
 		label,
@@ -108,7 +109,7 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
-
+	
 	/**
 	 * Access key to transfer focus to the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -315,6 +316,21 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+
+	/**
+	 * Gets the allow-null-values feature, default is false.
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isHideNoSelectionOption() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.hideNoSelectionOption, false);
+	}
+
+	/**
+	 * Sets the allow-null-values feature, default is false.
+	 */
+	public void setHideNoSelectionOption(boolean _hideNoSelectionOption) {
+		getStateHelper().put(PropertyKeys.hideNoSelectionOption, _hideNoSelectionOption);
 	}
 
 	/**
