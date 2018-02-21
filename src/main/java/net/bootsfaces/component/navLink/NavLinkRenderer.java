@@ -34,6 +34,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.commandLink.CommandLink;
 import net.bootsfaces.component.dropButton.DropButton;
@@ -107,16 +108,15 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
-		if (parent != null) {
-			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
-				parent = parent.getParent();
-			}
-			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
-				htmlTag = "li";
-			}
+		while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+			parent = parent.getParent();
 		}
+		if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+				|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
+				|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
+			htmlTag = "li";
+		}
+
 		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		String styleClass = ((AbstractNavLink) navlink).getStyleClass();
@@ -167,16 +167,15 @@ public class NavLinkRenderer extends CoreRenderer {
 		boolean idHasBeenRendered=false;
 		if (!(navlink instanceof Link || navlink instanceof CommandLink)) {
 			UIComponent parent = navlink.getParent();
-			if (parent != null) {
-				if (parent.getClass().getSimpleName().equals("UIRepeat")) {
-					parent = parent.getParent();
-				}
-				if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-						|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-						|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
-					htmlTag = "li";
-				}
+			while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+				parent = parent.getParent();
 			}
+			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+				htmlTag = "li";
+			}
+
 			rw.startElement(htmlTag, navlink);
 			writeAttribute(rw, "id", navlink.getClientId(context), "id");
 			idHasBeenRendered=true;
