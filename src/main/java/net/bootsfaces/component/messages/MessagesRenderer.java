@@ -63,6 +63,9 @@ public class MessagesRenderer extends CoreMessageRenderer {
 			Iterator<String> clientIdsWithMessages = facesContext.getClientIdsWithMessages();
 			while (clientIdsWithMessages.hasNext()) {
 				String currentId = clientIdsWithMessages.next();
+				if (null == currentId) {
+					continue;
+				}
 				boolean showIt = false;
 				if (uiMessages.isRecursive()) {
 					UIComponent c = facesContext.getViewRoot().findComponent(currentId);
