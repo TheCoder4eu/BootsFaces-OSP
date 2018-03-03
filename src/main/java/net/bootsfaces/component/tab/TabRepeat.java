@@ -870,7 +870,57 @@ public class TabRepeat extends UINamingContainer {
 			if (!this.keepSaved(faces))
 				this.childState = null;
 			this.process(faces, PhaseId.APPLY_REQUEST_VALUES, null);
-			this.decode(faces);
+			
+			// clear datamodel
+			this.resetDataModel();
+
+			// reset index
+			this.captureOrigValue(faces);
+			this.setIndex(faces, -1);
+
+			try {
+				// has children
+				if (this.getChildCount() > 0) {
+					Iterator itr;
+					UIComponent c;
+
+					Integer begin = this.getBegin();
+					Integer step = this.getStep();
+					Integer end = this.getEnd();
+					Integer offset = this.getOffset();
+
+					if (null != offset && offset > 0) {
+						begin = offset;
+					}
+
+					Integer size = this.getSize();
+					if (null != size) {
+						end = size;
+					}
+
+					int rowCount = getDataModel().getRowCount();
+					int i = ((begin != null) ? begin : 0);
+					int e = ((end != null) ? end : rowCount);
+					int s = ((step != null) ? step : 1);
+					validateIterationControlValues(rowCount, i, e);
+					if (null != size && size > 0) {
+						e = size - 1;
+					}
+
+					this.setIndex(faces, i);
+					this.updateIterationStatus(faces,
+							new IterationStatus(true, (i + s > e || rowCount == 1), i, begin, end, step));
+					while (i <= e && this.isIndexAvailable()) {
+						this.decode(faces);
+						i += s;
+						this.setIndex(faces, i);
+						this.updateIterationStatus(faces, new IterationStatus(false, i + s >= e, i, begin, end, step));
+					}
+				}
+			} finally {
+				this.setIndex(faces, -1);
+				this.restoreOrigValue(faces);
+			}
 		}
 	}
 
