@@ -22,9 +22,8 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IHasTooltip;

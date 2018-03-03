@@ -19,7 +19,6 @@
 package net.bootsfaces.component.selectMultiMenu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -29,8 +28,8 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;

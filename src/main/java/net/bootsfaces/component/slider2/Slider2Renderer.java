@@ -25,8 +25,6 @@ import java.util.Map;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
 //!//import javax.faces.convert.DoubleConverter;
 import javax.faces.render.FacesRenderer;
 

@@ -18,17 +18,14 @@
 
 package net.bootsfaces.component.internalJavaScriptResource;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
-import net.bootsfaces.component.internalCssScriptResource.InternalCssScriptResource;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:internalJavaScriptResource /&gt;. */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptResource")

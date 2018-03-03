@@ -5,8 +5,6 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 
-import net.bootsfaces.expressions.ExpressionResolver;
-
 @ManagedBean
 @RequestScoped
 public class SearchExpressionResolverBean {

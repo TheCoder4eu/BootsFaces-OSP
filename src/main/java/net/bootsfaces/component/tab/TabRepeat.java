@@ -70,6 +70,17 @@
 
 package net.bootsfaces.component.tab;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.Application;
@@ -79,8 +90,8 @@ import javax.faces.component.EditableValueHolder;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
 import javax.faces.component.UINamingContainer;
-import javax.faces.component.visit.VisitContext;
 import javax.faces.component.visit.VisitCallback;
+import javax.faces.component.visit.VisitContext;
 import javax.faces.component.visit.VisitHint;
 import javax.faces.component.visit.VisitResult;
 import javax.faces.context.FacesContext;
@@ -96,16 +107,6 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.ResultSetDataModel;
 import javax.faces.model.ScalarDataModel;
 import javax.faces.render.Renderer;
-import java.io.IOException;
-import java.io.Serializable;
-import java.sql.ResultSet;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Collection;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class TabRepeat extends UINamingContainer {
 

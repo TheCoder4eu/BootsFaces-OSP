@@ -22,14 +22,11 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
-import net.bootsfaces.component.listLinks.ListLinks;
-import net.bootsfaces.component.pillLinks.PillLinks;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.A;
 import net.bootsfaces.render.IContentDisabled;

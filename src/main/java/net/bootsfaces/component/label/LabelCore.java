@@ -18,9 +18,7 @@
 
 package net.bootsfaces.component.label;
 
-import javax.faces.component.*;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIComponentBase;
 
 /** This class holds the attributes of &lt;b:label /&gt;. */
 public abstract class LabelCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
