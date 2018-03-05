@@ -21,9 +21,8 @@ package net.bootsfaces.component.progressBar;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIOutput;
-import net.bootsfaces.C;
 
-import net.bootsfaces.listeners.AddResourcesListener;
+import net.bootsfaces.C;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;

@@ -18,8 +18,7 @@
 
 package net.bootsfaces.component.modal;
 
-import javax.faces.component.*;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIComponentBase;
 
 /** This class holds the attributes of &lt;b:modal /&gt;. */
 public abstract class ModalCore extends UIComponentBase {

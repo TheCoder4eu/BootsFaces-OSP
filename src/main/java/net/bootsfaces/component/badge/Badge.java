@@ -20,8 +20,8 @@ package net.bootsfaces.component.badge;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;
 

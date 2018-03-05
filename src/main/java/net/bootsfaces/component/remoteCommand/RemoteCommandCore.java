@@ -18,8 +18,7 @@
 
 package net.bootsfaces.component.remoteCommand;
 
-import javax.faces.component.*;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UICommand;
 
 /** This class holds the attributes of &lt;b:remoteCommand /&gt;. */
 public abstract class RemoteCommandCore extends UICommand {

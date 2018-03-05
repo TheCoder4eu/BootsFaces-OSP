@@ -20,8 +20,8 @@ package net.bootsfaces.component.buttonGroup;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;

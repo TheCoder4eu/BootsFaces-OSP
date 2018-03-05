@@ -18,9 +18,7 @@
 
 package net.bootsfaces.component.icon;
 
-import javax.faces.component.*;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UICommand;
 
 /** This class holds the attributes of &lt;b:icon /&gt;. */
 public abstract class IconCore extends UICommand implements net.bootsfaces.render.IHasTooltip {

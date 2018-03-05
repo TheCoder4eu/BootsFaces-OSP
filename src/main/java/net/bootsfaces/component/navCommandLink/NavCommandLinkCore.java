@@ -18,9 +18,7 @@
 
 package net.bootsfaces.component.navCommandLink;
 
-import javax.faces.component.*;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UICommand;
 
 /** This class holds the attributes of &lt;b:navCommandLink /&gt;. */
 public abstract class NavCommandLinkCore extends UICommand implements net.bootsfaces.render.IHasTooltip {

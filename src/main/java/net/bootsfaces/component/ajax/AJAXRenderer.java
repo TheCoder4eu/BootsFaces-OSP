@@ -35,7 +35,6 @@ import net.bootsfaces.component.navLink.NavLink;
 import net.bootsfaces.component.tabView.TabView;
 import net.bootsfaces.expressions.ExpressionResolver;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.utils.BsfUtils;
 
 public class AJAXRenderer extends CoreRenderer {
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.component.ajax.AJAXRenderer");

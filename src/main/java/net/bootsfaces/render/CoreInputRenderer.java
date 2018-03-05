@@ -19,7 +19,9 @@ package net.bootsfaces.render;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.faces.component.UIComponent;
+
 import net.bootsfaces.component.formGroup.FormGroup;
 import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.FacesMessages;

@@ -18,8 +18,7 @@
 
 package net.bootsfaces.component.form;
 
-import javax.faces.component.*;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIForm;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
 public abstract class FormCore extends UIForm {
