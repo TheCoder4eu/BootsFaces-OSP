@@ -122,6 +122,18 @@ widget badge
     +responsive
 }
 
+widget breadcrumbs
+       implemented_by net.bootsfaces.component.Breadcrumbs
+       has_children
+       has_tooltip
+{
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	+tooltip
+	+style
+}
+
 widget button
        implemented_by net.bootsfaces.component.Button
        extends HtmlOutcomeTargetButton

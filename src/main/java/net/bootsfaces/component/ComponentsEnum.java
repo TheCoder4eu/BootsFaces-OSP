@@ -21,6 +21,7 @@ public enum ComponentsEnum {
 	accordion("<b:accordion", "accordion", "net.bootsfaces.component.accordion.Accordion"),
 	alert("<b:alert", "alert", "net.bootsfaces.component.alert.Alert"),
 	badge("<b:badge", "badge", "net.bootsfaces.component.badge.Badge"),
+	breadcrumbs("<b:breadcrumbs", "breadcrumbs", "net.bootsfaces.component.breadcrumbs.Breadcrumbs"),
 	button("<b:button", "button", "net.bootsfaces.component.button.Button"),
 	buttonGroup("<b:buttonGroup", "buttonGroup", "net.bootsfaces.component.buttonGroup.ButtonGroup"),
 	buttonToolbar("<b:buttonToolbar", "buttonToolbar", "net.bootsfaces.component.buttonToolbar.ButtonToolbar"),
