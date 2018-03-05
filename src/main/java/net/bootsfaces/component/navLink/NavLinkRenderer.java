@@ -36,6 +36,7 @@ import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.breadcrumbs.Breadcrumbs;
 import net.bootsfaces.component.commandLink.CommandLink;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.dropMenu.DropMenu;
@@ -111,7 +112,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
 			parent = parent.getParent();
 		}
-		if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+		if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 				|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
 				|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
 			htmlTag = "li";
@@ -170,7 +171,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
 				parent = parent.getParent();
 			}
-			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+			if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
 					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
 					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
 				htmlTag = "li";
