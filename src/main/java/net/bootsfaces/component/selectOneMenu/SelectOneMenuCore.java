@@ -109,7 +109,7 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
-	
+
 	/**
 	 * Access key to transfer focus to the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
@@ -319,7 +319,7 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	}
 
 	/**
-	 * Gets the allow-null-values feature, default is false.
+	 * Hide a noSelectionOption, if a value is already set. Requires update after selection. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isHideNoSelectionOption() {
@@ -327,7 +327,8 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	}
 
 	/**
-	 * Sets the allow-null-values feature, default is false.
+	 * Hide a noSelectionOption, if a value is already set. Requires update after selection. <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHideNoSelectionOption(boolean _hideNoSelectionOption) {
 		getStateHelper().put(PropertyKeys.hideNoSelectionOption, _hideNoSelectionOption);
@@ -989,9 +990,9 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	public void setRequiredMessage(String _requiredMessage) {
 		getStateHelper().put(PropertyKeys.requiredMessage, _requiredMessage);
 	}
-	
+
 	/**
-	 * Gets the select2 feature, default is false.
+	 * Enable select2 component to make the dropdown filterable by setting this attribute to true. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isSelect2() {
@@ -999,12 +1000,12 @@ public abstract class SelectOneMenuCore extends HtmlInputText implements net.boo
 	}
 
 	/**
-	 * Sets the select2 feature, default is false.
+	 * Enable select2 component to make the dropdown filterable by setting this attribute to true. <P>
+	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSelect2(boolean _select2) {
 		getStateHelper().put(PropertyKeys.select2, _select2);
 	}
-
 
 	/**
 	 * Number of characters used to determine the width of the input element. <P>
