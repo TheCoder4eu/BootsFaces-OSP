@@ -31,7 +31,6 @@ import net.bootsfaces.component.carouselControl.CarouselControl;
 import net.bootsfaces.component.carouselControl.CarouselControlRenderer;
 import net.bootsfaces.component.carouselItem.CarouselItem;
 import net.bootsfaces.render.CoreRenderer;
-import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class generates the HTML code of &lt;b:carousel /&gt;. */

@@ -20,6 +20,7 @@ package net.bootsfaces.component.messages;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+
 import net.bootsfaces.C;
 import net.bootsfaces.component.UIMessagesBase;
 import net.bootsfaces.listeners.AddResourcesListener;

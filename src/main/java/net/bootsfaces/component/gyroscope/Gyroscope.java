@@ -27,8 +27,8 @@ import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.utils.BsfUtils;

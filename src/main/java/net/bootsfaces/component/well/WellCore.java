@@ -18,9 +18,7 @@
 
 package net.bootsfaces.component.well;
 
-import javax.faces.component.*;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
+import javax.faces.component.UIOutput;
 
 /** This class holds the attributes of &lt;b:well /&gt;. */
 public abstract class WellCore extends UIOutput implements net.bootsfaces.render.IHasTooltip {

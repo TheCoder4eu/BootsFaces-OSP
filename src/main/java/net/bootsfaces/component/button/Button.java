@@ -21,8 +21,8 @@ package net.bootsfaces.component.button;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlOutcomeTargetButton;
-import net.bootsfaces.C;
 
+import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;

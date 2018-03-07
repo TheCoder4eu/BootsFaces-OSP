@@ -7,6 +7,7 @@ import java.util.List;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIForm;
+
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
 

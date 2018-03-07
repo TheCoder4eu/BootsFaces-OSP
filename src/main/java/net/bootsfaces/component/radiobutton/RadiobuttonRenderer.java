@@ -30,7 +30,6 @@ import javax.faces.component.UIForm;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
-import javax.faces.model.SelectItem;
 import javax.faces.render.FacesRenderer;
 
 import net.bootsfaces.beans.ELTools;
