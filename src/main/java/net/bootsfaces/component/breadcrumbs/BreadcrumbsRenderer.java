@@ -51,8 +51,6 @@ public class BreadcrumbsRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = breadcrumbs.getClientId();
 
-		// put custom code here
-		// Simple demo widget that simply renders every attribute value
 		rw.startElement("ol", breadcrumbs);
 
 		rw.writeAttribute("id", clientId, "id");
@@ -87,12 +85,8 @@ public class BreadcrumbsRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
-		Breadcrumbs breadcrumbs = (Breadcrumbs) component;
-		ResponseWriter rw = context.getResponseWriter();
-		String clientId = breadcrumbs.getClientId();
+‚		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("ol");
 		Tooltip.activateTooltips(context, component);
-
 	}
-
 }
