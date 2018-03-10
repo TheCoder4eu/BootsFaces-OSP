@@ -45,6 +45,7 @@
      from 'staticResources/css/ext/fullcalendar.min.css'
      from 'staticResources/css/ext/jssocials.css'
      from 'staticResources/css/ext/scrollup.css'
+     from 'staticResources/css/ext/select2.min.css'
      from 'staticResources/css/ext/typeahead.css'
 
      from 'staticResources/css/ext/jq.ui.core.css'
@@ -77,7 +78,8 @@
    	from 'staticResources/js/jquery.scrollUp.min.js'
    	from 'staticResources/js/jquery.minicolors.min.js'
    	from 'staticResources/js/moment.min.js'
-   	from 'staticResources/js/typeahead.js'
+   	from 'staticResources/js/select2.min.js'
+  	from 'staticResources/js/typeahead.js'
    	from 'staticResources/ie8support/respond.js'
    	from 'staticResources/ie8support/html5shiv.js'
    	from 'staticResources/js/jssocials.min.js'
