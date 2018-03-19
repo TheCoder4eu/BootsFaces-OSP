@@ -85,7 +85,7 @@ public class BreadcrumbsRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
-‚		ResponseWriter rw = context.getResponseWriter();
+		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("ol");
 		Tooltip.activateTooltips(context, component);
 	}
