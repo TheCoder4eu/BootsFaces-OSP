@@ -461,6 +461,7 @@ public class AJAXRenderer extends CoreRenderer {
 			onError = ((IAJAXComponent2) component).getOnerror();
 			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
 		}
+		String delay = component.getDelay();
 		StringBuilder cJS = new StringBuilder(150);
 		String update = component.getUpdate();
 		if (null == update) {
@@ -497,7 +498,7 @@ public class AJAXRenderer extends CoreRenderer {
 		} else
 			cJS.append(", null");
 
-		cJS.append(", null"); // Todo delay aka debounce
+		cJS.append(", " + delay);
 		
 		String parameterList = "";
 		List<UIComponent> children = ((UIComponent) component).getChildren();
