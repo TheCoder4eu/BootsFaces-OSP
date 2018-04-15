@@ -4602,6 +4602,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -5992,6 +5998,18 @@
 		  <name>largeScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
+		  <name>mark-search-results</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
+		  <name>markSearchResults</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -18898,6 +18916,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -19258,6 +19282,12 @@
 		  <name>binding</name>
 		  <required>false</required>
 		  <type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
@@ -20852,6 +20882,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -21540,6 +21576,12 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -25890,6 +25932,12 @@
 		  <name>controls</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>

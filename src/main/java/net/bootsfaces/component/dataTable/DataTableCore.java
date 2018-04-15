@@ -24,85 +24,7 @@ import javax.faces.component.UIData;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		border,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		columnVisibility,
-		contentDisabled,
-		copy,
-		csv,
-		customLangUrl,
-		customOptions,
-		deselectOnBackdropClick,
-		disabled,
-		display,
-		excel,
-		fixedHeader,
-		hidden,
-		immediate,
-		info,
-		lang,
-		largeScreen,
-		mediumScreen,
-		multiColumnSearch,
-		multiColumnSearchPosition,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		ondblclick,
-		ondeselect,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onorder,
-		onpage,
-		onsearch,
-		onselect,
-		pageLength,
-		pageLengthMenu,
-		paginated,
-		pdf,
-		print,
-		process,
-		responsive,
-		rowHighlight,
-		rowStyleClass,
-		saveState,
-		scrollCollapse,
-		scrollHorizontally,
-		scrollSize,
-		scrollX,
-		searching,
-		select,
-		selectedColumn,
-		selectedItems,
-		selectedRow,
-		selectionInfo,
-		selectionMode,
-		smallScreen,
-		span,
-		striped,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible,
-		widgetVar;
+		ajax, border, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -467,6 +389,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setLargeScreen(String _largeScreen) {
 		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19). <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isMarkSearchResults() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.markSearchResults, false);
+	}
+
+	/**
+	 * If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMarkSearchResults(boolean _markSearchResults) {
+		getStateHelper().put(PropertyKeys.markSearchResults, _markSearchResults);
 	}
 
 	/**

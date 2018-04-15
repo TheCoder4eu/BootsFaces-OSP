@@ -481,7 +481,6 @@ public class AddResourcesListener implements SystemEventListener {
 				return;
 		}
 		root.addComponentResource(context, output, "head");
-		//        System.out.println("++" + output.getClientId() + " " + nameToAdd + " " + libToAdd);
 	}
 
 	public static void addResourceIfNecessary(String url) {
@@ -539,7 +538,13 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent resource : components) {
 			String name = (String) resource.getAttributes().get("name");
 			String library = (String) resource.getAttributes().get("library");
-			String key = library + "/" + name + "/" + resource.getClass().getName();
+			String url = (String) resource.getAttributes().get("url");
+			String key;
+			if (null != url) {
+				key = url;
+			} else {
+				key = library + "/" + name + "/" + resource.getClass().getName();
+			}
 			if (alreadyThere.containsKey(key)) {
 				resourcesToRemove.add(resource);
 				continue;
@@ -549,9 +554,10 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : resourcesToRemove) {
 			c.setInView(false);
 			root.removeComponentResource(context, c);
-			//String name = (String) c.getAttributes().get("name");
-			//String library = (String) c.getAttributes().get("library");
-			//System.out.println("-1" + c.getClientId() + " " + name + " " + library + " " + c.getClass().getSimpleName() );
+//			String name = (String) c.getAttributes().get("name");
+//			String library = (String) c.getAttributes().get("library");
+//			String url = (String) c.getAttributes().get("url");
+//			System.out.println("-1" + c.getClientId() + " " + name + " " + library + " " + url + " " + c.getClass().getSimpleName() );
 		}
 	}
 
