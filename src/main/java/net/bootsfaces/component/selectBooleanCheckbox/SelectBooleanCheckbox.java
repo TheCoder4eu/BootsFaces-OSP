@@ -28,6 +28,7 @@ import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
@@ -37,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:selectBooleanCheckbox /&gt;. */
 @FacesComponent(SelectBooleanCheckbox.COMPONENT_TYPE)
 public class SelectBooleanCheckbox extends SelectBooleanCheckboxCore 
-                                   implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
+                                   implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".selectBooleanCheckbox.SelectBooleanCheckbox";
 

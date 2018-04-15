@@ -11,6 +11,7 @@ import javax.faces.component.UIComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IHasTooltip;
@@ -20,7 +21,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 @FacesComponent(ColorPicker.COMPONENT_TYPE)
-public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
+public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
 

@@ -29,6 +29,7 @@ import javax.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
@@ -37,7 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:selectOneMenu /&gt;. */
 @FacesComponent(SelectOneMenu.COMPONENT_TYPE)
-public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
+public class SelectOneMenu extends SelectOneMenuCore implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".selectOneMenu.SelectOneMenu";
 

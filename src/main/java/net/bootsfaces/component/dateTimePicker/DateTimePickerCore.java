@@ -24,89 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		allowInputToggle,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapse,
-		dayViewHeaderFormat,
-		disableTimeInterval,
-		disabledDates,
-		display,
-		enabledDates,
-		fieldId,
-		fieldSize,
-		focusOnShow,
-		format,
-		hidden,
-		icon,
-		iconAwesome,
-		iconPosition,
-		immediate,
-		initialDate,
-		keepInvalid,
-		keepOpen,
-		labelColLg,
-		labelColMd,
-		labelColSm,
-		labelColXs,
-		labelLargeScreen,
-		labelMediumScreen,
-		labelSmallScreen,
-		labelStyle,
-		labelStyleClass,
-		labelTinyScreen,
-		largeScreen,
-		locale,
-		maxDate,
-		mediumScreen,
-		minDate,
-		mode,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		oncomplete,
-		ondtchange,
-		placeholder,
-		process,
-		renderLabel,
-		required,
-		requiredMessage,
-		showButtonPanel,
-		showClearButton,
-		showCloseButton,
-		showDate,
-		showIcon,
-		showTime,
-		showTodayButton,
-		showWeek,
-		sideBySide,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		timeStepping,
-		tinyScreen,
-		toolbarPlacement,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		useCurrent,
-		useStrict,
-		viewMode,
-		visible,
-		weekDaysDisabled,
-		widgetParent;
+		ajax, allowInputToggle, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay, disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden, icon, iconAwesome, iconPosition, immediate, initialDate, keepInvalid, keepOpen, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -122,7 +40,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -130,7 +48,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -263,6 +181,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setDayViewHeaderFormat(String _dayViewHeaderFormat) {
 		getStateHelper().put(PropertyKeys.dayViewHeaderFormat, _dayViewHeaderFormat);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -858,7 +792,23 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * The onclick attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnclick() {
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
+	}
+
+	/**
+	 * The onclick attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -866,7 +816,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -887,6 +837,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setOndtchange(String _ondtchange) {
 		getStateHelper().put(PropertyKeys.ondtchange, _ondtchange);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

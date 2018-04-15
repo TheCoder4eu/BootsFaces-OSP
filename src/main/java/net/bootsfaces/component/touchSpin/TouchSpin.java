@@ -27,6 +27,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
@@ -36,7 +37,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
 @FacesComponent(TouchSpin.COMPONENT_TYPE)
 public class TouchSpin extends TouchSpinCore
-implements IAJAXComponent, ClientBehaviorHolder, IHasTooltip, IResponsive {
+implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder, IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".touchSpin.TouchSpin";
 

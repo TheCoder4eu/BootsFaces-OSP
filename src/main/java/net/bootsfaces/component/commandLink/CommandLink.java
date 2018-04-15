@@ -20,75 +20,14 @@ package net.bootsfaces.component.commandLink;
 
 import javax.faces.component.FacesComponent;
 
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.component.navLink.NavLink;
 
 /** This class holds the attributes of &lt;b:commandLink /&gt;. */
 @FacesComponent("net.bootsfaces.component.commandLink.CommandLink")
-public class CommandLink extends NavLink {
+public class CommandLink extends NavLink implements IAJAXComponent2 {
 	protected enum PropertyKeys {
-		active,
-		ajax,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		contentClass,
-		contentStyle,
-		disabled,
-		display,
-		fragment,
-		header,
-		hidden,
-		href,
-		icon,
-		iconAlign,
-		iconAwesome,
-		iconFlip,
-		iconRotate,
-		iconSize,
-		iconSpin,
-		immediate,
-		includeViewParams,
-		largeScreen,
-		look,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onselect,
-		outcome,
-		process,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		target,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		active, ajax, binding, colLg, colMd, colSm, colXs, contentClass, contentStyle, delay, disabled, display, fragment, header, hidden, href, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, includeViewParams, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onerror, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, onsuccess, outcome, process, smallScreen, span, style, styleClass, target, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -120,7 +59,7 @@ public class CommandLink extends NavLink {
 	}
 
 	/**
-	 * Whether the navLink submits the form with AJAX. <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -128,7 +67,7 @@ public class CommandLink extends NavLink {
 	}
 
 	/**
-	 * Whether the navLink submits the form with AJAX. <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -245,6 +184,22 @@ public class CommandLink extends NavLink {
 	 */
 	public void setContentStyle(String _contentStyle) {
 		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -664,7 +619,7 @@ public class CommandLink extends NavLink {
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -672,7 +627,7 @@ public class CommandLink extends NavLink {
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -693,6 +648,22 @@ public class CommandLink extends NavLink {
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -853,6 +824,22 @@ public class CommandLink extends NavLink {
 	 */
 	public void setOnselect(String _onselect) {
 		getStateHelper().put(PropertyKeys.onselect, _onselect);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

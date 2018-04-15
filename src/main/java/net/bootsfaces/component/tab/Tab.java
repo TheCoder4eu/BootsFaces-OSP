@@ -29,14 +29,15 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
 @FacesComponent(Tab.COMPONENT_TYPE)
-public class Tab extends TabRepeat
-		implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent, IContentDisabled {
+public class Tab extends TabRepeat implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent,
+		IAJAXComponent2, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".tab.Tab";
 
@@ -105,25 +106,7 @@ public class Tab extends TabRepeat
 	}
 
 	protected enum PropertyKeys {
-		ajax,
-		contentDisabled,
-		contentStyle,
-		dir,
-		disabled,
-		immediate,
-		onclick,
-		oncomplete,
-		process,
-		style,
-		styleClass,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update;
+		ajax, contentDisabled, contentStyle, delay, dir, disabled, immediate, onclick, oncomplete, onerror, onsuccess, process, style, styleClass, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -139,7 +122,7 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -147,7 +130,7 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -184,6 +167,22 @@ public class Tab extends TabRepeat
 	 */
 	public void setContentStyle(String _contentStyle) {
 		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -235,7 +234,7 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * Optional JavaScript function that's called when the tab is clicked. <P>
+	 * The onclick attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
@@ -243,7 +242,7 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * Optional JavaScript function that's called when the tab is clicked. <P>
+	 * The onclick attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -251,7 +250,7 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -259,11 +258,43 @@ public class Tab extends TabRepeat
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
 		getStateHelper().put(PropertyKeys.oncomplete, _oncomplete);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

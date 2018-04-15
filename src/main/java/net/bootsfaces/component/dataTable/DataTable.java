@@ -36,6 +36,7 @@ import javax.faces.event.FacesEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
@@ -44,7 +45,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 @FacesComponent(DataTable.COMPONENT_TYPE)
-public class DataTable extends DataTableCore implements IAJAXComponent, ClientBehaviorHolder,
+public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder,
 		net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dataTable.DataTable";
