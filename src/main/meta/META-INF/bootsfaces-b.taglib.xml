@@ -10196,6 +10196,12 @@
 		  <type>javax.el.ValueExpression</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -20684,6 +20690,12 @@
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
