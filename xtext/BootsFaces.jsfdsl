@@ -737,6 +737,9 @@ widget dropButton
  {
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     look                                                                   "Look of the Button, can be primary, info, success, warning, danger. If not specified, a standard gray button will be rendered."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -746,6 +749,7 @@ widget dropButton
 	+responsive
 	+tooltip
 	+contentDisabled
+	+iconAwesome
 }
 
 

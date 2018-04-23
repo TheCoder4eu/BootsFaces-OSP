@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
@@ -89,8 +90,30 @@ public class DropButtonRenderer extends CoreRenderer {
 		rw.writeAttribute("role", "button", null);
 		rw.writeAttribute("data-toggle", "dropdown", null);
 
-		// Encode value
-		rw.writeText(value, null);
+		String icon = dropButton.getIcon();
+		String faicon = dropButton.getIconAwesome();
+		boolean fa = false; // flag to indicate whether the selected icon
+							// set is Font Awesome or not.
+		if (faicon != null) {
+			icon = faicon;
+			fa = true;
+		}
+		if (icon != null) {
+			Object ialign = dropButton.getIconAlign();
+			if (ialign != null && ialign.equals("right")) {
+				rw.writeText(value + " ", null);
+				IconRenderer.encodeIcon(rw, dropButton, icon, fa, dropButton.getIconSize(), dropButton.getIconRotate(),
+						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false);
+				rw.writeText(" ", null);
+			} else {
+				IconRenderer.encodeIcon(rw, dropButton, icon, fa, dropButton.getIconSize(), dropButton.getIconRotate(),
+						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false);
+				// !//R.encodeIcon(rw, this, icon, white);
+				rw.writeText(" " + value, null);
+			}
+		} else {
+			rw.writeText(value, null);
+		}
 		// Encode Caret
 		{
 			rw.startElement("b", dropButton);
