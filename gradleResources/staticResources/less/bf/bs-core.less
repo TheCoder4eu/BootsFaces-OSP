@@ -1,10 +1,12 @@
-// --------------------------------
+// ----------------------------------------------------------------------------
 // This file is part of BootsFaces.
-// --------------------------------
+// It"s based on bootstrap.less, adding the custom code required by BootsFaces.
+// ----------------------------------------------------------------------------
 
 // Core variables and mixins
 @import "variables.less";
 @import "mixins.less";
+@import "mixins/extra-grid.less";
 
 // Extra Variables (override)
 @import "extra-variables.less";
@@ -14,7 +16,7 @@
 @import "print.less";
 
 // Load fonts from this directory.
-@icon-font-path:          "../../../fonts/";
+@icon-font-path: "../../../fonts/";
 @import "glyphicons.less";
 
 // Core CSS
@@ -22,6 +24,7 @@
 @import "type.less";
 @import "code.less";
 @import "grid.less";
+@import "extra-grid.less";
 @import "tables.less";
 @import "forms.less";
 @import "buttons.less";
@@ -58,6 +61,7 @@
 // Utility classes
 @import "utilities.less";
 @import "responsive-utilities.less";
+@import "extra-responsive-utilities.less";
 
 @import "customizations.less";
 @import "theme-customizations.less";

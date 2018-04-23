@@ -1,0 +1,18 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid classes given
+// any value of `@grid-columns`.
+
+.make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) {
+    // initial
+    @item: ~'.col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}';
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general; "=<" isn't a typo
+    @item: ~'.col-xs-@{index}, .col-sm-@{index}, .col-md-@{index}, .col-lg-@{index}, .col-xl-@{index}';
+    .col((@index + 1), ~'@{list}, @{item}');
+  }
+}

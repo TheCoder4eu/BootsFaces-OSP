@@ -5,3 +5,15 @@
 // Extra variables and mixins
 // placeholder file
 
+// Large screen / wide desktop
+//** Deprecated `@screen-lg` as of v3.0.1
+@screen-xl: 1400px;
+@screen-xl-min: @screen-xl;
+//** Deprecated `@screen-lg-desktop` as of v3.0.1
+@screen-xl-desktop: @screen-xl-min;
+
+@screen-lg-max: (@screen-xl-min - 1);
+
+@container-xlarge-desktop: (1400px + @grid-gutter-width);
+//** For `@screen-xl-min` and up.
+@container-xl: @container-xlarge-desktop;
