@@ -30,6 +30,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.component.navLink.AbstractNavLink;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -39,7 +40,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
 @FacesComponent(NavCommandLink.COMPONENT_TYPE)
 public class NavCommandLink extends NavCommandLinkCore
-		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
+		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, AbstractNavLink {
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".navCommandLink.NavCommandLink";
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;

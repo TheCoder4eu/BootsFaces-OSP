@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2018 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -27,3 +27,4 @@ include 'java6'
 include 'java7'
 include 'java8'
 include 'java9'
+include 'java10'

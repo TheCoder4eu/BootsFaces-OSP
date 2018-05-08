@@ -88,38 +88,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	protected enum PropertyKeys {
-		colLg,
-		colMd,
-		colSm,
-		colSpans,
-		colXs,
-		columnClasses,
-		columns,
-		contentDisabled,
-		dir,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		rowClasses,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		colLg, colMd, colSm, colSpans, colXs, columnClasses, columns, contentDisabled, dir, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, rowClasses, size, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -231,7 +200,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Synonym to colSpans: comma-separated list of the column spans <P>
+	 * Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getColumns() {
@@ -239,7 +208,7 @@ public class PanelGrid extends UIOutput implements net.bootsfaces.render.IHasToo
 	}
 
 	/**
-	 * Synonym to colSpans: comma-separated list of the column spans <P>
+	 * Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setColumns(String _columns) {

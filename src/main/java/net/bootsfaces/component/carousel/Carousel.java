@@ -33,6 +33,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
@@ -42,8 +43,8 @@ import net.bootsfaces.utils.BsfUtils;
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/transition.js", target = "head") })
 @FacesComponent(Carousel.COMPONENT_TYPE)
-public class Carousel extends UICommand
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive {
+public class Carousel extends UICommand implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2,
+		ClientBehaviorHolder, IResponsive {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".carousel.Carousel";
 
@@ -117,53 +118,7 @@ public class Carousel extends UICommand
 	}
 
 	protected enum PropertyKeys {
-		activeIndex,
-		ajax,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		disabled,
-		display,
-		hidden,
-		interval,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onslid,
-		onslidestart,
-		pause,
-		process,
-		showControls,
-		showIndicators,
-		slide,
-		smallScreen,
-		span,
-		startAnimation,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible,
-		wrap;
+		activeIndex, ajax, colLg, colMd, colSm, colXs, delay, disabled, display, hidden, interval, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onslid, onslidestart, onsuccess, pause, process, showControls, showIndicators, slide, smallScreen, span, startAnimation, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, wrap;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -272,6 +227,22 @@ public class Carousel extends UICommand
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -467,7 +438,7 @@ public class Carousel extends UICommand
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -475,7 +446,7 @@ public class Carousel extends UICommand
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -496,6 +467,22 @@ public class Carousel extends UICommand
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -608,6 +595,22 @@ public class Carousel extends UICommand
 	 */
 	public void setOnslidestart(String _onslidestart) {
 		getStateHelper().put(PropertyKeys.onslidestart, _onslidestart);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

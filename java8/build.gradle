@@ -21,7 +21,7 @@
 apply plugin: 'java'
 
 //Configurations for Target Java 8 runtime.
-sourceCompatibility = '1.6'
+sourceCompatibility = '1.7'
 targetCompatibility = '1.8'
 
 archivesBaseName = 'BootsFaces-OSP'

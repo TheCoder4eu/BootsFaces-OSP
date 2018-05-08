@@ -461,6 +461,7 @@ public class AJAXRenderer extends CoreRenderer {
 			onError = ((IAJAXComponent2) component).getOnerror();
 			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
 		}
+		String delay = component.getDelay();
 		StringBuilder cJS = new StringBuilder(150);
 		String update = component.getUpdate();
 		if (null == update) {
@@ -497,6 +498,8 @@ public class AJAXRenderer extends CoreRenderer {
 		} else
 			cJS.append(", null");
 
+		cJS.append(", " + delay);
+		
 		String parameterList = "";
 		List<UIComponent> children = ((UIComponent) component).getChildren();
 		for (UIComponent parameter : children) {
@@ -530,6 +533,7 @@ public class AJAXRenderer extends CoreRenderer {
 		String onevent = "";
 		String onError = null;
 		String onSuccess = null;
+		String delay = null;
 		if (component instanceof IAJAXComponent2) {
 			onError = ((IAJAXComponent2) component).getOnerror();
 			onSuccess = ((IAJAXComponent2) component).getOnsuccess();
@@ -562,6 +566,7 @@ public class AJAXRenderer extends CoreRenderer {
 						}
 					}
 					oncomplete = component.getOncomplete();
+					delay = ((AjaxBehavior)ajaxBehavior).getDelay();
 				}
 			}
 		}
@@ -593,6 +598,11 @@ public class AJAXRenderer extends CoreRenderer {
 			cJS.append(",null");
 		if ((onevent != null) && (onevent.length() > 0)) {
 			cJS.append(", '" + onevent + "'");
+		} else {
+			cJS.append(",null");
+		}
+		if ((delay != null) && (delay.length() > 0)) {
+			cJS.append(", '" + delay + "'");
 		} else {
 			cJS.append(",null");
 		}

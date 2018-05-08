@@ -18,10 +18,9 @@
 
 package net.bootsfaces.component.breadcrumbs;
 
-import javax.faces.component.*;
 import java.io.IOException;
-import java.util.Map;
 
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
@@ -52,8 +51,6 @@ public class BreadcrumbsRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = breadcrumbs.getClientId();
 
-		// put custom code here
-		// Simple demo widget that simply renders every attribute value
 		rw.startElement("ol", breadcrumbs);
 
 		rw.writeAttribute("id", clientId, "id");
@@ -88,12 +85,8 @@ public class BreadcrumbsRenderer extends CoreRenderer {
 		if (!component.isRendered()) {
 			return;
 		}
-		Breadcrumbs breadcrumbs = (Breadcrumbs) component;
 		ResponseWriter rw = context.getResponseWriter();
-		String clientId = breadcrumbs.getClientId();
 		rw.endElement("ol");
 		Tooltip.activateTooltips(context, component);
-
 	}
-
 }

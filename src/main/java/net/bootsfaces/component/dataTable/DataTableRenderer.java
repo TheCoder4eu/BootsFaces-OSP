@@ -543,6 +543,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("searching: " + dataTable.isSearching(), options);
 		options = addOptions("order: " + orderString, options);
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
+		options = addOptions("mark: true", options);
 		
 		if (dataTable.isSelect()) {
 			String json = "";

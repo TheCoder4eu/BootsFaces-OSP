@@ -93,7 +93,7 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 	}
 
 	protected enum PropertyKeys {
-		ajax, disabled, interval, oncomplete, onshake, process, threshold, update;
+		ajax, delay, disabled, interval, oncomplete, onshake, process, threshold, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -122,6 +122,22 @@ public class Shake extends UICommand implements ClientBehaviorHolder, IAJAXCompo
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**

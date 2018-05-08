@@ -398,7 +398,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 							dtp.getMinDate().contains("moment") ? dtp.getMinDate() : "'" + dtp.getMinDate() + "'" :
 							"";
 		String maxDate = BsfUtils.isStringValued(dtp.getMaxDate()) ?
-							dtp.getMinDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
+							dtp.getMaxDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
 							"";
 
 		rw.startElement("script", dtp);

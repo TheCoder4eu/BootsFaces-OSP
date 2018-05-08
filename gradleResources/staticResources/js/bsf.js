@@ -66,7 +66,7 @@ BsF.ajax.cb = function(o, e, r, f) {
  */
 BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		onerror, onsuccess,
-		eventType, parameters) {
+		eventType, delay, parameters) {
 	var argn = arguments.length;
 	if (source.id==null || source.id=="") {
 		source=source.parentNode;
@@ -104,6 +104,9 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		BsF.onSuccessCallback[cid] = null;
 	}
 	opts.onevent = BsF.ajax.onevent;
+	if (!!delay) {
+		opts.delay = delay;
+	}
 	if (parameters) {
 		for(var propertyName in parameters) {
 			var p = parameters[propertyName];

@@ -33,6 +33,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
@@ -42,7 +43,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:panel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
 @FacesComponent(Panel.COMPONENT_TYPE)
-public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent,
+public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2,
 		ClientBehaviorHolder, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".panel.Panel";
@@ -140,67 +141,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	protected enum PropertyKeys {
-		ajax,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapsed,
-		collapsible,
-		contentClass,
-		contentDisabled,
-		contentStyle,
-		dir,
-		disabled,
-		display,
-		hidden,
-		icon,
-		iconAlign,
-		iconAwesome,
-		iconFlip,
-		iconRotate,
-		iconSize,
-		iconSpin,
-		immediate,
-		largeScreen,
-		look,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncollapse,
-		oncollapsed,
-		oncomplete,
-		ondblclick,
-		onexpand,
-		onexpanded,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		process,
-		showCollapseLink,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		title,
-		titleClass,
-		titleStyle,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		ajax, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -216,7 +157,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -224,7 +165,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -389,6 +330,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setContentStyle(String _contentStyle) {
 		getStateHelper().put(PropertyKeys.contentStyle, _contentStyle);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -760,7 +717,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -768,7 +725,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -789,6 +746,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -901,6 +874,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**
@@ -1160,7 +1149,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Which region of the screen is to be updated? Default value: @form <P>
+	 * Component(s) to be updated with ajax. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getUpdate() {
@@ -1168,7 +1157,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Which region of the screen is to be updated? Default value: @form <P>
+	 * Component(s) to be updated with ajax. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUpdate(String _update) {

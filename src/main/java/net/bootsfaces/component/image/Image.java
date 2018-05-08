@@ -11,6 +11,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
@@ -19,7 +20,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:image /&gt;. */
 @FacesComponent(Image.COMPONENT_TYPE)
 public class Image extends ImageCore
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder, IResponsive {
+		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder, IResponsive {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".image.Image";
 

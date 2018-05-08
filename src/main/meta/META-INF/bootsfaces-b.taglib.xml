@@ -2544,6 +2544,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -2658,7 +2664,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -2666,6 +2672,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2708,6 +2720,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when the carousel start to slide to another item.]]></description>
 		  <name>onslidestart</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -2948,6 +2966,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -2966,7 +2990,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -2974,6 +2998,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3004,6 +3034,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3142,6 +3178,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -3160,14 +3202,14 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
-		  <name>ondblclick</name>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3198,6 +3240,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3336,6 +3384,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Can take one of the values 'left' and 'right'. Determines whether the carousel scrolls to the next or to the previous image.]]></description>
 		  <name>direction</name>
 		  <required>false</required>
@@ -3360,7 +3414,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -3368,6 +3422,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3398,6 +3458,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3518,7 +3584,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -3610,6 +3676,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3890,13 +3962,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -3904,6 +3976,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -3964,6 +4042,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -4602,6 +4686,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -5108,7 +5198,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether the navLink submits the form with AJAX.]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -5188,6 +5278,12 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5432,7 +5528,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -5440,6 +5536,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5500,6 +5602,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -5796,7 +5904,7 @@
 			<component-type>net.bootsfaces.component.dataTable.DataTable</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -5910,6 +6018,12 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If you set this option to true, the user can de-select rows by simply clicking outside the table. Defaults to false.]]></description>
 		  <name>deselect-on-backdrop-click</name>
 		  <required>false</required>
@@ -5992,6 +6106,18 @@
 		  <name>largeScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
+		  <name>mark-search-results</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
+		  <name>markSearchResults</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -6090,7 +6216,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -6104,6 +6230,12 @@
 		<attribute>
 		  <description><![CDATA[Client side and/or AJAX callback to execute when a row is deselected.]]></description>
 		  <name>ondeselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -6158,6 +6290,12 @@
 		<attribute>
 		  <description><![CDATA[Client side and/or AJAX callback to execute when a row is selected.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7302,7 +7440,7 @@
 			<component-type>net.bootsfaces.component.dateTimePicker.DateTimePicker</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -7388,6 +7526,12 @@
 		<attribute>
 		  <description><![CDATA[Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'.]]></description>
 		  <name>dayViewHeaderFormat</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7818,13 +7962,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -7838,6 +7982,12 @@
 		<attribute>
 		  <description><![CDATA[JavaScript event to manage date time change.]]></description>
 		  <name>ondtchange</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -7898,6 +8048,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -8396,6 +8552,84 @@
 		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>icon</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alignment can be right or left.]]></description>
+		  <name>icon-align</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Alignment can be right or left.]]></description>
+		  <name>iconAlign</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>icon-awesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute.]]></description>
+		  <name>iconAwesome</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>icon-flip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>iconFlip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>icon-rotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>iconRotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <name>icon-size</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <name>iconSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>icon-spin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>iconSpin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -10040,6 +10274,12 @@
 		  <type>javax.el.ValueExpression</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -10108,7 +10348,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -10164,6 +10404,12 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10288,7 +10534,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -10296,6 +10542,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10326,6 +10578,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10506,7 +10764,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -10562,6 +10820,12 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10686,7 +10950,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -10694,6 +10958,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10724,6 +10994,18 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10892,7 +11174,7 @@
 			<component-type>net.bootsfaces.component.image.Image</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -10954,6 +11236,12 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11090,13 +11378,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Client side callback to execute when input element is clicked.]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -11122,6 +11410,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback when a drag-and-drop action ends. May also call an AJAX function.]]></description>
 		  <name>ondrop</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11170,6 +11464,12 @@
 		<attribute>
 		  <description><![CDATA[JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading.]]></description>
 		  <name>onprogress</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11350,6 +11650,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
+		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternate textual description of the input element.]]></description>
 		  <name>alt</name>
 		  <required>false</required>
@@ -11430,6 +11736,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11734,13 +12046,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -11748,6 +12060,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11808,6 +12126,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12078,7 +12402,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -12164,6 +12488,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12474,13 +12804,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -12488,6 +12818,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12548,6 +12884,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -12878,7 +13220,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -12964,6 +13306,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13250,13 +13598,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -13264,6 +13612,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -13324,6 +13678,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14124,7 +14484,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether the navLink submits the form with AJAX.]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -14204,6 +14564,12 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14448,7 +14814,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -14456,6 +14822,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -14516,6 +14888,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16116,7 +16494,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether the navLink submits the form with AJAX.]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -16196,6 +16574,12 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16434,7 +16818,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -16442,6 +16826,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16502,6 +16892,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -16694,7 +17090,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Whether the navLink submits the form with AJAX.]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -16774,6 +17170,12 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the content area (i.e the anchor tag).]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17012,7 +17414,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -17020,6 +17422,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17080,6 +17488,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17382,7 +17796,7 @@
 			<component-type>net.bootsfaces.component.panel.Panel</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -17486,6 +17900,12 @@
 		<attribute>
 		  <description><![CDATA[Inline style of the content area.]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17706,7 +18126,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -17714,6 +18134,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17756,6 +18182,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17928,7 +18360,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Which region of the screen is to be updated? Default value: @form]]></description>
+		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -18898,6 +19330,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -19258,6 +19696,12 @@
 		  <name>binding</name>
 		  <required>false</required>
 		  <type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
@@ -19634,7 +20078,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -19720,6 +20164,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -19994,13 +20444,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -20008,6 +20458,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20068,6 +20524,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20308,6 +20770,12 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Disables the input element, default is false.]]></description>
 		  <name>disabled</name>
 		  <required>false</required>
@@ -20370,7 +20838,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -20426,6 +20894,12 @@
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>colXs</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20550,7 +21024,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -20558,6 +21032,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20588,6 +21068,18 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when a pointer input element is released over input element.]]></description>
 		  <name>onmouseup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Comma or space separated list of ids or search expressions denoting which values are to be sent to the server.]]></description>
+		  <name>process</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -20848,6 +21340,12 @@
 		<attribute>
 		  <description><![CDATA[Message to display when conversion fails.]]></description>
 		  <name>converterMessage</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -21544,6 +22042,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -22224,7 +22728,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -22294,6 +22798,12 @@
 		  <name>converter</name>
 		  <required>false</required>
 		  <type>java.faces.convert.Converter</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
@@ -22578,13 +23088,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -22592,6 +23102,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -22652,6 +23168,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when text within input element is selected by user.]]></description>
 		  <name>onselect</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -23654,7 +24176,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -23778,6 +24300,12 @@
 		  <name>decimals</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
@@ -24128,13 +24656,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -24142,6 +24670,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when input element is double clicked.]]></description>
 		  <name>ondblclick</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -24238,6 +24772,12 @@
 		<attribute>
 		  <description><![CDATA[Client side callback to execute when the spinner stops upspinning.]]></description>
 		  <name>onstopupspin</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -24592,7 +25132,7 @@
 			<component-type>net.bootsfaces.component.tab.Tab</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -24618,6 +25158,12 @@
 		<attribute>
 		  <description><![CDATA[Inline CSS of the div surrounding the tab pane.]]></description>
 		  <name>contentStyle</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -24652,14 +25198,26 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional JavaScript function that's called when the tab is clicked.]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -24932,7 +25490,7 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Activates AJAX. The default value is false (no AJAX).]]></description>
+		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -24974,6 +25532,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
 		  <name>dir</name>
 		  <required>false</required>
@@ -24998,14 +25562,20 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[OnClick DHTML event .]]></description>
+		  <description><![CDATA[The onclick attribute.]]></description>
 		  <name>onclick</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[JavaScript to be executed when ajax completes with success.]]></description>
+		  <description><![CDATA[JavaScript to be executed when ajax completes.]]></description>
 		  <name>oncomplete</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions).]]></description>
+		  <name>onerror</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -25030,6 +25600,12 @@
 		<attribute>
 		  <description><![CDATA[JavaScript and/or AJAX code to be executed just after bringing a tab to the front]]></description>
 		  <name>onshown</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception).]]></description>
+		  <name>onsuccess</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -25890,6 +26466,12 @@
 		  <name>controls</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Delays the AJAX request.]]></description>
+		  <name>delay</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if the button is disabled.]]></description>
