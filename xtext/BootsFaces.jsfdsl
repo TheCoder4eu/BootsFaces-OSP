@@ -562,6 +562,7 @@ widget dataTable
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
     rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	row-group                                                              "Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup."
     row-highlight		 Boolean default "true"							 "Enable the row highlight css. Default: true."
     row-style-class                                                        "Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row."
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."

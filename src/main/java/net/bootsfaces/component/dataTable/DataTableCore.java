@@ -24,7 +24,7 @@ import javax.faces.component.UIData;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, border, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax, border, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -901,6 +901,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setResponsive(boolean _responsive) {
 		getStateHelper().put(PropertyKeys.responsive, _responsive);
+	}
+
+	/**
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getRowGroup() {
+		return (String) getStateHelper().eval(PropertyKeys.rowGroup);
+	}
+
+	/**
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowGroup(String _rowGroup) {
+		getStateHelper().put(PropertyKeys.rowGroup, _rowGroup);
 	}
 
 	/**

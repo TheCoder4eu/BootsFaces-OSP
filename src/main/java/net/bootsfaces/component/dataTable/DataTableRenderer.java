@@ -611,6 +611,18 @@ public class DataTableRenderer extends CoreRenderer {
 		if (selectCommand.length() > 0) {
 			options = addOptions("'initComplete': function( settings, json ) { " + selectCommand + "}", options);
 		}
+		
+		if (dataTable.getRowGroup()!=null) {
+			String rowGroup = dataTable.getRowGroup();
+			try {
+				Integer.parseInt(rowGroup);
+				options = addOptions("orderFixed: [" + rowGroup + ", 'asc']", options);
+				rowGroup = "rowGroup:{dataSrc:" + rowGroup + "}";
+			} catch (NumberFormatException itsJson) {
+				// consider it a Json object
+			}			
+			options = addOptions(rowGroup, options);
+		}
 
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.

@@ -265,5 +265,14 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		}
 		super.setMarkSearchResults(_markSearchResults);
 	}
+	
+	/**
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowGroup(String _rowGroup) {
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.0.2/js/dataTables.rowGroup.min.js");
+		super.setRowGroup(_rowGroup);
+	}
 
 }
