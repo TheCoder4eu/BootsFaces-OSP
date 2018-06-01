@@ -14,25 +14,9 @@ public class InternalIDExpressionResolver implements AbstractExpressionResolver 
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		
 		for (UIComponent parent : parentComponents) {
-				while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
-					parent = parent.getParent();
-				}
-				
-				String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
-				String childId;
-				if (parentId.length()==0)
-					childId=currentId;
-				else if (parentId.endsWith(":"))
-					childId = parentId + currentId;
-				else
-					childId = parentId + ":" + currentId;
-				
-				UIComponent c = component.findComponent(childId);
-				if (null == c) {
-					c = parent.findComponent(childId);
-				}
-				if (null == c) {
-					c = component.findComponent(":"+childId);
+				UIComponent c = findIdInNamingcontainer(component, currentId, result, parent);
+				if (null == c && parent instanceof NamingContainer && parent.getParent()!=null) {
+					c = findIdInNamingcontainer(component, currentId, result, parent.getParent());
 				}
 				if (null != c) {
 					result.add(c);
@@ -42,5 +26,31 @@ public class InternalIDExpressionResolver implements AbstractExpressionResolver 
 			return result;
 		}
 		throw new FacesException("ID not found: " + currentId + " search expression: " + originalExpression);
+	}
+
+	private UIComponent findIdInNamingcontainer(UIComponent component, String currentId, List<UIComponent> result,
+			UIComponent parent) {
+		while ((!(parent instanceof UIViewRoot)) && (!(parent instanceof NamingContainer))) {
+			parent = parent.getParent();
+		}
+		
+		String parentId = ExpressionResolverUtilities.determineQualifiedId(parent);
+		String childId;
+		if (parentId.length()==0)
+			childId=currentId;
+		else if (parentId.endsWith(":"))
+			childId = parentId + currentId;
+		else
+			childId = parentId + ":" + currentId;
+		
+		UIComponent c = component.findComponent(childId);
+		if (null == c) {
+			c = parent.findComponent(childId);
+		}
+		if (null == c) {
+			c = component.findComponent(":"+childId);
+		}
+		
+		return c;
 	}
 }
