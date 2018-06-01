@@ -19,6 +19,8 @@
 package net.bootsfaces.component.kebab;
 
 import javax.el.ValueExpression;
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
@@ -27,6 +29,9 @@ import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:kebab /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body")
+	})
+
 @FacesComponent(Kebab.COMPONENT_TYPE)
 public class Kebab extends KebabCore implements IContentDisabled {
 
