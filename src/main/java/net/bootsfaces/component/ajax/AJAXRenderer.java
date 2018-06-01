@@ -337,7 +337,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		} catch (Exception ex) {
-			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter);
+			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter + ". Additional information: ", ex);
 		}
 
 		String script = "";
