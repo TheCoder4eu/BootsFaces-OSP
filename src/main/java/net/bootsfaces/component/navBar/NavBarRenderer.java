@@ -141,15 +141,19 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "sr-only", "class");
 		rw.writeText("Toggle navigation", null);
 		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
+		if (navBar.getFacet("kebab") != null) {
+			navBar.getFacet("kebab").encodeAll(context);
+		} else {
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+		}
 		rw.endElement("button");
 		String brand = navBar.getBrand();
 		String brandImg = navBar.getBrandImg();
