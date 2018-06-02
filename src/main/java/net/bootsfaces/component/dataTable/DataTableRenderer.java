@@ -695,7 +695,7 @@ public class DataTableRenderer extends CoreRenderer {
 			b.append("'print',");
 		}
 		if (b.length() > 0) {
-			return "dom: 'frtiBp'," + "buttons: [" + b.substring(0, b.length() - 1) + "]";
+			return "dom: '<\"col-sm-6\"l><\"col-sm-6\"f>rtiBp'," + "buttons: [" + b.substring(0, b.length() - 1) + "]";
 		}
 		return null;
 	}
