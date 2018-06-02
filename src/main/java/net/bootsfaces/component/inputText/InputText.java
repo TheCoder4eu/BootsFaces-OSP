@@ -134,6 +134,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		if (_tags) {
 			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
 			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");
+			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput-typeahead.css");
 
 		}
 		super.setTags(_tags);
