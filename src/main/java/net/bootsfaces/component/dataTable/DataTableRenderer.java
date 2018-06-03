@@ -643,10 +643,10 @@ public class DataTableRenderer extends CoreRenderer {
 					+ "$(this).html('" + filter + "');" + "});", null);
 			// # Add event listeners for each multisearch input
 			rw.writeText("var inputs=$(" + widgetVar + ".find('.bf-multisearch input'));", null);
-			rw.writeText("table.columns().every( function(col) {" + "var that=this;"
+			rw.writeText("table.columns().every( function(col) {" + "var that=this;if(col<inputs.length){"
 					+ "inputs[col].value=table.columns(col).search()[0];"
 					+ "$(inputs[col]).on('keyup change', function(){if(that.search()!==this.value){"
-					+ "that.search(this.value).draw('page');}});", null);
+					+ "that.search(this.value).draw('page');}});}", null);
 			rw.writeText("});", null);
 			int col = 0;
 			for (UIComponent column : dataTable.getChildren()) {
@@ -656,13 +656,16 @@ public class DataTableRenderer extends CoreRenderer {
 				String searchValue = null;
 				if ((column instanceof DataTableColumn)) {
 					searchValue = ((DataTableColumn) column).getSearchValue();
+					if (!((DataTableColumn) column).isSearchable()) {
+						continue;
+					}
 				} else {
 					Object sv = column.getAttributes().get("searchValue");
 					if (sv != null && (!"".equals(sv))) {
 						searchValue = sv.toString();
 					}
 				}
-				if (null != searchValue) {
+				if (null != searchValue && searchValue.length()>0) {
 					rw.writeText("inputs[" + col + "].value='" + searchValue + "';", null);
 					rw.writeText("table.columns(" + col + ").search('" + searchValue + "').draw('page');", null);
 				}
