@@ -168,7 +168,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public List<String> getColumnInfo() {
@@ -176,7 +176,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public void setColumnInfo(List<String> columnInfo) {
