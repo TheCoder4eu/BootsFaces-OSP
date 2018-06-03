@@ -5965,6 +5965,12 @@
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
+		  <name>column-visibility</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
 		  <name>columnVisibility</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>

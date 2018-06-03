@@ -529,7 +529,7 @@ widget dataTable
        is_responsive
  {
 	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
-    columnVisibility     Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
+    column-visibility    Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
     copy                 Boolean default "false"                           "Adds a 'copy to clipboard' button."
     csv                  Boolean default "false"                           "Adds a 'export CSV file' button."
     excel                Boolean default "false"                           "Adds a 'export Excel file' button."
