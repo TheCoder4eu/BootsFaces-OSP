@@ -460,6 +460,14 @@ public class DataTableRenderer extends CoreRenderer {
 					updateColumnDefinition(dataTable, index, "'orderable': false");
 				}
 			}
+			if (column.getAttributes().get("searchable") != null) {
+				String orderable = column.getAttributes().get("searchable").toString();
+				
+				if ("false".equalsIgnoreCase(orderable)) {
+					updateColumnDefinition(dataTable, index, "'searchable': false");
+				}
+			}
+
 
 			if (column.getAttributes().get("customOptions") != null) {
 				String customOptions = column.getAttributes().get("customOptions").toString();
