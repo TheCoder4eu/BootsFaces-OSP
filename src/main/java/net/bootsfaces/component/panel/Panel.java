@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.panel;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,9 +49,10 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Panel.COMPONENT_TYPE)
-public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2,
-		ClientBehaviorHolder, IResponsive, IContentDisabled {
+public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent,
+		IAJAXComponent2, ClientBehaviorHolder, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".panel.Panel";
 
@@ -140,8 +148,17 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 		getStateHelper().put("accordionParent", _accordionParent);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		ajax, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -170,6 +187,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

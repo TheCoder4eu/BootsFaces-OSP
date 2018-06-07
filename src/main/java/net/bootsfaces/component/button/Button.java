@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.button;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlOutcomeTargetButton;
@@ -30,6 +37,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:button /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Button.COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IResponsive {
 
@@ -58,66 +66,17 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		super.setValueExpression(name, binding);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		accesskey,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		disabled,
-		dismiss,
-		display,
-		fragment,
-		hidden,
-		href,
-		icon,
-		iconAlign,
-		iconAwesome,
-		iconFlip,
-		iconRotate,
-		iconSize,
-		iconSpin,
-		lang,
-		largeScreen,
-		look,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		outcome,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		target,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		accesskey, autoUpdate, binding, colLg, colMd, colSm, colXs, dir, disabled, dismiss, display, fragment, hidden, href, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, lang, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, outcome, size, smallScreen, span, style, styleClass, tabindex, target, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -146,6 +105,22 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setAccesskey(String _accesskey) {
 		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

@@ -24,7 +24,7 @@ import javax.faces.component.UIForm;
 public abstract class FormCore extends UIForm {
 
 	protected enum PropertyKeys {
-		horizontal, inline, style, styleClass;
+		autoUpdate, horizontal, inline, style, styleClass;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -37,6 +37,22 @@ public abstract class FormCore extends UIForm {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

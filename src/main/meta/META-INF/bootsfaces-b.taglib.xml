@@ -14,6 +14,18 @@
 			<component-type>net.bootsfaces.component.accordion.Accordion</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -315,6 +327,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.alert.Alert</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -618,6 +642,18 @@
 			<component-type>net.bootsfaces.component.badge.Badge</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -908,6 +944,18 @@
 			<component-type>net.bootsfaces.component.breadcrumbs.Breadcrumbs</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -1022,6 +1070,18 @@
 		  <name>accesskey</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -1542,6 +1602,18 @@
 			<component-type>net.bootsfaces.component.buttonGroup.ButtonGroup</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -1856,6 +1928,18 @@
 			<component-type>net.bootsfaces.component.buttonToolbar.ButtonToolbar</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -2157,6 +2241,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.canvas.Canvas</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -2492,6 +2588,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -2960,6 +3068,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both.]]></description>
 		  <name>caption</name>
 		  <required>false</required>
@@ -3178,6 +3298,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Delays the AJAX request.]]></description>
 		  <name>delay</name>
 		  <required>false</required>
@@ -3380,6 +3512,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -3594,6 +3738,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -4306,6 +4462,18 @@
 			<component-type>net.bootsfaces.component.column.Column</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -4628,6 +4796,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -5204,6 +5384,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -5776,6 +5968,18 @@
 			<component-type>net.bootsfaces.component.container.Container</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -5906,6 +6110,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -6916,6 +7132,18 @@
 			<component-type>net.bootsfaces.component.datepicker.Datepicker</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -7472,6 +7700,18 @@
 		<attribute>
 		  <description><![CDATA[If true, the picker will show on textbox focus and icon click when used in a button group. Default: false.]]></description>
 		  <name>allowInputToggle</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -8488,6 +8728,18 @@
 			<component-type>net.bootsfaces.component.dropButton.DropButton</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -8885,6 +9137,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.dropMenu.DropMenu</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -9322,6 +9586,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The ValueExpression linking this component to a property in a backing bean]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -9492,6 +9768,18 @@
 			<component-type>net.bootsfaces.component.flyOutMenu.FlyOutMenu</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -9654,6 +9942,18 @@
 		<attribute>
 		  <description><![CDATA[String value to determine if the 'all-day' slot is displayed at the top of the calendar in agenda views]]></description>
 		  <name>allDaySlot</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -10110,6 +10410,18 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
 		  <name>delay</name>
 		  <required>false</required>
@@ -10286,6 +10598,18 @@
 		  <type>javax.el.ValueExpression</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Variable to store the beta value of the gyroscope's rotation]]></description>
 		  <name>beta</name>
 		  <required>false</required>
@@ -10368,6 +10692,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -10788,6 +11124,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -11202,6 +11550,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -11678,6 +12038,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -12430,6 +12802,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -13250,6 +13634,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
@@ -14004,6 +14400,18 @@
 			<component-type>net.bootsfaces.component.jumbotron.Jumbotron</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -14120,6 +14528,18 @@
 			<component-type>net.bootsfaces.component.kebab.Kebab</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -14175,6 +14595,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.label.Label</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -14504,6 +14936,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -15086,6 +15530,18 @@
 			<component-type>net.bootsfaces.component.listLinks.ListLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -15195,6 +15651,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.message.Message</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
@@ -15599,6 +16067,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.messages.Messages</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
@@ -16094,6 +16574,18 @@
 			<component-type>net.bootsfaces.component.modal.Modal</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop="false" to disable this feature.]]></description>
 		  <name>backdrop</name>
 		  <required>false</required>
@@ -16220,6 +16712,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -16514,6 +17018,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -17114,6 +17630,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -17686,6 +18214,18 @@
 			<component-type>net.bootsfaces.component.navbarLinks.NavbarLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -17816,6 +18356,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -18398,6 +18950,18 @@
 			<component-type>net.bootsfaces.component.panelGrid.PanelGrid</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -18742,6 +19306,18 @@
 			<component-type>net.bootsfaces.component.pillLinks.PillLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -18870,6 +19446,18 @@
 		  <type>javax.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Which input fields are to be sent? Default value: @none]]></description>
 		  <name>execute</name>
 		  <required>false</required>
@@ -18928,6 +19516,18 @@
 		<attribute>
 		  <description><![CDATA[If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false.]]></description>
 		  <name>animated</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -19296,6 +19896,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -19802,6 +20414,18 @@
 			<component-type>net.bootsfaces.component.row.Row</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -20022,6 +20646,18 @@
 			<component-type>net.bootsfaces.component.scrollSpy.ScrollSpy</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default.]]></description>
 		  <name>container</name>
 		  <required>false</required>
@@ -20106,6 +20742,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -20862,6 +21510,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -21280,6 +21940,18 @@
 		<attribute>
 		  <description><![CDATA[Animate the switch. Default value: true.]]></description>
 		  <name>animate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -21974,6 +22646,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -22758,6 +23442,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -23408,6 +24104,18 @@
 			<component-type>net.bootsfaces.component.slider.Slider</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
 		  <name>badge-style</name>
 		  <required>false</required>
@@ -23649,6 +24357,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.slider2.Slider2</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
 		  <name>badge-style</name>
@@ -23903,6 +24623,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.socialShare.SocialShare</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Message of the block overaly.]]></description>
 		  <name>block-message</name>
@@ -24204,6 +24936,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -25156,6 +25900,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -25386,6 +26142,18 @@
 			<component-type>net.bootsfaces.component.tabLinks.TabLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -25510,6 +26278,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -25749,6 +26529,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.tree.Tree</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
 		  <name>border-color</name>
@@ -26130,6 +26922,18 @@
 			<component-type>net.bootsfaces.component.thumbnail.Thumbnail</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -26416,6 +27220,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -26913,6 +27729,18 @@
 			<component-type>net.bootsfaces.component.well.Well</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -27208,6 +28036,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.formGroup.FormGroup</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>

@@ -26,34 +26,7 @@ import net.bootsfaces.render.IResponsive;
 public abstract class SocialShareCore extends UIOutput implements IResponsive {
 
 	protected enum PropertyKeys {
-		blockMessage,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		disableBlock,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		shareIn,
-		shares,
-		showCount,
-		showLabel,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		text,
-		theme,
-		tinyScreen,
-		url,
-		visible;
+		autoUpdate, blockMessage, colLg, colMd, colSm, colXs, disableBlock, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, shareIn, shares, showCount, showLabel, smallScreen, span, style, styleClass, text, theme, tinyScreen, url, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -66,6 +39,22 @@ public abstract class SocialShareCore extends UIOutput implements IResponsive {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

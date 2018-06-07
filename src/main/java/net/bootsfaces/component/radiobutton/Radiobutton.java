@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.radiobutton;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Map;
 
 import javax.el.ValueExpression;
@@ -32,6 +39,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:radiobutton /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Radiobutton.COMPONENT_TYPE)
 public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent {
 
@@ -48,7 +56,16 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

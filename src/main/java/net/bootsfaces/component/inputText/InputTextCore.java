@@ -24,7 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class InputTextCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, binding, colLg, colMd, colSm, colXs, converterMessage, delay, display, fieldId, fieldSize, hidden, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, mask, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, smallScreen, span, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, typeahead, typeaheadHighlight, typeaheadHint, typeaheadLimit, typeaheadMinLength, typeaheadValues, update, visible;
+		ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, converterMessage, delay, display, fieldId, fieldSize, hidden, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, mask, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, smallScreen, span, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, typeahead, typeaheadHighlight, typeaheadHint, typeaheadLimit, typeaheadMinLength, typeaheadValues, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -53,6 +53,22 @@ public abstract class InputTextCore extends HtmlInputText implements net.bootsfa
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

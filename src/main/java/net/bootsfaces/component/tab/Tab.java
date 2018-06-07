@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.tab;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,6 +42,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:tab /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Tab.COMPONENT_TYPE)
 public class Tab extends TabRepeat implements net.bootsfaces.render.IHasTooltip, ClientBehaviorHolder, IAJAXComponent,
 		IAJAXComponent2, IContentDisabled {
@@ -105,8 +113,17 @@ public class Tab extends TabRepeat implements net.bootsfaces.render.IHasTooltip,
 		return COMPONENT_FAMILY;
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		ajax, contentDisabled, contentStyle, delay, dir, disabled, immediate, onclick, oncomplete, onerror, onsuccess, process, style, styleClass, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		ajax, autoUpdate, contentDisabled, contentStyle, delay, dir, disabled, immediate, onclick, oncomplete, onerror, onsuccess, process, style, styleClass, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -135,6 +152,22 @@ public class Tab extends TabRepeat implements net.bootsfaces.render.IHasTooltip,
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

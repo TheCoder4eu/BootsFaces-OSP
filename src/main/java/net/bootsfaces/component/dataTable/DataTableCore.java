@@ -24,7 +24,7 @@ import javax.faces.component.UIData;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, border, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax, autoUpdate, border, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -53,6 +53,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

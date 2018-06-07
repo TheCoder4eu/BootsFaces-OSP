@@ -24,7 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, allowInputToggle, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay, disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden, icon, iconAwesome, iconPosition, immediate, initialDate, keepInvalid, keepOpen, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
+		ajax, allowInputToggle, autoUpdate, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay, disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden, icon, iconAwesome, iconPosition, immediate, initialDate, keepInvalid, keepOpen, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -69,6 +69,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setAllowInputToggle(boolean _allowInputToggle) {
 		getStateHelper().put(PropertyKeys.allowInputToggle, _allowInputToggle);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

@@ -24,7 +24,7 @@ import javax.faces.component.UICommand;
 public abstract class GyroscopeCore extends UICommand {
 
 	protected enum PropertyKeys {
-		ajax, alpha, beta, delay, disabled, gamma, interval, oncomplete, onrotation, process, threshold, update;
+		ajax, alpha, autoUpdate, beta, delay, disabled, gamma, interval, oncomplete, onrotation, process, threshold, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -69,6 +69,22 @@ public abstract class GyroscopeCore extends UICommand {
 	 */
 	public void setAlpha(javax.el.ValueExpression _alpha) {
 		getStateHelper().put(PropertyKeys.alpha, _alpha);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

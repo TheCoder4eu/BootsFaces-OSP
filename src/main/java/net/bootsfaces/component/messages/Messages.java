@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.messages;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
@@ -35,6 +42,7 @@ import net.bootsfaces.utils.BsfUtils;
  * <code>setRendererType()</code> method.
  * </p>
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent("net.bootsfaces.component.messages.Messages")
 public class Messages extends UIMessagesBase implements IResponsive {
 
@@ -52,51 +60,17 @@ public class Messages extends UIMessagesBase implements IResponsive {
 		super.setValueExpression(name, binding);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		display,
-		errorClass,
-		errorStyle,
-		escape,
-		fatalClass,
-		fatalStyle,
-		_for,
-		globalOnly,
-		hidden,
-		infoClass,
-		infoStyle,
-		largeScreen,
-		lineBreak,
-		lineBreakTag,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onlyMostSevere,
-		recursive,
-		showDetail,
-		showIcon,
-		showSummary,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible,
-		warnClass,
-		warnStyle;
+		autoUpdate, colLg, colMd, colSm, colXs, dir, display, errorClass, errorStyle, escape, fatalClass, fatalStyle, _for, globalOnly, hidden, infoClass, infoStyle, largeScreen, lineBreak, lineBreakTag, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onlyMostSevere, recursive, showDetail, showIcon, showSummary, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, warnClass, warnStyle;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -109,6 +83,22 @@ public class Messages extends UIMessagesBase implements IResponsive {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

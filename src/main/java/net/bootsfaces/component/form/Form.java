@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.form;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.io.IOException;
 
 import javax.el.ValueExpression;
@@ -28,6 +35,7 @@ import javax.faces.context.FacesContext;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Form.COMPONENT_TYPE)
 public class Form extends FormCore {
 
@@ -39,6 +47,15 @@ public class Form extends FormCore {
 
 	public Form() {
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
 	}
 
 	public String getFamily() {
