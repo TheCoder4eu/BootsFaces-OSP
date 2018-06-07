@@ -81,6 +81,7 @@ widget accordion
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	expanded-panels														"Comma separated list of child panel id that need to render expanded."
@@ -97,6 +98,7 @@ widget alert
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                 "An EL expression referring to a server side UIComponent instance in a backing bean."
     closable            Boolean                                           "If true close button will be displayed."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
@@ -114,6 +116,7 @@ widget badge
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -128,6 +131,7 @@ widget breadcrumbs
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -141,6 +145,7 @@ widget button
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     accesskey                                                              "Access key to transfer focus to the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -188,6 +193,7 @@ widget buttonGroup
        has_tooltip
        is_responsive
  {
+ 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding              javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                        "Unique identifier of the component in a namingContainer."
     orientation                                                           "Orientation can be horizontal(default) or vertical."
@@ -208,6 +214,7 @@ widget buttonToolbar
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding              javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                    "Can be right or left. Pulls the element right or left."
@@ -222,6 +229,7 @@ widget canvas
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     height              Integer default "600"                              "Height of the canvas in pixels. This is a mandatory field."
     drawing             Drawing                                            "Optional description what to draw on this component."
@@ -241,6 +249,7 @@ widget carousel
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
@@ -274,6 +283,7 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
@@ -298,6 +308,7 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
@@ -323,6 +334,7 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	direction															   "Can take one of the values 'left' and 'right'. Determines whether the carousel scrolls to the next or to the previous image."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
@@ -348,6 +360,7 @@ widget colorPicker
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -405,6 +418,7 @@ widget column
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -424,6 +438,7 @@ widget commandButton
     accesskey                                                              "Access key to transfer focus to the input element."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -468,6 +483,7 @@ widget commandLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -512,6 +528,7 @@ widget container
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     fluid               Boolean                                            "Boolean value default is false; when set to true, the container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -528,6 +545,7 @@ widget dataTable
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
     column-visibility    Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
     copy                 Boolean default "false"                           "Adds a 'copy to clipboard' button."
@@ -617,6 +635,7 @@ widget datepicker
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
     change-year         Boolean                                            "Boolean value to specify if year selector should be shown."
@@ -649,6 +668,7 @@ widget dateTimePicker
 		is_responsive
 {
     allow-input-toggle 	     Boolean									   "If true, the picker will show on textbox focus and icon click when used in a button group. Default: false."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	binding                  javax.faces.component.UIComponent             "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapse				 Boolean default "true"						   "If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker."
     day-view-header-format   default "MMMM YYYY"						   "Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'."
@@ -736,6 +756,7 @@ widget dropButton
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
@@ -761,6 +782,7 @@ widget dropMenu
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                          "Inline style of the content area."
@@ -790,6 +812,7 @@ widget fetchBeanInfos
 widget form
        extends UIForm
        has_children {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     prependId           Boolean inherited                                  "Flag indicating whether or not this form should prepend its id to its descendent's id during the clientId generation process. If this flag is not set, the default value is true."
@@ -824,6 +847,7 @@ widget flyOutMenu
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -848,6 +872,7 @@ widget fullCalendar
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     defaultDate                                                           "String value of default date in iso 8601 format; this is the date where the calendar position is set on loading"
@@ -876,6 +901,7 @@ widget growl
 	rendered_by net.bootsfaces.component.GrowlRenderer
     extends UIMessages
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     for                 inherited                                          "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
     global-only         Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
     id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
@@ -903,6 +929,7 @@ widget gyroscope
     action              javax.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     ajax                Boolean                                                     "Whether the Button submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     alpha               javax.el.ValueExpression                                    "Variable to store the alpha value of the gyroscope's rotation"
     beta                javax.el.ValueExpression                                    "Variable to store the beta value of the gyroscope's rotation"
     gamma               javax.el.ValueExpression                                    "Variable to store the gamma value of the gyroscope's rotation"
@@ -924,6 +951,7 @@ widget icon
        is_responsive
  {
     addon               Boolean                                            "Boolean value: if true the element is used as Addon."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
@@ -953,6 +981,7 @@ widget iconAwesome
        is_responsive
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
@@ -982,6 +1011,7 @@ widget image
        is_responsive
 {
 	alt																   	   "Alternate textual description of the element rendered by this component."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     height																   "Override for the height of this image."
@@ -1021,8 +1051,9 @@ widget inputSecret
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     autocomplete                                                           "Controls browser autocomplete behavior."
+    alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1086,6 +1117,7 @@ widget inputText
     accesskey                        inherited                             "Access key to transfer focus to the input element."
     alt                              inherited                             "Alternate textual description of the input element."
     autocomplete                     inherited                             "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1155,6 +1187,7 @@ widget inputTextarea
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding               javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter             java.faces.convert.Converter inherited           "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1233,6 +1266,7 @@ widget jumbotron
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
@@ -1245,6 +1279,7 @@ widget kebab
        extends UIComponentBase
        has_children
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1258,6 +1293,7 @@ widget label
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1278,6 +1314,7 @@ widget link
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1326,6 +1363,7 @@ widget listLinks
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1339,6 +1377,7 @@ widget message
        extends UIMessage
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
     error-style                                                            "CSS style to be used for messages with severity \"ERROR\"."
@@ -1371,6 +1410,7 @@ widget messages
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
     error-style                                                            "CSS style to be used for messages with severity \"ERROR\"."
@@ -1411,6 +1451,7 @@ widget modal
        extends UIComponentBase
        has_children
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     backdrop            Boolean default "true"                             "By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop=\"false\" to disable this feature."
     closable            Boolean default "true"                             "If true, the modal dialog can be closed by clicking the small cross in the upper right corner"
     close-on-escape     Boolean default "true"                             "By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape=\"false\" to disable this feature."
@@ -1434,6 +1475,7 @@ widget navBar
        has_tooltip
  {
  	alt                 String default "Brand"                             "alternative text"
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     brand                                                                  "Brand for the Navbar."
     brand-align                                                            "Brand alignment, can be right or left."
@@ -1472,6 +1514,7 @@ widget navCommandLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1519,6 +1562,7 @@ widget navLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1563,6 +1607,7 @@ widget navbarLinks
        implemented_by net.bootsfaces.component.NavBarLinks
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                   "Can be right or left. Pulls the element right or left."
@@ -1580,6 +1625,7 @@ widget panel
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapsed           Boolean                                            "Is the panel collapsed?"
     collapsible         Boolean default "true"                             "By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature."
@@ -1623,6 +1669,7 @@ widget panelGrid
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     col-spans                                                              "Comma-separated list of the column spans"
     column-classes                                                         "Comma-separated list of the CSS classes assigned to each column."
     columns                                                                "Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths."
@@ -1644,6 +1691,7 @@ widget pillLinks
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1658,6 +1706,7 @@ widget poll
  {
     action              javax.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     execute                                                                "Which input fields are to be sent? Default value: @none"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     interval            Integer                                            "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
@@ -1673,6 +1722,7 @@ widget progressBar
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     content-class                                                          "Style class of the inner div (which defines the length of the progress bar)."
@@ -1696,6 +1746,7 @@ widget radiobutton implemented_by net.bootsfaces.component.radiobutton
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1734,6 +1785,7 @@ widget row
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1767,6 +1819,7 @@ widget scrollSpy
        implemented_by net.bootsfaces.component.scrollspy.ScrollSpy
        extends UIComponentBase
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
  	id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     container															   "Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default."
@@ -1788,6 +1841,7 @@ widget selectBooleanCheckbox
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                                "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1856,6 +1910,7 @@ widget spinner
 	   is_responsive
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
@@ -1886,6 +1941,7 @@ widget switch
  {
     accesskey                                                        inherited      "Access key to transfer focus to the input element."
     alt                                                              inherited      "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent            inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                          inherited      "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter                 inherited      "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1949,6 +2005,7 @@ widget selectMultiMenu
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     button-container                                                       "HTML snippet of the container holding both the button as well as the dropdown. Default: &lt;div class='btn-group' style='display:block' /&gt;. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -2013,6 +2070,7 @@ widget selectOneMenu
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -2064,6 +2122,7 @@ widget slider
        extends HtmlInputText
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled	 		Boolean                                            "If true, you can't move the slider, nor can you edit the number."
     handle-shape                                                           "The default handle is squared. Specifing the \"round\" value for this attribute will turn the handle shape to a circle."
@@ -2093,6 +2152,7 @@ widget slider2
 	processes_input
 	extends HtmlInputText
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
 	disabled			Boolean default	"false"							   "If true, you can't move the slider, nor can you edit the number."
 	focus				Boolean default "false"							   "Focus the appropriate slider handle after a value change."
@@ -2131,6 +2191,7 @@ widget socialShare
 	extends UIOutput
 	is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     block-message   default "Click to enable sharing links"				    "Message of the block overaly."
     disable-block	Boolean default "false"									"Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk."
     shares																	"A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line."
@@ -2154,6 +2215,7 @@ widget touchSpin
  {
     accesskey                        inherited                             "Access key to transfer focus to the input element."
     alt                              inherited                             "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     booster				Boolean default "true"							   "If enabled, the the spinner is continually becoming faster as holding the button."
     boostat				Integer default "10"							   "Boost at every nth step."
@@ -2237,6 +2299,7 @@ widget tab
        extends UIOutput
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     content-style                                                          "Inline CSS of the div surrounding the tab pane."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
@@ -2258,6 +2321,7 @@ widget tabLinks
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2271,6 +2335,7 @@ widget tabView
        has_tooltip
  {
     active-index        Integer                                            "Optional attribute to define which tab is active initially."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     content-class                                                          "Style class of the div surrounding the panes."
     content-style                                                          "Inline CSS style of the div surrounding the panes."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -2296,6 +2361,7 @@ widget tree
        extends UIComponentBase
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     value					Node														"Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work."
@@ -2326,6 +2392,7 @@ widget thumbnail
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2342,6 +2409,7 @@ widget video
        is_responsive
 {
     autoplay            Boolean default "false"                            "Setting this to true will start the video on page load. By default, autoplay is deactivated. Note that mobile devices never start videos automatically."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     controls            Boolean default "true"                             "Hide the controls (start, stop, seeking, volume etc.) by setting this property to false. By default, the controls are shown."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -2384,6 +2452,7 @@ widget well
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size can be large or small and controls padding and rounded corners."
@@ -2399,6 +2468,7 @@ widget formGroup
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
