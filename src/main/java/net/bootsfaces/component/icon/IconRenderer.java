@@ -20,6 +20,7 @@ package net.bootsfaces.component.icon;
 
 import java.io.IOException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -80,6 +81,16 @@ public class IconRenderer extends AJAXRenderer {
 		ResponseWriter writer = context.getResponseWriter();
 
 		String nameOfIcon = icon.getName();
+		if (null == nameOfIcon) {
+			nameOfIcon = String.valueOf(icon.getValue());
+			if (null == icon.getValue()) {
+				if (icon instanceof IconAwesome) {
+					throw new FacesException("Please specify the attribute 'value' of the icon. This attribute takes the name of the icon, minus the prefix 'fa-'.");
+				} else {
+					throw new FacesException("Please specify the attribute 'value' of the icon. This attribute takes the name of the icon, minus the prefix 'glyphicon-'.");
+				}
+			}
+		}
 		String styleClass = icon.getStyleClass();
 		String responsiveCSS= Responsive.getResponsiveStyleClass(icon, false).trim();
 		if (responsiveCSS.length()>0) {

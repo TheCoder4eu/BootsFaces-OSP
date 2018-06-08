@@ -956,7 +956,7 @@ widget icon
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    name                mandatory                                          "Icon name, mandatory."
+    name                                                                   "Icon name. This attribute has been deprecated in favor of 'value'."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
@@ -968,6 +968,7 @@ widget icon
     rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
     size                                                                   "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                                            "Boolean value: if true the icon will spin."
+    value                                                                  "Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'."
 	+ajax
 	+style
 	+tooltip
@@ -986,7 +987,7 @@ widget iconAwesome
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
     id                                                      inherited      "Unique identifier of the component in a namingContainer."
-    name                mandatory                           inherited      "Icon name, mandatory."
+    name                                                    inherited      "Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. This attribute has been deprecated in favor of 'value'."
     ondblclick                                              inherited      "Client side callback to execute when input element is double clicked."
     onmousedown                                             inherited      "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                             inherited      "Client side callback to execute when a pointer input element is moved within input element."
@@ -998,6 +999,7 @@ widget iconAwesome
     rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
     size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
+    value                                                                  "Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. Synonym of the attribute 'name'."
 	+ajax
 	+style
 	+responsive

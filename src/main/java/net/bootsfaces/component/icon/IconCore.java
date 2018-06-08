@@ -24,7 +24,7 @@ import javax.faces.component.UICommand;
 public abstract class IconCore extends UICommand implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		addon, ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, delay, disabled, display, flip, hidden, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, readonly, rotate, size, smallScreen, span, spin, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		addon, ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, delay, disabled, display, flip, hidden, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, readonly, rotate, size, smallScreen, span, spin, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -280,7 +280,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Icon name, mandatory. <P>
+	 * Icon name. This attribute has been deprecated in favor of 'value'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getName() {
@@ -288,7 +288,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Icon name, mandatory. <P>
+	 * Icon name. This attribute has been deprecated in favor of 'value'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setName(String _name) {
@@ -805,6 +805,22 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
+	}
+
+	/**
+	 * Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getValue() {
+		return (String) getStateHelper().eval(PropertyKeys.value);
+	}
+
+	/**
+	 * Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setValue(String _value) {
+		getStateHelper().put(PropertyKeys.value, _value);
 	}
 
 	/**

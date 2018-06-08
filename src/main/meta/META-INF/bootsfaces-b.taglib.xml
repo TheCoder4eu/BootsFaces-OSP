@@ -10822,9 +10822,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon name, mandatory.]]></description>
+		  <description><![CDATA[Icon name. This attribute has been deprecated in favor of 'value'.]]></description>
 		  <name>name</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -11094,6 +11094,12 @@
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -11250,9 +11256,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon name, mandatory.]]></description>
+		  <description><![CDATA[Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. This attribute has been deprecated in favor of 'value'.]]></description>
 		  <name>name</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -11522,6 +11528,12 @@
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. Synonym of the attribute 'name'.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
