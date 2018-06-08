@@ -59,6 +59,9 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		Converter converter = menu.getConverter();
+		if (null == converter) {
+			converter = findImplicitConverter(context, component);
+		}
 		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		if (null != submittedOptionValue) {
@@ -469,6 +472,9 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 			UIComponent itemComponent, boolean isSelected) throws IOException {
 
 		Converter converter = menu.getConverter();
+		if (converter == null && itemValue != null && (!(itemValue instanceof String))) {
+			converter = findImplicitConverter(context, menu);
+		}
 		String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
 
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
