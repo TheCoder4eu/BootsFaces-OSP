@@ -130,7 +130,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
-		// Map<String, Object> attrs = component.getAttributes();
 
 		CommandButton commandButton = (CommandButton) component;
 
