@@ -93,7 +93,7 @@ widget accordion
 
 widget alert
        implemented_by net.bootsfaces.component.Alert
-       extends UIComponentBase
+       extends UIOutout
        has_children
        has_tooltip
        is_responsive
@@ -105,6 +105,7 @@ widget alert
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                              "Severity of the Alert, can be success, info, warning, danger. Default is warning."
     title                                                                 "Bold Title displayed before your message."
+    value               inherited                                         "Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag."
 	+style
 	+tooltip
 	+responsive
@@ -1597,7 +1598,7 @@ widget navLink
     style-class                                                            "CSS style class"
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
-    value               inherited                                          "Navigation Link text."
+    value               inherited                                          "Navigation link text."
 	+ajax
     +responsive
     +tooltip
@@ -2454,12 +2455,13 @@ widget well
        has_tooltip
        is_responsive
  {
-	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
+	auto-update         Boolean                                            "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size can be large or small and controls padding and rounded corners."
-    style                                                                  "Inline CSS of the tab."
-    style-class                                                            "Style class of the div surrounding the tab pane."
+    style                                                                  "Inline CSS of the well."
+    style-class                                                            "Style class of the div surrounding the well."
+    value               inherited                                          "Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag."
     +tooltip
     +responsive
     +contentDisabled

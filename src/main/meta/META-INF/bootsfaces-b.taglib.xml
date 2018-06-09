@@ -628,6 +628,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
 		  <required>false</required>
@@ -18206,7 +18212,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Navigation Link text.]]></description>
+		  <description><![CDATA[Navigation link text.]]></description>
 		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -27939,19 +27945,19 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Inline CSS of the tab.]]></description>
+		  <description><![CDATA[Inline CSS of the well.]]></description>
 		  <name>style</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
+		  <description><![CDATA[Style class of the div surrounding the well.]]></description>
 		  <name>style-class</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
+		  <description><![CDATA[Style class of the div surrounding the well.]]></description>
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -28031,6 +28037,12 @@
 		<attribute>
 		  <description><![CDATA[Where is the tooltip to be displayed? Possible values: "top", "bottom", "right", "left", "auto", "auto top", "auto bottom", "auto right" and "auto left". Default to "bottom".]]></description>
 		  <name>tooltipPosition</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

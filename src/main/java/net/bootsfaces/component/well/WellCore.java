@@ -328,7 +328,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Inline CSS of the tab. <P>
+	 * Inline CSS of the well. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -336,7 +336,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Inline CSS of the tab. <P>
+	 * Inline CSS of the well. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -344,7 +344,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <P>
+	 * Style class of the div surrounding the well. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -352,7 +352,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <P>
+	 * Style class of the div surrounding the well. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {
