@@ -554,8 +554,9 @@ public class CoreRenderer extends Renderer {
 
 			if (ve != null) {
 				Class<?> valType = ve.getType(context.getELContext());
+				
 
-				if (valType != null) {
+				if (valType != null && (!valType.isPrimitive())) {
 					return context.getApplication().createConverter(valType);
 				}
 			}
