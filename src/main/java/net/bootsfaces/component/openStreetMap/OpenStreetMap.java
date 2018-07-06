@@ -25,10 +25,6 @@ import javax.faces.event.ListenerFor;
 import javax.faces.event.ListenersFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponent;
@@ -53,8 +49,8 @@ public class OpenStreetMap extends OpenStreetMapCore implements ClientBehaviorHo
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.openStreetMap.OpenStreetMap";
 
-	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
-			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+//	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
+//			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
 	public OpenStreetMap() {
 		setRendererType(DEFAULT_RENDERER);
@@ -90,13 +86,13 @@ public class OpenStreetMap extends OpenStreetMapCore implements ClientBehaviorHo
 		return true;
 	}
 
-	public Collection<String> getEventNames() {
-		return EVENT_NAMES;
-	}
+//	public Collection<String> getEventNames() {
+//		return EVENT_NAMES;
+//	}
 
-	public String getDefaultEventName() {
-		return "click";
-	}
+//	public String getDefaultEventName() {
+//		return "click";
+//	}
 
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 //		if (isAutoUpdate()) {

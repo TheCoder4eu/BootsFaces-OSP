@@ -1607,7 +1607,7 @@ widget navLink
 
 
 widget navbarLinks
-       implemented_by net.bootsfaces.component.NavBarLinks
+       implemented_by net.bootsfaces.component.navBarLinks.NavBarLinks
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
@@ -1620,6 +1620,27 @@ widget navbarLinks
 	+contentDisabled
 }
 
+widget openStreetMap
+       implemented_by net.bootsfaces.component.openStreetMap.OpenStreetMap
+{
+    center				String											"center"
+	marker				String											"marker"
+	popupMsg			String											"popupMsg"
+	zoom				Integer											"zoom"
+	width				String											"width"
+	height				String											"height"
+	minZoom				Integer											"minZoom"
+	maxZoom				Integer											"maxZoom"
+	dragging			Boolean											"dragging"
+	zoomControl			Boolean											"zoomControl"
+	zoomGlobal			Boolean											"zoomGlobal"
+	attribution			String											"attribution"
+	miniMap				Boolean											"miniMap"
+	miniMapWidth		Integer											"miniMapWidth"
+	miniMapHeight		Integer											"miniMapHeight"
+	miniMapPosition		String											"miniMapPosition"
+	urlTemplate			String											"urlTemplate"
+}
 
 widget panel
        implemented_by net.bootsfaces.component.panel.Panel
