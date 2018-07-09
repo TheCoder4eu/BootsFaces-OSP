@@ -28,12 +28,12 @@ import javax.faces.event.PostAddToViewEvent;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.component.ajax.IAJAXComponent2;
-import net.bootsfaces.component.navLink.NavLink;
+import net.bootsfaces.component.navCommandLink.NavCommandLink;
 
 /** This class holds the attributes of &lt;b:commandLink /&gt;. */
 @ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent("net.bootsfaces.component.commandLink.CommandLink")
-public class CommandLink extends NavLink implements IAJAXComponent2 {
+public class CommandLink extends NavCommandLink implements IAJAXComponent2 {
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 		if (isAutoUpdate()) {
 			if (FacesContext.getCurrentInstance().isPostback()) {
