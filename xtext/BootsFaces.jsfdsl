@@ -2020,6 +2020,57 @@ widget switch
     +ajax
 }
 
+widget selectManyListbox
+       extends HtmlInputText
+       has_tooltip
+       is_responsive
+       description "Similar to a traditional listbox, but with the option to select multiple values."
+ {
+    accesskey                                                              "Access key to transfer focus to the input element."
+    alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
+    disabled            Boolean                                            "Disables the input element, default is false."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
+   	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
+    label                                                                  "The Label of the field ."
+    label-style                                                            "The CSS inline style of the label."
+    label-style-class                                                      "The CSS class of the label."
+    lang                                                                   "Code describing the language used in the generated markup for this component."
+    non-selected-text   String                                             "Text which is displayed if no option has been selected."
+    n-selected-text     String                                             "Text which is displayed if more than numberDisplayed options have been selected."
+    all-selected-text   String                                             "Text which is displayed if every option has been selected."
+    number-displayed    Integer                                            "Maximum number of options displayed in the button."
+    style-class                                                            "Style class of the input element. Is translated to the buttonContainer attribute."
+    readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
+    render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    required            Boolean                                            "Boolean value Require input in the component when the form is submitted."
+    required-message                                                       "Message to show if the user did not specify a value and the attribute required is set to true."
+    size                Integer                                            "Number of characters used to determine the width of the input element."
+    style                                                                  "Inline style of the input element."
+    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    title                                                                  "Advisory tooltip information."
+    value               inherited                                          "Value."
+
+    onselectall                                                            "AJAX event: This function is triggered when the select all option is used to select all options. Note that this can also be triggered manually using the .multiselect('selectAll') method."
+    ondropdownshow                                                         "AJAX event: A callback called when the dropdown is shown."
+    ondropdownhidden                                                       "AJAX event: A callback called after the dropdown has been closed."
+    onchange                                                               "AJAX event: A function which is triggered on the change event of the options. Note that the event is not triggered when selecting or deselecting options using the select and deselect methods provided by the plugin."
+    ondropdownhide                                                         "AJAX event: A callback called when the dropdown is closed."
+    ondeselectall                                                          "AJAX event: This function is triggered when the select all option is used to deselect all options. Note that this can also be triggered manually using the .multiselect('deselectAll') method."
+    ondropdownshown                                                        "AJAX event: A callback called after the dropdown has been shown."
+    oninitialized                                                          "AJAX event: A function which is triggered when the multiselect is finished initializing."
+
+    +ajax
+    +tooltip
+    +responsive
+    +responsiveLabel
+}
+
+
 
 widget selectMultiMenu
        extends HtmlInputText
