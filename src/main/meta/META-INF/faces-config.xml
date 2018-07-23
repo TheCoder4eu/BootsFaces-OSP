@@ -14,16 +14,10 @@
             net.bootsfaces.listeners.AddResourcesListener
          </system-event-listener-class>
          <system-event-class>
-            javax.faces.event.PreRenderViewEvent
+            javax.faces.event.PostAddToViewEvent
          </system-event-class>    					
       </system-event-listener>
     </application>
-
-	<ordering>
-		<after>
-			<name>omnifaces</name>
-		</after>
-	</ordering>
     
     <managed-bean>
         <description>

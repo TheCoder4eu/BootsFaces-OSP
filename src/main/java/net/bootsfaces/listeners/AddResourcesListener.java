@@ -93,7 +93,6 @@ public class AddResourcesListener implements SystemEventListener {
 
 	static {
 		LOGGER.info("This application is running on BootsFaces"+C.BSFVERSION+"-"+C.BSFRELEASE_STATUS);
-		//LOGGER.info("This application is running on BootsFaces 1.0.1-SNAPSHOT");
 	}
 
 	/**
