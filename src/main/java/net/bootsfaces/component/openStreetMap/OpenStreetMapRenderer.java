@@ -104,7 +104,7 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 				+ "], zoom: " + openStreetMap.getZoom() + ", layers: L.tileLayer('" + openStreetMap.getUrlTemplate()
 				+ "', {id: 'osm', attribution: '" + openStreetMap.getAttribution() + "', maxZoom: "
 				+ openStreetMap.getMaxZoom() + ", minZoom: " + openStreetMap.getMinZoom() + "}), dragging:"
-				+ openStreetMap.getDragging() + ", zoomControl:" + openStreetMap.getZoomControl() + " });", null);
+				+ openStreetMap.isDragging() + ", zoomControl:" + openStreetMap.isZoomControl() + " });", null);
 		rw.writeText("if('" + openStreetMap.getMarker() + "')", null);
 		rw.writeText("{", null);
 		rw.writeText("var " + clientId + "_marker = L.marker([" + openStreetMap.getMarker()
@@ -113,7 +113,7 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 		rw.writeText("if('" + openStreetMap.getPopupMsg() + "')", null);
 		rw.writeText(clientId + "_marker.bindPopup('" + openStreetMap.getPopupMsg() + "');", null);
 		rw.writeText("}", null);
-		rw.writeText("if(!" + openStreetMap.getZoomGlobal() + ")", null);
+		rw.writeText("if(!" + openStreetMap.isZoomGlobal() + ")", null);
 		rw.writeText("{", null);
 		rw.writeText(clientId + "_map.touchZoom.disable();", null);
 		rw.writeText(clientId + "_map.doubleClickZoom.disable();", null);
@@ -121,7 +121,7 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 		rw.writeText(clientId + "_map.boxZoom.disable();", null);
 		rw.writeText(clientId + "_map.keyboard.disable();", null);
 		rw.writeText("}", null);
-		rw.writeText("if(" + openStreetMap.getMiniMap() + ")", null);
+		rw.writeText("if(" + openStreetMap.isMiniMap() + ")", null);
 		rw.writeText("{", null);
 		rw.writeText("new L.Control.MiniMap(L.tileLayer('" + openStreetMap.getUrlTemplate() + "', {}), {", null);
 		rw.writeText("toggleDisplay: true,", null);

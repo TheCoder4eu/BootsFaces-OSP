@@ -24,8 +24,7 @@ import javax.faces.component.UIData;
 public abstract class OpenStreetMapCore extends UIData {
 
 	protected enum PropertyKeys {
-		center, marker, popupMsg, zoom, width, height, minZoom, maxZoom, dragging, zoomControl, zoomGlobal, attribution,
-		miniMap, miniMapWidth, miniMapHeight, miniMapPosition, urlTemplate;
+		attribution, center, dragging, height, marker, maxZoom, minZoom, miniMap, miniMapHeight, miniMapPosition, miniMapWidth, popupMsg, urlTemplate, width, zoom, zoomControl, zoomGlobal;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -41,328 +40,275 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * String specifying the center of the map.
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
+	 * attribution <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getAttribution() {
+		return (String) getStateHelper().eval(PropertyKeys.attribution);
+	}
+
+	/**
+	 * attribution <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAttribution(String _attribution) {
+		getStateHelper().put(PropertyKeys.attribution, _attribution);
+	}
+
+	/**
+	 * center <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getCenter() {
 		return (String) getStateHelper().eval(PropertyKeys.center);
 	}
 
 	/**
-	 * String specifying the center of the map.
-	 * 
+	 * center <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setCenter(String _value) {
-		getStateHelper().put(PropertyKeys.center, _value);
+	public void setCenter(String _center) {
+		getStateHelper().put(PropertyKeys.center, _center);
 	}
 
 	/**
-	 * marker
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
+	 * dragging <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isDragging() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.dragging, false);
+	}
+
+	/**
+	 * dragging <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDragging(boolean _dragging) {
+		getStateHelper().put(PropertyKeys.dragging, _dragging);
+	}
+
+	/**
+	 * height <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getHeight() {
+		return (String) getStateHelper().eval(PropertyKeys.height);
+	}
+
+	/**
+	 * height <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setHeight(String _height) {
+		getStateHelper().put(PropertyKeys.height, _height);
+	}
+
+	/**
+	 * marker <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMarker() {
 		return (String) getStateHelper().eval(PropertyKeys.marker);
 	}
 
 	/**
-	 * marker
-	 * 
+	 * marker <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMarker(String _value) {
-		getStateHelper().put(PropertyKeys.marker, _value);
+	public void setMarker(String _marker) {
+		getStateHelper().put(PropertyKeys.marker, _marker);
 	}
 
 	/**
-	 * popupMsg
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
+	 * maxZoom <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public int getMaxZoom() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxZoom, 0);
+	}
+
+	/**
+	 * maxZoom <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMaxZoom(int _maxZoom) {
+		getStateHelper().put(PropertyKeys.maxZoom, _maxZoom);
+	}
+
+	/**
+	 * minZoom <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public int getMinZoom() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.minZoom, 0);
+	}
+
+	/**
+	 * minZoom <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMinZoom(int _minZoom) {
+		getStateHelper().put(PropertyKeys.minZoom, _minZoom);
+	}
+
+	/**
+	 * miniMap <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isMiniMap() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.miniMap, false);
+	}
+
+	/**
+	 * miniMap <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMiniMap(boolean _miniMap) {
+		getStateHelper().put(PropertyKeys.miniMap, _miniMap);
+	}
+
+	/**
+	 * miniMapHeight <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public int getMiniMapHeight() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.miniMapHeight, 0);
+	}
+
+	/**
+	 * miniMapHeight <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMiniMapHeight(int _miniMapHeight) {
+		getStateHelper().put(PropertyKeys.miniMapHeight, _miniMapHeight);
+	}
+
+	/**
+	 * miniMapPosition <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getMiniMapPosition() {
+		return (String) getStateHelper().eval(PropertyKeys.miniMapPosition);
+	}
+
+	/**
+	 * miniMapPosition <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMiniMapPosition(String _miniMapPosition) {
+		getStateHelper().put(PropertyKeys.miniMapPosition, _miniMapPosition);
+	}
+
+	/**
+	 * miniMapWidth <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public int getMiniMapWidth() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.miniMapWidth, 0);
+	}
+
+	/**
+	 * miniMapWidth <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMiniMapWidth(int _miniMapWidth) {
+		getStateHelper().put(PropertyKeys.miniMapWidth, _miniMapWidth);
+	}
+
+	/**
+	 * popupMsg <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPopupMsg() {
 		return (String) getStateHelper().eval(PropertyKeys.popupMsg);
 	}
 
 	/**
-	 * popupMsg
-	 * 
+	 * popupMsg <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setPopupMsg(String _value) {
-		getStateHelper().put(PropertyKeys.popupMsg, _value);
+	public void setPopupMsg(String _popupMsg) {
+		getStateHelper().put(PropertyKeys.popupMsg, _popupMsg);
 	}
 
 	/**
-	 * zoom
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public Integer getZoom() {
-		return (Integer) getStateHelper().eval(PropertyKeys.zoom, 10);
-	}
-
-	/**
-	 * zoom
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setZoom(Integer _value) {
-		getStateHelper().put(PropertyKeys.zoom, _value);
-	}
-
-	/**
-	 * width
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public String getWidth() {
-		return (String) getStateHelper().eval(PropertyKeys.width, "300px");
-	}
-
-	/**
-	 * width
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setWidth(String _value) {
-		getStateHelper().put(PropertyKeys.width, _value);
-	}
-
-	/**
-	 * height
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public String getHeight() {
-		return (String) getStateHelper().eval(PropertyKeys.height, "200px");
-	}
-
-	/**
-	 * height
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setHeight(String _value) {
-		getStateHelper().put(PropertyKeys.height, _value);
-	}
-
-	/**
-	 * minZoom
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public Integer getMinZoom() {
-		return (Integer) getStateHelper().eval(PropertyKeys.minZoom, 1);
-	}
-
-	/**
-	 * minZoom
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMinZoom(Integer _value) {
-		getStateHelper().put(PropertyKeys.minZoom, _value);
-	}
-
-	/**
-	 * maxZoom
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public Integer getMaxZoom() {
-		return (Integer) getStateHelper().eval(PropertyKeys.maxZoom, 19);
-	}
-
-	/**
-	 * maxZoom
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMaxZoom(Integer _value) {
-		getStateHelper().put(PropertyKeys.maxZoom, _value);
-	}
-
-	/**
-	 * Boolean to set whether dragging is enabled.
-	 * 
-	 * @return Returns the value of the attribute, or , false, if it hasn't been set
-	 *         by the JSF file.
-	 */
-	public Boolean getDragging() {
-		return (Boolean) getStateHelper().eval(PropertyKeys.dragging, true);
-	}
-
-	/**
-	 * Boolean to set whether dragging is enabled.
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setDragging(boolean _value) {
-		getStateHelper().put(PropertyKeys.dragging, _value);
-	}
-
-	/**
-	 * zoomControl
-	 * 
-	 * @return Returns the value of the attribute, or , false, if it hasn't been set
-	 *         by the JSF file.
-	 */
-	public Boolean getZoomControl() {
-		return (Boolean) getStateHelper().eval(PropertyKeys.zoomControl, true);
-	}
-
-	/**
-	 * zoomControl
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setZoomControl(boolean _value) {
-		getStateHelper().put(PropertyKeys.zoomControl, _value);
-	}
-
-	/**
-	 * zoomGlobal
-	 * 
-	 * @return Returns the value of the attribute, or , false, if it hasn't been set
-	 *         by the JSF file.
-	 */
-	public Boolean getZoomGlobal() {
-		return (Boolean) getStateHelper().eval(PropertyKeys.zoomGlobal, true);
-	}
-
-	/**
-	 * zoomGlobal
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setZoomGlobal(boolean _value) {
-		getStateHelper().put(PropertyKeys.zoomGlobal, _value);
-	}
-
-	/**
-	 * attribution
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public String getAttribution() {
-		return (String) getStateHelper().eval(PropertyKeys.attribution,
-				"Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors,<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>");
-//		return (String) getStateHelper().eval(PropertyKeys.attribution,
-//				"Map data &copy; &lt;a href=&quot;http://openstreetmap.org&quot;&gt;OpenStreetMap&lt;/a&gt; contributors,&lt;a href=&quot;http://creativecommons.org/licenses/by-sa/2.0/&quot;&gt;CC-BY-SA&lt;/a&gt;");}
-	}
-
-	/**
-	 * attribution
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setAttribution(String _value) {
-		getStateHelper().put(PropertyKeys.attribution, _value);
-	}
-
-	/**
-	 * miniMap
-	 * 
-	 * @return Returns the value of the attribute, or , false, if it hasn't been set
-	 *         by the JSF file.
-	 */
-	public Boolean getMiniMap() {
-		return (Boolean) getStateHelper().eval(PropertyKeys.miniMap, false);
-	}
-
-	/**
-	 * miniMap
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMiniMap(boolean _value) {
-		getStateHelper().put(PropertyKeys.miniMap, _value);
-	}
-
-	/**
-	 * miniMapWidth
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public Integer getMiniMapWidth() {
-		return (Integer) getStateHelper().eval(PropertyKeys.miniMapWidth, 100);
-	}
-
-	/**
-	 * miniMapWidth
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMiniMapWidth(Integer _value) {
-		getStateHelper().put(PropertyKeys.miniMapWidth, _value);
-	}
-
-	/**
-	 * miniMapHeight
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public Integer getMiniMapHeight() {
-		return (Integer) getStateHelper().eval(PropertyKeys.miniMapHeight, 100);
-	}
-
-	/**
-	 * miniMapHeight
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMiniMapHeight(Integer _value) {
-		getStateHelper().put(PropertyKeys.miniMapHeight, _value);
-	}
-
-	/**
-	 * miniMapPosition
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
-	 */
-	public String getMiniMapPosition() {
-		return (String) getStateHelper().eval(PropertyKeys.miniMapPosition, "bottomright");
-	}
-
-	/**
-	 * miniMapPosition
-	 * 
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setMiniMapPosition(String _value) {
-		getStateHelper().put(PropertyKeys.miniMapPosition, _value);
-	}
-
-	/**
-	 * urlTemplate
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by
-	 *         the JSF file.
+	 * urlTemplate <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getUrlTemplate() {
-		return (String) getStateHelper().eval(PropertyKeys.urlTemplate, "http://{s}.tile.osm.org/{z}/{x}/{y}.png");
+		return (String) getStateHelper().eval(PropertyKeys.urlTemplate);
 	}
 
 	/**
-	 * urlTemplate
-	 * 
+	 * urlTemplate <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setUrlTemplate(String _value) {
-		getStateHelper().put(PropertyKeys.urlTemplate, _value);
+	public void setUrlTemplate(String _urlTemplate) {
+		getStateHelper().put(PropertyKeys.urlTemplate, _urlTemplate);
 	}
+
+	/**
+	 * width <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidth() {
+		return (String) getStateHelper().eval(PropertyKeys.width);
+	}
+
+	/**
+	 * width <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidth(String _width) {
+		getStateHelper().put(PropertyKeys.width, _width);
+	}
+
+	/**
+	 * zoom <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public int getZoom() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.zoom, 0);
+	}
+
+	/**
+	 * zoom <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setZoom(int _zoom) {
+		getStateHelper().put(PropertyKeys.zoom, _zoom);
+	}
+
+	/**
+	 * zoomControl <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isZoomControl() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.zoomControl, false);
+	}
+
+	/**
+	 * zoomControl <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setZoomControl(boolean _zoomControl) {
+		getStateHelper().put(PropertyKeys.zoomControl, _zoomControl);
+	}
+
+	/**
+	 * zoomGlobal <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isZoomGlobal() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.zoomGlobal, false);
+	}
+
+	/**
+	 * zoomGlobal <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setZoomGlobal(boolean _zoomGlobal) {
+		getStateHelper().put(PropertyKeys.zoomGlobal, _zoomGlobal);
+	}
+
 }
