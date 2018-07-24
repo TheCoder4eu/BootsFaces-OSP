@@ -282,7 +282,7 @@ public class Slider2Renderer extends BadgeRenderer {
 			styleClass += " " + slider.getBadgeStyleClass();
 		}
 		rw.writeAttribute("class", styleClass, "class");
-		writeAttribute(rw, "style", slider.getBadgeStyleClass());
+		writeAttribute(rw, "style", slider.getBadgeStyle());
 
 		rw.writeAttribute("value", val, null);
 
