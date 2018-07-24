@@ -248,7 +248,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, int val,
 			String clientId, boolean vo, int min, int max) throws IOException {
-		int cols = (vo ? 12 : 1);
+		int cols = (vo ? 12 : slider.getBadgeSpan());
 		if (!mode.equals("basic")) {
 			/*
 			 * int span, int offset, int cxs, int csm, int clg, int oxs, int
@@ -319,7 +319,7 @@ public class Slider2Renderer extends BadgeRenderer {
 	throws IOException {
 		int cols = span;
 		if (!slider.getMode().equals("basic")) {
-			cols--;
+			cols -= slider.getBadgeSpan();
 		}
 		/*
 		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,

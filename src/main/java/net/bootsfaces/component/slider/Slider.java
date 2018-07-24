@@ -96,7 +96,7 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	}
 
 	protected enum PropertyKeys {
-		autoUpdate, badgeStyle, badgeStyleClass, binding, disabled, handleShape, handleSize, inline, label, labelStyle, labelStyleClass, max, min, mode, orientation, span, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
+		autoUpdate, badgeSpan, badgeStyle, badgeStyleClass, binding, disabled, handleShape, handleSize, inline, label, labelStyle, labelStyleClass, max, min, mode, orientation, span, step, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -125,6 +125,22 @@ public class Slider extends HtmlInputText implements net.bootsfaces.render.IHasT
 	 */
 	public void setAutoUpdate(boolean _autoUpdate) {
 		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
+	}
+
+	/**
+	 * The column span of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
+	 */
+	public int getBadgeSpan() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.badgeSpan, 1);
+	}
+
+	/**
+	 * The column span of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeSpan(int _badgeSpan) {
+		getStateHelper().put(PropertyKeys.badgeSpan, _badgeSpan);
 	}
 
 	/**

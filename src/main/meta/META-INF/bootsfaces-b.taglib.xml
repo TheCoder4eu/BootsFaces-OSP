@@ -18372,46 +18372,34 @@
 			<component-type>net.bootsfaces.component.openStreetMap.OpenStreetMap</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[attribution]]></description>
+		  <name>attribution</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[center]]></description>
 		  <name>center</name>
-		  <required>true</required>
-		  <type>java.lang.String</type>
+		  <required>false</required>
+		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[marker]]></description>
-		  <name>marker</name>
+		  <description><![CDATA[dragging]]></description>
+		  <name>dragging</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[popupMsg]]></description>
-		  <name>popupMsg</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[zoom]]></description>
-		  <name>zoom</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[width]]></description>
-		  <name>width</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[height]]></description>
 		  <name>height</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[minZoom]]></description>
-		  <name>minZoom</name>
+		  <description><![CDATA[marker]]></description>
+		  <name>marker</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[maxZoom]]></description>
@@ -18420,10 +18408,58 @@
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[dragging]]></description>
-		  <name>dragging</name>
+		  <description><![CDATA[minZoom]]></description>
+		  <name>minZoom</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[miniMap]]></description>
+		  <name>miniMap</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[miniMapHeight]]></description>
+		  <name>miniMapHeight</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[miniMapPosition]]></description>
+		  <name>miniMapPosition</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[miniMapWidth]]></description>
+		  <name>miniMapWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[popupMsg]]></description>
+		  <name>popupMsg</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[urlTemplate]]></description>
+		  <name>urlTemplate</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[width]]></description>
+		  <name>width</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[zoom]]></description>
+		  <name>zoom</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[zoomControl]]></description>
@@ -18437,42 +18473,6 @@
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
-		<attribute>
-		  <description><![CDATA[attribution]]></description>
-		  <name>attribution</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[miniMap]]></description>
-		  <name>miniMap</name>
-		  <required>false</required>
-		  <type>java.lang.Boolean</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[miniMapWidth]]></description>
-		  <name>miniMapWidth</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[miniMapHeight]]></description>
-		  <name>miniMapHeight</name>
-		  <required>false</required>
-		  <type>java.lang.Integer</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[miniMapPosition]]></description>
-		  <name>miniMapPosition</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>
-		<attribute>
-		  <description><![CDATA[urlTemplate]]></description>
-		  <name>urlTemplate</name>
-		  <required>false</required>
-		  <type>java.lang.String</type>
-		</attribute>		
 	</tag>
 	
 	<!-- *********** b:panel ************************* -->
@@ -24244,6 +24244,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badge-span</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badgeSpan</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
 		  <name>badge-style</name>
 		  <required>false</required>
@@ -24496,6 +24508,18 @@
 		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badge-span</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badgeSpan</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>

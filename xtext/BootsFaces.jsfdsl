@@ -2165,6 +2165,7 @@ widget slider
     step                Integer                                            "The step of the slider."
     style                                                                  "Inline style of the entire slider."
     style-class                                                            "Style class of the entire slider."
+	badge-span          Integer default "1"                                "The column span of the badge or input field (if it's shown)."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
     badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
     value               inherited                                          "Value."
@@ -2206,6 +2207,7 @@ widget slider2
 	value				Integer default "5" inherited   	    	   	   "Initial position of the slider."
     style                                                                  "Inline style of the entire slider."
     style-class                                                            "Style class of the entire slider."
+	badge-span          Integer default "1"                                "The column span of the badge or input field (if it's shown)."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
     badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
 }

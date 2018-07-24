@@ -157,7 +157,7 @@ public class SliderRenderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 			if (bottom) {
-				encodeSliderDiv(rw, isVertical, mode, span, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, slider.getBadgeSpan(), clientId);
 				rw.endElement("div");/* Row */
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
@@ -168,7 +168,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row " + getErrorAndRequiredClass(slider, clientId), "class");
-				encodeSliderDiv(rw, isVertical, mode, span, clientId);
+				encodeSliderDiv(rw, isVertical, mode, span, slider.getBadgeSpan(), clientId);
 			}
 			rw.endElement("div"); /* Row */
 			if (label != null && bottom) {
@@ -215,7 +215,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
 
-			encodeSliderDiv(rw, isVertical, mode, span, clientId);
+			encodeSliderDiv(rw, isVertical, mode, span, slider.getBadgeSpan(), clientId);
 			rw.endElement("div");/* Row */
 
 		}
@@ -243,7 +243,7 @@ public class SliderRenderer extends BadgeRenderer {
 
 	private void encodeInput(Slider slider, ResponseWriter rw, String mode, FacesContext context, int val,
 			String clientId, boolean vo, int min, int max) throws IOException {
-		int cols = (vo ? 12 : 1);
+		int cols = (vo ? 12 : slider.getBadgeSpan());
 		if (!mode.equals("basic")) {
 			/*
 			 * int span, int offset, int cxs, int csm, int clg, int oxs, int
@@ -309,11 +309,11 @@ public class SliderRenderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, String clientId)
+	private void encodeSliderDiv(ResponseWriter rw, boolean vo, String mode, int span, int badgeSpan, String clientId)
 			throws IOException {
 		int cols = span;
 		if (!mode.equals("basic")) {
-			cols--;
+			cols -= badgeSpan;
 		}
 		/*
 		 * int span, int offset, int cxs, int csm, int clg, int oxs, int osm,
