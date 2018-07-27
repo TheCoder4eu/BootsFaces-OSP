@@ -7129,6 +7129,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc.]]></description>
+		  <name>width</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:datepicker ************************* -->

@@ -468,6 +468,13 @@ public class DataTableRenderer extends CoreRenderer {
 				}
 			}
 
+			if (column.getAttributes().get("width") != null) {
+				String width = column.getAttributes().get("width").toString();
+				if (isNumeric(width)) {
+					width+= "px";
+				}
+				updateColumnDefinition(dataTable, index, "'width':'" + width + "'");
+			}
 
 			if (column.getAttributes().get("customOptions") != null) {
 				String customOptions = column.getAttributes().get("customOptions").toString();
@@ -858,6 +865,15 @@ public class DataTableRenderer extends CoreRenderer {
 			infos.set(index, s + "," + value);
 		}
 		
+	}
+	
+	public static boolean isNumeric(String str)
+	{
+	    for (char c : str.toCharArray())
+	    {
+	        if (!Character.isDigit(c)) return false;
+	    }
+	    return true;
 	}
 	
 }

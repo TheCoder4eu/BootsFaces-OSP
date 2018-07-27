@@ -628,6 +628,7 @@ widget dataTableColumn {
     orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
     searchable         Boolean default "true"                              "If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable."
     value              inherited                                           "EL expression referring to the back-end bean attribute providing the value of the field."
+	width                                                                  "Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc."
 	+style
 }
 
