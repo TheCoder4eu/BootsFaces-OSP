@@ -12,8 +12,14 @@ attribute_list ajax {
 attribute_list iconAwesome {
     icon-flip                                                             "Flip the icon: can be H (horizontal) or V (vertical)."
     icon-rotate                                                           "Rotate 90 degrees the icon: Can be L,R."
-    icon-size                                                             "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    icon-size                                                             "Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed."
     icon-spin                Boolean                                      "Boolean value: if true the icon will spin."
+    icon-pulse               Boolean                                      "Boolean value: if true the icon will rotate with 8 discrete steps."
+    icon-inverse             Boolean                                      "Switch the icon from black-on-white to white-on-black."
+    icon-solid               Boolean                                      "Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-light               Boolean                                      "Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-regular             Boolean                                      "Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-brand               Boolean                                      "Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
 }
 
 attribute_list tooltip {
@@ -34,7 +40,7 @@ attribute_list responsive {
     medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    display			    default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
     hidden				      											 "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
@@ -999,8 +1005,16 @@ widget iconAwesome
     readonly            Boolean                             inherited      "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean                             inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
-    size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    size                                                    inherited      "Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed."
     spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
+    pulse               Boolean                                            "Boolean value: if true the icon will rotate with 8 discrete steps."
+    inverse             Boolean                                            "Switch the icon from black-on-white to white-on-black."
+    solid               Boolean                                            "Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    light               Boolean                                            "Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    regular             Boolean                                            "Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    brand               Boolean                                            "Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    fixed-width         Boolean                                            "Activates the fixed with feature of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+
     value                                                                  "Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. Synonym of the attribute 'name'."
 	+ajax
 	+style

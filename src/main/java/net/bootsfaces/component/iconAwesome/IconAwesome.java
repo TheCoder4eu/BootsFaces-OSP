@@ -57,16 +57,16 @@ public class IconAwesome extends Icon {
 		super.setValueExpression(name, binding);
 	}
 
-		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 		if (isAutoUpdate()) {
 			if (FacesContext.getCurrentInstance().isPostback()) {
 				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
 			}
- 	 		super.processEvent(event);
- 	 	}
+			super.processEvent(event);
+		}
 	}
 
-public String getFamily() {
+	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 }
