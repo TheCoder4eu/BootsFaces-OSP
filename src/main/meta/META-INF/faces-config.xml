@@ -14,7 +14,7 @@
             net.bootsfaces.listeners.AddResourcesListener
          </system-event-listener-class>
          <system-event-class>
-            javax.faces.event.PostAddToViewEvent
+            javax.faces.event.PreRenderViewEvent
          </system-event-class>    					
       </system-event-listener>
     </application>
