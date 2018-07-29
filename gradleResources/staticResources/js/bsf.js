@@ -21,9 +21,16 @@ BsF.ajax = {};
 BsF.onCompleteCallback = {};
 BsF.onErrorCallback = {};
 BsF.onSuccessCallback = {};
+BsF.blockBlockUI = false;
 
 BsF.ajax.onevent = function(data) {
-	if (data.status === 'complete') { // note that JSF confuses onSuccess and onComplete
+	if (data.status === 'begin') {
+		if ($.blockUI && $.blockUI != null && !BsF.blockBlockUI) {
+			var message = $.blockUI.defaults.message;
+			$.blockUI();
+		}		
+	}
+	else if (data.status === 'complete') { // note that JSF confuses onSuccess and onComplete
 		var cid = data.source.id.replace(/[^a-zA-Z0-9]+/g, '_');
 		if (data.responseText != null && data.responseText.indexOf("<error><error-name>") >= 0) {
 			var f = BsF.onErrorCallback[cid];
@@ -118,14 +125,8 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 			opts[propertyName] = p;
 		}
 	}
+	BsF.blockBlockUI = opts['blockui.disabled'] === "true";
 	jsf.ajax.request(source, event, opts);
-	
-	var disableBlockUI = opts['blockui.disabled'] === "true";
-	
-	if ($.blockUI && $.blockUI != null && !disableBlockUI) {
-		var message = $.blockUI.defaults.message;
-		$.blockUI();
-	}
 	return false;
 };
 
