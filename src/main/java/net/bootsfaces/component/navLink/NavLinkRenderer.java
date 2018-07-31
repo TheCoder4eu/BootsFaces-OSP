@@ -288,9 +288,14 @@ public class NavLinkRenderer extends CoreRenderer {
 						c.encodeAll(context);
 					}
 				}
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
+						link.isIconRegular());
+
 			} else {
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
+						link.isIconRegular());
 				if (navlink.getChildCount() > 0) {
 					for (UIComponent c : navlink.getChildren()) {
 						c.encodeAll(context);

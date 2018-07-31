@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.navLink.NavLinkCore.PropertyKeys;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 
@@ -762,6 +763,42 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconSize();
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand();
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse();
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight();
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse();
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular();
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid();
 
 
 }

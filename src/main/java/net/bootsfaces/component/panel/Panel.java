@@ -158,7 +158,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	protected enum PropertyKeys {
-		ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -494,6 +494,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconBrand, false);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconBrand(boolean _iconBrand) {
+		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
+	}
+
+	/**
 	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -507,6 +523,70 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setIconFlip(String _iconFlip) {
 		getStateHelper().put(PropertyKeys.iconFlip, _iconFlip);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconInverse, false);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconInverse(boolean _iconInverse) {
+		getStateHelper().put(PropertyKeys.iconInverse, _iconInverse);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconLight, false);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconLight(boolean _iconLight) {
+		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconPulse, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPulse(boolean _iconPulse) {
+		getStateHelper().put(PropertyKeys.iconPulse, _iconPulse);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconRegular, false);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRegular(boolean _iconRegular) {
+		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
 	}
 
 	/**
@@ -526,7 +606,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconSize() {
@@ -534,11 +614,27 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconSize(String _iconSize) {
 		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSolid, false);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSolid(boolean _iconSolid) {
+		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
 	}
 
 	/**

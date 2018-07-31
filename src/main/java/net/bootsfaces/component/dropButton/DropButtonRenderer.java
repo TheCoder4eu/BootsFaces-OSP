@@ -103,12 +103,16 @@ public class DropButtonRenderer extends CoreRenderer {
 			if (ialign != null && ialign.equals("right")) {
 				rw.writeText(value + " ", null);
 				IconRenderer.encodeIcon(rw, dropButton, icon, fa, dropButton.getIconSize(), dropButton.getIconRotate(),
-						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false);
+						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false,
+						dropButton.isIconBrand(), dropButton.isIconInverse(), dropButton.isIconLight(), dropButton.isIconPulse(), dropButton.isIconRegular(),
+						dropButton.isIconRegular());
+
 				rw.writeText(" ", null);
 			} else {
 				IconRenderer.encodeIcon(rw, dropButton, icon, fa, dropButton.getIconSize(), dropButton.getIconRotate(),
-						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false);
-				// !//R.encodeIcon(rw, this, icon, white);
+						dropButton.getIconFlip(), dropButton.isIconSpin(), null, null, false, false, false, false,
+						dropButton.isIconBrand(), dropButton.isIconInverse(), dropButton.isIconLight(), dropButton.isIconPulse(), dropButton.isIconRegular(),
+						dropButton.isIconRegular());
 				rw.writeText(" " + value, null);
 			}
 		} else {

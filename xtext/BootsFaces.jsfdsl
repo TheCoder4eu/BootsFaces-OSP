@@ -668,6 +668,7 @@ widget datepicker
 	+tooltip
 	+responsive
     +responsiveLabel
+    +iconAwesome
 }
 
 widget dateTimePicker
@@ -746,6 +747,7 @@ widget dateTimePicker
 	+responsive
     +responsiveLabel
 	+tooltip
+	+iconAwesome
 }
 
 widget defaultCommand

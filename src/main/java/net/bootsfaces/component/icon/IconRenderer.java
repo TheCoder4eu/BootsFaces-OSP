@@ -103,8 +103,16 @@ public class IconRenderer extends AJAXRenderer {
 		String flip = icon.getFlip();
 		boolean spin = icon.isSpin();
 
-		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
-			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true);
+		if (icon instanceof IconAwesome) {
+			IconAwesome awesome = (IconAwesome) icon;
+			encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
+			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true,
+			 awesome.isBrand(), awesome.isInverse(), awesome.isLight(), awesome.isPulse(), awesome.isRegular(), awesome.isSolid());
+		} else {
+			encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
+					 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true,
+					 false, false, false, false, false, false);
+		}
 		if (responsiveCSS.length()>0) {
 			writer.endElement("div");
 		}
@@ -136,7 +144,9 @@ public class IconRenderer extends AJAXRenderer {
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,
 			String size, String rotate, String flip, boolean spin, String styleClass, String style,
-			boolean isGrayedOut, boolean isAddon, boolean generateIdAndTooltip, boolean generateAJAXHandler) throws IOException {
+			boolean isGrayedOut, boolean isAddon, boolean generateIdAndTooltip, boolean generateAJAXHandler,
+			boolean iconBrand, boolean iconInverse, boolean iconLight, boolean iconPulse, boolean iconRegular, boolean iconSolid
+			) throws IOException {
 		rw.startElement("span", c);
 		rw.startElement("i", c);
 		if (generateIdAndTooltip) {
