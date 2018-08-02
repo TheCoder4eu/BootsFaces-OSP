@@ -182,6 +182,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			idHasBeenRendered=true;
 			if (((AbstractNavLink) navlink).isDisabled()) {
 				writeAttribute(rw, "class", "disabled");
+				writeAttribute(rw, "aria-disabled", "true");
 			}
 
 	
