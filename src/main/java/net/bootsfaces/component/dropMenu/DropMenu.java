@@ -75,4 +75,41 @@ public class DropMenu extends DropMenuCore implements IHasTooltip, IResponsive, 
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+	
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome();
+		super.setIconAwesome(_iconAwesome);
+	}
+	
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconSolid(_iconSolid);
+	}
 }

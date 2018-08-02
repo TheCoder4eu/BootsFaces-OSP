@@ -18,13 +18,6 @@
 
 package net.bootsfaces.component.commandButton;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
-
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +26,12 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -92,9 +91,9 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery
-	 * callback or other non-standard means (such as the onclick event of
-	 * b:tabView, which has to be implemented manually).
+	 * returns the subset of AJAX requests that are implemented by jQuery callback
+	 * or other non-standard means (such as the onclick event of b:tabView, which
+	 * has to be implemented manually).
 	 *
 	 * @return
 	 */
@@ -103,9 +102,8 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply
-	 * "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -128,8 +126,8 @@ public class CommandButton extends CommandButtonCore
 			if (FacesContext.getCurrentInstance().isPostback()) {
 				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
 			}
- 	 		super.processEvent(event);
- 	 	}
+			super.processEvent(event);
+		}
 	}
 
 	public String getFamily() {
@@ -137,14 +135,51 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard
-	 * JS callbacks which is sent to the server via AJAX. If there's no
-	 * parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
 	public Map<String, String> getJQueryEventParameterListsForAjax() {
 		return null;
+	}
+
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome();
+		super.setIconAwesome(_iconAwesome);
+	}
+
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
+		super.setIconSolid(_iconSolid);
 	}
 }

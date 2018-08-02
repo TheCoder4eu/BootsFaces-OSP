@@ -18,21 +18,14 @@
 
 package net.bootsfaces.component.iconAwesome;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
+import javax.faces.component.FacesComponent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.ListenersFor;
 import javax.faces.event.PostAddToViewEvent;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.Icon;
 import net.bootsfaces.listeners.AddResourcesListener;
-import net.bootsfaces.render.Tooltip;
-import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:iconAwesome /&gt;. */
 @ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
@@ -59,6 +52,10 @@ public class IconAwesome extends Icon {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+	
+	public IconAwesome() {
+		AddResourcesListener.setNeedsFontsAwesome();
 	}
 
 	/**
@@ -106,6 +103,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrand(boolean _brand) {
+		if (_brand) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
 		getStateHelper().put(PropertyKeys.brand, _brand);
 	}
 
@@ -282,6 +282,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLight(boolean _light) {
+		if (_light) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
 		getStateHelper().put(PropertyKeys.light, _light);
 	}
 
@@ -490,6 +493,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRegular(boolean _regular) {
+		if (_regular) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
 		getStateHelper().put(PropertyKeys.regular, _regular);
 	}
 
@@ -522,6 +528,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSolid(boolean _solid) {
+		if (_solid) {
+			AddResourcesListener.setFontAwesomeVersion(5);
+		}
 		getStateHelper().put(PropertyKeys.solid, _solid);
 	}
 

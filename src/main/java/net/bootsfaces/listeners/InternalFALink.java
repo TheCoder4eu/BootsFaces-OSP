@@ -28,7 +28,6 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 
 /**
- *
  * @author Stephan Rauh, http://www.beyondjava.net
  */
 @FacesComponent("net.bootsfaces.component.internalFALink.InternalFALink")
@@ -51,28 +50,25 @@ public class InternalFALink extends UIComponentBase {
 		setRendererType(null); // this component renders itself
 	}
 
-	private int version = 4;
+	private String version = "4";
 
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
-
-		// Font Awesome
 		final String FA_VERSION = "4.7.0";
 		final String FONTAWESOME_CDN_URL = "//maxcdn.bootstrapcdn.com/font-awesome/" + FA_VERSION
 				+ "/css/font-awesome.min.css";
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
-		if (version == 4) {
+		if (version.contains("4")) {
 			responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
 					+ "\" crossorigin=\"anonymous\"/>");
-		} else if (version == 5) {
+		} 
+		if (version.contains("5")) {
 			responseWriter.append(
 					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
 			responseWriter.append(
 					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/solid.css\" crossorigin=\"anonymous\"/>");
 
-		} else {
-			throw new FacesException("BootsFaces only supports Fontawesome 4.7.0 and Fontawesome 5.2.0");
 		}
 	}
 
@@ -81,11 +77,7 @@ public class InternalFALink extends UIComponentBase {
 		return COMPONENT_FAMILY;
 	}
 
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 }

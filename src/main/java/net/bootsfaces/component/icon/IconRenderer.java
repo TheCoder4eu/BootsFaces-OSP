@@ -30,6 +30,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.iconAwesome.IconAwesome;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
@@ -162,10 +163,23 @@ public class IconRenderer extends AJAXRenderer {
 			sb.append(styleClass).append(" ");
 		}
 		if (isFontAwesome) {
+			String prefix;
+			if (iconBrand) {
+				prefix = "fab";
+			} else if (iconLight) {
+				prefix = "fal";
+			} else if (iconSolid) {
+				prefix = "fas";
+			} else if (iconRegular) {
+				prefix = "far";
+			} else {
+				prefix = "fa";
+			}
+				
 			if (icon.startsWith("fa-"))
-				sb.append("fa " + icon);
+				sb.append(prefix + " " + icon);
 			else
-				sb.append("fa fa-" + icon);
+				sb.append(prefix + " fa-" + icon);
 		} else {
 			if (icon.startsWith("glyphicon-"))
 				sb.append("glyphicon " + icon);
@@ -190,6 +204,12 @@ public class IconRenderer extends AJAXRenderer {
 			if (flip.equalsIgnoreCase("V")) {
 				sb.append(" fa-flip-vertical");
 			}
+		}
+		if (iconPulse) {
+			sb.append(" fa-pulse");
+		}
+		if (iconInverse) {
+			sb.append(" fa-inverse");
 		}
 		if (spin) {
 			sb.append(" fa-spin");

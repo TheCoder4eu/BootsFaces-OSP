@@ -78,6 +78,11 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String FONTAWESOME_VERSION = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeVersion";
 
 	/**
+	 * This entry of the view map is set to true if there's at least one Fontawesome icon
+	 */
+	private static final String FONTAWESOME_USED = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeIsUsed";
+
+	/**
 	 * Components can request JS resources by registering them in the ViewMap, using
 	 * the RESOURCE_KEY.
 	 */
@@ -265,13 +270,15 @@ public class AddResourcesListener implements SystemEventListener {
 		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
 			Map<String, Object> viewMap = root.getViewMap();
-			@SuppressWarnings("unchecked")
-			Integer version = (Integer) viewMap.get(FONTAWESOME_VERSION);
-			if (version == null) {
-				version = 4; 
+			if (viewMap.containsKey(FONTAWESOME_USED)) {
+				String version = (String) viewMap.get(FONTAWESOME_VERSION);
+				if (version != null) {
+					output.setVersion(version);
+				} else {
+					version = "4";
+				}
+				addResourceIfNecessary(root, context, output);
 			}
-			output.setVersion(version);
-			addResourceIfNecessary(root, context, output);
 		}
 
 		@SuppressWarnings("unchecked")
@@ -525,13 +532,27 @@ public class AddResourcesListener implements SystemEventListener {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 		Map<String, Object> viewMap = root.getViewMap();
-		@SuppressWarnings("unchecked")
-		Integer _version = (Integer) viewMap.get(FONTAWESOME_VERSION);
-		if (_version != null && _version != version) {
-			throw new FacesException("BootsFaces doesn't support mixing FontAwesome 4 and 5 on the same page.");
+		String _version = (String) viewMap.get(FONTAWESOME_VERSION);
+		if (_version != null) {
+			if (!_version.contains(String.valueOf(version))) {
+				viewMap.put(FONTAWESOME_VERSION, String.valueOf(_version + "," + version));
+			}
+		} else {
+			if (viewMap.containsKey(FONTAWESOME_USED)) {
+				viewMap.put(FONTAWESOME_VERSION, "4,"+String.valueOf(version));
+			} else {
+				viewMap.put(FONTAWESOME_VERSION, String.valueOf(version));
+			}
 		}
-		viewMap.put(FONTAWESOME_VERSION, version);
 	}
+	
+	public static void setNeedsFontsAwesome() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot root = context.getViewRoot();
+		Map<String, Object> viewMap = root.getViewMap();
+		viewMap.put(FONTAWESOME_USED, true);
+	}
+
 
 	/**
 	 * Remove duplicate resource files. For some reason, many resource files are
