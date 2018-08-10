@@ -267,7 +267,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 
 		}
-		writeAttribute(rw, "tabindex", "-1", null);
+//		writeAttribute(rw, "tabindex", "-1", null);
 
 		String icon = ((AbstractNavLink) navlink).getIcon();
 		String faicon = ((AbstractNavLink) navlink).getIconAwesome();
