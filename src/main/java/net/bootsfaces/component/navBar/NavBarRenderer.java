@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.navLink.AbstractNavLink;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -132,6 +133,10 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.startElement("div", navBar);
 		rw.writeAttribute("class", "navbar-header", "class"); // navbar-header
 		rw.startElement("button", navBar);
+		String tabindex = navBar.getTabindex();
+		if (!"0".equals(tabindex)) {
+			writeAttribute(rw, "tabindex", tabindex, null);
+		}
 		rw.writeAttribute("type", "button", "type");
 		rw.writeAttribute("class", "navbar-toggle", "class");
 		rw.writeAttribute("data-toggle", "collapse", "type");

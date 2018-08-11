@@ -99,11 +99,14 @@ public class DropMenuRenderer extends CoreRenderer {
 
 			// Encode value
 			String value = (String) dropMenu.getAttributes().get("value");
+			String tabindex = dropMenu.getTabindex();
+			if (!"0".equals(tabindex)) {
+				writeAttribute(rw, "tabindex", tabindex, null);
+			}
 			String icon = dropMenu.getIcon();
 			String faicon = dropMenu.getIconAwesome();
-			boolean fa = false; // flag to indicate wether the selected icon
-								// set is
-								// Font Awesome or not.
+			boolean fa = false; // flag to indicate whether the selected icon
+								// set is Font Awesome or not.
 			if (faicon != null) {
 				icon = faicon;
 				fa = true;

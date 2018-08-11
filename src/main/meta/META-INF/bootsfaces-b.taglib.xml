@@ -9286,7 +9286,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Use up For Dropup and down for Dropdown, default is down.]]></description>
+		  <description><![CDATA[Use up For dropup and down for dropdown, default is down.]]></description>
 		  <name>drop</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -9586,6 +9586,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>tiny-screen</name>
 		  <required>false</required>
@@ -9664,7 +9670,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The Label for the Button Dropdown.]]></description>
+		  <description><![CDATA[The Label for the button dropdown.]]></description>
 		  <name>value</name>
 		  <required>true</required>
 		  <type>java.lang.String</type>
@@ -10076,6 +10082,12 @@
 		<attribute>
 		  <description><![CDATA[Style class of this element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17664,6 +17676,12 @@
 		<attribute>
 		  <description><![CDATA[Style class of the navBar element.]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>

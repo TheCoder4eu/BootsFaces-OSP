@@ -212,7 +212,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 		}
 
-		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
+		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "title" });
 
 		
 		String styleClass = (navlink instanceof NavCommandLink ? "commandLink " : "");

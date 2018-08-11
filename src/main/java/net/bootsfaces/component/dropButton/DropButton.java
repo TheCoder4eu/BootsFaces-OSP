@@ -77,7 +77,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	}
 
 	protected enum PropertyKeys {
-		autoUpdate, binding, colLg, colMd, colSm, colXs, contentDisabled, display, drop, hidden, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, size, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
+		autoUpdate, binding, colLg, colMd, colSm, colXs, contentDisabled, display, drop, hidden, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, size, smallScreen, span, style, styleClass, tabindex, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -221,7 +221,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
+	 * Use up For dropup and down for dropdown, default is down. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDrop() {
@@ -229,7 +229,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
+	 * Use up For dropup and down for dropdown, default is down. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDrop(String _drop) {
@@ -666,6 +666,22 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * @return Returns the value of the attribute, or "0", if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex, "0");
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**
