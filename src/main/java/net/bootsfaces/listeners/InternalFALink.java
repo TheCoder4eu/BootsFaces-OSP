@@ -60,18 +60,18 @@ public class InternalFALink extends UIComponentBase {
 				+ "/css/font-awesome.min.css";
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
-		if (version.contains("4")) {
-			if (needsVersion4) {
-				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
-						+ "\" crossorigin=\"anonymous\"/>");
-			}
-		}
 		if (version.contains("5")) {
 			responseWriter.append(
 					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
 			responseWriter.append(
 					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/solid.css\" crossorigin=\"anonymous\"/>");
 
+		}
+		if (version.contains("4")) {
+			if (needsVersion4) {
+				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
+						+ "\" crossorigin=\"anonymous\"/>");
+			}
 		}
 	}
 
