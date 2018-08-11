@@ -149,14 +149,14 @@ public class NavCommandLink extends NavCommandLinkCore implements ClientBehavior
 	}
 
 	public void setIconAwesome(String _iconAwesome) {
-		AddResourcesListener.setNeedsFontsAwesome();
+		AddResourcesListener.setNeedsFontsAwesome(this);
 		super.setIconAwesome(_iconAwesome);
 	}
 
 	@Override
 	public void setIconBrand(boolean _iconBrand) {
 		if (_iconBrand) {
-			AddResourcesListener.setFontAwesomeVersion(5);
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 		}
 		super.setIconBrand(_iconBrand);
 	}
@@ -164,7 +164,7 @@ public class NavCommandLink extends NavCommandLinkCore implements ClientBehavior
 	@Override
 	public void setIconRegular(boolean _iconRegular) {
 		if (_iconRegular) {
-			AddResourcesListener.setFontAwesomeVersion(5);
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 		}
 		super.setIconRegular(_iconRegular);
 	}
@@ -172,7 +172,7 @@ public class NavCommandLink extends NavCommandLinkCore implements ClientBehavior
 	@Override
 	public void setIconLight(boolean _iconLight) {
 		if (_iconLight) {
-			AddResourcesListener.setFontAwesomeVersion(5);
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 		}
 		super.setIconLight(_iconLight);
 	}
@@ -180,7 +180,7 @@ public class NavCommandLink extends NavCommandLinkCore implements ClientBehavior
 	@Override
 	public void setIconSolid(boolean _iconSolid) {
 		if (_iconSolid) {
-			AddResourcesListener.setFontAwesomeVersion(5);
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 		}
 		super.setIconSolid(_iconSolid);
 	}

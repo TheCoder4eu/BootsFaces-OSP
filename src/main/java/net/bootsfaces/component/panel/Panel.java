@@ -491,6 +491,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
 	}
 
@@ -507,6 +508,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
 	}
 
@@ -555,6 +559,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
 	}
 
@@ -587,6 +594,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
 	}
 
@@ -635,6 +645,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
 	}
 

@@ -78,7 +78,15 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String FONTAWESOME_VERSION = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeVersion";
 
 	/**
-	 * This entry of the view map is set to true if there's at least one Fontawesome icon
+	 * List of components using a non-default version of FontAwesome. Needed to
+	 * detect whether FontAwesome 4 (the default version) needs to be imported or
+	 * not.
+	 */
+	private static final String FONTAWESOME_NEW_VERSION = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeNewVersion";
+
+	/**
+	 * This entry of the view map is set to true if there's at least one Fontawesome
+	 * icon
 	 */
 	private static final String FONTAWESOME_USED = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeIsUsed";
 
@@ -229,20 +237,22 @@ public class AddResourcesListener implements SystemEventListener {
 	 *            The current FacesContext
 	 */
 	private void addCSS(UIViewRoot root, FacesContext context) {
-		// The following code is needed to diagnose the warning "Unable to save dynamic action with clientId 'j_id...'"
-		//				List<UIComponent> r = root.getComponentResources(context, "head");
-		//				System.out.println("**************");
-		//				for (UIComponent ava : r) {
-		//					String name = (String) ava.getAttributes().get("name");
-		//					System.out.println(ava.getClientId(context) +":" + name + " " + ava.getClass().getSimpleName());
-		//				}
-		//				System.out.println("**************");
+		// The following code is needed to diagnose the warning "Unable to save dynamic
+		// action with clientId 'j_id...'"
+		// List<UIComponent> r = root.getComponentResources(context, "head");
+		// System.out.println("**************");
+		// for (UIComponent ava : r) {
+		// String name = (String) ava.getAttributes().get("name");
+		// System.out.println(ava.getClientId(context) +":" + name + " " +
+		// ava.getClass().getSimpleName());
+		// }
+		// System.out.println("**************");
 		// end of the diagnostic code
 
-		//1) First load Theme files (core.css + theme.css)
+		// 1) First load Theme files (core.css + theme.css)
 		String theme = loadTheme(root, context);
 
-		//deactivate FontAwesome support if the no-fa facet is found in the h:head tag
+		// deactivate FontAwesome support if the no-fa facet is found in the h:head tag
 		UIComponent header = findHeader(root);
 		boolean useCDNImportForFontAwesome = (null == header) || (null == header.getFacet("no-fa"));
 		if (useCDNImportForFontAwesome) {
@@ -266,7 +276,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		//2) Font Awesome
+		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
 			Map<String, Object> viewMap = root.getViewMap();
@@ -274,8 +284,10 @@ public class AddResourcesListener implements SystemEventListener {
 				String version = (String) viewMap.get(FONTAWESOME_VERSION);
 				if (version != null) {
 					output.setVersion(version);
+					output.setNeedsVersion4(needsFontAwesome4());
 				} else {
-					version = "4";
+					output.setVersion("4");
+					output.setNeedsVersion4(needsFontAwesome4());
 				}
 				addResourceIfNecessary(root, context, output);
 			}
@@ -283,8 +295,8 @@ public class AddResourcesListener implements SystemEventListener {
 
 		@SuppressWarnings("unchecked")
 		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
-		if(extCSSMap != null) {
-			for (String file: extCSSMap) {
+		if (extCSSMap != null) {
+			for (String file : extCSSMap) {
 				String name = "css/" + file;
 
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
@@ -293,11 +305,13 @@ public class AddResourcesListener implements SystemEventListener {
 
 		@SuppressWarnings("unchecked")
 		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
-		if(themedCSSMap != null) {
-			for (String file: themedCSSMap) {
+		if (themedCSSMap != null) {
+			for (String file : themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
-				// Glyphicons icons now are in core.css if(file.equals("icons.css")) //the icons.css file isn't found in a theme folder
-				// Glyphicons icons now are in core.css	name = "css/icons.css";  //look for it under the css root instead
+				// Glyphicons icons now are in core.css if(file.equals("icons.css")) //the
+				// icons.css file isn't found in a theme folder
+				// Glyphicons icons now are in core.css name = "css/icons.css"; //look for it
+				// under the css root instead
 
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
@@ -307,14 +321,13 @@ public class AddResourcesListener implements SystemEventListener {
 			createAndAddComponent(root, context, CSS_RENDERER, "css/patternfly/bootstrap-switch.css", C.BSF_LIBRARY);
 		}
 
-		//Add mandatory CSS bsf.css
+		// Add mandatory CSS bsf.css
 		createAndAddComponent(root, context, CSS_RENDERER, "css/bsf.css", C.BSF_LIBRARY);
 
-
-		//3) Bootstrap from CDN (TODO: check removeBootstrapResources)
+		// 3) Bootstrap from CDN (TODO: check removeBootstrapResources)
 		boolean loadBootstrap = shouldLibraryBeLoaded(P_GET_BOOTSTRAP_FROM_CDN, true);
-		if (! loadBootstrap) { 
-			removeBootstrapResources(root, context); 
+		if (!loadBootstrap) {
+			removeBootstrapResources(root, context);
 		}
 	}
 
@@ -528,10 +541,21 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 	}
 
-	public static void setFontAwesomeVersion(int version) {
+	public static void setFontAwesomeVersion(int version, Object uiComponent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 		Map<String, Object> viewMap = root.getViewMap();
+
+		if (version != 4) {
+			@SuppressWarnings("unchecked")
+			Map<Object, Boolean> v5 = (Map<Object, Boolean>) viewMap.get(FONTAWESOME_NEW_VERSION);
+			if (null == v5) {
+				v5 = new HashMap<Object, Boolean>();
+				viewMap.put(FONTAWESOME_NEW_VERSION, v5);
+			}
+			v5.put(uiComponent, true);
+		}
+
 		String _version = (String) viewMap.get(FONTAWESOME_VERSION);
 		if (_version != null) {
 			if (!_version.contains(String.valueOf(version))) {
@@ -539,20 +563,54 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		} else {
 			if (viewMap.containsKey(FONTAWESOME_USED)) {
-				viewMap.put(FONTAWESOME_VERSION, "4,"+String.valueOf(version));
+				viewMap.put(FONTAWESOME_VERSION, "4," + String.valueOf(version));
 			} else {
 				viewMap.put(FONTAWESOME_VERSION, String.valueOf(version));
 			}
 		}
 	}
-	
-	public static void setNeedsFontsAwesome() {
+
+	@SuppressWarnings("unchecked")
+	public static void setNeedsFontsAwesome(Object uiComponent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 		Map<String, Object> viewMap = root.getViewMap();
-		viewMap.put(FONTAWESOME_USED, true);
+		ArrayList<Object> list = (ArrayList<Object>) viewMap.get(FONTAWESOME_USED);
+		if (list == null) {
+			list = new ArrayList<Object>();
+			viewMap.put(FONTAWESOME_USED, list);
+		}
+		list.add(uiComponent);
 	}
-
+	
+	private boolean needsFontAwesome4() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot root = context.getViewRoot();
+		Map<String, Object> viewMap = root.getViewMap();
+		@SuppressWarnings("unchecked")
+		Map<Object, Boolean> v5 = (Map<Object, Boolean>) viewMap.get(FONTAWESOME_NEW_VERSION);
+		@SuppressWarnings("unchecked")
+		ArrayList<Object> all = (ArrayList<Object>) viewMap.get(FONTAWESOME_USED);
+		viewMap.remove(FONTAWESOME_NEW_VERSION);
+		viewMap.remove(FONTAWESOME_USED);
+		if (all == null) {
+			return false;
+		}
+		if (v5 == null) {
+			all.clear();
+			return true;
+		}
+		boolean v4 = false;
+		for (Object o: all) {
+			if (!v5.containsKey(o)) {
+				v4=true;
+				break;
+			}
+		}
+		all.clear();
+		v5.clear();
+		return v4;
+	}
 
 	/**
 	 * Remove duplicate resource files. For some reason, many resource files are

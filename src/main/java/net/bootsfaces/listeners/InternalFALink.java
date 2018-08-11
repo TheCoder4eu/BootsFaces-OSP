@@ -19,7 +19,6 @@ package net.bootsfaces.listeners;
 
 import java.io.IOException;
 
-import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 import javax.faces.context.FacesContext;
@@ -52,6 +51,8 @@ public class InternalFALink extends UIComponentBase {
 
 	private String version = "4";
 
+	private boolean needsVersion4 = false;
+
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
 		final String FA_VERSION = "4.7.0";
@@ -60,9 +61,11 @@ public class InternalFALink extends UIComponentBase {
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
 		if (version.contains("4")) {
-			responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
-					+ "\" crossorigin=\"anonymous\"/>");
-		} 
+			if (needsVersion4) {
+				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
+						+ "\" crossorigin=\"anonymous\"/>");
+			}
+		}
 		if (version.contains("5")) {
 			responseWriter.append(
 					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
@@ -79,5 +82,13 @@ public class InternalFALink extends UIComponentBase {
 
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	public boolean isNeedsVersion4() {
+		return needsVersion4;
+	}
+
+	public void setNeedsVersion4(boolean needsVersion4) {
+		this.needsVersion4 = needsVersion4;
 	}
 }

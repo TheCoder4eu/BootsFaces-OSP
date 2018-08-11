@@ -18,14 +18,7 @@
 
 package net.bootsfaces.component.iconAwesome;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
-
 import javax.faces.component.FacesComponent;
-import javax.faces.context.FacesContext;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.ListenersFor;
 import javax.faces.event.PostAddToViewEvent;
@@ -45,15 +38,6 @@ public class IconAwesome extends Icon {
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.iconAwesome.IconAwesome";
 
-	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
-		if (isAutoUpdate()) {
-			if (FacesContext.getCurrentInstance().isPostback()) {
-				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
-			}
-			super.processEvent(event);
-		}
-	}
-
 	protected enum PropertyKeys {
 		ajax, autoUpdate, brand, colLg, colMd, colSm, colXs, delay, display, fixedWidth, hidden, inverse, largeScreen, light, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, process, pulse, regular, smallScreen, solid, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible;
 		String toString;
@@ -68,6 +52,10 @@ public class IconAwesome extends Icon {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+	
+	public IconAwesome() {
+		AddResourcesListener.setNeedsFontsAwesome(this);
 	}
 
 	/**
@@ -115,6 +103,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setBrand(boolean _brand) {
+		if (_brand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.brand, _brand);
 	}
 
@@ -291,6 +282,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setLight(boolean _light) {
+		if (_light) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.light, _light);
 	}
 
@@ -499,6 +493,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRegular(boolean _regular) {
+		if (_regular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.regular, _regular);
 	}
 
@@ -531,6 +528,9 @@ public class IconAwesome extends Icon {
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSolid(boolean _solid) {
+		if (_solid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
 		getStateHelper().put(PropertyKeys.solid, _solid);
 	}
 
