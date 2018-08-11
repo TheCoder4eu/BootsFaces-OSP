@@ -800,5 +800,9 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 */
 	public boolean isIconSolid();
 
-
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * @return Returns the value of the attribute, or "0", if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex();
 }
