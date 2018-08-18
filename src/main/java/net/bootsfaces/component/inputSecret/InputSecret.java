@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.inputSecret;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
@@ -28,88 +35,23 @@ import net.bootsfaces.component.inputText.InputText;
  * @author Stephan Rauh, http://www.beyondjava.net
  */
 
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(InputSecret.COMPONENT_TYPE)
 public class InputSecret extends InputText {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".inputSecret.InputSecret";
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		accesskey,
-		alt,
-		autocomplete,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		converterMessage,
-		dir,
-		disabled,
-		display,
-		fieldId,
-		fieldSize,
-		hidden,
-		immediate,
-		inline,
-		label,
-		labelColLg,
-		labelColMd,
-		labelColSm,
-		labelColXs,
-		labelLargeScreen,
-		labelMediumScreen,
-		labelSmallScreen,
-		labelStyle,
-		labelStyleClass,
-		labelTinyScreen,
-		lang,
-		largeScreen,
-		mediumScreen,
-		name,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onselect,
-		placeholder,
-		process,
-		readonly,
-		renderLabel,
-		renderValue,
-		required,
-		requiredMessage,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		type,
-		update,
-		visible;
+		accesskey, ajax, alt, autoUpdate, autocomplete, binding, colLg, colMd, colSm, colXs, converterMessage, delay, dir, disabled, display, fieldId, fieldSize, hidden, immediate, inline, label, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, lang, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onerror, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, onsuccess, placeholder, process, readonly, renderLabel, renderValue, required, requiredMessage, size, smallScreen, span, style, styleClass, tabindex, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -141,6 +83,22 @@ public class InputSecret extends InputText {
 	}
 
 	/**
+	 * Whether the Button submits the form with AJAX. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAjax() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.ajax, false);
+	}
+
+	/**
+	 * Whether the Button submits the form with AJAX. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAjax(boolean _ajax) {
+		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
 	 * Alternate textual description of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -154,6 +112,22 @@ public class InputSecret extends InputText {
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -266,6 +240,22 @@ public class InputSecret extends InputText {
 	 */
 	public void setConverterMessage(String _converterMessage) {
 		getStateHelper().put(PropertyKeys.converterMessage, _converterMessage);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -749,7 +739,7 @@ public class InputSecret extends InputText {
 	}
 
 	/**
-	 * OnClick DHTML event . <P>
+	 * The onclick attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
@@ -757,7 +747,7 @@ public class InputSecret extends InputText {
 	}
 
 	/**
-	 * OnClick DHTML event . <P>
+	 * The onclick attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -765,7 +755,7 @@ public class InputSecret extends InputText {
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -773,7 +763,7 @@ public class InputSecret extends InputText {
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -794,6 +784,22 @@ public class InputSecret extends InputText {
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -954,6 +960,22 @@ public class InputSecret extends InputText {
 	 */
 	public void setOnselect(String _onselect) {
 		getStateHelper().put(PropertyKeys.onselect, _onselect);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

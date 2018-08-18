@@ -1,5 +1,6 @@
 attribute_list ajax {
     ajax                Boolean                                           "Whether the Button submits the form with AJAX."
+    delay                                                                 "Delays the AJAX request."
     onclick                                                                "The onclick attribute."
     oncomplete                                                            "JavaScript to be executed when ajax completes."
     onerror                                                               "JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions)."
@@ -11,8 +12,14 @@ attribute_list ajax {
 attribute_list iconAwesome {
     icon-flip                                                             "Flip the icon: can be H (horizontal) or V (vertical)."
     icon-rotate                                                           "Rotate 90 degrees the icon: Can be L,R."
-    icon-size                                                             "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    icon-size                                                             "Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed."
     icon-spin                Boolean                                      "Boolean value: if true the icon will spin."
+    icon-pulse               Boolean                                      "Boolean value: if true the icon will rotate with 8 discrete steps."
+    icon-inverse             Boolean                                      "Switch the icon from black-on-white to white-on-black."
+    icon-solid               Boolean                                      "Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-light               Boolean                                      "Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-regular             Boolean                                      "Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    icon-brand               Boolean                                      "Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
 }
 
 attribute_list tooltip {
@@ -33,7 +40,7 @@ attribute_list responsive {
     medium-screen       default "-1"                                       "Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     small-screen        default "-1"                                       "Alternative spelling to col-sm. Integer value to specify how many columns to span on small screens (≥768p pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
     tiny-screen         default "-1"                                       "Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by \"column\" or \"columns\". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths."
-    display				default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
+    display			    default "block"									 "If you use the \"visible\" attribute, the value of this attribute is added. Legal values: block, inline, inline-block. Default: block."
     hidden				      											 "This column is hidden on a certain screen size and below. Legal values: lg, md, sm, xs."
     offset                                                                 "Integer value to specify how many columns to offset."
     offset-lg                                                              "Integer value to specify how many columns to offset."
@@ -80,6 +87,7 @@ widget accordion
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	expanded-panels														"Comma separated list of child panel id that need to render expanded."
@@ -91,17 +99,19 @@ widget accordion
 
 widget alert
        implemented_by net.bootsfaces.component.Alert
-       extends UIComponentBase
+       extends UIOutout
        has_children
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                 "An EL expression referring to a server side UIComponent instance in a backing bean."
     closable            Boolean                                           "If true close button will be displayed."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                              "Severity of the Alert, can be success, info, warning, danger. Default is warning."
     title                                                                 "Bold Title displayed before your message."
+    value               inherited                                         "Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag."
 	+style
 	+tooltip
 	+responsive
@@ -113,6 +123,7 @@ widget badge
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -122,12 +133,26 @@ widget badge
     +responsive
 }
 
+widget breadcrumbs
+       implemented_by net.bootsfaces.component.Breadcrumbs
+       has_children
+       has_tooltip
+{
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
+    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    id                  inherited                                          "Unique identifier of the component in a namingContainer."
+    rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	+tooltip
+	+style
+}
+
 widget button
        implemented_by net.bootsfaces.component.Button
        extends HtmlOutcomeTargetButton
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     accesskey                                                              "Access key to transfer focus to the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -175,6 +200,7 @@ widget buttonGroup
        has_tooltip
        is_responsive
  {
+ 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding              javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                        "Unique identifier of the component in a namingContainer."
     orientation                                                           "Orientation can be horizontal(default) or vertical."
@@ -195,6 +221,7 @@ widget buttonToolbar
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding              javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                    "Can be right or left. Pulls the element right or left."
@@ -209,6 +236,7 @@ widget canvas
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     height              Integer default "600"                              "Height of the canvas in pixels. This is a mandatory field."
     drawing             Drawing                                            "Optional description what to draw on this component."
@@ -228,17 +256,15 @@ widget carousel
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active-index        Integer                                            "Optional attribute to define which slide is active initially."
-    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
     interval                    default "5000"                             "Specifies the delay (in milliseconds) between each slide."
     pause                       default "hover"                            "Pauses the carousel from going through the next slide when the mouse pointer enters the carousel, and resumes the sliding when the mouse pointer leaves the carousel. Set pause to false to stop the ability to pause on hover."
     wrap                Boolean default "true"                             "Specifies whether the carousel should go through all slides continuously, or stop at the last slide."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
@@ -247,13 +273,12 @@ widget carousel
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onslidestart                                                           "Client side callback to execute when the carousel start to slide to another item."
     onslid                                                                 "Client side callback to execute when the carousel just finished sliding to another item."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     start-animation     Boolean default "true"                             "tells Bootstrap to begin animating the carousel immediately when the page loads."
     show-controls       Boolean default "true"                             "adds 'left' and 'right' buttons that allows the user to go back and forth between the slides manually"
     show-indicators     Boolean default "true"                             "The indicators are the little dots at the bottom of each slide (which indicates how many slides there are in the carousel, and which slide the user are currently viewing)."
     slide               Boolean default "true"                             "Tells Bootstrap to show new items by sliding them into view"
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    update                                                                 "Component(s) to be updated with ajax."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -265,24 +290,21 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean    default "false"                         "Optional attribute to define which slide is active initially."
-    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
     caption                                                                "Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    update                                                                 "Component(s) to be updated with ajax."
+	+ajax
 	+style
 	+tooltip
 }
@@ -293,22 +315,18 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
-    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
-    ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    update                                                                 "Component(s) to be updated with ajax."
+	+ajax
 	+style
 	+tooltip
 }
@@ -323,20 +341,17 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
-    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	direction															   "Can take one of the values 'left' and 'right'. Determines whether the carousel scrolls to the next or to the previous image."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
-    update                                                                 "Component(s) to be updated with ajax."
+	+ajax
 	+style
 	+tooltip
 }
@@ -350,9 +365,9 @@ widget colorPicker
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -372,8 +387,6 @@ widget colorPicker
     lang                                                                   "Code describing the language used in the generated markup for this component."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -386,7 +399,6 @@ widget colorPicker
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     renderLabel         Boolean default "false"                            "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -396,11 +408,11 @@ widget colorPicker
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -413,6 +425,7 @@ widget column
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -432,6 +445,7 @@ widget commandButton
     accesskey                                                              "Access key to transfer focus to the input element."
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -476,7 +490,7 @@ widget commandLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
-    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -493,8 +507,6 @@ widget commandLink
     look                                                                   "Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -507,13 +519,13 @@ widget commandLink
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
-    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
+	+ajax
     +responsive
     +tooltip
     +iconAwesome
@@ -524,6 +536,7 @@ widget container
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     fluid               Boolean                                            "Boolean value default is false; when set to true, the container will be \"fluid\": a full width container, spanning the entire width of the viewport."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -540,9 +553,9 @@ widget dataTable
        has_tooltip
        is_responsive
  {
-    ajax                 Boolean                                           "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	border               Boolean default "true"                            "If set, this will surround the table by a border. Defaults to true."
-    columnVisibility     Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
+    column-visibility    Boolean default "false"                           "Adds a button allowing the user to show and hide of the columns."
     copy                 Boolean default "false"                           "Adds a 'copy to clipboard' button."
     csv                  Boolean default "false"                           "Adds a 'export CSV file' button."
     excel                Boolean default "false"                           "Adds a 'export Excel file' button."
@@ -556,10 +569,9 @@ widget dataTable
     immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     info				 Boolean default "true"							      "If set, this will enable the information about record count. Defaults to true."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
+    mark-search-results  Boolean                                           "If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19)."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     multi-column-search-position default "bottom"                          "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
@@ -574,9 +586,9 @@ widget dataTable
     page-length          Integer default "10"                              "Sets the default page length for paginated dataTable. The default value is 10."
     page-length-menu     default "[ 10, 25, 50, 100 ]"                     "Sets the default page length for paginated dataTable. The default value is [10, 25, 50, 100]. The brackets are optional. Read https://www.datatables.net/examples/advanced_init/length_menu.html for details."
 	paginated            Boolean default "true"                            "Activates the pagination of the dataTable. Default value is 'true'."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
 	responsive           Boolean                                           "Activates the responsive plugin of the dataTable"
     rendered             Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+	row-group                                                              "Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup."
     row-highlight		 Boolean default "true"							 "Enable the row highlight css. Default: true."
     row-style-class                                                        "Optional CSS class for each row. If it's an EL expression, it's evaluated for each row. You can also provide a comma-separated list. In this case, the CSS classes are assigned cyclically to the row."
     save-state           Boolean default "true"                            "Stores the state of the datatable on the client, so that after a page reload the same filters are active, the same page is shown etc."
@@ -593,10 +605,10 @@ widget dataTable
 	selection-info       Boolean default "true"                             "The datatable shows below the table how many rows are selected. Setting this option to false deactivates this feature. Defaults to true."
     selection-mode       String default "multiple"                          "Set this property to \"single\" if you want to prevent multiple selections. Default is \"multiple\"."
 	striped              Boolean default "true"                             "If set, this will show the row in alternating background colors (typically shades of gray). Defaults to true."
-    update                                                                  "Component(s) to be updated with ajax."
     value                inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
     var                  String  inherited                                  "The var attribute sets the name of a request-scope attribute exposing the data for each iteration over the rows in the underlying data model for this table."
     widgetVar            String                                             "optional widget variable to access the datatable widget in JavaScript code."
+	+ajax
 	+style
 	+responsive
 	+tooltip
@@ -623,6 +635,7 @@ widget dataTableColumn {
     orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
     searchable         Boolean default "true"                              "If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable."
     value              inherited                                           "EL expression referring to the back-end bean attribute providing the value of the field."
+	width                                                                  "Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc."
 	+style
 }
 
@@ -631,6 +644,7 @@ widget datepicker
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
     change-year         Boolean                                            "Boolean value to specify if year selector should be shown."
@@ -655,6 +669,7 @@ widget datepicker
 	+tooltip
 	+responsive
     +responsiveLabel
+    +iconAwesome
 }
 
 widget dateTimePicker
@@ -663,7 +678,7 @@ widget dateTimePicker
 		is_responsive
 {
     allow-input-toggle 	     Boolean									   "If true, the picker will show on textbox focus and icon click when used in a button group. Default: false."
-	ajax                     Boolean                                       "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	binding                  javax.faces.component.UIComponent             "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapse				 Boolean default "true"						   "If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker."
     day-view-header-format   default "MMMM YYYY"						   "Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'."
@@ -691,8 +706,6 @@ widget dateTimePicker
     max-date															   "Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string."
     onblur                           inherited                             "Client side callback to execute when input element loses focus."
     onchange                         inherited                             "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                          inherited                             "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                       inherited                             "Client side callback to execute when input element is double clicked."
     ondtchange															   "JavaScript event to manage date time change."
     onfocus                          inherited                             "Client side callback to execute when input element receives focus."
@@ -706,7 +719,6 @@ widget dateTimePicker
     onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
     onselect                         inherited                             "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-    process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly                 Boolean inherited                             "Flag indicating that this input element will prevent changes by the user."
     rendered                 Boolean inherited                             "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     render-label             Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
@@ -725,17 +737,18 @@ widget dateTimePicker
     time-stepping			 Integer default "1"						   "Number of minutes the up/down arrow's will move the minutes value in the time picker. Default 1."
     toolbar-placement		 default "default"  						   "Changes the placement of the icon toolbar. Default: 'default'. Accepts: 'default', 'top', 'bottom'."
     mode					 default "component"						   "Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'."
-    update                                                                 "Component(s) to be updated with ajax."
     use-current				 Boolean default "true"						   "On show, will set the picker to the current date/time. Default: true."
     use-strict			     Boolean 									   "Defines if moment should use strict date parsing when considering a date to be valid."
    	value               	 inherited                                     "Value."
     view-mode				 default "days"								   "The default view to display when the picker is shown. Note: To limit the picker to selecting, for instance the year and month, use format: MM/YYYY. Default: 'days'. Accepts: 'decades','years','months','days'."
     week-days-disabled		         									   "Days of the week that should be disabled. Values are 0 (Sunday) to 6 (Saturday). Multiple values should be comma-separated. Example: disable weekends: 0,6 or [0,6]."
     widgetParent														   "Parent widget of the popup to prevent overlap in case of DateTimePicker inside a small size container."
+	+ajax
     +style
 	+responsive
     +responsiveLabel
 	+tooltip
+	+iconAwesome
 }
 
 widget defaultCommand
@@ -754,17 +767,23 @@ widget dropButton
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
-    drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
+    drop                                                                   "Use up For dropup and down for dropdown, default is down."
+    icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
+    icon-align                                                             "Alignment can be right or left."
+    icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     look                                                                   "Look of the Button, can be primary, info, success, warning, danger. If not specified, a standard gray button will be rendered."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "The size of the Button.Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
-    value               mandatory inherited                                "The Label for the Button Dropdown."
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
+    value               mandatory inherited                                "The Label for the button dropdown."
 	+style
 	+responsive
 	+tooltip
 	+contentDisabled
+	+iconAwesome
 }
 
 
@@ -775,6 +794,7 @@ widget dropMenu
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                          "Inline style of the content area."
@@ -784,6 +804,7 @@ widget dropMenu
     icon-awesome                                                           "Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     value               mandatory inherited                                "The Label for the Dropdown."
 	+style
 	+tooltip
@@ -804,6 +825,7 @@ widget fetchBeanInfos
 widget form
        extends UIForm
        has_children {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     prependId           Boolean inherited                                  "Flag indicating whether or not this form should prepend its id to its descendent's id during the clientId generation process. If this flag is not set, the default value is true."
@@ -838,6 +860,7 @@ widget flyOutMenu
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -862,6 +885,7 @@ widget fullCalendar
        has_tooltip
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     defaultDate                                                           "String value of default date in iso 8601 format; this is the date where the calendar position is set on loading"
@@ -890,6 +914,7 @@ widget growl
 	rendered_by net.bootsfaces.component.GrowlRenderer
     extends UIMessages
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     for                 inherited                                          "The ID of the component whose attached FacesMessage object (if present) should be diplayed by this component. It takes precedence over globalOnly."
     global-only         Boolean                                            "Specifies whether only messages (FacesMessage objects) not associated with a specific component should be displayed, ie whether messages should be ignored if they are attached to a particular component. Defaults to false."
     id                  inherited                                          "Get a string which uniquely identifies this UIComponent within the scope of the nearest ancestor NamingContainer component. The id is not necessarily unique across all components in the current view."
@@ -917,9 +942,11 @@ widget gyroscope
     action              javax.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     ajax                Boolean                                                     "Whether the Button submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     alpha               javax.el.ValueExpression                                    "Variable to store the alpha value of the gyroscope's rotation"
     beta                javax.el.ValueExpression                                    "Variable to store the beta value of the gyroscope's rotation"
     gamma               javax.el.ValueExpression                                    "Variable to store the gamma value of the gyroscope's rotation"
+    delay                                                                 "Delays the AJAX request."
     disabled            Boolean                                                     "Disables the input element, default is false."
     id                  inherited      												"Unique identifier of the component in a namingContainer."
     interval            Integer default "500"                                       "Specifies the delay (in milliseconds) between each slide."
@@ -937,27 +964,25 @@ widget icon
        is_responsive
  {
     addon               Boolean                                            "Boolean value: if true the element is used as Addon."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    name                mandatory                                          "Icon name, mandatory."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
+    name                                                                   "Icon name. This attribute has been deprecated in favor of 'value'."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     rotate                                                                 "Rotate 90 degrees the icon: Can be L,R."
     size                                                                   "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
     spin                Boolean                                            "Boolean value: if true the icon will spin."
-    update                                                                 "Component(s) to be updated with ajax."
+    value                                                                  "Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -970,14 +995,12 @@ widget iconAwesome
        is_responsive
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
-    ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
     id                                                      inherited      "Unique identifier of the component in a namingContainer."
-    name                mandatory                           inherited      "Icon name, mandatory."
-    onclick                                                 inherited      "The onclick attribute."
-    oncomplete                                              inherited      "JavaScript to be executed when ajax completes with success."
+    name                                                    inherited      "Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. This attribute has been deprecated in favor of 'value'."
     ondblclick                                              inherited      "Client side callback to execute when input element is double clicked."
     onmousedown                                             inherited      "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                             inherited      "Client side callback to execute when a pointer input element is moved within input element."
@@ -987,9 +1010,18 @@ widget iconAwesome
     readonly            Boolean                             inherited      "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean                             inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
-    size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
+    size                                                    inherited      "Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed."
     spin                Boolean                             inherited      "Boolean value: if true the icon will spin."
-    update                                                  inherited      "Component(s) to be updated with ajax."
+    pulse               Boolean                                            "Boolean value: if true the icon will rotate with 8 discrete steps."
+    inverse             Boolean                                            "Switch the icon from black-on-white to white-on-black."
+    solid               Boolean                                            "Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    light               Boolean                                            "Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    regular             Boolean                                            "Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    brand               Boolean                                            "Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+    fixed-width         Boolean                                            "Activates the fixed with feature of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0."
+
+    value                                                                  "Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. Synonym of the attribute 'name'."
+	+ajax
 	+style
 	+responsive
 	+tooltip
@@ -1001,8 +1033,8 @@ widget image
        has_tooltip
        is_responsive
 {
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
 	alt																   	   "Alternate textual description of the element rendered by this component."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     height																   "Override for the height of this image."
@@ -1011,8 +1043,6 @@ widget image
     lang                                                                   "Code describing the language used in the generated markup for this component."
     library                                                                "The name of the folder in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute."
     name                                                                   "The name of the icon in the JSF resource library. Alternatively, you can specify the file name directly using the 'value' attribute."
-    onclick                                                                "Client side callback to execute when input element is clicked."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
 	ondragstart                                                            "Client side callback when a drag-and-drop action starts. May also call an AJAX function."
 	ondragover                                                             "Client side callback when an element is dragged over another element. Call event.preventDefault() to allow the dragged element to drop. May also call an AJAX function."
@@ -1025,13 +1055,12 @@ widget image
     onloadstart                                                            "JavaScript code executed when the image starts loading. Note that using this options reduces the speed of loading."
     onloadend                                                              "JavaScript code executed when the image has successfully been loaded. Note that using this options reduces the speed of loading."
     onprogress                                                             "JavaScript code executed when the image loading progresses. Note that using this options reduces the speed of loading."
-    process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     title																   "Advisory title information about markup elements generated for this component."
-    update                                                                 "Component(s) to be updated with ajax."
     value				        										   "The file name of this image. Alternatively, you can use the attributes 'library' and 'name' to use the JSF resource library."
     width																   "Override for the width of this image."
+ 	+ajax
     +style
     +tooltip
     +responsive
@@ -1045,8 +1074,9 @@ widget inputSecret
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     autocomplete                                                           "Controls browser autocomplete behavior."
+    alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1065,8 +1095,6 @@ widget inputSecret
     name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1079,7 +1107,6 @@ widget inputSecret
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     render-value        Boolean default "false"                            "By default, the value of the password field is never sent to the client. However, if you need to send the value to the client for some reason, you can set this flag to true. Please make sure that this is not a security hole. The password may be unreadable on the screen, but hackers can read it easily."
@@ -1090,11 +1117,11 @@ widget inputSecret
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -1111,9 +1138,9 @@ widget inputText
        is_responsive
  {
     accesskey                        inherited                             "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                              inherited                             "Alternate textual description of the input element."
     autocomplete                     inherited                             "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1133,8 +1160,6 @@ widget inputText
     name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
     onblur                           inherited                             "Client side callback to execute when input element loses focus."
     onchange                         inherited                             "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                          inherited                             "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                       inherited                             "Client side callback to execute when input element is double clicked."
     onfocus                          inherited                             "Client side callback to execute when input element receives focus."
     onkeydown                        inherited                             "Client side callback to execute when a key is pressed down over input element."
@@ -1147,7 +1172,6 @@ widget inputText
     onmouseup                        inherited                             "Client side callback to execute when a pointer input element is released over input element."
     onselect                         inherited                             "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean      inherited                             "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1164,11 +1188,11 @@ widget inputText
     typeahead-hint      Boolean default "true"                             "If set to false, the typeahead will not show a hint. Defaults to true."
     typeahead-minLength Integer default "1"                                "Minimum number of characters to be entered before a suggestion is shown."
     typeahead-values    java.lang.Object                                   "Comma-separated list of values that can be used for the typeahead list."
-    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -1184,9 +1208,9 @@ widget inputTextarea
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    ajax                  Boolean                                          "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding               javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter             java.faces.convert.Converter inherited           "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1203,8 +1227,6 @@ widget inputTextarea
     maxlength             Integer inherited                                "The maximum length of the input."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1217,7 +1239,6 @@ widget inputTextarea
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     placeholder                                                            "The placeholder attribute shows text in a field until the field is focused upon, then hides the text."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly              Boolean                                          "Flag indicating that this input element will prevent changes by the user."
     render-label          Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered              Boolean inherited                                "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1228,11 +1249,11 @@ widget inputTextarea
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    update                                                                 "Component(s) to be updated with ajax."
     validator             javax.faces.validator.Validator inherited        "A method expression referring to a method validationg the input."
     validator-message     inherited                                        "Message to display when validation fails."
     value                 inherited                                        "Value."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -1268,6 +1289,7 @@ widget jumbotron
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
@@ -1280,6 +1302,7 @@ widget kebab
        extends UIComponentBase
        has_children
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1293,6 +1316,7 @@ widget label
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1313,7 +1337,7 @@ widget link
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
-    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1330,8 +1354,6 @@ widget link
     look                                                                   "Make the link look like a button. Can be primary, block, info, success, warning, important, danger, and default. If not specified, a standard HTML hyperlink is rendered."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1344,14 +1366,13 @@ widget link
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
-    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
-    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
+	+ajax
     +responsive
     +tooltip
     +iconAwesome
@@ -1365,6 +1386,7 @@ widget listLinks
        has_children
        has_tooltip
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1378,6 +1400,7 @@ widget message
        extends UIMessage
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
     error-style                                                            "CSS style to be used for messages with severity \"ERROR\"."
@@ -1410,6 +1433,7 @@ widget messages
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "HTML: The direction of text display, either 'ltr' (left-to-right) or 'rtl' (right-to-left)."
     error-class                                                            "CSS class to be used for messages with severity \"ERROR\"."
     error-style                                                            "CSS style to be used for messages with severity \"ERROR\"."
@@ -1450,6 +1474,7 @@ widget modal
        extends UIComponentBase
        has_children
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     backdrop            Boolean default "true"                             "By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop=\"false\" to disable this feature."
     closable            Boolean default "true"                             "If true, the modal dialog can be closed by clicking the small cross in the upper right corner"
     close-on-escape     Boolean default "true"                             "By default, users can close modal dialogs by hitting the ESC key. Set close-on-escape=\"false\" to disable this feature."
@@ -1473,6 +1498,7 @@ widget navBar
        has_tooltip
  {
  	alt                 String default "Brand"                             "alternative text"
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     brand                                                                  "Brand for the Navbar."
     brand-align                                                            "Brand alignment, can be right or left."
@@ -1494,6 +1520,7 @@ widget navBar
     static              Boolean default "false"                            "Deprecated (use position and sticky instead). If true, a full-width navbar that scrolls away with the page will be rendered. Can be true or false, default false."
     style                                                                  "Inline style of the navBar element."
     style-class                                                            "Style class of the navBar element."
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     tooltip                                                                "The text of the tooltip."
     tooltip-container   default "body"                                     "Where is the tooltip div generated? That's primarily a technical value that can be used to fix rendering errors in special cases. Also see data-container in the documentation of Bootstrap. The default value is body."
     tooltip-delay       Integer                                            "The tooltip is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay)."
@@ -1511,7 +1538,7 @@ widget navCommandLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
-    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1527,8 +1554,6 @@ widget navCommandLink
     include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1541,13 +1566,13 @@ widget navCommandLink
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
-    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Navigation Link text."
+	+ajax
     +responsive
     +tooltip
     +iconAwesome
@@ -1562,7 +1587,7 @@ widget navLink
     action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
-    ajax                Boolean                                            "Whether the navLink submits the form with AJAX."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
@@ -1578,8 +1603,6 @@ widget navLink
     include-view-params Boolean                                            "Set whether or not the page parameters should be encoded into the target url."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1592,14 +1615,13 @@ widget navLink
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
     outcome                                                                "The outcome to navigate to."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline style"
     style-class                                                            "CSS style class"
-    tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
+    tabindex            default "0"                                        "Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document."
     target                                                                 "Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href."
-    update                                                                 "Component(s) to be updated with ajax."
-    value               inherited                                          "Navigation Link text."
+    value               inherited                                          "Navigation link text."
+	+ajax
     +responsive
     +tooltip
     +iconAwesome
@@ -1607,9 +1629,10 @@ widget navLink
 
 
 widget navbarLinks
-       implemented_by net.bootsfaces.component.NavBarLinks
+       implemented_by net.bootsfaces.component.navBarLinks.NavBarLinks
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                   "Can be right or left. Pulls the element right or left."
@@ -1619,6 +1642,27 @@ widget navbarLinks
 	+contentDisabled
 }
 
+widget openStreetMap
+       implemented_by net.bootsfaces.component.openStreetMap.OpenStreetMap
+{
+    center				String											"center"
+	marker				String											"marker"
+	popupMsg			String											"popupMsg"
+	zoom				Integer											"zoom"
+	width				String											"width"
+	height				String											"height"
+	minZoom				Integer											"minZoom"
+	maxZoom				Integer											"maxZoom"
+	dragging			Boolean											"dragging"
+	zoomControl			Boolean											"zoomControl"
+	zoomGlobal			Boolean											"zoomGlobal"
+	attribution			String											"attribution"
+	miniMap				Boolean											"miniMap"
+	miniMapWidth		Integer											"miniMapWidth"
+	miniMapHeight		Integer											"miniMapHeight"
+	miniMapPosition		String											"miniMapPosition"
+	urlTemplate			String											"urlTemplate"
+}
 
 widget panel
        implemented_by net.bootsfaces.component.panel.Panel
@@ -1627,7 +1671,7 @@ widget panel
        has_tooltip
        is_responsive
  {
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapsed           Boolean                                            "Is the panel collapsed?"
     collapsible         Boolean default "true"                             "By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature."
@@ -1641,8 +1685,6 @@ widget panel
     icon-align                                                             "Alignment can be right or left."
     icon-awesome                                                           "Font Awesome icon to show in this Panel header, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute."
     look                                                                   "Look of the Panel, can be primary, success, info, warning, danger. Default is warning."
-    onclick                                                                "The onclick attribute."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
 	oncollapse                                                             "JavaScript code or AJAX method to be executed when the panel starts to be collapsed."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
 	oncollapsed                                                            "JavaScript code or AJAX method to be executed when the panel has finished collapsing."
@@ -1653,7 +1695,6 @@ widget panel
     onmouseout                                                             "Client side callback to execute when a pointer input element is moved away from input element."
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     show-collapse-link  Boolean default "false"                            "Collapsible panel headers are decorated by an underline to indicate it can be toggled using the keyboard if you activate this feature by setting showCollapseLink='true'."
     style                                                                  "Inline style of the entire panel area."
@@ -1661,7 +1702,7 @@ widget panel
     title                                                                  "Title is optional: if specified, the heading facet will not be rendered and the panel will render with a heading with this Title."
     title-class                                                            "TitleClass is optional: if specified, the title will be displayed with this specific class"
     title-style                                                            "Inline style of the title area."
-    update                                                                 "Which region of the screen is to be updated? Default value: @form"
+	+ajax
     +responsive
     +tooltip
     +contentDisabled
@@ -1674,6 +1715,7 @@ widget panelGrid
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     col-spans                                                              "Comma-separated list of the column spans"
     column-classes                                                         "Comma-separated list of the CSS classes assigned to each column."
     columns                                                                "Determines the number of equal-sized columns. Simple alternative to col-span. Use col-span if you need columns of different widths."
@@ -1695,6 +1737,7 @@ widget pillLinks
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1709,6 +1752,7 @@ widget poll
  {
     action              javax.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     execute                                                                "Which input fields are to be sent? Default value: @none"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     interval            Integer                                            "How often is the poll action to be called? Denotes the number of milliseconds between polls. Default value is 1000."
@@ -1724,6 +1768,7 @@ widget progressBar
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     content-class                                                          "Style class of the inner div (which defines the length of the progress bar)."
@@ -1747,6 +1792,7 @@ widget radiobutton implemented_by net.bootsfaces.component.radiobutton
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1785,6 +1831,7 @@ widget row
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1818,6 +1865,7 @@ widget scrollSpy
        implemented_by net.bootsfaces.component.scrollspy.ScrollSpy
        extends UIComponentBase
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
  	id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     container															   "Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default."
@@ -1838,8 +1886,8 @@ widget selectBooleanCheckbox
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                                "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1855,8 +1903,6 @@ widget selectBooleanCheckbox
     lang                                                                   "Code describing the language used in the generated markup for this component."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -1868,7 +1914,6 @@ widget selectBooleanCheckbox
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1878,9 +1923,9 @@ widget selectBooleanCheckbox
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
     value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+	+ajax
     +tooltip
     +responsive
     +responsiveLabel
@@ -1893,6 +1938,7 @@ widget shake
     action              javax.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
     action-listener     javax.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     ajax                Boolean                                                     "Whether the Button submits the form with AJAX."
+    delay                                                                 "Delays the AJAX request."
     disabled            Boolean                                                     "Disables the input element, default is false."
     id                                                               inherited      "Unique identifier of the component in a namingContainer."
     interval            Integer default "500"                                       "Specifies the delay (in milliseconds) between each slide."
@@ -1910,14 +1956,12 @@ widget spinner
 	   is_responsive
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
-    ajax                Boolean                             inherited      "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
     id                                                      inherited      "Unique identifier of the component in a namingContainer."
     name                default "circle-o-notch" 			      		   "Icon name: default 'circle-o-notch'."
-    onclick                                                 inherited      "The onclick attribute."
-    oncomplete                                              inherited      "JavaScript to be executed when ajax completes with success."
     ondblclick                                              inherited      "Client side callback to execute when input element is double clicked."
     onmousedown                                             inherited      "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                             inherited      "Client side callback to execute when a pointer input element is moved within input element."
@@ -1928,7 +1972,7 @@ widget spinner
     rendered            Boolean                             inherited      "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     rotate                                                  inherited      "Rotate 90 degrees the icon: Can be L,R."
     size                                                    inherited      "Icon Size: legal values are lg, 2x, 3x, 4x, 5x."
-    update                                                  inherited      "Component(s) to be updated with ajax."
+	+ajax
 	+style
 	+responsive
 	+tooltip
@@ -1943,6 +1987,7 @@ widget switch
  {
     accesskey                                                        inherited      "Access key to transfer focus to the input element."
     alt                                                              inherited      "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent            inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                          inherited      "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter                 inherited      "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -2006,6 +2051,7 @@ widget selectMultiMenu
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     button-container                                                       "HTML snippet of the container holding both the button as well as the dropdown. Default: &lt;div class='btn-group' style='display:block' /&gt;. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -2062,7 +2108,6 @@ widget selectMultiMenu
     +responsiveLabel
 }
 
-
 widget selectOneMenu
        extends HtmlInputText
        has_tooltip
@@ -2070,13 +2115,14 @@ widget selectOneMenu
        description "This component is also known as combobox or drop-down-menu."
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                                                                    "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     field-size                                                             "The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) ."
+	hideNoSelectionOption	Boolean										 "Hide a noSelectionOption, if a value is already set. Requires update after selection."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
    	inline              Boolean default "false"                            "Inline forms are more compact and put the label to the left hand side of the input field instead of putting it above the input field. Inline applies only to screens that are at least 768 pixels wide."
@@ -2086,8 +2132,6 @@ widget selectOneMenu
     lang                                                                   "Code describing the language used in the generated markup for this component."
     onblur                                                                 "Client side callback to execute when input element loses focus."
     onchange                                                               "Client side callback to execute when input element loses focus and its value has been modified since gaining focus."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                                                             "Client side callback to execute when input element is double clicked."
     onfocus                                                                "Client side callback to execute when input element receives focus."
     onkeydown                                                              "Client side callback to execute when a key is pressed down over input element."
@@ -2099,7 +2143,6 @@ widget selectOneMenu
     onmouseover                                                            "Client side callback to execute when a pointer input element is moved onto input element."
     onmouseup                                                              "Client side callback to execute when a pointer input element is released over input element."
     onselect                                                               "Client side callback to execute when text within input element is selected by user."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean                                            "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2111,8 +2154,8 @@ widget selectOneMenu
     style-class                                                            "Style class of the input element."
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
-    update                                                                 "Component(s) to be updated with ajax."
     value               inherited                                          "Value."
+    +ajax
     +tooltip
     +responsive
     +responsiveLabel
@@ -2125,6 +2168,7 @@ widget slider
        extends HtmlInputText
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled	 		Boolean                                            "If true, you can't move the slider, nor can you edit the number."
     handle-shape                                                           "The default handle is squared. Specifing the \"round\" value for this attribute will turn the handle shape to a circle."
@@ -2143,6 +2187,7 @@ widget slider
     step                Integer                                            "The step of the slider."
     style                                                                  "Inline style of the entire slider."
     style-class                                                            "Style class of the entire slider."
+	badge-span          Integer default "1"                                "The column span of the badge or input field (if it's shown)."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
     badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
     value               inherited                                          "Value."
@@ -2154,6 +2199,7 @@ widget slider2
 	processes_input
 	extends HtmlInputText
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
 	disabled			Boolean default	"false"							   "If true, you can't move the slider, nor can you edit the number."
 	focus				Boolean default "false"							   "Focus the appropriate slider handle after a value change."
@@ -2183,6 +2229,7 @@ widget slider2
 	value				Integer default "5" inherited   	    	   	   "Initial position of the slider."
     style                                                                  "Inline style of the entire slider."
     style-class                                                            "Style class of the entire slider."
+	badge-span          Integer default "1"                                "The column span of the badge or input field (if it's shown)."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
     badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
 }
@@ -2192,6 +2239,7 @@ widget socialShare
 	extends UIOutput
 	is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     block-message   default "Click to enable sharing links"				    "Message of the block overaly."
     disable-block	Boolean default "false"									"Disable the block of buttons. Attention: the block is for respect of new law about social sharing. Disable at your risk."
     shares																	"A list of share button to display. Is a list of comma separated values. Accepted values are: email, twitter, facebook, googleplus, linkedin, pinterest, stumbleupon, whatsapp, line."
@@ -2214,8 +2262,8 @@ widget touchSpin
        is_responsive
  {
     accesskey                        inherited                             "Access key to transfer focus to the input element."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
     alt                              inherited                             "Alternate textual description of the input element."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     booster				Boolean default "true"							   "If enabled, the the spinner is continually becoming faster as holding the button."
     boostat				Integer default "10"							   "Boost at every nth step."
@@ -2244,8 +2292,6 @@ widget touchSpin
     mousewheel			Boolean default "true"							   "Enables the mouse wheel to change the value of the input."
     name                                                                   "The name of the field in the HMTL form and the HTTP request. Useful for frameworks like JAAS, which require you to use a specific field name."
     onblur                           inherited                             "Client side callback to execute when input element loses focus."
-    onclick                          inherited                             "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     ondblclick                       inherited                             "Client side callback to execute when input element is double clicked."
     onfocus                          inherited                             "Client side callback to execute when input element receives focus."
     onkeydown                        inherited                             "Client side callback to execute when a key is pressed down over input element."
@@ -2268,7 +2314,6 @@ widget touchSpin
     prefix-extra-class													   "Text after the input."
     postfix																   "Extra class(es) for prefix."
     postfix-extra-class													   "Extra class(es) for postfix."
-    process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     readonly            Boolean      inherited                             "Flag indicating that this input element will prevent changes by the user."
     render-label        Boolean default "net.bootsfaces.component.ComponentUtils.isRenderLabelDefault()" "Allows you to suppress automatic rendering of labels. Used internally by AngularFaces, too."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2282,7 +2327,6 @@ widget touchSpin
     tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
     title                             inherited                            "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    update                                                                 "Component(s) to be updated with ajax."
     validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value                                                            	   "Value."
@@ -2290,6 +2334,7 @@ widget touchSpin
     vertical-buttons	Boolean default "false"							   "Enables the traditional up/down buttons."
 	vertical-up-class	default "glyphicon glyphicon-chevron-up"		   "Class of the up button with vertical buttons mode enabled."
 	vertical-down-class default "glyphicon glyphicon-chevron-down"		   "Class of the down button with vertical buttons mode enabled."
+	+ajax
 	+style
 	+tooltip
 	+responsive
@@ -2302,20 +2347,17 @@ widget tab
        extends UIOutput
        has_tooltip
  {
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     content-style                                                          "Inline CSS of the div surrounding the tab pane."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    onclick                                                                "Optional JavaScript function that's called when the tab is clicked."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline CSS of the tab."
     style-class                                                            "Style class of the div surrounding the tab pane."
     title                                                                  "Caption of the tab."
-    update                                                                 "Component(s) to be updated with ajax."
+ 	+ajax
     +tooltip
     +contentDisabled
     +uirepeat
@@ -2327,6 +2369,7 @@ widget tabLinks
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2340,7 +2383,7 @@ widget tabView
        has_tooltip
  {
     active-index        Integer                                            "Optional attribute to define which tab is active initially."
-    ajax                Boolean                                            "Activates AJAX. The default value is false (no AJAX)."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     content-class                                                          "Style class of the div surrounding the panes."
     content-style                                                          "Inline CSS style of the div surrounding the panes."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -2349,17 +2392,14 @@ widget tabView
     disabled            Boolean                                            "Disables the input element, default is false."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean                                            "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
-    onclick                                                                "OnClick DHTML event ."
-    oncomplete                                                             "JavaScript to be executed when ajax completes with success."
     onshow                                                                 "JavaScript and/or AJAX code to be executed just before bringing a tab to the front"
     onshown                                                                "JavaScript and/or AJAX code to be executed just after bringing a tab to the front"
     onhide                                                                 "JavaScript and/or AJAX code to be executed just before pushing a tab to the back"
     onhidden                                                               "JavaScript and/or AJAX code to be executed just after pushing a tab to the back"
-	process                                                                "Comma or space separated list of ids or search expressions denoting which values are to be sent to the server."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     role                                                                   "The role can be used to provide information to screenreaders."
     style-class                                                            "Style class of the div surrounding this element."
-    update                                                                 "Component(s) to be updated with ajax."
+	+ajax
     +tooltip
     +contentDisabled
 }
@@ -2369,6 +2409,7 @@ widget tree
        extends UIComponentBase
        is_responsive
 {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
  	id                  	inherited                                          			"Unique identifier of the component in a namingContainer."
     rendered            	Boolean inherited                                  			"Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     value					Node														"Tree model value. Requires a java.util.List&lt;net.bootsfaces.component.tree.model.Node&gt; to work."
@@ -2399,6 +2440,7 @@ widget thumbnail
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -2415,6 +2457,7 @@ widget video
        is_responsive
 {
     autoplay            Boolean default "false"                            "Setting this to true will start the video on page load. By default, autoplay is deactivated. Note that mobile devices never start videos automatically."
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     controls            Boolean default "true"                             "Hide the controls (start, stop, seeking, volume etc.) by setting this property to false. By default, the controls are shown."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -2457,11 +2500,13 @@ widget well
        has_tooltip
        is_responsive
  {
+	auto-update         Boolean                                            "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     size                                                                   "Size can be large or small and controls padding and rounded corners."
-    style                                                                  "Inline CSS of the tab."
-    style-class                                                            "Style class of the div surrounding the tab pane."
+    style                                                                  "Inline CSS of the well."
+    style-class                                                            "Style class of the div surrounding the well."
+    value               inherited                                          "Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag."
     +tooltip
     +responsive
     +contentDisabled
@@ -2472,6 +2517,7 @@ widget formGroup
        has_children
        has_tooltip
  {
+	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     dir                 inherited                                          "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."

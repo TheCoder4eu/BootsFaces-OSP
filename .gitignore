@@ -38,3 +38,5 @@ src-gen
 /.externalToolBuilders
 /.apt_generated/
 /infer-out/
+/mavenResources/META-INF/licenses
+/doc/

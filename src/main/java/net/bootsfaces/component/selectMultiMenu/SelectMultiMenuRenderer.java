@@ -666,6 +666,11 @@ public class SelectMultiMenuRenderer extends CoreInputRenderer {
 			} else if (s.equals(value))
 				return true;
 		}
+		for (String s : options) {
+			if (s != null && s.trim().equals(value)) {
+				return true;
+			}
+		}
 		return false;
 	}
 

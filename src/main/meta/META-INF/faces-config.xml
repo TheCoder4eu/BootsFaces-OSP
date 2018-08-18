@@ -18,12 +18,6 @@
          </system-event-class>    					
       </system-event-listener>
     </application>
-
-	<ordering>
-		<after>
-			<name>omnifaces</name>
-		</after>
-	</ordering>
     
     <managed-bean>
         <description>

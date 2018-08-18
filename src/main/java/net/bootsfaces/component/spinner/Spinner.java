@@ -18,18 +18,28 @@
 
 package net.bootsfaces.component.spinner;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Spinner.COMPONENT_TYPE)
 public class Spinner extends SpinnerCore
-		implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
+		implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive, IAJAXComponent, IAJAXComponent2 {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".spinner.Spinner";
 
@@ -47,7 +57,16 @@ public class Spinner extends SpinnerCore
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

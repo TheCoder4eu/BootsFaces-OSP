@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.slider2;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
@@ -27,6 +34,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:slider2 /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Slider2.COMPONENT_TYPE)
 public class Slider2 extends Slider2Core {
 
@@ -70,7 +78,16 @@ public class Slider2 extends Slider2Core {
 		return super.compareValues(previous, value);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

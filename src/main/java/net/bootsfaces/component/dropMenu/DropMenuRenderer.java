@@ -26,6 +26,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.flyOutMenu.FlyOutMenu;
 import net.bootsfaces.component.icon.IconRenderer;
@@ -98,11 +99,14 @@ public class DropMenuRenderer extends CoreRenderer {
 
 			// Encode value
 			String value = (String) dropMenu.getAttributes().get("value");
+			String tabindex = dropMenu.getTabindex();
+			if (!"0".equals(tabindex)) {
+				writeAttribute(rw, "tabindex", tabindex, null);
+			}
 			String icon = dropMenu.getIcon();
 			String faicon = dropMenu.getIconAwesome();
-			boolean fa = false; // flag to indicate wether the selected icon
-								// set is
-								// Font Awesome or not.
+			boolean fa = false; // flag to indicate whether the selected icon
+								// set is Font Awesome or not.
 			if (faicon != null) {
 				icon = faicon;
 				fa = true;
@@ -112,10 +116,15 @@ public class DropMenuRenderer extends CoreRenderer {
 				if (ialign != null && ialign.equals("right")) {
 					rw.writeText(value + " ", null);
 					IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(),
-							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false);
+							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false,
+							dropMenu.isIconBrand(), dropMenu.isIconInverse(), dropMenu.isIconLight(), dropMenu.isIconPulse(), dropMenu.isIconRegular(),
+							dropMenu.isIconRegular());
 				} else {
 					IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(),
-							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false);
+							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false,
+							dropMenu.isIconBrand(), dropMenu.isIconInverse(), dropMenu.isIconLight(), dropMenu.isIconPulse(), dropMenu.isIconRegular(),
+							dropMenu.isIconRegular());
+
 					// !//R.encodeIcon(rw, this, icon, white);
 					rw.writeText(" " + value, null);
 				}
@@ -136,11 +145,9 @@ public class DropMenuRenderer extends CoreRenderer {
 
 	private boolean isDropMenuChild(UIComponent component) {
 		UIComponent parent = component.getParent();
-		if (parent != null) {
-			while (parent.getClass().getSimpleName().equals("UIRepeat")) {
-				parent = parent.getParent();
-			}
-		}	
+		while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+			parent = parent.getParent();
+		}
 		return parent instanceof DropMenu;
 	}
 
@@ -150,15 +157,13 @@ public class DropMenuRenderer extends CoreRenderer {
 			htmlTag = "li";
 		} else {
 			UIComponent parent = component.getParent();
-			if (parent != null) {
-				if (parent.getClass().getSimpleName().equals("UIRepeat")) {
-					parent = parent.getParent();
-				}
-				if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-						|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-						|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
-					htmlTag = "li";
-				}
+			while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+				parent = parent.getParent();
+			}
+			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+				htmlTag = "li";
 			}
 		}
 		return htmlTag;

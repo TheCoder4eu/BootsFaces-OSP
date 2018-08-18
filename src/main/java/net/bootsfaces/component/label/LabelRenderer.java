@@ -19,7 +19,6 @@
 package net.bootsfaces.component.label;
 
 import java.io.IOException;
-import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -50,7 +49,6 @@ public class LabelRenderer extends CoreRenderer {
 		String clientId = label.getClientId();
 	
 		boolean idHasBeenRendered = false;
-		Map<String, Object> attrs = label.getAttributes();
 
 		String sev = label.getSeverity();
 		String txt = label.getValue();

@@ -24,7 +24,7 @@ import javax.faces.component.UICommand;
 public abstract class RemoteCommandCore extends UICommand {
 
 	protected enum PropertyKeys {
-		ajax, binding, disabled, name, onclick, oncomplete, onerror, onsuccess, parameters, process, update;
+		ajax, binding, delay, disabled, name, onclick, oncomplete, onerror, onsuccess, parameters, process, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -69,6 +69,22 @@ public abstract class RemoteCommandCore extends UICommand {
 	 */
 	public void setBinding(javax.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**

@@ -34,7 +34,9 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
+import net.bootsfaces.component.breadcrumbs.Breadcrumbs;
 import net.bootsfaces.component.commandLink.CommandLink;
 import net.bootsfaces.component.dropButton.DropButton;
 import net.bootsfaces.component.dropMenu.DropMenu;
@@ -107,16 +109,15 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		String htmlTag = "span";
 		UIComponent parent = navlink.getParent();
-		if (parent != null) {
-			if (parent.getClass().getSimpleName().equals("UIRepeat")) {
-				parent = parent.getParent();
-			}
-			if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
-				htmlTag = "li";
-			}
+		while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+			parent = parent.getParent();
 		}
+		if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+				|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
+				|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
+			htmlTag = "li";
+		}
+
 		rw.startElement(htmlTag, navlink);
 		writeAttribute(rw, "id", navlink.getClientId(context), "id");
 		String styleClass = ((AbstractNavLink) navlink).getStyleClass();
@@ -167,21 +168,21 @@ public class NavLinkRenderer extends CoreRenderer {
 		boolean idHasBeenRendered=false;
 		if (!(navlink instanceof Link || navlink instanceof CommandLink)) {
 			UIComponent parent = navlink.getParent();
-			if (parent != null) {
-				if (parent.getClass().getSimpleName().equals("UIRepeat")) {
-					parent = parent.getParent();
-				}
-				if (parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-						|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-						|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
-					htmlTag = "li";
-				}
+			while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
+				parent = parent.getParent();
 			}
+			if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
+					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
+					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+				htmlTag = "li";
+			}
+
 			rw.startElement(htmlTag, navlink);
 			writeAttribute(rw, "id", navlink.getClientId(context), "id");
 			idHasBeenRendered=true;
 			if (((AbstractNavLink) navlink).isDisabled()) {
 				writeAttribute(rw, "class", "disabled");
+				writeAttribute(rw, "aria-disabled", "true");
 			}
 
 	
@@ -211,7 +212,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 		}
 
-		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "tabindex", "title" });
+		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "title" });
 
 		
 		String styleClass = (navlink instanceof NavCommandLink ? "commandLink " : "");
@@ -266,7 +267,8 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 
 		}
-		writeAttribute(rw, "tabindex", "-1", null);
+		String tabindex = ((AbstractNavLink) navlink).getTabindex();
+		writeAttribute(rw, "tabindex", tabindex, null);
 
 		String icon = ((AbstractNavLink) navlink).getIcon();
 		String faicon = ((AbstractNavLink) navlink).getIconAwesome();
@@ -288,9 +290,14 @@ public class NavLinkRenderer extends CoreRenderer {
 						c.encodeAll(context);
 					}
 				}
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
+						link.isIconRegular());
+
 			} else {
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
+						link.isIconRegular());
 				if (navlink.getChildCount() > 0) {
 					for (UIComponent c : navlink.getChildren()) {
 						c.encodeAll(context);

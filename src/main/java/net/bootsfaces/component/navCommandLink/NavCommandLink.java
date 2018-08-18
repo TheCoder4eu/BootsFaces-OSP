@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.navCommandLink;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,6 +37,7 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.component.navLink.AbstractNavLink;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
@@ -37,9 +45,10 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:navLink /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(NavCommandLink.COMPONENT_TYPE)
-public class NavCommandLink extends NavCommandLinkCore
-		implements ClientBehaviorHolder, net.bootsfaces.render.IHasTooltip, IAJAXComponent, AbstractNavLink {
+public class NavCommandLink extends NavCommandLinkCore implements ClientBehaviorHolder,
+		net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, AbstractNavLink {
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".navCommandLink.NavCommandLink";
 
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
@@ -71,6 +80,15 @@ public class NavCommandLink extends NavCommandLinkCore
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -86,8 +104,9 @@ public class NavCommandLink extends NavCommandLinkCore
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
-	 * If there's no parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -97,8 +116,8 @@ public class NavCommandLink extends NavCommandLinkCore
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -106,26 +125,63 @@ public class NavCommandLink extends NavCommandLinkCore
 	public Map<String, String> getJQueryEventParameterLists() {
 		return null;
 	}
-	
+
 	/**
 	 * Boolean value to specify if the widget is disabled.
 	 * <P>
 	 * 
-	 * @return Returns the value of the attribute, or false, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or false, if it hasn't been set
+	 *         by the JSF file.
 	 */
 	public boolean isDisabled() {
-		if (super.isDisabled()) 
+		if (super.isDisabled())
 			return true;
 		UIComponent ancestor = getParent();
-		while (ancestor!=null) {
+		while (ancestor != null) {
 			if (ancestor instanceof IContentDisabled) {
-				if (((IContentDisabled)ancestor).isContentDisabled()) {
+				if (((IContentDisabled) ancestor).isContentDisabled()) {
 					return true;
 				}
 			}
-			ancestor=ancestor.getParent();
+			ancestor = ancestor.getParent();
 		}
 		return false;
+	}
+
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
+		super.setIconAwesome(_iconAwesome);
+	}
+
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconSolid(_iconSolid);
 	}
 }

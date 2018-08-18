@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.navLink.NavLinkCore.PropertyKeys;
 import net.bootsfaces.render.IHasTooltip;
 import net.bootsfaces.render.IResponsive;
 
@@ -763,5 +764,45 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 */
 	public String getIconSize();
 
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand();
 
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse();
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight();
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse();
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular();
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid();
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * @return Returns the value of the attribute, or "0", if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex();
 }

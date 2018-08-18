@@ -134,4 +134,20 @@ public abstract class LinksContainer extends UIComponentBase implements IContent
 		getStateHelper().put("contentDisabled", _contentDisabled);
 	}
 
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval("autoUpdate", false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put("autoUpdate", _autoUpdate);
+	}
+
 }

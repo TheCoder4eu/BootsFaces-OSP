@@ -527,7 +527,7 @@ public class CoreRenderer extends Renderer {
 	 */
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
+		Converter cnv = resolveConverter(fc, c, sval);
 
 		if (cnv != null) {
 			if (sval == null || sval instanceof String) {
@@ -540,7 +540,7 @@ public class CoreRenderer extends Renderer {
 		}
 	}
 
-	protected Converter resolveConverter(FacesContext context, UIComponent c) {
+	protected Converter resolveConverter(FacesContext context, UIComponent c, Object value) {
 		if (!(c instanceof ValueHolder)) {
 			return null;
 		}
@@ -554,8 +554,11 @@ public class CoreRenderer extends Renderer {
 
 			if (ve != null) {
 				Class<?> valType = ve.getType(context.getELContext());
+				
 
-				if (valType != null) {
+				if (valType != null && (!valType.isPrimitive())) { // workaround for a Mojarra bug (#966)
+					return context.getApplication().createConverter(valType);
+				} else if (valType != null && (value instanceof String)) { // workaround for the workaround of the Mojarra bug (#977)
 					return context.getApplication().createConverter(valType);
 				}
 			}

@@ -130,7 +130,6 @@ public class CommandButtonRenderer extends CoreRenderer {
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
 		ResponseWriter rw = context.getResponseWriter();
-		// Map<String, Object> attrs = component.getAttributes();
 
 		CommandButton commandButton = (CommandButton) component;
 
@@ -152,9 +151,11 @@ public class CommandButtonRenderer extends CoreRenderer {
 			if (ialign != null && ialign.equals("right")) {
 				value = value != null ? value + " " : null;
 				writeText(rw, value, null);
-				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false,
+						commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconRegular());
 			} else {
-				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false,
+				commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconRegular());
 				value = value != null ? " " + value : null;
 				writeText(rw, value, null);
 			}

@@ -24,12 +24,12 @@ To get up and running quickly, have a look at the [Quick Start](http://www.boots
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>1.1.0</version>
+        <version>1.3.0</version>
     </dependency>
 
 ### Gradle
 
-    compile 'net.bootsfaces:bootsfaces:1.1.0'
+    compile 'net.bootsfaces:bootsfaces:1.3.0'
 
 ### Development Snapshots
 

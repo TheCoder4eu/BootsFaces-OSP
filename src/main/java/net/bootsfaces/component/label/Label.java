@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.label;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
@@ -26,6 +33,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:label /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent("net.bootsfaces.component.label.Label")
 public class Label extends LabelCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
 
@@ -41,7 +49,16 @@ public class Label extends LabelCore implements net.bootsfaces.render.IHasToolti
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

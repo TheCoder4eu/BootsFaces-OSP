@@ -24,74 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		accesskey,
-		ajax,
-		alt,
-		binding,
-		caption,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		converterMessage,
-		dir,
-		disabled,
-		display,
-		fieldSize,
-		hidden,
-		immediate,
-		label,
-		labelColLg,
-		labelColMd,
-		labelColSm,
-		labelColXs,
-		labelLargeScreen,
-		labelMediumScreen,
-		labelSmallScreen,
-		labelStyle,
-		labelStyleClass,
-		labelTinyScreen,
-		lang,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onselect,
-		process,
-		readonly,
-		renderLabel,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		accesskey, ajax, alt, autoUpdate, binding, caption, colLg, colMd, colSm, colXs, converterMessage, delay, dir, disabled, display, fieldSize, hidden, immediate, label, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onerror, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, onsuccess, process, readonly, renderLabel, smallScreen, span, style, styleClass, tabindex, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -123,7 +56,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -131,7 +64,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -152,6 +85,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -264,6 +213,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setConverterMessage(String _converterMessage) {
 		getStateHelper().put(PropertyKeys.converterMessage, _converterMessage);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -699,7 +664,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * OnClick DHTML event . <P>
+	 * The onclick attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
@@ -707,7 +672,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * OnClick DHTML event . <P>
+	 * The onclick attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -715,7 +680,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -723,7 +688,7 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -744,6 +709,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -904,6 +885,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setOnselect(String _onselect) {
 		getStateHelper().put(PropertyKeys.onselect, _onselect);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

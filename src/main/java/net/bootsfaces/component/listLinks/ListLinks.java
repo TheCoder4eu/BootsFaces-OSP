@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.listLinks;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 
@@ -31,6 +38,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(ListLinks.COMPONENT_TYPE)
 public class ListLinks extends LinksContainer {
 
@@ -69,5 +77,14 @@ public class ListLinks extends LinksContainer {
     protected String getContainerStyles() {
         return STYLE;
     }
+
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
 
 }

@@ -28,41 +28,7 @@ import net.bootsfaces.component.tree.model.Node;
 public abstract class TreeCore extends UIComponentBase {
 
 	protected enum PropertyKeys {
-		borderColor,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapseIcon,
-		color,
-		display,
-		enableLinks,
-		expandIcon,
-		hidden,
-		hoverColor,
-		largeScreen,
-		mediumScreen,
-		nodeSelectionListener,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		renderRoot,
-		selectedColor,
-		showBorder,
-		showCheckbox,
-		showIcon,
-		showTags,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		tinyScreen,
-		update,
-		value,
-		visible;
+		autoUpdate, borderColor, colLg, colMd, colSm, colXs, collapseIcon, color, display, enableLinks, expandIcon, hidden, hoverColor, largeScreen, mediumScreen, nodeSelectionListener, offset, offsetLg, offsetMd, offsetSm, offsetXs, renderRoot, selectedColor, showBorder, showCheckbox, showIcon, showTags, smallScreen, span, style, styleClass, tabindex, tinyScreen, update, value, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -75,6 +41,22 @@ public abstract class TreeCore extends UIComponentBase {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

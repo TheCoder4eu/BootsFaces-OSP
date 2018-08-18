@@ -283,7 +283,9 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 				// span
 				rw.startElement("span", dtp);
 				rw.writeAttribute("class", "input-group-addon", "class");
-				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true);
+				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true,
+						dtp.isIconBrand(), dtp.isIconInverse(), dtp.isIconLight(), dtp.isIconPulse(), dtp.isIconRegular(),
+						dtp.isIconRegular());
 				rw.endElement("span");
 			}
 			// input
@@ -311,7 +313,10 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 				// span
 				rw.startElement("span", dtp);
 				rw.writeAttribute("class", "input-group-addon", "class");
-				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true);
+				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true,
+						dtp.isIconBrand(), dtp.isIconInverse(), dtp.isIconLight(), dtp.isIconPulse(), dtp.isIconRegular(),
+						dtp.isIconRegular());
+
 				rw.endElement("span");
 			}
 
@@ -398,7 +403,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 							dtp.getMinDate().contains("moment") ? dtp.getMinDate() : "'" + dtp.getMinDate() + "'" :
 							"";
 		String maxDate = BsfUtils.isStringValued(dtp.getMaxDate()) ?
-							dtp.getMinDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
+							dtp.getMaxDate().contains("moment") ? dtp.getMaxDate() : "'" + dtp.getMaxDate() + "'" :
 							"";
 
 		rw.startElement("script", dtp);

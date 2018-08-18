@@ -30,45 +30,7 @@ import net.bootsfaces.component.inputText.InputText;
 public abstract class RadiobuttonCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		disabled,
-		display,
-		hidden,
-		immediate,
-		itemLabel,
-		itemValue,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		onerror,
-		onsuccess,
-		process,
-		required,
-		requiredMessage,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		ajax, autoUpdate, colLg, colMd, colSm, colXs, delay, dir, disabled, display, hidden, immediate, itemLabel, itemValue, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, process, required, requiredMessage, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -97,6 +59,22 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -161,6 +139,22 @@ public abstract class RadiobuttonCore extends InputText implements net.bootsface
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**

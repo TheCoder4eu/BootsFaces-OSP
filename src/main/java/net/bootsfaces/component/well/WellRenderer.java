@@ -80,6 +80,11 @@ public class WellRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "well" + styleClass, "class");
 		}
 		beginDisabledFieldset(well, rw);
+		
+		Object value = well.getValue();
+		if (null != value) {
+			rw.writeText(String.valueOf(value), null);
+		}
 	}
 
 	/**

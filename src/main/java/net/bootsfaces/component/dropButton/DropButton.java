@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.dropButton;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
@@ -31,6 +38,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropButton /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(DropButton.COMPONENT_TYPE)
 public class DropButton extends UIComponentBase implements IHasTooltip, IResponsive, IContentDisabled {
 
@@ -43,7 +51,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	public DropButton() {
 		// AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY,
 		// "jq/jquery.js");
-		//!bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
+		// !bs-less//AddResourcesListener.addThemedCSSResource("dropdowns.css");
 		AddResourcesListener.addThemedCSSResource("core.css");
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addResourceToHeadButAfterJQuery("bsf", "js/dropdown.js");
@@ -59,37 +67,17 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 		return COMPONENT_FAMILY;
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		contentDisabled,
-		display,
-		drop,
-		hidden,
-		largeScreen,
-		look,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		autoUpdate, binding, colLg, colMd, colSm, colXs, contentDisabled, display, drop, hidden, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, size, smallScreen, span, style, styleClass, tabindex, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -102,6 +90,22 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -217,7 +221,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
+	 * Use up For dropup and down for dropdown, default is down. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDrop() {
@@ -225,7 +229,7 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	}
 
 	/**
-	 * Use up For Dropup and down for Dropdown, default is down. <P>
+	 * Use up For dropup and down for dropdown, default is down. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDrop(String _drop) {
@@ -246,6 +250,227 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	 */
 	public void setHidden(String _hidden) {
 		getStateHelper().put(PropertyKeys.hidden, _hidden);
+	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIcon() {
+		return (String) getStateHelper().eval(PropertyKeys.icon);
+	}
+
+	/**
+	 * Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIcon(String _icon) {
+		getStateHelper().put(PropertyKeys.icon, _icon);
+	}
+
+	/**
+	 * Alignment can be right or left. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAlign() {
+		return (String) getStateHelper().eval(PropertyKeys.iconAlign);
+	}
+
+	/**
+	 * Alignment can be right or left. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAlign(String _iconAlign) {
+		getStateHelper().put(PropertyKeys.iconAlign, _iconAlign);
+	}
+
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconAwesome() {
+		return (String) getStateHelper().eval(PropertyKeys.iconAwesome);
+	}
+
+	/**
+	 * Navigation Link Font Awesome Icon, can be one of the Font Awesome icon names. Alignment can be specified with the icon-align attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
+		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconBrand, false);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconFlip() {
+		return (String) getStateHelper().eval(PropertyKeys.iconFlip);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconFlip(String _iconFlip) {
+		getStateHelper().put(PropertyKeys.iconFlip, _iconFlip);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconInverse, false);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconInverse(boolean _iconInverse) {
+		getStateHelper().put(PropertyKeys.iconInverse, _iconInverse);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconLight, false);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconPulse, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPulse(boolean _iconPulse) {
+		getStateHelper().put(PropertyKeys.iconPulse, _iconPulse);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconRegular, false);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconRotate() {
+		return (String) getStateHelper().eval(PropertyKeys.iconRotate);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRotate(String _iconRotate) {
+		getStateHelper().put(PropertyKeys.iconRotate, _iconRotate);
+	}
+
+	/**
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconSize() {
+		return (String) getStateHelper().eval(PropertyKeys.iconSize);
+	}
+
+	/**
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSize(String _iconSize) {
+		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSolid, false);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSpin() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSpin, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSpin(boolean _iconSpin) {
+		getStateHelper().put(PropertyKeys.iconSpin, _iconSpin);
 	}
 
 	/**
@@ -454,6 +679,22 @@ public class DropButton extends UIComponentBase implements IHasTooltip, IRespons
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * @return Returns the value of the attribute, or "0", if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex, "0");
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**

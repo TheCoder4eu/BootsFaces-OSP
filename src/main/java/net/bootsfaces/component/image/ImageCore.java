@@ -24,60 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class ImageCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		alt,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		disabled,
-		display,
-		height,
-		hidden,
-		immediate,
-		lang,
-		largeScreen,
-		library,
-		mediumScreen,
-		name,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		ondblclick,
-		ondragover,
-		ondragstart,
-		ondrop,
-		onloadend,
-		onloadstart,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		onprogress,
-		process,
-		readonly,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		value,
-		visible,
-		width;
+		ajax, alt, autoUpdate, binding, colLg, colMd, colSm, colXs, delay, disabled, display, height, hidden, immediate, lang, largeScreen, library, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondragover, ondragstart, ondrop, onerror, onloadend, onloadstart, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onprogress, onsuccess, process, readonly, smallScreen, span, style, styleClass, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible, width;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -93,7 +40,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -101,7 +48,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -122,6 +69,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -202,6 +165,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -445,7 +424,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * Client side callback to execute when input element is clicked. <P>
+	 * The onclick attribute. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOnclick() {
@@ -453,7 +432,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * Client side callback to execute when input element is clicked. <P>
+	 * The onclick attribute. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOnclick(String _onclick) {
@@ -461,7 +440,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -469,7 +448,7 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -538,6 +517,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setOndrop(String _ondrop) {
 		getStateHelper().put(PropertyKeys.ondrop, _ondrop);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -666,6 +661,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setOnprogress(String _onprogress) {
 		getStateHelper().put(PropertyKeys.onprogress, _onprogress);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

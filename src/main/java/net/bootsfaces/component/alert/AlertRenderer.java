@@ -109,6 +109,10 @@ public class AlertRenderer extends CoreRenderer {
 			rw.writeAttribute("class", "bficon "+s, "class");
 			rw.endElement("span");
 		}
+		Object value = alert.getValue();
+		if (value != null) {
+			rw.writeText(String.valueOf(value), null);
+		}
 	}
 
 	/**

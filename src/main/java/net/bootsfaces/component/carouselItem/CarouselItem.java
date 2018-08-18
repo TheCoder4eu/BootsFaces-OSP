@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.carouselItem;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,13 +37,15 @@ import javax.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:carouselItem /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(CarouselItem.COMPONENT_TYPE)
 public class CarouselItem extends UICommand
-		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, ClientBehaviorHolder {
+		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".carouselItem.CarouselItem";
 
@@ -102,29 +111,17 @@ public class CarouselItem extends UICommand
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		active,
-		ajax,
-		caption,
-		disabled,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		process,
-		style,
-		styleClass,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update;
+		active, ajax, autoUpdate, caption, delay, disabled, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -172,6 +169,22 @@ public class CarouselItem extends UICommand
 	}
 
 	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
+	}
+
+	/**
 	 * Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -185,6 +198,22 @@ public class CarouselItem extends UICommand
 	 */
 	public void setCaption(String _caption) {
 		getStateHelper().put(PropertyKeys.caption, _caption);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -220,7 +249,7 @@ public class CarouselItem extends UICommand
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -228,7 +257,7 @@ public class CarouselItem extends UICommand
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -249,6 +278,22 @@ public class CarouselItem extends UICommand
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -329,6 +374,22 @@ public class CarouselItem extends UICommand
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

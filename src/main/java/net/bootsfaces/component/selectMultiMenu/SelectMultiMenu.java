@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.selectMultiMenu;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -30,6 +37,7 @@ import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.IResponsiveLabel;
@@ -41,9 +49,10 @@ import net.bootsfaces.utils.BsfUtils;
 	  @ResourceDependency(library = "bsf", name = "js/bootstrap-multiselect.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body"), })
 
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(SelectMultiMenu.COMPONENT_TYPE)
 public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfaces.render.IHasTooltip, IResponsive, IResponsiveLabel,
-                                                                    net.bootsfaces.component.ajax.IAJAXComponent{
+                                                                    net.bootsfaces.component.ajax.IAJAXComponent, IAJAXComponent2 {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".selectMultiMenu.SelectMultiMenu";
 
@@ -64,7 +73,16 @@ public class SelectMultiMenu extends SelectMultiMenuCore implements net.bootsfac
 		super.setValueExpression(name, binding);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

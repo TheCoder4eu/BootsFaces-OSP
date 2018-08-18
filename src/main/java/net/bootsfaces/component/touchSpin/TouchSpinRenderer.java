@@ -68,7 +68,7 @@ public class TouchSpinRenderer extends InputTextRenderer {
 	
 	@Override
 	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
+		Converter cnv = resolveConverter(fc, c, sval);
 
 		if (cnv != null) {
 			return cnv.getAsObject(fc, c, (String) sval);

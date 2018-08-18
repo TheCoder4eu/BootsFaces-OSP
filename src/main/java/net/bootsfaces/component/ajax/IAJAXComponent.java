@@ -75,6 +75,12 @@ public interface IAJAXComponent {
 	 * </p>
 	 */
 	public String getDefaultEventName();
+	
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay();
 
 	/**
 	 * <p class="changed_added_2_0">

@@ -18,7 +18,16 @@
 
 package net.bootsfaces.component.kebab;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
+import javax.faces.application.ResourceDependencies;
+import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
@@ -27,6 +36,10 @@ import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:kebab /&gt;. */
+@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body")
+	})
+
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Kebab.COMPONENT_TYPE)
 public class Kebab extends KebabCore implements IContentDisabled {
 
@@ -42,7 +55,16 @@ public class Kebab extends KebabCore implements IContentDisabled {
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

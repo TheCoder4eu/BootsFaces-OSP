@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.dateTimePicker;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -37,6 +44,7 @@ import javax.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
@@ -46,9 +54,10 @@ import net.bootsfaces.utils.BsfUtils;
 import net.bootsfaces.utils.LocaleUtils;
 
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(DateTimePicker.COMPONENT_TYPE)
 public class DateTimePicker extends DateTimePickerCore
-		implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IResponsiveLabel {
+		implements net.bootsfaces.render.IHasTooltip, IResponsive, IAJAXComponent, IAJAXComponent2, IResponsiveLabel {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dateTimePicker.DateTimePicker";
 
@@ -66,6 +75,15 @@ public class DateTimePicker extends DateTimePickerCore
 		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/moment-with-locales.min.js");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-datetimepicker.min.js");
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
 	}
 
 	public String getFamily() {
@@ -187,6 +205,43 @@ public class DateTimePicker extends DateTimePickerCore
 			ancestor = ancestor.getParent();
 		}
 		return false;
+	}
+
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
+		super.setIconAwesome(_iconAwesome);
+	}
+	
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconSolid(_iconSolid);
 	}
 
 }

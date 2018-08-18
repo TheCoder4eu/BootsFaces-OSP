@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.message;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIMessage;
@@ -28,6 +35,7 @@ import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:message /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Message.COMPONENT_TYPE)
 public class Message extends UIMessage implements IResponsive {
 
@@ -54,43 +62,17 @@ public class Message extends UIMessage implements IResponsive {
 		return COMPONENT_FAMILY;
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		display,
-		errorClass,
-		errorStyle,
-		escape,
-		fatalClass,
-		fatalStyle,
-		hidden,
-		infoClass,
-		infoStyle,
-		largeScreen,
-		lineBreak,
-		lineBreakTag,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onlyMostSevere,
-		redisplay,
-		showDetail,
-		showIcon,
-		showSummary,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		visible,
-		warnClass,
-		warnStyle;
+		autoUpdate, colLg, colMd, colSm, colXs, dir, display, errorClass, errorStyle, escape, fatalClass, fatalStyle, hidden, infoClass, infoStyle, largeScreen, lineBreak, lineBreakTag, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onlyMostSevere, redisplay, showDetail, showIcon, showSummary, smallScreen, span, style, styleClass, tinyScreen, visible, warnClass, warnStyle;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -103,6 +85,22 @@ public class Message extends UIMessage implements IResponsive {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

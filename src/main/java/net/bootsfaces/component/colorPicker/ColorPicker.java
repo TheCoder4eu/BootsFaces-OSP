@@ -1,5 +1,12 @@
 package net.bootsfaces.component.colorPicker;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -11,6 +18,7 @@ import javax.faces.component.UIComponent;
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IHasTooltip;
@@ -19,8 +27,9 @@ import net.bootsfaces.render.IResponsiveLabel;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(ColorPicker.COMPONENT_TYPE)
-public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IResponsive, IResponsiveLabel {
+public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 
 	private String renderLabel = null;
 
@@ -56,6 +65,15 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	}
 
 	@Override
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}

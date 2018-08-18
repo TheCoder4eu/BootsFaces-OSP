@@ -24,89 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class SelectMultiMenuCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		accesskey,
-		ajax,
-		allSelectedText,
-		alt,
-		binding,
-		buttonContainer,
-		buttonWidth,
-		buttonClass,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		disableIfEmpty,
-		disabled,
-		display,
-		dropRight,
-		enableCaseInsensitiveFiltering,
-		enableFiltering,
-		fieldSize,
-		filterPlaceholder,
-		hidden,
-		immediate,
-		includeSelectAllOption,
-		inline,
-		label,
-		labelColLg,
-		labelColMd,
-		labelColSm,
-		labelColXs,
-		labelLargeScreen,
-		labelMediumScreen,
-		labelSmallScreen,
-		labelStyle,
-		labelStyleClass,
-		labelTinyScreen,
-		lang,
-		largeScreen,
-		maxHeight,
-		mediumScreen,
-		nSelectedText,
-		nonSelectedText,
-		numberDisplayed,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onchange,
-		onclick,
-		oncomplete,
-		ondeselectall,
-		ondropdownhidden,
-		ondropdownhide,
-		ondropdownshow,
-		ondropdownshown,
-		onerror,
-		oninitialized,
-		onselectall,
-		onsuccess,
-		process,
-		radiobuttons,
-		readonly,
-		renderLabel,
-		required,
-		requiredMessage,
-		selectAllText,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		accesskey, ajax, allSelectedText, alt, autoUpdate, binding, buttonContainer, buttonWidth, buttonClass, colLg, colMd, colSm, colXs, delay, dir, disableIfEmpty, disabled, display, dropRight, enableCaseInsensitiveFiltering, enableFiltering, fieldSize, filterPlaceholder, hidden, immediate, includeSelectAllOption, inline, label, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, lang, largeScreen, maxHeight, mediumScreen, nSelectedText, nonSelectedText, numberDisplayed, offset, offsetLg, offsetMd, offsetSm, offsetXs, onchange, onclick, oncomplete, ondeselectall, ondropdownhidden, ondropdownhide, ondropdownshow, ondropdownshown, onerror, oninitialized, onselectall, onsuccess, process, radiobuttons, readonly, renderLabel, required, requiredMessage, selectAllText, size, smallScreen, span, style, styleClass, tabindex, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -183,6 +101,22 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -311,6 +245,22 @@ public abstract class SelectMultiMenuCore extends HtmlInputText implements net.b
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**

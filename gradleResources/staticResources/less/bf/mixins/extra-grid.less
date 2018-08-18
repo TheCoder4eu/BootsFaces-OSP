@@ -1,0 +1,17 @@
+//
+// Set the container width, and override it for fixed navbars in media queries.
+
+.container {
+  .container-fixed();
+  @media (min-width: @screen-xl-min) {
+    width: @container-xl;
+  }
+}
+
+// xLarge grid
+//
+// Columns, offsets, pushes, and pulls for the xlarge desktop device range.
+
+@media (min-width: @screen-xl-min) {
+  .make-grid(xl);
+}

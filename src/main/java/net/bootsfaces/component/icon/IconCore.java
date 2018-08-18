@@ -24,51 +24,7 @@ import javax.faces.component.UICommand;
 public abstract class IconCore extends UICommand implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		addon,
-		ajax,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		disabled,
-		display,
-		flip,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		name,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onclick,
-		oncomplete,
-		ondblclick,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		process,
-		readonly,
-		rotate,
-		size,
-		smallScreen,
-		span,
-		spin,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		visible;
+		addon, ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, delay, disabled, display, flip, hidden, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, readonly, rotate, size, smallScreen, span, spin, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -100,7 +56,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -108,11 +64,27 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -193,6 +165,22 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	 */
 	public void setColXs(String _colXs) {
 		getStateHelper().put(PropertyKeys.colXs, _colXs);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -292,7 +280,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Icon name, mandatory. <P>
+	 * Icon name. This attribute has been deprecated in favor of 'value'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getName() {
@@ -300,7 +288,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * Icon name, mandatory. <P>
+	 * Icon name. This attribute has been deprecated in favor of 'value'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setName(String _name) {
@@ -404,7 +392,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -412,7 +400,7 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -433,6 +421,22 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	 */
 	public void setOndblclick(String _ondblclick) {
 		getStateHelper().put(PropertyKeys.ondblclick, _ondblclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
 	}
 
 	/**
@@ -513,6 +517,22 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	 */
 	public void setOnmouseup(String _onmouseup) {
 		getStateHelper().put(PropertyKeys.onmouseup, _onmouseup);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**
@@ -785,6 +805,22 @@ public abstract class IconCore extends UICommand implements net.bootsfaces.rende
 	 */
 	public void setUpdate(String _update) {
 		getStateHelper().put(PropertyKeys.update, _update);
+	}
+
+	/**
+	 * Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getValue() {
+		return (String) getStateHelper().eval(PropertyKeys.value);
+	}
+
+	/**
+	 * Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setValue(String _value) {
+		getStateHelper().put(PropertyKeys.value, _value);
 	}
 
 	/**

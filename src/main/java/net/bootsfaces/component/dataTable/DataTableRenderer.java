@@ -460,6 +460,21 @@ public class DataTableRenderer extends CoreRenderer {
 					updateColumnDefinition(dataTable, index, "'orderable': false");
 				}
 			}
+			if (column.getAttributes().get("searchable") != null) {
+				String orderable = column.getAttributes().get("searchable").toString();
+				
+				if ("false".equalsIgnoreCase(orderable)) {
+					updateColumnDefinition(dataTable, index, "'searchable': false");
+				}
+			}
+
+			if (column.getAttributes().get("width") != null) {
+				String width = column.getAttributes().get("width").toString();
+				if (isNumeric(width)) {
+					width+= "px";
+				}
+				updateColumnDefinition(dataTable, index, "'width':'" + width + "'");
+			}
 
 			if (column.getAttributes().get("customOptions") != null) {
 				String customOptions = column.getAttributes().get("customOptions").toString();
@@ -543,6 +558,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("searching: " + dataTable.isSearching(), options);
 		options = addOptions("order: " + orderString, options);
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
+		options = addOptions("mark: true", options);
 		
 		if (dataTable.isSelect()) {
 			String json = "";
@@ -610,6 +626,18 @@ public class DataTableRenderer extends CoreRenderer {
 		if (selectCommand.length() > 0) {
 			options = addOptions("'initComplete': function( settings, json ) { " + selectCommand + "}", options);
 		}
+		
+		if (dataTable.getRowGroup()!=null) {
+			String rowGroup = dataTable.getRowGroup();
+			try {
+				Integer.parseInt(rowGroup);
+				options = addOptions("orderFixed: [" + rowGroup + ", 'asc']", options);
+				rowGroup = "rowGroup:{dataSrc:" + rowGroup + "}";
+			} catch (NumberFormatException itsJson) {
+				// consider it a Json object
+			}			
+			options = addOptions(rowGroup, options);
+		}
 
 		rw.writeText(widgetVar + " = $('." + clientId + "Table" + "');" +
 		// # Get instance of wrapper, and replace it with the unwrapped table.
@@ -630,10 +658,10 @@ public class DataTableRenderer extends CoreRenderer {
 					+ "$(this).html('" + filter + "');" + "});", null);
 			// # Add event listeners for each multisearch input
 			rw.writeText("var inputs=$(" + widgetVar + ".find('.bf-multisearch input'));", null);
-			rw.writeText("table.columns().every( function(col) {" + "var that=this;"
+			rw.writeText("table.columns().every( function(col) {" + "var that=this;if(col<inputs.length){"
 					+ "inputs[col].value=table.columns(col).search()[0];"
 					+ "$(inputs[col]).on('keyup change', function(){if(that.search()!==this.value){"
-					+ "that.search(this.value).draw('page');}});", null);
+					+ "that.search(this.value).draw('page');}});}", null);
 			rw.writeText("});", null);
 			int col = 0;
 			for (UIComponent column : dataTable.getChildren()) {
@@ -643,13 +671,16 @@ public class DataTableRenderer extends CoreRenderer {
 				String searchValue = null;
 				if ((column instanceof DataTableColumn)) {
 					searchValue = ((DataTableColumn) column).getSearchValue();
+					if (!((DataTableColumn) column).isSearchable()) {
+						continue;
+					}
 				} else {
 					Object sv = column.getAttributes().get("searchValue");
 					if (sv != null && (!"".equals(sv))) {
 						searchValue = sv.toString();
 					}
 				}
-				if (null != searchValue) {
+				if (null != searchValue && searchValue.length()>0) {
 					rw.writeText("inputs[" + col + "].value='" + searchValue + "';", null);
 					rw.writeText("table.columns(" + col + ").search('" + searchValue + "').draw('page');", null);
 				}
@@ -682,7 +713,7 @@ public class DataTableRenderer extends CoreRenderer {
 			b.append("'print',");
 		}
 		if (b.length() > 0) {
-			return "dom: 'frtiBp'," + "buttons: [" + b.substring(0, b.length() - 1) + "]";
+			return "dom: '<\"col-sm-6\"l><\"col-sm-6\"f>rtiBp'," + "buttons: [" + b.substring(0, b.length() - 1) + "]";
 		}
 		return null;
 	}
@@ -834,6 +865,15 @@ public class DataTableRenderer extends CoreRenderer {
 			infos.set(index, s + "," + value);
 		}
 		
+	}
+	
+	public static boolean isNumeric(String str)
+	{
+	    for (char c : str.toCharArray())
+	    {
+	        if (!Character.isDigit(c)) return false;
+	    }
+	    return true;
 	}
 	
 }

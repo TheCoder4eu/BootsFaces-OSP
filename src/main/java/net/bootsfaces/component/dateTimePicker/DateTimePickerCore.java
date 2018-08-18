@@ -24,89 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax,
-		allowInputToggle,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		collapse,
-		dayViewHeaderFormat,
-		disableTimeInterval,
-		disabledDates,
-		display,
-		enabledDates,
-		fieldId,
-		fieldSize,
-		focusOnShow,
-		format,
-		hidden,
-		icon,
-		iconAwesome,
-		iconPosition,
-		immediate,
-		initialDate,
-		keepInvalid,
-		keepOpen,
-		labelColLg,
-		labelColMd,
-		labelColSm,
-		labelColXs,
-		labelLargeScreen,
-		labelMediumScreen,
-		labelSmallScreen,
-		labelStyle,
-		labelStyleClass,
-		labelTinyScreen,
-		largeScreen,
-		locale,
-		maxDate,
-		mediumScreen,
-		minDate,
-		mode,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		oncomplete,
-		ondtchange,
-		placeholder,
-		process,
-		renderLabel,
-		required,
-		requiredMessage,
-		showButtonPanel,
-		showClearButton,
-		showCloseButton,
-		showDate,
-		showIcon,
-		showTime,
-		showTodayButton,
-		showWeek,
-		sideBySide,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		timeStepping,
-		tinyScreen,
-		toolbarPlacement,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		update,
-		useCurrent,
-		useStrict,
-		viewMode,
-		visible,
-		weekDaysDisabled,
-		widgetParent;
+		ajax, allowInputToggle, autoUpdate, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay, disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden, icon, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPosition, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, immediate, initialDate, keepInvalid, keepOpen, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -122,7 +40,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isAjax() {
@@ -130,7 +48,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Activates AJAX. The default value is false (no AJAX). <P>
+	 * Whether the Button submits the form with AJAX. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAjax(boolean _ajax) {
@@ -151,6 +69,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setAllowInputToggle(boolean _allowInputToggle) {
 		getStateHelper().put(PropertyKeys.allowInputToggle, _allowInputToggle);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -263,6 +197,22 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setDayViewHeaderFormat(String _dayViewHeaderFormat) {
 		getStateHelper().put(PropertyKeys.dayViewHeaderFormat, _dayViewHeaderFormat);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getDelay() {
+		return (String) getStateHelper().eval(PropertyKeys.delay);
+	}
+
+	/**
+	 * Delays the AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setDelay(String _delay) {
+		getStateHelper().put(PropertyKeys.delay, _delay);
 	}
 
 	/**
@@ -442,6 +392,70 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconBrand, false);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconBrand(boolean _iconBrand) {
+		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconFlip() {
+		return (String) getStateHelper().eval(PropertyKeys.iconFlip);
+	}
+
+	/**
+	 * Flip the icon: can be H (horizontal) or V (vertical). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconFlip(String _iconFlip) {
+		getStateHelper().put(PropertyKeys.iconFlip, _iconFlip);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconInverse, false);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconInverse(boolean _iconInverse) {
+		getStateHelper().put(PropertyKeys.iconInverse, _iconInverse);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconLight, false);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconLight(boolean _iconLight) {
+		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
+	}
+
+	/**
 	 * Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'. <P>
 	 * @return Returns the value of the attribute, or "right", if it hasn't been set by the JSF file.
 	 */
@@ -455,6 +469,102 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setIconPosition(String _iconPosition) {
 		getStateHelper().put(PropertyKeys.iconPosition, _iconPosition);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconPulse, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPulse(boolean _iconPulse) {
+		getStateHelper().put(PropertyKeys.iconPulse, _iconPulse);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconRegular, false);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRegular(boolean _iconRegular) {
+		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconRotate() {
+		return (String) getStateHelper().eval(PropertyKeys.iconRotate);
+	}
+
+	/**
+	 * Rotate 90 degrees the icon: Can be L,R. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRotate(String _iconRotate) {
+		getStateHelper().put(PropertyKeys.iconRotate, _iconRotate);
+	}
+
+	/**
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getIconSize() {
+		return (String) getStateHelper().eval(PropertyKeys.iconSize);
+	}
+
+	/**
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSize(String _iconSize) {
+		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSolid, false);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSolid(boolean _iconSolid) {
+		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSpin() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSpin, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will spin. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSpin(boolean _iconSpin) {
+		getStateHelper().put(PropertyKeys.iconSpin, _iconSpin);
 	}
 
 	/**
@@ -858,7 +968,23 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * The onclick attribute. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnclick() {
+		return (String) getStateHelper().eval(PropertyKeys.onclick);
+	}
+
+	/**
+	 * The onclick attribute. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnclick(String _onclick) {
+		getStateHelper().put(PropertyKeys.onclick, _onclick);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getOncomplete() {
@@ -866,7 +992,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * JavaScript to be executed when ajax completes with success. <P>
+	 * JavaScript to be executed when ajax completes. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setOncomplete(String _oncomplete) {
@@ -887,6 +1013,38 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 */
 	public void setOndtchange(String _ondtchange) {
 		getStateHelper().put(PropertyKeys.ondtchange, _ondtchange);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnerror() {
+		return (String) getStateHelper().eval(PropertyKeys.onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax results on an error (including both network errors and Java exceptions). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnerror(String _onerror) {
+		getStateHelper().put(PropertyKeys.onerror, _onerror);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getOnsuccess() {
+		return (String) getStateHelper().eval(PropertyKeys.onsuccess);
+	}
+
+	/**
+	 * JavaScript to be executed when ajax completes with success (i.e. there's neither a network error nor a Java exception). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setOnsuccess(String _onsuccess) {
+		getStateHelper().put(PropertyKeys.onsuccess, _onsuccess);
 	}
 
 	/**

@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.dataTable;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,6 +43,7 @@ import javax.faces.event.FacesEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
+import net.bootsfaces.component.ajax.IAJAXComponent2;
 import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.IContentDisabled;
 import net.bootsfaces.render.IResponsive;
@@ -43,8 +51,9 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(DataTable.COMPONENT_TYPE)
-public class DataTable extends DataTableCore implements IAJAXComponent, ClientBehaviorHolder,
+public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder,
 		net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dataTable.DataTable";
@@ -144,6 +153,15 @@ public class DataTable extends DataTableCore implements IAJAXComponent, ClientBe
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -167,7 +185,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, ClientBe
 	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public List<String> getColumnInfo() {
@@ -175,7 +193,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, ClientBe
 	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public void setColumnInfo(List<String> columnInfo) {
@@ -251,4 +269,27 @@ public class DataTable extends DataTableCore implements IAJAXComponent, ClientBe
 		}
 
 	}
+	
+	/**
+	 * If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMarkSearchResults(boolean _markSearchResults) {
+		if (_markSearchResults) {
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js");
+		}
+		super.setMarkSearchResults(_markSearchResults);
+	}
+	
+	/**
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowGroup(String _rowGroup) {
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.0.2/js/dataTables.rowGroup.min.js");
+		super.setRowGroup(_rowGroup);
+	}
+
 }

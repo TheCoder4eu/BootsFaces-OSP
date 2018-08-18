@@ -10,47 +10,7 @@ import javax.faces.component.UIData;
 public class FullCalendarCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		allDaySlot,
-		businessHours,
-		calendarHeader,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dayClick,
-		defaultDate,
-		defaultView,
-		display,
-		editable,
-		eventClick,
-		events,
-		height,
-		hidden,
-		lang,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		scrollTime,
-		slotDuration,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible,
-		weekMode,
-		weekNumbers,
-		weekends;
+		allDaySlot, autoUpdate, businessHours, calendarHeader, colLg, colMd, colSm, colXs, dayClick, defaultDate, defaultView, display, editable, eventClick, events, height, hidden, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, scrollTime, slotDuration, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible, weekMode, weekNumbers, weekends;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -79,6 +39,22 @@ public class FullCalendarCore extends UIData implements net.bootsfaces.render.IH
 	 */
 	public void setAllDaySlot(boolean _allDaySlot) {
 		getStateHelper().put(PropertyKeys.allDaySlot, _allDaySlot);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

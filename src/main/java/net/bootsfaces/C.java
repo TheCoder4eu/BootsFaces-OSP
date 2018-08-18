@@ -18,29 +18,28 @@
 
 package net.bootsfaces;
 
-
 /**
  * String Constants valid for the whole Framework
  *
  * @author thecoder4.eu
  */
 public final class C {
-    /**
-     * BootsFaces Library Constants
-     */
-     public static final String BSFVERSION="1.2.0";
-     public static final String BSFRELEASE_STATUS=""; //SNAPSHOT or empty String (for a final RELEASE)
-     public static final String BSFCOMPONENT= "net.bootsfaces.component";
-     public static final String BSFLAYOUT   = "net.bootsfaces.layout";
+	/**
+	 * BootsFaces Library Constants
+	 */
+	public static final String BSFVERSION = "1.3.1";
+	public static final String BSFRELEASE_STATUS = "SNAPSHOT"; // SNAPSHOT or empty String (for a final RELEASE)
+	public static final String BSFCOMPONENT = "net.bootsfaces.component";
+	public static final String BSFLAYOUT = "net.bootsfaces.layout";
 
-    //Theme
-    public static final String BSF_LIBRARY="bsf";
-    
-    public static final String P_USETHEME ="BootsFaces_USETHEME";
-    public static final String P_THEME ="BootsFaces_THEME";
+	// Theme
+	public static final String BSF_LIBRARY = "bsf";
 
-    public static final String P_BLOCK_UI = "net.bootsfaces.blockUI";
-    
+	public static final String P_USETHEME = "BootsFaces_USETHEME";
+	public static final String P_THEME = "BootsFaces_THEME";
+
+	public static final String P_BLOCK_UI = "net.bootsfaces.blockUI";
+
 	public static final String P_GET_JQUERYUI_FROM_CDN = "net.bootsfaces.get_jqueryui_from_cdn";
 	public static final String P_GET_JQUERY_FROM_CDN = "net.bootsfaces.get_jquery_from_cdn";
 	public static final String P_GET_BOOTSTRAP_FROM_CDN = "net.bootsfaces.get_bootstrap_from_cdn";
@@ -49,25 +48,20 @@ public final class C {
 	public static final String THEME_NAME_DEFAULT = "default";
 	public static final String THEME_NAME_OTHER = "other";
 
-    
-    //Font Awesome
-    public static final String FA_VERSION="4.7.0";
-    public static final String FONTAWESOME_CDN_URL="//maxcdn.bootstrapcdn.com/font-awesome/"+FA_VERSION+"/css/font-awesome.min.css";
+	// Meta tags
+	// default yes. to disable set to 'no' or 'false'. if you want to change, set to
+	// the value you want to use
+	public static final String P_VIEWPORT = "BootsFaces_USE_VIEWPORT";
 
-    //Meta tags
-    // default yes. to disable set to 'no' or 'false'. if you want to change, set to the value you want to use
-    public static final String P_VIEWPORT = "BootsFaces_USE_VIEWPORT";
+	/**
+	 * Component Types
+	 */
+	// Components
+	public static final String W_NONAVCASE_LINK = "This link is disabled because a navigation case could not be matched.";
+	public static final String W_NONAVCASE_BUTTON = "This link is disabled because a navigation case could not be matched.";
 
-    /**
-     * Component Types
-     */
-    //Components
-    public static final String W_NONAVCASE_LINK="This link is disabled because a navigation case could not be matched.";
-    public static final String W_NONAVCASE_BUTTON="This link is disabled because a navigation case could not be matched.";
-
-
-    // Suppress default constructor for noninstantiability
-    private C() {
-        throw new AssertionError();
-    }
+	// Suppress default constructor for noninstantiability
+	private C() {
+		throw new AssertionError();
+	}
 }

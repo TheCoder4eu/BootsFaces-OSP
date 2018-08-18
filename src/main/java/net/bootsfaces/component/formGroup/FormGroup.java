@@ -17,6 +17,13 @@
  */
 package net.bootsfaces.component.formGroup;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
@@ -26,6 +33,7 @@ import net.bootsfaces.component.row.Row;
  *
  * @author Guillermo González de Agüero
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(FormGroup.COMPONENT_TYPE)
 public class FormGroup extends Row {
 
@@ -37,5 +45,14 @@ public class FormGroup extends Row {
         setRendererType(DEFAULT_RENDERER);
     }
 
+
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
 
 }
