@@ -306,7 +306,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 	}
   
   /**
-   * Add script to enable the input mask. If the mask attribute starts with {@code {}} the value is expected to be a
+   * Add script to enable the input mask. If the mask attribute starts with {@code {} the value is expected to be a
    * JSON object (and can for example be used to set a regular expression: {@code {regex:'[0-9\u0600-\u06FF]*'}}).
    * 
    * See https://github.com/RobinHerbots/Inputmask.
