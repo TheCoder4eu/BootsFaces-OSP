@@ -21,16 +21,15 @@ package net.bootsfaces.component.slider2;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Map;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
-//!//import javax.faces.convert.DoubleConverter;
 import javax.faces.render.FacesRenderer;
-
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.badge.BadgeRenderer;
 import net.bootsfaces.render.A;
+import static net.bootsfaces.render.CoreRenderer.getRequestParameter;
+import static net.bootsfaces.render.CoreRenderer.getValueType;
 import net.bootsfaces.render.R;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
@@ -57,26 +56,14 @@ public class Slider2Renderer extends BadgeRenderer {
 		decodeBehaviors(context, slider);
 
 		String clientId = slider.getClientId(context);
-		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		Number submittedValue = convert(component, Float.valueOf(getRequestParameter(context, clientId)));
 
 		if (submittedValue != null) {
 			slider.setSubmittedValue(submittedValue);
 		}
 		new AJAXRenderer().decode(context, component, clientId);
 	}
-/* !
-	@Override
-	public Object getConvertedValue(FacesContext fc, UIComponent c, Object sval) throws ConverterException {
-		Converter cnv = resolveConverter(fc, c);
 
-		if (cnv != null) {
-			return cnv.getAsObject(fc, c, (String) sval);
-		} else {
-			cnv = new DoubleConverter();
-			return cnv.getAsObject(fc, c, (String) sval);
-		}
-	}
-*/
 	/**
 	 * This methods generates the HTML code of the current b:slider2.
 	 * @param context the FacesContext.
@@ -93,35 +80,67 @@ public class Slider2Renderer extends BadgeRenderer {
 		encodeHTML(slider, context, rw);
 	}
 
+	/**
+	 * Returns converted value of the provided float value (to the type that is used on the component's value
+	 * attribute).
+	 *
+	 * @param component Component to convert value for.
+	 * @param value     Float value to convert.
+	 *
+	 * @return Converted value of the provided float value (to the type that is used on the component's value
+	 *         attribute).
+	 */
+	private Number convert(UIComponent component, Float value) {
+		return convert((Class<? extends Number>) getValueType(component), value);
+	}
+
+	/**
+	 * Returns converted value of the provided float value (to the provided type).
+	 *
+	 * @param type  Type to convert float to. Currently only {@link Float} and {@link Integer} are supported.
+	 * @param value Float value to convert.
+	 *
+	 * @return Converted value of the provided float value (to the provided type).
+	 *
+	 * @throws IllegalArgumentException If an unsupported type is provided.
+	 */
+	private Number convert(Class<? extends Number> type, Float value) {
+		if (int.class.isAssignableFrom(type) || Integer.class.isAssignableFrom(type)) {
+			return value.intValue();
+		}
+		if (float.class.isAssignableFrom(type) || Float.class.isAssignableFrom(type)) {
+			return value;
+		}
+		throw new IllegalArgumentException("Use integer or float");
+	}
+
 	private void encodeHTML(Slider2 slider, FacesContext context, ResponseWriter rw) throws IOException {
 		String clientId = slider.getClientId(context);
 
 		String mode = slider.getMode();
 		String label = slider.getLabel();
+		Class<? extends Number> type = (Class<? extends Number>) getValueType(slider);
+		if (type == null) {
+			type = Integer.class;
+		}
 
-		int min = slider.getMin();
-		int max = slider.getMax();
+		float min = ((Number) slider.getMin()).floatValue();
+		float max = ((Number) slider.getMax()).floatValue();
 		Object v = slider.getSubmittedValue();
 		if (v == null) {
 			v = slider.getValue();
 		}
 		if (v == null) {
-			v = slider.getValue();
-			slider.setValue(v);
+			v = min + (max - min) / 2;
 		}
-		if (v == null) {
-			v = max / 2;
-			slider.setValue(v);
-		}
-		//!//double val = A.toDouble(v);
-		int val = A.toInt(v);
+		Float val = A.toFloat(v);
 		if (val > max) {
 			val = max;
 		}
 		if (val < min) {
 			val = min;
 		}
-		//!//String valS = Double.toString(val);
+		slider.setValue(convert(type, val));
 		String o;
 		if (slider.getOrientation() != null) {
 			o = slider.getOrientation();
@@ -167,7 +186,7 @@ public class Slider2Renderer extends BadgeRenderer {
 				rw.startElement("div", null);
 				rw.writeAttribute("class", "row", "class");
 			}
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, convert(type, val), clientId, isVertical, convert(type, min), convert(type, max));
 			if (!bottom) {
 				rw.endElement("div"); /* Row */
 
@@ -218,7 +237,7 @@ public class Slider2Renderer extends BadgeRenderer {
 			rw.startElement("div", null);
 			rw.writeAttribute("class", "row", "class");
 
-			encodeInput(slider, rw, mode, context, val, clientId, isVertical, min, max);
+			encodeInput(slider, rw, mode, context, convert(type, val), clientId, isVertical, convert(type, min), convert(type, max));
 
 			encodeSliderInput(slider, rw, isVertical, span, clientId, val);
 			rw.endElement("div");/* Row */
@@ -246,8 +265,8 @@ public class Slider2Renderer extends BadgeRenderer {
 		rw.endElement("div"); // Column
 	}
 
-	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, int val,
-			String clientId, boolean vo, int min, int max) throws IOException {
+	private void encodeInput(Slider2 slider, ResponseWriter rw, String mode, FacesContext context, Number val,
+			String clientId, boolean vo, Number min, Number max) throws IOException {
 		int cols = (vo ? 12 : slider.getBadgeSpan());
 		if (!mode.equals("basic")) {
 			/*
@@ -257,7 +276,7 @@ public class Slider2Renderer extends BadgeRenderer {
 			R.encodeColumn(rw, null, cols, cols, cols, cols, 0, 0, 0, 0, null, null);
 			if (mode.equals("badge")) {
 				generateBadge(context, slider, rw, clientId, slider.getBadgeStyleClass(), slider.getBadgeStyle(),
-						Integer.toString(val), "_badge");
+					val.toString(), "_badge");
 			}
 		}
 		removeMisleadingType(slider);
@@ -315,7 +334,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 	}
 
-	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId, int val)
+	private void encodeSliderInput(Slider2 slider, ResponseWriter rw, boolean vo, int span, String clientId, float val)
 	throws IOException {
 		int cols = span;
 		if (!slider.getMode().equals("basic")) {

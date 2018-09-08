@@ -38,6 +38,26 @@ public abstract class Slider2Core extends HtmlInputText {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
 	}
+	
+	/**
+	 * Convert object to number. To be backwards compatible with bound integers to properties where we now also want
+	 * to accept floats now.
+	 *
+	 * @param object Object to convert to number. Should be either a number or a string.
+	 *
+	 * @return Object converted to number.
+	 *
+	 * @throws IllegalArgumentException When an incorrect type is provided.
+	 */
+	private static Number toNumber(Object object) {
+		if (object instanceof Number) {
+			return (Number) object;
+		}
+		if (object instanceof String) {
+			return Float.valueOf((String) object);
+		}
+		throw new IllegalArgumentException("Use number or string");
+	}
 
 	/**
 	 * Setting this flag updates the widget on every AJAX request. <P>
@@ -267,32 +287,32 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * The maximum value of the slider. (default 100) <P>
 	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
-	public int getMax() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
+	public Object getMax() {
+		return getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
 	 * The maximum value of the slider. (default 100) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(int _max) {
-		getStateHelper().put(PropertyKeys.max, _max);
+	public void setMax(Object _max) {
+		getStateHelper().put(PropertyKeys.max, toNumber(_max));
 	}
 
 	/**
 	 * The maximum value of the slider. (default 0) <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
-	public int getMin() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
+	public Object getMin() {
+		return getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
 	 * The maximum value of the slider. (default 0) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(int _min) {
-		getStateHelper().put(PropertyKeys.min, _min);
+	public void setMin(Object _min) {
+		getStateHelper().put(PropertyKeys.min, toNumber(_min));
 	}
 
 	/**
@@ -427,16 +447,16 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
-	public int getStep() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.step, 1);
+	public Object getStep() {
+		return getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(int _step) {
-		getStateHelper().put(PropertyKeys.step, _step);
+	public void setStep(Object _step) {
+		getStateHelper().put(PropertyKeys.step, toNumber(_step));
 	}
 
 	/**
