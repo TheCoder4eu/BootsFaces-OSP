@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
-
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.application.ProjectStage;
@@ -37,7 +36,6 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.render.Renderer;
-
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
@@ -566,7 +564,45 @@ public class CoreRenderer extends Renderer {
 			return null;
 		}
 	}
+	
+	/**
+	 * Returns request parameter value for the provided parameter name.
+	 *
+	 * @param context Faces context.
+	 * @param name    Parameter name to get value for.
+	 *
+	 * @return Request parameter value for the provided parameter name.
+	 */
+	public static String getRequestParameter(FacesContext context, String name) {
+		return context.getExternalContext().getRequestParameterMap().get(name);
+	}
 
+	/**
+	 * Returns type of the value attribute's {@link ValueExpression} of the provided component.
+	 *
+	 * @param component Component to get attribute type for.
+	 *
+	 * @return Type of the value attribute's {@link ValueExpression} of the provided component.
+	 */
+	public static Class<?> getValueType(UIComponent component) {
+		return getAttributeType(component, "value");
+	}
+
+	/**
+	 * Returns type of the provided attribute name's {@link ValueExpression} of the provided component.
+	 *
+	 * @param component Component to get attribute type for.
+	 * @param attribute Attribute to get type for.
+	 *
+	 * @return Type of the provided attribute name's {@link ValueExpression} of the provided component.
+	 */
+	public static Class<?> getAttributeType(UIComponent component, String attribute) {
+		ValueExpression valueExpression = component.getValueExpression(attribute);
+		return valueExpression == null
+			? null
+			: valueExpression.getType(FacesContext.getCurrentInstance().getELContext());
+	}
+	
 	public static void endDisabledFieldset(IContentDisabled component, ResponseWriter rw) throws IOException {
 		if (component.isContentDisabled()) {
 			rw.endElement("fieldset");
