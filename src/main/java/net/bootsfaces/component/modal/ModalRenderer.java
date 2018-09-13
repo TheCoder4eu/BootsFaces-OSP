@@ -104,6 +104,7 @@ public class ModalRenderer extends CoreRenderer {
 			modalStyleClass = modalStyleClass + " " + modal.getSize();
 		}
 		rw.writeAttribute("class", modalStyleClass, "class");
+		rw.writeAttribute("role", "document", "role");
 
 		rw.startElement("div", component); // modal-content
 		rw.writeAttribute("class", "modal-content", "class");
@@ -126,6 +127,7 @@ public class ModalRenderer extends CoreRenderer {
 			rw.startElement("button", component);
 			rw.writeAttribute("type", "button", "type");
 			rw.writeAttribute("class", "close", "class");
+			rw.writeAttribute("aria-label", "Close", "aria-label");
 			rw.writeAttribute("data-dismiss", "modal", "data-dismiss");
 			rw.write("&times;");
 			rw.endElement("button");
