@@ -16,17 +16,20 @@
  * limitations under the License.
  */
 
-// To declare projects as part of a multi-project build use the 'include' method
 
-rootProject.name = 'BootsFaces'
+// Apply the java plugin to add support for Java
+apply plugin: 'java'
 
-include 'gradleResources'
-include 'gradleResources:Bootstrap'
-include 'gradleResources:compileLess'
-//include 'java6'
-include 'legacyJava'
-include 'legacyJava:java7'
-include 'java8'
-//include 'java9'
-include 'java10'
-include 'java11'
+task legacyJars() {
+}
+
+legacyJars.dependsOn(":legacyJava:java7:defaultJar")
+//legacyJars.onlyIf { (themes.size() > 0) && buildJava7==true }
+legacyJars.doFirst {
+    println "Compiling Legacy Java Sources:"
+    println "Build Java7 :" + buildJava7
+    println "Java Build Options  :" + buildOptsJava7
+
+}
+
+defaultTasks 'legacyJars'
