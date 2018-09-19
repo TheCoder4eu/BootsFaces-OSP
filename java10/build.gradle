@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2018 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -103,8 +103,8 @@ jar.dependsOn(":gradleResources:buildResources")
 jar.onlyIf { buildJava10==true }
 
 task defaultJar(type: Jar) {
-   baseName='BootsFaces-OSP-jre9-default'
-   from(sourceSets.main.output.classesDir) {
+   baseName='BootsFaces-OSP-jre10-default'
+   from(sourceSets.main.output.classesDirs) {
         include "**"
    }
    from(sourceSets.main.output.resourcesDir) {
@@ -150,7 +150,7 @@ compileJava.doFirst {
     println "target compatibility  :" + targetCompatibility
     println "Java Build Options  :" + buildOptsJava10
     println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
-    println "sourceSets.main.output.classesDir :" + sourceSets.main.output.classesDir
+    println "sourceSets.main.output.classesDirs :" + sourceSets.main.output.classesDirs
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
 
 }
