@@ -19,6 +19,7 @@ package net.bootsfaces.listeners;
 
 import static net.bootsfaces.C.P_BLOCK_UI;
 import static net.bootsfaces.C.P_GET_BOOTSTRAP_FROM_CDN;
+import static net.bootsfaces.C.P_GET_DATATABLE_FROM_CDN;
 import static net.bootsfaces.C.P_GET_FONTAWESOME_FROM_CDN;
 import static net.bootsfaces.C.P_GET_JQUERYUI_FROM_CDN;
 import static net.bootsfaces.C.P_GET_JQUERY_FROM_CDN;
@@ -478,7 +479,7 @@ public class AddResourcesListener implements SystemEventListener {
 		return viewMap;
 	}
 
-	private boolean shouldLibraryBeLoaded(String initParameter, boolean defaultValue) {
+	private static boolean shouldLibraryBeLoaded(String initParameter, boolean defaultValue) {
 		String suppressLibrary = BsfUtils.getInitParam(initParameter);
 		if (suppressLibrary == null)
 			return defaultValue;
@@ -954,11 +955,42 @@ public class AddResourcesListener implements SystemEventListener {
 		addResourceIfNecessary(root, context, output);
 	}
 
-	private boolean isTrueOrYes(String param) {
+	private static boolean isTrueOrYes(String param) {
 		return param.equalsIgnoreCase("true") || param.equalsIgnoreCase("yes");
 	}
 
 	private boolean isFalseOrNo(String param) {
 		return param.equalsIgnoreCase("false") || param.equalsIgnoreCase("no");
+	}
+
+	/**
+	 * Add the default datatables.net resource if and only if the user doesn't bring their own copy, and if they didn't disallow it in the web.xml
+	 * by setting the context paramter net.bootsfaces.get_datatable_from_cdn to true.
+	 * @param defaultFilename The URL of the file to be loaded
+	 * @param type either "js" or "css"
+	 */
+	public static void addDatatablesResourceIfNecessary(String defaultFilename, String type) {
+		boolean loadDatatables = shouldLibraryBeLoaded(P_GET_DATATABLE_FROM_CDN, true);
+		// Do we have to add jQuery, or are the resources already there?
+		FacesContext context = FacesContext.getCurrentInstance();
+		UIViewRoot root = context.getViewRoot();
+
+		String[] positions = {"head", "body", "form"};
+		for (String position: positions) {
+			List<UIComponent> availableResources = root.getComponentResources(context, position);
+			for (UIComponent ava : availableResources) {
+				String name = (String) ava.getAttributes().get("name");
+				if (null != name) {
+					System.out.println(name);
+					name = name.toLowerCase();
+					if (name.contains("datatables") && name.endsWith("."+type)) {
+						loadDatatables = false;
+					}
+				}
+			}
+		}
+		if (loadDatatables) {
+			addResourceIfNecessary(defaultFilename);
+		}
 	}
 }
