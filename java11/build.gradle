@@ -22,7 +22,12 @@ apply plugin: 'java'
 
 //Configurations for Target Java 11 runtime.
 sourceCompatibility = '1.7'
-targetCompatibility = '1.11'
+targetCompatibility = '11'
+
+compileJava {
+  sourceCompatibility = '1.7'
+  targetCompatibility = '11'
+}
 
 archivesBaseName = 'BootsFaces-OSP-jre11'
 
