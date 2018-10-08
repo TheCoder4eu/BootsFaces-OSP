@@ -973,6 +973,7 @@ public class AddResourcesListener implements SystemEventListener {
 					}
 				}
 			}
+		}
 		if (loadDatatables) {
 			addResourceIfNecessary(defaultFilename);
 		}
