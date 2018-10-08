@@ -952,7 +952,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	public static void addDatatablesResourceIfNecessary(String defaultFilename, String type) {
 		boolean loadDatatables = shouldLibraryBeLoaded(P_GET_DATATABLE_FROM_CDN, true);
-		// Do we have to add jQuery, or are the resources already there?
+		// Do we have to add datatables.min.{css|js}, or are the resources already there?
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
