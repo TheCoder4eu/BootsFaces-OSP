@@ -961,17 +961,18 @@ public class AddResourcesListener implements SystemEventListener {
 			if (loadDatatables) {
 				List<UIComponent> availableResources = root.getComponentResources(context, position);
 				for (UIComponent ava : availableResources) {
-					String name = (String) ava.getAttributes().get("name");
-					if (null != name) {
-						name = name.toLowerCase();
-						if (name.contains("datatables") && name.endsWith("." + type)) {
-							loadDatatables = false;
-							break;
+					if (ava.isRendered()) {
+						String name = (String) ava.getAttributes().get("name");
+						if (null != name) {
+							name = name.toLowerCase();
+							if (name.contains("datatables") && name.endsWith("." + type)) {
+								loadDatatables = false;
+								break;
+							}
 						}
 					}
 				}
 			}
-		}
 		if (loadDatatables) {
 			addResourceIfNecessary(defaultFilename);
 		}
