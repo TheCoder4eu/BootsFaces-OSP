@@ -963,7 +963,6 @@ public class AddResourcesListener implements SystemEventListener {
 				for (UIComponent ava : availableResources) {
 					String name = (String) ava.getAttributes().get("name");
 					if (null != name) {
-						System.out.println(name);
 						name = name.toLowerCase();
 						if (name.contains("datatables") && name.endsWith("." + type)) {
 							loadDatatables = false;
