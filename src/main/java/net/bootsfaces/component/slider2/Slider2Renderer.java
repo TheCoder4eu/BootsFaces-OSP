@@ -384,7 +384,9 @@ public class Slider2Renderer extends BadgeRenderer {
 	private void encodeJS(Slider2 slider, ResponseWriter rw, String clientId, String mode) throws IOException {
 
 		String fClientId = BsfUtils.escapeJQuerySpecialCharsInSelector(clientId);
-		String VarName = clientId.replace(":", "_");
+		String varName = BsfUtils.isValued(slider.getWidgetVar())
+			? slider.getWidgetVar()
+			: clientId.replace(":", "_") + "_sv";
 
 		rw.startElement("script", slider);
 		//# Start enclosure
@@ -392,7 +394,7 @@ public class Slider2Renderer extends BadgeRenderer {
 
 			rw.writeText(
 					 // build slider structure
-					 "var " + VarName + "_sv = new Slider('#" + fClientId + "_slider', { " +
+					 "window." + varName + " = new Slider('#" + fClientId + "_slider', { " +
 					 	(BsfUtils.isStringValued(slider.getFormatter()) ? "formatter: " + slider.getFormatter() + "," : "") +
 					 "}); ", null);
 			rw.writeText(
@@ -413,7 +415,7 @@ public class Slider2Renderer extends BadgeRenderer {
 					 "$('#" + fClientId + "').keyup(function(event) { " +
 						 "   var val = this.value; " +
 						 "   if(typeof val === 'string') val = Number(val); " +
-					 	 "   " + VarName + "_sv.setValue(val, true, true); " +
+					 	 "   " + varName + ".setValue(val, true, true); " +
 					 "}); ", null);
                         
 		rw.writeText("});", null);

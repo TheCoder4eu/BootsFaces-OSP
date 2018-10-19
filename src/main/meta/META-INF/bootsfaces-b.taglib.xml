@@ -20600,7 +20600,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional widget variable to access the datatable widget in JavaScript code.]]></description>
+		  <description><![CDATA[Optional widget variable to access the poll widget in JavaScript code.]]></description>
 		  <name>widgetVar</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -25759,6 +25759,12 @@
 		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional widget variable to access the slider2 widget in JavaScript code.]]></description>
+		  <name>widgetVar</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 	</tag>
 	

@@ -1760,7 +1760,7 @@ widget poll
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     update                                                                 "Which region of the screen is to be updated? Default value: @form"
     stop                Boolean                                            "If true, the poll will stop. Default value: false."
-    widgetVar                                                              "Optional widget variable to access the datatable widget in JavaScript code."
+    widgetVar                                                              "Optional widget variable to access the poll widget in JavaScript code."
 }
 
 widget progressBar
@@ -2233,6 +2233,7 @@ widget slider2
 	badge-span          Integer default "1"                                "The column span of the badge or input field (if it's shown)."
     badge-style                                                            "Inline style of the badge or input field (if it's shown)."
     badge-style-class                                                      "Style class of the badge or input field (if it's shown)."
+    widgetVar                                                              "Optional widget variable to access the slider2 widget in JavaScript code."
 }
 
 widget socialShare
