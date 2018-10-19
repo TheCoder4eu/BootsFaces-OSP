@@ -24,7 +24,7 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class Slider2Core extends HtmlInputText {
 
 	protected enum PropertyKeys {
-		autoUpdate, badgeSpan, badgeStyle, badgeStyleClass, binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit, tooltipVisibility;
+		autoUpdate, badgeSpan, badgeStyle, badgeStyleClass, binding, disabled, focus, formatter, handleShape, inline, label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision, reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit, tooltipVisibility, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -537,6 +537,24 @@ public abstract class Slider2Core extends HtmlInputText {
 	 */
 	public void setTooltipVisibility(String _tooltipVisibility) {
 		getStateHelper().put(PropertyKeys.tooltipVisibility, _tooltipVisibility);
+	}
+
+	/**
+	 * Returns optional widget variable to access the slider2 widget in JavaScript code.
+	 *
+	 * @return Optional widget variable to access the slider2 widget in JavaScript code.
+	 */
+	public String getWidgetVar() {
+		return (String) getStateHelper().eval(PropertyKeys.widgetVar);
+	}
+
+	/**
+	 * Sets optional widget variable to access the slider2 widget in JavaScript code.
+	 *
+	 * @param widgetVar widget variable name.
+	 */
+	public void setWidgetVar(String widgetVar) {
+		getStateHelper().put(PropertyKeys.widgetVar, widgetVar);
 	}
 
 }
