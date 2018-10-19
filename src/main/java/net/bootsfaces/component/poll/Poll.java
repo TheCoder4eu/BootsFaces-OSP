@@ -17,7 +17,6 @@
  */
 package net.bootsfaces.component.poll;
 
-import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
@@ -247,10 +246,10 @@ public class Poll extends HtmlCommandButton {
 	}
 
 	/**
-	 * Returns optional widget variable to access the datatable widget in JavaScript
+	 * Returns optional widget variable to access the poll widget in JavaScript
 	 * code.
 	 *
-	 * @return Optional widget variable to access the datatable widget in JavaScript
+	 * @return Optional widget variable to access the poll widget in JavaScript
 	 *         code.
 	 */
 	public String getWidgetVar() {
@@ -258,7 +257,7 @@ public class Poll extends HtmlCommandButton {
 	}
 
 	/**
-	 * Sets optional widget variable to access the datatable widget in JavaScript
+	 * Sets optional widget variable to access the poll widget in JavaScript
 	 * code.
 	 *
 	 * @param widgetVar
