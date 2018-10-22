@@ -46,7 +46,6 @@ public class Breadcrumbs extends BreadcrumbsCore implements net.bootsfaces.rende
 	public Breadcrumbs() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addThemedCSSResource("bsf.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
