@@ -23,7 +23,7 @@ apply plugin: 'java'
 task legacyJars() {
 }
 
-legacyJars.dependsOn(":legacyJava:java7:defaultJar")
+legacyJars.dependsOn(":legacyJava:java7:defaultJar",":legacyJava:java9:defaultJar")
 //legacyJars.onlyIf { (themes.size() > 0) && buildJava7==true }
 legacyJars.doFirst {
     println "Compiling Legacy Java Sources:"

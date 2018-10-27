@@ -57,7 +57,7 @@ ext.buildJava11 = ( ( props['java11']!=null) && props['java11'].toUpperCase().co
 //ext.buildOptsJava6=["-g"]
 ext.buildOptsJava7=["-g"]
 ext.buildOptsJava8=["-g"]
-//ext.buildOptsJava9=["-g"]
+ext.buildOptsJava9=["-g"]
 ext.buildOptsJava10=["-g"]
 ext.buildOptsJava11=["-g"]
 //if( props['java6opts']!=null) { ext.buildOptsJava6 = props['java6opts'].replaceAll("\\s","").tokenize(',') }
