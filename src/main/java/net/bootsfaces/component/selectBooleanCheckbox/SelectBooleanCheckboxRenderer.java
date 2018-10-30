@@ -342,7 +342,11 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 		rw.endElement("input");
 		String caption = selectBooleanCheckbox.getCaption();
 		if (null != caption) {
-			rw.append(" " + caption);
+			if (selectBooleanCheckbox.isEscape()) {
+				rw.writeText(" " + caption, null);
+			} else {
+				rw.append(" " + caption);
+			}
 		}
 		rw.endElement("label");
 		rw.endElement("div");

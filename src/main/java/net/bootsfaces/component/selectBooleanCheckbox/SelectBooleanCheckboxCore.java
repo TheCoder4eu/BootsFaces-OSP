@@ -24,7 +24,14 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		accesskey, ajax, alt, autoUpdate, binding, caption, colLg, colMd, colSm, colXs, converterMessage, delay, dir, disabled, display, fieldSize, hidden, immediate, label, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, lang, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, oncomplete, ondblclick, onerror, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onselect, onsuccess, process, readonly, renderLabel, smallScreen, span, style, styleClass, tabindex, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		accesskey, ajax, alt, autoUpdate, binding, caption, colLg, colMd, colSm, colXs, converterMessage, delay, dir,
+		disabled, display, escape, fieldSize, hidden, immediate, label, labelColLg, labelColMd, labelColSm, labelColXs,
+		labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, lang,
+		largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick,
+		oncomplete, ondblclick, onerror, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout,
+		onmouseover, onmouseup, onselect, onsuccess, process, readonly, renderLabel, smallScreen, span, style,
+		styleClass, tabindex, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide,
+		tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -277,6 +284,22 @@ public abstract class SelectBooleanCheckboxCore extends HtmlInputText implements
 	 */
 	public void setDisplay(String _display) {
 		getStateHelper().put(PropertyKeys.display, _display);
+	}
+
+	/**
+	 * By default, the caption and the tooltip encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
+	 * @return Returns the value of the attribute, or true, if it hasn't been set by the JSF file.
+	 */
+	public boolean isEscape() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.escape, true);
+	}
+
+	/**
+	 * By default, the caption and the tooltip encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setEscape(boolean _escape) {
+		getStateHelper().put(PropertyKeys.escape, _escape);
 	}
 
 	/**

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2018 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -77,15 +77,15 @@ compileJava {
         println "INFO: using bootClasspath="+options.bootClasspath
         }
 }
-compileJava.onlyIf { buildJava7==true }
+//compileJava.onlyIf { buildJava7==true }
 
 sourceSets {
     main {
       java {
-            srcDir '../src/main/java'
+            srcDir '../../src/main/java'
           }
     	resources {
-    	   srcDirs = ["../gradleResources/build/resources","../src/main/meta"]
+    	   srcDirs = ["../../gradleResources/build/resources","../src/main/meta"]
     	}
     }
 }
@@ -108,11 +108,11 @@ jar {
    }
 }
 jar.dependsOn(":gradleResources:buildResources")
-jar.onlyIf { buildJava7==true }
+//jar.onlyIf { buildJava7==true }
 
 task defaultJar(type: Jar) {
    baseName='BootsFaces-OSP-jre7-default'
-   from(sourceSets.main.output.classesDir) {
+   from(sourceSets.main.output.classesDirs) {
         include "**"
    }
    from(sourceSets.main.output.resourcesDir) {
@@ -145,7 +145,7 @@ task defaultJar(type: Jar) {
    }
 }
 defaultJar.dependsOn(jar,":gradleResources:buildResources")
-defaultJar.onlyIf { (themes.size() > 0) && buildJava7==true }
+//defaultJar.onlyIf { (themes.size() > 0) && buildJava7==true }
 
 /*task copyToLib(type: Copy) {
     into "$buildDir/proguard/libs"
@@ -158,7 +158,7 @@ compileJava.doFirst {
     println "target compatibility  :" + targetCompatibility
     println "Java Build Options  :" + buildOptsJava7
     println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
-    println "sourceSets.main.output.classesDir :" + sourceSets.main.output.classesDir
+    println "sourceSets.main.output.classesDirs :" + sourceSets.main.output.classesDirs
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
 
 }

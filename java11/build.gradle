@@ -20,11 +20,16 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-//Configurations for Target Java 8 runtime.
+//Configurations for Target Java 11 runtime.
 sourceCompatibility = '1.7'
-targetCompatibility = '1.10'
+targetCompatibility = '11'
 
-archivesBaseName = 'BootsFaces-OSP-jre10'
+compileJava {
+  sourceCompatibility = '1.7'
+  targetCompatibility = '11'
+}
+
+archivesBaseName = 'BootsFaces-OSP-jre11'
 
 apply plugin: 'maven'
 
@@ -67,9 +72,11 @@ dependencies {
 
 
 compileJava {
-    options.compilerArgs.addAll(0,buildOptsJava8)
+    options.fork = true
+    options.forkOptions.javaHome = file('/usr/lib/jvm/java-11-openjdk-amd64')
+    options.compilerArgs.addAll(0,buildOptsJava11)
 }
-compileJava.onlyIf { buildJava10==true }
+compileJava.onlyIf { buildJava11==true }
 
 sourceSets {
     main {
@@ -100,10 +107,10 @@ jar {
    }
 }
 jar.dependsOn(":gradleResources:buildResources")
-jar.onlyIf { buildJava10==true }
+jar.onlyIf { buildJava11==true }
 
 task defaultJar(type: Jar) {
-   baseName='BootsFaces-OSP-jre10-default'
+   baseName='BootsFaces-OSP-jre11-default'
    from(sourceSets.main.output.classesDirs) {
         include "**"
    }
@@ -137,7 +144,7 @@ task defaultJar(type: Jar) {
    }
 }
 defaultJar.dependsOn(jar,":gradleResources:buildResources")
-defaultJar.onlyIf { (themes.size() > 0) && buildJava10==true }
+defaultJar.onlyIf { (themes.size() > 0) && buildJava11==true }
 
 /*task copyToLib(type: Copy) {
     into "$buildDir/proguard/libs"
@@ -148,7 +155,7 @@ compileJava.doFirst {
     println "Compiling Java Sources:"
     println "source compatibility  :" + sourceCompatibility
     println "target compatibility  :" + targetCompatibility
-    println "Java Build Options  :" + buildOptsJava10
+    println "Java Build Options  :" + buildOptsJava11
     println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
     println "sourceSets.main.output.classesDirs :" + sourceSets.main.output.classesDirs
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
