@@ -21,20 +21,16 @@ package net.bootsfaces.component.dataTable;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
-
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
-
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.dataTableColumn.DataTableColumn;
@@ -798,14 +794,15 @@ public class DataTableRenderer extends CoreRenderer {
 	 * @return
 	 */
 	private String determineLanguage(FacesContext fc, DataTable dataTable) {
-		final Set<String> availableLanguages = new HashSet<String>(
-				Arrays.asList(new String[] { "de", "en", "es", "fr", "hu", "it", "pl", "ru" }));
+		final List<String> availableLanguages
+			= Arrays.asList("de", "en", "es", "fr", "hu", "it", "nl", "pl", "pt", "ru");
 		if (BsfUtils.isStringValued(dataTable.getCustomLangUrl())) {
 			return dataTable.getCustomLangUrl();
 		} else if (BsfUtils.isStringValued(dataTable.getLang())) {
 			String lang = dataTable.getLang();
-			if (availableLanguages.contains(lang))
+			if (availableLanguages.contains(lang)) {
 				return determineLanguageUrl(fc, lang);
+			}
 		} else {
 			String lang = fc.getViewRoot().getLocale().getLanguage();
 			if (availableLanguages.contains(lang)) {
