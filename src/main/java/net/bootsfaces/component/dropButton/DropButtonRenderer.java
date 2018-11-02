@@ -186,7 +186,6 @@ public class DropButtonRenderer extends CoreRenderer {
 		DropButton dropButton = (DropButton) component;
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("ul");
-		rw.endElement("li");
 
 		rw.endElement("div"); // btn-group
 		Tooltip.activateTooltips(context, dropButton);
