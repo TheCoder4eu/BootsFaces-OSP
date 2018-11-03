@@ -20,7 +20,7 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-//Configurations for Target Java 8 runtime.
+//Configurations for Target Java 10 runtime.
 sourceCompatibility = '1.7'
 targetCompatibility = '1.10'
 
@@ -67,17 +67,17 @@ dependencies {
 
 
 compileJava {
-    options.compilerArgs.addAll(0,buildOptsJava8)
+    options.compilerArgs.addAll(0,buildOptsJava10)
 }
 compileJava.onlyIf { buildJava10==true }
 
 sourceSets {
     main {
       java {
-            srcDir '../src/main/java'
+            srcDir '../../src/main/java'
           }
     	resources {
-    	   srcDirs = ["../gradleResources/build/resources","../src/main/meta"]
+    	   srcDirs = ["../../gradleResources/build/resources","../src/main/meta"]
     	}
     }
 }
@@ -100,7 +100,7 @@ jar {
    }
 }
 jar.dependsOn(":gradleResources:buildResources")
-jar.onlyIf { buildJava10==true }
+//jar.onlyIf { buildJava10==true }
 
 task defaultJar(type: Jar) {
    baseName='BootsFaces-OSP-jre10-default'
@@ -137,7 +137,7 @@ task defaultJar(type: Jar) {
    }
 }
 defaultJar.dependsOn(jar,":gradleResources:buildResources")
-defaultJar.onlyIf { (themes.size() > 0) && buildJava10==true }
+//defaultJar.onlyIf { (themes.size() > 0) && buildJava10==true }
 
 /*task copyToLib(type: Copy) {
     into "$buildDir/proguard/libs"
