@@ -74,12 +74,10 @@ public class NavLinkRenderer extends CoreRenderer {
 	/**
 	 * This methods generates the HTML code of the current b:navLink.
 	 *
-	 * @param context
-	 *            the FacesContext.
-	 * @param component
-	 *            the current b:navLink.
-	 * @throws IOException
-	 *             thrown if something goes wrong when writing the HTML code.
+	 * @param context   the FacesContext.
+	 * @param component the current b:navLink.
+	 * @throws IOException thrown if something goes wrong when writing the HTML
+	 *                     code.
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
@@ -95,7 +93,8 @@ public class NavLinkRenderer extends CoreRenderer {
 		} else {
 			// if there is no href, no outcome, no child and no value we render
 			// a divider
-			if ((navlink.getValue() == null) && (((UIComponent) navlink).getChildCount() == 0) && navlink.getIcon() == null && navlink.getIconAwesome()==null) {
+			if ((navlink.getValue() == null) && (((UIComponent) navlink).getChildCount() == 0)
+					&& navlink.getIcon() == null && navlink.getIconAwesome() == null) {
 				encodeDivider(context, navlink);
 			} else {
 				encodeHTML(context, (UIComponent) navlink);
@@ -112,9 +111,10 @@ public class NavLinkRenderer extends CoreRenderer {
 		while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
 			parent = parent.getParent();
 		}
-		if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-				|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-				|| parent instanceof DropMenu || parent instanceof FlyOutMenu || parent instanceof Kebab) {
+		if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar
+				|| parent instanceof TabLinks || parent instanceof PillLinks || parent instanceof ListLinks
+				|| parent instanceof NavBarLinks || parent instanceof DropMenu || parent instanceof FlyOutMenu
+				|| parent instanceof Kebab) {
 			htmlTag = "li";
 		}
 
@@ -164,30 +164,30 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 		Boolean useAjax = ((AbstractNavLink) navlink).isAjax();
 		useAjax = useAjax == null ? true : useAjax; // by default, behave like before
-		String htmlTag = "span";
-		boolean idHasBeenRendered=false;
+		String htmlTag = null;
+		boolean idHasBeenRendered = false;
 		if (!(navlink instanceof Link || navlink instanceof CommandLink)) {
+			htmlTag = "span";
 			UIComponent parent = navlink.getParent();
 			while (parent != null && !C.BSFCOMPONENT.equals(parent.getFamily())) {
 				parent = parent.getParent();
 			}
-			if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar || parent instanceof TabLinks
-					|| parent instanceof PillLinks || parent instanceof ListLinks || parent instanceof NavBarLinks
-					|| parent instanceof DropMenu || parent instanceof FlyOutMenu) {
+			if (parent instanceof Breadcrumbs || parent instanceof DropButton || parent instanceof NavBar
+					|| parent instanceof TabLinks || parent instanceof PillLinks || parent instanceof ListLinks
+					|| parent instanceof NavBarLinks || parent instanceof DropMenu || parent instanceof FlyOutMenu) {
 				htmlTag = "li";
 			}
 
 			rw.startElement(htmlTag, navlink);
 			writeAttribute(rw, "id", navlink.getClientId(context), "id");
-			idHasBeenRendered=true;
+			idHasBeenRendered = true;
 			if (((AbstractNavLink) navlink).isDisabled()) {
 				writeAttribute(rw, "class", "disabled");
 				writeAttribute(rw, "aria-disabled", "true");
 			}
 
-	
 			String style = "cursor:pointer;";
-			if (((AbstractNavLink) navlink).getStyle()!=null) {
+			if (((AbstractNavLink) navlink).getStyle() != null) {
 				style += ((AbstractNavLink) navlink).getStyle();
 			}
 			writeAttribute(rw, "class", getStyleClasses(((AbstractNavLink) navlink)));
@@ -200,11 +200,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 		writeAttribute(rw, "style", ((AbstractNavLink) navlink).getContentStyle(), "style");
 
-		
-		
 		Tooltip.generateTooltip(context, navlink, rw);
-		
-		if (!((AbstractNavLink)navlink).isDisabled()) {
+
+		if (!((AbstractNavLink) navlink).isDisabled()) {
 			if (useAjax) {
 				AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, (ClientBehaviorHolder) navlink, rw, false);
 			} else {
@@ -212,14 +210,16 @@ public class NavLinkRenderer extends CoreRenderer {
 			}
 		}
 
-		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(), new String[] { "accesskey", "dir", "lang", "style", "title" });
+		R.encodeHTML4DHTMLAttrs(rw, navlink.getAttributes(),
+				new String[] { "accesskey", "dir", "lang", "style", "title" });
 
-		
 		String styleClass = (navlink instanceof NavCommandLink ? "commandLink " : "");
 		if (navlink instanceof Link || navlink instanceof CommandLink) {
 			styleClass += getStyleClasses(((AbstractNavLink) navlink));
 		}
-		styleClass += (((AbstractNavLink) navlink).getContentClass() != null ? ((AbstractNavLink) navlink).getContentClass() : "");
+		styleClass += (((AbstractNavLink) navlink).getContentClass() != null
+				? ((AbstractNavLink) navlink).getContentClass()
+				: "");
 		if (((AbstractNavLink) navlink).isDisabled()) {
 			styleClass += " disabled";
 		}
@@ -229,27 +229,26 @@ public class NavLinkRenderer extends CoreRenderer {
 			if (navlink instanceof NavCommandLink)
 				if (((NavCommandLink) navlink).getActionExpression() != null)
 					hasActionExpression = true;
-			if (((AbstractNavLink) navlink).getUpdate() == null && (!useAjax)
-					&& (!hasActionExpression)) {
+			if (((AbstractNavLink) navlink).getUpdate() == null && (!useAjax) && (!hasActionExpression)) {
 				String url = encodeHref(context, ((AbstractNavLink) navlink));
 				if (url == null) {
 					/*
-					 * If we cannot get an outcome we use the Bootstrap Framework to
-					 * give a feedback to the developer if this build is in the
-					 * Development Stage
+					 * If we cannot get an outcome we use the Bootstrap Framework to give a feedback
+					 * to the developer if this build is in the Development Stage
 					 */
 					if (FacesContext.getCurrentInstance().getApplication().getProjectStage()
 							.equals(ProjectStage.Development)) {
 						writeAttribute(rw, "data-toggle", "tooltip", null);
-						writeAttribute(rw, "title", FacesContext.getCurrentInstance().getApplication().getProjectStage()
-								+ "WARNING! " + "This link is disabled because a navigation case could not be matched.",
+						writeAttribute(rw, "title",
+								FacesContext.getCurrentInstance().getApplication().getProjectStage() + "WARNING! "
+										+ "This link is disabled because a navigation case could not be matched.",
 								null);
 					}
 					url = "#";
-	
+
 				}
 				writeAttribute(rw, "href", url, null);
-				String target=((AbstractNavLink)navlink).getTarget();
+				String target = ((AbstractNavLink) navlink).getTarget();
 				writeAttribute(rw, "target", target, null);
 			}
 		}
@@ -257,11 +256,11 @@ public class NavLinkRenderer extends CoreRenderer {
 			writeAttribute(rw, "role", "menuitem", null);
 		} else {
 			if (navlink instanceof Link) {
-				if (((Link)navlink).getLook() != null) {
+				if (((Link) navlink).getLook() != null) {
 					writeAttribute(rw, "role", "button", null);
 				}
 			} else if (navlink instanceof CommandLink) {
-				if (((CommandLink)navlink).getLook() != null) {
+				if (((CommandLink) navlink).getLook() != null) {
 					writeAttribute(rw, "role", "button", null);
 				}
 			}
@@ -281,7 +280,7 @@ public class NavLinkRenderer extends CoreRenderer {
 		if (icon != null) {
 			AbstractNavLink link = (AbstractNavLink) navlink;
 			Object ialign = link.getIconAlign(); // Default
-																		// Left
+													// Left
 			if (ialign != null && ialign.equals("right")) {
 				if (value != null)
 					rw.writeText(value + " ", null);
@@ -290,14 +289,16 @@ public class NavLinkRenderer extends CoreRenderer {
 						c.encodeAll(context);
 					}
 				}
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
-						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
-						link.isIconRegular());
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(),
+						link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(),
+						link.isIconRegular(), link.isIconRegular());
 
 			} else {
-				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(), link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
-						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(), link.isIconRegular(),
-						link.isIconRegular());
+				IconRenderer.encodeIcon(rw, navlink, icon, fa, link.getIconSize(), link.getIconRotate(),
+						link.getIconFlip(), link.isIconSpin(), null, null, false, false, false, false,
+						link.isIconBrand(), link.isIconInverse(), link.isIconLight(), link.isIconPulse(),
+						link.isIconRegular(), link.isIconRegular());
 				if (navlink.getChildCount() > 0) {
 					for (UIComponent c : navlink.getChildren()) {
 						c.encodeAll(context);
@@ -318,7 +319,9 @@ public class NavLinkRenderer extends CoreRenderer {
 		}
 		rw.endElement("a");
 		if (navlink instanceof NavLink || navlink instanceof NavCommandLink) {
-			rw.endElement(htmlTag);
+			if (null != htmlTag) {
+				rw.endElement(htmlTag);
+			}
 		}
 	}
 
@@ -335,7 +338,7 @@ public class NavLinkRenderer extends CoreRenderer {
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass((AbstractNavLink) navlink, false);
 		c += " " + responsiveStyleClass;
-		c += getStyleClasses(navlink, responsiveStyleClass.length()>1);
+		c += getStyleClasses(navlink, responsiveStyleClass.length() > 1);
 		return c.trim();
 	}
 
@@ -349,7 +352,7 @@ public class NavLinkRenderer extends CoreRenderer {
 			return url;
 		} else {
 			String outcome = navlink.getOutcome();
-			if (outcome==null) {
+			if (outcome == null) {
 				return null;
 			}
 
@@ -387,8 +390,8 @@ public class NavLinkRenderer extends CoreRenderer {
 	}
 
 	/**
-	 * Find all parameters to include by looking at nested uiparams and params
-	 * of navigation case
+	 * Find all parameters to include by looking at nested uiparams and params of
+	 * navigation case
 	 */
 	protected Map<String, List<String>> getParams(NavigationCase navCase, AbstractNavLink button) {
 		Map<String, List<String>> params = new LinkedHashMap<String, List<String>>();
@@ -430,7 +433,7 @@ public class NavLinkRenderer extends CoreRenderer {
 	public void encodeChildren(FacesContext context, UIComponent component) throws IOException {
 		// this component rendered it's children itself
 	}
-	
+
 	/**
 	 * Collects the CSS classes of the link.
 	 *
@@ -439,12 +442,12 @@ public class NavLinkRenderer extends CoreRenderer {
 	private static String getStyleClasses(AbstractNavLink link, boolean isResponsive) {
 		StringBuilder sb;
 		sb = new StringBuilder(20); // optimize int
-		
+
 		String look = null;
 		if (link instanceof Link) {
-			look = ((Link)link).getLook();
+			look = ((Link) link).getLook();
 		} else if (link instanceof CommandLink) {
-			look = ((CommandLink)link).getLook();
+			look = ((CommandLink) link).getLook();
 		}
 
 		if (look != null) {
