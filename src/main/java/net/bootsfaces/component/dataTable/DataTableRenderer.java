@@ -334,6 +334,7 @@ public class DataTableRenderer extends CoreRenderer {
 		if (dataTable.getFacet("header") != null) {
 			UIComponent facet = dataTable.getFacet("header");
 			facet.encodeAll(context);
+			rw.endElement("thead");
 			return;
 		}
 
