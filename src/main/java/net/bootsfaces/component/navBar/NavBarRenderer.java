@@ -119,7 +119,7 @@ public class NavBarRenderer extends CoreRenderer {
 		 * 8 and earlier versions, do not support the <nav> tag. When IE8 will
 		 * be dropped there will be HTML5 <nav> tag instead of <div>
 		 */
-		rw.startElement("div", navBar);
+		rw.startElement("nav", navBar);
 		rw.writeAttribute("id", navBar.getClientId(context), "id");
 		Tooltip.generateTooltip(context, navBar, rw);
 		rw.writeAttribute("class", ns, "class");
@@ -236,7 +236,7 @@ public class NavBarRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div"); // collapse
 		rw.endElement("div"); // container
-		rw.endElement("div"); // navbar
+		rw.endElement("nav"); // navbar
 		Tooltip.activateTooltips(context, component);
 
 	}
