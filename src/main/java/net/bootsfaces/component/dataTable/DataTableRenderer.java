@@ -134,6 +134,7 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.writeAttribute("style", dataTable.getStyle(), "style");
 		AJAXRenderer.generateBootsFacesAJAXAndJavaScript(context, dataTable, rw, false);
 
+		generateCaption(context, dataTable, rw);
 		generateHeader(context, dataTable, rw);
 		generateBody(context, dataTable, rw);
 		generateFooter(context, dataTable, rw);
@@ -298,6 +299,20 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("tbody");
 		dataTable.setRowIndex(-1);
 	}
+	private void generateCaption(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
+		    boolean hasCaption = false;
+		    
+
+		    if (!dataTable.getCaption().equals("-1")) {
+		        hasCaption = true;
+		    }
+		    
+		    if (hasCaption) {
+		            rw.startElement("caption", dataTable);
+		            rw.writeText(dataTable.getCaption(), null);
+		            rw.endElement("caption");
+		    }
+	    }	
 
 	private void renderChildrenOfColumn(UIComponent column, FacesContext context) throws IOException {
 		resetClientIdCacheRecursively(column);
