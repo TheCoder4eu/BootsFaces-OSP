@@ -561,6 +561,7 @@ widget dataTable
     excel                Boolean default "false"                           "Adds a 'export Excel file' button."
     pdf                  Boolean default "false"                           "Adds a 'export PDF file' button."
     print                Boolean default "false"                           "Adds a 'print' button."
+    caption              String                                            "Optional attribute describing what the datatable is for. Usually, this attribute is used to by screen readers to help the user to quickly grasp the intent of the table."
 	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
 	custom-options       String                                            "Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk."
     disabled             Boolean                                           "Boolean value to specify if the button is disabled."

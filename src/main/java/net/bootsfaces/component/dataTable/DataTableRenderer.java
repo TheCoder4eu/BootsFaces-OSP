@@ -67,12 +67,10 @@ public class DataTableRenderer extends CoreRenderer {
 	 * <code>encodeChildren()</code>. After that, <code>encodeEnd()</code> is called
 	 * to generate the rest of the HTML code.
 	 *
-	 * @param context
-	 *            the FacesContext.
-	 * @param component
-	 *            the current b:dataTable.
-	 * @throws IOException
-	 *             thrown if something goes wrong when writing the HTML code.
+	 * @param context   the FacesContext.
+	 * @param component the current b:dataTable.
+	 * @throws IOException thrown if something goes wrong when writing the HTML
+	 *                     code.
 	 */
 	@Override
 	public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
@@ -232,7 +230,7 @@ public class DataTableRenderer extends CoreRenderer {
 			if (dataTable.isRowAvailable()) {
 				rw.startElement("tr", dataTable);
 				String rowStyleClass = dataTable.getRowStyleClass();
-				
+
 				if (null != selectedRow) {
 					if ((dataTable.getRowData() == selectedRow) || (selectedRow.equals(dataTable.getRowData()))) {
 						if (null == rowStyleClass) {
@@ -299,20 +297,16 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("tbody");
 		dataTable.setRowIndex(-1);
 	}
-	private void generateCaption(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
-		    boolean hasCaption = false;
-		    
 
-		    if (!dataTable.getCaption().equals("-1")) {
-		        hasCaption = true;
-		    }
-		    
-		    if (hasCaption) {
-		            rw.startElement("caption", dataTable);
-		            rw.writeText(dataTable.getCaption(), null);
-		            rw.endElement("caption");
-		    }
-	    }	
+	private void generateCaption(FacesContext context, DataTable dataTable, ResponseWriter rw) throws IOException {
+		boolean hasCaption = dataTable.getCaption() != null;
+
+		if (hasCaption) {
+			rw.startElement("caption", dataTable);
+			rw.writeText(dataTable.getCaption(), null);
+			rw.endElement("caption");
+		}
+	}
 
 	private void renderChildrenOfColumn(UIComponent column, FacesContext context) throws IOException {
 		resetClientIdCacheRecursively(column);
@@ -467,14 +461,14 @@ public class DataTableRenderer extends CoreRenderer {
 			}
 			if (column.getAttributes().get("orderable") != null) {
 				String orderable = column.getAttributes().get("orderable").toString();
-				
+
 				if ("false".equalsIgnoreCase(orderable)) {
 					updateColumnDefinition(dataTable, index, "'orderable': false");
 				}
 			}
 			if (column.getAttributes().get("searchable") != null) {
 				String orderable = column.getAttributes().get("searchable").toString();
-				
+
 				if ("false".equalsIgnoreCase(orderable)) {
 					updateColumnDefinition(dataTable, index, "'searchable': false");
 				}
@@ -483,7 +477,7 @@ public class DataTableRenderer extends CoreRenderer {
 			if (column.getAttributes().get("width") != null) {
 				String width = column.getAttributes().get("width").toString();
 				if (isNumeric(width)) {
-					width+= "px";
+					width += "px";
 				}
 				updateColumnDefinition(dataTable, index, "'width':'" + width + "'");
 			}
@@ -509,12 +503,10 @@ public class DataTableRenderer extends CoreRenderer {
 	 * <code>encodeChildren()</code>. After that, <code>encodeEnd()</code> is called
 	 * to generate the rest of the HTML code.
 	 *
-	 * @param context
-	 *            the FacesContext.
-	 * @param component
-	 *            the current b:dataTable.
-	 * @throws IOException
-	 *             thrown if something goes wrong when writing the HTML code.
+	 * @param context   the FacesContext.
+	 * @param component the current b:dataTable.
+	 * @throws IOException thrown if something goes wrong when writing the HTML
+	 *                     code.
 	 */
 	@Override
 	public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
@@ -571,7 +563,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("order: " + orderString, options);
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
 		options = addOptions("mark: true", options);
-		
+
 		if (dataTable.isSelect()) {
 			String json = "";
 			String items = dataTable.getSelectedItems();
@@ -591,14 +583,14 @@ public class DataTableRenderer extends CoreRenderer {
 			if (dataTable.isDeselectOnBackdropClick()) {
 				json += "blurable:true,";
 			}
-			if (json.length()>1) {
-				json="select:{" + json.substring(0,  json.length()-1) + "}";
+			if (json.length() > 1) {
+				json = "select:{" + json.substring(0, json.length() - 1) + "}";
 			} else {
-				json="select:true";
+				json = "select:true";
 			}
 			options = addOptions(json, options);
 		}
-		
+
 		options = addOptions(generateScrollOptions(dataTable), options);
 		options = addOptions((BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions(generateColumnInfos(dataTable.getColumnInfo()), options);
@@ -610,7 +602,7 @@ public class DataTableRenderer extends CoreRenderer {
 			String selector = "'.bf-selected-row'";
 			if (selectedRow instanceof String) {
 				try {
-					Integer.parseInt((String)selectedRow);
+					Integer.parseInt((String) selectedRow);
 					selector = (String) selectedRow;
 				} catch (NumberFormatException itIsAString) {
 					selector = "'" + selectedRow + "'";
@@ -625,7 +617,7 @@ public class DataTableRenderer extends CoreRenderer {
 			String selector = "'.bf-selected-column'";
 			if (selectedColumn instanceof String) {
 				try {
-					Integer.parseInt((String)selectedColumn);
+					Integer.parseInt((String) selectedColumn);
 					selector = (String) selectedColumn;
 				} catch (NumberFormatException itIsAString) {
 					selector = "'" + selectedColumn + "'";
@@ -638,8 +630,8 @@ public class DataTableRenderer extends CoreRenderer {
 		if (selectCommand.length() > 0) {
 			options = addOptions("'initComplete': function( settings, json ) { " + selectCommand + "}", options);
 		}
-		
-		if (dataTable.getRowGroup()!=null) {
+
+		if (dataTable.getRowGroup() != null) {
 			String rowGroup = dataTable.getRowGroup();
 			try {
 				Integer.parseInt(rowGroup);
@@ -647,7 +639,7 @@ public class DataTableRenderer extends CoreRenderer {
 				rowGroup = "rowGroup:{dataSrc:" + rowGroup + "}";
 			} catch (NumberFormatException itsJson) {
 				// consider it a Json object
-			}			
+			}
 			options = addOptions(rowGroup, options);
 		}
 
@@ -692,7 +684,7 @@ public class DataTableRenderer extends CoreRenderer {
 						searchValue = sv.toString();
 					}
 				}
-				if (null != searchValue && searchValue.length()>0) {
+				if (null != searchValue && searchValue.length() > 0) {
 					rw.writeText("inputs[" + col + "].value='" + searchValue + "';", null);
 					rw.writeText("table.columns(" + col + ").search('" + searchValue + "').draw('page');", null);
 				}
@@ -810,8 +802,8 @@ public class DataTableRenderer extends CoreRenderer {
 	 * @return
 	 */
 	private String determineLanguage(FacesContext fc, DataTable dataTable) {
-		final List<String> availableLanguages
-			= Arrays.asList("de", "en", "es", "fr", "hu", "it", "nl", "pl", "pt", "ru");
+		final List<String> availableLanguages = Arrays.asList("de", "en", "es", "fr", "hu", "it", "nl", "pl", "pt",
+				"ru");
 		if (BsfUtils.isStringValued(dataTable.getCustomLangUrl())) {
 			return dataTable.getCustomLangUrl();
 		} else if (BsfUtils.isStringValued(dataTable.getLang())) {
@@ -852,41 +844,40 @@ public class DataTableRenderer extends CoreRenderer {
 	protected void initColumnInfos(DataTable dataTable) {
 		if (dataTable.getColumnInfo() == null) {
 			List<String> infos = new ArrayList<String>();
-			
+
 			for (int k = 0; k < dataTable.getChildren().size(); k++) {
-			
+
 				if (dataTable.getChildren().get(k).isRendered()) {
 					infos.add(null);
 				}
 
 			}
-			
+
 			dataTable.setColumnInfo(infos);
 		}
 	}
-	
+
 	protected void updateColumnDefinition(DataTable dataTable, int index, String value) {
 		initColumnInfos(dataTable);
-		
+
 		List<String> infos = dataTable.getColumnInfo();
-		
+
 		String s = infos.get(index);
-		
+
 		if (s == null) {
 			infos.set(index, value);
 		} else {
 			infos.set(index, s + "," + value);
 		}
-		
+
 	}
-	
-	public static boolean isNumeric(String str)
-	{
-	    for (char c : str.toCharArray())
-	    {
-	        if (!Character.isDigit(c)) return false;
-	    }
-	    return true;
+
+	public static boolean isNumeric(String str) {
+		for (char c : str.toCharArray()) {
+			if (!Character.isDigit(c))
+				return false;
+		}
+		return true;
 	}
-	
+
 }

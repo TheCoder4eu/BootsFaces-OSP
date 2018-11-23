@@ -24,7 +24,16 @@ import javax.faces.component.UIData;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, autoUpdate, border, caption, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax, autoUpdate, border, caption, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv,
+		customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden,
+		immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch,
+		multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick,
+		ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch,
+		onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup,
+		rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching,
+		select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped,
+		style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow,
+		tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -86,22 +95,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	public void setBorder(boolean _border) {
 		getStateHelper().put(PropertyKeys.border, _border);
 	}
+
 	/**
-	 * If set, this will add a <caption> tag in table declaration 
-	 */
-	public void setcaption(String _caption) {
-	        getStateHelper().put(PropertyKeys.caption, _caption);
-	}
-	
-	
-	/**
-	 * If set, this will surround the table by a border. Defaults to true. <P>
-	 * @return Returns the value of the attribute, or "-1", if it hasn't been set by the JSF file.
+	 * Optional attribute describing what the datatable is for. Usually, this attribute is used to by screen readers to help the user to quickly grasp the intent of the table. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getCaption() {
-	        return (String) getStateHelper().eval(PropertyKeys.caption, "-1");
+		return (String) getStateHelper().eval(PropertyKeys.caption);
 	}
 
+	/**
+	 * Optional attribute describing what the datatable is for. Usually, this attribute is used to by screen readers to help the user to quickly grasp the intent of the table. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setCaption(String _caption) {
+		getStateHelper().put(PropertyKeys.caption, _caption);
+	}
 
 	/**
 	 * Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths. <P>
