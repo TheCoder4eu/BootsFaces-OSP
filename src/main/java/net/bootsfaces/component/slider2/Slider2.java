@@ -47,11 +47,31 @@ public class Slider2 extends Slider2Core {
 	public Slider2() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		// AddResourcesListener.addThemedCSSResource("bsf.css");
 		AddResourcesListener.addExtCSSResource("bootstrap-slider.min.css");
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-slider.min.js");
 		setRendererType(DEFAULT_RENDERER);
 	}
+	
+	/**
+	 * Convert object to number. To be backwards compatible with bound integers to properties where we now also want
+	 * to accept floats now.
+	 *
+	 * @param object Object to convert to number. Should be either a number or a string.
+	 *
+	 * @return Object converted to number.
+	 *
+	 * @throws IllegalArgumentException When an incorrect type is provided.
+	 */
+	private static Number toNumber(Object object) {
+		if (object instanceof Number) {
+			return (Number) object;
+		}
+		if (object instanceof String) {
+			return Float.valueOf((String) object);
+		}
+		throw new IllegalArgumentException("Use number or string");
+	}
+
 
 	/**
 	 * <p>
@@ -98,26 +118,52 @@ public String getFamily() {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 	}
-	/*
-	 * !
-	 * 
-	 * @Override public String getValue() { Object val =
-	 * getStateHelper().eval(PropertyKeys.value, "5"); if(val instanceof Number)
-	 * return val.toString(); return (String) val; }
-	 * 
-	 * @Override public double getMax() { Object max =
-	 * getStateHelper().eval(PropertyKeys.max, 100); if(max instanceof Integer)
-	 * return ((Integer) max).doubleValue(); else if(max instanceof String) return
-	 * Double.parseDouble((String)max); return (Double) max; }
-	 * 
-	 * @Override public double getMin() { Object min =
-	 * getStateHelper().eval(PropertyKeys.min, 0); if(min instanceof Integer) return
-	 * ((Integer) min).doubleValue(); else if(min instanceof String) return
-	 * Double.parseDouble((String)min); return (Double) min; }
-	 * 
-	 * @Override public double getStep() { Object step =
-	 * getStateHelper().eval(PropertyKeys.step, 1); if(step instanceof Integer)
-	 * return ((Integer) step).doubleValue(); else if(step instanceof String) return
-	 * Double.parseDouble((String)step); return (Double) step; }
+
+	/**
+	 * The maximum value of the slider. (default 100) <P>
+	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
+	public Object getMax() {
+		return getStateHelper().eval(PropertyKeys.max, 100);
+	}
+
+	/**
+	 * The maximum value of the slider. (default 0) <P>
+	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 */
+	public Object getMin() {
+		return getStateHelper().eval(PropertyKeys.min, 0);
+	}
+
+	/**
+	 * Increment step <P>
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
+	 */
+	public Object getStep() {
+		return getStateHelper().eval(PropertyKeys.step, 1);
+	}
+
+	/**
+	 * The maximum value of the slider. (default 100) <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMax(Object _max) {
+		getStateHelper().put(PropertyKeys.max, toNumber(_max));
+	}
+
+	/**
+	 * The maximum value of the slider. (default 0) <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setMin(Object _min) {
+		getStateHelper().put(PropertyKeys.min, toNumber(_min));
+	}
+
+	/**
+	 * Increment step <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setStep(Object _step) {
+		getStateHelper().put(PropertyKeys.step, toNumber(_step));
+	}
 }
