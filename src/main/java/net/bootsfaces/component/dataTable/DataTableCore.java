@@ -97,7 +97,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Optional attribute describing what the datatable is for. Usually, this attribute is used to by screen readers to help the user to quickly grasp the intent of the table. <P>
+	 * Optional attribute describing what the datatable is for. Usually, this attribute is used by screen readers to help the user to quickly grasp the intent of the table. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getCaption() {
@@ -105,7 +105,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * Optional attribute describing what the datatable is for. Usually, this attribute is used to by screen readers to help the user to quickly grasp the intent of the table. <P>
+	 * Optional attribute describing what the datatable is for. Usually, this attribute is used by screen readers to help the user to quickly grasp the intent of the table. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCaption(String _caption) {
