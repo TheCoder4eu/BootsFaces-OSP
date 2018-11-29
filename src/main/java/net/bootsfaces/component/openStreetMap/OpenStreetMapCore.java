@@ -124,7 +124,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMaxZoom() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxZoom, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxZoom, 20);
 	}
 
 	/**
@@ -140,7 +140,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMinZoom() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.minZoom, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.minZoom, 1);
 	}
 
 	/**
