@@ -1646,23 +1646,23 @@ widget navbarLinks
 widget openStreetMap
        implemented_by net.bootsfaces.component.openStreetMap.OpenStreetMap
 {
-    center				String											"center"
-	marker				String											"marker"
-	popupMsg			String											"popupMsg"
-	zoom				Integer											"zoom"
-	width				String											"width"
-	height				String											"height"
-	minZoom				Integer											"minZoom"
-	maxZoom				Integer											"maxZoom"
+    center				String											"GPS coordinates of the center of the map"
+	marker				String											"Where to put the marker. Leave this attribute empty if you don't need a marker."
+	popupMsg			String											"Tooltip shown when the marker is clicked."
+	zoom				Integer	default "1"								"Zoom level. Ranges from 1 (world view) to 20 (detailed view)."
+	width				String											"Width of the map. Every CSS unit can be use (e.g. 500px or 50vh)."
+	height				String											"Height of the map. Every CSS unit can be use (e.g. 500px or 50vh)."
+	minZoom				Integer	default "1"   							"Minimal zoom level the user can configure."
+	maxZoom				Integer	default "20"							"Maximal zoom level the user can configure."
 	dragging			Boolean											"dragging"
-	zoomControl			Boolean											"zoomControl"
+	zoomControl			Boolean											"Setting this to false hides the zoom control widget."
 	zoomGlobal			Boolean											"zoomGlobal"
-	attribution			String											"attribution"
-	miniMap				Boolean											"miniMap"
-	miniMapWidth		Integer											"miniMapWidth"
-	miniMapHeight		Integer											"miniMapHeight"
-	miniMapPosition		String											"miniMapPosition"
-	urlTemplate			String											"urlTemplate"
+	attribution			String											"Copyright notice, indicating the template provider (aka tile server)."
+	miniMap				Boolean											"Setting this to true activates a miniature map."
+	miniMapWidth		Integer											"Width of the miniature map (in pixels)."
+	miniMapHeight		Integer											"Height of the miniature map (in pixels)."
+	miniMapPosition		String											"Position of the miniature map (in pixels)."
+	urlTemplate			String											"URL of the template provider (aka tile server) delivering  the maps. See https://wiki.openstreetmap.org/wiki/Tile_servers for full details."
 }
 
 widget panel

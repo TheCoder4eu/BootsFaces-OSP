@@ -19278,13 +19278,13 @@
 			<component-type>net.bootsfaces.component.openStreetMap.OpenStreetMap</component-type>
 		</component>
 		<attribute>
-		  <description><![CDATA[attribution]]></description>
+		  <description><![CDATA[Copyright notice, indicating the template provider (aka tile server).]]></description>
 		  <name>attribution</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[center]]></description>
+		  <description><![CDATA[GPS coordinates of the center of the map]]></description>
 		  <name>center</name>
 		  <required>false</required>
 		  <type>String</type>
@@ -19296,79 +19296,79 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[height]]></description>
+		  <description><![CDATA[Height of the map. Every CSS unit can be use (e.g. 500px or 50vh).]]></description>
 		  <name>height</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[marker]]></description>
+		  <description><![CDATA[Where to put the marker. Leave this attribute empty if you don't need a marker.]]></description>
 		  <name>marker</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[maxZoom]]></description>
+		  <description><![CDATA[Maximal zoom level the user can configure.]]></description>
 		  <name>maxZoom</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[minZoom]]></description>
+		  <description><![CDATA[Minimal zoom level the user can configure.]]></description>
 		  <name>minZoom</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[miniMap]]></description>
+		  <description><![CDATA[Setting this to true activates a miniature map.]]></description>
 		  <name>miniMap</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[miniMapHeight]]></description>
+		  <description><![CDATA[Height of the miniature map (in pixels).]]></description>
 		  <name>miniMapHeight</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[miniMapPosition]]></description>
+		  <description><![CDATA[Position of the miniature map (in pixels).]]></description>
 		  <name>miniMapPosition</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[miniMapWidth]]></description>
+		  <description><![CDATA[Width of the miniature map (in pixels).]]></description>
 		  <name>miniMapWidth</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[popupMsg]]></description>
+		  <description><![CDATA[Tooltip shown when the marker is clicked.]]></description>
 		  <name>popupMsg</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[urlTemplate]]></description>
+		  <description><![CDATA[URL of the template provider (aka tile server) delivering  the maps. See https://wiki.openstreetmap.org/wiki/Tile_servers for full details.]]></description>
 		  <name>urlTemplate</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[width]]></description>
+		  <description><![CDATA[Width of the map. Every CSS unit can be use (e.g. 500px or 50vh).]]></description>
 		  <name>width</name>
 		  <required>false</required>
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[zoom]]></description>
+		  <description><![CDATA[Zoom level. Ranges from 1 (world view) to 20 (detailed view).]]></description>
 		  <name>zoom</name>
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[zoomControl]]></description>
+		  <description><![CDATA[Setting this to false hides the zoom control widget.]]></description>
 		  <name>zoomControl</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>

@@ -24,7 +24,8 @@ import javax.faces.component.UIData;
 public abstract class OpenStreetMapCore extends UIData {
 
 	protected enum PropertyKeys {
-		attribution, center, dragging, height, marker, maxZoom, minZoom, miniMap, miniMapHeight, miniMapPosition, miniMapWidth, popupMsg, urlTemplate, width, zoom, zoomControl, zoomGlobal;
+		attribution, center, dragging, height, marker, maxZoom, minZoom, miniMap, miniMapHeight, miniMapPosition,
+		miniMapWidth, popupMsg, urlTemplate, width, zoom, zoomControl, zoomGlobal;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -40,7 +41,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * attribution <P>
+	 * Copyright notice, indicating the template provider (aka tile server). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getAttribution() {
@@ -48,7 +49,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * attribution <P>
+	 * Copyright notice, indicating the template provider (aka tile server). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setAttribution(String _attribution) {
@@ -56,7 +57,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * center <P>
+	 * GPS coordinates of the center of the map <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getCenter() {
@@ -64,7 +65,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * center <P>
+	 * GPS coordinates of the center of the map <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setCenter(String _center) {
@@ -88,7 +89,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * height <P>
+	 * Height of the map. Every CSS unit can be use (e.g. 500px or 50vh). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getHeight() {
@@ -96,7 +97,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * height <P>
+	 * Height of the map. Every CSS unit can be use (e.g. 500px or 50vh). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setHeight(String _height) {
@@ -104,7 +105,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * marker <P>
+	 * Where to put the marker. Leave this attribute empty if you don't need a marker. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMarker() {
@@ -112,7 +113,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * marker <P>
+	 * Where to put the marker. Leave this attribute empty if you don't need a marker. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMarker(String _marker) {
@@ -120,15 +121,15 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * maxZoom <P>
-	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 * Maximal zoom level the user can configure. <P>
+	 * @return Returns the value of the attribute, or 20, if it hasn't been set by the JSF file.
 	 */
 	public int getMaxZoom() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.maxZoom, 20);
 	}
 
 	/**
-	 * maxZoom <P>
+	 * Maximal zoom level the user can configure. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMaxZoom(int _maxZoom) {
@@ -136,15 +137,15 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * minZoom <P>
-	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 * Minimal zoom level the user can configure. <P>
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public int getMinZoom() {
 		return (int) (Integer) getStateHelper().eval(PropertyKeys.minZoom, 1);
 	}
 
 	/**
-	 * minZoom <P>
+	 * Minimal zoom level the user can configure. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMinZoom(int _minZoom) {
@@ -152,7 +153,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMap <P>
+	 * Setting this to true activates a miniature map. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isMiniMap() {
@@ -160,7 +161,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMap <P>
+	 * Setting this to true activates a miniature map. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMiniMap(boolean _miniMap) {
@@ -168,7 +169,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapHeight <P>
+	 * Height of the miniature map (in pixels). <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMiniMapHeight() {
@@ -176,7 +177,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapHeight <P>
+	 * Height of the miniature map (in pixels). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMiniMapHeight(int _miniMapHeight) {
@@ -184,7 +185,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapPosition <P>
+	 * Position of the miniature map (in pixels). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMiniMapPosition() {
@@ -192,7 +193,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapPosition <P>
+	 * Position of the miniature map (in pixels). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMiniMapPosition(String _miniMapPosition) {
@@ -200,7 +201,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapWidth <P>
+	 * Width of the miniature map (in pixels). <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
 	public int getMiniMapWidth() {
@@ -208,7 +209,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * miniMapWidth <P>
+	 * Width of the miniature map (in pixels). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMiniMapWidth(int _miniMapWidth) {
@@ -216,7 +217,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * popupMsg <P>
+	 * Tooltip shown when the marker is clicked. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getPopupMsg() {
@@ -224,7 +225,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * popupMsg <P>
+	 * Tooltip shown when the marker is clicked. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setPopupMsg(String _popupMsg) {
@@ -232,7 +233,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * urlTemplate <P>
+	 * URL of the template provider (aka tile server) delivering  the maps. See https://wiki.openstreetmap.org/wiki/Tile_servers for full details. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getUrlTemplate() {
@@ -240,7 +241,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * urlTemplate <P>
+	 * URL of the template provider (aka tile server) delivering  the maps. See https://wiki.openstreetmap.org/wiki/Tile_servers for full details. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setUrlTemplate(String _urlTemplate) {
@@ -248,7 +249,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * width <P>
+	 * Width of the map. Every CSS unit can be use (e.g. 500px or 50vh). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getWidth() {
@@ -256,7 +257,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * width <P>
+	 * Width of the map. Every CSS unit can be use (e.g. 500px or 50vh). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setWidth(String _width) {
@@ -264,15 +265,15 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * zoom <P>
-	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
+	 * Zoom level. Ranges from 1 (world view) to 20 (detailed view). <P>
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
 	public int getZoom() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.zoom, 0);
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.zoom, 1);
 	}
 
 	/**
-	 * zoom <P>
+	 * Zoom level. Ranges from 1 (world view) to 20 (detailed view). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setZoom(int _zoom) {
@@ -280,7 +281,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * zoomControl <P>
+	 * Setting this to false hides the zoom control widget. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isZoomControl() {
@@ -288,7 +289,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * zoomControl <P>
+	 * Setting this to false hides the zoom control widget. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setZoomControl(boolean _zoomControl) {
