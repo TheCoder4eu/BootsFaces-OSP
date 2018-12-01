@@ -48,6 +48,8 @@ public class OpenStreetMap extends OpenStreetMapCore implements ClientBehaviorHo
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.openStreetMap.OpenStreetMap";
+        
+        public static final String LEAFLET_VERSION = "1.3.4";
 
 //	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
 //			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
@@ -56,24 +58,14 @@ public class OpenStreetMap extends OpenStreetMapCore implements ClientBehaviorHo
 		setRendererType(DEFAULT_RENDERER);
 		Tooltip.addResourceFiles();
 //		AddResourcesListener.addThemedCSSResource("core.css");
-//		AddResourcesListener
-//				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/layers-2x.png");
-//		AddResourcesListener
-//				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/layers.png");
-//		AddResourcesListener.addResourceIfNecessary(
-//				"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon-2x.png");
-//		AddResourcesListener
-//				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png");
-//		AddResourcesListener.addResourceIfNecessary(
-//				"https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png");
 		AddResourcesListener
-				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet-src.js");
+				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+LEAFLET_VERSION+"/leaflet-src.js");
 		AddResourcesListener
-				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet-src.js.map");
-		AddResourcesListener.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css");
-		AddResourcesListener.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js");
+				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+LEAFLET_VERSION+"/leaflet-src.js.map");
+		AddResourcesListener.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+LEAFLET_VERSION+"/leaflet.css");
+		AddResourcesListener.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+LEAFLET_VERSION+"/leaflet.js");
 		AddResourcesListener
-				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js.map");
+				.addResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+LEAFLET_VERSION+"/leaflet.js.map");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {

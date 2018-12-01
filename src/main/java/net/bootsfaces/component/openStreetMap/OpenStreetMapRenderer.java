@@ -108,7 +108,7 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 		rw.writeText("if('" + openStreetMap.getMarker() + "')", null);
 		rw.writeText("{", null);
 		rw.writeText("var " + clientId + "_marker = L.marker([" + openStreetMap.getMarker()
-				+ "],{icon: new L.Icon({iconSize: [25, 41], iconAnchor: [25, 41], popupAnchor: [-12, -45], iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png'})}).addTo("
+				+ "],{icon: new L.Icon({iconSize: [25, 41], iconAnchor: [25, 41], popupAnchor: [-12, -45], iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+openStreetMap.LEAFLET_VERSION+"/images/marker-icon.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+openStreetMap.LEAFLET_VERSION+"/images/marker-shadow.png'})}).addTo("
 				+ clientId + "_map);", null);
 		rw.writeText("if('" + openStreetMap.getPopupMsg() + "')", null);
 		rw.writeText(clientId + "_marker.bindPopup('" + openStreetMap.getPopupMsg() + "');", null);
