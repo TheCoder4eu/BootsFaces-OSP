@@ -21,9 +21,12 @@ Properties props = new Properties()
 props.load(new FileInputStream("${projectDir}/build.properties"))
 ext.BootsFacesVersion = props['VERSION']
 ext.BootsFacesReleaseStatus = props['RELEASE-STATUS'] //SNAPSHOT or RCn or betaN or empty for RELEASE
-def pomVersion = BootsFacesVersion+'-SNAPSHOT'
+//pom Version will follow the same pattern of the Gradle Version
+def pomVersion = BootsFacesVersion//+'-SNAPSHOT'
 if(BootsFacesReleaseStatus==null||BootsFacesReleaseStatus=='') { pomVersion=BootsFacesVersion }
-else if(BootsFacesReleaseStatus.startsWith("RC")||BootsFacesReleaseStatus.startsWith("beta")) { pomVersion=BootsFacesVersion+'-'+BootsFacesReleaseStatus }
+else if(BootsFacesReleaseStatus.startsWith("RC")||BootsFacesReleaseStatus.startsWith("beta")||BootsFacesReleaseStatus.startsWith("SNAP")) {
+        pomVersion=BootsFacesVersion+'-'+BootsFacesReleaseStatus
+        }
 ext.pomVersion=pomVersion
 //Bootstrap
 ext.BootstrapVersion = props['bootstrap.version']
@@ -111,7 +114,6 @@ showConfig.doFirst {
   new File( configClassFile ).write( configClass, 'UTF-8' )
 
   //Patches version in pom file.
-  //def pomVersion = BootsFacesReleaseStatus == 'SNAPSHOT' ? BootsFacesVersion+'-SNAPSHOT' : BootsFacesVersion
   String projectPomText = new File( 'pom.xml' ).getText( 'UTF-8' )
   projectPomText=(projectPomText =~ /<version>[^<]+<\/version>/).replaceFirst('<version>'+pomVersion+'</version>')
   new File( 'pom.xml' ).write( projectPomText, 'UTF-8' )
@@ -119,4 +121,4 @@ showConfig.doFirst {
 
 //By default build also the default( plain Bootstrap without Themes ) Jar for Java 8 and 9 only
 //defaultTasks 'showConfig', ':java8:defaultJar', ':java9:defaultJar', ':java10:defaultJar', ':java7:jar', ':java6:jar'
-defaultTasks 'showConfig', ':java8:defaultJar', ':java10:defaultJar' //, ':java11:defaultJar'
+defaultTasks 'showConfig', ':java8:defaultJar', ':java11:defaultJar' //, ':java11:defaultJar'
