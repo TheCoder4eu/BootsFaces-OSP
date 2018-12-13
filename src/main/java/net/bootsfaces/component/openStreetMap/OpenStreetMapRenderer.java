@@ -100,7 +100,7 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 		rw.endElement("div");
 
 		rw.startElement("script", component);
-		rw.writeText("var " + clientId + "_map = L.map('" + clientId + "', {center: [" + openStreetMap.getCenter()
+		rw.writeText("var " + clientId + "_map = L.map('" + clientIdRaw + "', {center: [" + openStreetMap.getCenter()
 				+ "], zoom: " + openStreetMap.getZoom() + ", layers: L.tileLayer('" + openStreetMap.getUrlTemplate()
 				+ "', {id: 'osm', attribution: '" + openStreetMap.getAttribution() + "', maxZoom: "
 				+ openStreetMap.getMaxZoom() + ", minZoom: " + openStreetMap.getMinZoom() + "}), dragging:"
