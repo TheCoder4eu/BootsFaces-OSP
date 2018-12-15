@@ -724,7 +724,11 @@ public class AddResourcesListener implements SystemEventListener {
 				if (resource instanceof InternalJavaScriptResource) {
 					datatable.add(resource);
 				} else if (name != null && (name.endsWith(".js"))) {
-					resources.add(resource);
+					if (name.contains("dataTables")) {
+						datatable.add(resource);
+					} else {
+						resources.add(resource);
+					}
 				}
 			}
 		}

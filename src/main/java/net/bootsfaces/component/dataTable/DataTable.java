@@ -291,5 +291,14 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.0.2/js/dataTables.rowGroup.min.js");
 		super.setRowGroup(_rowGroup);
 	}
+	
+	@Override
+	public void setCheckboxColumn(String _checkboxColumn) {
+		super.setCheckboxColumn(_checkboxColumn);
+		if (_checkboxColumn != null && !_checkboxColumn.isEmpty() && !_checkboxColumn.equals("false")) {
+			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/dataTables.checkboxes.min.js");
+			AddResourcesListener.addExtCSSResource("dataTables.checkboxes.css");
+		}
+	}
 
 }

@@ -595,6 +595,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions((BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
 		options = addOptions(generateColumnInfos(dataTable.getColumnInfo()), options);
 		options = addOptions(dataTable.getCustomOptions(), options);
+		options = addOptions(generateColumnDefs(dataTable), options);
 		options = addOptions(getButtons(dataTable), options);
 		String selectCommand = "";
 		Object selectedRow = dataTable.getSelectedRow();
@@ -696,6 +697,7 @@ public class DataTableRenderer extends CoreRenderer {
 		rw.endElement("script");
 	}
 
+
 	private String getButtons(DataTable dataTable) {
 		StringBuilder b = new StringBuilder();
 		if (dataTable.isColumnVisibility()) {
@@ -753,6 +755,19 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 
 		return result + "scrollCollapse: " + dataTable.isScrollCollapse();
+	}
+
+	private String generateColumnDefs(DataTable dataTable) {
+		String c = dataTable.getCheckboxColumn();
+		if (null == c || c.isEmpty() || c.equals("false")) {
+			return "";
+		}
+		String result = "";
+		if (c.equals("true")) {
+			c = "0";
+		}
+		result = "'columnDefs': [{'targets':" + c + ", 'checkboxes': {'selectRow': true}}],'select':{'style':'multi'}";
+		return result;
 	}
 
 	private String generateColumnInfos(List<String> columnInfo) {

@@ -6366,6 +6366,12 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this to true add a checkbox column on the left-hand side of the table. By passing a number instead of 'true', you can move the checkbox to another column.]]></description>
+		  <name>checkboxColumn</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
