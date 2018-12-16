@@ -72,7 +72,18 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	private Map<Integer, String> columnSortOrder;
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the columnDef property used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	private List<String> columnDefinition;
+	
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	private String selectionMode2;
+	
+	/**
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	private List<String> columnInfo;
@@ -160,6 +171,17 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 			}
  	 		super.processEvent(event);
  	 	}
+		List<UIComponent> columns = getChildren();
+		for (UIComponent column : columns) {
+			if (column.getAttributes().get("selectionMode") != null) {
+				String selectionMode = (String) column.getAttributes().get("selectionMode");
+				if ("multiple".equals(selectionMode)) {
+					importCheckboxColumnLib();
+				}
+			}
+		}
+
+
 	}
 
 	public String getFamily() {
@@ -183,6 +205,23 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
 	}
+	
+	/**
+	 * This array is used to store the columnDef attribute used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	public List<String> getColumnDefinition() {
+		return columnDefinition;
+	}
+
+	/**
+	 * This array is used to store the columnDef attribute used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	public void setColumnDefinition(List<String> columnDefinition) {
+		this.columnDefinition = columnDefinition;
+	}
+
 
 	/**
 	 * This array is used to store the column information bits that are used to
@@ -261,6 +300,20 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		}
 	}
 
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	public String getSelectionMode2() {
+		return selectionMode2;
+	}
+
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	public void setSelectionMode2(String selectionMode2) {
+		this.selectionMode2 = selectionMode2;
+	}
+
 	@Override
 	public void setSelectedItems(String _selectedItems) {
 		super.setSelectedItems(_selectedItems);
@@ -292,13 +345,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		super.setRowGroup(_rowGroup);
 	}
 	
-	@Override
-	public void setCheckboxColumn(String _checkboxColumn) {
-		super.setCheckboxColumn(_checkboxColumn);
-		if (_checkboxColumn != null && !_checkboxColumn.isEmpty() && !_checkboxColumn.equals("false")) {
-			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/dataTables.checkboxes.min.js");
-			AddResourcesListener.addExtCSSResource("dataTables.checkboxes.css");
-		}
+	void importCheckboxColumnLib() {
+		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/dataTables.checkboxes.min.js");
+		AddResourcesListener.addExtCSSResource("dataTables.checkboxes.css");
 	}
 
 }

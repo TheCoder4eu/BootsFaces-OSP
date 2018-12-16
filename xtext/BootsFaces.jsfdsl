@@ -1,3 +1,4 @@
+
 attribute_list ajax {
     ajax                Boolean                                           "Whether the Button submits the form with AJAX."
     delay                                                                 "Delays the AJAX request."
@@ -562,7 +563,6 @@ widget dataTable
     pdf                  Boolean default "false"                           "Adds a 'export PDF file' button."
     print                Boolean default "false"                           "Adds a 'print' button."
     caption              String                                            "Optional attribute describing what the datatable is for. Usually, this attribute is used by screen readers to help the user to quickly grasp the intent of the table."
-    checkboxColumn       String                                            "Setting this to true add a checkbox column on the left-hand side of the table. By passing a number instead of 'true', you can move the checkbox to another column."
   	custom-lang-url      String                                            "Defines a custom lang file url for languages BootsFaces doesn't support out-of-the-box."
 	custom-options       String                                            "Allows you to pass an arbitrary option to the datatable widget. Separate the options by a comma if you pass more than one. Note that this may cause incompatibilities when the next version of BootsFaces is released. Use at own risk."
     disabled             Boolean                                           "Boolean value to specify if the button is disabled."
@@ -634,6 +634,7 @@ widget dataTableColumn {
 	header-style                                                           "Inline style of the header cell."
     header-style-class                                                     "Style class of this header cell."
     search-value                                                           "Initial content of the search filter field."
+    selection-mode                                                         "Add a checkbox column to select rows."
     orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
     searchable         Boolean default "true"                              "If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable."
     value              inherited                                           "EL expression referring to the back-end bean attribute providing the value of the field."

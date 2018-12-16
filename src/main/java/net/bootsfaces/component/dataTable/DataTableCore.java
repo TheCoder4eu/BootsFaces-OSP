@@ -24,16 +24,16 @@ import javax.faces.component.UIData;
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, autoUpdate, border, caption, checkboxColumn, colLg, colMd, colSm, colXs, columnVisibility,
-		contentDisabled, copy, csv, customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display,
-		excel, fixedHeader, hidden, immediate, info, lang, largeScreen, markSearchResults, mediumScreen,
-		multiColumnSearch, multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick,
-		oncomplete, ondblclick, ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup,
-		onorder, onpage, onsearch, onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process,
-		responsive, rowGroup, rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize,
-		scrollX, searching, select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode,
-		smallScreen, span, striped, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay,
-		tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, widgetVar;
+		ajax, autoUpdate, border, caption, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv,
+		customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden,
+		immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch,
+		multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick,
+		ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch,
+		onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup,
+		rowHighlight, rowStyleClass, saveState, scrollCollapse, scrollHorizontally, scrollSize, scrollX, searching,
+		select, selectedColumn, selectedItems, selectedRow, selectionInfo, selectionMode, smallScreen, span, striped,
+		style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow,
+		tooltipPosition, update, visible, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -110,22 +110,6 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setCaption(String _caption) {
 		getStateHelper().put(PropertyKeys.caption, _caption);
-	}
-
-	/**
-	 * Setting this to true add a checkbox column on the left-hand side of the table. By passing a number instead of 'true', you can move the checkbox to another column. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getCheckboxColumn() {
-		return (String) getStateHelper().eval(PropertyKeys.checkboxColumn);
-	}
-
-	/**
-	 * Setting this to true add a checkbox column on the left-hand side of the table. By passing a number instead of 'true', you can move the checkbox to another column. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setCheckboxColumn(String _checkboxColumn) {
-		getStateHelper().put(PropertyKeys.checkboxColumn, _checkboxColumn);
 	}
 
 	/**

@@ -455,6 +455,16 @@ public class DataTableRenderer extends CoreRenderer {
 				updateColumnDefinition(dataTable, index, "'orderDataType': '" + orderBy + "'");
 
 			}
+			if (column.getAttributes().get("selectionMode") != null) {
+				String selectionMode = (String) column.getAttributes().get("selectionMode");
+				if ("multiple".equals(selectionMode)) {
+					updateColumnDefinition(dataTable, index, "'checkboxes': {'selectRow': true}");
+					dataTable.setSelectionMode2("multi");
+				} else {
+					throw new FacesException("<b:dataTable> only supports the selection mode 'multiple'");
+				}
+
+			}
 			if (column.getAttributes().get("dataType") != null) {
 				String type = (String) column.getAttributes().get("dataType");
 				updateColumnDefinition(dataTable, index, "'type': '" + type + "'");
@@ -758,15 +768,19 @@ public class DataTableRenderer extends CoreRenderer {
 	}
 
 	private String generateColumnDefs(DataTable dataTable) {
-		String c = dataTable.getCheckboxColumn();
-		if (null == c || c.isEmpty() || c.equals("false")) {
+		List<String> columnInfo = dataTable.getColumnDefinition();
+		if (columnInfo == null) {
 			return "";
 		}
-		String result = "";
-		if (c.equals("true")) {
-			c = "0";
+		String result = "columnDefs: [";
+		for (String col : columnInfo) {
+			if (null != col) {
+				result += "{" + col + "},";
+			}
 		}
-		result = "'columnDefs': [{'targets':" + c + ", 'checkboxes': {'selectRow': true}}],'select':{'style':'multi'}";
+		result = result.substring(0, result.length() - 1); // remove the
+															// trailing comma
+		result += "],'select':{'style':'" + dataTable.getSelectionMode2() + "'}";
 		return result;
 	}
 
@@ -871,8 +885,39 @@ public class DataTableRenderer extends CoreRenderer {
 			dataTable.setColumnInfo(infos);
 		}
 	}
+	
+	protected void initColumnDefinitions(DataTable dataTable) {
+		if (dataTable.getColumnDefinition() == null) {
+			List<String> infos = new ArrayList<String>();
+
+			for (int k = 0; k < dataTable.getChildren().size(); k++) {
+
+				if (dataTable.getChildren().get(k).isRendered()) {
+					infos.add(null);
+				}
+
+			}
+
+			dataTable.setColumnDefinition(infos);
+		}
+	}
 
 	protected void updateColumnDefinition(DataTable dataTable, int index, String value) {
+		initColumnDefinitions(dataTable);
+
+		List<String> infos = dataTable.getColumnDefinition();
+
+		String s = infos.get(index);
+
+		if (s == null) {
+			infos.set(index, "'targets':" + index + "," + value);
+		} else {
+			infos.set(index, s + "," + "'targets':" + index + "," + value);
+		}
+
+	}
+
+	protected void updateColumnInfo(DataTable dataTable, int index, String value) {
 		initColumnInfos(dataTable);
 
 		List<String> infos = dataTable.getColumnInfo();

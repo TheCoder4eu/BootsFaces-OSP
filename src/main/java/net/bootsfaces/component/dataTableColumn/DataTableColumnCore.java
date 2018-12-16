@@ -24,7 +24,9 @@ import javax.faces.component.UIColumn;
 public abstract class DataTableColumnCore extends UIColumn {
 
 	protected enum PropertyKeys {
-		contentStyle, contentStyleClass, customOptions, dataOrder, dataSearch, dataType, footerStyle, footerStyleClass, headerStyle, headerStyleClass, label, labelStyle, labelStyleClass, order, orderBy, orderable, searchValue, searchable, style, styleClass, width;
+		contentStyle, contentStyleClass, customOptions, dataOrder, dataSearch, dataType, footerStyle, footerStyleClass,
+		headerStyle, headerStyleClass, label, labelStyle, labelStyleClass, order, orderBy, orderable, searchValue,
+		searchable, selectionMode, style, styleClass, width;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -325,6 +327,22 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 */
 	public void setSearchable(boolean _searchable) {
 		getStateHelper().put(PropertyKeys.searchable, _searchable);
+	}
+
+	/**
+	 * Add a checkbox column to select rows. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectionMode() {
+		return (String) getStateHelper().eval(PropertyKeys.selectionMode);
+	}
+
+	/**
+	 * Add a checkbox column to select rows. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectionMode(String _selectionMode) {
+		getStateHelper().put(PropertyKeys.selectionMode, _selectionMode);
 	}
 
 	/**
