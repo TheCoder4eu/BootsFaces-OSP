@@ -574,7 +574,7 @@ public class DataTableRenderer extends CoreRenderer {
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
 		options = addOptions("mark: true", options);
 
-		if (dataTable.isSelect()) {
+		if (dataTable.isSelect() && dataTable.getSelectionMode2() == null) {
 			String json = "";
 			String items = dataTable.getSelectedItems();
 			if ("column".equals(items) || "columns".equals(items)) {
@@ -602,9 +602,23 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 
 		options = addOptions(generateScrollOptions(dataTable), options);
-		options = addOptions((BsfUtils.isStringValued(lang) ? "  language: { url: '" + lang + "' } " : null), options);
+		String customOptions = dataTable.getCustomOptions();
+		if (BsfUtils.isStringValued(lang)) {
+			boolean languageAdded = false;
+			if (customOptions != null && customOptions.contains("language")) {
+				int start = customOptions.indexOf("language" + "language".length());
+				start = customOptions.indexOf("{", start)+1;
+				if (start > 0) {
+					customOptions = customOptions.substring(0, start) + "url: '" + lang + "'," + customOptions.substring(start);
+					languageAdded = true;
+				}
+			}
+			if (!languageAdded) {
+				options = addOptions(" language: { url: '" + lang + "' } ", options);
+			}
+		}
 		options = addOptions(generateColumnInfos(dataTable.getColumnInfo()), options);
-		options = addOptions(dataTable.getCustomOptions(), options);
+		options = addOptions(customOptions, options);
 		options = addOptions(generateColumnDefs(dataTable), options);
 		options = addOptions(getButtons(dataTable), options);
 		String selectCommand = "";
@@ -780,7 +794,7 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		result = result.substring(0, result.length() - 1); // remove the
 															// trailing comma
-		result += "],'select':{'style':'" + dataTable.getSelectionMode2() + "'}";
+		result += "],'select':'"+ dataTable.getSelectionMode2() + "'";
 		return result;
 	}
 
