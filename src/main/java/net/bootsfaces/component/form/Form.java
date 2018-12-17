@@ -30,11 +30,13 @@ import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
 import javax.faces.event.ListenersFor;
 import javax.faces.event.PostAddToViewEvent;
+import javax.faces.event.PreRenderComponentEvent;
 
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
-@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class),
+		@ListenerFor(systemEventClass = PreRenderComponentEvent.class) })
 @FacesComponent(Form.COMPONENT_TYPE)
 public class Form extends FormCore implements ClientBehaviorHolder {
 
@@ -49,29 +51,32 @@ public class Form extends FormCore implements ClientBehaviorHolder {
 	}
 
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
-		if (isAutoUpdate()) {
-			if (FacesContext.getCurrentInstance().isPostback()) {
-				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+		if (event instanceof PostAddToViewEvent) {
+			if (isAutoUpdate()) {
+				if (FacesContext.getCurrentInstance().isPostback()) {
+					FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+				}
+				super.processEvent(event);
 			}
- 	 		super.processEvent(event);
- 	 	}
-		
-		String clazz = super.getStyleClass();
-		if (isHorizontal()) {
-			if (clazz == null) {
-				clazz = "form-horizontal";
-			} else {
-				clazz += " form-horizontal";
+		} else if (event instanceof PreRenderComponentEvent) {
+
+			String clazz = super.getStyleClass();
+			if (isHorizontal()) {
+				if (clazz == null) {
+					clazz = "form-horizontal";
+				} else {
+					clazz += " form-horizontal";
+				}
+				setStyleClass(clazz);
 			}
-			setStyleClass(clazz);
-		}
-		if (isInline()) {
-			if (clazz == null) {
-				clazz = "form-inline";
-			} else {
-				clazz += " form-inline";
+			if (isInline()) {
+				if (clazz == null) {
+					clazz = "form-inline";
+				} else {
+					clazz += " form-inline";
+				}
+				setStyleClass(clazz);
 			}
-			setStyleClass(clazz);
 		}
 	}
 
@@ -83,14 +88,11 @@ public class Form extends FormCore implements ClientBehaviorHolder {
 		super.setValueExpression(name, binding);
 	}
 
-	
 	@Override
 	public void setStyle(String _style) {
 		// TODO Auto-generated method stub
 		super.setStyle(_style);
 	}
-	
-	
 
 	public void encodeBegin(FacesContext context) throws IOException {
 		if (isHorizontal() && isInline()) {
