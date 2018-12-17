@@ -826,7 +826,7 @@ widget fetchBeanInfos
 }
 
 widget form
-       extends UIForm
+       extends HtmlForm
        has_children {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
@@ -855,7 +855,8 @@ widget form
     role                inherited                                          "Role attribute used by screen readers."
     target              inherited                                          "Name of a frame where the response retrieved after this form submit is to be displayed."
     title               inherited                                          "Advisory title information about markup elements generated for this component."
-	+style
+    style               inherited                                         "Inline style of the input element."
+    style-class         inherited                                         "Style class of this element."
 }
 
 widget flyOutMenu
