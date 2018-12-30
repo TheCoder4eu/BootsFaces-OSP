@@ -331,9 +331,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 */
 	public void setMarkSearchResults(boolean _markSearchResults) {
 		if (_markSearchResults) {
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.min.css");
 			AddResourcesListener.addResourceIfNecessary("https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.js");
 		}
 		super.setMarkSearchResults(_markSearchResults);
 	}
@@ -343,7 +343,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRowGroup(String _rowGroup) {
-		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.0.2/js/dataTables.rowGroup.min.js");
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
 		super.setRowGroup(_rowGroup);
 	}
 	
