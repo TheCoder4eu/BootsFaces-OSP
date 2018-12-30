@@ -7334,13 +7334,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Add a checkbox column to select rows.]]></description>
+		  <description><![CDATA[Add a checkbox column to select rows. Legal values are 'single' and 'multi'.]]></description>
 		  <name>selection-mode</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Add a checkbox column to select rows.]]></description>
+		  <description><![CDATA[Add a checkbox column to select rows. Legal values are 'single' and 'multi'.]]></description>
 		  <name>selectionMode</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

@@ -634,7 +634,7 @@ widget dataTableColumn {
 	header-style                                                           "Inline style of the header cell."
     header-style-class                                                     "Style class of this header cell."
     search-value                                                           "Initial content of the search filter field."
-    selection-mode                                                         "Add a checkbox column to select rows."
+    selection-mode                                                         "Add a checkbox column to select rows. Legal values are 'single' and 'multi'."
     orderable          Boolean default "true"                              "Disables or enables the sort button for this column."
     searchable         Boolean default "true"                              "If set to false, this column is excluded from the multi-column-search feature of b:dataTable. Defaults to true. Note that this feature is active only if both searching='true' and multi-column-search='true' are set on the datatable."
     value              inherited                                           "EL expression referring to the back-end bean attribute providing the value of the field."

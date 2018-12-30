@@ -330,7 +330,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
-	 * Add a checkbox column to select rows. <P>
+	 * Add a checkbox column to select rows. Legal values are 'single' and 'multi'. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getSelectionMode() {
@@ -338,7 +338,7 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
-	 * Add a checkbox column to select rows. <P>
+	 * Add a checkbox column to select rows. Legal values are 'single' and 'multi'. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setSelectionMode(String _selectionMode) {
