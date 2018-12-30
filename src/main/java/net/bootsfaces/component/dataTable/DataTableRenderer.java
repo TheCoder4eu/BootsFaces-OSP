@@ -459,7 +459,7 @@ public class DataTableRenderer extends CoreRenderer {
 				String selectionMode = (String) column.getAttributes().get("selectionMode");
 				if ("multiple".equals(selectionMode)) {
 					updateColumnDefinition(dataTable, index, "'checkboxes': {'selectRow': true}");
-					dataTable.setSelectionMode2("multi");
+					dataTable.setSelectionMode2("{style: multi}");
 				} else {
 					throw new FacesException("<b:dataTable> only supports the selection mode 'multiple'");
 				}
