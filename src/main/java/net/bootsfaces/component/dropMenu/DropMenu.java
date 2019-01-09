@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.dropMenu;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -33,6 +40,7 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dropMenu /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/dropdown.js", target = "body") })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(DropMenu.COMPONENT_TYPE)
 public class DropMenu extends DropMenuCore implements IHasTooltip, IResponsive, IContentDisabled {
 
@@ -55,7 +63,53 @@ public class DropMenu extends DropMenuCore implements IHasTooltip, IResponsive, 
 		super.setValueExpression(name, binding);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+	
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
+		super.setIconAwesome(_iconAwesome);
+	}
+	
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconSolid(_iconSolid);
 	}
 }

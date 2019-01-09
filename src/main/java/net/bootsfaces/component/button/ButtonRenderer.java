@@ -163,9 +163,11 @@ public class ButtonRenderer extends CoreRenderer {
 			Object ialign = button.getIconAlign(); // Default Left
 			if (ialign != null && ialign.equals("right")) {
 				rw.writeText(value + " ", null);
-				IconRenderer.encodeIcon(rw, button, icon, fa, button.getIconSize(), button.getIconRotate(), button.getIconFlip(), button.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, button, icon, fa, button.getIconSize(), button.getIconRotate(), button.getIconFlip(), button.isIconSpin(), null, null, false, false, false, false,
+						button.isIconBrand(), button.isIconInverse(), button.isIconLight(), button.isIconPulse(), button.isIconRegular(), button.isIconRegular());
 			} else {
-				IconRenderer.encodeIcon(rw, button, icon, fa, button.getIconSize(), button.getIconRotate(), button.getIconFlip(), button.isIconSpin(), null, null, false, false, false, false);
+				IconRenderer.encodeIcon(rw, button, icon, fa, button.getIconSize(), button.getIconRotate(), button.getIconFlip(), button.isIconSpin(), null, null, false, false, false, false,
+						button.isIconBrand(), button.isIconInverse(), button.isIconLight(), button.isIconPulse(), button.isIconRegular(), button.isIconRegular());
 				rw.writeText(" " + value, null);
 			}
 

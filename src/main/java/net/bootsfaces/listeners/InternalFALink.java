@@ -27,34 +27,68 @@ import javax.faces.context.ResponseWriter;
 import net.bootsfaces.C;
 
 /**
- *
  * @author Stephan Rauh, http://www.beyondjava.net
  */
 @FacesComponent("net.bootsfaces.component.internalFALink.InternalFALink")
 public class InternalFALink extends UIComponentBase {
-    
-    /**
-     * <p>The standard component type for this component.</p>
-     */
-    public static final String COMPONENT_TYPE ="net.bootsfaces.component.internalFALink.InternalFALink";
-    /**
-     * <p>The component family for this component.</p>
-     */
-    public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
-    
-    public InternalFALink() {
-        setRendererType(null); // this component renders itself
-    }
 
-    @Override
-    public void encodeBegin(FacesContext fc) throws IOException {
-    	ResponseWriter responseWriter = fc.getResponseWriter();
-        
-        responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + C.FONTAWESOME_CDN_URL + "\" />");
-    }
+	/**
+	 * <p>
+	 * The standard component type for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_TYPE = "net.bootsfaces.component.internalFALink.InternalFALink";
+	/**
+	 * <p>
+	 * The component family for this component.
+	 * </p>
+	 */
+	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
-    @Override
-    public String getFamily() {
-        return COMPONENT_FAMILY;
-    }
+	public InternalFALink() {
+		setRendererType(null); // this component renders itself
+	}
+
+	private String version = "4";
+
+	private boolean needsVersion4 = false;
+
+	@Override
+	public void encodeBegin(FacesContext fc) throws IOException {
+		final String FA_VERSION = "4.7.0";
+		final String FONTAWESOME_CDN_URL = "//maxcdn.bootstrapcdn.com/font-awesome/" + FA_VERSION
+				+ "/css/font-awesome.min.css";
+
+		ResponseWriter responseWriter = fc.getResponseWriter();
+		if (version.contains("5")) {
+			responseWriter.append(
+					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
+			responseWriter.append(
+					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/solid.css\" crossorigin=\"anonymous\"/>");
+
+		}
+		if (version.contains("4")) {
+			if (needsVersion4) {
+				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
+						+ "\" crossorigin=\"anonymous\"/>");
+			}
+		}
+	}
+
+	@Override
+	public String getFamily() {
+		return COMPONENT_FAMILY;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public boolean isNeedsVersion4() {
+		return needsVersion4;
+	}
+
+	public void setNeedsVersion4(boolean needsVersion4) {
+		this.needsVersion4 = needsVersion4;
+	}
 }

@@ -25,6 +25,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.navLink.AbstractNavLink;
 import net.bootsfaces.render.CoreRenderer;
 import net.bootsfaces.render.Tooltip;
 
@@ -118,7 +119,7 @@ public class NavBarRenderer extends CoreRenderer {
 		 * 8 and earlier versions, do not support the <nav> tag. When IE8 will
 		 * be dropped there will be HTML5 <nav> tag instead of <div>
 		 */
-		rw.startElement("div", navBar);
+		rw.startElement("nav", navBar);
 		rw.writeAttribute("id", navBar.getClientId(context), "id");
 		Tooltip.generateTooltip(context, navBar, rw);
 		rw.writeAttribute("class", ns, "class");
@@ -132,6 +133,10 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.startElement("div", navBar);
 		rw.writeAttribute("class", "navbar-header", "class"); // navbar-header
 		rw.startElement("button", navBar);
+		String tabindex = navBar.getTabindex();
+		if (!"0".equals(tabindex)) {
+			writeAttribute(rw, "tabindex", tabindex, null);
+		}
 		rw.writeAttribute("type", "button", "type");
 		rw.writeAttribute("class", "navbar-toggle", "class");
 		rw.writeAttribute("data-toggle", "collapse", "type");
@@ -141,15 +146,19 @@ public class NavBarRenderer extends CoreRenderer {
 		rw.writeAttribute("class", "sr-only", "class");
 		rw.writeText("Toggle navigation", null);
 		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
-		rw.startElement("span", navBar);
-		rw.writeAttribute("class", "icon-bar", "class");
-		rw.endElement("span");
+		if (navBar.getFacet("kebab") != null) {
+			navBar.getFacet("kebab").encodeAll(context);
+		} else {
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+			rw.startElement("span", navBar);
+			rw.writeAttribute("class", "icon-bar", "class");
+			rw.endElement("span");
+		}
 		rw.endElement("button");
 		String brand = navBar.getBrand();
 		String brandImg = navBar.getBrandImg();
@@ -227,7 +236,7 @@ public class NavBarRenderer extends CoreRenderer {
 		ResponseWriter rw = context.getResponseWriter();
 		rw.endElement("div"); // collapse
 		rw.endElement("div"); // container
-		rw.endElement("div"); // navbar
+		rw.endElement("nav"); // navbar
 		Tooltip.activateTooltips(context, component);
 
 	}

@@ -39,3 +39,4 @@ src-gen
 /.apt_generated/
 /infer-out/
 /mavenResources/META-INF/licenses
+/doc/

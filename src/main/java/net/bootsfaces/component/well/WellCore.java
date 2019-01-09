@@ -24,33 +24,7 @@ import javax.faces.component.UIOutput;
 public abstract class WellCore extends UIOutput implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		contentDisabled,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		autoUpdate, colLg, colMd, colSm, colXs, contentDisabled, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, size, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -63,6 +37,22 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -338,7 +328,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Inline CSS of the tab. <P>
+	 * Inline CSS of the well. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyle() {
@@ -346,7 +336,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Inline CSS of the tab. <P>
+	 * Inline CSS of the well. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyle(String _style) {
@@ -354,7 +344,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <P>
+	 * Style class of the div surrounding the well. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getStyleClass() {
@@ -362,7 +352,7 @@ public abstract class WellCore extends UIOutput implements net.bootsfaces.render
 	}
 
 	/**
-	 * Style class of the div surrounding the tab pane. <P>
+	 * Style class of the div surrounding the well. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setStyleClass(String _styleClass) {

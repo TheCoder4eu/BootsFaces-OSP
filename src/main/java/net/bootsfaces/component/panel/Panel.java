@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.panel;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,9 +49,10 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:panel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Panel.COMPONENT_TYPE)
-public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2,
-		ClientBehaviorHolder, IResponsive, IContentDisabled {
+public class Panel extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IAJAXComponent,
+		IAJAXComponent2, ClientBehaviorHolder, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".panel.Panel";
 
@@ -55,8 +63,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	public Panel() {
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		//AddResourcesListener.addThemedCSSResource("bsf.css");
-		//!bs-less//AddResourcesListener.addThemedCSSResource("panels.css");
+		// AddResourcesListener.addThemedCSSResource("bsf.css");
+		// !bs-less//AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
 	}
 
@@ -74,9 +82,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 					"mouseover", "mouseup", "expand", "expanded", "collapse", "collapsed"));
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery
-	 * callback or other non-standard means (such as the onclick event of
-	 * b:tabView, which has to be implemented manually).Ø
+	 * returns the subset of AJAX requests that are implemented by jQuery callback
+	 * or other non-standard means (such as the onclick event of b:tabView, which
+	 * has to be implemented manually).Ø
 	 *
 	 * @return
 	 */
@@ -90,8 +98,8 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -101,8 +109,9 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
-	 * If there's no parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -120,12 +129,12 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * This attribute specify the accordion parent if exist. This property is
-	 * not exposed as component TAG because is driven by the Accordion component
+	 * This attribute specify the accordion parent if exist. This property is not
+	 * exposed as component TAG because is driven by the Accordion component
 	 * <P>
 	 *
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by
+	 *         the JSF file.
 	 */
 	public String getAccordionParent() {
 		String value = (String) getStateHelper().eval("accordionParent", null);
@@ -133,15 +142,24 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * This attribute specify the accordion parent if exist. This property is
-	 * not exposed as component TAG because is driven by the Accordion component
+	 * This attribute specify the accordion parent if exist. This property is not
+	 * exposed as component TAG because is driven by the Accordion component
 	 */
 	public void setAccordionParent(String _accordionParent) {
 		getStateHelper().put("accordionParent", _accordionParent);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		ajax, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconFlip, iconRotate, iconSize, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		ajax, autoUpdate, binding, colLg, colMd, colSm, colXs, collapsed, collapsible, contentClass, contentDisabled, contentStyle, delay, dir, disabled, display, hidden, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, immediate, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncollapse, oncollapsed, oncomplete, ondblclick, onerror, onexpand, onexpanded, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, showCollapseLink, smallScreen, span, style, styleClass, tinyScreen, title, titleClass, titleStyle, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -170,6 +188,22 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -457,7 +491,27 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconBrand, false);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
 	}
 
 	/**
@@ -477,6 +531,76 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconInverse, false);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconInverse(boolean _iconInverse) {
+		getStateHelper().put(PropertyKeys.iconInverse, _iconInverse);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconLight, false);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconPulse, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPulse(boolean _iconPulse) {
+		getStateHelper().put(PropertyKeys.iconPulse, _iconPulse);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconRegular, false);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
+	}
+
+	/**
 	 * Rotate 90 degrees the icon: Can be L,R. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -493,7 +617,7 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconSize() {
@@ -501,11 +625,30 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconSize(String _iconSize) {
 		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSolid, false);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
 	}
 
 	/**

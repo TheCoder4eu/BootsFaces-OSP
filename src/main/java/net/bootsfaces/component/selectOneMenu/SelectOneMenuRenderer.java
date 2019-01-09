@@ -59,6 +59,9 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		Converter converter = menu.getConverter();
+		if (null == converter) {
+			converter = findImplicitConverter(context, component);
+		}
 		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
 		if (null != submittedOptionValue) {
@@ -69,22 +72,34 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				if (currentOption instanceof SelectItem) {
 					if (!((SelectItem) currentOption).isDisabled()) {
 						currentOptionValue = ((SelectItem) currentOption).getValue();
-						if (null == currentOptionValue) // use the label as
-														// fall-back
-							currentOptionValue = ((SelectItem) currentOption).getLabel();
 					}
 				}
 				if (currentOptionValue instanceof String) {
 					currentOptionValueAsString = (String) currentOptionValue;
 				} else if (null != converter) {
 					currentOptionValueAsString = converter.getAsString(context, component, currentOptionValue);
-				} else
+				} else if (currentOptionValue != null) {
 					currentOptionValueAsString = String.valueOf(index);
+				} else {
+					currentOptionValueAsString = ""; // null values are submitted as empty strings
+				}
 				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					menu.setSubmittedValue(null != converter ? currentOptionValueAsString : currentOptionValue);
+					Object submittedValue = null;
+					if (currentOptionValue == null) {
+						submittedValue = null;
+					} else {
+						submittedValue = null != converter ? currentOptionValueAsString : currentOptionValue;
+					}
+					menu.setSubmittedValue(submittedValue);
 					menu.setValid(true);
-					menu.validateValue(context, currentOptionValue);
+					
+					menu.validateValue(context, submittedValue);
 					new AJAXRenderer().decode(context, component, clientId);
+					if (menu.isValid()) {
+						if (currentOptionValue == null)  {
+							menu.setLocalValueSet(true);
+						}
+					}
 					return;
 				}
 			}
@@ -456,32 +471,11 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 			final String description, final Object itemValue, boolean isDisabledOption, boolean isEscape,
 			UIComponent itemComponent, boolean isSelected) throws IOException {
 
-		Object submittedValue = menu.getSubmittedValue();
-		Object selectedOption;
-		Object optionValue;
 		Converter converter = menu.getConverter();
-		String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
-		if (submittedValue != null) {
-			selectedOption = submittedValue;
-			optionValue = itemValueAsString;
-		} else {
-			selectedOption = menu.getValue();
-			optionValue = itemValue;
+		if (converter == null && itemValue != null && (!(itemValue instanceof String))) {
+			converter = findImplicitConverter(context, menu);
 		}
-
-		/*boolean isSelected = false;
-		if (itemValue != null) {
-			if (isSelected(context, menu, selectedOption, optionValue, converter)) {
-				isSelected = true;
-			}
-		} else if (itemLabel.equals(selectedOption)) {
-			isSelected = true;
-		}*/
-//		if (menu.isDisabled() || menu.isReadonly()) {
-//			if (!isSelected) {
-//				return; // don't render options that can't be selected
-//			}
-//		}
+		String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
 
 		boolean isItemLabelBlank = itemLabel == null || itemLabel.trim().isEmpty();
 		itemLabel = isItemLabelBlank ? itemValueAsString : itemLabel;
@@ -500,9 +494,12 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 			else if (itemValue instanceof String) {
 				value = (String) itemValue;
 			} else {
-				value = String.valueOf(index);
+				value = String.valueOf(index); // this is used for objects
 			}
 			rw.writeAttribute("value", value, "value");
+		}
+		else {
+			rw.writeAttribute("value", "", "value");
 		}
 		if (isSelected) {
 			rw.writeAttribute("selected", "true", "selected");

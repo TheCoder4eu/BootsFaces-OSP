@@ -21,7 +21,13 @@ import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import javax.faces.component.UIOutput;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -32,8 +38,9 @@ import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:alert /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/alert.js", target = "body") })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Alert.COMPONENT_TYPE)
-public class Alert extends UIComponentBase implements IHasTooltip, IResponsive {
+public class Alert extends UIOutput implements IHasTooltip, IResponsive {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".alert.Alert";
 
@@ -58,36 +65,17 @@ public class Alert extends UIComponentBase implements IHasTooltip, IResponsive {
 		super.setValueExpression(name, binding);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		binding,
-		closable,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		severity,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		autoUpdate, binding, closable, colLg, colMd, colSm, colXs, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, severity, smallScreen, span, style, styleClass, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -100,6 +88,22 @@ public class Alert extends UIComponentBase implements IHasTooltip, IResponsive {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

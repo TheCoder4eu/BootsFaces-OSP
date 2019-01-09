@@ -24,26 +24,9 @@ import javax.faces.component.UIColumn;
 public abstract class DataTableColumnCore extends UIColumn {
 
 	protected enum PropertyKeys {
-		contentStyle,
-		contentStyleClass,
-		customOptions,
-		dataOrder,
-		dataSearch,
-		dataType,
-		footerStyle,
-		footerStyleClass,
-		headerStyle,
-		headerStyleClass,
-		label,
-		labelStyle,
-		labelStyleClass,
-		order,
-		orderBy,
-		orderable,
-		searchValue,
-		searchable,
-		style,
-		styleClass;
+		contentStyle, contentStyleClass, customOptions, dataOrder, dataSearch, dataType, footerStyle, footerStyleClass,
+		headerStyle, headerStyleClass, label, labelStyle, labelStyleClass, order, orderBy, orderable, searchValue,
+		searchable, selectionMode, style, styleClass, width;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -347,6 +330,22 @@ public abstract class DataTableColumnCore extends UIColumn {
 	}
 
 	/**
+	 * Add a checkbox column to select rows. Legal values are 'single' and 'multi'. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getSelectionMode() {
+		return (String) getStateHelper().eval(PropertyKeys.selectionMode);
+	}
+
+	/**
+	 * Add a checkbox column to select rows. Legal values are 'single' and 'multi'. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setSelectionMode(String _selectionMode) {
+		getStateHelper().put(PropertyKeys.selectionMode, _selectionMode);
+	}
+
+	/**
 	 * Inline style of the input element. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -376,6 +375,22 @@ public abstract class DataTableColumnCore extends UIColumn {
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidth() {
+		return (String) getStateHelper().eval(PropertyKeys.width);
+	}
+
+	/**
+	 * Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidth(String _width) {
+		getStateHelper().put(PropertyKeys.width, _width);
 	}
 
 }

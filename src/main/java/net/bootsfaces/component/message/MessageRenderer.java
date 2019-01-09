@@ -21,6 +21,7 @@ package net.bootsfaces.component.message;
 import java.io.IOException;
 import java.util.List;
 
+import javax.faces.FacesException;
 import javax.faces.application.FacesMessage;
 import javax.faces.application.FacesMessage.Severity;
 import javax.faces.component.UIComponent;
@@ -57,7 +58,13 @@ public class MessageRenderer extends CoreRenderer {
 		String forValue = message.getFor();
 		if (null == forValue || forValue.length() == 0)
 			forValue = "@previous";
+		try {
 		forValue = ExpressionResolver.getComponentIDs(context, message, forValue);
+		} catch (FacesException ex) {
+			if (null == message.getFor() || message.getFor().length() == 0) {
+				throw new FacesException("<b:message> couldn't find its predecessor automatically. Please add the 'for' attribute to indicate which JSF element the message belongs to. id of the <b:message>: " + message.getClientId());
+			}
+		}
 
 		List<FacesMessage> messageList = context.getMessageList(forValue);
 

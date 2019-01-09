@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.carousel;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -42,6 +49,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:carousel /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/carousel.js", target = "head"),
 		@ResourceDependency(library = "bsf", name = "js/transition.js", target = "head") })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Carousel.COMPONENT_TYPE)
 public class Carousel extends UICommand implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2,
 		ClientBehaviorHolder, IResponsive {
@@ -117,8 +125,17 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		activeIndex, ajax, colLg, colMd, colSm, colXs, delay, disabled, display, hidden, interval, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onslid, onslidestart, onsuccess, pause, process, showControls, showIndicators, slide, smallScreen, span, startAnimation, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, wrap;
+		activeIndex, ajax, autoUpdate, colLg, colMd, colSm, colXs, delay, disabled, display, hidden, interval, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onslid, onslidestart, onsuccess, pause, process, showControls, showIndicators, slide, smallScreen, span, startAnimation, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible, wrap;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -163,6 +180,22 @@ public class Carousel extends UICommand implements net.bootsfaces.render.IHasToo
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

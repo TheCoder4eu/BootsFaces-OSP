@@ -17,6 +17,12 @@
  */
 package net.bootsfaces.component.poll;
 
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.io.IOException;
 
 import javax.el.ValueExpression;
@@ -36,6 +42,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author Stephan Rauh
  * @author Jasper de Vries &lt;jepsar@gmail.com&gt;
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Poll.COMPONENT_TYPE)
 public class Poll extends HtmlCommandButton {
 
@@ -56,12 +63,7 @@ public class Poll extends HtmlCommandButton {
 	 * Property keys.
 	 */
 	enum PropertyKeys {
-		execute,
-		interval,
-		once,
-		update,
-		stop,
-		widgetVar
+		autoUpdate, execute, interval, once, update, stop, widgetVar
 	}
 
 	public Poll() {
@@ -91,7 +93,7 @@ public class Poll extends HtmlCommandButton {
 		}
 		String id = getClientId();
 		String widgetVarName = getWidgetVar() == null ? BsfUtils.widgetVarName(id) : getWidgetVar();
-		String intervalId = "window." + BsfUtils.javaScriptVarName(id);		
+		String intervalId = "window." + BsfUtils.javaScriptVarName(id);
 		String update = ExpressionResolver.getComponentIDs(context, this, getUpdate());
 		String execute = ExpressionResolver.getComponentIDs(context, this, getExecute());
 
@@ -99,14 +101,13 @@ public class Poll extends HtmlCommandButton {
 		rw.append("<script id='" + id + "' type='text/javascript'>\r\n");
 		if (isStop()) {
 			rw.append("clearInterval(" + intervalId + ");\r\n");
-		}
-		else {
+		} else {
 			rw.append(widgetVarName + " = new function(){\r\n");
 			rw.append("var o = this;\r\n");
 			rw.append("var handleError = function(){ o.stop(); console.log('error with b:poll " + id + "');};\r\n");
-			rw.append("this.start = function(){ o.stop(); "+ intervalId + " = setInterval(function(){ ");
+			rw.append("this.start = function(){ o.stop(); " + intervalId + " = setInterval(function(){ ");
 			rw.append("jsf.ajax.request('" + id + "', null, {'" + id + "':'" + id + "', execute:'" + execute
-				+ "', render:'" + update + "', onerror:handleError }); }, " + getInterval() + "); };\r\n");
+					+ "', render:'" + update + "', onerror:handleError }); }, " + getInterval() + "); };\r\n");
 			rw.append("this.stop = function(){ clearInterval(" + intervalId + "); };\r\n");
 			rw.append("this.start();\r\n");
 			rw.append("}();\r\n");
@@ -114,9 +115,37 @@ public class Poll extends HtmlCommandButton {
 		rw.append("</script>");
 	}
 
-	@Override
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request.
+	 * <P>
+	 * 
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set
+	 *         by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request.
+	 * <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -131,12 +160,13 @@ public class Poll extends HtmlCommandButton {
 	/**
 	 * Sets which input fields are to be sent?
 	 *
-	 * @param execute Which input fields are to be sent?
+	 * @param execute
+	 *            Which input fields are to be sent?
 	 */
 	public void setExecute(String execute) {
 		getStateHelper().put(PropertyKeys.execute, execute);
 	}
-	
+
 	/**
 	 * Returns number of milliseconds between polls. Default value is 1000.
 	 *
@@ -149,18 +179,19 @@ public class Poll extends HtmlCommandButton {
 	/**
 	 * Sets number of milliseconds between polls.
 	 *
-	 * @param interval Number of milliseconds between polls.
+	 * @param interval
+	 *            Number of milliseconds between polls.
 	 */
 	public void setInterval(Integer interval) {
 		getStateHelper().put(PropertyKeys.interval, interval);
 	}
-	
+
 	/**
 	 * Returns if the poll should called only once. Default value is false.
 	 *
 	 * @return If the poll should called only once. Default value is false.
 	 */
-  @Deprecated
+	@Deprecated
 	public boolean isOnce() {
 		return (Boolean) getStateHelper().eval(PropertyKeys.once, false);
 	}
@@ -168,12 +199,13 @@ public class Poll extends HtmlCommandButton {
 	/**
 	 * Sets if the poll should be called only once.
 	 *
-	 * @param once Indicate if the poll should called only once.
+	 * @param once
+	 *            Indicate if the poll should called only once.
 	 */
-  @Deprecated
+	@Deprecated
 	public void setOnce(boolean once) {
 		getStateHelper().put(PropertyKeys.once, once);
-	}	
+	}
 
 	/**
 	 * Returns which region of the screen is to be updated? Default value: @form.
@@ -187,12 +219,13 @@ public class Poll extends HtmlCommandButton {
 	/**
 	 * Sets which region of the screen is to be updated?
 	 *
-	 * @param update Which region of the screen is to be updated?
+	 * @param update
+	 *            Which region of the screen is to be updated?
 	 */
 	public void setUpdate(String update) {
 		getStateHelper().put(PropertyKeys.update, update);
 	}
-	
+
 	/**
 	 * Returns if the poll needs to stop. Default value: false.
 	 *
@@ -205,28 +238,33 @@ public class Poll extends HtmlCommandButton {
 	/**
 	 * Sets if the poll needs to stop.
 	 *
-	 * @param stop Indicate if the poll needs to stop.
+	 * @param stop
+	 *            Indicate if the poll needs to stop.
 	 */
 	public void setStop(boolean stop) {
 		getStateHelper().put(PropertyKeys.stop, stop);
 	}
-	
+
 	/**
-	 * Returns optional widget variable to access the datatable widget in JavaScript code.
+	 * Returns optional widget variable to access the poll widget in JavaScript
+	 * code.
 	 *
-	 * @return Optional widget variable to access the datatable widget in JavaScript code.
+	 * @return Optional widget variable to access the poll widget in JavaScript
+	 *         code.
 	 */
 	public String getWidgetVar() {
 		return (String) getStateHelper().eval(PropertyKeys.widgetVar);
 	}
 
 	/**
-	 * Sets optional widget variable to access the datatable widget in JavaScript code.
+	 * Sets optional widget variable to access the poll widget in JavaScript
+	 * code.
 	 *
-	 * @param widgetVar widget variable name.
+	 * @param widgetVar
+	 *            widget variable name.
 	 */
 	public void setWidgetVar(String widgetVar) {
 		getStateHelper().put(PropertyKeys.widgetVar, widgetVar);
 	}
-	
+
 }

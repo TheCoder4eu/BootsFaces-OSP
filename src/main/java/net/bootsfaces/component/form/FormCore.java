@@ -18,13 +18,11 @@
 
 package net.bootsfaces.component.form;
 
-import javax.faces.component.UIForm;
-
 /** This class holds the attributes of &lt;b:form /&gt;. */
-public abstract class FormCore extends UIForm {
+public abstract class FormCore extends javax.faces.component.html.HtmlForm {
 
 	protected enum PropertyKeys {
-		horizontal, inline, style, styleClass;
+		autoUpdate, horizontal, inline;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -37,6 +35,22 @@ public abstract class FormCore extends UIForm {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -69,38 +83,6 @@ public abstract class FormCore extends UIForm {
 	 */
 	public void setInline(boolean _inline) {
 		getStateHelper().put(PropertyKeys.inline, _inline);
-	}
-
-	/**
-	 * Inline style of the input element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getStyle() {
-		return (String) getStateHelper().eval(PropertyKeys.style);
-	}
-
-	/**
-	 * Inline style of the input element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStyle(String _style) {
-		getStateHelper().put(PropertyKeys.style, _style);
-	}
-
-	/**
-	 * Style class of this element. <P>
-	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
-	 */
-	public String getStyleClass() {
-		return (String) getStateHelper().eval(PropertyKeys.styleClass);
-	}
-
-	/**
-	 * Style class of this element. <P>
-	 * Usually this method is called internally by the JSF engine.
-	 */
-	public void setStyleClass(String _styleClass) {
-		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
 	}
 
 }

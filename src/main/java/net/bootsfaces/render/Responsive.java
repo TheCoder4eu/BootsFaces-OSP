@@ -115,6 +115,9 @@ public class Responsive {
 	private static String encodeVisibility(IResponsive r, String value, String prefix) {
 		if(value == null) return "";
 
+		if ("true".equals(value) || "false".equals(value)) {
+			throw new FacesException("The attributes 'visible' and 'hidden' don't accept boolean values. If you want to show or hide the element conditionally, use the attribute 'rendered' instead.");
+		}
 		List<String> str = wonderfulTokenizer(value, delimiters);
 		return evaluateExpression(str, delimiters, validValues, prefix, r.getDisplay());
 	}

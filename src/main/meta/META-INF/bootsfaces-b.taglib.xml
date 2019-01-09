@@ -14,6 +14,18 @@
 			<component-type>net.bootsfaces.component.accordion.Accordion</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -316,6 +328,18 @@
 			<component-type>net.bootsfaces.component.alert.Alert</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -604,6 +628,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
 		  <required>false</required>
@@ -617,6 +647,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.badge.Badge</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -908,6 +950,18 @@
 			<component-type>net.bootsfaces.component.breadcrumbs.Breadcrumbs</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -1022,6 +1076,18 @@
 		  <name>accesskey</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -1150,6 +1216,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -1160,6 +1238,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -1174,16 +1300,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -1542,6 +1680,18 @@
 			<component-type>net.bootsfaces.component.buttonGroup.ButtonGroup</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -1856,6 +2006,18 @@
 			<component-type>net.bootsfaces.component.buttonToolbar.ButtonToolbar</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -2157,6 +2319,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.canvas.Canvas</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -2492,6 +2666,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -2960,6 +3146,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both.]]></description>
 		  <name>caption</name>
 		  <required>false</required>
@@ -3178,6 +3376,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Delays the AJAX request.]]></description>
 		  <name>delay</name>
 		  <required>false</required>
@@ -3380,6 +3590,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -3594,6 +3816,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -4306,6 +4540,18 @@
 			<component-type>net.bootsfaces.component.column.Column</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -4632,6 +4878,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -4746,6 +5004,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -4756,6 +5026,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -4770,16 +5088,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -5204,6 +5534,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -5354,6 +5696,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -5364,6 +5718,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -5378,16 +5780,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -5666,6 +6080,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Optional target of the HTML anchor tag that's rendered. E.g. # opens the link in a new tab. This attribute is only evaluated if you provide an href.]]></description>
 		  <name>target</name>
 		  <required>false</required>
@@ -5775,6 +6195,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.container.Container</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
@@ -5910,10 +6342,28 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If set, this will surround the table by a border. Defaults to true.]]></description>
 		  <name>border</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional attribute describing what the datatable is for. Usually, this attribute is used by screen readers to help the user to quickly grasp the intent of the table.]]></description>
+		  <name>caption</name>
+		  <required>false</required>
+		  <type>String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -5962,6 +6412,12 @@
 		  <name>colXs</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
+		  <name>column-visibility</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds a button allowing the user to show and hide of the columns.]]></description>
@@ -6358,6 +6814,18 @@
 		  <name>responsive</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup.]]></description>
+		  <name>row-group</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup.]]></description>
+		  <name>rowGroup</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enable the row highlight css. Default: true.]]></description>
@@ -6866,6 +7334,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Add a checkbox column to select rows. Legal values are 'single' and 'multi'.]]></description>
+		  <name>selection-mode</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Add a checkbox column to select rows. Legal values are 'single' and 'multi'.]]></description>
+		  <name>selectionMode</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the input element.]]></description>
 		  <name>style</name>
 		  <required>false</required>
@@ -6889,6 +7369,12 @@
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the column. If you don't specify the unit, BootsFaces assumes you want to use 'px'. You can use the other units by adding them to the value, such as '50%', '5em', '16vw', etc.]]></description>
+		  <name>width</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:datepicker ************************* -->
@@ -6897,6 +7383,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.datepicker.Datepicker</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -6998,6 +7496,126 @@
 		  <name>hidden</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>icon-flip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>iconFlip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>icon-rotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>iconRotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
+		  <name>icon-size</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
+		  <name>iconSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>icon-spin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>iconSpin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -7458,6 +8076,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -7650,6 +8280,54 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>icon-flip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
+		  <name>iconFlip</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Put the icon to the left or to the right of the input field. Legal values: 'left' and 'right'. Default value: 'right'.]]></description>
 		  <name>icon-position</name>
 		  <required>false</required>
@@ -7660,6 +8338,78 @@
 		  <name>iconPosition</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>icon-rotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
+		  <name>iconRotate</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
+		  <name>icon-size</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
+		  <name>iconSize</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>icon-spin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
+		  <name>iconSpin</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -8470,6 +9220,18 @@
 			<component-type>net.bootsfaces.component.dropButton.DropButton</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -8542,7 +9304,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Use up For Dropup and down for Dropdown, default is down.]]></description>
+		  <description><![CDATA[Use up For dropup and down for dropdown, default is down.]]></description>
 		  <name>drop</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -8584,6 +9346,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -8594,6 +9368,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -8608,16 +9430,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -8770,6 +9604,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>tiny-screen</name>
 		  <required>false</required>
@@ -8848,7 +9688,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[The Label for the Button Dropdown.]]></description>
+		  <description><![CDATA[The Label for the button dropdown.]]></description>
 		  <name>value</name>
 		  <required>true</required>
 		  <type>java.lang.String</type>
@@ -8867,6 +9707,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.dropMenu.DropMenu</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -9006,6 +9858,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -9016,6 +9880,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -9030,16 +9942,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -9180,6 +10104,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-xs. Integer value to specify how many columns to span on tiny screens (≤ 767 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>tiny-screen</name>
 		  <required>false</required>
@@ -9302,6 +10232,18 @@
 		  <name>acceptcharset</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The ValueExpression linking this component to a property in a backing bean]]></description>
@@ -9474,6 +10416,18 @@
 			<component-type>net.bootsfaces.component.flyOutMenu.FlyOutMenu</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -9636,6 +10590,18 @@
 		<attribute>
 		  <description><![CDATA[String value to determine if the 'all-day' slot is displayed at the top of the calendar in agenda views]]></description>
 		  <name>allDaySlot</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -10092,6 +11058,18 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The message is shown and hidden with a delay. This value is the delay in milliseconds. Defaults to 0 (no delay).]]></description>
 		  <name>delay</name>
 		  <required>false</required>
@@ -10268,6 +11246,18 @@
 		  <type>javax.el.ValueExpression</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Variable to store the beta value of the gyroscope's rotation]]></description>
 		  <name>beta</name>
 		  <required>false</required>
@@ -10354,6 +11344,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -10468,9 +11470,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon name, mandatory.]]></description>
+		  <description><![CDATA[Icon name. This attribute has been deprecated in favor of 'value'.]]></description>
 		  <name>name</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -10740,6 +11742,12 @@
 		<attribute>
 		  <description><![CDATA[Component(s) to be updated with ajax.]]></description>
 		  <name>update</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Icon name. This is the name of the Glyphicon without the prefix 'glyphicon-'. Synonym of the attribute 'name'.]]></description>
+		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -10770,10 +11778,28 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
 		  <type>javax.faces.component.UIComponent</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -10842,6 +11868,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Activates the fixed with feature of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>fixed-width</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the fixed with feature of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>fixedWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>flip</name>
 		  <required>false</required>
@@ -10860,6 +11898,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Alternative spelling to col-lg. Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>large-screen</name>
 		  <required>false</required>
@@ -10870,6 +11914,12 @@
 		  <name>largeScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -10884,9 +11934,9 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon name, mandatory.]]></description>
+		  <description><![CDATA[Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. This attribute has been deprecated in favor of 'value'.]]></description>
 		  <name>name</name>
-		  <required>true</required>
+		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
@@ -11010,8 +12060,20 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flag indicating that this input element will prevent changes by the user.]]></description>
 		  <name>readonly</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>regular</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -11028,7 +12090,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -11044,6 +12106,12 @@
 		  <name>smallScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on medium screens (≥992 pixels). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -11160,6 +12228,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Icon name. This is the name of the Font Awesome icon without the leading 'fa-' prefix. Synonym of the attribute 'name'.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
 		  <required>false</required>
@@ -11184,6 +12258,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -11660,6 +12746,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -12412,6 +13510,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
@@ -13232,6 +14342,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
@@ -13986,6 +15108,18 @@
 			<component-type>net.bootsfaces.component.jumbotron.Jumbotron</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -14102,6 +15236,18 @@
 			<component-type>net.bootsfaces.component.kebab.Kebab</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -14157,6 +15303,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.label.Label</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -14490,6 +15648,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -14640,6 +15810,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -14650,6 +15832,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -14664,16 +15894,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -14952,7 +16194,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
 		  <name>tabindex</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -15068,6 +16310,18 @@
 			<component-type>net.bootsfaces.component.listLinks.ListLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -15177,6 +16431,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.message.Message</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
@@ -15581,6 +16847,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.messages.Messages</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
@@ -16076,6 +17354,18 @@
 			<component-type>net.bootsfaces.component.modal.Modal</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[By default, you can close a modal dialog by clicking somewhere outside the modal. Set backdrop="false" to disable this feature.]]></description>
 		  <name>backdrop</name>
 		  <required>false</required>
@@ -16202,6 +17492,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -16396,6 +17698,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[The text of the tooltip.]]></description>
 		  <name>tooltip</name>
 		  <required>false</required>
@@ -16496,6 +17804,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -16650,6 +17970,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -16660,6 +17992,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -16674,16 +18054,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -16952,6 +18344,12 @@
 		<attribute>
 		  <description><![CDATA[CSS style class]]></description>
 		  <name>styleClass</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
+		  <name>tabindex</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
@@ -17096,6 +18494,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -17246,6 +18656,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -17256,6 +18678,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -17270,16 +18740,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -17552,7 +19034,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767.]]></description>
+		  <description><![CDATA[Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document.]]></description>
 		  <name>tabindex</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -17648,7 +19130,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Navigation Link text.]]></description>
+		  <description><![CDATA[Navigation link text.]]></description>
 		  <name>value</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -17667,6 +19149,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.navbarLinks.NavbarLinks</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
@@ -17789,6 +19283,116 @@
 		</attribute>
 	</tag>
 	
+	<!-- *********** b:openStreetMap ************************* -->
+	<tag>
+		<tag-name>openStreetMap</tag-name>
+		<component>
+			<component-type>net.bootsfaces.component.openStreetMap.OpenStreetMap</component-type>
+		</component>
+		<attribute>
+		  <description><![CDATA[Copyright notice, indicating the template provider (aka tile server).]]></description>
+		  <name>attribution</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[GPS coordinates of the center of the map]]></description>
+		  <name>center</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[dragging]]></description>
+		  <name>dragging</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Height of the map. Every CSS unit can be use (e.g. 500px or 50vh).]]></description>
+		  <name>height</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Where to put the marker. Leave this attribute empty if you don't need a marker.]]></description>
+		  <name>marker</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Maximal zoom level the user can configure.]]></description>
+		  <name>maxZoom</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Minimal zoom level the user can configure.]]></description>
+		  <name>minZoom</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this to true activates a miniature map.]]></description>
+		  <name>miniMap</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Height of the miniature map (in pixels).]]></description>
+		  <name>miniMapHeight</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Position of the miniature map (in pixels).]]></description>
+		  <name>miniMapPosition</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the miniature map (in pixels).]]></description>
+		  <name>miniMapWidth</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Tooltip shown when the marker is clicked.]]></description>
+		  <name>popupMsg</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[URL of the template provider (aka tile server) delivering  the maps. See https://wiki.openstreetmap.org/wiki/Tile_servers for full details.]]></description>
+		  <name>urlTemplate</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Width of the map. Every CSS unit can be use (e.g. 500px or 50vh).]]></description>
+		  <name>width</name>
+		  <required>false</required>
+		  <type>String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Zoom level. Ranges from 1 (world view) to 20 (detailed view).]]></description>
+		  <name>zoom</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this to false hides the zoom control widget.]]></description>
+		  <name>zoomControl</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[zoomGlobal]]></description>
+		  <name>zoomGlobal</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+	</tag>
+	
 	<!-- *********** b:panel ************************* -->
 	<tag>
 		<tag-name>panel</tag-name>
@@ -17798,6 +19402,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -17964,6 +19580,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-brand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconBrand</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Flip the icon: can be H (horizontal) or V (vertical).]]></description>
 		  <name>icon-flip</name>
 		  <required>false</required>
@@ -17974,6 +19602,54 @@
 		  <name>iconFlip</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>icon-inverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Switch the icon from black-on-white to white-on-black.]]></description>
+		  <name>iconInverse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-light</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconLight</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>icon-pulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Boolean value: if true the icon will rotate with 8 discrete steps.]]></description>
+		  <name>iconPulse</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-regular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconRegular</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Rotate 90 degrees the icon: Can be L,R.]]></description>
@@ -17988,16 +19664,28 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>icon-size</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Icon Size: legal values are lg, 2x, 3x, 4x, 5x.]]></description>
+		  <description><![CDATA[Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed.]]></description>
 		  <name>iconSize</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>icon-solid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
+		  <name>iconSolid</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value: if true the icon will spin.]]></description>
@@ -18380,6 +20068,18 @@
 			<component-type>net.bootsfaces.component.panelGrid.PanelGrid</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -18724,6 +20424,18 @@
 			<component-type>net.bootsfaces.component.pillLinks.PillLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -18852,6 +20564,18 @@
 		  <type>javax.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Which input fields are to be sent? Default value: @none]]></description>
 		  <name>execute</name>
 		  <required>false</required>
@@ -18894,7 +20618,7 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Optional widget variable to access the datatable widget in JavaScript code.]]></description>
+		  <description><![CDATA[Optional widget variable to access the poll widget in JavaScript code.]]></description>
 		  <name>widgetVar</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -18910,6 +20634,18 @@
 		<attribute>
 		  <description><![CDATA[If true, stripes will be added and animated to move from right to left to indicate running actions. Default value: false.]]></description>
 		  <name>animated</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -19278,6 +21014,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -19784,6 +21532,18 @@
 			<component-type>net.bootsfaces.component.row.Row</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -20004,6 +21764,18 @@
 			<component-type>net.bootsfaces.component.scrollSpy.ScrollSpy</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Id of the element that is the scrollable container. Search expressions are allowed if they yield only one result. If not specified, body is set by default.]]></description>
 		  <name>container</name>
 		  <required>false</required>
@@ -20088,6 +21860,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -20190,6 +21974,12 @@
 		  <name>display</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[By default, the caption and the tooltip encode HTML and JavaScript code. Instead of being executed, the source code is displayed. This protects you against hacker attacks. By setting escape=false, you deactivate the protection, and allow HTML and JavaScript code to be rendered.]]></description>
+		  <name>escape</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The size of the input. Possible values are xs (extra small), sm (small), md (medium) and lg (large) .]]></description>
@@ -20844,6 +22634,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -21262,6 +23064,18 @@
 		<attribute>
 		  <description><![CDATA[Animate the switch. Default value: true.]]></description>
 		  <name>animate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -21956,6 +23770,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -22740,6 +24566,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -23390,6 +25228,30 @@
 			<component-type>net.bootsfaces.component.slider.Slider</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badge-span</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badgeSpan</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
 		  <name>badge-style</name>
 		  <required>false</required>
@@ -23632,6 +25494,30 @@
 			<component-type>net.bootsfaces.component.slider2.Slider2</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badge-span</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[The column span of the badge or input field (if it's shown).]]></description>
+		  <name>badgeSpan</name>
+		  <required>false</required>
+		  <type>java.lang.Integer</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Inline style of the badge or input field (if it's shown).]]></description>
 		  <name>badge-style</name>
 		  <required>false</required>
@@ -23749,13 +25635,13 @@
 		  <description><![CDATA[The maximum value of the slider. (default 100)]]></description>
 		  <name>max</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[The maximum value of the slider. (default 0)]]></description>
 		  <name>min</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Mode of the Slider Widget. There are three modes available : badge, edit and basic. In basic mode, only the slider and the label(if present) will be shown and the slider value will be hidden. In badge mode, the default, the slider value will be shown in a badge. In edit mode, an editable input field showing the slider value will be shown; in this mode you can change the value by sliding or editing the value in the field.]]></description>
@@ -23815,7 +25701,7 @@
 		  <description><![CDATA[Increment step]]></description>
 		  <name>step</name>
 		  <required>false</required>
-		  <type>java.lang.Integer</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Inline style of the entire slider.]]></description>
@@ -23877,6 +25763,12 @@
 		  <required>false</required>
 		  <type>java.lang.Integer</type>
 		</attribute>
+		<attribute>
+		  <description><![CDATA[Optional widget variable to access the slider2 widget in JavaScript code.]]></description>
+		  <name>widgetVar</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
 	</tag>
 	
 	<!-- *********** b:socialShare ************************* -->
@@ -23885,6 +25777,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.socialShare.SocialShare</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Message of the block overaly.]]></description>
 		  <name>block-message</name>
@@ -24186,6 +26090,18 @@
 		  <name>alt</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
@@ -25138,6 +27054,18 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>
 		  <required>false</required>
@@ -25368,6 +27296,18 @@
 			<component-type>net.bootsfaces.component.tabLinks.TabLinks</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -25492,6 +27432,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -25731,6 +27683,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.tree.Tree</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Hex value of border color (default #DDDDDD)]]></description>
 		  <name>border-color</name>
@@ -26112,6 +28076,18 @@
 			<component-type>net.bootsfaces.component.thumbnail.Thumbnail</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
@@ -26398,6 +28374,18 @@
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
 		  <name>ajax</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
@@ -26895,6 +28883,18 @@
 			<component-type>net.bootsfaces.component.well.Well</component-type>
 		</component>
 		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
 		  <name>col-lg</name>
 		  <required>false</required>
@@ -27081,19 +29081,19 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Inline CSS of the tab.]]></description>
+		  <description><![CDATA[Inline CSS of the well.]]></description>
 		  <name>style</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
+		  <description><![CDATA[Style class of the div surrounding the well.]]></description>
 		  <name>style-class</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Style class of the div surrounding the tab pane.]]></description>
+		  <description><![CDATA[Style class of the div surrounding the well.]]></description>
 		  <name>styleClass</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -27177,6 +29177,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Optional attribute to define the content of the widget. The content can also be specified by simply putting it between the opening and the closing tag.]]></description>
+		  <name>value</name>
+		  <required>false</required>
+		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
 		  <name>visible</name>
 		  <required>false</required>
@@ -27190,6 +29196,18 @@
 		<component>
 			<component-type>net.bootsfaces.component.formGroup.FormGroup</component-type>
 		</component>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>auto-update</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
+		  <name>autoUpdate</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
 		  <name>content-disabled</name>

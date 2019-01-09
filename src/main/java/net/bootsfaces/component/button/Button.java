@@ -21,6 +21,12 @@ package net.bootsfaces.component.button;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.html.HtmlOutcomeTargetButton;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;
@@ -30,6 +36,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:button /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Button.COMPONENT_TYPE)
 public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IResponsive {
 
@@ -58,66 +65,17 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 		super.setValueExpression(name, binding);
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		accesskey,
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		dir,
-		disabled,
-		dismiss,
-		display,
-		fragment,
-		hidden,
-		href,
-		icon,
-		iconAlign,
-		iconAwesome,
-		iconFlip,
-		iconRotate,
-		iconSize,
-		iconSpin,
-		lang,
-		largeScreen,
-		look,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		onblur,
-		onchange,
-		onclick,
-		ondblclick,
-		onfocus,
-		onkeydown,
-		onkeypress,
-		onkeyup,
-		onmousedown,
-		onmousemove,
-		onmouseout,
-		onmouseover,
-		onmouseup,
-		outcome,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tabindex,
-		target,
-		tinyScreen,
-		title,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		accesskey, autoUpdate, binding, colLg, colMd, colSm, colXs, dir, disabled, dismiss, display, fragment, hidden, href, icon, iconAlign, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, lang, largeScreen, look, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onblur, onchange, onclick, ondblclick, onfocus, onkeydown, onkeypress, onkeyup, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, outcome, size, smallScreen, span, style, styleClass, tabindex, target, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -146,6 +104,22 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 */
 	public void setAccesskey(String _accesskey) {
 		getStateHelper().put(PropertyKeys.accesskey, _accesskey);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -385,7 +359,27 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
 		getStateHelper().put(PropertyKeys.iconAwesome, _iconAwesome);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconBrand() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconBrand, false);
+	}
+
+	/**
+	 * Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconBrand, _iconBrand);
 	}
 
 	/**
@@ -405,6 +399,76 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconInverse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconInverse, false);
+	}
+
+	/**
+	 * Switch the icon from black-on-white to white-on-black. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconInverse(boolean _iconInverse) {
+		getStateHelper().put(PropertyKeys.iconInverse, _iconInverse);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconLight() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconLight, false);
+	}
+
+	/**
+	 * Use the paid 'light' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconLight, _iconLight);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconPulse() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconPulse, false);
+	}
+
+	/**
+	 * Boolean value: if true the icon will rotate with 8 discrete steps. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconPulse(boolean _iconPulse) {
+		getStateHelper().put(PropertyKeys.iconPulse, _iconPulse);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconRegular() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconRegular, false);
+	}
+
+	/**
+	 * Use the paid 'regular' font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconRegular, _iconRegular);
+	}
+
+	/**
 	 * Rotate 90 degrees the icon: Can be L,R. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
@@ -421,7 +485,7 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getIconSize() {
@@ -429,11 +493,30 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	}
 
 	/**
-	 * Icon Size: legal values are lg, 2x, 3x, 4x, 5x. <P>
+	 * Icon Size: legal values are lg (=133%), 2x, 3x, 4x, 5x. If you're using Fontawesome 5, also 6x, 7x, 8x, 9, 10x, xs (=75%), and sm (=87.5%) are allowed. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setIconSize(String _iconSize) {
 		getStateHelper().put(PropertyKeys.iconSize, _iconSize);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isIconSolid() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.iconSolid, false);
+	}
+
+	/**
+	 * Use the free font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		getStateHelper().put(PropertyKeys.iconSolid, _iconSolid);
 	}
 
 	/**

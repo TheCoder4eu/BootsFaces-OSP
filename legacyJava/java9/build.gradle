@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2018 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -20,11 +20,11 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 
-//Configurations for Target Java 8 runtime.
+//Configurations for Target Java 9 runtime.
 sourceCompatibility = '1.7'
-targetCompatibility = '1.10'
+targetCompatibility = '1.9'
 
-archivesBaseName = 'BootsFaces-OSP-jre10'
+archivesBaseName = 'BootsFaces-OSP-jre9'
 
 apply plugin: 'maven'
 
@@ -67,17 +67,17 @@ dependencies {
 
 
 compileJava {
-    options.compilerArgs.addAll(0,buildOptsJava8)
+    options.compilerArgs.addAll(0,buildOptsJava9)
 }
-compileJava.onlyIf { buildJava10==true }
+//compileJava.onlyIf { buildJava9==true }
 
 sourceSets {
     main {
       java {
-            srcDir '../src/main/java'
+            srcDir '../../src/main/java'
           }
     	resources {
-    	   srcDirs = ["../gradleResources/build/resources","../src/main/meta"]
+    	   srcDirs = ["../../gradleResources/build/resources","../src/main/meta"]
     	}
     }
 }
@@ -100,11 +100,11 @@ jar {
    }
 }
 jar.dependsOn(":gradleResources:buildResources")
-jar.onlyIf { buildJava10==true }
+//jar.onlyIf { buildJava9==true }
 
 task defaultJar(type: Jar) {
    baseName='BootsFaces-OSP-jre9-default'
-   from(sourceSets.main.output.classesDir) {
+   from(sourceSets.main.output.classesDirs) {
         include "**"
    }
    from(sourceSets.main.output.resourcesDir) {
@@ -137,7 +137,7 @@ task defaultJar(type: Jar) {
    }
 }
 defaultJar.dependsOn(jar,":gradleResources:buildResources")
-defaultJar.onlyIf { (themes.size() > 0) && buildJava10==true }
+//defaultJar.onlyIf { (themes.size() > 0) && buildJava9==true }
 
 /*task copyToLib(type: Copy) {
     into "$buildDir/proguard/libs"
@@ -148,9 +148,9 @@ compileJava.doFirst {
     println "Compiling Java Sources:"
     println "source compatibility  :" + sourceCompatibility
     println "target compatibility  :" + targetCompatibility
-    println "Java Build Options  :" + buildOptsJava10
+    println "Java Build Options  :" + buildOptsJava9
     println "sourceSets.main.java.srcDirs  :" + sourceSets.main.java.srcDirs
-    println "sourceSets.main.output.classesDir :" + sourceSets.main.output.classesDir
+    println "sourceSets.main.output.classesDirs :" + sourceSets.main.output.classesDirs
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
 
 }

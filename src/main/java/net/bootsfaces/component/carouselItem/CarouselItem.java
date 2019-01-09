@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.carouselItem;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,6 +42,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:carouselItem /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(CarouselItem.COMPONENT_TYPE)
 public class CarouselItem extends UICommand
 		implements net.bootsfaces.render.IHasTooltip, IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder {
@@ -103,8 +111,17 @@ public class CarouselItem extends UICommand
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		active, ajax, caption, delay, disabled, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
+		active, ajax, autoUpdate, caption, delay, disabled, onclick, oncomplete, ondblclick, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onsuccess, process, style, styleClass, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -149,6 +166,22 @@ public class CarouselItem extends UICommand
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

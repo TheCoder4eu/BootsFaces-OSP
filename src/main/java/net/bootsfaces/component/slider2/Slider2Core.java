@@ -24,34 +24,10 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class Slider2Core extends HtmlInputText {
 
 	protected enum PropertyKeys {
-		badgeStyle,
-		badgeStyleClass,
-		binding,
-		disabled,
-		focus,
-		formatter,
-		handleShape,
-		inline,
-		label,
-		labelStyle,
-		labelStyleClass,
-		labelledBy,
-		max,
-		min,
-		mode,
-		natural_arrow_keys,
-		orientation,
-		precision,
-		reversed,
-		scale,
-		selection,
-		span,
-		step,
-		style,
-		styleClass,
-		tooltipSliderPosition,
-		tooltipSplit,
-		tooltipVisibility;
+		autoUpdate, badgeSpan, badgeStyle, badgeStyleClass, binding, disabled, focus, formatter, handleShape, inline,
+		label, labelStyle, labelStyleClass, labelledBy, max, min, mode, natural_arrow_keys, orientation, precision,
+		reversed, scale, selection, span, step, style, styleClass, tooltipSliderPosition, tooltipSplit,
+		tooltipVisibility, widgetVar;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -64,6 +40,38 @@ public abstract class Slider2Core extends HtmlInputText {
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
+	}
+
+	/**
+	 * The column span of the badge or input field (if it's shown). <P>
+	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
+	 */
+	public int getBadgeSpan() {
+		return (int) (Integer) getStateHelper().eval(PropertyKeys.badgeSpan, 1);
+	}
+
+	/**
+	 * The column span of the badge or input field (if it's shown). <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setBadgeSpan(int _badgeSpan) {
+		getStateHelper().put(PropertyKeys.badgeSpan, _badgeSpan);
 	}
 
 	/**
@@ -262,15 +270,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * The maximum value of the slider. (default 100) <P>
 	 * @return Returns the value of the attribute, or 100, if it hasn't been set by the JSF file.
 	 */
-	public int getMax() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.max, 100);
+	public java.lang.Object getMax() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.max, 100);
 	}
 
 	/**
 	 * The maximum value of the slider. (default 100) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMax(int _max) {
+	public void setMax(java.lang.Object _max) {
 		getStateHelper().put(PropertyKeys.max, _max);
 	}
 
@@ -278,15 +286,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * The maximum value of the slider. (default 0) <P>
 	 * @return Returns the value of the attribute, or 0, if it hasn't been set by the JSF file.
 	 */
-	public int getMin() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.min, 0);
+	public java.lang.Object getMin() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.min, 0);
 	}
 
 	/**
 	 * The maximum value of the slider. (default 0) <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMin(int _min) {
+	public void setMin(java.lang.Object _min) {
 		getStateHelper().put(PropertyKeys.min, _min);
 	}
 
@@ -422,15 +430,15 @@ public abstract class Slider2Core extends HtmlInputText {
 	 * Increment step <P>
 	 * @return Returns the value of the attribute, or 1, if it hasn't been set by the JSF file.
 	 */
-	public int getStep() {
-		return (int) (Integer) getStateHelper().eval(PropertyKeys.step, 1);
+	public java.lang.Object getStep() {
+		return (java.lang.Object) getStateHelper().eval(PropertyKeys.step, 1);
 	}
 
 	/**
 	 * Increment step <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setStep(int _step) {
+	public void setStep(java.lang.Object _step) {
 		getStateHelper().put(PropertyKeys.step, _step);
 	}
 
@@ -512,6 +520,22 @@ public abstract class Slider2Core extends HtmlInputText {
 	 */
 	public void setTooltipVisibility(String _tooltipVisibility) {
 		getStateHelper().put(PropertyKeys.tooltipVisibility, _tooltipVisibility);
+	}
+
+	/**
+	 * Optional widget variable to access the slider2 widget in JavaScript code. <P>
+	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
+	 */
+	public String getWidgetVar() {
+		return (String) getStateHelper().eval(PropertyKeys.widgetVar);
+	}
+
+	/**
+	 * Optional widget variable to access the slider2 widget in JavaScript code. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setWidgetVar(String _widgetVar) {
+		getStateHelper().put(PropertyKeys.widgetVar, _widgetVar);
 	}
 
 }

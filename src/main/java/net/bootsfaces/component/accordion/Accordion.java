@@ -17,6 +17,13 @@
  */
 package net.bootsfaces.component.accordion;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.el.ValueExpression;
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
@@ -32,6 +39,7 @@ import net.bootsfaces.utils.BsfUtils;
 /** This class holds the attributes of &lt;b:accordion /&gt;. */
 @ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/transition.js", target = "body"),
 		@ResourceDependency(library = "bsf", name = "js/collapse.js", target = "body"), })
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(Accordion.COMPONENT_TYPE)
 public class Accordion extends AccordionCore implements IHasTooltip, net.bootsfaces.render.IResponsive, IContentDisabled {
 
@@ -45,6 +53,15 @@ public class Accordion extends AccordionCore implements IHasTooltip, net.bootsfa
 		//AddResourcesListener.addThemedCSSResource("bsf.css");
 		//!bs-less//AddResourcesListener.addThemedCSSResource("panels.css");
 		setRendererType(DEFAULT_RENDERER);
+	}
+
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
 	}
 
 	public String getFamily() {

@@ -24,6 +24,12 @@ package net.bootsfaces.component.navBarLinks;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;
@@ -34,6 +40,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(NavBarLinks.COMPONENT_TYPE)
 public class NavBarLinks extends LinksContainer {
     
@@ -69,7 +76,16 @@ public class NavBarLinks extends LinksContainer {
         return NAV+" "+NAVBAR+"-"+NAV;
     }
 
-    @Override
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+	@Override
     public String getFamily() {
         return COMPONENT_FAMILY;
     }

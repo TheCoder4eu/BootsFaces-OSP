@@ -20,6 +20,7 @@ package net.bootsfaces.component.icon;
 
 import java.io.IOException;
 
+import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
@@ -29,6 +30,7 @@ import javax.faces.render.FacesRenderer;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.ajax.IAJAXComponent;
 import net.bootsfaces.component.iconAwesome.IconAwesome;
+import net.bootsfaces.listeners.AddResourcesListener;
 import net.bootsfaces.render.Responsive;
 import net.bootsfaces.render.Tooltip;
 
@@ -80,6 +82,16 @@ public class IconRenderer extends AJAXRenderer {
 		ResponseWriter writer = context.getResponseWriter();
 
 		String nameOfIcon = icon.getName();
+		if (null == nameOfIcon) {
+			nameOfIcon = String.valueOf(icon.getValue());
+			if (null == icon.getValue()) {
+				if (icon instanceof IconAwesome) {
+					throw new FacesException("Please specify the attribute 'value' of the icon. This attribute takes the name of the icon, minus the prefix 'fa-'.");
+				} else {
+					throw new FacesException("Please specify the attribute 'value' of the icon. This attribute takes the name of the icon, minus the prefix 'glyphicon-'.");
+				}
+			}
+		}
 		String styleClass = icon.getStyleClass();
 		String responsiveCSS= Responsive.getResponsiveStyleClass(icon, false).trim();
 		if (responsiveCSS.length()>0) {
@@ -92,8 +104,16 @@ public class IconRenderer extends AJAXRenderer {
 		String flip = icon.getFlip();
 		boolean spin = icon.isSpin();
 
-		encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
-			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true);
+		if (icon instanceof IconAwesome) {
+			IconAwesome awesome = (IconAwesome) icon;
+			encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
+			 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true,
+			 awesome.isBrand(), awesome.isInverse(), awesome.isLight(), awesome.isPulse(), awesome.isRegular(), awesome.isSolid());
+		} else {
+			encodeIcon(context.getResponseWriter(), icon, nameOfIcon, icon instanceof IconAwesome, size, rotate, flip, spin,
+					 styleClass, style, icon.isDisabled(), icon.isAddon(), true, true,
+					 false, false, false, false, false, false);
+		}
 		if (responsiveCSS.length()>0) {
 			writer.endElement("div");
 		}
@@ -125,7 +145,9 @@ public class IconRenderer extends AJAXRenderer {
 	 */
 	public static final void encodeIcon(ResponseWriter rw, UIComponent c, String icon, boolean isFontAwesome,
 			String size, String rotate, String flip, boolean spin, String styleClass, String style,
-			boolean isGrayedOut, boolean isAddon, boolean generateIdAndTooltip, boolean generateAJAXHandler) throws IOException {
+			boolean isGrayedOut, boolean isAddon, boolean generateIdAndTooltip, boolean generateAJAXHandler,
+			boolean iconBrand, boolean iconInverse, boolean iconLight, boolean iconPulse, boolean iconRegular, boolean iconSolid
+			) throws IOException {
 		rw.startElement("span", c);
 		rw.startElement("i", c);
 		if (generateIdAndTooltip) {
@@ -141,10 +163,23 @@ public class IconRenderer extends AJAXRenderer {
 			sb.append(styleClass).append(" ");
 		}
 		if (isFontAwesome) {
+			String prefix;
+			if (iconBrand) {
+				prefix = "fab";
+			} else if (iconLight) {
+				prefix = "fal";
+			} else if (iconSolid) {
+				prefix = "fas";
+			} else if (iconRegular) {
+				prefix = "far";
+			} else {
+				prefix = "fa";
+			}
+				
 			if (icon.startsWith("fa-"))
-				sb.append("fa " + icon);
+				sb.append(prefix + " " + icon);
 			else
-				sb.append("fa fa-" + icon);
+				sb.append(prefix + " fa-" + icon);
 		} else {
 			if (icon.startsWith("glyphicon-"))
 				sb.append("glyphicon " + icon);
@@ -169,6 +204,12 @@ public class IconRenderer extends AJAXRenderer {
 			if (flip.equalsIgnoreCase("V")) {
 				sb.append(" fa-flip-vertical");
 			}
+		}
+		if (iconPulse) {
+			sb.append(" fa-pulse");
+		}
+		if (iconInverse) {
+			sb.append(" fa-inverse");
 		}
 		if (spin) {
 			sb.append(" fa-spin");

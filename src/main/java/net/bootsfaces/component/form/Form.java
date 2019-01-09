@@ -23,13 +23,22 @@ import java.io.IOException;
 import javax.el.ValueExpression;
 import javax.faces.FacesException;
 import javax.faces.component.FacesComponent;
+import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+import javax.faces.event.PreRenderComponentEvent;
 
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class),
+		@ListenerFor(systemEventClass = PreRenderComponentEvent.class) })
 @FacesComponent(Form.COMPONENT_TYPE)
-public class Form extends FormCore {
+public class Form extends FormCore implements ClientBehaviorHolder {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.form.Form";
 
@@ -41,8 +50,34 @@ public class Form extends FormCore {
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
-		return COMPONENT_FAMILY;
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (event instanceof PostAddToViewEvent) {
+			if (isAutoUpdate()) {
+				if (FacesContext.getCurrentInstance().isPostback()) {
+					FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+				}
+				super.processEvent(event);
+			}
+		} else if (event instanceof PreRenderComponentEvent) {
+
+			String clazz = super.getStyleClass();
+			if (isHorizontal()) {
+				if (clazz == null) {
+					clazz = "form-horizontal";
+				} else {
+					clazz += " form-horizontal";
+				}
+				setStyleClass(clazz);
+			}
+			if (isInline()) {
+				if (clazz == null) {
+					clazz = "form-inline";
+				} else {
+					clazz += " form-inline";
+				}
+				setStyleClass(clazz);
+			}
+		}
 	}
 
 	/**
@@ -53,30 +88,10 @@ public class Form extends FormCore {
 		super.setValueExpression(name, binding);
 	}
 
-	/**
-	 * Inline style of the input element.
-	 * <P>
-	 * 
-	 * @return Returns the value of the attribute, or null, if it hasn't been
-	 *         set by the JSF file.
-	 */
-	public String getStyleClass() {
-		String clazz = super.getStyleClass();
-		if (isHorizontal()) {
-			if (clazz == null) {
-				clazz = "form-horizontal";
-			} else {
-				clazz += " form-horizontal";
-			}
-		}
-		if (isInline()) {
-			if (clazz == null) {
-				clazz = "form-inline";
-			} else {
-				clazz += " form-inline";
-			}
-		}
-		return clazz;
+	@Override
+	public void setStyle(String _style) {
+		// TODO Auto-generated method stub
+		super.setStyle(_style);
 	}
 
 	public void encodeBegin(FacesContext context) throws IOException {

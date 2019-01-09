@@ -91,32 +91,7 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	}
 
 	protected enum PropertyKeys {
-		alt,
-		binding,
-		brand,
-		brandAlign,
-		brandHref,
-		brandImg,
-		brandImgStyle,
-		brandImgStyleClass,
-		brandStyle,
-		brandStyleClass,
-		brandTarget,
-		contentDisabled,
-		fixed,
-		fluid,
-		inverse,
-		onclick,
-		position,
-		sticky,
-		style,
-		styleClass,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition;
+		alt, autoUpdate, binding, brand, brandAlign, brandHref, brandImg, brandImgStyle, brandImgStyleClass, brandStyle, brandStyleClass, brandTarget, contentDisabled, fixed, fluid, inverse, onclick, position, sticky, style, styleClass, tabindex, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -145,6 +120,22 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
@@ -465,6 +456,22 @@ public class NavBar extends UIComponentBase implements net.bootsfaces.render.IHa
 	 */
 	public void setStyleClass(String _styleClass) {
 		getStateHelper().put(PropertyKeys.styleClass, _styleClass);
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * @return Returns the value of the attribute, or "0", if it hasn't been set by the JSF file.
+	 */
+	public String getTabindex() {
+		return (String) getStateHelper().eval(PropertyKeys.tabindex, "0");
+	}
+
+	/**
+	 * Position of this element in the tabbing order for the current document. This value must be an integer between -1 and 32767. By default, Bootstrap uses 0, which means the tab order is relative to the position of the element in the document. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setTabindex(String _tabindex) {
+		getStateHelper().put(PropertyKeys.tabindex, _tabindex);
 	}
 
 	/**

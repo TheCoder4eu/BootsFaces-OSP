@@ -24,7 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class VideoCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, autoplay, binding, colLg, colMd, colSm, colXs, controls, delay, disabled, display, hidden, immediate, largeScreen, loop, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onabort, oncanplay, oncanplaythrough, onclick, oncomplete, ondurationchange, onemptied, onended, onerror, onloadeddata, onloadedmetadata, onloadstart, onpause, onplay, onplaying, onprogress, onratechange, onseeked, onseeking, onstalled, onsuccess, onsuspend, ontimeupdate, onvolumechange, onwaiting, process, required, smallScreen, span, src, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		ajax, autoUpdate, autoplay, binding, colLg, colMd, colSm, colXs, controls, delay, disabled, display, hidden, immediate, largeScreen, loop, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, onabort, oncanplay, oncanplaythrough, onclick, oncomplete, ondurationchange, onemptied, onended, onerror, onloadeddata, onloadedmetadata, onloadstart, onpause, onplay, onplaying, onprogress, onratechange, onseeked, onseeking, onstalled, onsuccess, onsuspend, ontimeupdate, onvolumechange, onwaiting, process, required, smallScreen, span, src, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -53,6 +53,22 @@ public abstract class VideoCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

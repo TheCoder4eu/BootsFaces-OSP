@@ -24,32 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class ThumbnailCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		autoUpdate, binding, colLg, colMd, colSm, colXs, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -62,6 +37,22 @@ public abstract class ThumbnailCore extends UIComponentBase implements net.boots
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

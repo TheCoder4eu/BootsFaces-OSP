@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.touchSpin;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +42,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:spinner /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(TouchSpin.COMPONENT_TYPE)
 public class TouchSpin extends TouchSpinCore
 implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder, IHasTooltip, IResponsive {
@@ -54,7 +62,16 @@ implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder, IHasTooltip, I
 		setRendererType(DEFAULT_RENDERER);
 	}
 
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

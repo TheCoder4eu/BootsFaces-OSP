@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.dataTable;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -44,6 +51,7 @@ import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(DataTable.COMPONENT_TYPE)
 public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder,
 		net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
@@ -64,7 +72,18 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	private Map<Integer, String> columnSortOrder;
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the columnDef property used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	private List<String> columnDefinition;
+	
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	private String selectionMode2;
+	
+	/**
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	private List<String> columnInfo;
@@ -77,8 +96,10 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		setRendererType(DEFAULT_RENDERER);
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.css");
-		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.4.0/b-colvis-1.4.0/b-html5-1.4.0/b-print-1.4.0/cr-1.3.3/fc-3.2.2/fh-3.1.2/r-2.1.1/rr-1.2.0/sc-1.4.2/se-1.2.2/datatables.min.js");
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.2/b-1.5.4/b-colvis-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/r-2.2.2/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.css", "css");
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js", "css");
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js", "css");
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.2/b-1.5.4/b-colvis-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/r-2.2.2/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js", "js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
@@ -145,6 +166,26 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		return "click";
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+		List<UIComponent> columns = getChildren();
+		for (UIComponent column : columns) {
+			if (column.getAttributes().get("selectionMode") != null) {
+				String selectionMode = (String) column.getAttributes().get("selectionMode");
+				if ("multiple".equals(selectionMode)) {
+					importCheckboxColumnLib();
+				}
+			}
+		}
+
+
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -166,9 +207,26 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
 	}
+	
+	/**
+	 * This array is used to store the columnDef attribute used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	public List<String> getColumnDefinition() {
+		return columnDefinition;
+	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the columnDef attribute used to
+	 * initialize the columns using the columns attribute of datatables.net
+	 */
+	public void setColumnDefinition(List<String> columnDefinition) {
+		this.columnDefinition = columnDefinition;
+	}
+
+
+	/**
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public List<String> getColumnInfo() {
@@ -176,7 +234,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * This array ist used to store the column information bits that are used to
+	 * This array is used to store the column information bits that are used to
 	 * initialize the columns using the columns attribute of datatables.net
 	 */
 	public void setColumnInfo(List<String> columnInfo) {
@@ -244,6 +302,20 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		}
 	}
 
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	public String getSelectionMode2() {
+		return selectionMode2;
+	}
+
+	/**
+	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 */
+	public void setSelectionMode2(String selectionMode2) {
+		this.selectionMode2 = selectionMode2;
+	}
+
 	@Override
 	public void setSelectedItems(String _selectedItems) {
 		super.setSelectedItems(_selectedItems);
@@ -259,11 +331,25 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 */
 	public void setMarkSearchResults(boolean _markSearchResults) {
 		if (_markSearchResults) {
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.min.css");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.min.css");
 			AddResourcesListener.addResourceIfNecessary("https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.13/features/mark.js/datatables.mark.js");
+			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.js");
 		}
 		super.setMarkSearchResults(_markSearchResults);
+	}
+	
+	/**
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setRowGroup(String _rowGroup) {
+		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
+		super.setRowGroup(_rowGroup);
+	}
+	
+	void importCheckboxColumnLib() {
+		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/dataTables.checkboxes.min.js");
+		AddResourcesListener.addExtCSSResource("dataTables.checkboxes.css");
 	}
 
 }

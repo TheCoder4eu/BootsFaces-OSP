@@ -55,13 +55,13 @@ public class ModalRenderer extends CoreRenderer {
 		}
 		/*
 		 * <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
-		 * aria-labelledby="myModalLabel" aria-hidden="true"> <div
+		 * aria-labelledby="myModalLabel" > <div
 		 * class="modal-dialog"> <div class="modal-content"> <div
 		 * class="modal-header"> <button type="button" class="close"
-		 * data-dismiss="modal" aria-hidden="true">×</button> <h3
+		 * data-dismiss="modal" a>×</button> <h3
 		 * id="myModalLabel">Modal header</h3> </div> <div class="modal-body">
 		 * <p>One fine body…</p> </div> <div class="modal-footer"> <button
-		 * class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+		 * class="btn" data-dismiss="modal" >Close</button>
 		 * <button class="btn btn-primary">Save changes</button> </div>
 		 * </div><!-- /.modal-content --> </div><!-- /.modal-dialog -->
 		 * </div><!-- /.modal -->
@@ -96,7 +96,7 @@ public class ModalRenderer extends CoreRenderer {
 		rw.writeAttribute("role", "dialog", null);
 		rw.writeAttribute("tabindex", "-1", null);
 		rw.writeAttribute("aria-labelledby", cid + "_Label", null);
-		rw.writeAttribute("aria-hidden", "true", null);
+		//rw.writeAttribute("aria-hidden", "true", null);
 
 		rw.startElement("div", component); // modal-dialog
 		String modalStyleClass = "modal" + "-dialog";
@@ -104,6 +104,7 @@ public class ModalRenderer extends CoreRenderer {
 			modalStyleClass = modalStyleClass + " " + modal.getSize();
 		}
 		rw.writeAttribute("class", modalStyleClass, "class");
+		rw.writeAttribute("role", "document", "role");
 
 		rw.startElement("div", component); // modal-content
 		rw.writeAttribute("class", "modal-content", "class");
@@ -126,6 +127,7 @@ public class ModalRenderer extends CoreRenderer {
 			rw.startElement("button", component);
 			rw.writeAttribute("type", "button", "type");
 			rw.writeAttribute("class", "close", "class");
+			rw.writeAttribute("aria-label", "Close", "aria-label");
 			rw.writeAttribute("data-dismiss", "modal", "data-dismiss");
 			rw.write("&times;");
 			rw.endElement("button");

@@ -17,6 +17,13 @@
  */
 package net.bootsfaces.component.inputTextarea;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -39,6 +46,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(InputTextarea.COMPONENT_TYPE)
 public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 	/**
@@ -100,7 +108,16 @@ public class InputTextarea extends InputTextareaCore implements IHasTooltip, IAJ
 	}
 
 	@Override
-	public String getFamily() {
+		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+ 	 		super.processEvent(event);
+ 	 	}
+	}
+
+public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 

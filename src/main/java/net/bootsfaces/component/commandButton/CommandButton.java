@@ -26,6 +26,12 @@ import java.util.Map;
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -40,6 +46,7 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(CommandButton.COMPONENT_TYPE)
 public class CommandButton extends CommandButtonCore
 		implements ClientBehaviorHolder, IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive {
@@ -84,9 +91,9 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery
-	 * callback or other non-standard means (such as the onclick event of
-	 * b:tabView, which has to be implemented manually).
+	 * returns the subset of AJAX requests that are implemented by jQuery callback
+	 * or other non-standard means (such as the onclick event of b:tabView, which
+	 * has to be implemented manually).
 	 *
 	 * @return
 	 */
@@ -95,9 +102,8 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply
-	 * "event".
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
+	 * there's no parameter list for a certain event, the default is simply "event".
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
@@ -115,19 +121,65 @@ public class CommandButton extends CommandButtonCore
 	}
 
 	@Override
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard
-	 * JS callbacks which is sent to the server via AJAX. If there's no
-	 * parameter list for a certain event, the default is simply null.
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS
+	 * callbacks which is sent to the server via AJAX. If there's no parameter list
+	 * for a certain event, the default is simply null.
 	 * 
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
 	public Map<String, String> getJQueryEventParameterListsForAjax() {
 		return null;
+	}
+
+	public void setIconAwesome(String _iconAwesome) {
+		AddResourcesListener.setNeedsFontsAwesome(this);
+		super.setIconAwesome(_iconAwesome);
+	}
+
+	@Override
+	public void setIconBrand(boolean _iconBrand) {
+		if (_iconBrand) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconBrand(_iconBrand);
+	}
+
+	@Override
+	public void setIconRegular(boolean _iconRegular) {
+		if (_iconRegular) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconRegular(_iconRegular);
+	}
+
+	@Override
+	public void setIconLight(boolean _iconLight) {
+		if (_iconLight) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconLight(_iconLight);
+	}
+
+	@Override
+	public void setIconSolid(boolean _iconSolid) {
+		if (_iconSolid) {
+			AddResourcesListener.setFontAwesomeVersion(5, this);
+		}
+		super.setIconSolid(_iconSolid);
 	}
 }

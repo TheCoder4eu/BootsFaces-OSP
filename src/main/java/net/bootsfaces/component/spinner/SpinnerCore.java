@@ -27,7 +27,7 @@ import net.bootsfaces.component.iconAwesome.IconAwesome;
 public abstract class SpinnerCore extends IconAwesome implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, colLg, colMd, colSm, colXs, delay, display, hidden, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, process, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
+		ajax, autoUpdate, colLg, colMd, colSm, colXs, delay, display, hidden, largeScreen, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, onerror, onsuccess, process, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -56,6 +56,22 @@ public abstract class SpinnerCore extends IconAwesome implements net.bootsfaces.
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

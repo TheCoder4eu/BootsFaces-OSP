@@ -72,7 +72,8 @@ public class AJAXRenderer extends CoreRenderer {
 			}
 		}
 		if (source != null && (source.equals(componentId) || (source.equals("input_" + componentId))
-				|| (("input_" + source).equals(componentId)) || source.equals(componentId + "Inner"))) {
+				|| (("input_" + source).equals(componentId)) || source.equals(componentId + "Inner")
+				|| (source +  "_Input").equals(componentId))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
 			String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
 			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
@@ -337,7 +338,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 		} catch (Exception ex) {
-			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter);
+			LOGGER.log(Level.WARNING, "Couldn't invoke method " + nameOfGetter + ". Additional information: ", ex);
 		}
 
 		String script = "";

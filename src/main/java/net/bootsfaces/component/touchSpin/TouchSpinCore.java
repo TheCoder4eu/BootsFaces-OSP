@@ -27,7 +27,7 @@ import net.bootsfaces.component.inputText.InputText;
 public abstract class TouchSpinCore extends InputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, binding, boostat, booster, buttonDownClass, buttonUpClass, colLg, colMd, colSm, colXs, converterMessage, decimals, delay, display, fieldId, fieldSize, forceStepDivisibility, hidden, initval, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, max, maxBoostedStep, mediumScreen, min, mousewheel, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onchange, onclick, oncomplete, onerror, onstartdownspin, onstartspin, onstartupspin, onstopdownspin, onstopspin, onstopupspin, onsuccess, postfix, postfixExtraClass, prefix, prefixExtraClass, process, renderLabel, required, requiredMessage, smallScreen, span, step, stepInterval, stepIntervalDelay, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value, verticalButtons, verticalDownClass, verticalUpClass, visible;
+		ajax, autoUpdate, binding, boostat, booster, buttonDownClass, buttonUpClass, colLg, colMd, colSm, colXs, converterMessage, decimals, delay, display, fieldId, fieldSize, forceStepDivisibility, hidden, initval, inline, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, max, maxBoostedStep, mediumScreen, min, mousewheel, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onchange, onclick, oncomplete, onerror, onstartdownspin, onstartspin, onstartupspin, onstopdownspin, onstopspin, onstopupspin, onsuccess, postfix, postfixExtraClass, prefix, prefixExtraClass, process, renderLabel, required, requiredMessage, smallScreen, span, step, stepInterval, stepIntervalDelay, style, styleClass, tags, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, type, update, value, verticalButtons, verticalDownClass, verticalUpClass, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -56,6 +56,22 @@ public abstract class TouchSpinCore extends InputText implements net.bootsfaces.
 	 */
 	public void setAjax(boolean _ajax) {
 		getStateHelper().put(PropertyKeys.ajax, _ajax);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

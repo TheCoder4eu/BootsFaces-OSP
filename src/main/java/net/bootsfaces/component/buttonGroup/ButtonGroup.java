@@ -18,6 +18,13 @@
 
 package net.bootsfaces.component.buttonGroup;
 
+import javax.faces.context.FacesContext;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.ComponentSystemEvent;
+import javax.faces.event.ListenerFor;
+import javax.faces.event.ListenersFor;
+import javax.faces.event.PostAddToViewEvent;
+
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
 
@@ -28,8 +35,10 @@ import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 
 /** This class holds the attributes of &lt;b:buttonGroup /&gt;. */
+@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(ButtonGroup.COMPONENT_TYPE)
-public class ButtonGroup extends UIComponentBase implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
+public class ButtonGroup extends UIComponentBase
+		implements net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".buttonGroup.ButtonGroup";
 
@@ -47,37 +56,17 @@ public class ButtonGroup extends UIComponentBase implements net.bootsfaces.rende
 		return COMPONENT_FAMILY;
 	}
 
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+		if (isAutoUpdate()) {
+			if (FacesContext.getCurrentInstance().isPostback()) {
+				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
+			}
+			super.processEvent(event);
+		}
+	}
+
 	protected enum PropertyKeys {
-		binding,
-		colLg,
-		colMd,
-		colSm,
-		colXs,
-		contentDisabled,
-		display,
-		hidden,
-		largeScreen,
-		mediumScreen,
-		offset,
-		offsetLg,
-		offsetMd,
-		offsetSm,
-		offsetXs,
-		orientation,
-		pull,
-		size,
-		smallScreen,
-		span,
-		style,
-		styleClass,
-		tinyScreen,
-		tooltip,
-		tooltipContainer,
-		tooltipDelay,
-		tooltipDelayHide,
-		tooltipDelayShow,
-		tooltipPosition,
-		visible;
+		autoUpdate, binding, colLg, colMd, colSm, colXs, contentDisabled, display, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, orientation, pull, size, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -90,6 +79,22 @@ public class ButtonGroup extends UIComponentBase implements net.bootsfaces.rende
 		public String toString() {
 			return ((this.toString != null) ? this.toString : super.toString());
 		}
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**

@@ -24,7 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class ImageCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, alt, binding, colLg, colMd, colSm, colXs, delay, disabled, display, height, hidden, immediate, lang, largeScreen, library, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondragover, ondragstart, ondrop, onerror, onloadend, onloadstart, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onprogress, onsuccess, process, readonly, smallScreen, span, style, styleClass, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible, width;
+		ajax, alt, autoUpdate, binding, colLg, colMd, colSm, colXs, delay, disabled, display, height, hidden, immediate, lang, largeScreen, library, mediumScreen, name, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick, ondragover, ondragstart, ondrop, onerror, onloadend, onloadstart, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onprogress, onsuccess, process, readonly, smallScreen, span, style, styleClass, tinyScreen, title, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, value, visible, width;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -69,6 +69,22 @@ public abstract class ImageCore extends UIComponentBase implements net.bootsface
 	 */
 	public void setAlt(String _alt) {
 		getStateHelper().put(PropertyKeys.alt, _alt);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isAutoUpdate() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.autoUpdate, false);
+	}
+
+	/**
+	 * Setting this flag updates the widget on every AJAX request. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setAutoUpdate(boolean _autoUpdate) {
+		getStateHelper().put(PropertyKeys.autoUpdate, _autoUpdate);
 	}
 
 	/**
