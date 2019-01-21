@@ -375,37 +375,39 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 		writer.writeAttribute("role", role, "role");
 
-		if (null != tabs) {
-			int numberOfTabsRendered = 0;
-			for (int index = 0; index < tabs.size(); index++) {
-				final Tab tab = (Tab) tabs.get(index);
-				if (tab.isRendered()) {
-					final int currentIndex = numberOfTabsRendered;
-					Runnable r = new Runnable() {
-						int offset = 0;
-						public void run() {
-							try {
-								encodeTabPane(context, writer, tab,
-										(currentIndex+offset == currentlyActiveIndex) && (!tabView.isDisabled()));
-								offset++;
-							} catch (IOException ex) {
-								// exotic case, suffice it to log it
-								LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
-							}
-						}
-					};
+  if (null != tabs) {
+   int numberOfTabsRendered = 0;
+   int offset = 0;
+   for (int index = 0; index < tabs.size(); index++) {
+    final Tab tab = (Tab) tabs.get(index);
+    if (tab.isRendered()) {
+     final int currentIndex = numberOfTabsRendered;
+     final int currentOffset = offset;
+     Runnable r = new Runnable() {
+      public void run() {
+       try {
+        encodeTabPane(context, writer, tab,
+          (currentIndex+currentOffset == currentlyActiveIndex) && (!tabView.isDisabled()));
+       } catch (IOException ex) {
+        // exotic case, suffice it to log it
+        LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
+       }
+      }
+     };
 
-					if (tab.getValue() == null) {
-						r.run();
-						numberOfTabsRendered ++;
-					} else {
-						numberOfTabsRendered += ((Tab)tabs.get(currentIndex)).encodeTabs(context, r);
-					}
-				}
-			}
-		}
-		writer.endElement("div");
-	}
+     if (tab.getValue() == null) {
+      r.run();
+      numberOfTabsRendered ++;
+     } else {
+      numberOfTabsRendered += ((Tab)tabs.get(currentIndex)).encodeTabs(context, r);
+     }
+    } else {
+      offset++;  
+    }
+   }
+  }
+  writer.endElement("div");
+ }
 
 	/**
 	 * Generate an individual tab pane. Basically, that's &lt;div role="tabpanel"
