@@ -207,7 +207,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			for (SelectItemAndComponent option:options) {
 				generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue,
 						option.getSelectItem().getValue(),
-						option.getSelectItem().getLabel(), clientId+(counter++));
+						option.getSelectItem().getLabel(), clientId+(counter++), option.getSelectItem().isDisabled());
 
 			}
 
@@ -221,12 +221,12 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			String itemId = clientId;
 
 			generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue, itemValue,
-					itemLabel, itemId);
+					itemLabel, itemId, false);
 		}
 	}
 
 	private void generateASingleRadioButton(FacesContext context, UIComponent component, Radiobutton radiobutton,
-			ResponseWriter rw, String propertyName, Object beanValue, Object itemValue, String itemLabel, String itemId)
+			ResponseWriter rw, String propertyName, Object beanValue, Object itemValue, String itemLabel, String itemId, boolean disabled)
 			throws IOException {
 		rw.startElement("div", radiobutton);
 		rw.writeAttribute("id", itemId, null);
@@ -270,7 +270,7 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 		} else if (itemValue==null){
 			rw.writeAttribute("checked", "checked", null);
 		}
-		if (radiobutton.isDisabled()) {
+		if (radiobutton.isDisabled() || disabled) {
 			rw.writeAttribute("disabled", "true", null);
 		}
 		rw.endElement("input");
