@@ -271,7 +271,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		String formGroupClass = "";
 		if (!(getParent() instanceof FormGroup)) {
-			formGroupClass = "form-group";
+			formGroupClass = "form-group ";
 		}
 		rw.writeAttribute("class", formGroupClass + errorSeverityClass, "class");
 		if (!idHasBeenRendered) {
