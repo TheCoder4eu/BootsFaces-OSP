@@ -320,7 +320,7 @@ public class PanelRenderer extends CoreRenderer {
 				Map<String, String> eventHandlers = new HashMap<String, String>();
 				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID + "').value='false';");
 				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID + "').value='true';");
-				eventHandlers.put("expanded","PrimeFaces.invokeDeferredRenders('" + clientId + "_body')");				
+				eventHandlers.put("expanded","if(typeof PrimeFaces != 'undefined'){PrimeFaces.invokeDeferredRenders('" + clientId + "_body');}");				
 				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"_content", eventHandlers);
 			}
 		}
