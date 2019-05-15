@@ -190,7 +190,7 @@ public class TabViewRenderer extends CoreRenderer {
 
 		writer.endElement("div");
 		Map<String, String> eventHandlers = new HashMap<String, String>();
-		eventHandlers.put("shown","PrimeFaces.invokeDeferredRenders('" + clientId + "_content')");
+		eventHandlers.put("shown","if(typeof PrimeFaces != 'undefined'){PrimeFaces.invokeDeferredRenders('" + clientId + "_content');}");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer,
 				"#" + clientId + " > li > a[data-toggle=\"tab\"]", eventHandlers);
 		Tooltip.activateTooltips(context, tabView);
