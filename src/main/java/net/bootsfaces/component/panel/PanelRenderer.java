@@ -56,7 +56,7 @@ public class PanelRenderer extends CoreRenderer {
 		String jQueryClientID = clientId.replace(":", "_");
 		// the panel uses two ids to send requests to the server!
 		new AJAXRenderer().decode(context, component, panel.getClientId(context));
-		new AJAXRenderer().decode(context, component, jQueryClientID+"content");
+		new AJAXRenderer().decode(context, component, jQueryClientID+"_content");
 
 		String collapseStateId = clientId.replace(":", "_") + "_collapsed";
 
@@ -208,7 +208,7 @@ public class PanelRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", panel);
-		rw.writeAttribute("id", jQueryClientID + "content", null);
+		rw.writeAttribute("id", jQueryClientID + "_content", null);
 		writeAttribute(rw, "dir", panel.getDir(), "dir");
 
 		String _contentClass = panel.getContentClass();
@@ -241,7 +241,7 @@ public class PanelRenderer extends CoreRenderer {
 		String sclass = "panel-title-link ";
 		rw.startElement("a", panel);
 		rw.writeAttribute("data-toggle", "collapse", "null");
-		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+		rw.writeAttribute("data-target", "#" + jQueryClientID + "_content", "null");
 		String style = "display:block;";
 		if (!panel.isShowCollapseLink()) {
 			style += "outline:none";
