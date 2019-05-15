@@ -20,7 +20,9 @@ package net.bootsfaces.component.tabView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -187,8 +189,10 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 
 		writer.endElement("div");
+		Map<String, String> eventHandlers = new HashMap<String, String>();
+		eventHandlers.put("shown","PrimeFaces.invokeDeferredRenders('" + clientId + "_content')");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer,
-				"#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
+				"#" + clientId + " > li > a[data-toggle=\"tab\"]", eventHandlers);
 		Tooltip.activateTooltips(context, tabView);
 	}
 
@@ -356,8 +360,9 @@ public class TabViewRenderer extends CoreRenderer {
 	 */
 	private static void encodeTabContentPanes(final FacesContext context, final ResponseWriter writer,
 			final TabView tabView, final int currentlyActiveIndex, final List<UIComponent> tabs) throws IOException {
-		writer.startElement("div", tabView);
-		String classes = "tab-content";
+		writer.startElement("div", tabView);		
+		writer.writeAttribute("id", tabView.getClientId() + "_content", "id");		
+		String classes = "tab-content ui-hidden-container";		
 		if (tabView.getContentClass() != null) {
 			classes += " ";
 			classes += tabView.getContentClass();
