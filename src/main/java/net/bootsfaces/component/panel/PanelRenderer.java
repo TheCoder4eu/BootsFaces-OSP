@@ -228,7 +228,8 @@ public class PanelRenderer extends CoreRenderer {
 		}
 		// create the body
 		rw.startElement("div", panel);
-		rw.writeAttribute("class", "panel-body", "class");
+		rw.writeAttribute("id", clientId + "_body", "id");
+		rw.writeAttribute("class", "panel-body ui-hidden-container", "class");
 		if (panel.isContentDisabled()) {
 			rw.startElement("fieldset", panel);
 			rw.writeAttribute("disabled", "disabled", "null");
@@ -317,11 +318,10 @@ public class PanelRenderer extends CoreRenderer {
 				rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
 				rw.endElement("input");
 				Map<String, String> eventHandlers = new HashMap<String, String>();
-				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID
-						+ "').value='false';");
-				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
-						+ "').value='true';");
-				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"content", eventHandlers);
+				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID + "').value='false';");
+				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID + "').value='true';");
+				eventHandlers.put("expanded","PrimeFaces.invokeDeferredRenders('" + clientId + "_body')");				
+				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"_content", eventHandlers);
 			}
 		}
 		Tooltip.activateTooltips(context, panel);
