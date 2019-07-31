@@ -343,7 +343,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 					rw.writeAttribute("class", ADDON, "class");
 					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null,
 							isDisabled, true, true, true, isIconBrand(), isIconInverse(), isIconLight(), isIconPulse(),
-							isIconRegular(), isIconRegular());
+							isIconRegular(), isIconSolid());
 
 					rw.endElement("span");
 				}

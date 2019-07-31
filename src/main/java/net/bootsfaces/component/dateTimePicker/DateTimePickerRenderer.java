@@ -285,7 +285,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 				rw.writeAttribute("class", "input-group-addon", "class");
 				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true,
 						dtp.isIconBrand(), dtp.isIconInverse(), dtp.isIconLight(), dtp.isIconPulse(), dtp.isIconRegular(),
-						dtp.isIconRegular());
+						dtp.isIconSolid());
 				rw.endElement("span");
 			}
 			// input

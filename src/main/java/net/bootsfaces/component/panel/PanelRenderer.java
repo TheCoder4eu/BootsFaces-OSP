@@ -174,10 +174,10 @@ public class PanelRenderer extends CoreRenderer {
 						_title = _title != null ? _title + " " : null;
 						writeText(rw, _title, null);
 						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false,
-								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconRegular());
+								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconSolid());
 					} else {
 						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false,
-								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconRegular());
+								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconSolid());
 						_title = _title != null ? " " + _title : null;
 						writeText(rw, _title, null);
 					}
