@@ -413,7 +413,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 					        (dtp.isAllowInputToggle()                  ?         		"allowInputToggle: true, ": "") +
 					      	(dtp.isCollapse() ? 										"collapse: " + dtp.isCollapse() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getDayViewHeaderFormat()) ? 	"dayViewHeaderFormat: '" + dtp.getDayViewHeaderFormat() + "', " : "") +
-					      	(BsfUtils.isStringValued(dtp.getDisabledDates()) ?			"disabledDates: [" + dtp.getDisabledDates() + "], " : "") +
+					      	(BsfUtils.isStringValued(dtp.getDisabledDates()) ?			"disabledDates: " + asArray(dtp.getDisabledDates()) + ", " : "") +
 					      	(BsfUtils.isStringValued(dtp.getDisableTimeInterval()) ?	"disabledTimeIntervals: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getEnabledDates()) ?			"enabledDates: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(dtp.isFocusOnShow() ? 										"focusOnShow: " + dtp.isFocusOnShow() + ", ": "") +
