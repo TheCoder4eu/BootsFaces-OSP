@@ -431,6 +431,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 					      	(BsfUtils.isStringValued(dtp.getToolbarPlacement()) ?		"toolbarPlacement: '" + dtp.getToolbarPlacement() + "', " : "") +
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"": "useCurrent:false,") +
+					      	(dtp.getWeekDaysDisabled() == null ? 					    "": "daysOfWeekDisabled:" + asArray(dtp.getWeekDaysDisabled()) + ", ") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', " : "" ) +
 					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
@@ -448,5 +449,17 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
+	}
+	
+	private String asArray(String s) {
+		if (s == null) return null;
+		s = s.trim();
+		if (!s.startsWith("[")) {
+			s = "[" + s;
+		}
+		if (!s.endsWith("]")) {
+			s += "]";
+		}
+		return s;
 	}
 }
