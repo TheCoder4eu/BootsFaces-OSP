@@ -75,9 +75,8 @@ public class AJAXRenderer extends CoreRenderer {
 				|| (("input_" + source).equals(componentId)) || source.equals(componentId + "Inner")
 				|| (source +  "_Input").equals(componentId))) {
 			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-			String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
-			if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
-				realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
+			String realEvent = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
+			if (null != realEvent) {
 				if (!realEvent.equals(event)) {
 					event = realEvent;
 				}

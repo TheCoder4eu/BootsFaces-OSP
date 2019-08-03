@@ -46,10 +46,9 @@ public class ScrollSpyRenderer extends CoreRenderer {
 		super.decode(context, ss);
 
 		final ScrollSpyEventListener selectionListener = ss.getSelectionListener();
-		String params = context.getExternalContext().getRequestParameterMap().get("params");
+		String params = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
 		if (params != null && selectionListener != null) {
 			if (params != null) {
-				params = params.replace("BsFEvent=", "");
 				String[] pair = params.split(":", 2);
 				String key = pair[0];
 				String value = null;

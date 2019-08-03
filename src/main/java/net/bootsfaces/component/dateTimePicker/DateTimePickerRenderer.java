@@ -61,12 +61,9 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
 		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-		String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
-		if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
-			realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
-			if (!realEvent.equals(event)) {
-				event = realEvent;
-			}
+		String realEvent = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
+		if (null != realEvent) {
+			event = realEvent;
 		}
 		
 		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
