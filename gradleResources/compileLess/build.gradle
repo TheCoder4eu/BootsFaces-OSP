@@ -18,21 +18,9 @@
 
 //Compile BootsFaces Less files to CSS and Minify
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.15.1'
-        //UNSTABLE//classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.0.5'
-        //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.14.0'
-        classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.15.1'
-        //UNSTABLE//classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.0.5'
-        //classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.14.0'
-    }
+plugins {
+  id "com.bertramlabs.asset-pipeline" version "3.0.10"
 }
-
-apply plugin: 'com.bertramlabs.asset-pipeline'
 
 println 'compileLess:Themes('+themes.size+'):'+themes
 
@@ -40,6 +28,12 @@ assets {
   minifyJs = true
   minifyCss = true
   enableSourceMaps = false
+  //developmentRuntime can be turned off
+  developmentRuntime=true
+  enableDigests = false
+  skipNonDigests = true
+  enableGzip = false
+  maxThreads = 2 //If you encounter JVM Heap exhausted or Out of Memory errors set this to 1
   configOptions = [:]
 
   includes = ['default/bs-*.less']
