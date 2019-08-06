@@ -621,49 +621,6 @@ public class BsfUtils {
 	}
 
 	/**
-	 * Read an object from a base64 string
-	 * @param s
-	 * @return
-	 *
-	 * @deprecated since potentially unsafe ( #880 )
-	 *
-	public static Object fromString(String s) {
-		try {
-			byte[] data = DatatypeConverter.parseBase64Binary(s);
-//			byte [] data = Base64.getDecoder().decode( s );
-			ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(data));
-			Object o  = ois.readObject();
-			ois.close();
-			return o;
-		} catch(Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	/**
-	 * Write an object to base64 string
-	 * @param o
-	 * @return
-	 *
-	 * @deprecated since potentially unsafe ( #880 )
-	 *
-	public static String toString(Serializable o) {
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(baos);
-			oos.writeObject(o);
-			oos.close();
-//			return Base64.getEncoder().encodeToString(baos.toByteArray());
-
-			return DatatypeConverter.printBase64Binary(baos.toByteArray());
-		} catch (IOException e) {
-			e.printStackTrace();
-			return "";
-		}
-	} */
-
-	/**
 	 * Resolve the search expression
 	 * @param refItem
 	 * @return

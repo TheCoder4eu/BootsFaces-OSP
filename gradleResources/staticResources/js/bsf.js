@@ -1,5 +1,5 @@
 /*!
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  * BootsFaces JS
  * author: TheCoder4.eu
  *
@@ -67,7 +67,8 @@ BsF.ajax.cb = function(o, e, r, f) {
 }
 
 /**
- * Initiates an asynchronous AJAX request. param eventType In the case of jQuery
+ * Initiates an asynchronous AJAX request. 
+ * @param eventType In the case of jQuery
  * events, JSF sends the wrong event type to the backend. The real event is put
  * in this parameter.
  */
@@ -82,7 +83,7 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 	var cid = oid.replace(/[^a-zA-Z0-9]+/g, '_');
 	var opts = {};
 	if (eventType) {
-		opts.params = "BsFEvent=" + eventType;
+		opts.params = {"BsFEvent": eventType};
 	}
 
 	update = BsF.ajax.resolveJQuery(update);

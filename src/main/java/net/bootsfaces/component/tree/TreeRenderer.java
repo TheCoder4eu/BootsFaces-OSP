@@ -56,10 +56,9 @@ public class TreeRenderer extends CoreRenderer {
         super.decode(context, tree);
 
         final TreeNodeEventListener nodeSelectionListener = tree.getNodeSelectionListener();
-        String params = context.getExternalContext().getRequestParameterMap().get("params");
+        String params = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
 
         if (params != null) {
-            params = params.replace("BsFEvent=", "");
             String[] pair = params.split(":", 2);
             String key = pair[0];
             Integer value = null;

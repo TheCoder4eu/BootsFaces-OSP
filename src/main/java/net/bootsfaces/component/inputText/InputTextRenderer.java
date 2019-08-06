@@ -232,9 +232,6 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if ((autocomplete != null) && (autocomplete.equals("off"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
-		if (inputText.isTags() && (!inputText.isTypeahead())) {
-			rw.writeAttribute("data-role", "tagsinput", null);
-		}
 
 		String v = getValue2Render(context, component);
 		if (inputText instanceof InputSecret) {
@@ -261,6 +258,19 @@ public class InputTextRenderer extends CoreInputRenderer {
 			numberOfDivs--;
 		}
 
+		// The following lines fix issue #1079 on basic tags (without typeahead).
+		// They initialize tagsinput manually and empty duplicated 'name' attribute
+		// on generated input (which holds the original HTML id).
+		if (inputText.isTags() && (!inputText.isTypeahead())) {
+			String id = fieldId; // input id
+			id = id.replace(":", "\\\\:"); // escape the id for jQuery
+			rw.startElement("script", null);
+			String js = "$('#" + id + "').tagsinput();" + //
+			            "$('#" + id + "').attr('name','');";
+			rw.writeText(js, null);
+			rw.endElement("script");
+		}
+
 		Tooltip.activateTooltips(context, inputText);
 		if (inputText.isTypeahead()) {
 			String id = component.getClientId();
@@ -284,6 +294,13 @@ public class InputTextRenderer extends CoreInputRenderer {
 						"  source: engine.ttAdapter()" + //
 						"}" + //
 						"});";//
+
+				// The following lines fix issue #1079 on tags with typeahead.
+				// They empty duplicated 'name' attribute on generated input (which holds the original HTML id).
+				String inputId = fieldId; // input id
+				inputId = inputId.replace(":", "\\\\:"); // escape the id for jQuery
+				js += "$('#" + inputId + "').attr('name','');";
+
 				rw.writeText(js, null);
 
 			} else {
