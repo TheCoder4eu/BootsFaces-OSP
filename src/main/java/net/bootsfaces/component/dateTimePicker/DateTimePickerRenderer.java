@@ -61,12 +61,9 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
 		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
-		String realEvent = context.getExternalContext().getRequestParameterMap().get("params");
-		if (null != realEvent && realEvent.startsWith(BSF_EVENT_PREFIX)) {
-			realEvent = realEvent.substring(BSF_EVENT_PREFIX.length());
-			if (!realEvent.equals(event)) {
-				event = realEvent;
-			}
+		String realEvent = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
+		if (null != realEvent) {
+			event = realEvent;
 		}
 		
 		String fieldId = hasOuter && event != null && dtp.getJQueryEvents().containsKey(event) ? clientId + DTP_OUTER_CONTAINER_SUFFIX : dtp.getFieldId();
@@ -285,7 +282,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 				rw.writeAttribute("class", "input-group-addon", "class");
 				IconRenderer.encodeIcon(rw, dtp, icon, fa, null, null, null, false, null, null, dtp.isDisabled(), true, true, true,
 						dtp.isIconBrand(), dtp.isIconInverse(), dtp.isIconLight(), dtp.isIconPulse(), dtp.isIconRegular(),
-						dtp.isIconRegular());
+						dtp.isIconSolid());
 				rw.endElement("span");
 			}
 			// input
@@ -413,7 +410,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 					        (dtp.isAllowInputToggle()                  ?         		"allowInputToggle: true, ": "") +
 					      	(dtp.isCollapse() ? 										"collapse: " + dtp.isCollapse() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getDayViewHeaderFormat()) ? 	"dayViewHeaderFormat: '" + dtp.getDayViewHeaderFormat() + "', " : "") +
-					      	(BsfUtils.isStringValued(dtp.getDisabledDates()) ?			"disabledDates: [" + dtp.getDisabledDates() + "], " : "") +
+					      	(BsfUtils.isStringValued(dtp.getDisabledDates()) ?			"disabledDates: " + asArray(dtp.getDisabledDates()) + ", " : "") +
 					      	(BsfUtils.isStringValued(dtp.getDisableTimeInterval()) ?	"disabledTimeIntervals: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(BsfUtils.isStringValued(dtp.getEnabledDates()) ?			"enabledDates: [" + dtp.getDisableTimeInterval() + "], " : "") +
 					      	(dtp.isFocusOnShow() ? 										"focusOnShow: " + dtp.isFocusOnShow() + ", ": "") +
@@ -431,6 +428,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 					      	(BsfUtils.isStringValued(dtp.getToolbarPlacement()) ?		"toolbarPlacement: '" + dtp.getToolbarPlacement() + "', " : "") +
 					      	(BsfUtils.isStringValued(dtp.getViewMode()) ?				"viewMode: '" + dtp.getViewMode() + "', " : "") +
 					      	(dtp.isUseCurrent() ? 										"": "useCurrent:false,") +
+					      	(dtp.getWeekDaysDisabled() == null ? 					    "": "daysOfWeekDisabled:" + asArray(dtp.getWeekDaysDisabled()) + ", ") +
 					      	(dtp.isUseStrict() ? 										"useStrict: " + dtp.isUseStrict() + ", ": "") +
 					      	(BsfUtils.isStringValued(dtp.getWidgetParent()) ?           "widgetParent: '" + BsfUtils.resolveSearchExpressions(dtp.getWidgetParent()) + "', " : "" ) +
 					      	("inline".equals(mode) ? 									"inline: true," : "" ) +
@@ -448,5 +446,17 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		}
 		rw.endElement("script");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(fc, dtp, rw, fullSelector, null, true);
+	}
+	
+	private String asArray(String s) {
+		if (s == null) return null;
+		s = s.trim();
+		if (!s.startsWith("[")) {
+			s = "[" + s;
+		}
+		if (!s.endsWith("]")) {
+			s += "]";
+		}
+		return s;
 	}
 }

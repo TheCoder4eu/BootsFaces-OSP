@@ -31,6 +31,7 @@
 
  task copyCssResources(type: Copy) {
      from 'staticResources/css/ext/bootstrap-datetimepicker.min.css'
+     from 'staticResources/css/ext/dataTables.checkboxes.css'
      from "staticResources/css/ext/bootstrap-multiselect.css"
      from 'staticResources/css/ext/bootstrap-switch.css'
      from 'staticResources/css/ext/bootstrap-tagsinput.css'
@@ -70,6 +71,7 @@
    	from 'staticResources/js/bootstrap-treeview.min.js'
    	from 'staticResources/js/bootstrap-notify.min.js'
    	from 'staticResources/js/bootstrap-datetimepicker.min.js'
+   	from 'staticResources/js/dataTables.checkboxes.min.js'
    	from 'staticResources/js/moment-with-locales.min.js'
    	from 'staticResources/js/fullcalendar.min.js'
    	from 'staticResources/js/fullcalendar-lang-all.js'
@@ -78,7 +80,6 @@
    	from 'staticResources/js/jquery.inputmask.bundle.min.js'
    	from 'staticResources/js/jquery.scrollUp.min.js'
    	from 'staticResources/js/jquery.minicolors.min.js'
-   	from 'staticResources/js/moment.min.js'
    	from 'staticResources/js/select2.min.js'
   	from 'staticResources/js/typeahead.js'
    	from 'staticResources/ie8support/respond.js'

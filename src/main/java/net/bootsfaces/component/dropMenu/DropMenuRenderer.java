@@ -118,12 +118,12 @@ public class DropMenuRenderer extends CoreRenderer {
 					IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(),
 							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false,
 							dropMenu.isIconBrand(), dropMenu.isIconInverse(), dropMenu.isIconLight(), dropMenu.isIconPulse(), dropMenu.isIconRegular(),
-							dropMenu.isIconRegular());
+							dropMenu.isIconSolid());
 				} else {
 					IconRenderer.encodeIcon(rw, dropMenu, icon, fa, dropMenu.getIconSize(), dropMenu.getIconRotate(),
 							dropMenu.getIconFlip(), dropMenu.isIconSpin(), null, null, false, false, false, false,
 							dropMenu.isIconBrand(), dropMenu.isIconInverse(), dropMenu.isIconLight(), dropMenu.isIconPulse(), dropMenu.isIconRegular(),
-							dropMenu.isIconRegular());
+							dropMenu.isIconSolid());
 
 					// !//R.encodeIcon(rw, this, icon, white);
 					rw.writeText(" " + value, null);

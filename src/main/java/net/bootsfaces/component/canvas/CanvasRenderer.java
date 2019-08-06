@@ -47,29 +47,46 @@ public class CanvasRenderer extends CoreRenderer {
 		Canvas canvas = (Canvas) component;
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = canvas.getClientId();
+		String realId;
+		boolean idHasBeenRendered=false;
+
+		
+		String responsiveCSS= Responsive.getResponsiveStyleClass(canvas, false).trim();
+		if (responsiveCSS.length()>0) {
+			rw.startElement("div", component);
+			rw.writeAttribute("class", responsiveCSS, null);
+			rw.writeAttribute("id", clientId, "id");
+			idHasBeenRendered = true;
+		}
+
 
 		rw.startElement("canvas", canvas);
 		Tooltip.generateTooltip(context, canvas, rw);
 
-//	    rw.writeAttribute("initial-drawing", canvas.getInitial-drawing(), "initial-drawing");
-	    rw.writeAttribute("id", clientId, "id");
+		if (!idHasBeenRendered) {
+			rw.writeAttribute("id", clientId, "id");
+			realId = clientId;
+		} else {
+			realId = clientId+"Inner";
+			rw.writeAttribute("id", realId, "id");
+			
+		}
 	    writeAttribute(rw, "style", canvas.getStyle(), "style");
 	    String styleClass = canvas.getStyleClass();
-	    if (null != styleClass)
-	    	styleClass += Responsive.getResponsiveStyleClass(canvas, false);
-	    else
-	    	styleClass = Responsive.getResponsiveStyleClass(canvas, false);
 		writeAttribute(rw, "class", styleClass, "class");
 	    writeAttribute(rw, "width", canvas.getWidth(), "width");
 	    writeAttribute(rw, "height", canvas.getHeight(), "height");
 		rw.endElement("canvas");
+		if (responsiveCSS.length()>0) {
+			rw.endElement("div");
+		}
 		Tooltip.activateTooltips(context, canvas);
 		Drawing drawing = canvas.getDrawing();
 		if (null != drawing) {
 			String script = ((Drawing) drawing).getJavaScript();
 			rw.startElement("script", component);
 			rw.write("\nnew function(){\n");
-			rw.write("    var canvas=document.getElementById('" + clientId + "');\n");
+			rw.write("    var canvas=document.getElementById('" + realId + "');\n");
 			rw.write("    var ctx = canvas.getContext('2d');\n");
 
 			rw.write(script);

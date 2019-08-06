@@ -20,7 +20,9 @@ package net.bootsfaces.component.tabView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -187,8 +189,10 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 
 		writer.endElement("div");
+		Map<String, String> eventHandlers = new HashMap<String, String>();
+		eventHandlers.put("shown","if(typeof PrimeFaces != 'undefined'){PrimeFaces.invokeDeferredRenders('" + clientId + "_content');}");
 		new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, writer,
-				"#" + clientId + " > li > a[data-toggle=\"tab\"]", null);
+				"#" + clientId + " > li > a[data-toggle=\"tab\"]", eventHandlers);
 		Tooltip.activateTooltips(context, tabView);
 	}
 
@@ -356,8 +360,9 @@ public class TabViewRenderer extends CoreRenderer {
 	 */
 	private static void encodeTabContentPanes(final FacesContext context, final ResponseWriter writer,
 			final TabView tabView, final int currentlyActiveIndex, final List<UIComponent> tabs) throws IOException {
-		writer.startElement("div", tabView);
-		String classes = "tab-content";
+		writer.startElement("div", tabView);		
+		writer.writeAttribute("id", tabView.getClientId() + "_content", "id");		
+		String classes = "tab-content ui-hidden-container";		
 		if (tabView.getContentClass() != null) {
 			classes += " ";
 			classes += tabView.getContentClass();
@@ -375,37 +380,39 @@ public class TabViewRenderer extends CoreRenderer {
 		}
 		writer.writeAttribute("role", role, "role");
 
-		if (null != tabs) {
-			int numberOfTabsRendered = 0;
-			for (int index = 0; index < tabs.size(); index++) {
-				final Tab tab = (Tab) tabs.get(index);
-				if (tab.isRendered()) {
-					final int currentIndex = numberOfTabsRendered;
-					Runnable r = new Runnable() {
-						int offset = 0;
-						public void run() {
-							try {
-								encodeTabPane(context, writer, tab,
-										(currentIndex+offset == currentlyActiveIndex) && (!tabView.isDisabled()));
-								offset++;
-							} catch (IOException ex) {
-								// exotic case, suffice it to log it
-								LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
-							}
-						}
-					};
+  if (null != tabs) {
+   int numberOfTabsRendered = 0;
+   int offset = 0;
+   for (int index = 0; index < tabs.size(); index++) {
+    final Tab tab = (Tab) tabs.get(index);
+    if (tab.isRendered()) {
+     final int currentIndex = numberOfTabsRendered;
+     final int currentOffset = offset;
+     Runnable r = new Runnable() {
+      public void run() {
+       try {
+        encodeTabPane(context, writer, tab,
+          (currentIndex+currentOffset == currentlyActiveIndex) && (!tabView.isDisabled()));
+       } catch (IOException ex) {
+        // exotic case, suffice it to log it
+        LOGGER.log(Level.SEVERE, "An exception occurred while rendering a tab.", ex);
+       }
+      }
+     };
 
-					if (tab.getValue() == null) {
-						r.run();
-						numberOfTabsRendered ++;
-					} else {
-						numberOfTabsRendered += ((Tab)tabs.get(currentIndex)).encodeTabs(context, r);
-					}
-				}
-			}
-		}
-		writer.endElement("div");
-	}
+     if (tab.getValue() == null) {
+      r.run();
+      numberOfTabsRendered ++;
+     } else {
+      numberOfTabsRendered += ((Tab)tabs.get(currentIndex)).encodeTabs(context, r);
+     }
+    } else {
+      offset++;  
+    }
+   }
+  }
+  writer.endElement("div");
+ }
 
 	/**
 	 * Generate an individual tab pane. Basically, that's &lt;div role="tabpanel"

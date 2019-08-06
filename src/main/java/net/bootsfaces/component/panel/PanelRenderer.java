@@ -56,7 +56,7 @@ public class PanelRenderer extends CoreRenderer {
 		String jQueryClientID = clientId.replace(":", "_");
 		// the panel uses two ids to send requests to the server!
 		new AJAXRenderer().decode(context, component, panel.getClientId(context));
-		new AJAXRenderer().decode(context, component, jQueryClientID+"content");
+		new AJAXRenderer().decode(context, component, jQueryClientID+"_content");
 
 		String collapseStateId = clientId.replace(":", "_") + "_collapsed";
 
@@ -174,10 +174,10 @@ public class PanelRenderer extends CoreRenderer {
 						_title = _title != null ? _title + " " : null;
 						writeText(rw, _title, null);
 						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false,
-								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconRegular());
+								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconSolid());
 					} else {
 						IconRenderer.encodeIcon(rw, component, icon, fa, panel.getIconSize(), panel.getIconRotate(), panel.getIconFlip(), panel.isIconSpin(), null, null, false, false, false, false,
-								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconRegular());
+								panel.isIconBrand(), panel.isIconInverse(), panel.isIconLight(), panel.isIconPulse(), panel.isIconRegular(), panel.isIconSolid());
 						_title = _title != null ? " " + _title : null;
 						writeText(rw, _title, null);
 					}
@@ -208,7 +208,7 @@ public class PanelRenderer extends CoreRenderer {
 		}
 
 		rw.startElement("div", panel);
-		rw.writeAttribute("id", jQueryClientID + "content", null);
+		rw.writeAttribute("id", jQueryClientID + "_content", null);
 		writeAttribute(rw, "dir", panel.getDir(), "dir");
 
 		String _contentClass = panel.getContentClass();
@@ -228,7 +228,8 @@ public class PanelRenderer extends CoreRenderer {
 		}
 		// create the body
 		rw.startElement("div", panel);
-		rw.writeAttribute("class", "panel-body", "class");
+		rw.writeAttribute("id", clientId + "_body", "id");
+		rw.writeAttribute("class", "panel-body ui-hidden-container", "class");
 		if (panel.isContentDisabled()) {
 			rw.startElement("fieldset", panel);
 			rw.writeAttribute("disabled", "disabled", "null");
@@ -241,7 +242,7 @@ public class PanelRenderer extends CoreRenderer {
 		String sclass = "panel-title-link ";
 		rw.startElement("a", panel);
 		rw.writeAttribute("data-toggle", "collapse", "null");
-		rw.writeAttribute("data-target", "#" + jQueryClientID + "content", "null");
+		rw.writeAttribute("data-target", "#" + jQueryClientID + "_content", "null");
 		String style = "display:block;";
 		if (!panel.isShowCollapseLink()) {
 			style += "outline:none";
@@ -317,11 +318,10 @@ public class PanelRenderer extends CoreRenderer {
 				rw.writeAttribute("value", String.valueOf(panel.isCollapsed()), "value");
 				rw.endElement("input");
 				Map<String, String> eventHandlers = new HashMap<String, String>();
-				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID
-						+ "').value='false';");
-				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID
-						+ "').value='true';");
-				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"content", eventHandlers);
+				eventHandlers.put("expand", "document.getElementById('" + hiddenInputFieldID + "').value='false';");
+				eventHandlers.put("collapse", "document.getElementById('" + hiddenInputFieldID + "').value='true';");
+				eventHandlers.put("expanded","if(typeof PrimeFaces != 'undefined'){PrimeFaces.invokeDeferredRenders('" + clientId + "_body');}");				
+				new AJAXRenderer().generateBootsFacesAJAXAndJavaScriptForJQuery(context, component, rw, "#"+jQueryClientID+"_content", eventHandlers);
 			}
 		}
 		Tooltip.activateTooltips(context, panel);

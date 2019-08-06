@@ -144,10 +144,18 @@ div > .ui-datepicker-trigger {
   border: solid 0.08em #eeeeee;
   border-radius: .1em;
 }
-.fa.pull-left {
+.fa.pull-left,
+.fas.pull-left,
+.far.pull-left,
+.fab.pull-left,
+.fal.pull-left {
   margin-right: .3em;
 }
-.fa.pull-right {
+.fa.pull-right,
+.fas.pull-right,
+.far.pull-right,
+.fal.pull-right,
+.fab.pull-right {
   margin-left: .3em;
 }
 .fa-spin {
