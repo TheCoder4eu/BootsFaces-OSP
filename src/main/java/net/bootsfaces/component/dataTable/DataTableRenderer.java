@@ -460,7 +460,7 @@ public class DataTableRenderer extends CoreRenderer {
 				String selectionMode = (String) column.getAttributes().get("selectionMode");
 				if ("multiple".equals(selectionMode)) {
 					updateColumnDefinition(dataTable, index, "'checkboxes': {'selectRow': true}");
-					dataTable.setSelectionMode2("{style: multi}");
+					dataTable.setSelectionMode2("{style: 'os'}");
 				} else if ("single".equals(selectionMode)) {
 					updateColumnDefinition(dataTable, index, "'checkboxes': {'selectRow': true}");
 					dataTable.setSelectionMode2("{style: single}");
@@ -798,7 +798,11 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		result = result.substring(0, result.length() - 1); // remove the
 															// trailing comma
-		result += "],'select':'"+ dataTable.getSelectionMode2() + "'";
+		if (null == dataTable.getSelectionMode2()) {
+			result += "]";
+		} else {
+			result += "],'select':"+ dataTable.getSelectionMode2();
+		}
 		return result;
 	}
 
