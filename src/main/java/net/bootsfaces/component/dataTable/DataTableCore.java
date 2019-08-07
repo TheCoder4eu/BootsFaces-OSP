@@ -1057,7 +1057,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-horizontally, but uses a different approach, so the page selector and the search are not scrolled with the table. Defaults to false. <P>
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isScrollX() {
@@ -1065,7 +1065,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	}
 
 	/**
-	 * If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false. <P>
+	 * If set, the table can scroll horizontally. Similar to scroll-horizontally, but uses a different approach, so the page selector and the search are not scrolled with the table. Defaults to false. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setScrollX(boolean _scrollX) {
