@@ -18,6 +18,8 @@
 package net.bootsfaces.listeners;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
@@ -31,6 +33,8 @@ import net.bootsfaces.C;
  */
 @FacesComponent("net.bootsfaces.component.internalFALink.InternalFALink")
 public class InternalFALink extends UIComponentBase {
+	
+	private static final Logger LOGGER = Logger.getLogger(InternalFALink.class.getName());
 
 	/**
 	 * <p>
@@ -59,6 +63,9 @@ public class InternalFALink extends UIComponentBase {
 		final String FONTAWESOME_CDN_URL = "//maxcdn.bootstrapcdn.com/font-awesome/" + FA_VERSION + "/css/font-awesome.min.css";
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
+		
+		LOGGER.log(Level.FINER, "do encodeBegin - version is {0} / needsVersion4 is {1}", new Object[]{version, needsVersion4});
+		
 		if (version.contains("5")) {
 			responseWriter.append(
 				"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
