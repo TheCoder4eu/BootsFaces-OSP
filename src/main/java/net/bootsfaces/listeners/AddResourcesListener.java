@@ -269,7 +269,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		LOGGER.log(Level.SEVERE, "useCDNImportForFontAwesome == {0}", useCDNImportForFontAwesome);
+		LOGGER.log(Level.FINER, "by addCSS - useCDNImportForFontAwesome is {0}", useCDNImportForFontAwesome);
 
 		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
@@ -279,11 +279,12 @@ public class AddResourcesListener implements SystemEventListener {
 				String version = (String) viewMap.get(FONTAWESOME_VERSION);
 				if (version != null) {
 					output.setVersion(version);
-					output.setNeedsVersion4(needsFontAwesome4());
 				} else {
 					output.setVersion("4");
-					output.setNeedsVersion4(needsFontAwesome4());
 				}
+				boolean needsFontAwesome4 = needsFontAwesome4();
+				output.setNeedsVersion4(needsFontAwesome4);
+				LOGGER.log(Level.FINER, "by addCSS - needsFontAwesome4 is {0}", needsFontAwesome4);
 				addResourceIfNecessary(root, context, output);
 			}
 		}
@@ -496,6 +497,13 @@ public class AddResourcesListener implements SystemEventListener {
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, UIComponent output, Class<?> clazz) {
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			if (c.getClass() == clazz) {
+				LOGGER.log(Level.FINER, "by addResourceIfNecessary - find existing class {0}", clazz);
+
+				// remove old
+				root.removeComponentResource(context, c, "head");
+
+				// add new 
+				root.addComponentResource(context, output, "head");
 				return;
 			}
 		}
@@ -571,6 +579,8 @@ public class AddResourcesListener implements SystemEventListener {
 				viewMap.put(FONTAWESOME_VERSION, String.valueOf(version));
 			}
 		}
+
+		LOGGER.log(Level.FINER, "by setFontAwesomeVersion - viewMap(FONTAWESOME_VERSION) is {0}", viewMap.get(FONTAWESOME_VERSION));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -653,11 +663,11 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : resourcesToRemove) {
 			c.setInView(false);
 			root.removeComponentResource(context, c);
-			// String name = (String) c.getAttributes().get("name");
-			// String library = (String) c.getAttributes().get("library");
-			// String url = (String) c.getAttributes().get("url");
-			// System.out.println("-1" + c.getClientId() + " " + name + " " + library + " "
-			// + url + " " + c.getClass().getSimpleName() );
+
+			String name = (String) c.getAttributes().get("name");
+			String library = (String) c.getAttributes().get("library");
+			String url = (String) c.getAttributes().get("url");
+			LOGGER.log(Level.FINER, "-1 " + c.getClientId() + " " + name + " " + library + " " + url + " " + c.getClass().getSimpleName());
 		}
 	}
 
