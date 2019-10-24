@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  *  This file is part of BootsFaces.
  *
@@ -271,7 +271,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 
 		String formGroupClass = "";
 		if (!(getParent() instanceof FormGroup)) {
-			formGroupClass = "form-group";
+			formGroupClass = "form-group ";
 		}
 		rw.writeAttribute("class", formGroupClass + errorSeverityClass, "class");
 		if (!idHasBeenRendered) {
@@ -343,7 +343,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 					rw.writeAttribute("class", ADDON, "class");
 					IconRenderer.encodeIcon(rw, this, "calendar", false, null, null, null, false, null, null,
 							isDisabled, true, true, true, isIconBrand(), isIconInverse(), isIconLight(), isIconPulse(),
-							isIconRegular(), isIconRegular());
+							isIconRegular(), isIconSolid());
 
 					rw.endElement("span");
 				}

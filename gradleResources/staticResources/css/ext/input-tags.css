@@ -1,0 +1,14 @@
+.bootstrap-tagsinput {
+	height: auto;
+	min-height: 34px;
+}
+
+.bootstrap-tagsinput .twitter-typeahead {
+	width: auto;
+	float: none;
+	position: relative !important;
+}
+
+.bootstrap-tagsinput .twitter-typeahead .tt-menu {
+	width: auto;
+}
