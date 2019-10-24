@@ -22,9 +22,6 @@ import net.bootsfaces.utils.BsfUtils;
  * @author jottyfan
  *
  */
-@ResourceDependencies({ @ResourceDependency(library = "bsf", name = "js/moment.min.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/fullcalendar.min.js", target = "head"),
-		@ResourceDependency(library = "bsf", name = "js/fullcalendar-lang-all.js", target = "head")})
 @ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
 @FacesComponent(FullCalendar.COMPONENT_TYPE)
 public class FullCalendar extends FullCalendarCore implements net.bootsfaces.render.IHasTooltip, net.bootsfaces.render.IResponsive {
@@ -37,9 +34,12 @@ public class FullCalendar extends FullCalendarCore implements net.bootsfaces.ren
 
     public FullCalendar() {
         Tooltip.addResourceFiles();
+		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/moment-with-locales.min.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/fullcalendar.min.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/fullcalendar-lang-all.js");
+
         AddResourcesListener.addThemedCSSResource("core.css");
-        //AddResourcesListener.addThemedCSSResource("bsf.css");
-				AddResourcesListener.addExtCSSResource("fullcalendar.min.css");
+        AddResourcesListener.addExtCSSResource("fullcalendar.min.css");
         setRendererType(DEFAULT_RENDERER);
     }
 

@@ -1,5 +1,5 @@
 /**
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -152,7 +152,7 @@ public String getFamily() {
 			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
 			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");
 			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput-typeahead.css");
-
+			AddResourcesListener.addExtCSSResource("input-tags.css");
 		}
 		super.setTags(_tags);
 	}

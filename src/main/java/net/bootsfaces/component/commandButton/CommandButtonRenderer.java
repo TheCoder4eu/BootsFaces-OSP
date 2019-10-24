@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  *  This file is part of BootsFaces.
  *
@@ -152,10 +152,10 @@ public class CommandButtonRenderer extends CoreRenderer {
 				value = value != null ? value + " " : null;
 				writeText(rw, value, null);
 				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false,
-						commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconRegular());
+						commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconSolid());
 			} else {
 				IconRenderer.encodeIcon(rw, component, icon, fa, commandButton.getIconSize(), commandButton.getIconRotate(), commandButton.getIconFlip(), commandButton.isIconSpin(), null, null, false, false, false, false,
-				commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconRegular());
+				commandButton.isIconBrand(), commandButton.isIconInverse(), commandButton.isIconLight(), commandButton.isIconPulse(), commandButton.isIconRegular(), commandButton.isIconSolid());
 				value = value != null ? " " + value : null;
 				writeText(rw, value, null);
 			}

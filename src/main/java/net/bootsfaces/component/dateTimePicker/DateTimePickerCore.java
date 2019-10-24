@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
+ *  Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu), Dario D'Urzo and Stephan Rauh (http://www.beyondjava.net).
  *
  *  This file is part of BootsFaces.
  *
@@ -24,7 +24,17 @@ import javax.faces.component.html.HtmlInputText;
 public abstract class DateTimePickerCore extends HtmlInputText implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		ajax, allowInputToggle, autoUpdate, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay, disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden, icon, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPosition, iconPulse, iconRegular, iconRotate, iconSize, iconSolid, iconSpin, immediate, initialDate, keepInvalid, keepOpen, labelColLg, labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle, labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process, renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon, showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping, tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
+		ajax, allowInputToggle, autoUpdate, binding, colLg, colMd, colSm, colXs, collapse, dayViewHeaderFormat, delay,
+		disableTimeInterval, disabledDates, display, enabledDates, fieldId, fieldSize, focusOnShow, format, hidden,
+		icon, iconAwesome, iconBrand, iconFlip, iconInverse, iconLight, iconPosition, iconPulse, iconRegular,
+		iconRotate, iconSize, iconSolid, iconSpin, immediate, initialDate, keepInvalid, keepOpen, labelColLg,
+		labelColMd, labelColSm, labelColXs, labelLargeScreen, labelMediumScreen, labelSmallScreen, labelStyle,
+		labelStyleClass, labelTinyScreen, largeScreen, locale, maxDate, mediumScreen, minDate, mode, offset, offsetLg,
+		offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondtchange, onerror, onsuccess, placeholder, process,
+		renderLabel, required, requiredMessage, showButtonPanel, showClearButton, showCloseButton, showDate, showIcon,
+		showTime, showTodayButton, showWeek, sideBySide, smallScreen, span, style, styleClass, tabindex, timeStepping,
+		tinyScreen, toolbarPlacement, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow,
+		tooltipPosition, update, useCurrent, useStrict, viewMode, visible, weekDaysDisabled, widgetParent;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -232,7 +242,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]. <P>
+	 * Disables selection of dates in the array, e.g. holidays. Default: null. Accepts a comma separated list of Date, moment or JavaScript string. For example: '11/22/2013 00:53' (with single quotes). <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getDisabledDates() {
@@ -240,7 +250,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]. <P>
+	 * Disables selection of dates in the array, e.g. holidays. Default: null. Accepts a comma separated list of Date, moment or JavaScript string. For example: '11/22/2013 00:53' (with single quotes). <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setDisabledDates(String _disabledDates) {
@@ -264,7 +274,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]. <P>
+	 * Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, JavaScript string]. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getEnabledDates() {
@@ -272,7 +282,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string]. <P>
+	 * Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, JavaScript string]. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setEnabledDates(String _enabledDates) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2018 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -95,7 +95,7 @@ jar {
                  "Implementation-Version": BootsFacesVersion,
                  "Implementation-Vendor": "TheCoder4.eu",
                  "Implementation-Vendor-Id": "eu.thecoder4",
-                 "Implementation-URL":"http://www.bootsfaces.net"
+                 "Implementation-URL":"https://www.bootsfaces.net"
                 )
    }
 }
@@ -132,7 +132,7 @@ task defaultJar(type: Jar) {
                  "Implementation-Version": BootsFacesVersion,
                  "Implementation-Vendor": "TheCoder4.eu",
                  "Implementation-Vendor-Id": "eu.thecoder4",
-                 "Implementation-URL":"http://www.bootsfaces.net"
+                 "Implementation-URL":"https://www.bootsfaces.net"
                 )
    }
 }
