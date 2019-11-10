@@ -96,11 +96,11 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		setRendererType(DEFAULT_RENDERER);
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.3/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.css", "css");
+		// DataTables with almost all extensions except Flash export and KeyTable - version of 10.11.2019
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.css", "css"); 
 		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js", "css");
 		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js", "css");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.18/af-2.3.2/b-1.5.4/b-colvis-1.5.4/b-html5-1.5.4/b-print-1.5.4/fc-3.2.5/fh-3.1.4/r-2.2.2/rr-1.2.4/sc-1.5.0/sl-1.2.6/datatables.min.js", "js");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.18/af-2.3.3/b-1.5.6/b-colvis-1.5.6/b-html5-1.5.6/b-print-1.5.6/fc-3.2.5/fh-3.1.4/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.js", "js");
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.js", "js");
 	}
 
 	public void setValueExpression(String name, ValueExpression binding) {
