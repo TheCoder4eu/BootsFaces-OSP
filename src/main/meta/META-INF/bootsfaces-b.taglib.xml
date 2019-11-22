@@ -6564,6 +6564,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>length-change</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>lengthChange</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
 		  <name>mark-search-results</name>
 		  <required>false</required>
