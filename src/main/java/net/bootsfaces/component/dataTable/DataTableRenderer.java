@@ -572,6 +572,7 @@ public class DataTableRenderer extends CoreRenderer {
 		}
 		options = addOptions("pageLength: " + pageLength, options);
 		options = addOptions("lengthMenu: " + getPageLengthMenu(dataTable), options);
+		options = addOptions("lengthChange: " + dataTable.isLengthChange(), options);
 		options = addOptions("searching: " + dataTable.isSearching(), options);
 		options = addOptions("order: " + orderString, options);
 		options = addOptions("stateSave: " + dataTable.isSaveState(), options);
