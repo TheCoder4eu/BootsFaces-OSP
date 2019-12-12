@@ -26,7 +26,7 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	protected enum PropertyKeys {
 		ajax, autoUpdate, border, caption, colLg, colMd, colSm, colXs, columnVisibility, contentDisabled, copy, csv,
 		customLangUrl, customOptions, delay, deselectOnBackdropClick, disabled, display, excel, fixedHeader, hidden,
-		immediate, info, lang, largeScreen, markSearchResults, mediumScreen, multiColumnSearch,
+		immediate, info, lang, largeScreen, lengthChange, markSearchResults, mediumScreen, multiColumnSearch,
 		multiColumnSearchPosition, offset, offsetLg, offsetMd, offsetSm, offsetXs, onclick, oncomplete, ondblclick,
 		ondeselect, onerror, onmousedown, onmousemove, onmouseout, onmouseover, onmouseup, onorder, onpage, onsearch,
 		onselect, onsuccess, pageLength, pageLengthMenu, paginated, pdf, print, process, responsive, rowGroup,
@@ -446,6 +446,22 @@ public abstract class DataTableCore extends UIData implements net.bootsfaces.ren
 	 */
 	public void setLargeScreen(String _largeScreen) {
 		getStateHelper().put(PropertyKeys.largeScreen, _largeScreen);
+	}
+
+	/**
+	 * Allows the user to disable the pageLength menu. Defaults to true. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isLengthChange() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.lengthChange, true);
+	}
+
+	/**
+	 * Allows the user to disable the pageLength menu. Defaults to true. <P>
+	 * Usually this method is called internally by the JSF engine.
+	 */
+	public void setLengthChange(boolean _lengthChange) {
+		getStateHelper().put(PropertyKeys.lengthChange, _lengthChange);
 	}
 
 	/**

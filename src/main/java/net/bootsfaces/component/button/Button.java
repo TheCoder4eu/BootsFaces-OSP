@@ -63,6 +63,11 @@ public class Button extends HtmlOutcomeTargetButton implements IHasTooltip, IRes
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
+				
+		if ("iconAwesome".equals(name))
+			AddResourcesListener.setNeedsFontsAwesome(this);
+		else if ("iconBrand".equals(name) || "iconLight".equals(name) || "iconRegular".equals(name) || "iconSolid".equals(name))
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 	}
 
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
