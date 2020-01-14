@@ -36,6 +36,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Level;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import javax.faces.FacesException;
@@ -64,6 +65,7 @@ import net.bootsfaces.utils.BsfUtils;
  * @author Stephan Rauh
  */
 public class AddResourcesListener implements SystemEventListener {
+	private static final Map<String, Map<String, Object>> viewMaps = new ConcurrentHashMap<>();
 
 	private static final Logger LOGGER = Logger.getLogger("net.bootsfaces.listeners.AddResourcesListener");
 
@@ -129,15 +131,20 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Trigger adding the resources if and only if the event has been fired by
 	 * UIViewRoot.
 	 */
+	@Override
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		// render the resources only if there is at least one bsf component
-		if (ensureExistBootsfacesComponent(root, context)) {
-			addCSS(root, context);
-			addJavascript(root, context);
-			addMetaTags(root, context);
+		try {
+			if (ensureExistBootsfacesComponent(root, context)) {
+				addCSS(root, context);
+				addJavascript(root, context);
+				addMetaTags(root, context);
+			}
+		} finally {
+			viewMaps.remove(getUniqueViewId(root));
 		}
 	}
 
@@ -154,7 +161,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @return
 	 */
 	private boolean ensureExistBootsfacesComponent(UIViewRoot root, FacesContext context) {
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 
 		// check explicit js request
 		if (viewMap.get(RESOURCE_KEY) != null) {
@@ -284,7 +291,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
-			Map<String, Object> viewMap = root.getViewMap();
+			Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 			if (viewMap.containsKey(FONTAWESOME_USED)) {
 				String version = (String) viewMap.get(FONTAWESOME_VERSION);
 				if (version != null) {
@@ -300,7 +307,7 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
+		List<String> extCSSMap = (List<String>) getViewMap(getUniqueViewId(root)).get(EXT_RESOURCE_KEY);
 		if (extCSSMap != null) {
 			for (String file : extCSSMap) {
 				String name = "css/" + file;
@@ -310,7 +317,7 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
+		List<String> themedCSSMap = (List<String>) getViewMap(getUniqueViewId(root)).get(THEME_RESOURCE_KEY);
 		if (themedCSSMap != null) {
 			for (String file : themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
@@ -456,7 +463,7 @@ public class AddResourcesListener implements SystemEventListener {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
 		}
 
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 		@SuppressWarnings("unchecked")
 		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
 
@@ -565,7 +572,7 @@ public class AddResourcesListener implements SystemEventListener {
 	public static void setFontAwesomeVersion(int version, Object uiComponent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 
 		if (version != 4) {
 			@SuppressWarnings("unchecked")
@@ -598,7 +605,7 @@ public class AddResourcesListener implements SystemEventListener {
 	public static void setNeedsFontsAwesome(Object uiComponent) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 		ArrayList<Object> list = (ArrayList<Object>) viewMap.get(FONTAWESOME_USED);
 		if (list == null) {
 			list = new ArrayList<Object>();
@@ -610,7 +617,7 @@ public class AddResourcesListener implements SystemEventListener {
 	private boolean needsFontAwesome4() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(root));
 		@SuppressWarnings("unchecked")
 		Map<Object, Boolean> v5 = (Map<Object, Boolean>) viewMap.get(FONTAWESOME_NEW_VERSION);
 		@SuppressWarnings("unchecked")
@@ -893,7 +900,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addThemedCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(FacesContext.getCurrentInstance().getViewRoot()));
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
 		if (null == resourceList) {
@@ -913,7 +920,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addExtCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(FacesContext.getCurrentInstance().getViewRoot()));
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(EXT_RESOURCE_KEY);
 		if (null == resourceList) {
@@ -927,7 +934,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private static void addResource(String resource, String library, String resourceKey, String resourceTypeKey) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(getUniqueViewId(FacesContext.getCurrentInstance().getViewRoot()));
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(resourceTypeKey);
 		if (null == resourceMap) {
@@ -1020,5 +1027,19 @@ public class AddResourcesListener implements SystemEventListener {
 		if (loadDatatables) {
 			addResourceIfNecessary(defaultFilename);
 		}
+	}
+
+	private static String getUniqueViewId(UIViewRoot root) {
+		// Best idea for right now?
+		return String.valueOf(root.hashCode());
+	}
+
+	private static Map<String, Object> getViewMap(String uniqueViewId) {
+		Map<String, Object> viewMap = viewMaps.get(uniqueViewId);
+		if (viewMap == null) {
+			viewMap = new ConcurrentHashMap<String, Object>();
+			viewMaps.put(uniqueViewId, viewMap);
+		}
+		return viewMap;
 	}
 }
