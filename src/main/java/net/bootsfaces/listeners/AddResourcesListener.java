@@ -143,6 +143,7 @@ public class AddResourcesListener implements SystemEventListener {
 		
 		// TODO the question is how can you determine whether you can start a session or not
 		
+		// with this impl we get the old bug https://github.com/TheCoder4eu/BootsFaces-OSP/issues/1066 back :-(
 		Map<String, Object> viewMap = root.getViewMap(false);
 		if (viewMap == null) {
 			LOGGER.fine("'root.viewMap' currently do not exist, we use as fallback 'root.attributes'");
