@@ -140,8 +140,15 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @return
 	 */
 	private static Map<String, Object> getViewMap(UIViewRoot root) {
-		//Map<String, Object> viewMap = root.getViewMap(true);
-		Map<String, Object> viewMap = root.getPassThroughAttributes(true);
+		
+		// TODO the question is how can you determine whether you can start a session or not
+		
+		Map<String, Object> viewMap = root.getViewMap(false);
+		if (viewMap == null) {
+			LOGGER.fine("'root.viewMap' currently do not exist, we use as fallback 'root.attributes'");
+			Map<String, Object> attributes = root.getAttributes();
+			return attributes;
+		}
 		return viewMap;
 	}
 
@@ -301,7 +308,7 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
+		List<String> extCSSMap = (List<String>) getViewMap(root).get(EXT_RESOURCE_KEY);
 		if (extCSSMap != null) {
 			for (String file : extCSSMap) {
 				String name = "css/" + file;
@@ -311,7 +318,7 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
+		List<String> themedCSSMap = (List<String>) getViewMap(root).get(THEME_RESOURCE_KEY);
 		if (themedCSSMap != null) {
 			for (String file : themedCSSMap) {
 				String name = "css/" + theme + "/" + file;
@@ -881,7 +888,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addThemedCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
 		if (null == resourceList) {
@@ -900,7 +907,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addExtCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(EXT_RESOURCE_KEY);
 		if (null == resourceList) {
@@ -914,7 +921,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private static void addResource(String resource, String library, String resourceKey, String resourceTypeKey) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getViewMap(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(resourceTypeKey);
 		if (null == resourceMap) {
