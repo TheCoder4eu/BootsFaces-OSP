@@ -140,11 +140,12 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @return
 	 */
 	private static Map<String, Object> getViewMap(UIViewRoot root) {
+		boolean externalContextSession = FacesContext.getCurrentInstance().getExternalContext().getSession(false) != null;
 		
 		// TODO the question is how can you determine whether you can start a session or not
 		
 		// with this impl we get the old bug https://github.com/TheCoder4eu/BootsFaces-OSP/issues/1066 back :-(
-		Map<String, Object> viewMap = root.getViewMap(false);
+		Map<String, Object> viewMap = root.getViewMap(externalContextSession);
 		if (viewMap == null) {
 			LOGGER.fine("'root.viewMap' currently do not exist, we use as fallback 'root.attributes'");
 			Map<String, Object> attributes = root.getAttributes();
