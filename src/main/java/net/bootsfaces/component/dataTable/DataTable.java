@@ -258,20 +258,23 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 * @throws NullPointerException
 	 *             if <code>event</code> is <code>null</code>
 	 */
+	@Override
 	public void queueEvent(FacesEvent event) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		String indexes = (String) context.getExternalContext().getRequestParameterMap().get("indexes");
 		context.getELContext().getELResolver().setValue(context.getELContext(), null, "indexes", indexes);
 		String typeOfSelection = (String) context.getExternalContext().getRequestParameterMap().get("typeOfSelection");
-		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection",
-				typeOfSelection);
+		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection", typeOfSelection);
 		try {
 			int oldIndex = getRowIndex();
+			// after https://datatables.net/reference/event/deselect#Description indexes would be an array
+			// firefox und chrome do not send a array, only the old IE send a array to the server
+			indexes = indexes.replace("[", "").replace("]", "").trim();
 			int index = Integer.valueOf(indexes);
 			setRowIndex(index);
 			super.queueEvent(event);
 			setRowIndex(oldIndex);
-		} catch (Exception multipleIndexes) {
+		} catch (NumberFormatException multipleIndexes) {
 			super.queueEvent(event);
 
 		}
