@@ -124,7 +124,7 @@ public class DropButtonRenderer extends CoreRenderer {
 	}
 
 	private String getStyleClasses(DropButton component, boolean isResponsive) {
-		StringBuilder sb = new StringBuilder(40); // optimize int
+		StringBuilder sb = new StringBuilder(60); // optimize int
 
 		sb.append("btn");
 		String size = component.getSize();
