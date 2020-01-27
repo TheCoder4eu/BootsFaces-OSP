@@ -3,22 +3,21 @@
  *
  *  This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
-
 package net.bootsfaces.component.dataTable;
 
-import javax.faces.context.FacesContext;
+import java.util.ArrayList;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ListenerFor;
@@ -31,6 +30,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
@@ -50,11 +51,14 @@ import net.bootsfaces.render.IResponsive;
 import net.bootsfaces.render.Tooltip;
 import net.bootsfaces.utils.BsfUtils;
 
-/** This class holds the attributes of &lt;b:dataTable /&gt;. */
-@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
+/**
+ * This class holds the attributes of &lt;b:dataTable /&gt;.
+ */
+@ListenersFor({
+	@ListenerFor(systemEventClass = PostAddToViewEvent.class)})
 @FacesComponent(DataTable.COMPONENT_TYPE)
 public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXComponent2, ClientBehaviorHolder,
-		net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
+	net.bootsfaces.render.IHasTooltip, IResponsive, IContentDisabled {
 
 	public static final String COMPONENT_TYPE = C.BSFCOMPONENT + ".dataTable.DataTable";
 
@@ -63,28 +67,27 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	public static final String DEFAULT_RENDERER = "net.bootsfaces.component.dataTable.DataTable";
 
 	private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(Arrays.asList("click",
-			"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
+		"dblclick", "dragstart", "dragover", "drop", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup"));
 
 	/**
-	 * This map is used to store the column sort information gathered during
-	 * rendering.
+	 * This map is used to store the column sort information gathered during rendering.
 	 */
 	private Map<Integer, String> columnSortOrder;
 
 	/**
-	 * This array is used to store the columnDef property used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the columnDef property used to initialize the columns using the columns attribute
+	 * of datatables.net
 	 */
 	private List<String> columnDefinition;
-	
+
 	/**
 	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
 	 */
 	private String selectionMode2;
-	
+
 	/**
-	 * This array is used to store the column information bits that are used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net
 	 */
 	private List<String> columnInfo;
 
@@ -114,9 +117,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery callback
-	 * or other non-standard means (such as the onclick event of b:tabView, which
-	 * has to be implemented manually).
+	 * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means (such
+	 * as the onclick event of b:tabView, which has to be implemented manually).
 	 *
 	 * @return
 	 */
@@ -131,9 +133,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If
-	 * there's no parameter list for a certain event, the default is simply "event".
-	 * 
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If there's no parameter list for a
+	 * certain event, the default is simply "event".
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
@@ -145,10 +147,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS
-	 * callbacks which is sent to the server via AJAX. If there's no parameter list
-	 * for a certain event, the default is simply null.
-	 * 
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the
+	 * server via AJAX. If there's no parameter list for a certain event, the default is simply null.
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
@@ -172,8 +173,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 			if (FacesContext.getCurrentInstance().isPostback()) {
 				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
 			}
- 	 		super.processEvent(event);
- 	 	}
+			super.processEvent(event);
+		}
 		List<UIComponent> columns = getChildren();
 		for (UIComponent column : columns) {
 			if (column.getAttributes().get("selectionMode") != null) {
@@ -184,7 +185,6 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 			}
 		}
 
-
 	}
 
 	public String getFamily() {
@@ -192,8 +192,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * This map contains all of the default sorting for each column. This map is
-	 * used to store the column sort information gathered during rendering.
+	 * This map contains all of the default sorting for each column. This map is used to store the column sort
+	 * information gathered during rendering.
 	 *
 	 * @return The map containing the column / sort type pairs
 	 */
@@ -202,41 +202,40 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	}
 
 	/**
-	 * Called in order to lazily initialize the map. This map is used to store the
-	 * column sort information gathered during rendering.
+	 * Called in order to lazily initialize the map. This map is used to store the column sort information gathered
+	 * during rendering.
 	 */
 	public void initColumnSortOrderMap() {
 		this.columnSortOrder = new HashMap<Integer, String>();
 	}
-	
+
 	/**
-	 * This array is used to store the columnDef attribute used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the columnDef attribute used to initialize the columns using the columns
+	 * attribute of datatables.net
 	 */
 	public List<String> getColumnDefinition() {
 		return columnDefinition;
 	}
 
 	/**
-	 * This array is used to store the columnDef attribute used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the columnDef attribute used to initialize the columns using the columns
+	 * attribute of datatables.net
 	 */
 	public void setColumnDefinition(List<String> columnDefinition) {
 		this.columnDefinition = columnDefinition;
 	}
 
-
 	/**
-	 * This array is used to store the column information bits that are used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net
 	 */
 	public List<String> getColumnInfo() {
 		return columnInfo;
 	}
 
 	/**
-	 * This array is used to store the column information bits that are used to
-	 * initialize the columns using the columns attribute of datatables.net
+	 * This array is used to store the column information bits that are used to initialize the columns using the
+	 * columns attribute of datatables.net
 	 */
 	public void setColumnInfo(List<String> columnInfo) {
 		this.columnInfo = columnInfo;
@@ -244,19 +243,15 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 
 	/**
 	 * <p>
-	 * Queue an event for broadcast at the end of the current request processing
-	 * lifecycle phase. The default implementation in {@link UIComponentBase} must
-	 * delegate this call to the <code>queueEvent()</code> method of the parent
-	 * {@link UIComponent}.
+	 * Queue an event for broadcast at the end of the current request processing lifecycle phase. The default
+	 * implementation in {@link UIComponentBase} must delegate this call to the <code>queueEvent()</code> method of
+	 * the parent {@link UIComponent}.
 	 * </p>
 	 *
-	 * @param event
-	 *            {@link FacesEvent} to be queued
+	 * @param event {@link FacesEvent} to be queued
 	 *
-	 * @throws IllegalStateException
-	 *             if this component is not a descendant of a {@link UIViewRoot}
-	 * @throws NullPointerException
-	 *             if <code>event</code> is <code>null</code>
+	 * @throws IllegalStateException if this component is not a descendant of a {@link UIViewRoot}
+	 * @throws NullPointerException if <code>event</code> is <code>null</code>
 	 */
 	@Override
 	public void queueEvent(FacesEvent event) {
@@ -265,18 +260,24 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		context.getELContext().getELResolver().setValue(context.getELContext(), null, "indexes", indexes);
 		String typeOfSelection = (String) context.getExternalContext().getRequestParameterMap().get("typeOfSelection");
 		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection", typeOfSelection);
-		try {
+
+		//https://datatables.net/reference/event/deselect#Description
+		// split the array of indexes
+		List<Integer> indexList = new ArrayList<>();		
+		Matcher regexMatcher = Pattern.compile("(\\d+)").matcher(indexes);
+		while (regexMatcher.find()) {
+			indexList.add(Integer.valueOf(regexMatcher.group()));
+			System.out.println(indexList.toString());
+		}
+
+		if (indexList.size() > 0) {
+			// use the first index only
 			int oldIndex = getRowIndex();
-			// after https://datatables.net/reference/event/deselect#Description indexes would be an array
-			// firefox und chrome do not send a array, only the old IE send a array to the server
-			indexes = indexes.replace("[", "").replace("]", "").trim();
-			int index = Integer.valueOf(indexes);
-			setRowIndex(index);
+			setRowIndex(indexList.get(0));
 			super.queueEvent(event);
 			setRowIndex(oldIndex);
-		} catch (NumberFormatException multipleIndexes) {
+		} else {
 			super.queueEvent(event);
-
 		}
 	}
 
@@ -328,9 +329,11 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		}
 
 	}
-	
+
 	/**
-	 * If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19). <P>
+	 * If true, search results are marked yellow as you type. Based on mark.js (see
+	 * https://datatables.net/blog/2017-01-19).
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMarkSearchResults(boolean _markSearchResults) {
@@ -341,16 +344,18 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		}
 		super.setMarkSearchResults(_markSearchResults);
 	}
-	
+
 	/**
-	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at https://datatables.net/reference/option/#rowgroup. <P>
+	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at
+	 * https://datatables.net/reference/option/#rowgroup.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setRowGroup(String _rowGroup) {
 		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
 		super.setRowGroup(_rowGroup);
 	}
-	
+
 	void importCheckboxColumnLib() {
 		AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/dataTables.checkboxes.min.js");
 		AddResourcesListener.addExtCSSResource("dataTables.checkboxes.css");
