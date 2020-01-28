@@ -113,6 +113,9 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Returns true if the source is an instance of {@link UIViewRoot}.
+	 *
+	 * @param source
+	 * @return
 	 */
 	@Override
 	public boolean isListenerForSource(Object source) {
@@ -121,7 +124,10 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Trigger adding the resources if and only if the event has been fired by UIViewRoot.
+	 *
+	 * @param event
 	 */
+	@Override
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
@@ -141,13 +147,10 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private static Map<String, Object> getViewMap(UIViewRoot root) {
 		boolean externalContextSession = FacesContext.getCurrentInstance().getExternalContext().getSession(false) != null;
-		
-		// TODO the question is how can you determine whether you can start a session or not
-		
-		// with this impl we get the old bug https://github.com/TheCoder4eu/BootsFaces-OSP/issues/1066 back :-(
+		// with this impl we get the old bug on the first request https://github.com/TheCoder4eu/BootsFaces-OSP/issues/1066 back :-(
 		Map<String, Object> viewMap = root.getViewMap(externalContextSession);
 		if (viewMap == null) {
-			LOGGER.fine("'root.viewMap' currently do not exist, we use as fallback 'root.attributes'");
+			LOGGER.info("'root.viewMap' currently do not exist, we use as fallback 'root.attributes'");
 			Map<String, Object> attributes = root.getAttributes();
 			return attributes;
 		}
@@ -183,7 +186,6 @@ public class AddResourcesListener implements SystemEventListener {
 		if (findBsfComponent(root, C.BSF_LIBRARY) != null) {
 			return true;
 		}
-
 		return false;
 	}
 
