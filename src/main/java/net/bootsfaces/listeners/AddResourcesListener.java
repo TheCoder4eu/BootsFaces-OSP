@@ -145,8 +145,7 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @return
 	 */
 	private static Map<String, Object> getMapForView(UIViewRoot root) {
-		Map<String, Object> attributes = root.getAttributes();
-		return attributes;
+		return root.getViewMap();
 	}
 
 	/**
