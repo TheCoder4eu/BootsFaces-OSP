@@ -280,7 +280,7 @@ public class AddResourcesListener implements SystemEventListener {
 			}
 		}
 
-		LOGGER.log(Level.INFO, "by addCSS - useCDNImportForFontAwesome is {0}", useCDNImportForFontAwesome);
+		LOGGER.log(Level.FINER, "by addCSS - useCDNImportForFontAwesome is {0}", useCDNImportForFontAwesome);
 
 		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
