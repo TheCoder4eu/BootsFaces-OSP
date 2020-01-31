@@ -352,10 +352,10 @@ public class AddResourcesListener implements SystemEventListener {
 		String theme = getTheme(context);
 
 		// why this line of code???
-		boolean hastRemoveFontAwesome = isFontAwesomeComponentUsedAndRemoveIt();
+		boolean hasRemoveFontAwesome = isFontAwesomeComponentUsedAndRemoveIt();
 
 		// Theme loading
-		if (hastRemoveFontAwesome || (!theme.equalsIgnoreCase(THEME_NAME_OTHER))) {
+		if (hasRemoveFontAwesome || (!theme.equalsIgnoreCase(THEME_NAME_OTHER))) {
 			// String filename = "bsf.css";
 			String filename = "core.css";
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
