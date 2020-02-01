@@ -41,6 +41,7 @@ import javax.faces.FacesException;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.UIOutput;
 import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlBody;
@@ -144,8 +145,52 @@ public class AddResourcesListener implements SystemEventListener {
 	 * @param root the UIViewRoot
 	 * @return
 	 */
-	private static Map<String, Object> getMapForView(UIViewRoot root) {
-		return root.getViewMap();
+	private static Map<String, Object> getMapForView(UIViewRoot rootView) {
+		// if the view is transient, we use only the attribute-store
+		if (rootView.isTransient()) {
+			LOGGER.log(Level.FINEST, "use attribute-store");
+			return rootView.getAttributes();
+		} else {
+			// if a session exists, we can use the viewMap-store
+			// check if a session exists
+			boolean sessionExists = FacesContext.getCurrentInstance().getExternalContext().getSession(false) != null;
+			if (sessionExists) {
+				LOGGER.log(Level.FINEST, "use viewMap-store");
+				return rootView.getViewMap();
+			} else {
+				// as far as I know, a session is started if there is a UIForm
+				// if a form exists, we can use or create the viewMap-store
+				// check if a form exists
+				boolean formExists = getClosestForm(rootView) != null;
+				Map<String, Object> viewMap = rootView.getViewMap(formExists);
+				if (viewMap != null) {
+					LOGGER.log(Level.FINEST, "use viewMap-store");
+					return viewMap;
+				} else {
+					LOGGER.log(Level.FINEST, "use attribute-store");
+					return rootView.getAttributes();
+				}
+			}
+		}
+	}
+
+	/**
+	 * searches recursively for the next form
+	 * @param component
+	 * @return 
+	 */
+	private static UIForm getClosestForm(UIComponent component) {
+		for (UIComponent c : component.getChildren()) {
+			if (c instanceof UIForm) {
+				return (UIForm) c;
+			} else {
+				UIForm found = getClosestForm(c);
+				if (found != null) {
+					return found;
+				}
+			}
+		}
+		return null;
 	}
 
 	/**
