@@ -18,6 +18,8 @@
 
 package net.bootsfaces.component.dateTimePicker;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.component.html.HtmlInputText;
 
@@ -841,7 +843,8 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	public String getMaxDate() {
 		Object maxDate = getStateHelper().eval(PropertyKeys.maxDate);
 		if(maxDate instanceof Date) {
-			return ((Date) maxDate).toInstant().toString();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			return df.format((Date) maxDate);
 		}
 		else { 
 			return (String) maxDate;
@@ -879,7 +882,8 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	public String getMinDate() {
 		Object minDate = getStateHelper().eval(PropertyKeys.minDate);
 		if(minDate instanceof Date) {
-			return ((Date) minDate).toInstant().toString();
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+			return df.format((Date) minDate);			
 		}
 		else { 	
 			return (String) minDate;
