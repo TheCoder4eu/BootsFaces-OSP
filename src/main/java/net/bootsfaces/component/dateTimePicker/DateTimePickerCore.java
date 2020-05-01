@@ -18,6 +18,7 @@
 
 package net.bootsfaces.component.dateTimePicker;
 
+import java.util.Date;
 import javax.faces.component.html.HtmlInputText;
 
 /** This class holds the attributes of &lt;b:dateTimePicker /&gt;. */
@@ -834,15 +835,21 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	}
 
 	/**
-	 * Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
+	 * Prevents date/time selections after this date. maxDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMaxDate() {
-		return (String) getStateHelper().eval(PropertyKeys.maxDate);
+		Object maxDate = getStateHelper().eval(PropertyKeys.maxDate);
+		if(maxDate instanceof Date) {
+			return ((Date) maxDate).toInstant().toString();
+		}
+		else { 
+			return (String) maxDate;
+		}
 	}
 
 	/**
-	 * Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
+	 * Prevents date/time selections after this date. maxDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
 	public void setMaxDate(String _maxDate) {
@@ -870,7 +877,13 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
 	public String getMinDate() {
-		return (String) getStateHelper().eval(PropertyKeys.minDate);
+		Object minDate = getStateHelper().eval(PropertyKeys.minDate);
+		if(minDate instanceof Date) {
+			return ((Date) minDate).toInstant().toString();
+		}
+		else { 	
+			return (String) minDate;
+		}		
 	}
 
 	/**
