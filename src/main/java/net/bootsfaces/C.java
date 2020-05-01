@@ -1,5 +1,5 @@
 /**
- *  Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ *  Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  *  This file is part of BootsFaces.
  *
@@ -27,7 +27,7 @@ public final class C {
 	/**
 	 * BootsFaces Library Constants
 	 */
-	public static final String BSFVERSION="1.4.2";
+	public static final String BSFVERSION="1.5.0";
 	public static final String BSFRELEASE_STATUS="SNAPSHOT"; // SNAPSHOT or empty String (for a final RELEASE)
 	public static final String BSFCOMPONENT = "net.bootsfaces.component";
 	public static final String BSFLAYOUT = "net.bootsfaces.layout";

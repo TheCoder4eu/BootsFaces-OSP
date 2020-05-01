@@ -6564,6 +6564,18 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>length-change</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>lengthChange</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
 		  <name>mark-search-results</name>
 		  <required>false</required>
@@ -6900,13 +6912,13 @@
 		  <type>String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false.]]></description>
+		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-horizontally, but uses a different approach, so the page selector and the search are not scrolled with the table. Defaults to false.]]></description>
 		  <name>scroll-x</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-x, but uses a different approach, so the page selector, the search are not scrolled with the table. Defaults to false.]]></description>
+		  <description><![CDATA[If set, the table can scroll horizontally. Similar to scroll-horizontally, but uses a different approach, so the page selector and the search are not scrolled with the table. Defaults to false.]]></description>
 		  <name>scrollX</name>
 		  <required>false</required>
 		  <type>java.lang.Boolean</type>
@@ -8184,13 +8196,13 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string].]]></description>
+		  <description><![CDATA[Disables selection of dates in the array, e.g. holidays. Default: null. Accepts a comma separated list of Date, moment or JavaScript string. For example: '11/22/2013 00:53' (with single quotes).]]></description>
 		  <name>disabled-dates</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Disables selection of dates in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string].]]></description>
+		  <description><![CDATA[Disables selection of dates in the array, e.g. holidays. Default: null. Accepts a comma separated list of Date, moment or JavaScript string. For example: '11/22/2013 00:53' (with single quotes).]]></description>
 		  <name>disabledDates</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -8202,13 +8214,13 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string].]]></description>
+		  <description><![CDATA[Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, JavaScript string].]]></description>
 		  <name>enabled-dates</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, string].]]></description>
+		  <description><![CDATA[Disables selection of dates NOT in the array, e.g. holidays. Default: false. Accepts: array of [date, moment, JavaScript string].]]></description>
 		  <name>enabledDates</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>

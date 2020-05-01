@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -18,9 +18,23 @@
 
 //Compile BootsFaces Less files to CSS and Minify
 
-plugins {
-  id "com.bertramlabs.asset-pipeline" version "3.0.10"
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+      //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.15.1'
+      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10'
+      //classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.15.1'
+      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.0.10'
+    }
 }
+apply plugin: 'com.bertramlabs.asset-pipeline'
+
+//TODO check why plugins { id ... } doesn't work (missing less-asset)
+/*plugins {
+  id "com.bertramlabs.asset-pipeline" version "3.0.10"
+}*/
 
 println 'compileLess:Themes('+themes.size+'):'+themes
 
@@ -29,9 +43,10 @@ assets {
   minifyCss = true
   enableSourceMaps = false
   //developmentRuntime can be turned off
-  developmentRuntime=true
+  developmentRuntime=false
+  //developmentRuntime=true
   enableDigests = false
-  skipNonDigests = true
+  //skipNonDigests = true
   enableGzip = false
   maxThreads = 2 //If you encounter JVM Heap exhausted or Out of Memory errors set this to 1
   configOptions = [:]
@@ -217,7 +232,8 @@ assetCompile.doLast {
    }
 }
 
-task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile', 'cleanAssetDir', 'cleanAssetThemeDirs']) {
+//task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile', 'cleanAssetDir', 'cleanAssetThemeDirs']) {
+task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile']) {
   println "compileLess: Compile and Minify"
 }
 assetCompile.mustRunAfter copyFiles2Process

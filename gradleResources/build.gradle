@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2017 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -36,6 +36,7 @@
      from 'staticResources/css/ext/bootstrap-switch.css'
      from 'staticResources/css/ext/bootstrap-tagsinput.css'
      from 'staticResources/css/ext/bootstrap-tagsinput-typeahead.css'
+     from 'staticResources/css/ext/input-tags.css'
      from 'staticResources/css/ext/bootstrap-slider.min.css'
      from 'staticResources/css/ext/bootstrap-touchspin.min.css'
      from 'staticResources/css/ext/bootstrap-tree.css'
