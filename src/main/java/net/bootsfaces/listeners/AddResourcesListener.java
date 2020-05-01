@@ -35,6 +35,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.faces.FacesException;
@@ -113,7 +114,7 @@ public class AddResourcesListener implements SystemEventListener {
 			CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
 	static {
-		LOGGER.info("This application is running on BootsFaces" + C.BSFVERSION + "-" + C.BSFRELEASE_STATUS);
+		LOGGER.info("This application is running on BootsFaces " + C.BSFVERSION + "-" + C.BSFRELEASE_STATUS);
 	}
 
 	/**
@@ -148,25 +149,29 @@ public class AddResourcesListener implements SystemEventListener {
 	 * If it found nothing, it check for components that has as a resource lib, the
 	 * "bsf" lib.
 	 *
-	 * @param root     the UIViewRoot
-	 * @param context  the faces context
+	 * @param root    the UIViewRoot
+	 * @param context the faces context
 	 * @return
 	 */
 	private boolean ensureExistBootsfacesComponent(UIViewRoot root, FacesContext context) {
 		Map<String, Object> viewMap = root.getViewMap();
 
 		// check explicit js request
-		if (viewMap.get(RESOURCE_KEY) != null)
+		if (viewMap.get(RESOURCE_KEY) != null) {
 			return true;
+		}
 		// check explicit css request
-		if (viewMap.get(THEME_RESOURCE_KEY) != null)
+		if (viewMap.get(THEME_RESOURCE_KEY) != null) {
 			return true;
+		}
 		// check explicit css request
-		if (viewMap.get(EXT_RESOURCE_KEY) != null)
+		if (viewMap.get(EXT_RESOURCE_KEY) != null) {
 			return true;
+		}
 		// check referenced bsf request
-		if (findBsfComponent(root, C.BSF_LIBRARY) != null)
+		if (findBsfComponent(root, C.BSF_LIBRARY) != null) {
 			return true;
+		}
 
 		return false;
 	}
@@ -207,10 +212,12 @@ public class AddResourcesListener implements SystemEventListener {
 
 		viewportParam = evalELIfPossible(viewportParam);
 		String content = "width=device-width, initial-scale=1";
-		if (!viewportParam.isEmpty() && isFalseOrNo(viewportParam))
+		if (!viewportParam.isEmpty() && isFalseOrNo(viewportParam)) {
 			return;
-		if (!viewportParam.isEmpty() && !isTrueOrYes(viewportParam))
+		}
+		if (!viewportParam.isEmpty() && !isTrueOrYes(viewportParam)) {
 			content = viewportParam;
+		}
 
 		// Otherwise
 		String viewportMeta = "<meta name=\"viewport\" content=\"" + content + "\"/>";
@@ -266,10 +273,13 @@ public class AddResourcesListener implements SystemEventListener {
 			String name = (String) ava.getAttributes().get("name");
 			if (null != name) {
 				name = name.toLowerCase();
-				if ((name.contains("font-awesome") || name.contains("fontawesome")) && name.endsWith("css"))
+				if ((name.contains("font-awesome") || name.contains("fontawesome")) && name.endsWith("css")) {
 					useCDNImportForFontAwesome = false;
+				}
 			}
 		}
+
+		LOGGER.log(Level.FINER, "by addCSS - useCDNImportForFontAwesome is {0}", useCDNImportForFontAwesome);
 
 		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
@@ -279,11 +289,12 @@ public class AddResourcesListener implements SystemEventListener {
 				String version = (String) viewMap.get(FONTAWESOME_VERSION);
 				if (version != null) {
 					output.setVersion(version);
-					output.setNeedsVersion4(needsFontAwesome4());
 				} else {
 					output.setVersion("4");
-					output.setNeedsVersion4(needsFontAwesome4());
 				}
+				boolean needsFontAwesome4 = needsFontAwesome4();
+				output.setNeedsVersion4(needsFontAwesome4);
+				LOGGER.log(Level.FINER, "by addCSS - needsFontAwesome4 is {0}", needsFontAwesome4);
 				addResourceIfNecessary(root, context, output);
 			}
 		}
@@ -372,8 +383,9 @@ public class AddResourcesListener implements SystemEventListener {
 			if (theme.equalsIgnoreCase("custom")) {
 				theme = THEME_NAME_OTHER;
 			}
-		} else
+		} else {
 			theme = THEME_NAME_DEFAULT;
+		}
 		return theme;
 	}
 
@@ -404,18 +416,20 @@ public class AddResourcesListener implements SystemEventListener {
 			String name = (String) ava.getAttributes().get("name");
 			if (null != name) {
 				name = name.toLowerCase();
-				if ((name.contains("/jquery-ui") || name.startsWith("jquery-ui")) && name.endsWith(".js"))
+				if ((name.contains("/jquery-ui") || name.startsWith("jquery-ui")) && name.endsWith(".js")) {
 					loadJQueryUI = false;
-				else if ((name.contains("/jquery") || name.startsWith("jquery")) && name.endsWith(".js"))
+				} else if ((name.contains("/jquery") || name.startsWith("jquery")) && name.endsWith(".js")) {
 					loadJQuery = false;
+				}
 			}
 		}
 
 		addMandatoryLibraries(root, context, loadJQuery, loadJQueryUI);
 
 		String blockUI = BsfUtils.getInitParam(P_BLOCK_UI, context);
-		if (null != blockUI)
+		if (null != blockUI) {
 			blockUI = ELTools.evalAsString(blockUI);
+		}
 		if (null != blockUI && isTrueOrYes(blockUI)) {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "js/jquery.blockUI.js", C.BSF_LIBRARY);
 		}
@@ -438,8 +452,9 @@ public class AddResourcesListener implements SystemEventListener {
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", C.BSF_LIBRARY, "last");
 
-		if (loadJQuery)
+		if (loadJQuery) {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
+		}
 
 		Map<String, Object> viewMap = root.getViewMap();
 		@SuppressWarnings("unchecked")
@@ -450,8 +465,9 @@ public class AddResourcesListener implements SystemEventListener {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
 				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) || !file.startsWith("jq/ui")
-						|| loadJQueryUI)
+						|| loadJQueryUI) {
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+				}
 			}
 			viewMap.remove(BASIC_JS_RESOURCE_KEY);
 		}
@@ -463,8 +479,9 @@ public class AddResourcesListener implements SystemEventListener {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
 				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) || !file.startsWith("jq/ui")
-						|| loadJQueryUI)
+						|| loadJQueryUI) {
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
+				}
 			}
 			viewMap.remove(RESOURCE_KEY);
 		}
@@ -473,8 +490,9 @@ public class AddResourcesListener implements SystemEventListener {
 
 	private static boolean shouldLibraryBeLoaded(String initParameter, boolean defaultValue) {
 		String suppressLibrary = BsfUtils.getInitParam(initParameter);
-		if (suppressLibrary == null)
+		if (suppressLibrary == null) {
 			return defaultValue;
+		}
 		return !isTrueOrYes(ELTools.evalAsString(suppressLibrary));
 	}
 
@@ -487,9 +505,18 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private void addResourceIfNecessary(UIViewRoot root, FacesContext context, UIComponent output, Class<?> clazz) {
-		for (UIComponent c : root.getComponentResources(context, "head"))
-			if (c.getClass() == clazz)
+		for (UIComponent c : root.getComponentResources(context, "head")) {
+			if (c.getClass() == clazz) {
+				LOGGER.log(Level.FINER, "by addResourceIfNecessary - find existing class {0}", clazz);
+
+				// remove old
+				root.removeComponentResource(context, c, "head");
+
+				// add new
+				root.addComponentResource(context, output, "head");
 				return;
+			}
+		}
 		// resource not found yet, so add it now
 		root.addComponentResource(context, output, "head");
 	}
@@ -500,8 +527,9 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			String library = (String) c.getAttributes().get("library");
 			String name = (String) c.getAttributes().get("name");
-			if (library != null && library.equals(libToAdd) && name != null && name.equals(nameToAdd))
+			if (library != null && library.equals(libToAdd) && name != null && name.equals(nameToAdd)) {
 				return;
+			}
 		}
 		root.addComponentResource(context, output, "head");
 	}
@@ -561,6 +589,9 @@ public class AddResourcesListener implements SystemEventListener {
 				viewMap.put(FONTAWESOME_VERSION, String.valueOf(version));
 			}
 		}
+
+		LOGGER.log(Level.FINER, "by setFontAwesomeVersion - viewMap(FONTAWESOME_VERSION) is {0}",
+				viewMap.get(FONTAWESOME_VERSION));
 	}
 
 	@SuppressWarnings("unchecked")
@@ -645,11 +676,12 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : resourcesToRemove) {
 			c.setInView(false);
 			root.removeComponentResource(context, c);
-			// String name = (String) c.getAttributes().get("name");
-			// String library = (String) c.getAttributes().get("library");
-			// String url = (String) c.getAttributes().get("url");
-			// System.out.println("-1" + c.getClientId() + " " + name + " " + library + " "
-			// + url + " " + c.getClass().getSimpleName() );
+
+			String name = (String) c.getAttributes().get("name");
+			String library = (String) c.getAttributes().get("library");
+			String url = (String) c.getAttributes().get("url");
+			LOGGER.log(Level.FINER, "-1 " + c.getClientId() + " " + name + " " + library + " " + url + " "
+					+ c.getClass().getSimpleName());
 		}
 	}
 
@@ -752,7 +784,6 @@ public class AddResourcesListener implements SystemEventListener {
 		// for (UIComponent resource : root.getComponentResources(context, "head")) {
 		// System.out.println(resource.getClass().getName());
 		// }
-
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			middle.add(c);
 		}
@@ -794,8 +825,9 @@ public class AddResourcesListener implements SystemEventListener {
 			String name = (String) resource.getAttributes().get("name");
 			// rw.write("\n<!-- res: '"+name+"' -->" );
 			if (name != null) {
-				if (name.endsWith("font-awesome.css"))
+				if (name.endsWith("font-awesome.css")) {
 					fontAwesomeResource = resource;
+				}
 			}
 		}
 		if (null != fontAwesomeResource) {
@@ -815,15 +847,19 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private UIComponent findHeader(UIViewRoot root) {
 		for (UIComponent c : root.getChildren()) {
-			if (c instanceof HtmlHead)
+			if (c instanceof HtmlHead) {
 				return c;
+			}
 		}
 		for (UIComponent c : root.getChildren()) {
-			if (c instanceof HtmlBody)
+			if (c instanceof HtmlBody) {
 				return null;
-			if (c instanceof UIOutput)
-				if (c.getFacets() != null)
+			}
+			if (c instanceof UIOutput) {
+				if (c.getFacets() != null) {
 					return c;
+				}
+			}
 		}
 		return null;
 	}
@@ -899,15 +935,17 @@ public class AddResourcesListener implements SystemEventListener {
 			viewMap.put(resourceTypeKey, resourceMap);
 		}
 
-		if (!resourceMap.containsKey(resourceKey))
+		if (!resourceMap.containsKey(resourceKey)) {
 			resourceMap.put(library + "#" + resource, resource);
+		}
 	}
 
 	private String evalELIfPossible(String expression) {
-		if (expression != null)
+		if (expression != null) {
 			expression = ELTools.evalAsString(expression).trim();
-		else
+		} else {
 			expression = "";
+		}
 		return expression;
 	}
 
@@ -950,13 +988,14 @@ public class AddResourcesListener implements SystemEventListener {
 	 * Add the default datatables.net resource if and only if the user doesn't bring
 	 * their own copy, and if they didn't disallow it in the web.xml by setting the
 	 * context paramter net.bootsfaces.get_datatable_from_cdn to true.
-	 * 
+	 *
 	 * @param defaultFilename The URL of the file to be loaded
 	 * @param type            either "js" or "css"
 	 */
 	public static void addDatatablesResourceIfNecessary(String defaultFilename, String type) {
 		boolean loadDatatables = shouldLibraryBeLoaded(P_GET_DATATABLE_FROM_CDN, true);
-		// Do we have to add datatables.min.{css|js}, or are the resources already there?
+		// Do we have to add datatables.min.{css|js}, or are the resources already
+		// there?
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
