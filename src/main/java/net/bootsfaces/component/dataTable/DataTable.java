@@ -100,12 +100,13 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		// DataTables with almost all extensions except Flash export and KeyTable - version of 10.11.2019
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.css", "css"); 
+		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.css", "css");
 		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js", "css");
 		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js", "css");
 		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.js", "js");
 	}
 
+	@Override
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
@@ -122,8 +123,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 *
 	 * @return
 	 */
+	@Override
 	public Map<String, String> getJQueryEvents() {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = new HashMap<>();
 		result.put("order", "order.dt");
 		result.put("page", "page.dt");
 		result.put("search", "search.dt");
@@ -140,7 +142,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 */
 	@Override
 	public Map<String, String> getJQueryEventParameterLists() {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = new HashMap<>();
 		result.put("select", "event, datatable, typeOfSelection, indexes");
 		result.put("deselect", "event, datatable, typeOfSelection, indexes");
 		return result;
@@ -154,20 +156,23 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 */
 	@Override
 	public Map<String, String> getJQueryEventParameterListsForAjax() {
-		Map<String, String> result = new HashMap<String, String>();
+		Map<String, String> result = new HashMap<>();
 		result.put("select", "'typeOfSelection':typeOfSelection,'indexes':indexes");
 		result.put("deselect", "'typeOfSelection':typeOfSelection,'indexes':indexes");
 		return result;
 	}
 
+	@Override
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
+	@Override
 	public String getDefaultEventName() {
 		return "click";
 	}
 
+	@Override
 	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 		if (isAutoUpdate()) {
 			if (FacesContext.getCurrentInstance().isPostback()) {
@@ -187,6 +192,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 
 	}
 
+	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
@@ -206,12 +212,14 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 * during rendering.
 	 */
 	public void initColumnSortOrderMap() {
-		this.columnSortOrder = new HashMap<Integer, String>();
+		this.columnSortOrder = new HashMap<>();
 	}
 
 	/**
 	 * This array is used to store the columnDef attribute used to initialize the columns using the columns
 	 * attribute of datatables.net
+	 *
+	 * @return
 	 */
 	public List<String> getColumnDefinition() {
 		return columnDefinition;
@@ -220,6 +228,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	/**
 	 * This array is used to store the columnDef attribute used to initialize the columns using the columns
 	 * attribute of datatables.net
+	 *
+	 * @param columnDefinition
 	 */
 	public void setColumnDefinition(List<String> columnDefinition) {
 		this.columnDefinition = columnDefinition;
@@ -228,6 +238,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	/**
 	 * This array is used to store the column information bits that are used to initialize the columns using the
 	 * columns attribute of datatables.net
+	 *
+	 * @return
 	 */
 	public List<String> getColumnInfo() {
 		return columnInfo;
@@ -236,6 +248,8 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	/**
 	 * This array is used to store the column information bits that are used to initialize the columns using the
 	 * columns attribute of datatables.net
+	 *
+	 * @param columnInfo
 	 */
 	public void setColumnInfo(List<String> columnInfo) {
 		this.columnInfo = columnInfo;
@@ -263,11 +277,10 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 
 		//https://datatables.net/reference/event/deselect#Description
 		// split the array of indexes
-		List<Integer> indexList = new ArrayList<>();		
+		List<Integer> indexList = new ArrayList<>();
 		Matcher regexMatcher = Pattern.compile("(\\d+)").matcher(indexes);
 		while (regexMatcher.find()) {
 			indexList.add(Integer.valueOf(regexMatcher.group()));
-			System.out.println(indexList.toString());
 		}
 
 		if (indexList.size() > 0) {
@@ -309,6 +322,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 
 	/**
 	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 * @return 
 	 */
 	public String getSelectionMode2() {
 		return selectionMode2;
@@ -316,6 +330,7 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 
 	/**
 	 * internal attribute used for b:dataTableColumn selectionMode="multiple"
+	 * @param selectionMode2
 	 */
 	public void setSelectionMode2(String selectionMode2) {
 		this.selectionMode2 = selectionMode2;
@@ -335,7 +350,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 * https://datatables.net/blog/2017-01-19).
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
+	 * @param _markSearchResults
 	 */
+	@Override
 	public void setMarkSearchResults(boolean _markSearchResults) {
 		if (_markSearchResults) {
 			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.min.css");
@@ -350,7 +367,9 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	 * https://datatables.net/reference/option/#rowgroup.
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
+	 * @param _rowGroup
 	 */
+	@Override
 	public void setRowGroup(String _rowGroup) {
 		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
 		super.setRowGroup(_rowGroup);
