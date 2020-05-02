@@ -846,8 +846,11 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			return df.format((Date) maxDate);
 		}
-		else { 
+		else if(maxDate instanceof String){ 
 			return (String) maxDate;
+		}
+		else{
+			return maxDate.toString();
 		}
 	}
 
@@ -855,7 +858,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 * Prevents date/time selections after this date. maxDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMaxDate(String _maxDate) {
+	public void setMaxDate(Object _maxDate) {
 		getStateHelper().put(PropertyKeys.maxDate, _maxDate);
 	}
 
@@ -883,10 +886,13 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 		Object minDate = getStateHelper().eval(PropertyKeys.minDate);
 		if(minDate instanceof Date) {
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-			return df.format((Date) minDate);			
+			return df.format((Date) minDate);
 		}
-		else { 	
+		else if(minDate instanceof String){ 
 			return (String) minDate;
+		}
+		else{
+			return minDate.toString();
 		}		
 	}
 
@@ -894,7 +900,7 @@ public abstract class DateTimePickerCore extends HtmlInputText implements net.bo
 	 * Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setMinDate(String _minDate) {
+	public void setMinDate(Object _minDate) {
 		getStateHelper().put(PropertyKeys.minDate, _minDate);
 	}
 

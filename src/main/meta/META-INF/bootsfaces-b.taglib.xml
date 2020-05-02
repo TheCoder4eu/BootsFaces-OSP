@@ -8619,13 +8619,13 @@
 		  <description><![CDATA[Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string.]]></description>
 		  <name>max-date</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Prevents date/time selections after this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string.]]></description>
 		  <name>maxDate</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Alternative spelling to col-md. Integer value to specify how many columns to span on medium screens (≥992 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -8643,13 +8643,13 @@
 		  <description><![CDATA[Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string.]]></description>
 		  <name>min-date</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Prevents date/time selections before this date. minDate will override defaultDate and useCurrent if either of these settings are the same day since both options are invalid according to the rules you've selected. Default: false, Accepts: date, moment, string.]]></description>
 		  <name>minDate</name>
 		  <required>false</required>
-		  <type>java.lang.String</type>
+		  <type>java.lang.Object</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Determine the display mode of the component. Available types are: 'inline' (display the full calendar object), 'popup' (text with icon) and 'plain' (only text). Default: 'popup'.]]></description>
