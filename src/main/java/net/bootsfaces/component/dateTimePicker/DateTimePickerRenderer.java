@@ -30,6 +30,9 @@ import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.render.FacesRenderer;
 
+import org.owasp.html.HtmlPolicyBuilder;
+import org.owasp.html.PolicyFactory;
+
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
@@ -389,8 +392,10 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 		Locale sloc = BsfUtils.selectLocale(fc.getViewRoot().getLocale(), dtp.getLocale(), dtp);
 		String format = BsfUtils.selectMomentJSDateTimeFormat(sloc, dtp.getFormat(), dtp.isShowDate(), dtp.isShowTime());
 		String displayFormat = "'" + format + "'";
-		String inlineDisplayDate = "'" +
-				getValueAsString(v, fc, dtp) + "'";
+		
+		PolicyFactory policy = new HtmlPolicyBuilder().toFactory();
+		String sanitizedDate = policy.sanitize(getValueAsString(v, fc, dtp));
+		String inlineDisplayDate = "'" +sanitizedDate + "'";
 
 		String fullSelector =  "#" + BsfUtils.escapeJQuerySpecialCharsInSelector(datePickerId);
 

@@ -65,6 +65,11 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+	    <dependency>
+	      <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+	      <artifactId>owasp-java-html-sanitizer</artifactId>
+	      <version>20191001.1</version>
+	    </dependency>
 	</dependencies>
 
 
