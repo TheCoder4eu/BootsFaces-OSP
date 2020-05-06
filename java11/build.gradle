@@ -57,6 +57,7 @@ dependencies {
   compile 'javax.servlet:javax.servlet-api:3.1.0'
   compile 'com.sun.faces:jsf-api:2.2.14'
   compile 'javax.el:javax.el-api:3.0.0'
+  compile 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
   testCompile 'junit:junit:4.11'
   testCompile 'org.mockito:mockito-core:2.0.17-beta'
 // testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
