@@ -42,7 +42,9 @@ if(System.getProperty("BSF-THEME", "") != "") {
    ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
 } else {
    ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
-   ext.allThemes= ('default,patternfly,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
+   ext.allThemes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
+   // Temporarily disable Patternfly Theme inclusion.
+   //ext.allThemes= ('default,patternfly,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
    println 'Themes('+themes.size+'):'+props['bootswatch.theme']
 }
 
