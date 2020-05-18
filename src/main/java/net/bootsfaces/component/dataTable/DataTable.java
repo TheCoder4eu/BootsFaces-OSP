@@ -275,12 +275,14 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		String typeOfSelection = (String) context.getExternalContext().getRequestParameterMap().get("typeOfSelection");
 		context.getELContext().getELResolver().setValue(context.getELContext(), null, "typeOfSelection", typeOfSelection);
 
-		//https://datatables.net/reference/event/deselect#Description
+		// https://datatables.net/reference/event/deselect#Description
 		// split the array of indexes
 		List<Integer> indexList = new ArrayList<>();
-		Matcher regexMatcher = Pattern.compile("(\\d+)").matcher(indexes);
-		while (regexMatcher.find()) {
-			indexList.add(Integer.valueOf(regexMatcher.group()));
+		if (null != indexes) {
+			Matcher regexMatcher = Pattern.compile("(\\d+)").matcher(indexes);
+			if (regexMatcher.find()) {
+				indexList.add(Integer.valueOf(regexMatcher.group()));
+			}
 		}
 
 		if (indexList.size() > 0) {
