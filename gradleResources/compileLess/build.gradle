@@ -24,9 +24,11 @@ buildscript {
     }
     dependencies {
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.15.1'
-      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10'
+      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.1.0'
+      //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.15.1'
-      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.0.10'
+      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.1.0'
+      //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.0.10'
     }
 }
 apply plugin: 'com.bertramlabs.asset-pipeline'
@@ -53,7 +55,8 @@ assets {
 
   includes = ['default/bs-*.less']
   themes.each() { name -> includes.add(name+'/bs-*.less') }
-  includes.add('patternfly/bs-*.less')
+  // TEMPORARILY DISABLE Patternfly Theme inclusion
+  //includes.add('patternfly/bs-*.less')
 
   excludes = ['**/*.less','**/mixins/*.less'] //Exclude mixins
 
@@ -146,7 +149,7 @@ task copyBootsFacesLess4PatternFly(type: Copy) {
   	description 'BootsFaces task: copies the BootsFaces bs-*.less files to the process folder.'
   	from staticResourcesDir+'/less/pf'
   	into "${buildDir}/process/less/patternfly"
-    exclude 'extra-theme.less'
+    exclude 'extra-theme.less', 'bootstrap-switch.less'
     rename 'bs-patternfly.less', 'extra-theme.less'
 }
 

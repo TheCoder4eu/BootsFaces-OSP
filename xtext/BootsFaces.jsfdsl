@@ -367,7 +367,7 @@ widget colorPicker
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -571,6 +571,7 @@ widget dataTable
     immediate            Boolean                                           "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
     info				 Boolean default "true"							      "If set, this will enable the information about record count. Defaults to true."
 	lang                 String                                            "Configured lang for the dataTable. If no default language is configured, the language configured in the browser is used."
+	length-change        Boolean  default "true"                           "Activates the page length menu of the dataTable"
     mark-search-results  Boolean                                           "If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19)."
     multi-column-search  Boolean                                           "If true, &lt;b:inputText /&gt; fields will be generated at the bottom of each column which allow you to perform per-column filtering."
     multi-column-search-position default "bottom"                          "Should the multi-column-search attributes be at the bottom or the top of the table? Legal values: 'top','botton', and 'both'. Default to 'bottom'."
@@ -1079,7 +1080,7 @@ widget inputSecret
  {
     accesskey                                                              "Access key to transfer focus to the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1143,7 +1144,7 @@ widget inputText
  {
     accesskey                        inherited                             "Access key to transfer focus to the input element."
     alt                              inherited                             "Alternate textual description of the input element."
-    autocomplete                     inherited                             "Controls browser autocomplete behavior."
+    autocomplete                     inherited                             "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1213,7 +1214,7 @@ widget inputTextarea
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding               javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter             java.faces.convert.Converter inherited           "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
