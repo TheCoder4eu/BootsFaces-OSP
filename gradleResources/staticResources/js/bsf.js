@@ -146,7 +146,7 @@ BsF.ajax.resolveJQuery = function(update) {
 			var jQueryObjects = $(jqueryexp);
 			if (jQueryObjects) {
 				jQueryObjects.each(function(index, element) {
-					newUpdate += " " + element.id;
+					newUpdate += element.id + " ";
 				});
 
 			}
