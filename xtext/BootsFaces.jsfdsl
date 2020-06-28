@@ -367,7 +367,7 @@ widget colorPicker
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1080,7 +1080,7 @@ widget inputSecret
  {
     accesskey                                                              "Access key to transfer focus to the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
     alt                                                                    "Alternate textual description of the input element."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1144,7 +1144,7 @@ widget inputText
  {
     accesskey                        inherited                             "Access key to transfer focus to the input element."
     alt                              inherited                             "Alternate textual description of the input element."
-    autocomplete                     inherited                             "Controls browser autocomplete behavior."
+    autocomplete                     inherited                             "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
@@ -1214,7 +1214,7 @@ widget inputTextarea
  {
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
-    autocomplete                                                           "Controls browser autocomplete behavior."
+    autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     binding               javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter             java.faces.convert.Converter inherited           "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."

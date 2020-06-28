@@ -61,4 +61,5 @@
 
 .bootstrap-tagsinput .twitter-typeahead {
   position: absolute !important;
+  width: auto;
 }

@@ -1,16 +1,6 @@
 BootsFaces-OSP
 ==============
 
-### Note about this repository
-This is our maintained repository of the original [BootsFaces repository](https://github.com/TheCoder4eu/BootsFaces-OSP).
-
-It includes our changes, bug fixes and improvements. All changes will be send to the original repository maintainer  
-as a pull request, hopefully included in a future version of the origin repository.
-
-Here you will find our [SEB Snapshot Showcase](http://bootsfaces.sebsoftware.de) 
-
----
-
 <p align="center">
     <img src="http://www.bootsfaces.net/javax.faces.resource/bsf.full.teal.png.jsf?ln=images" width="200">
 </p>
