@@ -65,7 +65,7 @@ public class Radiobutton extends RadiobuttonCore implements net.bootsfaces.rende
  	 	}
 	}
 
-public String getFamily() {
+	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
