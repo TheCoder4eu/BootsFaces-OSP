@@ -92,6 +92,7 @@ widget accordion
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	expanded-panels														"Comma separated list of child panel id that need to render expanded."
+	multiple         Boolean                                           "Setting this flag enables opening panels without closing other panels."
 	+tooltip
 	+responsive
 	+style
