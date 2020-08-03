@@ -107,7 +107,7 @@ public class AccordionRenderer extends CoreRenderer {
                                             if (parts.length == 2)
                                                 childPaneClientId = parts[1];
                                         }
-					if (null != expandedIds && expandedIds.contains(_childPane.getClientId()))
+					if (null != expandedIds && expandedIds.contains(childPaneClientId))
 						_childPane.setCollapsed(false);
 					else
 						_childPane.setCollapsed(true);
