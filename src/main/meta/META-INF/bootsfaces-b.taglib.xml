@@ -140,6 +140,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag enables opening panels without closing other panels.]]></description>
+		  <name>multiple</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
