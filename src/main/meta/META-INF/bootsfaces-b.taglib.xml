@@ -3836,7 +3836,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -12778,7 +12778,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -13542,7 +13542,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -14372,7 +14372,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
