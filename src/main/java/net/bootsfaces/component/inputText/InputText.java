@@ -146,7 +146,7 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
-
+	
 	/**
 	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
 	 * Usually this method is called internally by the JSF engine.
