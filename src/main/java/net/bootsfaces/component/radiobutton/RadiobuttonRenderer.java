@@ -205,8 +205,12 @@ public class RadiobuttonRenderer extends InputTextRenderer {
 			// traditional JSF approach using f:selectItem[s]
 			int counter=0;
 			for (SelectItemAndComponent option:options) {
+				String o = null;
+				if (null != option.getSelectItem().getValue()) {
+					o = String.valueOf(option.getSelectItem().getValue());
+				}
 				generateASingleRadioButton(context, component, radiobutton, rw, propertyName, beanValue,
-						option.getSelectItem().getValue(),
+						o,
 						option.getSelectItem().getLabel(), clientId+(counter++), option.getSelectItem().isDisabled());
 
 			}

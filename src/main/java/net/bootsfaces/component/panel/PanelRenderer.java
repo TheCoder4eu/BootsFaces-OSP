@@ -27,6 +27,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
 
+import net.bootsfaces.component.accordion.Accordion;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
 import net.bootsfaces.render.CoreRenderer;
@@ -257,7 +258,9 @@ public class PanelRenderer extends CoreRenderer {
 		}
 		rw.writeAttribute("class", sclass, null);
 		if(null != accordionParent) {
-			rw.writeAttribute("data-parent", "#" + accordionParent, null);
+			Accordion accordion = (Accordion)panel.getParent();
+			if (!accordion.isMultiple())
+				rw.writeAttribute("data-parent", "#" + accordionParent, null);
 		}
 	}
 

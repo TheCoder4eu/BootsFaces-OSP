@@ -191,7 +191,7 @@ public class NavBarRenderer extends CoreRenderer {
 				rw.startElement("img", navBar);
 				rw.writeAttribute("alt", altText, "alt");
 				rw.writeAttribute("src", brandImg, "src");
-				writeAttribute(rw, "style", navBar.getBrandImgStyle());
+				writeAttribute(rw, "style", "vertical-align: top; " + navBar.getBrandImgStyle());
 				writeAttribute(rw, "class", navBar.getBrandImgStyleClass());
 				rw.endElement("img");
 			}
