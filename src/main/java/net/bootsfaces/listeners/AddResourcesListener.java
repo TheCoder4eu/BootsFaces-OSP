@@ -28,7 +28,6 @@ import static net.bootsfaces.C.THEME_NAME_OTHER;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -42,6 +41,7 @@ import javax.faces.FacesException;
 import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIForm;
 import javax.faces.component.UIOutput;
 import javax.faces.component.UIViewRoot;
 import javax.faces.component.html.HtmlBody;
@@ -58,8 +58,8 @@ import net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptRes
 import net.bootsfaces.utils.BsfUtils;
 
 /**
- * This class adds the resource needed by BootsFaces and ensures that they are
- * loaded in the correct order. It replaces the former HeadListener.
+ * This class adds the resource needed by BootsFaces and ensures that they are loaded in the correct order. It replaces
+ * the former HeadListener.
  *
  * @author Stephan Rauh
  */
@@ -73,45 +73,39 @@ public class AddResourcesListener implements SystemEventListener {
 	private static final String BASIC_JS_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.BasicJSResourceFiles";
 
 	/**
-	 * Version of FontAwesome. By default, version 4.7.0 is used. If you specify the
-	 * subfont ("solid", "regular", "light" or "brand"), the version number is
-	 * automatically set to 5.2.0.
+	 * Version of FontAwesome. By default, version 4.7.0 is used. If you specify the subfont ("solid", "regular",
+	 * "light" or "brand"), the version number is automatically set to 5.2.0.
 	 */
 	private static final String FONTAWESOME_VERSION = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeVersion";
 
 	/**
-	 * List of components using a non-default version of FontAwesome. Needed to
-	 * detect whether FontAwesome 4 (the default version) needs to be imported or
-	 * not.
+	 * List of components using a non-default version of FontAwesome. Needed to detect whether FontAwesome 4 (the
+	 * default version) needs to be imported or not.
 	 */
 	private static final String FONTAWESOME_NEW_VERSION = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeNewVersion";
 
 	/**
-	 * This entry of the view map is set to true if there's at least one Fontawesome
-	 * icon
+	 * This entry of the view map is set to true if there's at least one Fontawesome icon
 	 */
 	private static final String FONTAWESOME_USED = "net.bootsfaces.listeners.AddResourcesListener.FontAwesomeIsUsed";
 
 	/**
-	 * Components can request JS resources by registering them in the ViewMap, using
-	 * the RESOURCE_KEY.
+	 * Components can request JS resources by registering them in the ViewMap, using the RESOURCE_KEY.
 	 */
 	private static final String RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ResourceFiles";
 
 	/**
-	 * Components can request themed CSS resources by registering them in the
-	 * ViewMap, using the THEME_RESOURCE_KEY.
+	 * Components can request themed CSS resources by registering them in the ViewMap, using the THEME_RESOURCE_KEY.
 	 */
 	private static final String THEME_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ThemedResourceFiles";
 
 	/**
-	 * Components can request extended CSS resources by registering them in the
-	 * ViewMap, using the EXT_RESOURCE_KEY.
+	 * Components can request extended CSS resources by registering them in the ViewMap, using the EXT_RESOURCE_KEY.
 	 */
 	private static final String EXT_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ExtResourceFiles";
 
 	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
-			CSS_RENDERER = "javax.faces.resource.Stylesheet";
+		CSS_RENDERER = "javax.faces.resource.Stylesheet";
 
 	static {
 		LOGGER.info("This application is running on BootsFaces " + C.BSFVERSION + "-" + C.BSFRELEASE_STATUS);
@@ -119,6 +113,9 @@ public class AddResourcesListener implements SystemEventListener {
 
 	/**
 	 * Returns true if the source is an instance of {@link UIViewRoot}.
+	 *
+	 * @param source
+	 * @return
 	 */
 	@Override
 	public boolean isListenerForSource(Object source) {
@@ -126,15 +123,17 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Trigger adding the resources if and only if the event has been fired by
-	 * UIViewRoot.
+	 * Trigger adding the resources if and only if the event has been fired by UIViewRoot.
+	 *
+	 * @param event
 	 */
+	@Override
 	public void processEvent(SystemEvent event) throws AbortProcessingException {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
 		// render the resources only if there is at least one bsf component
-		if (ensureExistBootsfacesComponent(root, context)) {
+		if (ensureExistBootsfacesComponent(root)) {
 			addCSS(root, context);
 			addJavascript(root, context);
 			addMetaTags(root, context);
@@ -142,19 +141,70 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Check if there is almost one bootsfaces component in page. If yes, load the
-	 * correct items.
 	 *
-	 * To ensure that, it checks first the viewMap to find specific bootsfaces key.
-	 * If it found nothing, it check for components that has as a resource lib, the
-	 * "bsf" lib.
+	 * @param root the UIViewRoot
+	 * @return
+	 */
+	private static Map<String, Object> getMapForView(UIViewRoot rootView) {
+		// if the view is transient, we use only the attribute-store
+		if (rootView.isTransient()) {
+			LOGGER.log(Level.FINEST, "use attribute-store");
+			return rootView.getAttributes();
+		} else {
+			// if a session exists, we can use the viewMap-store
+			// check if a session exists
+			boolean sessionExists = FacesContext.getCurrentInstance().getExternalContext().getSession(false) != null;
+			if (sessionExists) {
+				LOGGER.log(Level.FINEST, "use viewMap-store");
+				return rootView.getViewMap();
+			} else {
+				// as far as I know, a session is started if there is a UIForm
+				// if a form exists, we can use or create the viewMap-store
+				// check if a form exists
+				boolean formExists = getClosestForm(rootView) != null;
+				Map<String, Object> viewMap = rootView.getViewMap(formExists);
+				if (viewMap != null) {
+					LOGGER.log(Level.FINEST, "use viewMap-store");
+					return viewMap;
+				} else {
+					LOGGER.log(Level.FINEST, "use attribute-store");
+					return rootView.getAttributes();
+				}
+			}
+		}
+	}
+
+	/**
+	 * searches recursively for the next form
+	 * @param component
+	 * @return 
+	 */
+	private static UIForm getClosestForm(UIComponent component) {
+		for (UIComponent c : component.getChildren()) {
+			if (c instanceof UIForm) {
+				return (UIForm) c;
+			} else {
+				UIForm found = getClosestForm(c);
+				if (found != null) {
+					return found;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Check if there is almost one bootsfaces component in page. If yes, load the correct items.
 	 *
-	 * @param root    the UIViewRoot
+	 * To ensure that, it checks first the viewMap to find specific bootsfaces key. If it found nothing, it check
+	 * for components that has as a resource lib, the "bsf" lib.
+	 *
+	 * @param root the UIViewRoot
 	 * @param context the faces context
 	 * @return
 	 */
-	private boolean ensureExistBootsfacesComponent(UIViewRoot root, FacesContext context) {
-		Map<String, Object> viewMap = root.getViewMap();
+	private boolean ensureExistBootsfacesComponent(UIViewRoot root) {
+		Map<String, Object> viewMap = getMapForView(root);
 
 		// check explicit js request
 		if (viewMap.get(RESOURCE_KEY) != null) {
@@ -169,19 +219,14 @@ public class AddResourcesListener implements SystemEventListener {
 			return true;
 		}
 		// check referenced bsf request
-		if (findBsfComponent(root, C.BSF_LIBRARY) != null) {
-			return true;
-		}
-
-		return false;
+		return findBsfComponent(root, C.BSF_LIBRARY) != null;
 	}
 
 	/**
-	 * Check all components in page to find one that has as resource library the
-	 * target library. I use this method to check existence of a BsF component
-	 * because, at this level, the getComponentResource returns always null
+	 * Check all components in page to find one that has as resource library the target library. I use this method
+	 * to check existence of a BsF component because, at this level, the getComponentResource returns always null
 	 *
-	 * @param parent    the parent component
+	 * @param parent the parent component
 	 * @param targetLib the lib to search
 	 * @return
 	 */
@@ -235,7 +280,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Add the required CSS files and the FontAwesome CDN link.
 	 *
-	 * @param root    The UIViewRoot of the JSF tree.
+	 * @param root The UIViewRoot of the JSF tree.
 	 * @param context The current FacesContext
 	 */
 	private void addCSS(UIViewRoot root, FacesContext context) {
@@ -284,7 +329,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// 2) Font Awesome
 		if (useCDNImportForFontAwesome) {
 			InternalFALink output = new InternalFALink();
-			Map<String, Object> viewMap = root.getViewMap();
+			Map<String, Object> viewMap = getMapForView(root);
 			if (viewMap.containsKey(FONTAWESOME_USED)) {
 				String version = (String) viewMap.get(FONTAWESOME_VERSION);
 				if (version != null) {
@@ -300,25 +345,23 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> extCSSMap = (List<String>) root.getViewMap().get(EXT_RESOURCE_KEY);
+		List<String> extCSSMap = (List<String>) getMapForView(root).get(EXT_RESOURCE_KEY);
 		if (extCSSMap != null) {
 			for (String file : extCSSMap) {
 				String name = "css/" + file;
-
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
 
 		@SuppressWarnings("unchecked")
-		List<String> themedCSSMap = (List<String>) root.getViewMap().get(THEME_RESOURCE_KEY);
+		List<String> themedCSSMap = (List<String>) getMapForView(root).get(THEME_RESOURCE_KEY);
 		if (themedCSSMap != null) {
 			for (String file : themedCSSMap) {
-				String name = "css/" + theme + "/" + file;
 				// Glyphicons icons now are in core.css if(file.equals("icons.css")) //the
 				// icons.css file isn't found in a theme folder
 				// Glyphicons icons now are in core.css name = "css/icons.css"; //look for it
 				// under the css root instead
-
+				String name = "css/" + theme + "/" + file;
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
 			}
 		}
@@ -352,15 +395,18 @@ public class AddResourcesListener implements SystemEventListener {
 
 		String theme = getTheme(context);
 
+		// why this line of code???
+		boolean hasRemoveFontAwesome = isFontAwesomeComponentUsedAndRemoveIt();
+
 		// Theme loading
-		if (isFontAwesomeComponentUsedAndRemoveIt() || (!theme.equalsIgnoreCase(THEME_NAME_OTHER))) {
+		if (hasRemoveFontAwesome || (!theme.equalsIgnoreCase(THEME_NAME_OTHER))) {
 			// String filename = "bsf.css";
 			String filename = "core.css";
 			Resource themeResource = rh.createResource("css/" + theme + "/" + filename, C.BSF_LIBRARY);
 
 			if (themeResource == null) {
 				throw new FacesException("Error loading theme, cannot find \"" + "css/" + theme + "/" + filename
-						+ "\" resource of \"" + C.BSF_LIBRARY + "\" library");
+					+ "\" resource of \"" + C.BSF_LIBRARY + "\" library");
 			} else {
 				String name = "css/" + theme + "/" + filename;
 				createAndAddComponent(root, context, CSS_RENDERER, name, C.BSF_LIBRARY);
@@ -392,7 +438,7 @@ public class AddResourcesListener implements SystemEventListener {
 	/**
 	 * Add the required Javascript files and the FontAwesome CDN link.
 	 *
-	 * @param root    The UIViewRoot of the JSF tree.
+	 * @param root The UIViewRoot of the JSF tree.
 	 * @param context The current FacesContext
 	 */
 	private void addJavascript(UIViewRoot root, FacesContext context) {
@@ -442,7 +488,7 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private Map<String, Object> addMandatoryLibraries(UIViewRoot root, FacesContext context, boolean loadJQuery,
-			boolean loadJQueryUI) {
+		boolean loadJQueryUI) {
 
 		/*
 		 * We used to check if a single component needs the bsf.js, jsf or jquery
@@ -456,7 +502,7 @@ public class AddResourcesListener implements SystemEventListener {
 			createAndAddComponent(root, context, SCRIPT_RENDERER, "jq/jquery.js", C.BSF_LIBRARY);
 		}
 
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getMapForView(root);
 		@SuppressWarnings("unchecked")
 		Map<String, String> basicResourceMap = (Map<String, String>) viewMap.get(BASIC_JS_RESOURCE_KEY);
 
@@ -465,7 +511,7 @@ public class AddResourcesListener implements SystemEventListener {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
 				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) || !file.startsWith("jq/ui")
-						|| loadJQueryUI) {
+					|| loadJQueryUI) {
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 				}
 			}
@@ -479,7 +525,7 @@ public class AddResourcesListener implements SystemEventListener {
 				String file = entry.getValue();
 				String library = entry.getKey().substring(0, entry.getKey().length() - file.length() - 1);
 				if (!"jq/jquery.js".equals(file) || !C.BSF_LIBRARY.equals(library) || !file.startsWith("jq/ui")
-						|| loadJQueryUI) {
+					|| loadJQueryUI) {
 					createAndAddComponent(root, context, SCRIPT_RENDERER, file, library);
 				}
 			}
@@ -527,8 +573,11 @@ public class AddResourcesListener implements SystemEventListener {
 		for (UIComponent c : root.getComponentResources(context, "head")) {
 			String library = (String) c.getAttributes().get("library");
 			String name = (String) c.getAttributes().get("name");
-			if (library != null && library.equals(libToAdd) && name != null && name.equals(nameToAdd)) {
-				return;
+			if (library != null && library.equals(libToAdd)) {
+				if (name != null && name.equals(nameToAdd)) {
+					LOGGER.log(Level.FINEST, "by addResourceIfNecessary - find existing {0} - {1}", new Object[]{name, library});
+					return;
+				}
 			}
 		}
 		root.addComponentResource(context, output, "head");
@@ -563,15 +612,13 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	public static void setFontAwesomeVersion(int version, Object uiComponent) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 
 		if (version != 4) {
 			@SuppressWarnings("unchecked")
 			Map<Object, Boolean> v5 = (Map<Object, Boolean>) viewMap.get(FONTAWESOME_NEW_VERSION);
 			if (null == v5) {
-				v5 = new HashMap<Object, Boolean>();
+				v5 = new HashMap<>();
 				viewMap.put(FONTAWESOME_NEW_VERSION, v5);
 			}
 			v5.put(uiComponent, true);
@@ -591,26 +638,22 @@ public class AddResourcesListener implements SystemEventListener {
 		}
 
 		LOGGER.log(Level.FINER, "by setFontAwesomeVersion - viewMap(FONTAWESOME_VERSION) is {0}",
-				viewMap.get(FONTAWESOME_VERSION));
+			viewMap.get(FONTAWESOME_VERSION));
 	}
 
 	@SuppressWarnings("unchecked")
 	public static void setNeedsFontsAwesome(Object uiComponent) {
-		FacesContext context = FacesContext.getCurrentInstance();
-		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 		ArrayList<Object> list = (ArrayList<Object>) viewMap.get(FONTAWESOME_USED);
 		if (list == null) {
-			list = new ArrayList<Object>();
+			list = new ArrayList<>();
 			viewMap.put(FONTAWESOME_USED, list);
 		}
 		list.add(uiComponent);
 	}
 
 	private boolean needsFontAwesome4() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		UIViewRoot root = context.getViewRoot();
-		Map<String, Object> viewMap = root.getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		Map<Object, Boolean> v5 = (Map<Object, Boolean>) viewMap.get(FONTAWESOME_NEW_VERSION);
 		@SuppressWarnings("unchecked")
@@ -637,26 +680,19 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Remove duplicate resource files. For some reason, many resource files are
-	 * added more than once, especially when AJAX is used. The method removes the
-	 * duplicate files.
+	 * Remove duplicate resource files. For some reason, many resource files are added more than once, especially
+	 * when AJAX is used. The method removes the duplicate files.
 	 *
-	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of
-	 * the Mojarra library itself.
+	 * TODO: Verify if the duplicate resource files are a bug of BootsFaces or of the Mojarra library itself.
 	 *
-	 * @param root    The current UIViewRoot
+	 * @param root The current UIViewRoot
 	 * @param context The current FacesContext
 	 */
 	private void removeDuplicateResources(UIViewRoot root, FacesContext context) {
-		List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>();
-		Map<String, UIComponent> alreadyThere = new HashMap<String, UIComponent>();
-		List<UIComponent> components = new ArrayList<UIComponent>(root.getComponentResources(context, "head"));
-		Collections.sort(components, new Comparator<UIComponent>() {
-			@Override
-			public int compare(UIComponent o1, UIComponent o2) {
-				return o1.getClientId().compareTo(o2.getClientId());
-			}
-		});
+		List<UIComponent> resourcesToRemove = new ArrayList<>();
+		Map<String, UIComponent> alreadyThere = new HashMap<>();
+		List<UIComponent> components = new ArrayList<>(root.getComponentResources(context, "head"));
+		Collections.sort(components, (UIComponent o1, UIComponent o2) -> o1.getClientId().compareTo(o2.getClientId()));
 		for (UIComponent resource : components) {
 			String name = (String) resource.getAttributes().get("name");
 			String library = (String) resource.getAttributes().get("library");
@@ -681,34 +717,33 @@ public class AddResourcesListener implements SystemEventListener {
 			String library = (String) c.getAttributes().get("library");
 			String url = (String) c.getAttributes().get("url");
 			LOGGER.log(Level.FINER, "-1 " + c.getClientId() + " " + name + " " + library + " " + url + " "
-					+ c.getClass().getSimpleName());
+				+ c.getClass().getSimpleName());
 		}
 	}
 
 	/**
-	 * Remove Bootstrap CSS files (called if the context param
-	 * "net.bootsfaces.get_bootstrap_from_cdn" is set). Only needed for Default
-	 * Theme (Bootstrap) and custom themes, other themes would get default theme
-	 * look and feel otherwise.
+	 * Remove Bootstrap CSS files (called if the context param "net.bootsfaces.get_bootstrap_from_cdn" is set). Only
+	 * needed for Default Theme (Bootstrap) and custom themes, other themes would get default theme look and feel
+	 * otherwise.
 	 *
-	 * @param root    The current UIViewRoot
+	 * @param root The current UIViewRoot
 	 * @param context The current FacesContext
 	 */
 	private void removeBootstrapResources(UIViewRoot root, FacesContext context) {
 		String theme = getTheme(context);
 
 		if (theme.equals(THEME_NAME_DEFAULT) || theme.equals(THEME_NAME_OTHER)) {
-			for (UIComponent resource : root.getComponentResources(context, "head")) {
+			root.getComponentResources(context, "head").forEach((resource) -> {
 				String name = (String) resource.getAttributes().get("name");
 				String library = (String) resource.getAttributes().get("library");
 				if (C.BSF_LIBRARY.equals(library) && name != null) {
 					if (name.endsWith("bootstrap.min.css") || name.endsWith("bootstrap.css")
-							|| name.endsWith("core.css") || name.endsWith("theme.css")) {
+						|| name.endsWith("core.css") || name.endsWith("theme.css")) {
 						resource.setInView(false);
 						root.removeComponentResource(context, resource);
 					}
 				}
-			}
+			});
 		}
 		/*
 		 * List<UIComponent> resourcesToRemove = new ArrayList<UIComponent>(); for
@@ -723,12 +758,11 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Make sure jQuery is loaded before jQueryUI, and that every other Javascript
-	 * is loaded later. Also make sure that the BootsFaces resource files are loaded
-	 * prior to other resource files, giving the developer the opportunity to
-	 * overwrite a CSS or JS file.
+	 * Make sure jQuery is loaded before jQueryUI, and that every other Javascript is loaded later. Also make sure
+	 * that the BootsFaces resource files are loaded prior to other resource files, giving the developer the
+	 * opportunity to overwrite a CSS or JS file.
 	 *
-	 * @param root    The current UIViewRoot
+	 * @param root The current UIViewRoot
 	 * @param context The current FacesContext
 	 */
 	private void enforceCorrectLoadOrder(UIViewRoot root, FacesContext context) {
@@ -736,13 +770,13 @@ public class AddResourcesListener implements SystemEventListener {
 		// // Put BootsFaces.css or BootsFaces.min.css first,
 		// // theme.css second
 		// // and everything else behind them.
-		List<UIComponent> resources = new ArrayList<UIComponent>();
-		List<UIComponent> first = new ArrayList<UIComponent>();
-		List<UIComponent> middle = new ArrayList<UIComponent>();
-		List<UIComponent> last = new ArrayList<UIComponent>();
-		List<UIComponent> datatable = new ArrayList<UIComponent>();
+		List<UIComponent> resources = new ArrayList<>();
+		List<UIComponent> first = new ArrayList<>();
+		List<UIComponent> middle = new ArrayList<>();
+		List<UIComponent> last = new ArrayList<>();
+		List<UIComponent> datatable = new ArrayList<>();
 
-		for (UIComponent resource : root.getComponentResources(context, "head")) {
+		root.getComponentResources(context, "head").forEach((UIComponent resource) -> {
 			String name = (String) resource.getAttributes().get("name");
 
 			String position = (String) resource.getAttributes().get("position");
@@ -763,57 +797,56 @@ public class AddResourcesListener implements SystemEventListener {
 					}
 				}
 			}
-		}
+		});
 
 		// add the JavaScript files in correct order.
 		Collections.sort(resources, new ResourceFileComparator());
 
-		for (UIComponent c : first) {
+		first.forEach((c) -> {
 			root.removeComponentResource(context, c);
-		}
-		for (UIComponent c : resources) {
+		});
+		resources.forEach((c) -> {
 			root.removeComponentResource(context, c);
-		}
-		for (UIComponent c : last) {
+		});
+		last.forEach((c) -> {
 			root.removeComponentResource(context, c);
-		}
-		for (UIComponent c : datatable) {
+		});
+		datatable.forEach((c) -> {
 			root.removeComponentResource(context, c);
-		}
+		});
 
 		// for (UIComponent resource : root.getComponentResources(context, "head")) {
 		// System.out.println(resource.getClass().getName());
 		// }
-		for (UIComponent c : root.getComponentResources(context, "head")) {
+		root.getComponentResources(context, "head").forEach((c) -> {
 			middle.add(c);
-		}
-		for (UIComponent c : middle) {
+		});
+		middle.forEach((c) -> {
 			root.removeComponentResource(context, c);
-		}
+		});
 
-		for (UIComponent c : first) {
+		first.forEach((c) -> {
 			root.addComponentResource(context, c, "head");
-		}
-		for (UIComponent c : middle) {
+		});
+		middle.forEach((c) -> {
 			root.addComponentResource(context, c, "head");
-		}
-		for (UIComponent c : resources) {
+		});
+		resources.forEach((c) -> {
 			root.addComponentResource(context, c, "head");
-		}
-		for (UIComponent c : last) {
+		});
+		last.forEach((c) -> {
 			root.addComponentResource(context, c, "head");
-		}
-		for (UIComponent c : datatable) {
+		});
+		datatable.forEach((c) -> {
 			root.addComponentResource(context, c, "head");
-		}
+		});
 	}
 
 	/**
-	 * Look whether a b:iconAwesome component is used. If so, the font-awesome.css
-	 * is removed from the resource list because it's loaded from the CDN.
+	 * Look whether a b:iconAwesome component is used. If so, the font-awesome.css is removed from the resource list
+	 * because it's loaded from the CDN.
 	 *
-	 * @return true, if the font-awesome.css is found in the resource list. Note the
-	 *         side effect of this method!
+	 * @return true, if the font-awesome.css is found in the resource list. Note the side effect of this method!
 	 */
 	private boolean isFontAwesomeComponentUsedAndRemoveIt() {
 		FacesContext fc = FacesContext.getCurrentInstance();
@@ -833,7 +866,6 @@ public class AddResourcesListener implements SystemEventListener {
 		if (null != fontAwesomeResource) {
 			fontAwesomeResource.setInView(false);
 			viewRoot.removeComponentResource(fc, fontAwesomeResource);
-			// System.out.println("-3" + fontAwesomeResource.getClientId());
 			return true;
 		}
 		return false;
@@ -865,10 +897,9 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a JS file that needs to be included in the header of the HTML file,
-	 * but after jQuery and AngularJS.
+	 * Registers a JS file that needs to be included in the header of the HTML file, but after jQuery and AngularJS.
 	 *
-	 * @param library  The name of the sub-folder of the resources folder.
+	 * @param library The name of the sub-folder of the resources folder.
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addResourceToHeadButAfterJQuery(String library, String resource) {
@@ -876,10 +907,10 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a core JS file that needs to be included in the header of the HTML
-	 * file, but after jQuery and AngularJS.
+	 * Registers a core JS file that needs to be included in the header of the HTML file, but after jQuery and
+	 * AngularJS.
 	 *
-	 * @param library  The name of the sub-folder of the resources folder.
+	 * @param library The name of the sub-folder of the resources folder.
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addBasicJSResource(String library, String resource) {
@@ -887,17 +918,16 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a themed CSS file that needs to be included in the header of the
-	 * HTML file.
+	 * Registers a themed CSS file that needs to be included in the header of the HTML file.
 	 *
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addThemedCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(THEME_RESOURCE_KEY);
 		if (null == resourceList) {
-			resourceList = new ArrayList<String>();
+			resourceList = new ArrayList<>();
 			viewMap.put(THEME_RESOURCE_KEY, resourceList);
 		}
 
@@ -907,17 +937,16 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Registers a Extension CSS file that needs to be included in the header of the
-	 * HTML file.
+	 * Registers a Extension CSS file that needs to be included in the header of the HTML file.
 	 *
 	 * @param resource The name of the resource file within the library folder.
 	 */
 	public static void addExtCSSResource(String resource) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		List<String> resourceList = (List<String>) viewMap.get(EXT_RESOURCE_KEY);
 		if (null == resourceList) {
-			resourceList = new ArrayList<String>();
+			resourceList = new ArrayList<>();
 			viewMap.put(EXT_RESOURCE_KEY, resourceList);
 		}
 
@@ -927,11 +956,11 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private static void addResource(String resource, String library, String resourceKey, String resourceTypeKey) {
-		Map<String, Object> viewMap = FacesContext.getCurrentInstance().getViewRoot().getViewMap();
+		Map<String, Object> viewMap = getMapForView(FacesContext.getCurrentInstance().getViewRoot());
 		@SuppressWarnings("unchecked")
 		Map<String, String> resourceMap = (Map<String, String>) viewMap.get(resourceTypeKey);
 		if (null == resourceMap) {
-			resourceMap = new HashMap<String, String>();
+			resourceMap = new HashMap<>();
 			viewMap.put(resourceTypeKey, resourceMap);
 		}
 
@@ -950,12 +979,12 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	private void createAndAddComponent(UIViewRoot root, FacesContext context, String rendererType, String name,
-			String library) {
+		String library) {
 		createAndAddComponent(root, context, rendererType, name, library, null);
 	}
 
 	private void createAndAddComponent(UIViewRoot root, FacesContext context, String rendererType, String name,
-			String library, String position) {
+		String library, String position) {
 
 		// if (library != null && BSF_LIBRARY.equals(library)) {
 		// boolean loadBsfResource =
@@ -985,12 +1014,12 @@ public class AddResourcesListener implements SystemEventListener {
 	}
 
 	/**
-	 * Add the default datatables.net resource if and only if the user doesn't bring
-	 * their own copy, and if they didn't disallow it in the web.xml by setting the
-	 * context paramter net.bootsfaces.get_datatable_from_cdn to true.
+	 * Add the default datatables.net resource if and only if the user doesn't bring their own copy, and if they
+	 * didn't disallow it in the web.xml by setting the context paramter net.bootsfaces.get_datatable_from_cdn to
+	 * true.
 	 *
 	 * @param defaultFilename The URL of the file to be loaded
-	 * @param type            either "js" or "css"
+	 * @param type either "js" or "css"
 	 */
 	public static void addDatatablesResourceIfNecessary(String defaultFilename, String type) {
 		boolean loadDatatables = shouldLibraryBeLoaded(P_GET_DATATABLE_FROM_CDN, true);
@@ -999,7 +1028,7 @@ public class AddResourcesListener implements SystemEventListener {
 		FacesContext context = FacesContext.getCurrentInstance();
 		UIViewRoot root = context.getViewRoot();
 
-		String[] positions = { "head", "body", "form" };
+		String[] positions = {"head", "body", "form"};
 		for (String position : positions) {
 			if (loadDatatables) {
 				List<UIComponent> availableResources = root.getComponentResources(context, position);
