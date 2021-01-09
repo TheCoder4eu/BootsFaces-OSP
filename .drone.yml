@@ -1,0 +1,21 @@
+kind: pipeline
+name: default
+
+steps:
+
+- name: gradlew-library-build
+  image: openjdk:11-jdk
+  commands:
+    - ./gradlew -Dorg.gradle.daemon=false -b build.gradle clean :java8:defaultJar :java11:defaultJar :java11:install :legacyJava:java7:defaultJar
+    - ls -lisa ./legacyJava/java7/build/libs/
+    - ls -lisa ./java8/build/libs/
+    - ls -lisa ./java11/build/libs/
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
+
+volumes:
+  - name: maven-cache
+    host: 
+      path: /temp/drone/m2cache
