@@ -60,7 +60,7 @@ public class InternalFALink extends UIComponentBase {
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
 		final String FA_VERSION = "4.7.0";
-		final String FONTAWESOME_CDN_URL = "//maxcdn.bootstrapcdn.com/font-awesome/" + FA_VERSION
+		final String FONTAWESOME_CDN_URL = "//cdnjs.cloudflare.com/ajax/libs/font-awesome/" + FA_VERSION
 				+ "/css/font-awesome.min.css";
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
