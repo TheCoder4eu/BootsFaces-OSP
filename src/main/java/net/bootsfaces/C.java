@@ -40,7 +40,6 @@ public final class C {
 
 	public static final String P_BLOCK_UI = "net.bootsfaces.blockUI";
 
-	public static final String P_GET_DATATABLE_FROM_CDN = "net.bootsfaces.get_datatable_from_cdn";
 	public static final String P_GET_JQUERYUI_FROM_CDN = "net.bootsfaces.get_jqueryui_from_cdn";
 	public static final String P_GET_JQUERY_FROM_CDN = "net.bootsfaces.get_jquery_from_cdn";
 	public static final String P_GET_BOOTSTRAP_FROM_CDN = "net.bootsfaces.get_bootstrap_from_cdn";

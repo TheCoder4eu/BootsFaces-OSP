@@ -19,7 +19,6 @@ package net.bootsfaces.listeners;
 
 import static net.bootsfaces.C.P_BLOCK_UI;
 import static net.bootsfaces.C.P_GET_BOOTSTRAP_FROM_CDN;
-import static net.bootsfaces.C.P_GET_DATATABLE_FROM_CDN;
 import static net.bootsfaces.C.P_GET_FONTAWESOME_FROM_CDN;
 import static net.bootsfaces.C.P_GET_JQUERYUI_FROM_CDN;
 import static net.bootsfaces.C.P_GET_JQUERY_FROM_CDN;
@@ -982,43 +981,5 @@ public class AddResourcesListener implements SystemEventListener {
 
 	private boolean isFalseOrNo(String param) {
 		return param.equalsIgnoreCase("false") || param.equalsIgnoreCase("no");
-	}
-
-	/**
-	 * Add the default datatables.net resource if and only if the user doesn't bring
-	 * their own copy, and if they didn't disallow it in the web.xml by setting the
-	 * context paramter net.bootsfaces.get_datatable_from_cdn to true.
-	 *
-	 * @param defaultFilename The URL of the file to be loaded
-	 * @param type            either "js" or "css"
-	 */
-	public static void addDatatablesResourceIfNecessary(String defaultFilename, String type) {
-		boolean loadDatatables = shouldLibraryBeLoaded(P_GET_DATATABLE_FROM_CDN, true);
-		// Do we have to add datatables.min.{css|js}, or are the resources already
-		// there?
-		FacesContext context = FacesContext.getCurrentInstance();
-		UIViewRoot root = context.getViewRoot();
-
-		String[] positions = { "head", "body", "form" };
-		for (String position : positions) {
-			if (loadDatatables) {
-				List<UIComponent> availableResources = root.getComponentResources(context, position);
-				for (UIComponent ava : availableResources) {
-					if (ava.isRendered()) {
-						String name = (String) ava.getAttributes().get("name");
-						if (null != name) {
-							name = name.toLowerCase();
-							if (name.contains("datatables") && name.endsWith("." + type)) {
-								loadDatatables = false;
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-		if (loadDatatables) {
-			addResourceIfNecessary(defaultFilename);
-		}
 	}
 }
