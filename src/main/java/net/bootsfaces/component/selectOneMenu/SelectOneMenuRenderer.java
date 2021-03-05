@@ -49,70 +49,49 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 	/** Receives the value from the client and sends it to the JSF bean. */
 	@Override
-	public void decode(FacesContext context, UIComponent component) {
-		SelectOneMenu menu = (SelectOneMenu) component;
+	public void decode(final FacesContext context, final UIComponent component) {
+		final SelectOneMenu menu = (SelectOneMenu) component;
 		if (menu.isDisabled() || menu.isReadonly()) {
 			return;
 		}
-		String outerClientId = menu.getClientId(context);
-		String clientId = outerClientId + "Inner";
-		String submittedOptionValue = (String) context.getExternalContext().getRequestParameterMap().get(clientId);
+		final String outerClientId = menu.getClientId(context);
+		final String clientId = outerClientId + "Inner";
+		final String submittedOptionValue = context.getExternalContext().getRequestParameterMap().get(clientId);
 
 		Converter converter = menu.getConverter();
 		if (null == converter) {
 			converter = findImplicitConverter(context, component);
 		}
-		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
 
-		if (null != submittedOptionValue) {
-			for (int index = 0; index < items.size(); index++) {
-				Object currentOption = items.get(index).getSelectItem();
-				String currentOptionValueAsString;
-				Object currentOptionValue = null;
-				if (currentOption instanceof SelectItem) {
-					if (!((SelectItem) currentOption).isDisabled()) {
-						currentOptionValue = ((SelectItem) currentOption).getValue();
-					}
-				}
-				if (currentOptionValue instanceof String) {
-					currentOptionValueAsString = (String) currentOptionValue;
-				} else if (null != converter) {
-					currentOptionValueAsString = converter.getAsString(context, component, currentOptionValue);
-				} else if (currentOptionValue != null) {
-					currentOptionValueAsString = String.valueOf(index);
-				} else {
-					currentOptionValueAsString = ""; // null values are submitted as empty strings
-				}
-				if (submittedOptionValue.equals(currentOptionValueAsString)) {
-					Object submittedValue = null;
-					if (currentOptionValue == null) {
-						submittedValue = null;
-					} else {
-						submittedValue = null != converter ? currentOptionValueAsString : currentOptionValue;
-					}
-					menu.setSubmittedValue(submittedValue);
-					menu.setValid(true);
-					
-					menu.validateValue(context, submittedValue);
-					new AJAXRenderer().decode(context, component, clientId);
-					if (menu.isValid()) {
-						if (currentOptionValue == null)  {
-							menu.setLocalValueSet(true);
-						}
-					}
-					return;
-				}
-			}
-			menu.validateValue(context, null);
-			menu.setSubmittedValue(null);
-			menu.setValid(false);
-			return;
+		Object convertedValue;
+		if (converter != null) {
+			convertedValue = converter.getAsObject(context, component, submittedOptionValue);
+			menu.validateValue(context, convertedValue);
+			menu.setSubmittedValue(submittedOptionValue);
+		} else {
+			convertedValue = findValue(context, component, submittedOptionValue);
+			menu.validateValue(context, convertedValue);
+			menu.setSubmittedValue(convertedValue);
 		}
 
 		menu.setValid(true);
-		menu.validateValue(context, submittedOptionValue);
-		menu.setSubmittedValue(submittedOptionValue);
 		new AJAXRenderer().decode(context, component, clientId);
+	}
+
+	private Object findValue(final FacesContext context, final UIComponent menu, final String submittedOptionValue) {
+		final List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, null);
+		for (final SelectItemAndComponent item : items) {
+			final SelectItem currentOption = item.getSelectItem();
+			if (!currentOption.isDisabled()) {
+				Object currentOptionValue = currentOption.getValue();
+				if (currentOptionValue == null && submittedOptionValue == null) {
+					return null;
+				} else if (submittedOptionValue != null && submittedOptionValue.equals(String.valueOf(currentOptionValue))) {
+					return currentOptionValue;
+				}
+			}
+		}
+		throw new RuntimeException("Could not match a select item for submittedOptionValue:" + submittedOptionValue + " menu:" + menu);
 	}
 
 	/** Generates the HTML code for this component. */
