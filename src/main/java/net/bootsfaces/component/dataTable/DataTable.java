@@ -100,10 +100,10 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 		Tooltip.addResourceFiles();
 		AddResourcesListener.addThemedCSSResource("core.css");
 		// DataTables with almost all extensions except Flash export and KeyTable - version of 10.11.2019
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.css", "css");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js", "css");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js", "css");
-		AddResourcesListener.addDatatablesResourceIfNecessary("https://cdn.datatables.net/v/bs/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sl-1.3.1/datatables.min.js", "js");
+		AddResourcesListener.addExtCSSResource("datatables.min.css");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/pdfmake.min.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/vfs_fonts.js");
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/datatables.min.js");
 	}
 
 	@Override
@@ -357,24 +357,11 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	@Override
 	public void setMarkSearchResults(boolean _markSearchResults) {
 		if (_markSearchResults) {
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.min.css");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.js");
+			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/datatables.mark.min.js");
+			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/mark.js-jquery.mark.min.js");
+			AddResourcesListener.addExtCSSResource("datatables.mark.min.css");
 		}
 		super.setMarkSearchResults(_markSearchResults);
-	}
-
-	/**
-	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at
-	 * https://datatables.net/reference/option/#rowgroup.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 * @param _rowGroup
-	 */
-	@Override
-	public void setRowGroup(String _rowGroup) {
-		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
-		super.setRowGroup(_rowGroup);
 	}
 
 	void importCheckboxColumnLib() {
