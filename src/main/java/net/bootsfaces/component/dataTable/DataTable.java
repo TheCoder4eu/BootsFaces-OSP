@@ -357,24 +357,11 @@ public class DataTable extends DataTableCore implements IAJAXComponent, IAJAXCom
 	@Override
 	public void setMarkSearchResults(boolean _markSearchResults) {
 		if (_markSearchResults) {
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.min.css");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.jsdelivr.net/g/mark.js(jquery.mark.min.js)");
-			AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/plug-ins/1.10.18/features/mark.js/datatables.mark.js");
+			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/datatables.mark.min.js");
+			AddResourcesListener.addBasicJSResource(C.BSF_LIBRARY, "js/mark.js-jquery.mark.min.js");
+			AddResourcesListener.addExtCSSResource("datatables.mark.min.css");
 		}
 		super.setMarkSearchResults(_markSearchResults);
-	}
-
-	/**
-	 * Group the rows by a common column value. Can be a number or a Json-object, as documented at
-	 * https://datatables.net/reference/option/#rowgroup.
-	 * <P>
-	 * Usually this method is called internally by the JSF engine.
-	 * @param _rowGroup
-	 */
-	@Override
-	public void setRowGroup(String _rowGroup) {
-		AddResourcesListener.addResourceIfNecessary("https://cdn.datatables.net/rowgroup/1.1.0/js/dataTables.rowGroup.min.js");
-		super.setRowGroup(_rowGroup);
 	}
 
 	void importCheckboxColumnLib() {
