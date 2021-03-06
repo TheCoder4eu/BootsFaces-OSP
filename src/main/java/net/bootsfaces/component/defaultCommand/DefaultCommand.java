@@ -27,6 +27,7 @@ public class DefaultCommand extends UIComponentBase {
 		// "jq/jquery.js");
 	}
 
+	@Override
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
@@ -63,14 +64,14 @@ public class DefaultCommand extends UIComponentBase {
 
 				rw.writeText("" + "$(function() { " + "    $('form#"
 						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " input').keypress(function (e) { "
-						+ "    if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { "
+						+ "    if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) { "
 						+ "        document.getElementsByName('" + actionCommandId + "')[0].click();return false; "
 						+ "    } else { return true; "
 						+ "    } " + "    }); " + "});", null);
 				
 				rw.writeText("" + "$(function() { " + "    $('form#"
 						+ BsfUtils.escapeJQuerySpecialCharsInSelector(formId) + " textarea').keypress(function (e) { "
-						+ "    if ((e.ctrlKey && e.which && e.which == 13) || (e.ctrlKey && e.keyCode && e.keyCode == 13)) { "
+						+ "    if ((e.ctrlKey && e.which && e.which === 13) || (e.ctrlKey && e.keyCode && e.keyCode === 13)) { "
 						+ "        document.getElementsByName('" + actionCommandId + "')[0].click();return false; "
 						+ "    } else { return true; "
 						+ "    } " + "    }); " + "});", null);

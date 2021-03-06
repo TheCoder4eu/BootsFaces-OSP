@@ -20,11 +20,13 @@ package net.bootsfaces.component.inputText;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
+
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.inputSecret.InputSecret;
@@ -229,7 +231,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 				"tabindex", "title" });
 
 		String autocomplete = inputText.getAutocomplete();
-		if ((autocomplete != null) && (autocomplete.equals("off"))) {
+		if ((autocomplete != null) && (autocomplete.equals("off") || autocomplete.equals("false"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
 

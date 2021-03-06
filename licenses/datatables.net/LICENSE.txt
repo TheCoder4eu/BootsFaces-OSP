@@ -1,8 +1,8 @@
-DataTables is available under the MIT license.
+DataTables is available under the MIT license. 
 In short, this means that you are free to use DataTables as you wish, including modifying and redistributing the code, as long as the original copyright notice is retained.
 
 MIT license
-Copyright (C) 2008-2017, SpryMedia Ltd.
+Copyright (C) 2008-2019, SpryMedia Ltd.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), 
 to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 

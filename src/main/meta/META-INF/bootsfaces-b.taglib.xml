@@ -140,6 +140,12 @@
 		  <type>java.lang.String</type>
 		</attribute>
 		<attribute>
+		  <description><![CDATA[Setting this flag enables opening panels without closing other panels.]]></description>
+		  <name>multiple</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to offset.]]></description>
 		  <name>offset</name>
 		  <required>false</required>
@@ -3830,7 +3836,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -6562,6 +6568,18 @@
 		  <name>largeScreen</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>length-change</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
+		</attribute>
+		<attribute>
+		  <description><![CDATA[Activates the page length menu of the dataTable. Default value is 'true'.]]></description>
+		  <name>lengthChange</name>
+		  <required>false</required>
+		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, search results are marked yellow as you type. Based on mark.js (see https://datatables.net/blog/2017-01-19).]]></description>
@@ -12760,7 +12778,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -13524,7 +13542,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
@@ -14354,7 +14372,7 @@
 		  <type>java.lang.Boolean</type>
 		</attribute>
 		<attribute>
-		  <description><![CDATA[Controls browser autocomplete behavior.]]></description>
+		  <description><![CDATA[Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'.]]></description>
 		  <name>autocomplete</name>
 		  <required>false</required>
 		  <type>java.lang.String</type>
