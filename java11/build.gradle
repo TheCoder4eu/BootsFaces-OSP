@@ -21,11 +21,11 @@
 apply plugin: 'java'
 
 //Configurations for Target Java 11 runtime.
-sourceCompatibility = '1.7'
+sourceCompatibility = '1.8'
 targetCompatibility = '11'
 
 compileJava {
-  sourceCompatibility = '1.7'
+  sourceCompatibility = '1.8'
   targetCompatibility = '11'
 }
 
