@@ -17,25 +17,11 @@
  */
 package net.bootsfaces.listeners;
 
-import static net.bootsfaces.C.P_BLOCK_UI;
-import static net.bootsfaces.C.P_GET_BOOTSTRAP_FROM_CDN;
-import static net.bootsfaces.C.P_GET_FONTAWESOME_FROM_CDN;
-import static net.bootsfaces.C.P_GET_JQUERYUI_FROM_CDN;
-import static net.bootsfaces.C.P_GET_JQUERY_FROM_CDN;
-import static net.bootsfaces.C.THEME_NAME_DEFAULT;
-import static net.bootsfaces.C.THEME_NAME_OTHER;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import net.bootsfaces.C;
+import net.bootsfaces.beans.ELTools;
+import net.bootsfaces.component.internalCssScriptResource.InternalCssScriptResource;
+import net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptResource;
+import net.bootsfaces.utils.BsfUtils;
 
 import javax.faces.FacesException;
 import javax.faces.application.Resource;
@@ -49,12 +35,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.SystemEvent;
 import javax.faces.event.SystemEventListener;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import net.bootsfaces.C;
-import net.bootsfaces.beans.ELTools;
-import net.bootsfaces.component.internalCssScriptResource.InternalCssScriptResource;
-import net.bootsfaces.component.internalJavaScriptResource.InternalJavaScriptResource;
-import net.bootsfaces.utils.BsfUtils;
+import static net.bootsfaces.C.*;
 
 /**
  * This class adds the resource needed by BootsFaces and ensures that they are
@@ -435,7 +421,10 @@ public class AddResourcesListener implements SystemEventListener {
 
 		removeDuplicateResources(root, context);
 
-		addResourceIfNecessary(root, context, new InternalIE8CompatiblityLinks());
+		String disableInternalIe8CompatibilityLink = BsfUtils.getInitParam(P_GET_INTERNAL_IE8_COMPATIBILITY_LINK_DISABLE);
+		if (!Boolean.parseBoolean(disableInternalIe8CompatibilityLink)) {
+			addResourceIfNecessary(root, context, new InternalIE8CompatiblityLinks());
+		}
 
 		enforceCorrectLoadOrder(root, context);
 	}

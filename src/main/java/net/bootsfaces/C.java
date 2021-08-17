@@ -45,6 +45,8 @@ public final class C {
 	public static final String P_GET_BOOTSTRAP_FROM_CDN = "net.bootsfaces.get_bootstrap_from_cdn";
 	public static final String P_GET_FONTAWESOME_FROM_CDN = "net.bootsfaces.get_fontawesome_from_cdn";
 
+	public static final String P_GET_INTERNAL_IE8_COMPATIBILITY_LINK_DISABLE = "net.bootsfaces.listeners.InternalIE8CompatibilityLink_DISABLE";
+
 	public static final String THEME_NAME_DEFAULT = "default";
 	public static final String THEME_NAME_OTHER = "other";
 
