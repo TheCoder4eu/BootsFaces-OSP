@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.bootsfaces</groupId>
 	<artifactId>bootsfaces</artifactId>
-	<version>1.5.0-SNAPSHOT</version>
+	<version>1.6.0-SNAPSHOT</version>
 	<name>BootsFaces</name>
 	<description>TheCoder4EU</description>
 	<url>http://www.bootsfaces.net</url>
@@ -65,6 +65,11 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+	    <dependency>
+	      <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+	      <artifactId>owasp-java-html-sanitizer</artifactId>
+	      <version>20191001.1</version>
+	    </dependency>
 	</dependencies>
 
 

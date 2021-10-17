@@ -49,11 +49,12 @@ mavenCentral()
 }
 
 dependencies {
-  compile 'javax.servlet:javax.servlet-api:3.1.0'
-  compile 'com.sun.faces:jsf-api:2.2.14'
-  compile 'javax.el:javax.el-api:3.0.0'
-  testCompile 'junit:junit:4.11'
-  testCompile 'org.mockito:mockito-core:2.0.17-beta'
+  compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+  compileOnly 'com.sun.faces:jsf-api:2.2.14'
+  compileOnly 'javax.el:javax.el-api:3.0.0'
+  compileOnly 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
+  testImplementation 'junit:junit:4.11'
+  testImplementation 'org.mockito:mockito-core:2.0.17-beta'
 // testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
 // testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven:2.1.1'
 // testCompile 'org.jboss.shrinkwrap.resolver:shrinkwrap-resolver-impl-maven-archive:2.1.1'
@@ -103,7 +104,7 @@ jar.dependsOn(":gradleResources:buildResources")
 //jar.onlyIf { buildJava9==true }
 
 task defaultJar(type: Jar) {
-   baseName='BootsFaces-OSP-jre9-default'
+   archiveBaseName='BootsFaces-OSP-jre9-default'
    from(sourceSets.main.output.classesDirs) {
         include "**"
    }

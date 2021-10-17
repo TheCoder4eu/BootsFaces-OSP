@@ -24,7 +24,7 @@ import javax.faces.component.UIComponentBase;
 public abstract class AccordionCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {
 
 	protected enum PropertyKeys {
-		autoUpdate, colLg, colMd, colSm, colXs, contentDisabled, display, expandedPanels, hidden, largeScreen, mediumScreen, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
+		autoUpdate, colLg, colMd, colSm, colXs, contentDisabled, display, expandedPanels, hidden, largeScreen, mediumScreen, multiple, offset, offsetLg, offsetMd, offsetSm, offsetXs, smallScreen, span, style, styleClass, tinyScreen, tooltip, tooltipContainer, tooltipDelay, tooltipDelayHide, tooltipDelayShow, tooltipPosition, visible;
 		String toString;
 
 		PropertyKeys(String toString) {
@@ -213,6 +213,21 @@ public abstract class AccordionCore extends UIComponentBase implements net.boots
 	 */
 	public void setMediumScreen(String _mediumScreen) {
 		getStateHelper().put(PropertyKeys.mediumScreen, _mediumScreen);
+	}
+	
+	/**
+	 * Setting this flag enables opening panels without closing other panels. <P>
+	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
+	 */
+	public boolean isMultiple() {
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.multiple, false);
+	}
+	
+	/**
+	 * Enables or disables opening panels without closing other panels. <P>
+	 */
+	public void setMultiple(boolean _multiple) {
+		getStateHelper().put(PropertyKeys.multiple, _multiple);
 	}
 
 	/**

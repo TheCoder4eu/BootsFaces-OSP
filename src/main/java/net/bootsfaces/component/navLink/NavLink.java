@@ -65,6 +65,11 @@ public class NavLink extends NavLinkCore implements ClientBehaviorHolder, net.bo
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
+		
+		if ("iconAwesome".equals(name))
+			AddResourcesListener.setNeedsFontsAwesome(this);
+		else if ("iconBrand".equals(name) || "iconLight".equals(name) || "iconRegular".equals(name) || "iconSolid".equals(name))
+			AddResourcesListener.setFontAwesomeVersion(5, this);
 	}
 
 	private static final Collection<String> EVENT_NAMES = Collections

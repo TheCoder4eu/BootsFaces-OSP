@@ -42,7 +42,9 @@ if(System.getProperty("BSF-THEME", "") != "") {
    ext.allThemes= System.getProperty("BSF-THEME", "").replaceAll("\\s","").tokenize(',')
 } else {
    ext.themes= props['bootswatch.theme'].replaceAll("\\s","").tokenize(',')
-   ext.allThemes= ('default,patternfly,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
+   ext.allThemes= ('default,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
+   // Temporarily disable Patternfly Theme inclusion.
+   //ext.allThemes= ('default,patternfly,'+props['bootswatch.theme']).replaceAll("\\s","").tokenize(',')
    println 'Themes('+themes.size+'):'+props['bootswatch.theme']
 }
 
@@ -121,4 +123,4 @@ showConfig.doFirst {
 
 //By default build also the default( plain Bootstrap without Themes ) Jar for Java 8 and 9 only
 //defaultTasks 'showConfig', ':java8:defaultJar', ':java9:defaultJar', ':java10:defaultJar', ':java7:jar', ':java6:jar'
-defaultTasks 'showConfig', ':java8:defaultJar', ':java11:defaultJar' //, ':java11:defaultJar'
+defaultTasks 'showConfig', ':java8:defaultJar', ':java11:defaultJar' //, ':java17:defaultJar' //Next LTS?

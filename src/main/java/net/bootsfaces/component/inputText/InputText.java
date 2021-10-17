@@ -127,6 +127,10 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
+
+		if ("mask".equals(name)) addInputmaskResources();
+		else if ("typeahead".equals(name)) addTypeaheadResources();
+		else if ("tags".equals(name)) addTagsResources();
 	}
 
 	@Override
@@ -149,10 +153,7 @@ public String getFamily() {
 	 */
 	public void setTags(boolean _tags) {
 		if (_tags) {
-			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
-			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");
-			AddResourcesListener.addExtCSSResource("bootstrap-tagsinput-typeahead.css");
-			AddResourcesListener.addExtCSSResource("input-tags.css");
+			addTagsResources();
 		}
 		super.setTags(_tags);
 	}
@@ -164,8 +165,7 @@ public String getFamily() {
 	@Override
 	public void setTypeahead(boolean _typeahead) {
 		if (_typeahead) {
-			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
-			AddResourcesListener.addExtCSSResource("typeahead.css");
+			addTypeaheadResources();
 		}
 		super.setTypeahead(_typeahead);
 	}
@@ -192,9 +192,24 @@ public String getFamily() {
    */
 	public void setMask(String mask) {
 		if (mask != null && !mask.isEmpty()) {
-			AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.inputmask.bundle.min.js");
+			addInputmaskResources();
 		}
     getStateHelper().put(PropertyKeys.mask, mask);
 	}
-  
+	
+	private void addInputmaskResources() {
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.inputmask.bundle.min.js");		
+	}
+
+	private void addTypeaheadResources() {
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
+		AddResourcesListener.addExtCSSResource("typeahead.css");
+	}
+	
+	private void addTagsResources() {
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
+		AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");
+		AddResourcesListener.addExtCSSResource("bootstrap-tagsinput-typeahead.css");
+		AddResourcesListener.addExtCSSResource("input-tags.css");
+	}
 }
