@@ -208,6 +208,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	private void encodeDefaultLanguageJS(FacesContext fc) throws IOException {
 		ResponseWriter rw = fc.getResponseWriter();
 		rw.startElement("script", null);
+		rw.writeAttribute("type", "text/javascript", null);
 		rw.write("$.datepicker.setDefaults($.datepicker.regional['" + fc.getViewRoot().getLocale().getLanguage()
 				+ "']);");
 		rw.endElement("script");

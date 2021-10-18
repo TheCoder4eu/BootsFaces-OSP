@@ -11,7 +11,9 @@ import javax.faces.render.Renderer;
 /**
  * @author jottyfan
  */
-/** This class generates the HTML code of &lt;b:fullcalendar /&gt;. */
+/**
+ * This class generates the HTML code of &lt;b:fullcalendar /&gt;.
+ */
 @FacesRenderer(componentFamily = "net.bootsfaces.component", rendererType = "net.bootsfaces.component.fullCalendar.FullCalendar")
 public class FullCalendarRenderer extends Renderer {
 
@@ -50,7 +52,7 @@ public class FullCalendarRenderer extends Renderer {
 
 		// activate the jquery plugin on that div
 		rw.startElement("script", null);
-
+		rw.writeAttribute("type", "text/javascript", null);
 		rw.writeText("$(document).ready(function() {", null);
 		rw.writeText("  $(\"[id='" + clientId + "']\").fullCalendar({", null);
 		rw.writeText("    lang: '" + lang + "',", null);
@@ -59,7 +61,7 @@ public class FullCalendarRenderer extends Renderer {
 		}
 		rw.writeText("    allDaySlot: " + fullCalendar.isAllDaySlot() + ",", null);
 		if (fullCalendar.getSlotDuration() != null) {
-			rw.writeText("    slotDuration: '" +  fullCalendar.getSlotDuration() + "',", null);
+			rw.writeText("    slotDuration: '" + fullCalendar.getSlotDuration() + "',", null);
 		}
 		if (fullCalendar.getDefaultView() != null) {
 			rw.writeText("    defaultView: '" + fullCalendar.getDefaultView() + "',", null);

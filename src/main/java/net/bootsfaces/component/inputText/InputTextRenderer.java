@@ -3,17 +3,17 @@
  *
  *  This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 package net.bootsfaces.component.inputText;
 
@@ -37,6 +37,7 @@ import net.bootsfaces.render.Tooltip;
 
 @FacesRenderer(componentFamily = C.BSFCOMPONENT, rendererType = "net.bootsfaces.component.inputText.InputText")
 public class InputTextRenderer extends CoreInputRenderer {
+
 	private static final Logger LOGGER = Logger.getLogger(InputTextRenderer.class.getName());
 
 	@Override
@@ -44,17 +45,18 @@ public class InputTextRenderer extends CoreInputRenderer {
 		decode(context, component, null, null);
 	}
 
-    /** 
-     * This method is used by RadioButtons and SelectOneMenus to limit the list of legal values. If another value is
-     * sent, the input field is considered empty. This comes in useful the the back-end attribute is a primitive
-     * type like int, which doesn't support null values.
-     * @param context
-     * @param component
-     * @param legalValues an optional list of legal values. May be null.
-     * @param realEventSourceName The real attribute name of the request parameter. By default, BootsFaces guesses the attribute name
-     * from the client ID or the name attribute of the input field. However, in some cases such as radio buttons,
-     * this detection fails.
-     */
+	/**
+	 * This method is used by RadioButtons and SelectOneMenus to limit the list of legal values. If another value is
+	 * sent, the input field is considered empty. This comes in useful the the back-end attribute is a primitive
+	 * type like int, which doesn't support null values.
+	 *
+	 * @param context
+	 * @param component
+	 * @param legalValues an optional list of legal values. May be null.
+	 * @param realEventSourceName The real attribute name of the request parameter. By default, BootsFaces guesses
+	 * the attribute name from the client ID or the name attribute of the input field. However, in some cases such
+	 * as radio buttons, this detection fails.
+	 */
 	public void decode(FacesContext context, UIComponent component, List<String> legalValues, String realEventSourceName) {
 		InputText inputText = (InputText) component;
 
@@ -72,22 +74,22 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if (null != inputText.getFieldId()) {
 			realEventSourceName = inputText.getFieldId();
 		}
-		
+
 		if (null == name) {
 			name = "input_" + clientId;
 		}
 		String submittedValue = (String) context.getExternalContext().getRequestParameterMap().get(name);
 		if (inputText instanceof InputSecret) {
-			if (!((InputSecret)inputText).isRenderValue()) {
+			if (!((InputSecret) inputText).isRenderValue()) {
 				if ("*******".equals(submittedValue)) {
 					submittedValue = null;
 				}
 			}
 		}
-		
+
 		if (null != legalValues && null != submittedValue) {
 			boolean found = false;
-			for (String option: legalValues) {
+			for (String option : legalValues) {
 				found |= submittedValue.equals(option);
 			}
 			if (!found) {
@@ -107,11 +109,11 @@ public class InputTextRenderer extends CoreInputRenderer {
 			return;
 		}
 		InputText inputText = (InputText) component;
-		int numberOfDivs=0;
+		int numberOfDivs = 0;
 
 		ResponseWriter rw = context.getResponseWriter();
 		String clientId = inputText.getClientId();
-		boolean clientIdHasBeenRendered=false;
+		boolean clientIdHasBeenRendered = false;
 
 		String responsiveLabelClass = null;
 		String label = inputText.getLabel();
@@ -128,7 +130,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 			rw.startElement("div", component);
 			rw.writeAttribute("class", responsiveStyleClass, "class");
 			rw.writeAttribute("id", clientId, "id"); // clientId
-			clientIdHasBeenRendered=true;
+			clientIdHasBeenRendered = true;
 			Tooltip.generateTooltip(context, inputText, rw);
 			numberOfDivs++;
 		}
@@ -147,10 +149,11 @@ public class InputTextRenderer extends CoreInputRenderer {
 			t = "password";
 		} else { // ordinary input fields
 			t = inputText.getType();
-			if (t == null)
+			if (t == null) {
 				t = "text";
+			}
 		}
-		boolean visible =  !"hidden".equals(t);
+		boolean visible = !"hidden".equals(t);
 
 		if (visible) {
 			rw.startElement("div", component);
@@ -158,14 +161,14 @@ public class InputTextRenderer extends CoreInputRenderer {
 			if (null != inputText.getDir()) {
 				rw.writeAttribute("dir", inputText.getDir(), "dir");
 			}
-	
+
 			if (!clientIdHasBeenRendered) {
 				rw.writeAttribute("id", clientId, "id");
 				Tooltip.generateTooltip(context, inputText, rw);
-				clientIdHasBeenRendered=true;
+				clientIdHasBeenRendered = true;
 			}
-                        
-                        rw.writeAttribute("class", getWithFeedback(getInputMode(inputText.isInline()), component), "class");
+
+			rw.writeAttribute("class", getWithFeedback(getInputMode(inputText.isInline()), component), "class");
 		}
 
 		String fieldId = inputText.getFieldId();
@@ -176,9 +179,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if (visible && label != null) {
 			rw.startElement("label", component);
 			rw.writeAttribute("for", fieldId, "for"); // "input_" +
-																	// clientId
+			// clientId
 			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass,
-					"control-label");
+				"control-label");
 			writeAttribute(rw, "style", inputText.getLabelStyle());
 
 			rw.writeText(label, null);
@@ -227,8 +230,8 @@ public class InputTextRenderer extends CoreInputRenderer {
 		}
 
 		// Encode attributes (HTML 4 pass-through + DHTML)
-		renderPassThruAttributes(context, component, new String[] { "accesskey", "alt", "dir", "lang", "maxlength", "size", "style",
-				"tabindex", "title" });
+		renderPassThruAttributes(context, component, new String[]{"accesskey", "alt", "dir", "lang", "maxlength", "size", "style",
+			"tabindex", "title"});
 
 		String autocomplete = inputText.getAutocomplete();
 		if ((autocomplete != null) && (autocomplete.equals("off") || autocomplete.equals("false"))) {
@@ -243,7 +246,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 				}
 			}
 		}
-		if (v != null && v.length()> 0) {
+		if (v != null && v.length() > 0) {
 			rw.writeAttribute("value", v, null);
 		}
 
@@ -255,8 +258,8 @@ public class InputTextRenderer extends CoreInputRenderer {
 			R.decorateFacetComponent(inputText, app, context, rw);
 		}
 
-		while (numberOfDivs>0) {
-			rw.endElement("div"); 
+		while (numberOfDivs > 0) {
+			rw.endElement("div");
 			numberOfDivs--;
 		}
 
@@ -267,8 +270,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 			String id = fieldId; // input id
 			id = id.replace(":", "\\\\:"); // escape the id for jQuery
 			rw.startElement("script", null);
-			String js = "$('#" + id + "').tagsinput();" + //
-			            "$('#" + id + "').attr('name','');";
+			rw.writeAttribute("type", "text/javascript", null);
+			String js = "$('#" + id + "').tagsinput();"
+				+ "$('#" + id + "').attr('name','');";
 			rw.writeText(js, null);
 			rw.endElement("script");
 		}
@@ -278,24 +282,25 @@ public class InputTextRenderer extends CoreInputRenderer {
 			String id = component.getClientId();
 			id = id.replace(":", "_"); // we need to escape the id for jQuery
 			rw.startElement("script", component);
+			rw.writeAttribute("type", "text/javascript", null);
 			String typeaheadname = id + "_typeahead";
 			if (inputText.isTags()) {
-				String js = "var engine = new Bloodhound({" + //
-						"name: '" + typeaheadname + "'," + //
-						"local: " + getTypeaheadObjectArray(inputText) + "," + //
-						"datumTokenizer: function(d) {" + //
-						"  return Bloodhound.tokenizers.whitespace(d.val);" + //
-						"}," + //
-						"queryTokenizer: Bloodhound.tokenizers.whitespace" + //
-						"});";
-				js += "$('." + id + "').tagsinput({" + //
-						"typeaheadjs: {" + //
-						"  name: 'animals'," + //
-						"  displayKey: 'val'," + //
-						"  valueKey: 'val'," + //
-						"  source: engine.ttAdapter()" + //
-						"}" + //
-						"});";//
+				String js = "var engine = new Bloodhound({"
+					+ "name: '" + typeaheadname + "',"
+					+ "local: " + getTypeaheadObjectArray(inputText) + ","
+					+ "datumTokenizer: function(d) {"
+					+ "  return Bloodhound.tokenizers.whitespace(d.val);"
+					+ "},"
+					+ "queryTokenizer: Bloodhound.tokenizers.whitespace"
+					+ "});";
+				js += "$('." + id + "').tagsinput({"
+					+ "typeaheadjs: {"
+					+ "  name: 'animals',"
+					+ "  displayKey: 'val',"
+					+ "  valueKey: 'val',"
+					+ "  source: engine.ttAdapter()"
+					+ "}"
+					+ "});";
 
 				// The following lines fix issue #1079 on tags with typeahead.
 				// They empty duplicated 'name' attribute on generated input (which holds the original HTML id).
@@ -315,47 +320,48 @@ public class InputTextRenderer extends CoreInputRenderer {
 				options2 = addOption(options2, "limit:" + inputText.getTypeaheadLimit());
 				options2 = addOption(options2, "name:'" + typeaheadname + "'");
 				options2 = addOption(options2,
-						"source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
+					"source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
 
 				rw.writeText("$('." + id + "').typeahead({" + options + "},{" + options2 + "});", null);
 			}
 			rw.endElement("script");
 		}
-    encodeMask(context, inputText, fieldId, rw);
+		encodeMask(context, inputText, fieldId, rw);
 	}
-  
-  /**
-   * Add script to enable the input mask. If the mask attribute starts with {@code {}} the value is expected to be a
-   * JSON object (and can for example be used to set a regular expression: {@code {regex:'[0-9\u0600-\u06FF]*'}}).
-   * 
-   * See https://github.com/RobinHerbots/Inputmask.
-   * 
-   * @param context
-   * @param inputText
-   * @param fieldId
-   * @param rw
-   * 
-   * @throws IOException
-   */
-  protected void encodeMask(FacesContext context,
-                            InputText inputText,
-                            String fieldId,
-                            ResponseWriter rw) throws IOException {
-    if (inputText.getMask() != null && !inputText.getMask().isEmpty()) {
-      rw.startElement("script", inputText);
-      rw.writeText("Inputmask(", null);
-      if (inputText.getMask().trim().startsWith("{")) {
-	rw.writeText(inputText.getMask().trim(), null);
-      }
-      else {
-	rw.writeText(String.format("\"%s\"", inputText.getMask().replace("\"", "\\\"")), null);
-      }
-      rw.writeText(").mask(document.getElementById(\"", null);
-      rw.writeText(fieldId, null);
-      rw.writeText("\"));", null);
-      rw.endElement("script");
-    }
-  }
+
+	/**
+	 * Add script to enable the input mask. If the mask attribute starts with {@code {}} the value is expected to be
+	 * a JSON object (and can for example be used to set a regular expression:
+	 * {@code {regex:'[0-9\u0600-\u06FF]*'}}).
+	 *
+	 * See https://github.com/RobinHerbots/Inputmask.
+	 *
+	 * @param context
+	 * @param inputText
+	 * @param fieldId
+	 * @param rw
+	 *
+	 * @throws IOException
+	 */
+	protected void encodeMask(FacesContext context,
+		InputText inputText,
+		String fieldId,
+		ResponseWriter rw) throws IOException {
+		if (inputText.getMask() != null && !inputText.getMask().isEmpty()) {
+			rw.startElement("script", inputText);
+			rw.writeAttribute("type", "text/javascript", null);
+			rw.writeText("Inputmask(", null);
+			if (inputText.getMask().trim().startsWith("{")) {
+				rw.writeText(inputText.getMask().trim(), null);
+			} else {
+				rw.writeText(String.format("\"%s\"", inputText.getMask().replace("\"", "\\\"")), null);
+			}
+			rw.writeText(").mask(document.getElementById(\"", null);
+			rw.writeText(fieldId, null);
+			rw.writeText("\"));", null);
+			rw.endElement("script");
+		}
+	}
 
 	private String addOption(String options, String newOption) {
 		if (options.length() > 0) {
@@ -366,8 +372,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 	private String getTypeaheadValueArray(InputText inputText) {
 		Object values = inputText.getTypeaheadValues();
-		if (null == values)
+		if (null == values) {
 			return null;
+		}
 		if (values instanceof String) {
 			String s = (String) values;
 			s = s.trim();
@@ -388,7 +395,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 			return "[" + s + "]";
 		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (Iterable<?>)values) {
+			for (Object p : (Iterable<?>) values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -402,7 +409,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 			return "[" + s + "]";
 		} else if (values instanceof Object[]) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (Object[])values) {
+			for (Object p : (Object[]) values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -420,9 +427,10 @@ public class InputTextRenderer extends CoreInputRenderer {
 	}
 
 	private String getTypeaheadObjectArray(InputText inputText) {
-		Object values = inputText.getTypeaheadValues(); 
-		if (null == values)
+		Object values = inputText.getTypeaheadValues();
+		if (null == values) {
 			return null;
+		}
 		if (values instanceof String) {
 			String s = (String) values;
 			s = s.trim();
@@ -445,7 +453,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 			return "[" + s + "]";
 		} else if (values instanceof Iterable) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (Iterable<?>)values) {
+			for (Object p : (Iterable<?>) values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}
@@ -461,7 +469,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 			return "[" + s + "]";
 		} else if (values instanceof Object[]) {
 			StringBuilder b = new StringBuilder();
-			for (Object p : (Object[])values) {
+			for (Object p : (Object[]) values) {
 				if (b.length() > 0) {
 					b.append(',');
 				}

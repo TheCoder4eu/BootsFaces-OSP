@@ -60,25 +60,22 @@ public class InternalFALink extends UIComponentBase {
 	@Override
 	public void encodeBegin(FacesContext fc) throws IOException {
 		final String FA_VERSION = "4.7.0";
-		final String FONTAWESOME_CDN_URL = "//cdnjs.cloudflare.com/ajax/libs/font-awesome/" + FA_VERSION
-				+ "/css/font-awesome.min.css";
+		final String FONTAWESOME_CDN_URL = "//cdnjs.cloudflare.com/ajax/libs/font-awesome/" + FA_VERSION + "/css/font-awesome.min.css";
 
 		ResponseWriter responseWriter = fc.getResponseWriter();
 
-		LOGGER.log(Level.FINER, "do encodeBegin - version is {0} / needsVersion4 is {1}",
-				new Object[] { version, needsVersion4 });
+		LOGGER.log(Level.FINER, "do encodeBegin - version is {0} / needsVersion4 is {1}", new Object[]{version, needsVersion4});
 
 		if (version.contains("5")) {
 			responseWriter.append(
-					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
+				"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/all.css\" crossorigin=\"anonymous\"/>");
 			responseWriter.append(
-					"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/solid.css\" crossorigin=\"anonymous\"/>");
+				"<link type=\"text/css\" rel=\"stylesheet\" href=\"https://use.fontawesome.com/releases/v5.2.0/css/solid.css\" crossorigin=\"anonymous\"/>");
 
 		}
 		if (version.contains("4")) {
 			if (needsVersion4) {
-				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL
-						+ "\" crossorigin=\"anonymous\"/>");
+				responseWriter.append("<link type=\"text/css\" rel=\"stylesheet\" href=\"" + FONTAWESOME_CDN_URL + "\" crossorigin=\"anonymous\"/>");
 			}
 		}
 	}
