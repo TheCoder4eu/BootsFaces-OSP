@@ -18,12 +18,12 @@
 package net.bootsfaces.listeners;
 
 import java.io.IOException;
+import javax.faces.FacesException;
 
-import javax.faces.application.Application;
 import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 
@@ -53,26 +53,30 @@ public class InternalIE8CompatiblityLinks extends UIComponentBase {
 
 	@Override
 	public void encodeBegin(FacesContext context) throws IOException {
-		Application app = context.getApplication();
-		ResourceHandler rh = app.getResourceHandler();
-		ResponseWriter responseWriter = context.getResponseWriter();
-		Resource h5s = rh.createResource("js/html5shiv.js", C.BSF_LIBRARY);
-		Resource rjs = rh.createResource("js/respond.js", C.BSF_LIBRARY);
-
-		responseWriter.write("<!--[if lt IE 9]>");
-		responseWriter.startElement("script", null);
-		responseWriter.writeAttribute("type", "text/javascript", null);
-		responseWriter.writeAttribute("src", h5s.getRequestPath(), null);
-		responseWriter.endElement("script");
-		responseWriter.startElement("script", null);
-		responseWriter.writeAttribute("type", "text/javascript", null);
-		responseWriter.writeAttribute("src", rjs.getRequestPath(), null);
-		responseWriter.endElement("script");
-		responseWriter.write("<![endif]-->");
+		encodeJS(context, C.BSF_LIBRARY, "js/html5shiv.js");
+		encodeJS(context, C.BSF_LIBRARY, "js/respond.js");
 	}
 
 	@Override
 	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
+
+	private void encodeJS(FacesContext context, String library, String script) throws IOException {
+		ResponseWriter responseWriter = context.getResponseWriter();
+		ExternalContext externalContext = context.getExternalContext();
+		Resource resource = context.getApplication().getResourceHandler().createResource(script, library, "text/javascript");
+
+		if (resource == null) {
+			throw new FacesException("Error loading JavaScript, cannot find \"" + script + "\" resource of \"" + library + "\" library");
+		} else {
+			responseWriter.write("<!--[if lt IE 9]>");
+			responseWriter.startElement("script", null);
+			responseWriter.writeAttribute("type", "text/javascript", null);
+			responseWriter.writeAttribute("src", externalContext.encodeResourceURL(resource.getRequestPath()), null);
+			responseWriter.endElement("script");
+			responseWriter.write("<![endif]-->");
+		}
+	}
+
 }
