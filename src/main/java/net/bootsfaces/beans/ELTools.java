@@ -106,6 +106,7 @@ public class ELTools {
 	 * @return the object
 	 */
 	public static Object evalAsObject(String p_expression) throws PropertyNotFoundException {
+		try {
 		FacesContext context = FacesContext.getCurrentInstance();
 		ExpressionFactory expressionFactory = context.getApplication().getExpressionFactory();
 		ELContext elContext = context.getELContext();
@@ -113,6 +114,10 @@ public class ELTools {
 
 		Object result = vex.getValue(elContext);
 		return result;
+		} catch (NullPointerException ex) {
+			System.out.println("NPE in evalAsObject(" + p_expression + ")");
+			return null;
+		}
 	}
 
 	/**
