@@ -24,11 +24,13 @@ buildscript {
     }
     dependencies {
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.15.1'
-      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.1'
+      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.3'
+      //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.1'
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.1.0'
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.0.10'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:2.15.1'
-      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.1'
+      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.3'
+      //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.1'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.1.0'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.0.10'
     }
