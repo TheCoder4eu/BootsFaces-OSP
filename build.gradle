@@ -51,26 +51,18 @@ if(System.getProperty("BSF-THEME", "") != "") {
 //jQuery options
 ext.jqversion = props['jquery.version']
 //Java options
-//ext.buildJava6 = ( ( props['java6']!=null) && props['java6'].toUpperCase().contains("YES") )
-ext.buildJava7 = ( ( props['java7']!=null) && props['java7'].toUpperCase().contains("YES") )
 ext.buildJava8 = ( ( props['java8']!=null) && props['java8'].toUpperCase().contains("YES") )
-//ext.buildJava9 = ( ( props['java9']!=null) && props['java9'].toUpperCase().contains("YES") )
-ext.buildJava10 = ( ( props['java10']!=null) && props['java10'].toUpperCase().contains("YES") )
 ext.buildJava11 = ( ( props['java11']!=null) && props['java11'].toUpperCase().contains("YES") )
+ext.buildJava17 = ( ( props['java17']!=null) && props['java17'].toUpperCase().contains("YES") )
 
 // Javac Compilation properties
-//ext.buildOptsJava6=["-g"]
-ext.buildOptsJava7=["-g"]
+ext.buildOptsJava=["-g"]
 ext.buildOptsJava8=["-g"]
-ext.buildOptsJava9=["-g"]
-ext.buildOptsJava10=["-g"]
 ext.buildOptsJava11=["-g"]
-//if( props['java6opts']!=null) { ext.buildOptsJava6 = props['java6opts'].replaceAll("\\s","").tokenize(',') }
-if( props['java7opts']!=null) { ext.buildOptsJava7 = props['java7opts'].replaceAll("\\s","").tokenize(',') }
+ext.buildOptsJava17=["-g"]
 if( props['java8opts']!=null) { ext.buildOptsJava8 = props['java8opts'].replaceAll("\\s","").tokenize(',') }
-//if( props['java9opts']!=null) { ext.buildOptsJava9 = props['java9opts'].replaceAll("\\s","").tokenize(',') }
-if( props['java10opts']!=null) { ext.buildOptsJava10 = props['java10opts'].replaceAll("\\s","").tokenize(',') }
 if( props['java11opts']!=null) { ext.buildOptsJava11 = props['java11opts'].replaceAll("\\s","").tokenize(',') }
+if( props['java17opts']!=null) { ext.buildOptsJava17 = props['java17opts'].replaceAll("\\s","").tokenize(',') }
 ext.useBootClasspath= ( ( props['enableBootClasspath']!=null) && props['enableBootClasspath'].toUpperCase().contains("YES") )
 // Set the Artifact group ID
 group = 'net.bootsfaces'
@@ -91,18 +83,9 @@ task showConfig {
       println "allThemes="+allThemes
       println "jqversion="+jqversion
       println "--------Java--------"
-      //println "buildJava6:"+buildJava6
-      //println "buildJava7:"+buildJava7
-      println "buildJava8:"+buildJava8
-      //println "buildJava9:"+buildJava9
-      println "buildJava10:"+buildJava10
       println "buildJava11:"+buildJava11
-      //println "buildOptsJava6="+buildOptsJava6
-      //println "buildOptsJava7="+buildOptsJava7
-      println "buildOptsJava8="+buildOptsJava8
-      //println "buildOptsJava9="+buildOptsJava9
-      println "buildOptsJava10="+buildOptsJava10
-      println "buildOptsJava11="+buildOptsJava11
+      println "buildJava17:"+buildJava17
+      println "buildOptsJava="+buildOptsJava
       println "useBootClasspath="+useBootClasspath
       println "--------------------"
     }
@@ -122,5 +105,4 @@ showConfig.doFirst {
 }
 
 //By default build also the default( plain Bootstrap without Themes ) Jar for Java 8 and 9 only
-//defaultTasks 'showConfig', ':java8:defaultJar', ':java9:defaultJar', ':java10:defaultJar', ':java7:jar', ':java6:jar'
-defaultTasks 'showConfig', ':java8:defaultJar', ':java11:defaultJar' //, ':java17:defaultJar' //Next LTS?
+defaultTasks 'showConfig', ':javaBuild:defaultJar',':javaBuild:buildJava11Jar', ':javaBuild:buildJava8Jar' //':java8:defaultJar', ':java11:defaultJar', ':java17:defaultJar' //Java 17 LTS
