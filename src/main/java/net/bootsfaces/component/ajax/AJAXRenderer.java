@@ -379,7 +379,15 @@ public class AJAXRenderer extends CoreRenderer {
 					jsCallback = "";
 				}
 				if (null != rw) {
-					rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
+                                    boolean ajax = ((IAJAXComponent) component).isAjax();
+                                    ajax |= null != ((IAJAXComponent) component).getUpdate();
+                                    if (!generatedAJAXCall && ajax && "click".equals(keyClientBehavior)) {
+                                        //ajax call will be generated later, so skip for now
+                                        //see https://github.com/TheCoder4eu/BootsFaces-OSP/issues/750
+                                    }
+                                    else {
+                                        rw.writeAttribute("on" + keyClientBehavior, jsCallback + script, null);
+                                    }
 				}
 				if (null != code) {
 					code.append(jsCallback + script);
