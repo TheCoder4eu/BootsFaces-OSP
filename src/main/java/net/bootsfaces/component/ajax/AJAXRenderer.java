@@ -178,9 +178,20 @@ public class AJAXRenderer extends CoreRenderer {
 	}
 
 	public static void generateBootsFacesAJAXAndJavaScript(FacesContext context, ClientBehaviorHolder component,
-			ResponseWriter rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
+                ResponseWriter _rw, String specialEvent, String specialEventHandler, boolean isJQueryCallback,
 			boolean suppressAJAX) throws IOException {
 		boolean generatedAJAXCall = false;
+                
+                /**
+                 * Ugly fix for https://github.com/TheCoder4eu/BootsFaces-OSP/issues/750:
+                 * The following logic calls rw.writeAttribute for the onclick handler
+                 * twice, but the ResponseRenderer implementation keeps the first version,
+                 * while the second one is correct.
+                 * This wrapper holds back all calls to writeAttribute and only keeps the
+                 * last version per attribute name.
+                 */
+                AttributeOverwritingResponseWriter rw = new AttributeOverwritingResponseWriter(_rw);
+                
 		Collection<String> eventNames = component.getEventNames();
 		Map<String, String> jQueryEvents = ((IAJAXComponent) component).getJQueryEvents();
 		if (null != eventNames) {
@@ -264,6 +275,7 @@ public class AJAXRenderer extends CoreRenderer {
 				}
 			}
 			// TODO: what about composite components?
+                        rw.flushCachedAttributes();
 		}
 	}
 
