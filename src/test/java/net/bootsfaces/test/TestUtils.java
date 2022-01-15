@@ -18,8 +18,10 @@
 package net.bootsfaces.test;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;
 import javax.faces.render.Renderer;
 
@@ -43,11 +45,38 @@ public class TestUtils {
 		renderer.encodeEnd(context, component);
 	}
 
-	public static <T> String readResourceFile(Class<T> clazz, String fileName) throws IOException {
-		return IOUtils.toString(clazz.getResourceAsStream(fileName), "UTF-8");
+	public static void addFacet(UIComponent target, String facetName, UIComponent facet) {
+		target.getFacets().put(facetName, facet);
 	}
 
-	public static <T> String readResourceFileIgnoringNewlinesAndTabs(Class<T> clazz, String fileName) throws IOException {
+	/**
+	 * @return a component that encodes only its value without the need of a
+	 *         renderer
+	 */
+	public static UIOutput createSimpleTextComponent() {
+		return new UIOutput() {
+			@Override
+			public String getRendererType() {
+				return null;
+			}
+
+			@Override
+			public void encodeBegin(FacesContext context) throws IOException {
+				context.getResponseWriter().write((String) getValue());
+			};
+		};
+	}
+
+	public static <T> String readResourceFile(Class<T> clazz, String fileName) throws IOException {
+		InputStream in = clazz.getResourceAsStream(fileName);
+		if (in == null) {
+			throw new IOException("File not found: " + fileName);
+		}
+		return IOUtils.toString(in, "UTF-8");
+	}
+
+	public static <T> String readResourceFileIgnoringNewlinesAndTabs(Class<T> clazz, String fileName)
+			throws IOException {
 		return readResourceFile(clazz, fileName).replace("\r", "").replace("\n", "").replace("\t", "");
 	}
 }
