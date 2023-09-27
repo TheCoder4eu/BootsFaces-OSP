@@ -18,12 +18,12 @@
 
 package net.bootsfaces.component.datepicker;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -35,19 +35,19 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.component.html.HtmlInputText;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
+import jakarta.el.ValueExpression;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.html.HtmlInputText;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.formGroup.FormGroup;
@@ -180,7 +180,7 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 		} catch (ParseException e) {
 			this.setValid(false);
 			throw new ConverterException(
-					BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val, sdf, getLabel(fc)));
+					BsfUtils.getMessage("jakarta.faces.converter.DateTimeConverter.DATE", val, sdf, getLabel(fc)));
 		}
 	}
 
@@ -751,15 +751,15 @@ public class Datepicker extends HtmlInputText implements IResponsive, IResponsiv
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.faces.component.UIComponent getBinding() {
-		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	public jakarta.faces.component.UIComponent getBinding() {
+		return (jakarta.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
+	public void setBinding(jakarta.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 

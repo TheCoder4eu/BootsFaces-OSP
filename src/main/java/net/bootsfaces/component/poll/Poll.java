@@ -17,20 +17,20 @@
  */
 package net.bootsfaces.component.poll;
 
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import java.io.IOException;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.html.HtmlCommandButton;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.ActionEvent;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.html.HtmlCommandButton;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.ActionEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.expressions.ExpressionResolver;
@@ -106,7 +106,7 @@ public class Poll extends HtmlCommandButton {
 			rw.append("var o = this;\r\n");
 			rw.append("var handleError = function(){ o.stop(); console.log('error with b:poll " + id + "');};\r\n");
 			rw.append("this.start = function(){ o.stop(); " + intervalId + " = setInterval(function(){ ");
-			rw.append("jsf.ajax.request('" + id + "', null, {'" + id + "':'" + id + "', execute:'" + execute
+			rw.append("faces.ajax.request('" + id + "', null, {'" + id + "':'" + id + "', execute:'" + execute
 					+ "', render:'" + update + "', onerror:handleError }); }, " + getInterval() + "); };\r\n");
 			rw.append("this.stop = function(){ clearInterval(" + intervalId + "); };\r\n");
 			rw.append("this.start();\r\n");

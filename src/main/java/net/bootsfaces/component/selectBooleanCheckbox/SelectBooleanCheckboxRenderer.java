@@ -20,10 +20,10 @@ package net.bootsfaces.component.selectBooleanCheckbox;
 
 import java.io.IOException;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreInputRenderer;
@@ -80,7 +80,7 @@ public class SelectBooleanCheckboxRenderer extends CoreInputRenderer {
 						label = clientId;
 					}
 				}
-				FacesMessages.createErrorMessageFromResourceBundle(clientId, "javax.faces.component.UIInput.REQUIRED", label);
+				FacesMessages.createErrorMessageFromResourceBundle(clientId, "jakarta.faces.component.UIInput.REQUIRED", label);
 			}
 			selectBooleanCheckbox.setValid(false);
 		} else {

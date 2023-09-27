@@ -18,15 +18,15 @@
 
 package net.bootsfaces.component.pillLinks;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.linksContainer.LinksContainer;

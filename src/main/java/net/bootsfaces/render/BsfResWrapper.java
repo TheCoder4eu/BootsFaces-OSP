@@ -17,10 +17,10 @@
  */
 package net.bootsfaces.render;
 
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceWrapper;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceWrapper;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 
 /**
  *

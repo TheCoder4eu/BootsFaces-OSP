@@ -34,7 +34,8 @@
 
 	<scm>
 		<connection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</connection>
-		<developerConnection>scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
+		<developerConnection>
+			scm:git:git@github.com:TheCoder4eu/BootsFaces-OSP.git</developerConnection>
 		<url>git@github.com:TheCoder4eu/BootsFaces-OSP.git</url>
 	</scm>
 
@@ -53,22 +54,31 @@
 	<!-- DEPENDENCIES -->
 	<dependencies>
 		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
-			<version>3.0.0</version>
-			<scope>provided</scope>
+			<groupId>jakarta.el</groupId>
+			<artifactId>jakarta.el-api</artifactId>
+			<version>5.0.1</version>
 		</dependency>
-
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
 			<artifactId>owasp-java-html-sanitizer</artifactId>
 			<version>20211018.1</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.faces</groupId>
+			<artifactId>jakarta.faces-api</artifactId>
+			<version>4.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.enterprise</groupId>
+			<artifactId>jakarta.enterprise.cdi-api</artifactId>
+			<version>4.0.1</version>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 
@@ -84,7 +94,8 @@
 					<artifactId>versions-maven-plugin</artifactId>
 					<version>2.7</version>
 				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
+				<!--This
+				plugin's configuration is used to store Eclipse m2e settings 
 					only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -132,7 +143,8 @@
 						<manifestEntries>
 							<Built-By>BootsFaces OSP Maven builder.</Built-By>
 							<Maven-Version>${maven.version}</Maven-Version>
-							<Created-By>${java.version} (${java.vendor} ${java.vm.version})</Created-By>
+							<Created-By>${java.version} (${java.vendor}
+								${java.vm.version})</Created-By>
 							<Bundle-Name>BootsFaces</Bundle-Name>
 							<Bundle-Version>${project.version}</Bundle-Version>
 							<Bundle-Date>${maven.build.timestamp}</Bundle-Date>
@@ -180,7 +192,7 @@
 						<goals>
 							<goal>shade</goal>
 						</goals>
-						
+
 						<configuration>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<shadedClassifierName>jakarta</shadedClassifierName>
@@ -199,79 +211,81 @@
 										</transformer>
 										<transformer
 											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-											<resource>META-INF/bootsfaces-b.taglib.xml</resource>
+											<resource>
+												META-INF/bootsfaces-b.taglib.xml</resource>
 										</transformer>
 									</delegates>
 								</transformer>
 							</transformers>
 							<artifactSet>
 								<includes>
-									<include>${project.groupId}:${project.artifactId}</include>
+									<include>
+										${project.groupId}:${project.artifactId}</include>
 								</includes>
 							</artifactSet>
 							<relocations>
 								<relocation>
-									<pattern>javax.el</pattern>
+									<pattern>jakarta.el</pattern>
 									<shadedPattern>jakarta.el</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.faces</pattern>
+									<pattern>jakarta.faces</pattern>
 									<shadedPattern>jakarta.faces</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.el</pattern>
+									<pattern>jakarta.el</pattern>
 									<shadedPattern>jakarta.el</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.annotation</pattern>
+									<pattern>jakarta.annotation</pattern>
 									<shadedPattern>jakarta.annotation</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.servlet</pattern>
+									<pattern>jakarta.servlet</pattern>
 									<shadedPattern>jakarta.servlet</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.persistence</pattern>
+									<pattern>jakarta.persistence</pattern>
 									<shadedPattern>jakarta.persistence</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.enterprise</pattern>
+									<pattern>jakarta.enterprise</pattern>
 									<shadedPattern>jakarta.enterprise</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.xml.bind</pattern>
+									<pattern>jakarta.xml.bind</pattern>
 									<shadedPattern>jakarta.xml.bind</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.validation</pattern>
+									<pattern>jakarta.validation</pattern>
 									<shadedPattern>jakarta.validation</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.inject</pattern>
+									<pattern>jakarta.inject</pattern>
 									<shadedPattern>jakarta.inject</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.activation</pattern>
+									<pattern>jakarta.activation</pattern>
 									<shadedPattern>jakarta.activation</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.ws.rs</pattern>
+									<pattern>jakarta.ws.rs</pattern>
 									<shadedPattern>jakarta.ws.rs</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.jws</pattern>
+									<pattern>jakarta.jws</pattern>
 									<shadedPattern>jakarta.jws</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.cache</pattern>
+									<pattern>jakarta.cache</pattern>
 									<shadedPattern>jakarta.cache</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.xml.ws</pattern>
+									<pattern>jakarta.xml.ws</pattern>
 									<shadedPattern>jakarta.xml.ws</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>javax.xml.soap</pattern>
+									<pattern>jakarta.xml.soap</pattern>
 									<shadedPattern>jakarta.xml.soap</shadedPattern>
 								</relocation>
 								<relocation>
@@ -279,7 +293,7 @@
 									<shadedPattern>window.faces</shadedPattern>
 								</relocation>
 								<relocation>
-									<pattern>jsf.ajax</pattern>
+									<pattern>faces.ajax</pattern>
 									<shadedPattern>faces.ajax</shadedPattern>
 								</relocation>
 							</relocations>

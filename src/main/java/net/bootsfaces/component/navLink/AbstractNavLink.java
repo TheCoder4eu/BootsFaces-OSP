@@ -67,7 +67,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 * @return Returns the value of the attribute, or null, if it hasn't been
 	 *         set by the JSF file.
 	 */
-	javax.faces.component.UIComponent getBinding();
+	jakarta.faces.component.UIComponent getBinding();
 
 	/**
 	 * An el expression referring to a server side UIComponent instance in a
@@ -75,7 +75,7 @@ public interface AbstractNavLink extends IHasTooltip, IAJAXComponent, IResponsiv
 	 * <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	void setBinding(javax.faces.component.UIComponent _binding);
+	void setBinding(jakarta.faces.component.UIComponent _binding);
 
 	/**
 	 * contentClass is optional: if specified, the content (i.e. the anchor tag)

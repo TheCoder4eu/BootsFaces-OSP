@@ -21,10 +21,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
 

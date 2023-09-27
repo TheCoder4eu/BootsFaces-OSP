@@ -18,10 +18,10 @@
 
 package net.bootsfaces.component.iconAwesome;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.Icon;

@@ -3,8 +3,9 @@ package net.bootsfaces.component.radiobutton;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+
 
 @ManagedBean
 @RequestScoped

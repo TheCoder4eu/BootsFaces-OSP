@@ -10,15 +10,15 @@ import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
-import javax.el.ValueExpression;
-import javax.faces.FacesException;
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
+import jakarta.el.ValueExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.expressions.ExpressionResolver;

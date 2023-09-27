@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.internalJavaScriptResource;
 
-import javax.faces.component.UIOutput;
+import jakarta.faces.component.UIOutput;
 
 /**
  * This class holds the attributes of &lt;b:internalJavaScriptResource /&gt;.

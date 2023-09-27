@@ -1,9 +1,9 @@
 package net.bootsfaces.component.ajax;
 
-import javax.faces.component.UIComponent;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
-import javax.faces.event.FacesListener;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.FacesListener;
 
 public class BootsFacesAJAXActionListenerEvent extends ActionEvent {
 	private static final long serialVersionUID = 1L;

@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.component.behavior.ClientBehavior;
+import jakarta.faces.component.behavior.ClientBehavior;
 
 public interface IAJAXComponent {
 	/**
@@ -39,17 +39,17 @@ public interface IAJAXComponent {
 	/**
 	 * <p class="changed_added_2_0">
 	 * This is a default implementation of
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder#getClientBehaviors}
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder#getClientBehaviors}
 	 * . <code>UIComponent</code> does not implement the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} interface,
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} interface,
 	 * but provides default implementations for the methods defined by
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} to simplify
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} to simplify
 	 * subclass implementations. Subclasses that wish to support the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} contract must
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} contract must
 	 * declare that the subclass implements
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder}, and must add
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder}, and must add
 	 * an implementation of
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder#getEventNames}
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder#getEventNames}
 	 * .
 	 * </p>
 	 *
@@ -60,17 +60,17 @@ public interface IAJAXComponent {
 	/**
 	 * <p class="changed_added_2_0">
 	 * This is a default implementation of
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder#getDefaultEventName}
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder#getDefaultEventName}
 	 * . <code>UIComponent</code> does not implement the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} interface,
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} interface,
 	 * but provides default implementations for the methods defined by
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} to simplify
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} to simplify
 	 * subclass implementations. Subclasses that wish to support the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} contract must
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} contract must
 	 * declare that the subclass implements
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder}, and must
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder}, and must
 	 * provide an implementation of
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder#getEventNames}
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder#getEventNames}
 	 * .
 	 * </p>
 	 */
@@ -85,15 +85,15 @@ public interface IAJAXComponent {
 	/**
 	 * <p class="changed_added_2_0">
 	 * This is a default implementation of
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder#getEventNames}
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder#getEventNames}
 	 * . <code>UIComponent</code> does not implement the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} interface,
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} interface,
 	 * but provides default implementations for the methods defined by
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} to simplify
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} to simplify
 	 * subclass implementations. Subclasses that wish to support the
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder} contract must
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder} contract must
 	 * declare that the subclass implements
-	 * {@link javax.faces.component.behavior.ClientBehaviorHolder}, and must
+	 * {@link jakarta.faces.component.behavior.ClientBehaviorHolder}, and must
 	 * override this method to return a non-Empty <code>Collection</code> of the
 	 * client event names that the component supports.
 	 * </p>

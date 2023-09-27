@@ -20,11 +20,11 @@ package net.bootsfaces.component.commandButton;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.icon.IconRenderer;
@@ -52,7 +52,7 @@ public class CommandButtonRenderer extends CoreRenderer {
 		if (params.containsKey(param)) {
 			found=true;
 		} else {
-			String source = params.get("javax.faces.source");
+			String source = params.get("jakarta.faces.source");
 	        if (clientId.equals(source)) {
 	        	found = true;
 	        }

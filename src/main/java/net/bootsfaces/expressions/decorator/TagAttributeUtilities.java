@@ -18,8 +18,8 @@ package net.bootsfaces.expressions.decorator;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.faces.view.Location;
-import javax.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.Location;
+import jakarta.faces.view.facelets.TagAttribute;
 
 /** Create a tag attribute by means of reflection (so that they work with both Mojarra and MyFaces). */
 public class TagAttributeUtilities {

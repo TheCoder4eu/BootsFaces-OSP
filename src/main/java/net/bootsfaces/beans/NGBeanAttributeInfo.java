@@ -17,7 +17,7 @@ package net.bootsfaces.beans;
 
 import java.sql.Date;
 
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.UIComponent;
 
 /**
  * Stores server side validation and layout informations.

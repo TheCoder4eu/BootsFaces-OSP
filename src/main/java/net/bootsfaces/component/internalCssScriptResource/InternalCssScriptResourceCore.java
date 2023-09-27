@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.internalCssScriptResource;
 
-import javax.faces.component.UIOutput;
+import jakarta.faces.component.UIOutput;
 
 /** This class holds the attributes of &lt;b:internalCssScriptResource /&gt;. */
 public abstract class InternalCssScriptResourceCore extends UIOutput {

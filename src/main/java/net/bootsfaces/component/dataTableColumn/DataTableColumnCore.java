@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.dataTableColumn;
 
-import javax.faces.component.UIColumn;
+import jakarta.faces.component.UIColumn;
 
 /** This class holds the attributes of &lt;b:dataTableColumn /&gt;. */
 public abstract class DataTableColumnCore extends UIColumn {

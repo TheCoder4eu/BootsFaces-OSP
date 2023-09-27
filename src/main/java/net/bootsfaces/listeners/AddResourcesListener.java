@@ -37,18 +37,18 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.FacesException;
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIOutput;
-import javax.faces.component.UIViewRoot;
-import javax.faces.component.html.HtmlBody;
-import javax.faces.component.html.HtmlHead;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.SystemEvent;
-import javax.faces.event.SystemEventListener;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIOutput;
+import jakarta.faces.component.UIViewRoot;
+import jakarta.faces.component.html.HtmlBody;
+import jakarta.faces.component.html.HtmlHead;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.SystemEvent;
+import jakarta.faces.event.SystemEventListener;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
@@ -109,8 +109,8 @@ public class AddResourcesListener implements SystemEventListener {
 	 */
 	private static final String EXT_RESOURCE_KEY = "net.bootsfaces.listeners.AddResourcesListener.ExtResourceFiles";
 
-	private static final String SCRIPT_RENDERER = "javax.faces.resource.Script",
-			CSS_RENDERER = "javax.faces.resource.Stylesheet";
+	private static final String SCRIPT_RENDERER = "jakarta.faces.resource.Script",
+			CSS_RENDERER = "jakarta.faces.resource.Stylesheet";
 
 	static {
 		LOGGER.info("This application is running on BootsFaces " + C.BSFVERSION + "-" + C.BSFRELEASE_STATUS);
@@ -221,7 +221,7 @@ public class AddResourcesListener implements SystemEventListener {
 		// Otherwise
 		String viewportMeta = "<meta name=\"viewport\" content=\"" + content + "\"/>";
 		UIOutput viewport = new UIOutput();
-		viewport.setRendererType("javax.faces.Text");
+		viewport.setRendererType("jakarta.faces.Text");
 		viewport.getAttributes().put("escape", false);
 		viewport.setValue(viewportMeta);
 
@@ -448,7 +448,7 @@ public class AddResourcesListener implements SystemEventListener {
 		 * library. This can be an error prone approach so we add all of them (if not
 		 * different specified)
 		 */
-		createAndAddComponent(root, context, SCRIPT_RENDERER, "jsf.js", "javax.faces");
+		createAndAddComponent(root, context, SCRIPT_RENDERER, "faces.js", "jakarta.faces");
 		createAndAddComponent(root, context, SCRIPT_RENDERER, "js/bsf.js", C.BSF_LIBRARY, "last");
 
 		if (loadJQuery) {

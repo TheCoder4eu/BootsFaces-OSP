@@ -1,9 +1,9 @@
 package net.bootsfaces.component;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.context.FacesContext;
 import net.bootsfaces.beans.ELTools;
 
 @ManagedBean

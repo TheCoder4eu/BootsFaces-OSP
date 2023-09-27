@@ -11,23 +11,23 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.el.MethodExpression;
-import javax.faces.FacesException;
-import javax.faces.component.ActionSource;
-import javax.faces.component.ActionSource2;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIParameter;
-import javax.faces.component.behavior.AjaxBehavior;
-import javax.faces.component.behavior.ClientBehavior;
-import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
-import javax.faces.event.FacesEvent;
-import javax.faces.event.PhaseId;
+import jakarta.el.MethodExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.ActionSource;
+import jakarta.faces.component.ActionSource2;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIParameter;
+import jakarta.faces.component.behavior.AjaxBehavior;
+import jakarta.faces.component.behavior.ClientBehavior;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.FacesEvent;
+import jakarta.faces.event.PhaseId;
 
 import net.bootsfaces.component.commandButton.CommandButton;
 import net.bootsfaces.component.navCommandLink.NavCommandLink;
@@ -53,7 +53,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (componentIsDisabledOrReadonly(component)) {
 			return;
 		}
-		String source = context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
+		String source = context.getExternalContext().getRequestParameterMap().get("jakarta.faces.source");
 		if (component instanceof TabView && source != null) {
 			for (UIComponent tab : component.getChildren()) {
 				String tabId = tab.getClientId().replace(":", "_") + "_tab";
@@ -74,7 +74,7 @@ public class AJAXRenderer extends CoreRenderer {
 		if (source != null && (source.equals(componentId) || (source.equals("input_" + componentId))
 				|| (("input_" + source).equals(componentId)) || source.equals(componentId + "Inner")
 				|| (source +  "_Input").equals(componentId))) {
-			String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+			String event = context.getExternalContext().getRequestParameterMap().get("jakarta.faces.partial.event");
 			String realEvent = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
 			if (null != realEvent) {
 				if (!realEvent.equals(event)) {

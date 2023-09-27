@@ -23,15 +23,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.FacesException;
-import javax.faces.application.ConfigurableNavigationHandler;
-import javax.faces.application.NavigationCase;
-import javax.faces.application.ProjectStage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIParameter;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.ConfigurableNavigationHandler;
+import jakarta.faces.application.NavigationCase;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIParameter;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.icon.IconRenderer;
@@ -299,7 +299,7 @@ public class ButtonRenderer extends CoreRenderer {
 				.getNavigationHandler();
 		NavigationCase navCase = cnh.getNavigationCase(context, null, outcome);
 		/*
-		 * Param Name: javax.faces.PROJECT_STAGE Default Value: The default
+		 * Param Name: jakarta.faces.PROJECT_STAGE Default Value: The default
 		 * value is ProjectStage#Production but IDE can set it differently in
 		 * web.xml Expected Values: Development, Production, SystemTest,
 		 * UnitTest Since: 2.0

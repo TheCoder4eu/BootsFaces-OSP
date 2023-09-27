@@ -22,10 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.faces.view.Location;
-import javax.faces.view.facelets.Tag;
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
+import jakarta.faces.view.Location;
+import jakarta.faces.view.facelets.Tag;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagAttributes;
 
 /**
  * Alternative - simpler, more flexible, less optimized - version of TagAttributesImpl.

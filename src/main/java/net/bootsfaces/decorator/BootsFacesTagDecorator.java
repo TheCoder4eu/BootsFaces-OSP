@@ -21,11 +21,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Tag;
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
-import javax.faces.view.facelets.TagDecorator;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.Tag;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagAttributes;
+import jakarta.faces.view.facelets.TagDecorator;
 
 import net.bootsfaces.component.ComponentsEnum;
 import net.bootsfaces.expressions.decorator.AFTagAttributes;

@@ -24,12 +24,12 @@ import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.Map.Entry;
 
-import javax.faces.application.Resource;
-import javax.faces.application.ResourceHandler;
-import javax.faces.application.ResourceHandlerWrapper;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.faces.application.Resource;
+import jakarta.faces.application.ResourceHandler;
+import jakarta.faces.application.ResourceHandlerWrapper;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Also see the discussion at http://stackoverflow.com/questions/14963756/prevent-suffix-from-being-added-to-resources-when-page-loads.

@@ -1,9 +1,9 @@
 package net.bootsfaces.expressions;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import jakarta.annotation.ManagedBean;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 @ManagedBean
 @RequestScoped

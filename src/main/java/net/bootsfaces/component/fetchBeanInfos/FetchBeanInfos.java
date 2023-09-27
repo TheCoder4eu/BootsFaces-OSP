@@ -19,9 +19,9 @@ package net.bootsfaces.component.fetchBeanInfos;
 
 import java.io.IOException;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.context.FacesContext;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.context.FacesContext;
 
 import net.bootsfaces.C;
 import net.bootsfaces.utils.BsfUtils;

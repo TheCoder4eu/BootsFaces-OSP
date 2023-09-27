@@ -81,32 +81,32 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.el.ValueExpression;
-import javax.faces.FacesException;
-import javax.faces.application.Application;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.ContextCallback;
-import javax.faces.component.EditableValueHolder;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIData;
-import javax.faces.component.UINamingContainer;
-import javax.faces.component.visit.VisitCallback;
-import javax.faces.component.visit.VisitContext;
-import javax.faces.component.visit.VisitHint;
-import javax.faces.component.visit.VisitResult;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.FacesEvent;
-import javax.faces.event.FacesListener;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PostValidateEvent;
-import javax.faces.event.PreValidateEvent;
-import javax.faces.model.ArrayDataModel;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
-import javax.faces.model.ResultSetDataModel;
-import javax.faces.model.ScalarDataModel;
-import javax.faces.render.Renderer;
+import jakarta.el.ValueExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.Application;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.ContextCallback;
+import jakarta.faces.component.EditableValueHolder;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIData;
+import jakarta.faces.component.UINamingContainer;
+import jakarta.faces.component.visit.VisitCallback;
+import jakarta.faces.component.visit.VisitContext;
+import jakarta.faces.component.visit.VisitHint;
+import jakarta.faces.component.visit.VisitResult;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.FacesEvent;
+import jakarta.faces.event.FacesListener;
+import jakarta.faces.event.PhaseId;
+import jakarta.faces.event.PostValidateEvent;
+import jakarta.faces.event.PreValidateEvent;
+import jakarta.faces.model.ArrayDataModel;
+import jakarta.faces.model.DataModel;
+import jakarta.faces.model.ListDataModel;
+import jakarta.faces.model.ResultSetDataModel;
+import jakarta.faces.model.ScalarDataModel;
+import jakarta.faces.render.Renderer;
 
 public class TabRepeat extends UINamingContainer {
 
@@ -508,7 +508,7 @@ public class TabRepeat extends UINamingContainer {
 	 *            the Faces context.
 	 * @param component
 	 *            the UI component to save the state for.
-	 * @see #saveInitialChildState(javax.faces.context.FacesContext)
+	 * @see #saveInitialChildState(jakarta.faces.context.FacesContext)
 	 */
 	private void saveInitialChildState(FacesContext facesContext, UIComponent component) {
 		if (component instanceof EditableValueHolder && !component.isTransient()) {
@@ -785,7 +785,7 @@ public class TabRepeat extends UINamingContainer {
 		boolean shouldIterate = !ctx.getHints().contains(VisitHint.SKIP_ITERATION);
 		if (!shouldIterate) {
 			FacesContext faces = ctx.getFacesContext();
-			String sourceId = faces.getExternalContext().getRequestParameterMap().get("javax.faces.source");
+			String sourceId = faces.getExternalContext().getRequestParameterMap().get("jakarta.faces.source");
 			boolean containsSource = sourceId != null
 					? sourceId.startsWith(super.getClientId(faces) + getSeparatorChar(faces))
 					: false;

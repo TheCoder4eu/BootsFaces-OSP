@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.remoteCommand;
 
-import javax.faces.component.UICommand;
+import jakarta.faces.component.UICommand;
 
 /** This class holds the attributes of &lt;b:remoteCommand /&gt;. */
 public abstract class RemoteCommandCore extends UICommand {
@@ -59,15 +59,15 @@ public abstract class RemoteCommandCore extends UICommand {
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.faces.component.UIComponent getBinding() {
-		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	public jakarta.faces.component.UIComponent getBinding() {
+		return (jakarta.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
+	public void setBinding(jakarta.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 

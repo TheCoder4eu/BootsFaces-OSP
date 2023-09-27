@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.gyroscope;
 
-import javax.faces.component.UICommand;
+import jakarta.faces.component.UICommand;
 
 /** This class holds the attributes of &lt;b:gyroscope /&gt;. */
 public abstract class GyroscopeCore extends UICommand {
@@ -59,15 +59,15 @@ public abstract class GyroscopeCore extends UICommand {
 	 * Variable to store the alpha value of the gyroscope's rotation <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.el.ValueExpression getAlpha() {
-		return (javax.el.ValueExpression) getStateHelper().eval(PropertyKeys.alpha);
+	public jakarta.el.ValueExpression getAlpha() {
+		return (jakarta.el.ValueExpression) getStateHelper().eval(PropertyKeys.alpha);
 	}
 
 	/**
 	 * Variable to store the alpha value of the gyroscope's rotation <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setAlpha(javax.el.ValueExpression _alpha) {
+	public void setAlpha(jakarta.el.ValueExpression _alpha) {
 		getStateHelper().put(PropertyKeys.alpha, _alpha);
 	}
 
@@ -91,15 +91,15 @@ public abstract class GyroscopeCore extends UICommand {
 	 * Variable to store the beta value of the gyroscope's rotation <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.el.ValueExpression getBeta() {
-		return (javax.el.ValueExpression) getStateHelper().eval(PropertyKeys.beta);
+	public jakarta.el.ValueExpression getBeta() {
+		return (jakarta.el.ValueExpression) getStateHelper().eval(PropertyKeys.beta);
 	}
 
 	/**
 	 * Variable to store the beta value of the gyroscope's rotation <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBeta(javax.el.ValueExpression _beta) {
+	public void setBeta(jakarta.el.ValueExpression _beta) {
 		getStateHelper().put(PropertyKeys.beta, _beta);
 	}
 
@@ -139,15 +139,15 @@ public abstract class GyroscopeCore extends UICommand {
 	 * Variable to store the gamma value of the gyroscope's rotation <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.el.ValueExpression getGamma() {
-		return (javax.el.ValueExpression) getStateHelper().eval(PropertyKeys.gamma);
+	public jakarta.el.ValueExpression getGamma() {
+		return (jakarta.el.ValueExpression) getStateHelper().eval(PropertyKeys.gamma);
 	}
 
 	/**
 	 * Variable to store the gamma value of the gyroscope's rotation <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setGamma(javax.el.ValueExpression _gamma) {
+	public void setGamma(jakarta.el.ValueExpression _gamma) {
 		getStateHelper().put(PropertyKeys.gamma, _gamma);
 	}
 

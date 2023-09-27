@@ -3,8 +3,8 @@ package net.bootsfaces.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
 
 import net.bootsfaces.component.column.Column;
 

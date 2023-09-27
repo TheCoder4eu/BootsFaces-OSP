@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.openStreetMap;
 
-import javax.faces.component.UIData;
+import jakarta.faces.component.UIData;
 
 /** This class holds the attributes of &lt;b:openStreetMap /&gt;. */
 public abstract class OpenStreetMapCore extends UIData {
