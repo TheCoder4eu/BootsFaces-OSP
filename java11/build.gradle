@@ -55,7 +55,7 @@ mavenCentral()
 
 dependencies {
   compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
-  compileOnly 'com.sun.faces:jsf-api:2.2.14'
+  // compileOnly 'com.sun.faces:jsf-api:2.2.14'
   compileOnly 'jakarta.el:jakarta.el-api:5.0.1'
   compileOnly 'jakarta.faces:jakarta.faces-api:4.0.1'
   compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
