@@ -16,6 +16,9 @@ To learn more about the framework, take a look at  [BootsFaces.net](http://www.b
 
 The source for our page can be found on GitHub. If you want to have a deeper look on how to use the library or found a mistake, visit the [Showcase Project](https://github.com/TheCoder4eu/BootsFacesWeb) or the [Examples Project](https://github.com/TheCoder4eu/BootsFaces-examples).
 
+### State of the project
+At the moment, this project is not maintained actively. If you need a feature, please send us a pull request so we can build a new version. It's a good idea to reach out to use beforehand, so we can check if (or make sure that) we've got enough time to review your PR and to publish a new version. Also note that at the time of writing, the leading branch is "V1.6.0".
+
 ### Getting started
 To get up and running quickly, have a look at the [Quick Start](http://www.bootsfaces.net/quick-start.jsf).
 

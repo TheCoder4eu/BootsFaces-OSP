@@ -65,11 +65,11 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-	    <dependency>
-	      <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
-	      <artifactId>owasp-java-html-sanitizer</artifactId>
-	      <version>20191001.1</version>
-	    </dependency>
+		<dependency>
+			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+			<artifactId>owasp-java-html-sanitizer</artifactId>
+			<version>20211018.1</version>
+		</dependency>
 	</dependencies>
 
 
@@ -162,6 +162,139 @@
 					</signature>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<configuration>
+					<shadedArtifactAttached>false</shadedArtifactAttached>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
+					<promoteTransitiveDependencies>true</promoteTransitiveDependencies>
+					<minimizeJar>true</minimizeJar>
+					<createSourcesJar>true</createSourcesJar>
+					<shadeSourcesContent>true</shadeSourcesContent>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jakarta</id>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						
+						<configuration>
+							<shadedArtifactAttached>true</shadedArtifactAttached>
+							<shadedClassifierName>jakarta</shadedClassifierName>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
+							<transformers>
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+								<transformer
+									implementation="io.yupiik.maven.shade.transformer.RelocationTransformer">
+									<delegates>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer" />
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+											<resource>META-INF/faces-config.xml</resource>
+										</transformer>
+										<transformer
+											implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
+											<resource>META-INF/bootsfaces-b.taglib.xml</resource>
+										</transformer>
+									</delegates>
+								</transformer>
+							</transformers>
+							<artifactSet>
+								<includes>
+									<include>${project.groupId}:${project.artifactId}</include>
+								</includes>
+							</artifactSet>
+							<relocations>
+								<relocation>
+									<pattern>javax.el</pattern>
+									<shadedPattern>jakarta.el</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.faces</pattern>
+									<shadedPattern>jakarta.faces</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.el</pattern>
+									<shadedPattern>jakarta.el</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.annotation</pattern>
+									<shadedPattern>jakarta.annotation</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.servlet</pattern>
+									<shadedPattern>jakarta.servlet</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.persistence</pattern>
+									<shadedPattern>jakarta.persistence</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.enterprise</pattern>
+									<shadedPattern>jakarta.enterprise</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.xml.bind</pattern>
+									<shadedPattern>jakarta.xml.bind</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.validation</pattern>
+									<shadedPattern>jakarta.validation</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.inject</pattern>
+									<shadedPattern>jakarta.inject</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.activation</pattern>
+									<shadedPattern>jakarta.activation</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.ws.rs</pattern>
+									<shadedPattern>jakarta.ws.rs</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.jws</pattern>
+									<shadedPattern>jakarta.jws</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.cache</pattern>
+									<shadedPattern>jakarta.cache</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.xml.ws</pattern>
+									<shadedPattern>jakarta.xml.ws</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>javax.xml.soap</pattern>
+									<shadedPattern>jakarta.xml.soap</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>window.jsf</pattern>
+									<shadedPattern>window.faces</shadedPattern>
+								</relocation>
+								<relocation>
+									<pattern>jsf.ajax</pattern>
+									<shadedPattern>faces.ajax</shadedPattern>
+								</relocation>
+							</relocations>
+						</configuration>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>io.yupiik.maven</groupId>
+						<artifactId>maven-shade-transformers</artifactId>
+						<version>0.0.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 
 		<!-- resources -->
@@ -245,7 +378,7 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.6</version>
+						<version>3.0.1</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
