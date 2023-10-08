@@ -16,7 +16,7 @@ steps:
 - name: gradlew-library-build
   image: openjdk:8-jdk
   commands:
-    - ./gradlew -Dorg.gradle.daemon=false -b build.gradle clean :java8:defaultJar :java11:defaultJar :java11:install :legacyJava:java7:defaultJar
+    - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar
     - ls -lisa ./legacyJava/java7/build/libs/
     - ls -lisa ./java8/build/libs/
     - ls -lisa ./java11/build/libs/
