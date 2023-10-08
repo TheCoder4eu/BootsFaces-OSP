@@ -97,8 +97,7 @@
 					<artifactId>versions-maven-plugin</artifactId>
 					<version>2.7</version>
 				</plugin>
-				<!--This
-				plugin's configuration is used to store Eclipse m2e settings 
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
 				only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -146,8 +145,7 @@
 						<manifestEntries>
 							<Built-By>BootsFaces OSP Maven builder.</Built-By>
 							<Maven-Version>${maven.version}</Maven-Version>
-							<Created-By>${java.version} (${java.vendor}
-								${java.vm.version})</Created-By>
+							<Created-By>${java.version} (${java.vendor} ${java.vm.version})</Created-By>
 							<Bundle-Name>BootsFaces</Bundle-Name>
 							<Bundle-Version>${project.version}</Bundle-Version>
 							<Bundle-Date>${maven.build.timestamp}</Bundle-Date>
