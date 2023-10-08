@@ -3,8 +3,18 @@ name: default
 
 steps:
 
+- name: maven-library-build
+  image: maven:3.6-jdk-8
+  commands:
+    - mvn clean package #-P MavenCentral
+    - cd ./target/
+    - ls -lisa
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
 - name: gradlew-library-build
-  image: openjdk:11-jdk
+  image: openjdk:8-jdk
   commands:
     - ./gradlew -Dorg.gradle.daemon=false -b build.gradle clean :java8:defaultJar :java11:defaultJar :java11:install :legacyJava:java7:defaultJar
     - ls -lisa ./legacyJava/java7/build/libs/
