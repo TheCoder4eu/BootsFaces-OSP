@@ -54,7 +54,7 @@ dependencies {
   compileOnly 'jakarta.el:jakarta.el-api:5.0.1'
   compileOnly 'jakarta.faces:jakarta.faces-api:4.0.1'
   compileOnly 'jakarta.enterprise:jakarta.enterprise.cdi-api:4.0.1'
-  compileOnly 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20191001.1'
+  compileOnly 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20211018.2'
   testImplementation 'junit:junit:4.11'
   testImplementation 'org.mockito:mockito-core:2.0.17-beta'
 // testCompile 'org.jboss.arquillian.protocol:arquillian-protocol-servlet:1.1.8.Final'
