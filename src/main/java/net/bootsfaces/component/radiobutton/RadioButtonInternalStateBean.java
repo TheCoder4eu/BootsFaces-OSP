@@ -3,13 +3,13 @@ package net.bootsfaces.component.radiobutton;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 
-
-@ManagedBean
+@Named
 @RequestScoped
 public class RadioButtonInternalStateBean {
+
 	private Map<String, Boolean> inputHasAlreadyBeenRendered = new HashMap<String, Boolean>();
 
 	public boolean inputHasAlreadyBeenRendered(String key) {
