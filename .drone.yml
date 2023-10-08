@@ -16,10 +16,8 @@ steps:
 - name: gradlew-library-build
   image: openjdk:8-jdk
   commands:
-    - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar
-    - ls -lisa ./legacyJava/java7/build/libs/
-    - ls -lisa ./java8/build/libs/
-    - ls -lisa ./java11/build/libs/
+    - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar :javaBuild:buildJava11Jar :javaBuild:buildJava17Jar
+    - ls -lisa ./javaBuild/build/libs/
   volumes:
   - name: maven-cache
     path: /root/.m2
