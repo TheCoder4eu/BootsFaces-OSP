@@ -3,17 +3,30 @@ name: default
 
 steps:
 
+- name: maven-auth
+  when:
+    repo:
+      - geopossachs/BootsFaces-OSP
+  image: robertstettner/drone-mvn-auth
+  settings:
+    servers:
+    - id: github
+      username: geopossachs
+      password:
+        from_secret: githab_access_token
+      
 - name: maven-library-build
   image: maven:3.6-jdk-11
   commands:
-    - mvn clean package #-P MavenCentral
+    #- mvn clean package #-P MavenCentral
+    - mvn clean deploy -P geopossachs
     - cd ./target/
     - ls -lisa
   volumes:
   - name: maven-cache
     path: /root/.m2
 
-- name: gradlew-library-build
+- name: gradle-library-build
   image: openjdk:11-jdk
   commands:
     - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar :javaBuild:buildJava11Jar :javaBuild:buildJava17Jar

@@ -198,7 +198,7 @@
 	</build>
 
 	<!-- PROFILES SECTION -->
-	<profiles>
+	<profiles>	
 		<profile>
 			<id>Mojarra2.2.12</id>
 			<activation>
@@ -285,6 +285,27 @@
 					</plugin>
 				</plugins>
 			</build>
+		</profile>
+		
+		<profile>
+			<id>geopossachs</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<snapshotRepository>
+					<id>github</id>
+					<name>GitHub Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/geopossachs/BootsFaces-OSP</url>
+				</snapshotRepository>
+				<!--
+				<repository>
+					<id>github</id>
+					<name>GitHub Apache Maven Packages</name>
+					<url>https://maven.pkg.github.com/geopossachs/BootsFaces-OSP</url>
+				</repository>
+				-->
+			</distributionManagement>
 		</profile>
 	</profiles>
 
