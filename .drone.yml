@@ -3,28 +3,17 @@ name: default
 
 steps:
 
-- name: maven-auth
-  when:
-    repo:
-      - geopossachs/BootsFaces-OSP
-  image: robertstettner/drone-mvn-auth
-  settings:
-    servers:
-    - id: github
-      username: geopossachs
-      password:
-        from_secret: githab_access_token
-  volumes:
-  - name: maven-cache
-    path: /root/.m2
-
 - name: maven-library-build
   image: maven:3.6-jdk-11
   commands:
     #- mvn clean package #-P MavenCentral
-    - mvn clean deploy -P geopossachs --global-settings settings.xml
+    - mvn -s ./.drone_maven_settings.xml clean deploy -P geopossachs
     - cd ./target/
     - ls -lisa
+  environment:
+    GITHUB_USERNAME: geopossachs
+    GITHUB_ACCESS_TOKEN: 
+      from_secret: githab_access_token
   volumes:
   - name: maven-cache
     path: /root/.m2
