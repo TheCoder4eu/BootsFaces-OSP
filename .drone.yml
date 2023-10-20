@@ -14,7 +14,10 @@ steps:
       username: geopossachs
       password:
         from_secret: githab_access_token
-      
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
 - name: maven-library-build
   image: maven:3.6-jdk-11
   commands:
