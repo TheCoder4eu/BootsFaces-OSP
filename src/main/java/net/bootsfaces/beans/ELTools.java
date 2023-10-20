@@ -25,15 +25,15 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.el.ELContext;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
-import javax.el.PropertyNotFoundException;
-import javax.el.ValueExpression;
-import javax.el.ValueReference;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.FaceletContext;
+import jakarta.el.ELContext;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.ValueExpression;
+import jakarta.el.ValueReference;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.FaceletContext;
 
 /** Collection of helper methods dealing with the JSF Expression language. */
 public class ELTools {

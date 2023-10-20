@@ -24,17 +24,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UISelectItem;
-import javax.faces.component.UISelectItems;
-import javax.faces.component.html.HtmlOutputText;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.model.SelectItem;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UISelectItem;
+import jakarta.faces.component.UISelectItems;
+import jakarta.faces.component.html.HtmlOutputText;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.model.SelectItem;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.SelectItemAndComponent;
 import net.bootsfaces.component.SelectItemUtils;

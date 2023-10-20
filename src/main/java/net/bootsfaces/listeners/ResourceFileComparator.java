@@ -2,7 +2,7 @@ package net.bootsfaces.listeners;
 
 import java.util.Comparator;
 
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.UIComponent;
 
 public class ResourceFileComparator implements Comparator<UIComponent> {
 	@Override

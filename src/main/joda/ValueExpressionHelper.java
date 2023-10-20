@@ -2,9 +2,9 @@ package com.anem.green.web.convert;
 
 import java.util.Collection;
 
-import javax.el.ValueExpression;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
 
 public class ValueExpressionHelper {
 

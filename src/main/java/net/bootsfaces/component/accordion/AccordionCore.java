@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.accordion;
 
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.UIComponentBase;
 
 /** This class holds the attributes of &lt;b:accordion /&gt;. */
 public abstract class AccordionCore extends UIComponentBase implements net.bootsfaces.render.IHasTooltip {

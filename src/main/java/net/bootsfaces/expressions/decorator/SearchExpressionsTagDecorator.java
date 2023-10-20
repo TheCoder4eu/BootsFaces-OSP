@@ -18,10 +18,10 @@ package net.bootsfaces.expressions.decorator;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.context.FacesContext;
-import javax.faces.view.facelets.Tag;
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagDecorator;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.facelets.Tag;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagDecorator;
 
 /**
  * This is one of the most important classes of AngularFaces. It converts attributes to pass-through parameters, adds

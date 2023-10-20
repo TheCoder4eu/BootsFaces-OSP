@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.link;
 
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.navLink.NavLinkRenderer;
 

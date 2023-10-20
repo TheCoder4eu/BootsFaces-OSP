@@ -23,12 +23,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.render.FacesRenderer;
 
 import org.owasp.html.HtmlPolicyBuilder;
 import org.owasp.html.PolicyFactory;
@@ -63,7 +63,7 @@ public class DateTimePickerRenderer extends CoreInputRenderer {
 
 		String responsiveStyleClass = Responsive.getResponsiveStyleClass(dtp, false);
 		boolean hasOuter = (null != responsiveStyleClass && responsiveStyleClass.trim().length()>0) || (dtp.getLabel() != null && dtp.isRenderLabel());
-		String event = context.getExternalContext().getRequestParameterMap().get("javax.faces.partial.event");
+		String event = context.getExternalContext().getRequestParameterMap().get("jakarta.faces.partial.event");
 		String realEvent = context.getExternalContext().getRequestParameterMap().get("BsFEvent");
 		if (null != realEvent) {
 			event = realEvent;

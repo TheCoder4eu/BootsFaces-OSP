@@ -18,9 +18,9 @@
 
 package net.bootsfaces.component.scrollUp;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

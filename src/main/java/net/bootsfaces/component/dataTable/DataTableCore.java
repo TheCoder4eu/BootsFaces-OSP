@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.dataTable;
 
-import javax.faces.component.UIData;
+import jakarta.faces.component.UIData;
 
 /** This class holds the attributes of &lt;b:dataTable /&gt;. */
 public abstract class DataTableCore extends UIData implements net.bootsfaces.render.IHasTooltip {

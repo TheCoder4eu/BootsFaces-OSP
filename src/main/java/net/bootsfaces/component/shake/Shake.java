@@ -20,10 +20,10 @@ package net.bootsfaces.component.shake;
 
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UICommand;
-import javax.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UICommand;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;

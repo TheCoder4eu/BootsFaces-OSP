@@ -15,8 +15,8 @@
  */
 package net.bootsfaces.render;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.application.FacesMessage.Severity;
 
 import net.bootsfaces.component.UIMessagesBase;
 import net.bootsfaces.component.growl.Growl;

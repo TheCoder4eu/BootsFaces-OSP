@@ -17,7 +17,7 @@
  */
 package net.bootsfaces.component.tree;
 
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.UIComponentBase;
 
 import net.bootsfaces.component.tree.event.TreeNodeEventListener;
 import net.bootsfaces.component.tree.model.Node;

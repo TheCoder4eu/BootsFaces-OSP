@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.iconAwesome;
 
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.icon.IconRenderer;
 

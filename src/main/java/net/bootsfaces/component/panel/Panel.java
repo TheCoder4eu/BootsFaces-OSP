@@ -18,12 +18,12 @@
 
 package net.bootsfaces.component.panel;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,12 +31,12 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.el.ValueExpression;
+import jakarta.faces.application.ResourceDependencies;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -215,15 +215,15 @@ public class Panel extends UIComponentBase implements net.bootsfaces.render.IHas
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * @return Returns the value of the attribute, or null, if it hasn't been set by the JSF file.
 	 */
-	public javax.faces.component.UIComponent getBinding() {
-		return (javax.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
+	public jakarta.faces.component.UIComponent getBinding() {
+		return (jakarta.faces.component.UIComponent) getStateHelper().eval(PropertyKeys.binding);
 	}
 
 	/**
 	 * An EL expression referring to a server side UIComponent instance in a backing bean. <P>
 	 * Usually this method is called internally by the JSF engine.
 	 */
-	public void setBinding(javax.faces.component.UIComponent _binding) {
+	public void setBinding(jakarta.faces.component.UIComponent _binding) {
 		getStateHelper().put(PropertyKeys.binding, _binding);
 	}
 

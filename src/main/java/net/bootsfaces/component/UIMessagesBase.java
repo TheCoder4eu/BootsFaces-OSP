@@ -15,7 +15,7 @@
  */
 package net.bootsfaces.component;
 
-import javax.faces.component.UIMessages;
+import jakarta.faces.component.UIMessages;
 
 /**
  *

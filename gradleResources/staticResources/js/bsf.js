@@ -127,7 +127,7 @@ BsF.ajax.callAjax = function(source, event, update, execute, oncomplete,
 		}
 	}
 	BsF.blockBlockUI = opts['blockui.disabled'] === "true";
-	jsf.ajax.request(source, event, opts);
+	faces.ajax.request(source, event, opts);
 	return false;
 };
 
@@ -163,7 +163,7 @@ BsF.ajax.paginate = function(o, e, v, c, r) { // Paginator ajax helper
 	opts.execute = '@this';
 	opts.render = r;
 	opts[c] = v;
-	jsf.ajax.request(c, e, opts);
+	faces.ajax.request(c, e, opts);
 	return false;
 };
 
