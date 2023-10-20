@@ -4,7 +4,7 @@ name: default
 steps:
 
 - name: maven-library-build
-  image: maven:3.6-jdk-8
+  image: maven:3.6-jdk-11
   commands:
     - mvn clean package #-P MavenCentral
     - cd ./target/
@@ -14,7 +14,7 @@ steps:
     path: /root/.m2
 
 - name: gradlew-library-build
-  image: openjdk:8-jdk
+  image: openjdk:11-jdk
   commands:
     - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar :javaBuild:buildJava11Jar :javaBuild:buildJava17Jar
     - ls -lisa ./javaBuild/build/libs/
