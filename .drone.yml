@@ -22,7 +22,7 @@ steps:
   image: maven:3.6-jdk-11
   commands:
     #- mvn clean package #-P MavenCentral
-    - mvn clean deploy -P geopossachs
+    - mvn clean deploy -P geopossachs --global-settings settings.xml
     - cd ./target/
     - ls -lisa
   volumes:
