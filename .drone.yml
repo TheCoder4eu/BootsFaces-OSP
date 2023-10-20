@@ -24,7 +24,7 @@ steps:
   - name: maven-cache
     path: /root/.m2
 
-# to refresh the showcase, deploy a snapshot to 'GitHub Packages 
+# to refresh the showcase, deploy a snapshot to 'GitHub Packages'
 - name: maven-library-deploy
   when:
     repo:
