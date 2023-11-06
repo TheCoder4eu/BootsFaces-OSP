@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2022 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2023 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -287,7 +287,7 @@ task buildJava17Jar(type: Jar) {
    }
 }
 buildJava17Jar.dependsOn(jar,":gradleResources:buildResources")
-buildJava17Jar.onlyIf { (themes.size() > 0) && buildJava11==true }
+buildJava17Jar.onlyIf { (themes.size() > 0) && buildJava17==true }
 
 compileJava.doFirst {
     println "INFO: Compiling the Java Sources:"
