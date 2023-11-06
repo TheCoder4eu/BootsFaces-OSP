@@ -99,6 +99,7 @@ compileJava11Java {
     //options.compilerArgs.addAll(0,buildOptsJava)
     destinationDirectory.set(file('build/java11/classes'))
 }
+compileJava11Java.onlyIf { (themes.size() > 0) && buildJava11==true }
 compileJava11Java.doFirst { println "Running compileJava11Java" }
 
 compileJava17Java {
@@ -110,6 +111,7 @@ compileJava17Java {
     //options.compilerArgs.addAll(0,buildOptsJava)
     destinationDirectory.set(file('build/java17/classes'))
 }
+compileJava17Java.onlyIf { (themes.size() > 0) && buildJava17==true }
 compileJava17Java.doFirst { println "Running compileJava17Java" }
 
 repositories {
@@ -300,4 +302,5 @@ compileJava.doFirst {
 
 }
 
-defaultTasks 'clean','defaultJar','buildJava11Jar','buildJava17Jar','publishToMavenLocal'
+defaultTasks 'clean','defaultJar','buildJava11Jar','publishToMavenLocal'
+//defaultTasks 'clean','defaultJar','buildJava11Jar','buildJava17Jar','publishToMavenLocal'
