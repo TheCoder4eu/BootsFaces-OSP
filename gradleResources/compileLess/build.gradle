@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2023 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -243,6 +243,7 @@ assetCompile.doLast {
 task compileAndMinify(dependsOn: ['copyFiles2Process', 'assetCompile']) {
   println "compileLess: Compile and Minify"
 }
+assetCompile.mustRunAfter ':gradleResources:copyBootsFacesResources'
 assetCompile.mustRunAfter copyFiles2Process
 cleanAssetDir.mustRunAfter assetCompile
 cleanAssetThemeDirs.mustRunAfter cleanAssetDir
