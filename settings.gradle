@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2023 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -23,6 +23,7 @@ rootProject.name = 'BootsFaces'
 include 'gradleResources'
 include 'gradleResources:Bootstrap'
 include 'gradleResources:compileLess'
+
 //DEPRECATED //include 'legacyJava'
 //DEPRECATED //include 'legacyJava:java7'
 //DEPRECATED //include 'legacyJava:java9'
@@ -30,6 +31,7 @@ include 'gradleResources:compileLess'
 //OBSLOETE //include 'java8'
 //DEPRECATED //include 'java9'
 //DEPRECATED //include 'java10'
-//OBSLOETE //include 'java11'
-//OBSLOETE //include 'java17'
+//OBSOLETE //include 'java11'
+//OBSOLETE //include 'java17'
+
 include 'javaBuild'

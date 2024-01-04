@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2023 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -104,5 +104,5 @@ showConfig.doFirst {
   new File( 'pom.xml' ).write( projectPomText, 'UTF-8' )
 }
 
-//By default build also the default( plain Bootstrap without Themes ) Jar for Java 8 and 9 only
+//By default build also the default( plain Bootstrap without Themes ) Jar for Java 8 only
 defaultTasks 'showConfig', ':javaBuild:defaultJar',':javaBuild:buildJava11Jar', ':javaBuild:buildJava17Jar' //':java8:defaultJar', ':java11:defaultJar', ':java17:defaultJar' //Java 17 LTS

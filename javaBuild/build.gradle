@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2022 Riccardo Massera (TheCoder4.Eu)
+ * Copyright 2014-2023 Riccardo Massera (TheCoder4.Eu)
  *
  * This file is part of BootsFaces.
  *
@@ -99,6 +99,7 @@ compileJava11Java {
     //options.compilerArgs.addAll(0,buildOptsJava)
     destinationDirectory.set(file('build/java11/classes'))
 }
+compileJava11Java.onlyIf { (themes.size() > 0) && buildJava11==true }
 compileJava11Java.doFirst { println "Running compileJava11Java" }
 
 compileJava17Java {
@@ -110,6 +111,7 @@ compileJava17Java {
     //options.compilerArgs.addAll(0,buildOptsJava)
     destinationDirectory.set(file('build/java17/classes'))
 }
+compileJava17Java.onlyIf { (themes.size() > 0) && buildJava17==true }
 compileJava17Java.doFirst { println "Running compileJava17Java" }
 
 repositories {
@@ -289,7 +291,7 @@ task buildJava17Jar(type: Jar) {
    }
 }
 buildJava17Jar.dependsOn(jar,":gradleResources:buildResources")
-buildJava17Jar.onlyIf { (themes.size() > 0) && buildJava11==true }
+buildJava17Jar.onlyIf { (themes.size() > 0) && buildJava17==true }
 
 compileJava.doFirst {
     println "INFO: Compiling the Java Sources:"
@@ -302,4 +304,5 @@ compileJava.doFirst {
 
 }
 
-defaultTasks 'clean','defaultJar','buildJava11Jar','buildJava17Jar','publishToMavenLocal'
+defaultTasks 'clean','defaultJar','buildJava11Jar','publishToMavenLocal'
+//defaultTasks 'clean','defaultJar','buildJava11Jar','buildJava17Jar','publishToMavenLocal'
