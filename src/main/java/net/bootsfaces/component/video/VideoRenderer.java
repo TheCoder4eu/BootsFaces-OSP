@@ -20,10 +20,10 @@ package net.bootsfaces.component.video;
 
 import java.io.IOException;
 
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.render.FacesRenderer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.render.FacesRenderer;
 
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.render.CoreRenderer;
@@ -41,7 +41,7 @@ public class VideoRenderer extends CoreRenderer {
 		decodeBehaviors(context, inputText);
 
 		String clientId = inputText.getClientId(context);
-		String submittedId = (String) context.getExternalContext().getRequestParameterMap().get("javax.faces.source");
+		String submittedId = (String) context.getExternalContext().getRequestParameterMap().get("jakarta.faces.source");
 		if (clientId.equals(submittedId)) {
 			new AJAXRenderer().decode(context, component, clientId);
 		}

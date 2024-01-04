@@ -17,8 +17,8 @@
  */
 package net.bootsfaces.component;
 
-import javax.faces.component.UIComponent;
-import javax.faces.model.SelectItem;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.model.SelectItem;
 
 /**
  * This class is used to return both the SelectItem and the underlying UIComponent from

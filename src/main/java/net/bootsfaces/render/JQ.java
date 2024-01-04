@@ -20,7 +20,7 @@ package net.bootsfaces.render;
 
 import java.io.IOException;
 
-import javax.faces.context.ResponseWriter;
+import jakarta.faces.context.ResponseWriter;
 
 /**
  * Class with jQuery specific encoding functions

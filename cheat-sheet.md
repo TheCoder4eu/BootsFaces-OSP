@@ -55,8 +55,8 @@ This file is used by our [JSFLibraryGenerator](https://github.com/stephanrauh/JS
 		       has_tooltip 
 		  {
 		    id                  inherited                                          "Unique identifier of the component in a namingContainer."
-		    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-		    actionListener      javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+		    action              jakarta.el.MethodExpression inherited              "The button action, this can be method expression or a string outcome."
+		    actionListener      jakarta.faces.event.ActionListener inherited       "A method expression that refers to a method with this signature: void methodName(Action-Event)."
 		    ajax                Boolean                                            "Whether the Button submits the form with AJAX."
 		    caption                                                                "Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both."
 		    onclick                                                                "The onclick attribute."

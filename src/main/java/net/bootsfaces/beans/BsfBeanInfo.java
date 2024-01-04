@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.UIComponent;
 
 import net.bootsfaces.utils.BsfUtils;
 

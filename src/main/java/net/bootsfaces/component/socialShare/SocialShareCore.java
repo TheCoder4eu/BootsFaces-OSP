@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.socialShare;
 
-import javax.faces.component.UIOutput;
+import jakarta.faces.component.UIOutput;
 
 import net.bootsfaces.render.IResponsive;
 

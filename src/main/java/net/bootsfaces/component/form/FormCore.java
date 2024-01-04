@@ -19,7 +19,7 @@
 package net.bootsfaces.component.form;
 
 /** This class holds the attributes of &lt;b:form /&gt;. */
-public abstract class FormCore extends javax.faces.component.html.HtmlForm {
+public abstract class FormCore extends jakarta.faces.component.html.HtmlForm {
 
 	protected enum PropertyKeys {
 		autoUpdate, horizontal, inline;

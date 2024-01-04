@@ -18,10 +18,10 @@
 
 package net.bootsfaces.component.switchComponent;
 
-import javax.el.ValueExpression;
-import javax.faces.application.ResourceDependencies;
-import javax.faces.application.ResourceDependency;
-import javax.faces.component.FacesComponent;
+import jakarta.el.ValueExpression;
+import jakarta.faces.application.ResourceDependencies;
+import jakarta.faces.application.ResourceDependency;
+import jakarta.faces.component.FacesComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

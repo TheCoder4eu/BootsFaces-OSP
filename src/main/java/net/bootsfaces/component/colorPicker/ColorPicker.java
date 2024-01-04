@@ -1,19 +1,19 @@
 package net.bootsfaces.component.colorPicker;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
 
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponent;
 
 import net.bootsfaces.C;
 import net.bootsfaces.beans.ELTools;
@@ -167,7 +167,8 @@ public class ColorPicker extends ColorPickerCore implements IHasTooltip, IAJAXCo
 	 * @return Returns the value of the attribute, or false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isRenderLabel() {
-		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
+		return (boolean) (Boolean) getStateHelper().eval(PropertyKeys.renderLabel, 
+			net.bootsfaces.component.ComponentUtils.isRenderLabelDefault());
 	}
 
 

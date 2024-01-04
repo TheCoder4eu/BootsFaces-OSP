@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.fetchBeanInfos;
 
-import javax.faces.component.UIComponentBase;
+import jakarta.faces.component.UIComponentBase;
 
 /** This class holds the attributes of &lt;b:fetchBeanInfos /&gt;. */
 public abstract class FetchBeanInfosCore extends UIComponentBase {

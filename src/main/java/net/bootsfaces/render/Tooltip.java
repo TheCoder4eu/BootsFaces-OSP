@@ -20,11 +20,11 @@ package net.bootsfaces.render;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.faces.FacesException;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

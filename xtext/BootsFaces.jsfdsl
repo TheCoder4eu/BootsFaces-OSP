@@ -107,7 +107,7 @@ widget alert
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                 "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                 "An EL expression referring to a server side UIComponent instance in a backing bean."
     closable            Boolean                                           "If true close button will be displayed."
     id                  inherited                                         "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                 "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -126,7 +126,7 @@ widget badge
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     value               mandatory inherited                                "Label text."
@@ -141,7 +141,7 @@ widget breadcrumbs
        has_tooltip
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+tooltip
@@ -156,7 +156,7 @@ widget button
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     accesskey                                                              "Access key to transfer focus to the input element."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     dismiss                                                                "This attribute is mapped to the HTML5 data-dismiss custom attribute."
@@ -203,7 +203,7 @@ widget buttonGroup
        is_responsive
  {
  	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding              javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding              jakarta.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                        "Unique identifier of the component in a namingContainer."
     orientation                                                           "Orientation can be horizontal(default) or vertical."
     pull                                                                  "Can be right or left. Pulls the element right or left."
@@ -224,7 +224,7 @@ widget buttonToolbar
        is_responsive
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding              javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding              jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                   inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                    "Can be right or left. Pulls the element right or left."
     rendered             Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -239,7 +239,7 @@ widget canvas
        is_responsive
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     height              Integer default "600"                              "Height of the canvas in pixels. This is a mandatory field."
     drawing             Drawing                                            "Optional description what to draw on this component."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -261,8 +261,8 @@ widget carousel
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active-index        Integer                                            "Optional attribute to define which slide is active initially."
     interval                    default "5000"                             "Specifies the delay (in milliseconds) between each slide."
     pause                       default "hover"                            "Pauses the carousel from going through the next slide when the mouse pointer enters the carousel, and resumes the sliding when the mouse pointer leaves the carousel. Set pause to false to stop the ability to pause on hover."
@@ -294,8 +294,8 @@ widget carouselItem implemented_by net.bootsfaces.component.Carousel
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean    default "false"                         "Optional attribute to define which slide is active initially."
     caption                                                                "Optional caption, which is embedded in an h3 tag. If you need more flexibility, add an carouselCaption child tag. If you don't need a caption, omit both."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -319,8 +319,8 @@ widget carouselCaption implemented_by net.bootsfaces.component.Carousel
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     onmousedown                                                            "Client side callback to execute when a pointer input element is pressed down over input element."
     onmousemove                                                            "Client side callback to execute when a pointer input element is moved within input element."
@@ -341,8 +341,8 @@ widget carouselControl implemented_by net.bootsfaces.component.Carousel
        has_tooltip
 {
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
 	direction															   "Can take one of the values 'left' and 'right'. Determines whether the carousel scrolls to the next or to the previous image."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -370,7 +370,7 @@ widget colorPicker
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
     control																   "The type of control to display. Valid values: hue, brightness, saturation, and wheel."
@@ -410,10 +410,10 @@ widget colorPicker
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
+    validator           jakarta.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+ajax
 	+style
 	+tooltip
@@ -445,10 +445,10 @@ widget commandButton
        is_responsive
  {
     accesskey                                                              "Access key to transfer focus to the input element."
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     icon                                                                   "Button Icon, can be one of the Bootstrap icon names. Alignment can be specified with icon-align attribute."
@@ -489,11 +489,11 @@ widget commandLink
        extends UICommand
        has_tooltip
  {
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -650,7 +650,7 @@ widget datepicker
        is_responsive
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     change-month        Boolean                                            "Boolean value to specify if month selector should be shown."
     change-year         Boolean                                            "Boolean value to specify if year selector should be shown."
     first-day           Integer                                            "Set the first day of the week: Sunday is 0, Monday is 1, etc."
@@ -684,7 +684,7 @@ widget dateTimePicker
 {
     allow-input-toggle 	     Boolean									   "If true, the picker will show on textbox focus and icon click when used in a button group. Default: false."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-	binding                  javax.faces.component.UIComponent             "An EL expression referring to a server side UIComponent instance in a backing bean."
+	binding                  jakarta.faces.component.UIComponent             "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapse				 Boolean default "true"						   "If true, a Bootstrap collapse animation is used to switch between the date picker and the time picker."
     day-view-header-format   default "MMMM YYYY"						   "Changes the heading of the datepicker when in 'days' view. Default: 'MMMM YYYY'."
 	disabled                 Boolean  inherited                            "Disables the input element, default is false."
@@ -773,7 +773,7 @@ widget dropButton
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     drop                                                                   "Use up For dropup and down for dropdown, default is down."
     icon                                                                   "Navigation Link Icon, can be one of the Bootstrap's Glyphicons icon names. Alignment can be specified with the icon-align attribute."
     icon-align                                                             "Alignment can be right or left."
@@ -800,7 +800,7 @@ widget dropMenu
        is_responsive
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
     content-style                                                          "Inline style of the content area."
     drop                                                                   "Use up For Dropup and down for Dropdown, default is down."
@@ -831,7 +831,7 @@ widget form
        extends HtmlForm
        has_children {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
+    binding             jakarta.faces.component.UIComponent inherited        "The ValueExpression linking this component to a property in a backing bean"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     prependId           Boolean inherited                                  "Flag indicating whether or not this form should prepend its id to its descendent's id during the clientId generation process. If this flag is not set, the default value is true."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -867,7 +867,7 @@ widget flyOutMenu
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	width               default "180px"                                    "Width of the menu items. Needed to position the child menus correctly."
@@ -945,13 +945,13 @@ widget gyroscope
        processes_input
        extends UICommand
 {
-    action              javax.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     ajax                Boolean                                                     "Whether the Button submits the form with AJAX."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    alpha               javax.el.ValueExpression                                    "Variable to store the alpha value of the gyroscope's rotation"
-    beta                javax.el.ValueExpression                                    "Variable to store the beta value of the gyroscope's rotation"
-    gamma               javax.el.ValueExpression                                    "Variable to store the gamma value of the gyroscope's rotation"
+    alpha               jakarta.el.ValueExpression                                    "Variable to store the alpha value of the gyroscope's rotation"
+    beta                jakarta.el.ValueExpression                                    "Variable to store the beta value of the gyroscope's rotation"
+    gamma               jakarta.el.ValueExpression                                    "Variable to store the gamma value of the gyroscope's rotation"
     delay                                                                 "Delays the AJAX request."
     disabled            Boolean                                                     "Disables the input element, default is false."
     id                  inherited      												"Unique identifier of the component in a namingContainer."
@@ -971,7 +971,7 @@ widget icon
  {
     addon               Boolean                                            "Boolean value: if true the element is used as Addon."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     flip                                                                   "Flip the icon: can be H (horizontal) or V (vertical)."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1002,7 +1002,7 @@ widget iconAwesome
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
     id                                                      inherited      "Unique identifier of the component in a namingContainer."
@@ -1041,7 +1041,7 @@ widget image
 {
 	alt																   	   "Alternate textual description of the element rendered by this component."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     height																   "Override for the height of this image."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1083,7 +1083,7 @@ widget inputSecret
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
     alt                                                                    "Alternate textual description of the input element."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -1123,10 +1123,10 @@ widget inputSecret
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
+    validator           jakarta.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+ajax
 	+style
 	+tooltip
@@ -1147,7 +1147,7 @@ widget inputText
     alt                              inherited                             "Alternate textual description of the input element."
     autocomplete                     inherited                             "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
     dir                              inherited                             "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -1194,10 +1194,10 @@ widget inputText
     typeahead-hint      Boolean default "true"                             "If set to false, the typeahead will not show a hint. Defaults to true."
     typeahead-minLength Integer default "1"                                "Minimum number of characters to be entered before a suggestion is shown."
     typeahead-values    java.lang.Object                                   "Comma-separated list of values that can be used for the typeahead list."
-    validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
+    validator           jakarta.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value               inherited                                          "Value."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+ajax
 	+style
 	+tooltip
@@ -1217,7 +1217,7 @@ widget inputTextarea
     alt                                                                    "Alternate textual description of the input element."
     autocomplete                                                           "Controls browser autocomplete behavior. Legal values: 'off', 'false', 'true', and 'on'."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding               javax.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding               jakarta.faces.component.UIComponent                "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter             java.faces.convert.Converter inherited           "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
@@ -1255,10 +1255,10 @@ widget inputTextarea
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    validator             javax.faces.validator.Validator inherited        "A method expression referring to a method validationg the input."
+    validator             jakarta.faces.validator.Validator inherited        "A method expression referring to a method validationg the input."
     validator-message     inherited                                        "Message to display when validation fails."
     value                 inherited                                        "Value."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+ajax
 	+style
 	+tooltip
@@ -1309,7 +1309,7 @@ widget kebab
        has_children
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+style
@@ -1323,7 +1323,7 @@ widget label
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     severity                                                               "Severity of the Label, can be primary, success, info, warning, danger. Default is warning."
@@ -1340,11 +1340,11 @@ widget link
        has_tooltip
        is_responsive
  {
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -1393,7 +1393,7 @@ widget listLinks
        has_tooltip
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
 	+tooltip
@@ -1505,7 +1505,7 @@ widget navBar
  {
  	alt                 String default "Brand"                             "alternative text"
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     brand                                                                  "Brand for the Navbar."
     brand-align                                                            "Brand alignment, can be right or left."
     brand-href                                                             "Link URL for the Navbar Brand."
@@ -1541,11 +1541,11 @@ widget navCommandLink
        extends UICommand
        has_tooltip
  {
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -1590,11 +1590,11 @@ widget navLink
        has_tooltip
        is_responsive
  {
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     active              Boolean                                            "Adds the active state to the link."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     content-class                                                          "content-class is optional: if specified, the content (i.e. the anchor tag) will be displayed with this specific class"
     content-style                                                          "Inline style of the content area (i.e the anchor tag)."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
@@ -1639,7 +1639,7 @@ widget navbarLinks
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     pull                                                                   "Can be right or left. Pulls the element right or left."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
@@ -1678,7 +1678,7 @@ widget panel
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     collapsed           Boolean                                            "Is the panel collapsed?"
     collapsible         Boolean default "true"                             "By default, panels can be folded by clicking the title bar. Seting collapsible to false will suppress the collapse/expand feature."
     content-class                                                          "content-class is optional: if specified, the content will be displayed with this specific class"
@@ -1744,7 +1744,7 @@ widget pillLinks
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
@@ -1756,8 +1756,8 @@ widget poll
        processes_input
        extends HtmlCommandButton
  {
-    action              javax.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression                          "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener                   "A method expression that refers to a method with this signature: void methodName(Action-Event)."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
     execute                                                                "Which input fields are to be sent? Default value: @none"
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
@@ -1820,9 +1820,9 @@ widget remoteCommand
        processes_input
        extends UICommand
  {
-    action              javax.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    action              jakarta.el.MethodExpression inherited                "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited         "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     immediate           Boolean inherited                                  "Flag indicating that, if this component is activated by the user, notifications should be delivered to interested listeners and actions immediately (that is, during Apply Request Values phase) rather than waiting until Invoke Application phase. Default is false."
@@ -1894,7 +1894,7 @@ widget selectBooleanCheckbox
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                                "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                      "Message to display when conversion fails."
@@ -1931,7 +1931,7 @@ widget selectBooleanCheckbox
     tabindex                                                               "Position of this element in the tabbing order for the current document.  This value must be an integer between 0 and 32767."
     title                                                                  "Advisory tooltip information."
     value               inherited                                          "EL expression referring to the back-end bean attribute providing the value of the field."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
 	+ajax
     +tooltip
     +responsive
@@ -1942,8 +1942,8 @@ widget shake
        processes_input
        extends UICommand
 {
-    action              javax.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
-    action-listener     javax.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
+    action              jakarta.el.MethodExpression inherited                         "The button action, this can be method expression or a string outcome."
+    action-listener     jakarta.faces.event.ActionListener inherited                  "A method expression that refers to a method with this signature: void methodName(Action-Event)."
     ajax                Boolean                                                     "Whether the Button submits the form with AJAX."
     delay                                                                 "Delays the AJAX request."
     disabled            Boolean                                                     "Disables the input element, default is false."
@@ -1964,7 +1964,7 @@ widget spinner
 {
     addon               Boolean                             inherited      "Boolean value: if true the element is used as Addon."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent   inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled            Boolean                             inherited      "Boolean value to specify if the button is disabled."
     flip                                                    inherited      "Flip the icon: can be H (horizontal) or V (vertical)."
     id                                                      inherited      "Unique identifier of the component in a namingContainer."
@@ -1995,7 +1995,7 @@ widget switch
     accesskey                                                        inherited      "Access key to transfer focus to the input element."
     alt                                                              inherited      "Alternate textual description of the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent            inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent            inherited      "An EL expression referring to a server side UIComponent instance in a backing bean."
     caption                                                          inherited      "Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)"
     converter           java.faces.convert.Converter                 inherited      "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     converter-message                                                inherited      "Message to display when conversion fails."
@@ -2032,7 +2032,7 @@ widget switch
     tabindex                                                         inherited      "Advisory tooltip information."
     title                                                            inherited      "Advisory tooltip information."
     value                                                            inherited      "EL expression referring to the back-end bean attribute providing the value of the field."
-    value-change-listener javax.faces.event.ValueChangeListener      inherited      "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener      inherited      "A method binding expression referring to a method for handling a valuechangeevent."
     on-color                                                                        "Color of the left hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'."
     off-color                                                                       "Color of the right hand side of the switch. Legal values: 'primary', 'info', 'success', 'warning', 'danger', 'default'. Default value: 'primary'."
     indeterminate       Boolean                                                     "Indeterminate state. Turned off by default."
@@ -2059,7 +2059,7 @@ widget selectMultiMenu
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     button-container                                                       "HTML snippet of the container holding both the button as well as the dropdown. Default: &lt;div class='btn-group' style='display:block' /&gt;. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
@@ -2124,7 +2124,7 @@ widget selectOneMenu
     accesskey                                                              "Access key to transfer focus to the input element."
     alt                                                                    "Alternate textual description of the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     converter           java.faces.convert.Converter inherited             "An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id."
     dir                                                                    "Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content)."
     disabled            Boolean                                            "Disables the input element, default is false."
@@ -2176,7 +2176,7 @@ widget slider
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     disabled	 		Boolean                                            "If true, you can't move the slider, nor can you edit the number."
     handle-shape                                                           "The default handle is squared. Specifing the \"round\" value for this attribute will turn the handle shape to a circle."
     handle-size                                                            "In some situations (eg. mobile phones) the slider handle may be difficult to operate because of its size. Specifing the \"md\" or \"lg\" value for this attribute will change the handle size accordingly."
@@ -2207,7 +2207,7 @@ widget slider2
 	extends HtmlInputText
 {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-	binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+	binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
 	disabled			Boolean default	"false"							   "If true, you can't move the slider, nor can you edit the number."
 	focus				Boolean default "false"							   "Focus the appropriate slider handle after a value change."
 	formatter															   "Javascript function that returns the plain value to be displayed in the tooltip"
@@ -2272,7 +2272,7 @@ widget touchSpin
     accesskey                        inherited                             "Access key to transfer focus to the input element."
     alt                              inherited                             "Alternate textual description of the input element."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     booster				Boolean default "true"							   "If enabled, the the spinner is continually becoming faster as holding the button."
     boostat				Integer default "10"							   "Boost at every nth step."
     button-down-class	default "btn btn-default"						   "Class(es) of down button."
@@ -2335,10 +2335,10 @@ widget touchSpin
     tags                Boolean                                            "Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list."
     title                             inherited                            "Advisory tooltip information."
     type                                                                   "Type of the input. The default is text."
-    validator           javax.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
+    validator           jakarta.faces.validator.Validator inherited          "A method expression referring to a method validationg the input."
     validator-message   inherited                                          "Message to display when validation fails."
     value                                                            	   "Value."
-    value-change-listener javax.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
+    value-change-listener jakarta.faces.event.ValueChangeListener inherited  "A method binding expression referring to a method for handling a valuechangeevent."
     vertical-buttons	Boolean default "false"							   "Enables the traditional up/down buttons."
 	vertical-up-class	default "glyphicon glyphicon-chevron-up"		   "Class of the up button with vertical buttons mode enabled."
 	vertical-down-class default "glyphicon glyphicon-chevron-down"		   "Class of the down button with vertical buttons mode enabled."
@@ -2378,7 +2378,7 @@ widget tabLinks
        has_tooltip
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     +tooltip
@@ -2449,7 +2449,7 @@ widget thumbnail
        is_responsive
  {
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."
     rendered            Boolean inherited                                  "Boolean value to specify the rendering of the component, when set to false the component will not be rendered."
     style                                                                  "Inline CSS of the tab."
@@ -2466,7 +2466,7 @@ widget video
 {
     autoplay            Boolean default "false"                            "Setting this to true will start the video on page load. By default, autoplay is deactivated. Note that mobile devices never start videos automatically."
 	auto-update         Boolean                                           "Setting this flag updates the widget on every AJAX request."
-    binding             javax.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
+    binding             jakarta.faces.component.UIComponent                  "An EL expression referring to a server side UIComponent instance in a backing bean."
     controls            Boolean default "true"                             "Hide the controls (start, stop, seeking, volume etc.) by setting this property to false. By default, the controls are shown."
     disabled            Boolean                                            "Boolean value to specify if the button is disabled."
     id                  inherited                                          "Unique identifier of the component in a namingContainer."

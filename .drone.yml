@@ -1,0 +1,47 @@
+kind: pipeline
+name: default
+
+steps:
+
+# build the project with gradle
+- name: gradle-library-build
+  image: openjdk:11-jdk
+  commands:
+    - ./gradlew --no-daemon -b build.gradle clean buildResources :javaBuild:defaultJar :javaBuild:buildJava11Jar :javaBuild:buildJava17Jar
+    - ls -lisa ./javaBuild/build/libs/
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
+# build the project with maven
+- name: maven-library-package
+  image: maven:3.6-jdk-11
+  commands:
+    - mvn clean package #-P MavenCentral
+    - cd ./target/
+    - ls -lisa
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
+# to refresh the showcase, deploy a snapshot to 'GitHub Packages'
+- name: maven-library-deploy
+  when:
+    repo:
+      - geopossachs/BootsFaces-OSP
+  image: maven:3.6-jdk-11
+  commands:
+    - mvn -s ./.drone_maven_settings.xml clean deploy -P geopossachs
+  environment:
+    GITHUB_USERNAME: geopossachs
+    GITHUB_ACCESS_TOKEN: 
+      from_secret: githab_access_token
+  volumes:
+  - name: maven-cache
+    path: /root/.m2
+
+
+volumes:
+  - name: maven-cache
+    host: 
+      path: /temp/drone/m2cache

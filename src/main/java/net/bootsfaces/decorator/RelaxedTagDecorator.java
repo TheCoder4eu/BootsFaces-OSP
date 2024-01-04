@@ -19,13 +19,13 @@ package net.bootsfaces.decorator;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.faces.render.Renderer;
-import javax.faces.view.Location;
-import javax.faces.view.facelets.FaceletException;
-import javax.faces.view.facelets.Tag;
-import javax.faces.view.facelets.TagAttribute;
-import javax.faces.view.facelets.TagAttributes;
-import javax.faces.view.facelets.TagDecorator;
+import jakarta.faces.render.Renderer;
+import jakarta.faces.view.Location;
+import jakarta.faces.view.facelets.FaceletException;
+import jakarta.faces.view.facelets.Tag;
+import jakarta.faces.view.facelets.TagAttribute;
+import jakarta.faces.view.facelets.TagAttributes;
+import jakarta.faces.view.facelets.TagDecorator;
 
 import net.bootsfaces.expressions.decorator.AFTagAttributes;
 import net.bootsfaces.expressions.decorator.TagAttributeUtilities;

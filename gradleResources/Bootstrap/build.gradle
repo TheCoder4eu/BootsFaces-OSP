@@ -34,7 +34,6 @@ ext.bootswatchZipFolder = 'bootswatch-'+BootswatchFullVersion.replace('+','-')
 def bootswatchZip = new File(buildDir, 'bootswatch-'+BootswatchFullVersion.replace('+','-')+'.zip')
 
 ext.downloadPatternFlyURL = 'https://github.com/patternfly/patternfly-3/archive/v'+PatternFlyVersion+'.zip'
-
 def PatternFlyZip = new File(buildDir, 'patternfly-'+PatternFlyVersion+'.zip')
 
 task themesTask {

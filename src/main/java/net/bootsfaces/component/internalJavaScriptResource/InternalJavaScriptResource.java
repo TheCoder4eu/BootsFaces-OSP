@@ -18,8 +18,8 @@
 
 package net.bootsfaces.component.internalJavaScriptResource;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
 
 import net.bootsfaces.utils.BsfUtils;
 

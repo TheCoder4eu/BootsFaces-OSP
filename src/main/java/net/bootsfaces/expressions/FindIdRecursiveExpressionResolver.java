@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.faces.FacesException;
-import javax.faces.component.NamingContainer;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
 
 public class FindIdRecursiveExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,

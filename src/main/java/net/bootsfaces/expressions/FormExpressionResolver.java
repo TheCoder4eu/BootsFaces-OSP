@@ -3,10 +3,10 @@ package net.bootsfaces.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.FacesException;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIViewRoot;
 
 public class FormExpressionResolver implements AbstractExpressionResolver {
 	public List<UIComponent> resolve(UIComponent component, List<UIComponent> parentComponents, String currentId,

@@ -1,6 +1,6 @@
 package net.bootsfaces.component.fullCalendar;
 
-import javax.faces.component.UIData;
+import jakarta.faces.component.UIData;
 
 /**
  * 

@@ -18,12 +18,12 @@
 
 package net.bootsfaces.component.dateTimePicker;
 
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -35,12 +35,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.ConverterException;
 
 import net.bootsfaces.C;
 import net.bootsfaces.component.ajax.IAJAXComponent;
@@ -184,7 +184,7 @@ public class DateTimePicker extends DateTimePickerCore
 				return cal.getTime();
 			} catch (Exception pe) {
 				this.setValid(false);
-				throw new ConverterException(BsfUtils.getMessage("javax.faces.converter.DateTimeConverter.DATE", val,
+				throw new ConverterException(BsfUtils.getMessage("jakarta.faces.converter.DateTimeConverter.DATE", val,
 						javaFormat, BsfUtils.getLabel(context, this)));
 			}
 		}

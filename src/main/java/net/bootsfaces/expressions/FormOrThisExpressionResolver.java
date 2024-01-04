@@ -3,10 +3,10 @@ package net.bootsfaces.expressions;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.component.NamingContainer;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIViewRoot;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIViewRoot;
 
 import net.bootsfaces.component.commandButton.CommandButton;
 import net.bootsfaces.component.navCommandLink.NavCommandLink;

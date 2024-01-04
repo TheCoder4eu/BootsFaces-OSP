@@ -21,10 +21,10 @@ package net.bootsfaces.component.linksContainer;
 import java.io.IOException;
 import java.util.Map;
 
-import javax.el.ValueExpression;
-import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
+import jakarta.el.ValueExpression;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
 
 import net.bootsfaces.C;
 import net.bootsfaces.listeners.AddResourcesListener;

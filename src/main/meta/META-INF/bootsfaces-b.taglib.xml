@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+<facelet-taglib xmlns="https://jakarta.ee/xml/ns/jakartaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-	http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
-	version="2.0"
+	xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-facelettaglibrary_4_0.xsd"
+	version="4.0"
 	id="b">
 	<namespace>http://bootsfaces.net/ui</namespace>
 	
@@ -349,7 +348,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true close button will be displayed.]]></description>
@@ -669,7 +668,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -971,7 +970,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -1099,7 +1098,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -1701,7 +1700,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -2027,7 +2026,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -2341,7 +2340,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -2643,19 +2642,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Optional attribute to define which slide is active initially.]]></description>
@@ -3125,19 +3124,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Optional attribute to define which slide is active initially.]]></description>
@@ -3361,19 +3360,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -3579,19 +3578,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -3845,7 +3844,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -4499,7 +4498,7 @@
 		  <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
 		  <name>validator</name>
 		  <required>false</required>
-		  <type>javax.faces.validator.Validator</type>
+		  <type>jakarta.faces.validator.Validator</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Message to display when validation fails.]]></description>
@@ -4523,13 +4522,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -4863,19 +4862,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -4899,7 +4898,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -5513,19 +5512,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds the active state to the link.]]></description>
@@ -5555,7 +5554,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -7417,7 +7416,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boolean value to specify if month selector should be shown.]]></description>
@@ -8109,7 +8108,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -9253,7 +9252,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -9741,7 +9740,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -10267,7 +10266,7 @@
 		  <description><![CDATA[The ValueExpression linking this component to a property in a backing bean]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Direction indication for text that does not inherit directionality. Legal values: ltr (Default. Left-to-right text direction), rtl (Right-to-left text direction) and auto (let the browser figure out the direction of your alphabet, based on the page content).]]></description>
@@ -10449,7 +10448,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
@@ -11237,19 +11236,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -11261,7 +11260,7 @@
 		  <description><![CDATA[Variable to store the alpha value of the gyroscope's rotation]]></description>
 		  <name>alpha</name>
 		  <required>false</required>
-		  <type>javax.el.ValueExpression</type>
+		  <type>jakarta.el.ValueExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
@@ -11279,7 +11278,7 @@
 		  <description><![CDATA[Variable to store the beta value of the gyroscope's rotation]]></description>
 		  <name>beta</name>
 		  <required>false</required>
-		  <type>javax.el.ValueExpression</type>
+		  <type>jakarta.el.ValueExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Delays the AJAX request.]]></description>
@@ -11297,7 +11296,7 @@
 		  <description><![CDATA[Variable to store the gamma value of the gyroscope's rotation]]></description>
 		  <name>gamma</name>
 		  <required>false</required>
-		  <type>javax.el.ValueExpression</type>
+		  <type>jakarta.el.ValueExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -11377,7 +11376,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -11811,7 +11810,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Use the free brand font of FontAwesome 5. As a side effect, every FontAwesome icon on the same page is switched to FontAwesome 5.2.0. By default, the icon set is the older version 4.7.0.]]></description>
@@ -12293,7 +12292,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -12787,7 +12786,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -13465,7 +13464,7 @@
 		  <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
 		  <name>validator</name>
 		  <required>false</required>
-		  <type>javax.faces.validator.Validator</type>
+		  <type>jakarta.faces.validator.Validator</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Message to display when validation fails.]]></description>
@@ -13489,13 +13488,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -13551,7 +13550,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -14295,7 +14294,7 @@
 		  <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
 		  <name>validator</name>
 		  <required>false</required>
-		  <type>javax.faces.validator.Validator</type>
+		  <type>jakarta.faces.validator.Validator</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Message to display when validation fails.]]></description>
@@ -14319,13 +14318,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -14381,7 +14380,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -15035,7 +15034,7 @@
 		  <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
 		  <name>validator</name>
 		  <required>false</required>
-		  <type>javax.faces.validator.Validator</type>
+		  <type>jakarta.faces.validator.Validator</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Message to display when validation fails.]]></description>
@@ -15059,13 +15058,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -15269,7 +15268,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
@@ -15337,7 +15336,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -15639,19 +15638,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds the active state to the link.]]></description>
@@ -15681,7 +15680,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -16343,7 +16342,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -17527,7 +17526,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Brand for the Navbar.]]></description>
@@ -17799,19 +17798,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds the active state to the link.]]></description>
@@ -17841,7 +17840,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -18485,19 +18484,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Adds the active state to the link.]]></description>
@@ -18527,7 +18526,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -19183,7 +19182,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables or disables every child element of this container. By default, child elements are enabled.]]></description>
@@ -19439,7 +19438,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -20457,7 +20456,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -20567,19 +20566,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Setting this flag updates the widget on every AJAX request.]]></description>
@@ -21437,19 +21436,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -21461,7 +21460,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Delays the AJAX request.]]></description>
@@ -21895,7 +21894,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)]]></description>
@@ -22531,13 +22530,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -22557,19 +22556,19 @@
 		  <description><![CDATA[The button action, this can be method expression or a string outcome.]]></description>
 		  <name>action</name>
 		  <required>false</required>
-		  <type>javax.el.MethodExpression</type>
+		  <type>jakarta.el.MethodExpression</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>action-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method expression that refers to a method with this signature: void methodName(Action-Event).]]></description>
 		  <name>actionListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ActionListener</type>
+		  <type>jakarta.faces.event.ActionListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Whether the Button submits the form with AJAX.]]></description>
@@ -22667,7 +22666,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -23101,7 +23100,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Caption of the check box (text behind the check box, as opposed to the label, which may be above the check box)]]></description>
@@ -23737,13 +23736,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[This column is shown on a certain screen size and above. Legal values: lg, md, sm, xs.]]></description>
@@ -23805,7 +23804,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[HTML snippet of the container holding both the button as well as the dropdown. Default: &lt;div class='btn-group' style='display:block' /&gt;. Note that the original definition of the widget doesn't use the style definition. We've added it to fix a rendering bug.]]></description>
@@ -24599,7 +24598,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -25297,7 +25296,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, you can't move the slider, nor can you edit the number.]]></description>
@@ -25563,7 +25562,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[If true, you can't move the slider, nor can you edit the number.]]></description>
@@ -26125,7 +26124,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Boost at every nth step.]]></description>
@@ -26983,7 +26982,7 @@
 		  <description><![CDATA[A method expression referring to a method validationg the input.]]></description>
 		  <name>validator</name>
 		  <required>false</required>
-		  <type>javax.faces.validator.Validator</type>
+		  <type>jakarta.faces.validator.Validator</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Message to display when validation fails.]]></description>
@@ -27007,13 +27006,13 @@
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>value-change-listener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[A method binding expression referring to a method for handling a valuechangeevent.]]></description>
 		  <name>valueChangeListener</name>
 		  <required>false</required>
-		  <type>javax.faces.event.ValueChangeListener</type>
+		  <type>jakarta.faces.event.ValueChangeListener</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Enables the traditional up/down buttons.]]></description>
@@ -27329,7 +27328,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Unique identifier of the component in a namingContainer.]]></description>
@@ -28109,7 +28108,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>
@@ -28417,7 +28416,7 @@
 		  <description><![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]></description>
 		  <name>binding</name>
 		  <required>false</required>
-		  <type>javax.faces.component.UIComponent</type>
+		  <type>jakarta.faces.component.UIComponent</type>
 		</attribute>
 		<attribute>
 		  <description><![CDATA[Integer value to specify how many columns to span on large screens (≥1200 pixels wide). The number may optionally be followed by "column" or "columns". Alternative legal values: half, one-third, two-thirds, one-fourth, three-fourths.]]></description>

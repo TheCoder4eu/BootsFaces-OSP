@@ -21,21 +21,21 @@ import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
-import javax.el.ValueExpression;
-import javax.faces.FacesException;
-import javax.faces.application.ProjectStage;
-import javax.faces.component.EditableValueHolder;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIForm;
-import javax.faces.component.UIInput;
-import javax.faces.component.ValueHolder;
-import javax.faces.component.behavior.ClientBehavior;
-import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
-import javax.faces.context.ResponseWriter;
-import javax.faces.convert.Converter;
-import javax.faces.convert.ConverterException;
-import javax.faces.render.Renderer;
+import jakarta.el.ValueExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.component.EditableValueHolder;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIForm;
+import jakarta.faces.component.UIInput;
+import jakarta.faces.component.ValueHolder;
+import jakarta.faces.component.behavior.ClientBehavior;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.context.ResponseWriter;
+import jakarta.faces.convert.Converter;
+import jakarta.faces.convert.ConverterException;
+import jakarta.faces.render.Renderer;
 import net.bootsfaces.beans.ELTools;
 import net.bootsfaces.component.ajax.AJAXRenderer;
 import net.bootsfaces.component.form.Form;
@@ -99,7 +99,7 @@ public class CoreRenderer extends Renderer {
 
 	/**
 	 * @deprecated Use
-	 *             {@link CoreRenderer#generateErrorAndRequiredClass(javax.faces.component.UIInput, javax.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) }
+	 *             {@link CoreRenderer#generateErrorAndRequiredClass(jakarta.faces.component.UIInput, jakarta.faces.context.ResponseWriter, java.lang.String, java.lang.String, java.lang.String, java.lang.String) }
 	 *             instead
 	 * 
 	 *             Renders the CSS pseudo classes for required fields and for the
@@ -237,12 +237,12 @@ public class CoreRenderer extends Renderer {
 		}
 
 		Map<String, String> params = context.getExternalContext().getRequestParameterMap();
-		String behaviorEvent = params.get("javax.faces.behavior.event");
+		String behaviorEvent = params.get("jakarta.faces.behavior.event");
 		if (null != behaviorEvent) {
 			List<ClientBehavior> behaviorsForEvent = behaviors.get(behaviorEvent);
 
 			if (behaviorsForEvent != null && !behaviorsForEvent.isEmpty()) {
-				String behaviorSource = params.get("javax.faces.source");
+				String behaviorSource = params.get("jakarta.faces.source");
 				String clientId = component.getClientId(context);
 				if (behaviorSource != null && clientId.equals(behaviorSource)) {
 					for (ClientBehavior behavior : behaviorsForEvent) {
@@ -631,7 +631,7 @@ public class CoreRenderer extends Renderer {
 	 * Get the main field container
 	 * 
 	 * @deprecated Use
-	 *             {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, javax.faces.component.UIComponent)}
+	 *             {@link CoreInputRenderer#getWithFeedback(net.bootsfaces.render.CoreInputRenderer.InputMode, jakarta.faces.component.UIComponent)}
 	 *             instead
 	 * 
 	 * @param additionalClass

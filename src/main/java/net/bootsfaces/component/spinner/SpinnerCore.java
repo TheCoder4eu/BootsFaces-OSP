@@ -18,7 +18,7 @@
 
 package net.bootsfaces.component.spinner;
 
-import javax.faces.component.FacesComponent;
+import jakarta.faces.component.FacesComponent;
 
 import net.bootsfaces.component.iconAwesome.IconAwesome;
 

@@ -1,19 +1,19 @@
 package net.bootsfaces.component.ajax;
 
-import javax.el.ELContext;
-import javax.el.ExpressionFactory;
-import javax.el.MethodExpression;
-import javax.el.PropertyNotFoundException;
-import javax.el.ValueExpression;
-import javax.faces.FacesException;
-import javax.faces.application.ProjectStage;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIComponentBase;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ActionEvent;
-import javax.faces.event.ActionListener;
-import javax.faces.event.FacesEvent;
+import jakarta.el.ELContext;
+import jakarta.el.ExpressionFactory;
+import jakarta.el.MethodExpression;
+import jakarta.el.PropertyNotFoundException;
+import jakarta.el.ValueExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.application.ProjectStage;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIComponentBase;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ActionEvent;
+import jakarta.faces.event.ActionListener;
+import jakarta.faces.event.FacesEvent;
 
 public class AJAXBroadcastComponent extends UIComponentBase {
 	private UIComponent source;
@@ -28,7 +28,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 	 * pass the {@link ActionEvent} being broadcast to the method referenced by
 	 * <code>actionListener</code> (if any), and to the default
 	 * {@link ActionListener} registered on the
-	 * {@link javax.faces.application.Application}.
+	 * {@link jakarta.faces.application.Application}.
 	 * </p>
 	 *
 	 * @param event
@@ -123,7 +123,7 @@ public class AJAXBroadcastComponent extends UIComponentBase {
 			ValueExpression vex = evalAsValueExpression("#{" + el + "}");
 			try {
 				result = vex.getValue(context.getELContext());
-			} catch (javax.el.PropertyNotFoundException ex) {
+			} catch (jakarta.el.PropertyNotFoundException ex) {
 				MethodExpression mex = evalAsMethodExpression("#{" + el + "}");
 				result = mex.invoke(context.getELContext(), null);
 			}

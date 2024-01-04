@@ -1,8 +1,8 @@
 package net.bootsfaces.expressions;
 
-import javax.faces.component.NamingContainer;
-import javax.faces.component.UIComponent;
-import javax.faces.component.UIViewRoot;
+import jakarta.faces.component.NamingContainer;
+import jakarta.faces.component.UIComponent;
+import jakarta.faces.component.UIViewRoot;
 
 public class ExpressionResolverUtilities {
 	public static String determineQualifiedId(UIComponent component) {

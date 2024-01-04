@@ -20,17 +20,17 @@ package net.bootsfaces.component.form;
 
 import java.io.IOException;
 
-import javax.el.ValueExpression;
-import javax.faces.FacesException;
-import javax.faces.component.FacesComponent;
-import javax.faces.component.behavior.ClientBehaviorHolder;
-import javax.faces.context.FacesContext;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.ComponentSystemEvent;
-import javax.faces.event.ListenerFor;
-import javax.faces.event.ListenersFor;
-import javax.faces.event.PostAddToViewEvent;
-import javax.faces.event.PreRenderComponentEvent;
+import jakarta.el.ValueExpression;
+import jakarta.faces.FacesException;
+import jakarta.faces.component.FacesComponent;
+import jakarta.faces.component.behavior.ClientBehaviorHolder;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.event.AbortProcessingException;
+import jakarta.faces.event.ComponentSystemEvent;
+import jakarta.faces.event.ListenerFor;
+import jakarta.faces.event.ListenersFor;
+import jakarta.faces.event.PostAddToViewEvent;
+import jakarta.faces.event.PreRenderComponentEvent;
 
 import net.bootsfaces.utils.BsfUtils;
 
@@ -42,9 +42,9 @@ public class Form extends FormCore implements ClientBehaviorHolder {
 
 	public static final String COMPONENT_TYPE = "net.bootsfaces.component.form.Form";
 
-	public static final String COMPONENT_FAMILY = "javax.faces.Form";
+	public static final String COMPONENT_FAMILY = "jakarta.faces.Form";
 
-	public static final String DEFAULT_RENDERER = "javax.faces.Form";
+	public static final String DEFAULT_RENDERER = "jakarta.faces.Form";
 
 	public Form() {
 		setRendererType(DEFAULT_RENDERER);
