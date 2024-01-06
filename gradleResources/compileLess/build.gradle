@@ -23,13 +23,13 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-      //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:4.4.0'
-      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.4.7'
+      classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:4.4.0'
+      //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.4.7'
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.6'
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.3'
       //classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:3.3.1'
-      //classpath 'com.bertramlabs.plugins:less-asset-pipeline:4.4.0'
-      classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.4.7'
+      classpath 'com.bertramlabs.plugins:less-asset-pipeline:4.4.0'
+      //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.4.7'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.6'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.3'
       //classpath 'com.bertramlabs.plugins:less-asset-pipeline:3.3.1'
