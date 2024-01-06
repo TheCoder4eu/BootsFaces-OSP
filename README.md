@@ -20,23 +20,23 @@ The source for our page can be found on GitHub. If you want to have a deeper loo
 At the moment, this project is not maintained actively. If you need a feature, please send us a pull request so we can build a new version. It's a good idea to reach out to use beforehand, so we can check if (or make sure that) we've got enough time to review your PR and to publish a new version.
 
 ### Getting started
-To get up and running quickly, have a look at the [Quick Start](http://www.bootsfaces.net/quick-start.jsf).
+To get up and running quickly, have a look at the [Quick Start](https://www.bootsfaces.net/quick-start.jsf).
 
-At the moment, version 1.6.0 is only available as development snapshot!
+At the moment, version 2.0.0 is only available as development snapshot!
 
-Starting with version 1.6.0, BootsFaces requires JSF 4.0. It's no longer compatible to the old JavaEE libraries. Instead, it requires the Jakarta libraries..
+Starting with version 2.0.0, BootsFaces requires JSF 4.0. It's no longer compatible to the old JavaEE libraries. Instead, it requires the Jakarta libraries..
 
 ### Maven
 
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>1.6.0-SNAPSHOT</version>
+        <version>2.0.0-SNAPSHOT</version>
     </dependency>
 
 ### Gradle
 
-    compile 'net.bootsfaces:bootsfaces:1.6.0-SNAPSHOT'
+    compile 'net.bootsfaces:bootsfaces:2.0.0-SNAPSHOT'
 
 ### Development Snapshots
 
@@ -47,18 +47,15 @@ There's also a [Snapshot Showcase](http://www3.bootsfaces.net/Showcase/) with th
 If you want to get your feet wet yourself, we suggest you to take a look at our [cheat-sheet](cheat-sheet.md) and the [contribution guidelines](CONTRIBUTING.md).
 
 ### Notes on the new Java Release Cycle
-As of March 20, 2018 a new six-month Java release scheme has been adopted and Java 10 is the currently supported rapid release version.
-There will be three years between a LTS release and the next and Java 11 will be the next LTS after Java 8(LTS).
-Java 10 support ends on the same date that support for Java 11 begins the day of its release, planned for September 25, 2018.
+As of March 20, 2018 a new six-month Java release scheme has been adopted.
+There will be three years between a LTS release and the next and Java 11 has been the next LTS after Java 8(LTS). Bootsfaces currently supports Java 11 LTS and Java 17 LTS, since Java 8 support has been Dropped in Jakarta 10.
 
-BootsFaces want to support each Java runtime released after the minimum Java version used to build the library.
-However, to prevent too many Java subdirectories in the project root, we created the legacyJava directory, that will collect the build scripts specific for non-LTS runtimes.
-This means that our official build will only include non obsolete LTS targets but you will have the option of building for not non-LTS Java targets using commands like follows:
+For simplicity, BootsFaces will support the Java releases supported by Jakarta EE, which in version 11 might be only Java 21+.
+
+With Gradle, you can build the library using the following Targets:
 
 ```
-./gradlew :legacyJava:java7:defaultJar
-./gradlew :legacyJava:java9:defaultJar
-./gradlew :legacyJava:java10:defaultJar
+./gradlew :javaBuild:buildJava11Jar
+./gradlew :javaBuild:buildJava17Jar
 ```
-
 
