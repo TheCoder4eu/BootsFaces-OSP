@@ -79,10 +79,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
-			<artifactId>owasp-java-html-sanitizer</artifactId>
-			<version>20220608.1</version>
+		  <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+		  <artifactId>owasp-java-html-sanitizer</artifactId>
+		  <version>20220608.1</version>
 		</dependency>
+		<dependency>
+                  <groupId>com.google.guava</groupId>
+                  <artifactId>guava</artifactId>
+                  <version>32.0.1-jre</version>
+                </dependency>
 	</dependencies>
 
 
