@@ -1,19 +1,19 @@
 /**
- *  Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
+ * Copyright 2014-2019 Riccardo Massera (TheCoder4.Eu) and Stephan Rauh (http://www.beyondjava.net).
  *
- *  This file is part of BootsFaces.
+ * This file is part of BootsFaces.
  *
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*    http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 package net.bootsfaces.component.selectOneMenu;
@@ -58,35 +58,53 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		final String clientId = outerClientId + "Inner";
 		final String submittedOptionValue = context.getExternalContext().getRequestParameterMap().get(clientId);
 
-		Converter converter = menu.getConverter();
-		if (null == converter) {
-			converter = findImplicitConverter(context, component);
-		}
+		if(submittedOptionValue != null) {
+			Converter converter = menu.getConverter();
+			if (null == converter) {
+				converter = findImplicitConverter(context, component);
+			}
 
-		Object convertedValue;
-		if (converter != null) {
-			convertedValue = converter.getAsObject(context, component, submittedOptionValue);
-			menu.validateValue(context, convertedValue);
-			menu.setSubmittedValue(submittedOptionValue);
+			Object convertedValue;
+			if (converter != null) {
+				convertedValue = converter.getAsObject(context, component, submittedOptionValue);
+				menu.validateValue(context, convertedValue);
+				menu.setSubmittedValue(submittedOptionValue);
+			} else {
+				convertedValue = findValue(context, component, submittedOptionValue);
+				menu.validateValue(context, convertedValue);
+				menu.setSubmittedValue(convertedValue);
+			}
 		} else {
-			convertedValue = findValue(context, component, submittedOptionValue);
-			menu.validateValue(context, convertedValue);
-			menu.setSubmittedValue(convertedValue);
+			menu.validateValue(context, submittedOptionValue);
+			menu.setSubmittedValue(submittedOptionValue);
 		}
-
 		menu.setValid(true);
 		new AJAXRenderer().decode(context, component, clientId);
+
 	}
 
 	private Object findValue(final FacesContext context, final UIComponent menu, final String submittedOptionValue) {
 		final List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, null);
-		for (final SelectItemAndComponent item : items) {
+		if (items.isEmpty()) {
+			return null;
+		}
+		for (int index = 0; index < items.size(); ++index) {
+			final SelectItemAndComponent item = items.get(index);
 			final SelectItem currentOption = item.getSelectItem();
 			if (!currentOption.isDisabled()) {
 				Object currentOptionValue = currentOption.getValue();
 				if (currentOptionValue == null && submittedOptionValue == null) {
 					return null;
-				} else if (submittedOptionValue != null && submittedOptionValue.equals(String.valueOf(currentOptionValue))) {
+				}
+				String currentOptionValueAsString;
+				if (currentOptionValue instanceof String) {
+					currentOptionValueAsString = (String) currentOptionValue;
+				} else if (currentOptionValue != null) {
+					currentOptionValueAsString = String.valueOf(index);
+				} else {
+					currentOptionValueAsString = "";
+				}
+				if (currentOptionValueAsString.equals(submittedOptionValue)) {
 					return currentOptionValue;
 				}
 			}
@@ -260,18 +278,18 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 	/**
 	 * render a jquery javascript block after the component if necessary
-	 * 
+	 *
 	 * @param rw
-	 * @param clientId 
+	 * @param clientId
 	 * @param menu
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	private void renderJQueryAfterComponent(ResponseWriter rw, String clientId, SelectOneMenu menu) throws IOException {
 		Boolean select2 = menu.isSelect2();
 		if (select2 != null && select2) {
 			rw.startElement("script", menu);
 			rw.writeAttribute("type", "text/javascript", "script");
-			
+
 			StringBuilder buf = new StringBuilder("$(document).ready(function(){");
 			buf.append("\n");
 			// jquery selector for the ID of the select component
@@ -280,7 +298,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 			buf.append(".select2();");
 			buf.append("\n");
 			buf.append("});");
-			
+
 			rw.writeText(buf.toString(), "script");
 			rw.endElement("script");
 		}
@@ -288,7 +306,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 
 	/**
 	 * Compare current selection with items, if there is any element selected
-	 * 
+	 *
 	 * @param context
 	 * @param items
 	 * @param converter
@@ -306,7 +324,7 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		for (int index = 0; index < items.size(); index++) {
 			SelectItemAndComponent option = items.get(index);
 			if (option.getSelectItem().isNoSelectionOption()) continue;
-			
+
 			Object itemValue = option.getSelectItem().getValue();
 			String itemValueAsString = getOptionAsString(context, menu, itemValue, converter);
 
@@ -321,11 +339,11 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 				if (isSelected(context, menu, selectedOption, optionValue, converter)) {
 					return option;
 				}
-			} 
+			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Parts of this class are an adapted version of InputRenderer#getSelectItems()
 	 * of PrimeFaces 5.1.
@@ -336,17 +354,17 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 	protected void renderOptions(FacesContext context, ResponseWriter rw, SelectOneMenu menu) throws IOException {
 		Converter converter = menu.getConverter();
 		List<SelectItemAndComponent> items = SelectItemUtils.collectOptions(context, menu, converter);
-		
+
 		SelectItemAndComponent selection = determineSelectedItem(context, menu, items, converter);
 
 		for (int index = 0; index < items.size(); index++) {
 			SelectItemAndComponent option = items.get(index);
 
-			if (option.getSelectItem().isNoSelectionOption() && 
+			if (option.getSelectItem().isNoSelectionOption() &&
 					menu.isHideNoSelectionOption() && selection != null)
 				continue;
-			
-			renderOption(context, menu, rw, (option.getSelectItem()), index, option.getComponent(), 
+
+			renderOption(context, menu, rw, (option.getSelectItem()), index, option.getComponent(),
 					option == selection || (selection == null && option.getSelectItem().isNoSelectionOption()));
 		}
 	}
@@ -531,13 +549,13 @@ public class SelectOneMenuRenderer extends CoreInputRenderer {
 		String s;
 		sb = new StringBuilder(20); // optimize int
 		sb.append("form-control");
-		
+
 		Boolean select2 = menu.isSelect2();
 
 		if (select2 != null && select2) {
 			sb.append(" select2style");
 		}
-		
+
 		String fsize = menu.getFieldSize();
 
 		if (fsize != null) {
