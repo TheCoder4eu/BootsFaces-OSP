@@ -6,7 +6,9 @@
 .bootstrap-tagsinput .twitter-typeahead {
 	width: auto;
 	float: none;
-	position: relative !important;
+	position: absolute !important; 
+	/* solution for #721 */
+	width: auto;
 }
 
 .bootstrap-tagsinput .twitter-typeahead .tt-menu {
