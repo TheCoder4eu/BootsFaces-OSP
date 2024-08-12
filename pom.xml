@@ -146,6 +146,81 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources-java11</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes-java11</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Resource Plugin to handle resources for Java 17 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>copy-resources-java17</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/classes-java17</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<executions>
+					<execution>
+						<id>compile-java11</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<source>11</source>
+							<target>11</target>
+							<outputDirectory>${project.build.directory}/classes-java11</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<executions>
+					<execution>
+						<id>compile-java17</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<configuration>
+							<source>17</source>
+							<target>17</target>
+							<outputDirectory>${project.build.directory}/classes-java17</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
@@ -169,7 +244,62 @@
 						<exclude>.gitignore</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<id>jar-java11</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>java11</classifier>
+							<classesDirectory>${project.build.directory}/classes-java11</classesDirectory>
+							<finalName>${project.build.finalName}</finalName>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Built-By>BootsFaces OSP Maven builder.</Built-By>
+							<Maven-Version>${maven.version}</Maven-Version>
+							<Created-By>${java.version} (${java.vendor} ${java.vm.version})</Created-By>
+							<Bundle-Name>BootsFaces</Bundle-Name>
+							<Bundle-Version>${project.version}</Bundle-Version>
+							<Bundle-Date>${maven.build.timestamp}</Bundle-Date>
+							<Implementation-Title>BootsFaces</Implementation-Title>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Implementation-Vendor>TheCoder4.eu</Implementation-Vendor>
+							<Implementation-Vendor-Id>eu.thecoder4</Implementation-Vendor-Id>
+							<Implementation-URL>http://www.bootsfaces.net</Implementation-URL>
+						</manifestEntries>
+					</archive>
+					<excludes>
+						<exclude>rebel.xml</exclude>
+						<exclude>.gitignore</exclude>
+					</excludes>
+				</configuration>
+				<executions>
+					<execution>
+						<id>jar-java11</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classifier>java17</classifier>
+							<classesDirectory>${project.build.directory}/classes-java17</classesDirectory>
+							<finalName>${project.build.finalName}</finalName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
