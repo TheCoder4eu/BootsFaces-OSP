@@ -1661,7 +1661,7 @@ widget openStreetMap
 	maxZoom				Integer	default "20"							"Maximal zoom level the user can configure."
 	dragging			Boolean											"dragging"
 	zoomControl			Boolean											"Setting this to false hides the zoom control widget."
-	zoomGlobal			Boolean											"zoomGlobal"
+	zoomGlobal			Boolean											"Deactivates the zoom function of the map in favor of the general browser zoom"
 	attribution			String											"Copyright notice, indicating the template provider (aka tile server)."
 	miniMap				Boolean											"Setting this to true activates a miniature map."
 	miniMapWidth		Integer											"Width of the miniature map (in pixels)."

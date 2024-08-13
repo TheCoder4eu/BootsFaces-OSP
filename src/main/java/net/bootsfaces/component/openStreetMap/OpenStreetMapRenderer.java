@@ -105,32 +105,32 @@ public class OpenStreetMapRenderer extends CoreRenderer {
 				+ "', {id: 'osm', attribution: '" + openStreetMap.getAttribution() + "', maxZoom: "
 				+ openStreetMap.getMaxZoom() + ", minZoom: " + openStreetMap.getMinZoom() + "}), dragging:"
 				+ openStreetMap.isDragging() + ", zoomControl:" + openStreetMap.isZoomControl() + " });", null);
-		rw.writeText("if('" + openStreetMap.getMarker() + "')", null);
-		rw.writeText("{", null);
-		rw.writeText("var " + clientId + "_marker = L.marker([" + openStreetMap.getMarker()
-				+ "],{icon: new L.Icon({iconSize: [25, 41], iconAnchor: [25, 41], popupAnchor: [-12, -45], iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+openStreetMap.LEAFLET_VERSION+"/images/marker-icon.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/"+openStreetMap.LEAFLET_VERSION+"/images/marker-shadow.png'})}).addTo("
-				+ clientId + "_map);", null);
-		rw.writeText("if('" + openStreetMap.getPopupMsg() + "')", null);
-		rw.writeText(clientId + "_marker.bindPopup('" + openStreetMap.getPopupMsg() + "');", null);
-		rw.writeText("}", null);
-		rw.writeText("if(!" + openStreetMap.isZoomGlobal() + ")", null);
-		rw.writeText("{", null);
-		rw.writeText(clientId + "_map.touchZoom.disable();", null);
-		rw.writeText(clientId + "_map.doubleClickZoom.disable();", null);
-		rw.writeText(clientId + "_map.scrollWheelZoom.disable();", null);
-		rw.writeText(clientId + "_map.boxZoom.disable();", null);
-		rw.writeText(clientId + "_map.keyboard.disable();", null);
-		rw.writeText("}", null);
-		rw.writeText("if(" + openStreetMap.isMiniMap() + ")", null);
-		rw.writeText("{", null);
-		rw.writeText("new L.Control.MiniMap(L.tileLayer('" + openStreetMap.getUrlTemplate() + "', {}), {", null);
-		rw.writeText("toggleDisplay: true,", null);
-		rw.writeText("zoomAnimation: true,", null);
-		rw.writeText("position: '" + openStreetMap.getMiniMapPosition() + "',", null);
-		rw.writeText("width: " + openStreetMap.getMiniMapWidth() + ",", null);
-		rw.writeText("height: " + openStreetMap.getMiniMapWidth(), null);
-		rw.writeText("}).addTo(" + clientId + "_map);", null);
-		rw.writeText("}", null);
+		if (openStreetMap.getMarker() != null && openStreetMap.getMarker().length() > 0) {
+			rw.writeText("var " + clientId + "_marker = L.marker([" + openStreetMap.getMarker() + "]).addTo("
+					+ clientId + "_map);", null);
+			rw.writeText("var " + clientId + "_marker = L.marker([" + openStreetMap.getMarker()
+					+ "],{icon: new L.Icon({iconSize: [25, 41], iconAnchor: [25, 41], popupAnchor: [-12, -45], iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/" + openStreetMap.LEAFLET_VERSION + "/images/marker-icon.png', shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/" + openStreetMap.LEAFLET_VERSION + "/images/marker-shadow.png'})}).addTo("
+					+ clientId + "_map);", null);
+			if (openStreetMap.getPopupMsg() != null && openStreetMap.getPopupMsg().length()>0) {
+				rw.writeText(clientId + "_marker.bindPopup('" + openStreetMap.getPopupMsg() + "');", null);
+			}
+		}
+		if (openStreetMap.isZoomGlobal()) {
+			rw.writeText(clientId + "_map.touchZoom.disable();", null);
+			rw.writeText(clientId + "_map.doubleClickZoom.disable();", null);
+			rw.writeText(clientId + "_map.scrollWheelZoom.disable();", null);
+			rw.writeText(clientId + "_map.boxZoom.disable();", null);
+			rw.writeText(clientId + "_map.keyboard.disable();", null);
+		}
+		if (openStreetMap.isMiniMap()) {
+			rw.writeText("new L.Control.MiniMap(L.tileLayer('" + openStreetMap.getUrlTemplate() + "', {}), {", null);
+			rw.writeText("toggleDisplay: true,", null);
+			rw.writeText("zoomAnimation: true,", null);
+			rw.writeText("position: '" + openStreetMap.getMiniMapPosition() + "',", null);
+			rw.writeText("width: " + openStreetMap.getMiniMapWidth() + ",", null);
+			rw.writeText("height: " + openStreetMap.getMiniMapWidth(), null);
+			rw.writeText("}).addTo(" + clientId + "_map);", null);
+		}
 		rw.endElement("script");
 	}
 

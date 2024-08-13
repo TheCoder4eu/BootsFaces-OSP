@@ -297,7 +297,7 @@ public abstract class OpenStreetMapCore extends UIData {
 	}
 
 	/**
-	 * zoomGlobal <P>
+	 * Deactivates the zoom function of the map in favor of the general browser zoom
 	 * @return Returns the value of the attribute, or , false, if it hasn't been set by the JSF file.
 	 */
 	public boolean isZoomGlobal() {
