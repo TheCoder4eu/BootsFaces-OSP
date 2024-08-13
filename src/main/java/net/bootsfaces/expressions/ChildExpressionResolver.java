@@ -13,12 +13,12 @@ public class ChildExpressionResolver implements AbstractExpressionResolver {
 			throw new FacesException("The @child search expression required a numerical parameter! " + originalExpression);
 		}
 		try {
-		int index = new Integer(parameters[0]).intValue();
+		int index = Integer.parseInt(parameters[0]);
 		List<UIComponent> result = new ArrayList<UIComponent>();
 		for (UIComponent parent : parentComponents) {
 			result.add(parent.getChildren().get(index));
 		}
-		if (result.size() > 0) {
+		if (!result.isEmpty()) {
 			return result;
 		}
 		throw new FacesException("Error processing the @child search expression. " + originalExpression);

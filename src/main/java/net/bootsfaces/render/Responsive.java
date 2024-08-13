@@ -200,7 +200,7 @@ public class Responsive {
 			size=size.replace("column", "");
 			size=size.trim();
 		}
-		return new Integer(size).intValue();
+		return Integer.parseInt(size);
 	}
 
 	/**
