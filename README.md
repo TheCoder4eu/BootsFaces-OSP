@@ -17,26 +17,25 @@ To learn more about the framework, take a look at  [BootsFaces.net](http://www.b
 The source for our page can be found on GitHub. If you want to have a deeper look on how to use the library or found a mistake, visit the [Showcase Project](https://github.com/TheCoder4eu/BootsFacesWeb) or the [Examples Project](https://github.com/TheCoder4eu/BootsFaces-examples).
 
 ### Version 2.0.0
-At the momemnt, we've started publishing version 2.0.0. Basically, that's a considerable number of bug fixes, plus support for JakartaEE. We've dropped support for the old `javax` namespace.
+Basically, Version 2.0.0 is a considerable number of bug fixes, plus support for JakartaEE. We've dropped support for the old `javax` namespace.
 
 The minumum required version of Java is Java 11.
 
 ### State of the project
-At the moment, this project is not maintained actively. If you need a feature, please send us a pull request so we can build a new version. It's a good idea to reach out to use beforehand, so we can check if (or make sure that) we've got enough time to review your PR and to publish a new version.
+At the moment, this project is not maintained actively. If you need a feature, please send us a pull request,
+so we can build a new version. It's a good idea to reach out to use beforehand, so we can check if (or make sure that) we've got enough time to review your PR and to publish a new version.
 
 ### Getting started
 To get up and running quickly, have a look at the [Quick Start](https://www.bootsfaces.net/quick-start.jsf).
 
-At the moment, version 2.0.0 is only available as development snapshot!
-
-Starting with version 2.0.0, BootsFaces requires JSF 4.0. It's no longer compatible to the old JavaEE libraries. Instead, it requires the Jakarta libraries..
+Starting with version 2.0.0, BootsFaces requires JSF 4.0 and JakartaEE. It's no longer compatible to the old JavaEE libraries. Instead, it requires the Jakarta libraries..
 
 ### Maven
 
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0</version>
     </dependency>
 
 You can also get a version that's compiled to Java 17:
@@ -44,7 +43,7 @@ You can also get a version that's compiled to Java 17:
     <dependency>
         <groupId>net.bootsfaces</groupId>
         <artifactId>bootsfaces</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
+        <version>2.0.0</version>
         <classifier>java17</classifier>
     </dependency>
 
@@ -53,7 +52,7 @@ there is at least one Java version that ran newer builds faster than older build
 
 ### Gradle
 
-    compile 'net.bootsfaces:bootsfaces:2.0.0-SNAPSHOT'
+    compile 'net.bootsfaces:bootsfaces:2.0.0'
 
 ### Development Snapshots
 
