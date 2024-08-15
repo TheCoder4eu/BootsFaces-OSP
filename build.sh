@@ -32,4 +32,4 @@
 
 ./gradlew clean publishToMavenLocal
 
-mvn clean deploy -P MavenCentral
+mvn clean install
