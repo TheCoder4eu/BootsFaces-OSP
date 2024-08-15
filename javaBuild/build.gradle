@@ -21,6 +21,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id "org.sonarqube" version "4.4.1.3373"
 }
 
 
@@ -303,6 +304,14 @@ compileJava.doFirst {
     println "sourceSets.main.output.classesDirs :" + sourceSets.main.output.classesDirs
     println "sourceSets.main.output.resourcesDir :" + sourceSets.main.output.resourcesDir
 
+}
+
+sonar {
+    properties {
+        property "sonar.projectKey", "bootsfaces_bootsfaces"
+        property "sonar.organization", "bootsfaces"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
 }
 
 defaultTasks 'clean','defaultJar','buildJava11Jar','publishToMavenLocal'
