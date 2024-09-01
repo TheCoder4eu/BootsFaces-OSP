@@ -19,7 +19,7 @@ The source for our page can be found on GitHub. If you want to have a deeper loo
 ### Version 2.0.0
 Basically, Version 2.0.0 is a considerable number of bug fixes, plus support for JakartaEE. We've dropped support for the old `javax` namespace.
 
-The minumum required version of Java is Java 11.
+The minimum required version of Java is Java 11.
 
 ### State of the project
 At the moment, this project is not maintained actively. If you need a feature, please send us a pull request,
@@ -74,3 +74,13 @@ With Gradle, you can build the library using the following Targets:
 ./gradlew :javaBuild:buildJava17Jar
 ```
 
+### Kudos
+Over the years, countless developers helped to make BootsFaces what it is today. We'd like to thank all of them for their contributions. 
+
+<table style="border-collapse: collapse; border:none">
+  <tr style="border:none">
+    <td style="border:none; width:70%">With respect to version 2.0, we'd like to thank particularly Alexander Hass and his team, who're working for the insurance company "Itzehoer Versicherungen" and who made publishing the new version possible. Without your help, the new version probably wouldn’t exist yet!
+    <td style="border:none; width:20%"><img src="https://www.itzehoer.de/images/mediathek/itzehoer-logo_farbig_png.png" alt="Logo of the company Itzehoer Versicherungen" style="margin-left: 20px;"></td>
+  </tr>
+</table>
+  
