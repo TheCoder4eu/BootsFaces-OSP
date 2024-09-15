@@ -40,3 +40,5 @@ src-gen
 /infer-out/
 /mavenResources/META-INF/licenses
 /doc/
+.whitesource
+
