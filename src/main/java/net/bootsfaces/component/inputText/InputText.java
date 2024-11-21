@@ -45,13 +45,14 @@ import net.bootsfaces.utils.BsfUtils;
  *
  * @author thecoder4.eu
  */
-@ListenersFor({ @ListenerFor(systemEventClass = PostAddToViewEvent.class) })
+@ListenersFor({
+	@ListenerFor(systemEventClass = PostAddToViewEvent.class)})
 @FacesComponent(InputText.COMPONENT_TYPE)
 public class InputText extends InputTextCore implements IHasTooltip, IAJAXComponent, IAJAXComponent2, IResponsive, IResponsiveLabel {
 
-  protected enum PropertyKeys {
+	protected enum PropertyKeys {
 		mask
-  }
+	}
 
 	private String renderLabel = null;
 
@@ -69,24 +70,24 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	public static final String COMPONENT_FAMILY = C.BSFCOMPONENT;
 
 	private static final Collection<String> EVENT_NAMES = Collections
-			.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "input", "keydown",
-					"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
+		.unmodifiableCollection(Arrays.asList("blur", "change", "click", "dblclick", "focus", "input", "keydown",
+			"keypress", "keyup", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "select"));
 
 	/**
-	 * returns the subset of AJAX requests that are implemented by jQuery
-	 * callback or other non-standard means (such as the onclick event of
-	 * b:tabView, which has to be implemented manually).
+	 * returns the subset of AJAX requests that are implemented by jQuery callback or other non-standard means (such
+	 * as the onclick event of b:tabView, which has to be implemented manually).
 	 *
 	 * @return
 	 */
+	@Override
 	public Map<String, String> getJQueryEvents() {
 		return null;
 	}
 
 	/**
-	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the server via AJAX.
-	 * If there's no parameter list for a certain event, the default is simply null.
-	 * 
+	 * Returns the subset of the parameter list of jQuery and other non-standard JS callbacks which is sent to the
+	 * server via AJAX. If there's no parameter list for a certain event, the default is simply null.
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
@@ -95,9 +96,9 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 	}
 
 	/**
-	 * Returns the parameter list of jQuery and other non-standard JS callbacks.
-	 * If there's no parameter list for a certain event, the default is simply "event".
-	 * 
+	 * Returns the parameter list of jQuery and other non-standard JS callbacks. If there's no parameter list for a
+	 * certain event, the default is simply "event".
+	 *
 	 * @return A hash map containing the events. May be null.
 	 */
 	@Override
@@ -105,10 +106,12 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		return null;
 	}
 
+	@Override
 	public Collection<String> getEventNames() {
 		return EVENT_NAMES;
 	}
 
+	@Override
 	public String getDefaultEventName() {
 		return "change";
 	}
@@ -124,33 +127,44 @@ public class InputText extends InputTextCore implements IHasTooltip, IAJAXCompon
 		}
 	}
 
+	@Override
 	public void setValueExpression(String name, ValueExpression binding) {
 		name = BsfUtils.snakeCaseToCamelCase(name);
 		super.setValueExpression(name, binding);
 
-		if ("mask".equals(name)) addInputmaskResources();
-		else if ("typeahead".equals(name)) addTypeaheadResources();
-		else if ("tags".equals(name)) addTagsResources();
+		if ("mask".equals(name)) {
+			addInputmaskResources();
+		} else if ("typeahead".equals(name)) {
+			addTypeaheadResources();
+		} else if ("tags".equals(name)) {
+			addTagsResources();
+		}
 	}
 
 	@Override
-		public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
+	public void processEvent(ComponentSystemEvent event) throws AbortProcessingException {
 		if (isAutoUpdate()) {
 			if (FacesContext.getCurrentInstance().isPostback()) {
 				FacesContext.getCurrentInstance().getPartialViewContext().getRenderIds().add(getClientId());
 			}
- 	 		super.processEvent(event);
- 	 	}
+			super.processEvent(event);
+		}
 	}
 
-public String getFamily() {
+	@Override
+	public String getFamily() {
 		return COMPONENT_FAMILY;
 	}
 
 	/**
-	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or more tags. The list is sent to the backend bean as a comma-separated list. <P>
+	 * Show the words of the input text as tags (similar to price tags in the supermarket). You can select one or
+	 * more tags. The list is sent to the backend bean as a comma-separated list.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
+	 *
+	 * @param _tags
 	 */
+	@Override
 	public void setTags(boolean _tags) {
 		if (_tags) {
 			addTagsResources();
@@ -159,8 +173,11 @@ public String getFamily() {
 	}
 
 	/**
-	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values. <P>
+	 * Activates the type-ahead aka autocomplete function. The list of values has to be defined in typeahead-values.
+	 * <P>
 	 * Usually this method is called internally by the JSF engine.
+	 *
+	 * @param _typeahead
 	 */
 	@Override
 	public void setTypeahead(boolean _typeahead) {
@@ -175,37 +192,39 @@ public String getFamily() {
 		setTypeahead(true);
 		super.setTypeaheadValues(_typeaheadValues);
 	}
-  
-  /**
-   * Returns input mask.
-   * 
-   * @return Input mask.
-   */
+
+	/**
+	 * Returns input mask.
+	 *
+	 * @return Input mask.
+	 */
+	@Override
 	public String getMask() {
 		return (String) getStateHelper().eval(PropertyKeys.mask);
 	}
 
-  /**
-   * Sets input mask and triggers JavaScript to be loaded.
-   * 
-   * @param mask Input mask to set. 
-   */
+	/**
+	 * Sets input mask and triggers JavaScript to be loaded.
+	 *
+	 * @param mask Input mask to set.
+	 */
+	@Override
 	public void setMask(String mask) {
 		if (mask != null && !mask.isEmpty()) {
 			addInputmaskResources();
 		}
-    getStateHelper().put(PropertyKeys.mask, mask);
+		getStateHelper().put(PropertyKeys.mask, mask);
 	}
-	
+
 	private void addInputmaskResources() {
-		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.inputmask.bundle.min.js");		
+		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/jquery.inputmask.bundle.min.js");
 	}
 
 	private void addTypeaheadResources() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/typeahead.js");
 		AddResourcesListener.addExtCSSResource("typeahead.css");
 	}
-	
+
 	private void addTagsResources() {
 		AddResourcesListener.addResourceToHeadButAfterJQuery(C.BSF_LIBRARY, "js/bootstrap-tagsinput.min.js");
 		AddResourcesListener.addExtCSSResource("bootstrap-tagsinput.css");

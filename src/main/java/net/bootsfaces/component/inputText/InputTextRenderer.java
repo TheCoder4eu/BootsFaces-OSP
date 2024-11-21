@@ -175,12 +175,9 @@ public class InputTextRenderer extends CoreInputRenderer {
 
 		if (visible && label != null) {
 			rw.startElement("label", component);
-			rw.writeAttribute("for", fieldId, "for"); // "input_" +
-																	// clientId
-			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass,
-					"control-label");
+			rw.writeAttribute("for", fieldId, "for"); // "input_" + clientId								
+			generateErrorAndRequiredClass(inputText, rw, clientId, inputText.getLabelStyleClass(), responsiveLabelClass, "control-label");
 			writeAttribute(rw, "style", inputText.getLabelStyle());
-
 			rw.writeText(label, null);
 			rw.endElement("label");
 		}
@@ -204,12 +201,13 @@ public class InputTextRenderer extends CoreInputRenderer {
 		// Input
 		rw.startElement("input", inputText);
 		rw.writeAttribute("id", fieldId, null); // "input_" + clientId
+
 		String name = inputText.getName();
-		// System.out.println(name);
 		if (null == name) {
 			name = "input_" + clientId;
 		}
 		rw.writeAttribute("name", name, null);
+
 		rw.writeAttribute("type", t, null);
 
 		generateStyleClass(inputText, rw);
@@ -234,7 +232,7 @@ public class InputTextRenderer extends CoreInputRenderer {
 		if ((autocomplete != null) && (autocomplete.equals("off") || autocomplete.equals("false"))) {
 			rw.writeAttribute("autocomplete", "off", null);
 		}
-
+		
 		String v = getValue2Render(context, component);
 		if (inputText instanceof InputSecret) {
 			if (!((InputSecret) inputText).isRenderValue()) {
@@ -260,25 +258,23 @@ public class InputTextRenderer extends CoreInputRenderer {
 			numberOfDivs--;
 		}
 
-		// The following lines fix issue #1079 on basic tags (without typeahead).
-		// They initialize tagsinput manually and empty duplicated 'name' attribute
-		// on generated input (which holds the original HTML id).
 		if (inputText.isTags() && (!inputText.isTypeahead())) {
 			String id = fieldId; // input id
 			id = id.replace(":", "\\\\:"); // escape the id for jQuery
 			rw.startElement("script", null);
-			String js = "$('#" + id + "').tagsinput();" + //
-			            "$('#" + id + "').attr('name','');";
+			String js = "$('#" + id + "').tagsinput();";
+			js +=  "$('#" + id + "').siblings('.bootstrap-tagsinput').addClass('form-control');";
 			rw.writeText(js, null);
 			rw.endElement("script");
 		}
 
 		Tooltip.activateTooltips(context, inputText);
 		if (inputText.isTypeahead()) {
-			String id = component.getClientId();
-			id = id.replace(":", "_"); // we need to escape the id for jQuery
+			String componentClientId = component.getClientId();
+			// generateStyleClass() add the id as css class before
+			String escapedClientId = componentClientId.replace(":", "_"); // we need to escape the id for jQuery
 			rw.startElement("script", component);
-			String typeaheadname = id + "_typeahead";
+			String typeaheadname = escapedClientId + "_typeahead";
 			if (inputText.isTags()) {
 				String js = "var engine = new Bloodhound({" + //
 						"name: '" + typeaheadname + "'," + //
@@ -288,7 +284,8 @@ public class InputTextRenderer extends CoreInputRenderer {
 						"}," + //
 						"queryTokenizer: Bloodhound.tokenizers.whitespace" + //
 						"});";
-				js += "$('." + id + "').tagsinput({" + //
+
+				js += "$('." + escapedClientId + "').tagsinput({" + //
 						"typeaheadjs: {" + //
 						"  name: 'animals'," + //
 						"  displayKey: 'val'," + //
@@ -297,16 +294,10 @@ public class InputTextRenderer extends CoreInputRenderer {
 						"}" + //
 						"});";//
 
-				// The following lines fix issue #1079 on tags with typeahead.
-				// They empty duplicated 'name' attribute on generated input (which holds the original HTML id).
-				String inputId = fieldId; // input id
-				inputId = inputId.replace(":", "\\\\:"); // escape the id for jQuery
-				js += "$('#" + inputId + "').attr('name','');";
+                                js +=  "$('." + escapedClientId + "').siblings('.bootstrap-tagsinput').addClass('form-control');";
 
 				rw.writeText(js, null);
-
 			} else {
-
 				String options = "";
 				options = addOption(options, "hint:" + inputText.isTypeaheadHint());
 				options = addOption(options, "highlight:" + inputText.isTypeaheadHighlight());
@@ -314,10 +305,8 @@ public class InputTextRenderer extends CoreInputRenderer {
 				String options2 = "";
 				options2 = addOption(options2, "limit:" + inputText.getTypeaheadLimit());
 				options2 = addOption(options2, "name:'" + typeaheadname + "'");
-				options2 = addOption(options2,
-						"source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
-
-				rw.writeText("$('." + id + "').typeahead({" + options + "},{" + options2 + "});", null);
+				options2 = addOption(options2, "source: BsF.substringMatcher(" + getTypeaheadValueArray(inputText) + ")");
+				rw.writeText("$('." + escapedClientId + "').typeahead({" + options + "},{" + options2 + "});", null);
 			}
 			rw.endElement("script");
 		}
